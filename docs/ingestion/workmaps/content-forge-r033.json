@@ -1,0 +1,442 @@
+{
+  "schemaVersion": "vex-content-forge.work-map/v0.29-compact-cumulative-root",
+  "continuity": "[VXG RealForever]",
+  "workMapRef": "workmap.vextreme.content-forge.session-vex-content-forge.3b1ce4d66a28.00d2bf465b",
+  "revisionRef": "workmap.revision.vextreme.content-forge.r033.collection-testimonies-2-of-5-complete",
+  "revision": 33,
+  "revisionScope": "COLLECTION_TESTIMONIES_2_OF_5_COMPLETE",
+  "purpose": "Consume Part 033 Collection /testimonies 2/5 at breadth-intake depth; extend the collection through Journal 013, Victor’s Provision Seal, Curse Mechanics and Liberation Protocols, and The Turning Point; preserve two nested variants against existing Liberation slots, hold two unregistered records without inventing canonical identities, and keep canonical page/node/arc/localization placement untouched.",
+  "cumulativeBasis": {
+    "priorMapPath": "docs/ingestion/workmaps/content-forge-r032.json",
+    "priorRevisionRef": "workmap.revision.vextreme.content-forge.r032.collection-testimonies-1-of-5-complete",
+    "deepBasisPath": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "inheritanceRule": "R033 extends R032; prior observations remain authoritative unless an explicit later event revises interpretation."
+  },
+  "cumulativeState": {
+    "observedPages": 235,
+    "unmappedTopLevel": "9_OF_9__102_OF_102__OBSERVED_COMPLETE",
+    "completedSourceGroups": [
+      "collection:convos-with-god__4_OF_4__OBSERVED_COMPLETE",
+      "route-family:epstein-and-ai-old__3_OF_3__OBSERVED_COMPLETE"
+    ],
+    "activeSourceGroup": "collection:testimonies__2_OF_5_PARTIAL",
+    "workNodes": 261,
+    "edges": 369,
+    "clusters": 109,
+    "learnedRules": 140,
+    "unresolved": 102,
+    "remainingTrueRevisits": 6,
+    "canonicalPlacementEffects": 0,
+    "publicSourceEvidenceHtml": 163,
+    "protectedSourceMetadataOnly": 1
+  },
+  "activeNonCollapseRulesAdded": [
+    "SOURCE_COLLECTION_NEIGHBORHOOD != CANONICAL_NODE_CREATION",
+    "SOURCE_RECIPROCAL_LINK != CANONICAL_PARENTAGE_OR_DESTINATION_ORDER",
+    "LIBERATION_TERMINOLOGY != LIBERATION_ARC_MEMBERSHIP_AUTHORITY",
+    "SAME_CANONICAL_SUBJECT != BYTE_EQUIVALENT_COLLECTION_VARIANT"
+  ],
+  "r033": {
+    "partRef": "PART_033_COLLECTION_TESTIMONIES_2_OF_5",
+    "partSha256": "848646790dc481624a462920139361e3541a3dd7165d4eeafd9cf6d0ef227b85",
+    "sourceGroupState": "SOURCE_GROUP_PARTIAL_OBSERVED_2_OF_5",
+    "nodes": [
+      {
+        "workNodeRef": "workmap.source-page.testimonies-journal-013-seven-layers-choose",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_033_COLLECTION_TESTIMONIES_2_OF_5",
+          "partSha256": "848646790dc481624a462920139361e3541a3dd7165d4eeafd9cf6d0ef227b85",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/journal-013-seven-layers-choose",
+          "pageId": "1455e14b6d308ee1",
+          "title": "JOURNAL 013: SEVEN LAYERS CHOOSE — Vex Life",
+          "derivedSha256": "9c9c352ab4288f96dcac3dbd833c96a877c8ae4c0b0f38469b1c64a72412a625",
+          "preservedHtmlSha256": "59acdfeacd5568a7eea6915cd9f104c1c73ff31ebd6edd6b37a41776bd73cf02",
+          "preservedHtmlBytes": 420198,
+          "preservedGitBlobSha1": "d5996aafdf7114a4f8e6d5d8ce314107ae6ba857",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "recordCount": 610,
+          "localizationCandidateKeyCount": 1379,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedCollectionNeighbors": [
+            "/testimonies/victors-ritual-sequence-and-crowning",
+            "/testimonies/victors-provision-seal"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=23 slug=journal-013-seven-layers-choose liberation+full_timeline; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+          "canonicalNode": {
+            "slug": "journal-013-seven-layers-choose",
+            "id": 23,
+            "arcKeys": [
+              "liberation",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "priorFlatSourcePath": "docs/ingestion/source-pages/part-019/journal-013-seven-layers-choose.html",
+            "priorFlatSourceSha256": "23f48174139f0f845fded9b9509cf1236070fd4f29cbae8e26a34eacbe23695b",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_NESTED_SOURCE_BYTES__NO_REPLACEMENT_INFERRED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.testimonies-victors-provision-seal",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_033_COLLECTION_TESTIMONIES_2_OF_5",
+          "partSha256": "848646790dc481624a462920139361e3541a3dd7165d4eeafd9cf6d0ef227b85",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/victors-provision-seal",
+          "pageId": "900d0e7c60e9c536",
+          "title": "Victor’s Provision Seal — Vex Life",
+          "derivedSha256": "960ece96407876500c3c1817295a4370ab1853e3f156a1070036bb29d016259f",
+          "preservedHtmlSha256": "d55c049853f4de35d7e5909229aedecf9792ff2aac49cfa5d2270a5ab2b7ae1f",
+          "preservedHtmlBytes": 331476,
+          "preservedGitBlobSha1": "d7faacf29f533faa1db7d8b82b52ae634f743279",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "recordCount": 359,
+          "localizationCandidateKeyCount": 1094,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedCollectionNeighbors": [
+            "/testimonies/journal-013-seven-layers-choose",
+            "/testimonies/curse-mechanics-and-liberation-protocols"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "HOLD",
+          "placementState": "NO_EXACT_NODE_PAGE_OR_CONTENT_INTENT; TESTIMONIES_COLLECTION_RECORD; DESTINATION_CLASS_UNRESOLVED"
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.testimonies-curse-mechanics-and-liberation-protocols",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_033_COLLECTION_TESTIMONIES_2_OF_5",
+          "partSha256": "848646790dc481624a462920139361e3541a3dd7165d4eeafd9cf6d0ef227b85",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/curse-mechanics-and-liberation-protocols",
+          "pageId": "f952d20abb62820a",
+          "title": "Curse Mechanics and Liberation Protocols — Vex Life",
+          "derivedSha256": "6874821281cfc18f4143262f081e3b3e3392d74a342aa4d42076350ef1970b39",
+          "preservedHtmlSha256": "8250d107a6b1a051cd4a18f299d4f37ad207194d6a1a4bd5960ef519fea28c1c",
+          "preservedHtmlBytes": 401012,
+          "preservedGitBlobSha1": "b68da62ccfa48094c43d967b952a7d1d1297b481",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "recordCount": 508,
+          "localizationCandidateKeyCount": 1297,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedCollectionNeighbors": [
+            "/testimonies/victors-provision-seal",
+            "/testimonies/the-turning-point"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "HOLD",
+          "placementState": "NO_EXACT_NODE_PAGE_OR_CONTENT_INTENT; LIBERATION_TERMINOLOGY_PRESENT_IN_SOURCE_BUT_CANONICAL_LIBERATION_MEMBERSHIP_NOT_AUTHORIZED; DESTINATION_CLASS_UNRESOLVED"
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.testimonies-the-turning-point",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_033_COLLECTION_TESTIMONIES_2_OF_5",
+          "partSha256": "848646790dc481624a462920139361e3541a3dd7165d4eeafd9cf6d0ef227b85",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/the-turning-point",
+          "pageId": "bdf2c6726590e91b",
+          "title": "The Turning Point — Vex Life",
+          "derivedSha256": "4144deb20ba1cc96f575174389285176c48f7cbd039e11ead2577c7efe688a02",
+          "preservedHtmlSha256": "939410a304c76ffed25d92a874cf074b1628d61144c00c88061fe894cd732188",
+          "preservedHtmlBytes": 456842,
+          "preservedGitBlobSha1": "e67ffa308549fcddddb9eb002ea13acb83f4f1bf",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "recordCount": 848,
+          "localizationCandidateKeyCount": 1820,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedCollectionNeighbors": [
+            "/testimonies/curse-mechanics-and-liberation-protocols",
+            "/testimonies/infrastructure-reformation"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=24 slug=the-turning-point liberation+full_timeline; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+          "canonicalNode": {
+            "slug": "the-turning-point",
+            "id": 24,
+            "arcKeys": [
+              "liberation",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "priorFlatSourcePath": "docs/ingestion/source-pages/part-019/the-turning-point.html",
+            "priorFlatSourceSha256": "0cfcedcd8b3b21d8d19f0513427e034ad315a167cde8bfc621567f68083d503d",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_NESTED_SOURCE_BYTES__NO_REPLACEMENT_INFERRED"
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "edgeRef": "edge.r033.root-to-journal",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-journal-013-seven-layers-choose",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r033.root-to-provision",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-victors-provision-seal",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r033.root-to-curse",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-curse-mechanics-and-liberation-protocols",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r033.root-to-turning",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-the-turning-point",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r033.ritual-to-journal",
+        "from": "workmap.source-page.testimonies-victors-ritual-sequence-and-crowning",
+        "to": "workmap.source-page.testimonies-journal-013-seven-layers-choose",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r033.journal-to-ritual",
+        "from": "workmap.source-page.testimonies-journal-013-seven-layers-choose",
+        "to": "workmap.source-page.testimonies-victors-ritual-sequence-and-crowning",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r033.journal-to-provision",
+        "from": "workmap.source-page.testimonies-journal-013-seven-layers-choose",
+        "to": "workmap.source-page.testimonies-victors-provision-seal",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r033.provision-to-journal",
+        "from": "workmap.source-page.testimonies-victors-provision-seal",
+        "to": "workmap.source-page.testimonies-journal-013-seven-layers-choose",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r033.provision-to-curse",
+        "from": "workmap.source-page.testimonies-victors-provision-seal",
+        "to": "workmap.source-page.testimonies-curse-mechanics-and-liberation-protocols",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r033.curse-to-provision",
+        "from": "workmap.source-page.testimonies-curse-mechanics-and-liberation-protocols",
+        "to": "workmap.source-page.testimonies-victors-provision-seal",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r033.curse-to-turning",
+        "from": "workmap.source-page.testimonies-curse-mechanics-and-liberation-protocols",
+        "to": "workmap.source-page.testimonies-the-turning-point",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r033.turning-to-curse",
+        "from": "workmap.source-page.testimonies-the-turning-point",
+        "to": "workmap.source-page.testimonies-curse-mechanics-and-liberation-protocols",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      }
+    ],
+    "clusters": [
+      {
+        "clusterRef": "workmap.cluster.r033.existing-slot-nested-variants",
+        "state": "DESTINATION_TOPOLOGY_ALIGNMENT",
+        "clusterKind": "NESTED_TESTIMONY_VARIANTS_OF_EXISTING_LIBERATION_SLOTS",
+        "memberRefs": [
+          "workmap.source-page.testimonies-journal-013-seven-layers-choose",
+          "workmap.source-page.testimonies-the-turning-point"
+        ],
+        "placement": "SOURCE_LINEAGE_ONLY"
+      },
+      {
+        "clusterRef": "workmap.cluster.r033.unregistered-testimony-records",
+        "state": "DESTINATION_CLASS_HOLD",
+        "clusterKind": "TESTIMONIES_RECORDS_WITHOUT_EXACT_CANONICAL_IDENTITY",
+        "memberRefs": [
+          "workmap.source-page.testimonies-victors-provision-seal",
+          "workmap.source-page.testimonies-curse-mechanics-and-liberation-protocols"
+        ],
+        "placement": "HOLD_FOR_DESTINATION_CLASS"
+      },
+      {
+        "clusterRef": "workmap.cluster.r033.collection-chain-continuation",
+        "state": "SOURCE_TOPOLOGY_OBSERVED",
+        "clusterKind": "TESTIMONIES_COLLECTION_LINK_CHAIN",
+        "memberRefs": [
+          "workmap.source-page.testimonies-victors-ritual-sequence-and-crowning",
+          "workmap.source-page.testimonies-journal-013-seven-layers-choose",
+          "workmap.source-page.testimonies-victors-provision-seal",
+          "workmap.source-page.testimonies-curse-mechanics-and-liberation-protocols",
+          "workmap.source-page.testimonies-the-turning-point"
+        ],
+        "placement": "SOURCE_TOPOLOGY_ONLY",
+        "reason": "Part 033 extends the Testimonies source chain across one Part-032 member and four Part-033 records without authorizing canonical parentage, identity creation, or destination order."
+      }
+    ],
+    "learnedRules": [
+      {
+        "ruleRef": "rule.content-forge.testimonies-neighborhood-not-node-creation",
+        "rule": "SOURCE_COLLECTION_NEIGHBORHOOD != CANONICAL_NODE_CREATION"
+      },
+      {
+        "ruleRef": "rule.content-forge.testimonies-reciprocity-not-parentage",
+        "rule": "SOURCE_RECIPROCAL_LINK != CANONICAL_PARENTAGE_OR_DESTINATION_ORDER"
+      },
+      {
+        "ruleRef": "rule.content-forge.liberation-words-not-arc-authority",
+        "rule": "LIBERATION_TERMINOLOGY != LIBERATION_ARC_MEMBERSHIP_AUTHORITY"
+      },
+      {
+        "ruleRef": "rule.content-forge.testimonies-same-subject-not-byte-equivalence",
+        "rule": "SAME_CANONICAL_SUBJECT != BYTE_EQUIVALENT_COLLECTION_VARIANT"
+      }
+    ],
+    "unresolved": [
+      {
+        "unresolvedRef": "unresolved.r033.victors-provision-seal-destination-class",
+        "question": "What destination-native class, if any, should Victor’s Provision Seal receive?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_IDENTITY_OR_PLACEMENT"
+      },
+      {
+        "unresolvedRef": "unresolved.r033.curse-mechanics-destination-class",
+        "question": "Should Curse Mechanics and Liberation Protocols become a canonical testimony/document/other identity, and how should its source liberation terminology relate to the existing Liberation arc?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_IDENTITY_OR_LIBERATION_ARC_MUTATION"
+      },
+      {
+        "unresolvedRef": "unresolved.r033.journal-turning-nested-flat-reconciliation",
+        "question": "How should the Part-033 nested Journal 013 and Turning Point variants relate to their Part-019 flat source evidence before page projection?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "ALIAS_REPLACEMENT_OR_PAGE_PROJECTION"
+      },
+      {
+        "unresolvedRef": "unresolved.r033.turning-to-infrastructure-forward-edge",
+        "question": "Part 033 Turning Point reciprocally references /testimonies/infrastructure-reformation, supplied by Part 034; whole-chain reconciliation remains pending until that source arrives.",
+        "state": "OPEN_UNTIL_PART_034",
+        "heldEffect": "WHOLE_COLLECTION_CHAIN_RECONCILIATION"
+      }
+    ],
+    "revisionEvents": [
+      {
+        "revisionEventRef": "workmap.revision-event.r033.consume-part",
+        "eventClass": "SOURCE_PART_CONSUMED",
+        "reason": "Exact Part 033 ZIP was verified and all four public-safe source pages were consumed at breadth-intake depth."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r033.existing-slots",
+        "eventClass": "DESTINATION_IDENTITY_REUSE_CONFIRMED",
+        "reason": "Journal 013 and The Turning Point already have canonical Liberation/full_timeline slots while production pages remain absent; nested bytes are retained as separate lineage."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r033.hold-unregistered",
+        "eventClass": "DESTINATION_CLASS_HOLD",
+        "reason": "Victor’s Provision Seal and Curse Mechanics and Liberation Protocols have no exact current node/page/content-intent; source collection links and terminology do not authorize identity creation."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r033.extend-chain",
+        "eventClass": "SOURCE_COLLECTION_TOPOLOGY_EXTENDED",
+        "reason": "Part 033 extends the Testimonies source chain from Part-032 Victor’s Ritual Sequence through Journal, Provision Seal, Curse Mechanics and The Turning Point."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r033.partial-group",
+        "eventClass": "PARTIAL_SOURCE_GROUP_STATE_RECORDED",
+        "reason": "Testimonies remains partial at 2/5 partitions."
+      }
+    ]
+  },
+  "scannerIndex": {
+    "priorCumulativeMap": "docs/ingestion/workmaps/content-forge-r032.json",
+    "restoredDeepBasis": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "currentReceipt": "docs/ingestion/batches/2026-09-30-breadth-part-033.json",
+    "currentPublicSourcePrefix": "docs/ingestion/source-pages/part-033/",
+    "activeSourceGroup": "sourcegroup.vexsite.collection.testimonies",
+    "nextPart": {
+      "partRef": "PART_034_COLLECTION_TESTIMONIES_3_OF_5",
+      "identityState": "AWAIT_NEXT_UPLOAD"
+    }
+  },
+  "resume": {
+    "primaryFrontier": "PART_034_COLLECTION_TESTIMONIES_3_OF_5",
+    "nextAction": "Consume exact Part 034 into this same cumulative lattice; continue Testimonies source topology without converting collection links into canonical placement."
+  }
+}

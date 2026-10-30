@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.living-blueprint.arc-batch.20261005",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "living_blueprint",
+    "canonicalMemberCount": 5,
+    "alreadyCompleteCount": 0,
+    "remainingCount": 5,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.178",
+    "acceptedMain": "b4ed9143e083b2f416d8eb58ac9b4f5fe1f1e89f",
+    "acceptedTree": "abb5bfc1e734de925ccf52c006c6514e2567f9a2",
+    "terminalRef": "github.issue.vextreme.159.comment.6006394203",
+    "disposition": "TERMINAL_ACCEPTED_CURRENT"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5988916122",
+    "github.issue.vextreme.159.comment.6006394203",
+    "github.issue.vextreme.159.comment.6006466181"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON",
+      "ALREADY_COMPLETE"
+    ],
+    "sourceSelectionPriority": [
+      "EXACT_CANONICAL_IDENTITY",
+      "EXPLICIT_CONSOLIDATION_BINDING",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "SEMANTIC_BATCH_UNITY != ASSUME_ONE_SOURCE_FILE_SHAPE",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT",
+      "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION != SOURCE_SELECTION_AUTHORITY",
+      "PRECLASSIFIED_LINEAGE_HOLD != PROJECTION_EXCEPTION",
+      "PRESERVED_SOURCE_VARIANT != CURRENT_DESTINATION_REPLACEMENT"
+    ]
+  },
+  "alreadyComplete": [],
+  "members": [
+    {
+      "slug": "the-grimoire",
+      "canonicalNodeId": null,
+      "title": "The Grimoire",
+      "arcKeys": [
+        "living_blueprint"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-020/the-grimoire.html",
+      "sourceGitBlob": "6fa9471820133d70a8b6391bc17265dd8a23ce14",
+      "preservedHtmlSha256": "bcab88e28d2e4f7ebc5cbe934bbe848efbc3abbcf00c377203bfda378a2b8e65",
+      "repositoryBytes": 83058,
+      "sourceRoute": "/the-grimoire",
+      "pageId": "8fddd90836e7fecd",
+      "proposalRecordRef": "content-forge.source-record.c8d186225a6d9168284d",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-020.json",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "covenant-access",
+      "canonicalNodeId": null,
+      "title": "Covenant Access",
+      "arcKeys": [
+        "living_blueprint"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-020/covenant-access.html",
+      "sourceGitBlob": "9ac62bc520c9d8a990869cf1dc33b357c01ed4b3",
+      "preservedHtmlSha256": "5e812b5daa003be126a6101abd1346cb81faca2fa5d5c0d073f522e0f6f25a7c",
+      "repositoryBytes": 55126,
+      "sourceRoute": "/covenant-access",
+      "pageId": "0375993cb174ab17",
+      "proposalRecordRef": "content-forge.source-record.0032557d01e1dd9feefe",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-020.json",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "life-pattern-mapping",
+      "canonicalNodeId": null,
+      "title": "Life Pattern Mapping",
+      "arcKeys": [
+        "living_blueprint"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-020/life-pattern-mapping.html",
+      "sourceGitBlob": "a9d0329db894bb4bcb0c30caa7660981c3e071d5",
+      "preservedHtmlSha256": "29b6331c4be07e7c4e75dc6e6a68e57f4cb8d989c6cd9e3125f1ab7eb30a97a4",
+      "repositoryBytes": 47240,
+      "sourceRoute": "/life-pattern-mapping",
+      "pageId": "a999498d788564b7",
+      "proposalRecordRef": "content-forge.source-record.65e85894fc6676c1b238",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-020.json",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "grief-resolution",
+      "canonicalNodeId": null,
+      "title": "Grief Resolution",
+      "arcKeys": [
+        "living_blueprint"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-020/grief-resolution.html",
+      "sourceGitBlob": "a4cd454eac4e851f41730a3786b1a3cdea1bc0c9",
+      "preservedHtmlSha256": "194249e31ca7fa3ef12ac1fcd336ea637afcddaaaf514dfe9381d5798f9206cf",
+      "repositoryBytes": 54215,
+      "sourceRoute": "/grief-resolution",
+      "pageId": "9c561127a04e4952",
+      "proposalRecordRef": "content-forge.source-record.040aac501eaf5651da10",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-020.json",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "discernment-mapping",
+      "canonicalNodeId": null,
+      "title": "Discernment Mapping",
+      "arcKeys": [
+        "living_blueprint"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-020/discernment-mapping.html",
+      "sourceGitBlob": "60b4a29ae0ac1abc49c7fc4767510b806f7327f8",
+      "preservedHtmlSha256": "8c1bfe4279a0051c9f7505dcfb0185eed64306e582e0814c7de60b9f3e342811",
+      "repositoryBytes": 57972,
+      "sourceRoute": "/discernment-mapping",
+      "pageId": "0d716064cf048f5a",
+      "proposalRecordRef": "content-forge.source-record.1d830b42b374c05b9ef7",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-020.json",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    }
+  ],
+  "destinationMutationBoundary": {
+    "createPages": 5,
+    "createStringSources": 5,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/70-content-forge-living-blueprint-arc-batch.test.js"
+}

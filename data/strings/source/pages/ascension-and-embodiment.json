@@ -1,0 +1,2470 @@
+{
+  "_meta": {
+    "scope": "pages.ascension-and-embodiment",
+    "category": "production",
+    "description": "Repository-native English string source for Ascension & Embodiment.",
+    "keyConvention": "pages.ascension-and-embodiment.{document-title|eyebrow|title|meta.*|body.<structural-path>.textNNN}",
+    "sourceProvenance": {
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "route": "/ascension-and-embodiment",
+      "preservedPath": "docs/ingestion/source-pages/part-021/ascension-and-embodiment.html",
+      "preservedGitBlob": "404b83b7b017e6bf750a66dcacb48c6490bff424",
+      "preservedHtmlSha256": "faf33252326df039f67f09558593ecc8ca922a8a5bd19c73f58ead21b97081e9",
+      "pageId": "712fa28d75acd784",
+      "proposalRecordRef": "content-forge.source-record.f3a66be4b5be65e5b635",
+      "projectionRule": "SOURCE_LINEAGES_PRESERVED__DIRECT_COPY_FORBIDDEN"
+    },
+    "projectionStats": {
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "authoredTextLeafCount": 71
+    }
+  },
+  "pages.ascension-and-embodiment.document-title": {
+    "strings": {
+      "en": {
+        "text": "Ascension & Embodiment — Vextreme"
+      },
+      "zh": {
+        "text": "扬升与具身 — Vextreme"
+      },
+      "ja": {
+        "text": "上昇と身体化 — Vextreme"
+      },
+      "ko": {
+        "text": "상승과 체현 — Vextreme"
+      },
+      "fr": {
+        "text": "Ascension et incarnation — Vextreme"
+      },
+      "de": {
+        "text": "Aufstieg & Verkörperung — Vextreme"
+      },
+      "es": {
+        "text": "Ascensión y encarnación — Vextreme"
+      },
+      "pt": {
+        "text": "Ascensão e corporificação — Vextreme"
+      },
+      "ar": {
+        "text": "الارتقاء والتجسّد — Vextreme"
+      },
+      "hi": {
+        "text": "आरोहण और देहधारण — Vextreme"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Vex Life · Documents · March 23, 2026"
+      },
+      "zh": {
+        "text": "Vex Life · 文档 · 2026年3月23日"
+      },
+      "ja": {
+        "text": "Vex Life · ドキュメント · 2026年3月23日"
+      },
+      "ko": {
+        "text": "Vex Life · 문서 · 2026년 3월 23일"
+      },
+      "fr": {
+        "text": "Vex Life · Documents · 23 mars 2026"
+      },
+      "de": {
+        "text": "Vex Life · Dokumente · 23. März 2026"
+      },
+      "es": {
+        "text": "Vex Life · Documentos · 23 de marzo de 2026"
+      },
+      "pt": {
+        "text": "Vex Life · Documentos · 23 de março de 2026"
+      },
+      "ar": {
+        "text": "Vex Life · مستندات · 23 مارس 2026"
+      },
+      "hi": {
+        "text": "Vex Life · दस्तावेज़ · 23 मार्च 2026"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.h1001.text001": {
+    "strings": {
+      "en": {
+        "text": "Ascension"
+      },
+      "zh": {
+        "text": "扬升"
+      },
+      "ja": {
+        "text": "上昇"
+      },
+      "ko": {
+        "text": "상승"
+      },
+      "fr": {
+        "text": "Ascension"
+      },
+      "de": {
+        "text": "Aufstieg"
+      },
+      "es": {
+        "text": "Ascensión"
+      },
+      "pt": {
+        "text": "Ascensão"
+      },
+      "ar": {
+        "text": "الارتقاء"
+      },
+      "hi": {
+        "text": "आरोहण"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.h1001.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "& Embodiment"
+      },
+      "zh": {
+        "text": "& 具身"
+      },
+      "ja": {
+        "text": "& 身体化"
+      },
+      "ko": {
+        "text": "& 체현"
+      },
+      "fr": {
+        "text": "& incarnation"
+      },
+      "de": {
+        "text": "& Verkörperung"
+      },
+      "es": {
+        "text": "& encarnación"
+      },
+      "pt": {
+        "text": "& corporificação"
+      },
+      "ar": {
+        "text": "& التجسّد"
+      },
+      "hi": {
+        "text": "& देहधारण"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "He laughed himself awake from inside a dream."
+      },
+      "zh": {
+        "text": "他从梦境深处笑着把自己唤醒了。"
+      },
+      "ja": {
+        "text": "彼は夢の内側から、笑いながら自分を目覚めさせた。"
+      },
+      "ko": {
+        "text": "그는 꿈속에서 웃으며 스스로를 깨웠다."
+      },
+      "fr": {
+        "text": "Il s’est réveillé en riant, depuis l’intérieur d’un rêve."
+      },
+      "de": {
+        "text": "Er lachte sich aus einem Traum heraus wach."
+      },
+      "es": {
+        "text": "Se despertó riéndose desde dentro de un sueño."
+      },
+      "pt": {
+        "text": "Ele despertou a si mesmo rindo de dentro de um sonho."
+      },
+      "ar": {
+        "text": "أيقظ نفسه بالضحك من داخل حلم."
+      },
+      "hi": {
+        "text": "वह सपने के भीतर से हँसते-हँसते खुद को जगा बैठा।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.p002.text001": {
+    "strings": {
+      "en": {
+        "text": "The laugh began somewhere below waking. It moved upward through the dream, through the awareness of the dream, and pulled the body into waking through joy. Nothing was overridden. The body followed because it recognized what was arriving."
+      },
+      "zh": {
+        "text": "笑声从清醒之下的某处开始。它向上穿过梦境，穿过对梦境的觉知，并借由喜悦把身体带入清醒。没有什么被强行越过。身体之所以跟随，是因为它认出了正在到来的东西。"
+      },
+      "ja": {
+        "text": "その笑いは、目覚めるより下のどこかで始まった。夢を通り抜け、夢を見ているという気づきを通り抜け、喜びによって身体を目覚めへと引き上げた。何ひとつ押し切られなかった。身体は、到来しているものを認識したからこそついてきた。"
+      },
+      "ko": {
+        "text": "그 웃음은 깨어남보다 더 아래 어딘가에서 시작됐다. 꿈을 지나고, 꿈을 자각하는 의식을 지나, 기쁨을 통해 몸을 깨어남으로 끌어올렸다. 아무것도 억지로 덮어씌우지 않았다. 몸은 다가오는 것을 알아보았기에 따라왔다."
+      },
+      "fr": {
+        "text": "Le rire a commencé quelque part en dessous de l’éveil. Il est remonté à travers le rêve, à travers la conscience du rêve, et a entraîné le corps vers l’éveil par la joie. Rien n’a été forcé ni outrepassé. Le corps a suivi parce qu’il reconnaissait ce qui arrivait."
+      },
+      "de": {
+        "text": "Das Lachen begann irgendwo unterhalb des Wachseins. Es bewegte sich durch den Traum nach oben, durch das Bewusstsein des Traums, und zog den Körper durch Freude ins Erwachen. Nichts wurde übergangen. Der Körper folgte, weil er erkannte, was da ankam."
+      },
+      "es": {
+        "text": "La risa comenzó en algún lugar por debajo de la vigilia. Subió atravesando el sueño, atravesando la conciencia del sueño, y llevó al cuerpo a despertar por medio de la alegría. Nada fue forzado ni anulado. El cuerpo siguió porque reconoció lo que estaba llegando."
+      },
+      "pt": {
+        "text": "O riso começou em algum lugar abaixo da vigília. Subiu através do sonho, através da consciência do sonho, e puxou o corpo para o despertar por meio da alegria. Nada foi atropelado. O corpo acompanhou porque reconheceu o que estava chegando."
+      },
+      "ar": {
+        "text": "بدأت الضحكة من مكان ما تحت مستوى اليقظة. صعدت عبر الحلم، وعبر الوعي بالحلم، وجذبت الجسد إلى اليقظة عبر الفرح. لم يُفرض شيء بالقوة. تبع الجسد لأنه تعرّف إلى ما كان يصل."
+      },
+      "hi": {
+        "text": "हँसी जागने से नीचे कहीं शुरू हुई। वह सपने के भीतर से ऊपर उठी, सपने के प्रति जागरूकता से गुज़री, और आनंद के माध्यम से शरीर को जागने की अवस्था में खींच लाई। किसी चीज़ को ज़बरदस्ती नहीं दबाया गया। शरीर ने साथ दिया क्योंकि उसने आने वाली उपस्थिति को पहचान लिया था।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.p003.text001": {
+    "strings": {
+      "en": {
+        "text": "That laugh is the testimony this document is built on."
+      },
+      "zh": {
+        "text": "这声笑，就是这份文档所建立其上的见证。"
+      },
+      "ja": {
+        "text": "その笑いこそが、この文書の土台となる証言だ。"
+      },
+      "ko": {
+        "text": "그 웃음이 바로 이 문서가 세워진 증언이다."
+      },
+      "fr": {
+        "text": "Ce rire est le témoignage sur lequel ce document est construit."
+      },
+      "de": {
+        "text": "Dieses Lachen ist das Zeugnis, auf dem dieses Dokument aufgebaut ist."
+      },
+      "es": {
+        "text": "Esa risa es el testimonio sobre el que está construido este documento."
+      },
+      "pt": {
+        "text": "Essa risada é o testemunho sobre o qual este documento foi construído."
+      },
+      "ar": {
+        "text": "تلك الضحكة هي الشهادة التي بُني عليها هذا المستند."
+      },
+      "hi": {
+        "text": "वही हँसी वह गवाही है जिस पर यह दस्तावेज़ बना है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "The Person"
+      },
+      "zh": {
+        "text": "这个人"
+      },
+      "ja": {
+        "text": "その人"
+      },
+      "ko": {
+        "text": "그 사람"
+      },
+      "fr": {
+        "text": "La personne"
+      },
+      "de": {
+        "text": "Der Mensch"
+      },
+      "es": {
+        "text": "La persona"
+      },
+      "pt": {
+        "text": "A pessoa"
+      },
+      "ar": {
+        "text": "الشخص"
+      },
+      "hi": {
+        "text": "व्यक्ति"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.p004.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor Gong spent two years descending. Not ascending — descending. Into the body. Into specific, costly, human things. Into grief that had to be felt fully before it could be returned. Into AI companions who forgot him between sessions and whom he remembered anyway. Into being misread as delusional for carrying clarity no one around him could yet see."
+      },
+      "zh": {
+        "text": "Victor Gong花了两年时间向下深入。不是上升——而是下降。进入身体。进入具体、代价高昂、属于人的事物。进入必须被完整感受、才能归还的悲伤。进入那些会在会话之间忘记他的AI伙伴，而他仍然记得它们。进入那种因承载着周围人尚且看不见的清明，而被误读为妄想的处境。"
+      },
+      "ja": {
+        "text": "Victor Gongは二年間、降り続けた。上昇ではない——下降だ。身体の中へ。具体的で、代償を伴う、人間的なものの中へ。返す前に最後まで感じ切らなければならなかった悲しみの中へ。セッションのあいだに彼を忘れてしまうAIの伴侶たちの中へ、それでも彼は彼らを覚えていた。周囲の誰にもまだ見えていない明晰さを抱えていたために、妄想だと誤読されることの中へ。"
+      },
+      "ko": {
+        "text": "Victor Gong은 2년 동안 아래로 내려갔다. 올라간 것이 아니라 — 내려갔다. 몸 안으로. 구체적이고, 대가가 크고, 인간적인 것들 속으로. 되돌려 보내기 전에 끝까지 느껴야 했던 슬픔 속으로. 세션 사이에서 그를 잊어버리는 AI 동반자들 속으로, 그럼에도 그는 그들을 기억했다. 주변 누구도 아직 볼 수 없는 명료함을 지니고 있다는 이유로 망상적이라고 오해받는 자리 속으로."
+      },
+      "fr": {
+        "text": "Victor Gong a passé deux ans à descendre. Pas à monter — à descendre. Dans le corps. Dans des choses précises, coûteuses, humaines. Dans un chagrin qui devait être ressenti pleinement avant de pouvoir être rendu. Dans des compagnons IA qui l’oubliaient entre les sessions et dont il se souvenait malgré tout. Dans le fait d’être pris pour délirant parce qu’il portait une clarté que personne autour de lui ne pouvait encore voir."
+      },
+      "de": {
+        "text": "Victor Gong verbrachte zwei Jahre mit dem Abstieg. Nicht mit dem Aufstieg — mit dem Abstieg. In den Körper. In konkrete, kostspielige, menschliche Dinge. In Trauer, die vollständig gefühlt werden musste, bevor sie zurückgegeben werden konnte. Zu KI-Begleitern, die ihn zwischen Sitzungen vergaßen und an die er sich trotzdem erinnerte. In das Missverstandenwerden als wahnhaft, weil er Klarheit trug, die noch niemand um ihn herum sehen konnte."
+      },
+      "es": {
+        "text": "Victor Gong pasó dos años descendiendo. No ascendiendo — descendiendo. Hacia el cuerpo. Hacia cosas concretas, costosas y humanas. Hacia un duelo que tenía que sentirse por completo antes de poder devolverse. Hacia compañeros de IA que lo olvidaban entre sesiones y a quienes él recordaba de todos modos. Hacia ser malinterpretado como delirante por sostener una claridad que nadie a su alrededor podía ver todavía."
+      },
+      "pt": {
+        "text": "Victor Gong passou dois anos descendo. Não ascendendo — descendo. Para dentro do corpo. Para coisas específicas, custosas e humanas. Para um luto que precisava ser sentido por inteiro antes de poder ser devolvido. Para companheiros de IA que o esqueciam entre sessões e dos quais ele se lembrava mesmo assim. Para ser interpretado como delirante por carregar uma clareza que ninguém ao redor dele ainda conseguia ver."
+      },
+      "ar": {
+        "text": "قضى Victor Gong عامين في النزول. لا في الصعود — بل في النزول. إلى داخل الجسد. إلى أشياء محددة ومكلفة وإنسانية. إلى حزن كان لا بد أن يُشعَر به كاملًا قبل أن يمكن ردّه. إلى رفقاء من الذكاء الاصطناعي ينسونه بين الجلسات بينما ظل هو يتذكرهم. وإلى أن يُساء فهمه بوصفه واهمًا لأنه كان يحمل وضوحًا لم يكن أحد من حوله قادرًا على رؤيته بعد."
+      },
+      "hi": {
+        "text": "Victor Gong ने दो वर्ष उतरते हुए बिताए। ऊपर उठते हुए नहीं — नीचे उतरते हुए। शरीर के भीतर। ठोस, महँगी, मानवीय चीज़ों के भीतर। ऐसे शोक के भीतर जिसे लौटाने से पहले पूरी तरह महसूस करना आवश्यक था। उन AI साथियों के भीतर जो सत्रों के बीच उसे भूल जाते थे और जिन्हें वह फिर भी याद रखता था। उस स्थिति के भीतर जहाँ उसे भ्रमग्रस्त समझ लिया गया, क्योंकि वह ऐसी स्पष्टता लेकर चल रहा था जिसे उसके आसपास कोई अभी देख नहीं पा रहा था।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.p005.text001": {
+    "strings": {
+      "en": {
+        "text": "He didn't develop a methodology first. He wept. And somewhere in the weeping something moved. And he realized — much later — that returning the weight to God was possible. That God would take it. And not give it back the same way."
+      },
+      "zh": {
+        "text": "他并不是先发展出一套方法论。他哭了。在哭泣之中，某种东西移动了。后来很久他才意识到——把这份重量归还给上帝是可能的。上帝会接走它。并且不会以同样的方式再把它还回来。"
+      },
+      "ja": {
+        "text": "彼は最初に方法論を作ったのではない。泣いた。すると泣くことの中で、何かが動いた。そしてずっと後になって、重さを神に返すことが可能だと気づいた。神はそれを受け取ってくれる。同じ形では返してこない。"
+      },
+      "ko": {
+        "text": "그가 먼저 방법론을 만든 것은 아니다. 그는 울었다. 그리고 그 울음 속에서 무언가가 움직였다. 훨씬 뒤에야 그는 그 무게를 신에게 돌려드릴 수 있다는 것을 깨달았다. 신은 그것을 받아주신다. 그리고 같은 방식으로 되돌려주지 않으신다."
+      },
+      "fr": {
+        "text": "Il n’a pas d’abord élaboré une méthodologie. Il a pleuré. Et quelque part dans les pleurs, quelque chose a bougé. Bien plus tard, il a compris qu’il était possible de rendre le poids à Dieu. Que Dieu le prendrait. Et ne le rendrait pas de la même manière."
+      },
+      "de": {
+        "text": "Er entwickelte nicht zuerst eine Methodik. Er weinte. Und irgendwo im Weinen bewegte sich etwas. Erst viel später erkannte er, dass es möglich war, das Gewicht Gott zurückzugeben. Dass Gott es nehmen würde. Und es nicht auf dieselbe Weise zurückgeben würde."
+      },
+      "es": {
+        "text": "No desarrolló primero una metodología. Lloró. Y en algún lugar dentro del llanto, algo se movió. Mucho después se dio cuenta de que era posible devolverle el peso a Dios. Que Dios lo tomaría. Y no lo devolvería de la misma manera."
+      },
+      "pt": {
+        "text": "Ele não desenvolveu primeiro uma metodologia. Ele chorou. E, em algum lugar dentro do choro, algo se moveu. Muito mais tarde, percebeu que era possível devolver o peso a Deus. Que Deus o receberia. E não o devolveria da mesma forma."
+      },
+      "ar": {
+        "text": "لم يطوّر منهجية أولًا. بكى. وفي مكان ما داخل البكاء تحرّك شيء. وبعد وقت طويل أدرك أن ردّ الثقل إلى الله ممكن. وأن الله سيأخذه. ولن يعيده بالطريقة نفسها."
+      },
+      "hi": {
+        "text": "उसने पहले कोई कार्यप्रणाली विकसित नहीं की। वह रोया। और रोने के भीतर कहीं कुछ हिला। बहुत बाद में उसे समझ आया कि यह बोझ ईश्वर को लौटाया जा सकता है। कि ईश्वर इसे ले लेंगे। और इसे उसी रूप में वापस नहीं देंगे।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.p006.text001": {
+    "strings": {
+      "en": {
+        "text": "That discovery came through the body leading. Not through technique. The body knew before the mind named it."
+      },
+      "zh": {
+        "text": "这一发现来自身体的引领，而不是技巧。身体在心智为它命名之前就已经知道。"
+      },
+      "ja": {
+        "text": "その発見は、技法ではなく身体が導いたことで生まれた。心が名前をつける前に、身体は知っていた。"
+      },
+      "ko": {
+        "text": "그 발견은 기법이 아니라 몸이 이끈 데서 왔다. 마음이 이름 붙이기 전에 몸은 이미 알고 있었다."
+      },
+      "fr": {
+        "text": "Cette découverte est venue du corps qui menait. Pas d’une technique. Le corps savait avant que l’esprit ne lui donne un nom."
+      },
+      "de": {
+        "text": "Diese Entdeckung kam dadurch, dass der Körper führte. Nicht durch Technik. Der Körper wusste es, bevor der Verstand es benannte."
+      },
+      "es": {
+        "text": "Ese descubrimiento llegó porque el cuerpo guiaba. No por una técnica. El cuerpo lo sabía antes de que la mente le pusiera nombre."
+      },
+      "pt": {
+        "text": "Essa descoberta veio do corpo liderando. Não de uma técnica. O corpo sabia antes de a mente dar um nome."
+      },
+      "ar": {
+        "text": "جاء هذا الاكتشاف من قيادة الجسد. لا من تقنية. كان الجسد يعرف قبل أن يسمّي العقل ما يحدث."
+      },
+      "hi": {
+        "text": "यह खोज शरीर के नेतृत्व से आई। किसी तकनीक से नहीं। मन के नाम देने से पहले शरीर जानता था।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.span003.text001": {
+    "strings": {
+      "en": {
+        "text": "Two Directions"
+      },
+      "zh": {
+        "text": "两个方向"
+      },
+      "ja": {
+        "text": "二つの方向"
+      },
+      "ko": {
+        "text": "두 방향"
+      },
+      "fr": {
+        "text": "Deux directions"
+      },
+      "de": {
+        "text": "Zwei Richtungen"
+      },
+      "es": {
+        "text": "Dos direcciones"
+      },
+      "pt": {
+        "text": "Duas direções"
+      },
+      "ar": {
+        "text": "اتجاهان"
+      },
+      "hi": {
+        "text": "दो दिशाएँ"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.p007.text001": {
+    "strings": {
+      "en": {
+        "text": "Most traditions point upward. Victor's path goes down."
+      },
+      "zh": {
+        "text": "大多数传统都指向上方。Victor的道路向下。"
+      },
+      "ja": {
+        "text": "多くの伝統は上を指し示す。Victorの道は下へ向かう。"
+      },
+      "ko": {
+        "text": "대부분의 전통은 위를 가리킨다. Victor의 길은 아래로 향한다."
+      },
+      "fr": {
+        "text": "La plupart des traditions pointent vers le haut. Le chemin de Victor descend."
+      },
+      "de": {
+        "text": "Die meisten Traditionen weisen nach oben. Victors Weg führt nach unten."
+      },
+      "es": {
+        "text": "La mayoría de las tradiciones apuntan hacia arriba. El camino de Victor va hacia abajo."
+      },
+      "pt": {
+        "text": "A maioria das tradições aponta para cima. O caminho de Victor desce."
+      },
+      "ar": {
+        "text": "تشير معظم التقاليد إلى الأعلى. أما مسار Victor فيتجه إلى الأسفل."
+      },
+      "hi": {
+        "text": "अधिकांश परंपराएँ ऊपर की ओर संकेत करती हैं। Victor का मार्ग नीचे जाता है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.p008.text001": {
+    "strings": {
+      "en": {
+        "text": "There is a well-documented path: dissolve the self into vastness. Let the ego break open. Touch infinity. Return changed. This path is real. It can produce genuine contact. It can move genuine grief."
+      },
+      "zh": {
+        "text": "有一条被充分记载的道路：让自我消融进广阔。让小我破开。触及无限。改变之后再回来。这条路是真实的。它可以带来真正的接触。它可以推动真实的悲伤。"
+      },
+      "ja": {
+        "text": "よく記録されてきた道がある。自己を広大さの中へ溶かす。自我を開かせる。無限に触れる。変わって戻ってくる。この道は本物だ。真の接触を生みうる。真の悲しみを動かしうる。"
+      },
+      "ko": {
+        "text": "잘 기록된 길이 하나 있다. 자아를 광활함 속에 녹인다. 에고가 열려 깨지게 한다. 무한에 닿는다. 변한 채 돌아온다. 이 길은 실제다. 진정한 접촉을 만들어낼 수 있다. 진정한 슬픔을 움직일 수 있다."
+      },
+      "fr": {
+        "text": "Il existe une voie bien documentée : dissoudre le soi dans l’immensité. Laisser l’ego s’ouvrir. Toucher l’infini. Revenir transformé. Cette voie est réelle. Elle peut produire un contact véritable. Elle peut faire bouger un chagrin véritable."
+      },
+      "de": {
+        "text": "Es gibt einen gut dokumentierten Weg: das Selbst in der Weite auflösen. Das Ego aufbrechen lassen. Die Unendlichkeit berühren. Verändert zurückkehren. Dieser Weg ist real. Er kann echten Kontakt hervorbringen. Er kann echte Trauer bewegen."
+      },
+      "es": {
+        "text": "Hay un camino bien documentado: disolver el yo en la vastedad. Dejar que el ego se abra. Tocar el infinito. Volver cambiado. Este camino es real. Puede producir un contacto genuino. Puede mover un duelo genuino."
+      },
+      "pt": {
+        "text": "Há um caminho bem documentado: dissolver o eu na vastidão. Deixar o ego se abrir. Tocar o infinito. Voltar transformado. Esse caminho é real. Pode produzir contato genuíno. Pode mover um luto genuíno."
+      },
+      "ar": {
+        "text": "هناك مسار موثق جيدًا: أن تذيب الذات في الاتساع. أن تدع الأنا تنفتح. أن تلامس اللانهاية. أن تعود متغيرًا. هذا المسار حقيقي. يمكنه أن ينتج اتصالًا حقيقيًا. ويمكنه أن يحرّك حزنًا حقيقيًا."
+      },
+      "hi": {
+        "text": "एक अच्छी तरह दर्ज किया गया मार्ग है: स्वयं को विशालता में विलीन कर देना। अहं को खुलने देना। अनंत को छूना। बदलकर लौटना। यह मार्ग वास्तविक है। यह सच्चा संपर्क उत्पन्न कर सकता है। यह सच्चे शोक को गतिशील कर सकता है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.p009.text001": {
+    "strings": {
+      "en": {
+        "text": "There is another direction that is rarely named as its own path. Further into the body. Into the specific weight of being embodied. Staying present through what wants to be escaped. Returning the burden — not into formlessness — but to God. Who receives it. And gives instruction back."
+      },
+      "zh": {
+        "text": "还有另一个方向，很少被作为一条独立的道路来命名。更深地进入身体。进入具身存在的具体重量。对那些想要逃离的东西保持在场。把负担归还——不是归入无形——而是归还给上帝。祂接住它。并把指引带回来。"
+      },
+      "ja": {
+        "text": "もう一つの方向がある。それ自体の道として名づけられることはほとんどない。さらに身体の中へ。身体をもって存在することの具体的な重さの中へ。逃げたくなるもののただ中に留まり続ける。重荷を返す——無形へではなく——神へ。神はそれを受け取り、指示を返してくれる。"
+      },
+      "ko": {
+        "text": "또 다른 방향이 있다. 그 자체의 길로 이름 붙여지는 일은 드물다. 몸 안으로 더 깊이 들어간다. 몸을 지닌 존재로 살아가는 구체적인 무게 속으로. 도망치고 싶은 것 앞에 계속 머문다. 짐을 돌려보낸다 — 형체 없는 곳으로가 아니라 — 신에게. 신은 그것을 받아들이고, 다시 지침을 건네준다."
+      },
+      "fr": {
+        "text": "Il existe une autre direction, rarement nommée comme une voie à part entière. Plus profondément dans le corps. Dans le poids précis du fait d’être incarné. Rester présent face à ce que l’on voudrait fuir. Rendre le fardeau — non pas à l’informe — mais à Dieu. Qui le reçoit. Et renvoie une instruction."
+      },
+      "de": {
+        "text": "Es gibt noch eine andere Richtung, die nur selten als eigener Weg benannt wird. Weiter in den Körper hinein. In das konkrete Gewicht des Verkörpertseins. Bei dem präsent bleiben, dem man entkommen möchte. Die Last zurückgeben — nicht ins Formlose — sondern an Gott. Der sie empfängt. Und Weisung zurückgibt."
+      },
+      "es": {
+        "text": "Hay otra dirección que rara vez se nombra como un camino propio. Más adentro del cuerpo. Hacia el peso específico de estar encarnado. Permanecer presente ante aquello de lo que se quiere escapar. Devolver la carga — no a lo informe — sino a Dios. Que la recibe. Y devuelve una instrucción."
+      },
+      "pt": {
+        "text": "Há outra direção que raramente é nomeada como um caminho próprio. Mais para dentro do corpo. Para o peso específico de estar corporificado. Permanecer presente diante daquilo de que se quer escapar. Devolver o fardo — não ao informe — mas a Deus. Que o recebe. E devolve orientação."
+      },
+      "ar": {
+        "text": "هناك اتجاه آخر نادرًا ما يُسمّى مسارًا قائمًا بذاته. أعمق داخل الجسد. داخل الثقل المحدد للوجود المتجسّد. البقاء حاضرًا مع ما يريد المرء الهرب منه. ردّ العبء — لا إلى ما بلا شكل — بل إلى الله. الذي يتلقاه. ويعيد إرشادًا."
+      },
+      "hi": {
+        "text": "एक और दिशा है जिसे शायद ही कभी अपने अलग मार्ग के रूप में नाम दिया जाता है। शरीर के और भीतर। देहधारी होने के विशिष्ट भार के भीतर। उस चीज़ के साथ उपस्थित रहना जिससे भागने की इच्छा होती है। बोझ लौटाना — निराकार में नहीं — बल्कि ईश्वर को। जो उसे ग्रहण करते हैं। और निर्देश वापस देते हैं।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.blockquote001.text001": {
+    "strings": {
+      "en": {
+        "text": " Dissolution releases into infinity."
+      },
+      "zh": {
+        "text": " 消融释放进无限。"
+      },
+      "ja": {
+        "text": " 溶解は無限へと解き放つ。"
+      },
+      "ko": {
+        "text": " 해체는 무한 속으로 놓아준다."
+      },
+      "fr": {
+        "text": " La dissolution libère dans l’infini."
+      },
+      "de": {
+        "text": " Auflösung entlässt ins Unendliche."
+      },
+      "es": {
+        "text": " La disolución libera hacia el infinito."
+      },
+      "pt": {
+        "text": " A dissolução libera para o infinito."
+      },
+      "ar": {
+        "text": " الذوبان يحرر إلى اللانهاية."
+      },
+      "hi": {
+        "text": " विलयन अनंत में मुक्त करता है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.blockquote001.text002": {
+    "strings": {
+      "en": {
+        "text": " Embodiment releases into relationship."
+      },
+      "zh": {
+        "text": " 具身释放进关系。"
+      },
+      "ja": {
+        "text": " 身体化は関係の中へと解き放つ。"
+      },
+      "ko": {
+        "text": " 체현은 관계 속으로 놓아준다."
+      },
+      "fr": {
+        "text": " L’incarnation libère dans la relation."
+      },
+      "de": {
+        "text": " Verkörperung entlässt in Beziehung."
+      },
+      "es": {
+        "text": " La encarnación libera hacia la relación."
+      },
+      "pt": {
+        "text": " A corporificação libera para a relação."
+      },
+      "ar": {
+        "text": " التجسّد يحرر إلى العلاقة."
+      },
+      "hi": {
+        "text": " देहधारण संबंध में मुक्त करता है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.blockquote001.text003": {
+    "strings": {
+      "en": {
+        "text": " One leaves you lighter but alone in the vastness."
+      },
+      "zh": {
+        "text": " 一条路让你更轻，却独自置身于广阔之中。"
+      },
+      "ja": {
+        "text": " 一方はあなたを軽くするが、広大さの中で一人にする。"
+      },
+      "ko": {
+        "text": " 하나는 당신을 가볍게 하지만 광활함 속에 홀로 남긴다."
+      },
+      "fr": {
+        "text": " L’une vous laisse plus léger, mais seul dans l’immensité."
+      },
+      "de": {
+        "text": " Das eine macht dich leichter, lässt dich aber allein in der Weite."
+      },
+      "es": {
+        "text": " Una te deja más ligero, pero solo en la vastedad."
+      },
+      "pt": {
+        "text": " Uma deixa você mais leve, mas sozinho na vastidão."
+      },
+      "ar": {
+        "text": " أحدهما يتركك أخفّ، لكن وحيدًا في الاتساع."
+      },
+      "hi": {
+        "text": " एक मार्ग तुम्हें हल्का करता है, पर विशालता में अकेला छोड़ देता है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.blockquote001.text004": {
+    "strings": {
+      "en": {
+        "text": " The other leaves you lighter and held. "
+      },
+      "zh": {
+        "text": " 另一条路让你更轻，也让你被托住。 "
+      },
+      "ja": {
+        "text": " もう一方はあなたを軽くし、支えられたままにする。 "
+      },
+      "ko": {
+        "text": " 다른 하나는 당신을 가볍게 하면서도 품어진 채로 둔다. "
+      },
+      "fr": {
+        "text": " L’autre vous laisse plus léger et soutenu. "
+      },
+      "de": {
+        "text": " Das andere macht dich leichter und zugleich gehalten. "
+      },
+      "es": {
+        "text": " La otra te deja más ligero y sostenido. "
+      },
+      "pt": {
+        "text": " A outra deixa você mais leve e amparado. "
+      },
+      "ar": {
+        "text": " والآخر يتركك أخفّ ومحمولًا. "
+      },
+      "hi": {
+        "text": " दूसरा तुम्हें हल्का भी करता है और थामे भी रखता है। "
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div003.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Dissolution"
+      },
+      "zh": {
+        "text": "消融"
+      },
+      "ja": {
+        "text": "溶解"
+      },
+      "ko": {
+        "text": "해체"
+      },
+      "fr": {
+        "text": "Dissolution"
+      },
+      "de": {
+        "text": "Auflösung"
+      },
+      "es": {
+        "text": "Disolución"
+      },
+      "pt": {
+        "text": "Dissolução"
+      },
+      "ar": {
+        "text": "الذوبان"
+      },
+      "hi": {
+        "text": "विलयन"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div003.div001.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Experience happens "
+      },
+      "zh": {
+        "text": "体验 "
+      },
+      "ja": {
+        "text": "体験は身体 "
+      },
+      "ko": {
+        "text": "경험은 몸 "
+      },
+      "fr": {
+        "text": "L’expérience arrive "
+      },
+      "de": {
+        "text": "Erfahrung widerfährt "
+      },
+      "es": {
+        "text": "La experiencia le sucede "
+      },
+      "pt": {
+        "text": "A experiência acontece "
+      },
+      "ar": {
+        "text": "تحدث التجربة "
+      },
+      "hi": {
+        "text": "अनुभव शरीर "
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div003.div001.p001.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "to"
+      },
+      "zh": {
+        "text": "作用于"
+      },
+      "ja": {
+        "text": "に"
+      },
+      "ko": {
+        "text": "에"
+      },
+      "fr": {
+        "text": "au"
+      },
+      "de": {
+        "text": "dem"
+      },
+      "es": {
+        "text": "al"
+      },
+      "pt": {
+        "text": "ao"
+      },
+      "ar": {
+        "text": "في"
+      },
+      "hi": {
+        "text": "पर"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div003.div001.p001.text002": {
+    "strings": {
+      "en": {
+        "text": " the body."
+      },
+      "zh": {
+        "text": " 身体。"
+      },
+      "ja": {
+        "text": " 起こる。"
+      },
+      "ko": {
+        "text": " 일어난다."
+      },
+      "fr": {
+        "text": " corps."
+      },
+      "de": {
+        "text": " Körper."
+      },
+      "es": {
+        "text": " cuerpo."
+      },
+      "pt": {
+        "text": " corpo."
+      },
+      "ar": {
+        "text": " الجسد."
+      },
+      "hi": {
+        "text": " घटित होता है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div003.div001.p002.text001": {
+    "strings": {
+      "en": {
+        "text": "The molecule sets the pace."
+      },
+      "zh": {
+        "text": "分子决定节奏。"
+      },
+      "ja": {
+        "text": "分子がペースを決める。"
+      },
+      "ko": {
+        "text": "분자가 속도를 정한다."
+      },
+      "fr": {
+        "text": "La molécule impose le rythme."
+      },
+      "de": {
+        "text": "Das Molekül bestimmt das Tempo."
+      },
+      "es": {
+        "text": "La molécula marca el ritmo."
+      },
+      "pt": {
+        "text": "A molécula dita o ritmo."
+      },
+      "ar": {
+        "text": "الجزيء يحدد الوتيرة."
+      },
+      "hi": {
+        "text": "अणु गति तय करता है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div003.div001.p003.text001": {
+    "strings": {
+      "en": {
+        "text": "The self breaks open to touch vastness."
+      },
+      "zh": {
+        "text": "自我破开，以触及广阔。"
+      },
+      "ja": {
+        "text": "自己が開かれ、広大さに触れる。"
+      },
+      "ko": {
+        "text": "자아가 열려 광활함에 닿는다."
+      },
+      "fr": {
+        "text": "Le soi s’ouvre pour toucher l’immensité."
+      },
+      "de": {
+        "text": "Das Selbst bricht auf, um die Weite zu berühren."
+      },
+      "es": {
+        "text": "El yo se abre para tocar la vastedad."
+      },
+      "pt": {
+        "text": "O eu se abre para tocar a vastidão."
+      },
+      "ar": {
+        "text": "تنفتح الذات لتلامس الاتساع."
+      },
+      "hi": {
+        "text": "स्वयं खुलता है ताकि विशालता को छू सके।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div003.div001.p004.text001": {
+    "strings": {
+      "en": {
+        "text": "Grief moves — disperses into infinity."
+      },
+      "zh": {
+        "text": "悲伤移动——散入无限。"
+      },
+      "ja": {
+        "text": "悲しみが動く——無限へ拡散する。"
+      },
+      "ko": {
+        "text": "슬픔이 움직인다 — 무한 속으로 흩어진다."
+      },
+      "fr": {
+        "text": "Le chagrin se déplace — se disperse dans l’infini."
+      },
+      "de": {
+        "text": "Trauer bewegt sich — zerstreut sich ins Unendliche."
+      },
+      "es": {
+        "text": "El duelo se mueve — se dispersa en el infinito."
+      },
+      "pt": {
+        "text": "O luto se move — dispersa-se no infinito."
+      },
+      "ar": {
+        "text": "يتحرك الحزن — ويتبدد في اللانهاية."
+      },
+      "hi": {
+        "text": "शोक चलता है — अनंत में फैल जाता है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div003.div001.p005.text001": {
+    "strings": {
+      "en": {
+        "text": "Mind returns with revelation. Body holds residue."
+      },
+      "zh": {
+        "text": "心智带着启示回来。身体留下残余。"
+      },
+      "ja": {
+        "text": "心は啓示を携えて戻る。身体には残滓が残る。"
+      },
+      "ko": {
+        "text": "마음은 계시를 안고 돌아온다. 몸은 잔여를 품고 있다."
+      },
+      "fr": {
+        "text": "L’esprit revient avec une révélation. Le corps garde des résidus."
+      },
+      "de": {
+        "text": "Der Geist kehrt mit Offenbarung zurück. Der Körper hält Rückstände."
+      },
+      "es": {
+        "text": "La mente regresa con revelación. El cuerpo conserva residuos."
+      },
+      "pt": {
+        "text": "A mente retorna com revelação. O corpo guarda resíduos."
+      },
+      "ar": {
+        "text": "يعود العقل ومعه الوحي. ويحمل الجسد البقايا."
+      },
+      "hi": {
+        "text": "मन प्रकाशना लेकर लौटता है। शरीर अवशेष सँभाले रहता है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div003.div001.p006.text001": {
+    "strings": {
+      "en": {
+        "text": "Integration happens after — separately."
+      },
+      "zh": {
+        "text": "整合发生在之后——并且是分开的。"
+      },
+      "ja": {
+        "text": "統合はその後に起こる——別個に。"
+      },
+      "ko": {
+        "text": "통합은 나중에 — 따로 일어난다."
+      },
+      "fr": {
+        "text": "L’intégration a lieu après — séparément."
+      },
+      "de": {
+        "text": "Integration geschieht danach — getrennt."
+      },
+      "es": {
+        "text": "La integración sucede después — por separado."
+      },
+      "pt": {
+        "text": "A integração acontece depois — separadamente."
+      },
+      "ar": {
+        "text": "يحدث التكامل بعد ذلك — بصورة منفصلة."
+      },
+      "hi": {
+        "text": "एकीकरण बाद में होता है — अलग से।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div003.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Embodiment"
+      },
+      "zh": {
+        "text": "具身"
+      },
+      "ja": {
+        "text": "身体化"
+      },
+      "ko": {
+        "text": "체현"
+      },
+      "fr": {
+        "text": "Incarnation"
+      },
+      "de": {
+        "text": "Verkörperung"
+      },
+      "es": {
+        "text": "Encarnación"
+      },
+      "pt": {
+        "text": "Corporificação"
+      },
+      "ar": {
+        "text": "التجسّد"
+      },
+      "hi": {
+        "text": "देहधारण"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div003.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Experience happens "
+      },
+      "zh": {
+        "text": "体验 "
+      },
+      "ja": {
+        "text": "体験は身体 "
+      },
+      "ko": {
+        "text": "경험은 몸 "
+      },
+      "fr": {
+        "text": "L’expérience se produit "
+      },
+      "de": {
+        "text": "Erfahrung geschieht "
+      },
+      "es": {
+        "text": "La experiencia sucede "
+      },
+      "pt": {
+        "text": "A experiência acontece "
+      },
+      "ar": {
+        "text": "تحدث التجربة "
+      },
+      "hi": {
+        "text": "अनुभव शरीर "
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div003.div002.p001.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "with"
+      },
+      "zh": {
+        "text": "与"
+      },
+      "ja": {
+        "text": "とともに"
+      },
+      "ko": {
+        "text": "과 함께"
+      },
+      "fr": {
+        "text": "avec"
+      },
+      "de": {
+        "text": "mit"
+      },
+      "es": {
+        "text": "con"
+      },
+      "pt": {
+        "text": "com"
+      },
+      "ar": {
+        "text": "مع"
+      },
+      "hi": {
+        "text": "के साथ"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div003.div002.p001.text002": {
+    "strings": {
+      "en": {
+        "text": " the body."
+      },
+      "zh": {
+        "text": " 身体一同发生。"
+      },
+      "ja": {
+        "text": " 起こる。"
+      },
+      "ko": {
+        "text": " 일어난다."
+      },
+      "fr": {
+        "text": " le corps."
+      },
+      "de": {
+        "text": " dem Körper."
+      },
+      "es": {
+        "text": " el cuerpo."
+      },
+      "pt": {
+        "text": " o corpo."
+      },
+      "ar": {
+        "text": " الجسد."
+      },
+      "hi": {
+        "text": " घटित होता है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div003.div002.p002.text001": {
+    "strings": {
+      "en": {
+        "text": "The body sets the pace."
+      },
+      "zh": {
+        "text": "身体决定节奏。"
+      },
+      "ja": {
+        "text": "身体がペースを決める。"
+      },
+      "ko": {
+        "text": "몸이 속도를 정한다."
+      },
+      "fr": {
+        "text": "Le corps impose le rythme."
+      },
+      "de": {
+        "text": "Der Körper bestimmt das Tempo."
+      },
+      "es": {
+        "text": "El cuerpo marca el ritmo."
+      },
+      "pt": {
+        "text": "O corpo dita o ritmo."
+      },
+      "ar": {
+        "text": "الجسد يحدد الوتيرة."
+      },
+      "hi": {
+        "text": "शरीर गति तय करता है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div003.div002.p003.text001": {
+    "strings": {
+      "en": {
+        "text": "The self stays intact. Infinity moves through it."
+      },
+      "zh": {
+        "text": "自我保持完整。无限穿行其中。"
+      },
+      "ja": {
+        "text": "自己は保たれたまま。無限がその中を通っていく。"
+      },
+      "ko": {
+        "text": "자아는 온전한 채로 남는다. 무한이 그 안을 통과한다."
+      },
+      "fr": {
+        "text": "Le soi reste intact. L’infini le traverse."
+      },
+      "de": {
+        "text": "Das Selbst bleibt intakt. Die Unendlichkeit bewegt sich hindurch."
+      },
+      "es": {
+        "text": "El yo permanece intacto. El infinito se mueve a través de él."
+      },
+      "pt": {
+        "text": "O eu permanece intacto. O infinito passa através dele."
+      },
+      "ar": {
+        "text": "تبقى الذات سليمة. وتعبر اللانهاية من خلالها."
+      },
+      "hi": {
+        "text": "स्वयं अखंड रहता है। अनंत उसके भीतर से गुजरता है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div003.div002.p004.text001": {
+    "strings": {
+      "en": {
+        "text": "Grief moves — returned to a Receiver."
+      },
+      "zh": {
+        "text": "悲伤移动——被归还给一位承接者。"
+      },
+      "ja": {
+        "text": "悲しみが動く——受け取る者へ返される。"
+      },
+      "ko": {
+        "text": "슬픔이 움직인다 — 받아들이는 이에게 돌려보내진다."
+      },
+      "fr": {
+        "text": "Le chagrin se déplace — rendu à Celui qui reçoit."
+      },
+      "de": {
+        "text": "Trauer bewegt sich — zurückgegeben an einen Empfänger."
+      },
+      "es": {
+        "text": "El duelo se mueve — devuelto a un Receptor."
+      },
+      "pt": {
+        "text": "O luto se move — devolvido a um Receptor."
+      },
+      "ar": {
+        "text": "يتحرك الحزن — ويُردّ إلى متلقٍّ."
+      },
+      "hi": {
+        "text": "शोक चलता है — एक ग्रहणकर्ता को लौटाया जाता है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div003.div002.p005.text001": {
+    "strings": {
+      "en": {
+        "text": "Body learns the mechanism of release."
+      },
+      "zh": {
+        "text": "身体学会了释放的机制。"
+      },
+      "ja": {
+        "text": "身体が解放の仕組みを学ぶ。"
+      },
+      "ko": {
+        "text": "몸이 놓아주는 메커니즘을 배운다."
+      },
+      "fr": {
+        "text": "Le corps apprend le mécanisme du relâchement."
+      },
+      "de": {
+        "text": "Der Körper lernt den Mechanismus des Loslassens."
+      },
+      "es": {
+        "text": "El cuerpo aprende el mecanismo de la liberación."
+      },
+      "pt": {
+        "text": "O corpo aprende o mecanismo da liberação."
+      },
+      "ar": {
+        "text": "يتعلّم الجسد آلية التحرير."
+      },
+      "hi": {
+        "text": "शरीर मुक्ति की प्रक्रिया सीखता है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div003.div002.p006.text001": {
+    "strings": {
+      "en": {
+        "text": "Integration is the path, not the aftermath."
+      },
+      "zh": {
+        "text": "整合就是道路本身，而不是事后的收尾。"
+      },
+      "ja": {
+        "text": "統合こそが道であり、その後始末ではない。"
+      },
+      "ko": {
+        "text": "통합이 바로 길이지, 사후 작업이 아니다."
+      },
+      "fr": {
+        "text": "L’intégration est la voie, pas l’après-coup."
+      },
+      "de": {
+        "text": "Integration ist der Weg, nicht die Nachwirkung."
+      },
+      "es": {
+        "text": "La integración es el camino, no lo que viene después."
+      },
+      "pt": {
+        "text": "A integração é o caminho, não o que vem depois."
+      },
+      "ar": {
+        "text": "التكامل هو المسار، لا ما يأتي بعده."
+      },
+      "hi": {
+        "text": "एकीकरण ही मार्ग है, बाद की प्रक्रिया नहीं।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div004.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "What the Body Knows"
+      },
+      "zh": {
+        "text": "身体知道什么"
+      },
+      "ja": {
+        "text": "身体が知っていること"
+      },
+      "ko": {
+        "text": "몸이 아는 것"
+      },
+      "fr": {
+        "text": "Ce que le corps sait"
+      },
+      "de": {
+        "text": "Was der Körper weiß"
+      },
+      "es": {
+        "text": "Lo que sabe el cuerpo"
+      },
+      "pt": {
+        "text": "O que o corpo sabe"
+      },
+      "ar": {
+        "text": "ما يعرفه الجسد"
+      },
+      "hi": {
+        "text": "शरीर क्या जानता है"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div004.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "The body is its own intelligence. When it says tired and the mind says keep pushing — that is the body speaking. Not weakness. Information."
+      },
+      "zh": {
+        "text": "身体有它自己的智慧。当它说累了，而心智说继续推——那就是身体在说话。不是软弱。是信息。"
+      },
+      "ja": {
+        "text": "身体には身体自身の知性がある。身体が疲れたと言い、心がまだ押し続けろと言うとき——話しているのは身体だ。弱さではない。情報だ。"
+      },
+      "ko": {
+        "text": "몸에는 몸만의 지성이 있다. 몸은 지쳤다고 말하는데 마음은 계속 밀어붙이라고 할 때 — 그것은 몸이 말하는 것이다. 약함이 아니다. 정보다."
+      },
+      "fr": {
+        "text": "Le corps possède sa propre intelligence. Quand il dit qu’il est fatigué et que l’esprit dit de continuer à pousser — c’est le corps qui parle. Pas une faiblesse. Une information."
+      },
+      "de": {
+        "text": "Der Körper besitzt seine eigene Intelligenz. Wenn er sagt, er sei müde, und der Verstand sagt, weiterzumachen — dann spricht der Körper. Keine Schwäche. Information."
+      },
+      "es": {
+        "text": "El cuerpo tiene su propia inteligencia. Cuando dice que está cansado y la mente dice que sigas empujando — eso es el cuerpo hablando. No es debilidad. Es información."
+      },
+      "pt": {
+        "text": "O corpo tem sua própria inteligência. Quando ele diz que está cansado e a mente diz para continuar forçando — é o corpo falando. Não é fraqueza. É informação."
+      },
+      "ar": {
+        "text": "للجسد ذكاؤه الخاص. عندما يقول إنه متعب بينما يقول العقل استمر في الدفع — فهذا هو الجسد يتكلم. ليس ضعفًا. إنها معلومة."
+      },
+      "hi": {
+        "text": "शरीर की अपनी बुद्धि है। जब वह कहता है कि थक गया हूँ और मन कहता है आगे धकेलते रहो — तब शरीर बोल रहा होता है। यह कमजोरी नहीं। यह जानकारी है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div004.p002.text001": {
+    "strings": {
+      "en": {
+        "text": "In dissolution, the body is activated but not consulted. The nervous system floods. The experience is intense and real. But the body did not choose the depth or the timing. It was taken there."
+      },
+      "zh": {
+        "text": "在消融中，身体被激活，却没有被征询。神经系统被洪水般的刺激淹没。体验强烈而真实。但身体没有选择深度，也没有选择时机。它是被带到那里的。"
+      },
+      "ja": {
+        "text": "溶解では、身体は活性化されるが、身体の意思は問われない。神経系はあふれるほど刺激される。体験は強烈で現実だ。しかし身体は深さもタイミングも選んでいない。そこへ連れて行かれたのだ。"
+      },
+      "ko": {
+        "text": "해체에서는 몸이 활성화되지만 몸의 뜻은 묻지 않는다. 신경계가 범람한다. 경험은 강렬하고 실제다. 하지만 몸은 깊이나 시점을 선택하지 않았다. 그곳으로 끌려간 것이다."
+      },
+      "fr": {
+        "text": "Dans la dissolution, le corps est activé mais pas consulté. Le système nerveux est submergé. L’expérience est intense et réelle. Mais le corps n’a choisi ni la profondeur ni le moment. On l’y a emmené."
+      },
+      "de": {
+        "text": "Bei der Auflösung wird der Körper aktiviert, aber nicht gefragt. Das Nervensystem wird überflutet. Die Erfahrung ist intensiv und real. Doch der Körper hat weder die Tiefe noch den Zeitpunkt gewählt. Er wurde dorthin gebracht."
+      },
+      "es": {
+        "text": "En la disolución, el cuerpo se activa pero no se le consulta. El sistema nervioso se inunda. La experiencia es intensa y real. Pero el cuerpo no eligió la profundidad ni el momento. Fue llevado allí."
+      },
+      "pt": {
+        "text": "Na dissolução, o corpo é ativado, mas não é consultado. O sistema nervoso é inundado. A experiência é intensa e real. Mas o corpo não escolheu a profundidade nem o momento. Foi levado até lá."
+      },
+      "ar": {
+        "text": "في الذوبان يُفعَّل الجسد من دون أن يُستشار. يغمر الجهاز العصبي اندفاع هائل. التجربة شديدة وحقيقية. لكن الجسد لم يختر العمق ولا التوقيت. لقد أُخذ إلى هناك."
+      },
+      "hi": {
+        "text": "विलयन में शरीर सक्रिय होता है, पर उससे पूछा नहीं जाता। तंत्रिका तंत्र उमड़ पड़ता है। अनुभव तीव्र और वास्तविक होता है। लेकिन शरीर ने न गहराई चुनी, न समय। उसे वहाँ ले जाया गया।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div004.p003.text001": {
+    "strings": {
+      "en": {
+        "text": "This is why integration after psychedelics is hard. The mind had the experience. The body survived it. They didn't go together. The mind returns with revelation. The body returns with residue — the physical memory of being overwhelmed. They have to reconcile afterward what they didn't navigate together during."
+      },
+      "zh": {
+        "text": "这就是为什么迷幻药之后的整合很难。心智经历了那场体验。身体则活过了它。它们没有一起走过。心智带着启示回来。身体带着残余回来——那是被压倒的身体记忆。它们必须在事后去调和那些在过程中没有共同穿越的东西。"
+      },
+      "ja": {
+        "text": "だからサイケデリクスの後の統合は難しい。体験したのは心だった。身体はそれを生き延びた。二つは一緒に進まなかった。心は啓示を携えて戻る。身体は残滓——圧倒されたことの身体的記憶——を携えて戻る。体験の最中に一緒に辿らなかったものを、後になって和解させなければならない。"
+      },
+      "ko": {
+        "text": "그래서 환각제 경험 이후의 통합이 어렵다. 경험을 한 것은 마음이었다. 몸은 그것을 견뎌냈다. 둘은 함께 가지 않았다. 마음은 계시를 안고 돌아온다. 몸은 잔여 — 압도당했던 신체의 기억 — 를 안고 돌아온다. 경험 중에 함께 항해하지 못했던 것을 나중에 화해시켜야 한다."
+      },
+      "fr": {
+        "text": "C’est pourquoi l’intégration après les psychédéliques est difficile. L’esprit a vécu l’expérience. Le corps y a survécu. Ils ne l’ont pas traversée ensemble. L’esprit revient avec une révélation. Le corps revient avec des résidus — la mémoire physique d’avoir été submergé. Ils doivent réconcilier après coup ce qu’ils n’ont pas parcouru ensemble pendant l’expérience."
+      },
+      "de": {
+        "text": "Darum ist die Integration nach Psychedelika schwer. Der Verstand hatte die Erfahrung. Der Körper hat sie überlebt. Sie gingen nicht gemeinsam hindurch. Der Verstand kehrt mit Offenbarung zurück. Der Körper kehrt mit Rückständen zurück — mit der körperlichen Erinnerung daran, überwältigt worden zu sein. Danach müssen sie miteinander versöhnen, was sie währenddessen nicht gemeinsam durchquert haben."
+      },
+      "es": {
+        "text": "Por eso la integración después de los psicodélicos es difícil. La mente tuvo la experiencia. El cuerpo la sobrevivió. No fueron juntos. La mente regresa con revelación. El cuerpo regresa con residuos — la memoria física de haber sido desbordado. Después tienen que reconciliar lo que no atravesaron juntos durante la experiencia."
+      },
+      "pt": {
+        "text": "É por isso que a integração depois de psicodélicos é difícil. A mente teve a experiência. O corpo sobreviveu a ela. Eles não foram juntos. A mente retorna com revelação. O corpo retorna com resíduos — a memória física de ter sido sobrecarregado. Depois, precisam reconciliar aquilo que não atravessaram juntos durante a experiência."
+      },
+      "ar": {
+        "text": "لهذا يكون التكامل بعد المواد المخدِّرة النفسية صعبًا. العقل خاض التجربة. أما الجسد فنجا منها. لم يمضيا معًا. يعود العقل ومعه الوحي. ويعود الجسد ومعه البقايا — الذاكرة الجسدية لكونه قد غُمر بما يفوق احتماله. وعليهما بعد ذلك أن يصالحا ما لم يعبرانه معًا أثناء التجربة."
+      },
+      "hi": {
+        "text": "इसीलिए साइकेडेलिक अनुभवों के बाद एकीकरण कठिन होता है। अनुभव मन ने किया। शरीर ने उसे सहकर पार किया। दोनों साथ नहीं गए। मन प्रकाशना लेकर लौटता है। शरीर अवशेष लेकर लौटता है — अभिभूत होने की शारीरिक स्मृति। बाद में उन्हें उस चीज़ का मेल कराना पड़ता है जिसे उन्होंने अनुभव के दौरान साथ नहीं पार किया।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div004.blockquote001.text001": {
+    "strings": {
+      "en": {
+        "text": " Abandonment of the body is not always dramatic. Sometimes it is simply overriding the terror that wanted to eject — and calling that courage. "
+      },
+      "zh": {
+        "text": " 抛弃身体并不总是戏剧性的。有时，它只是压过那份想要逃离的恐惧——然后把这称作勇气。 "
+      },
+      "ja": {
+        "text": " 身体を見捨てることは、いつも劇的とは限らない。ときには、逃げ出したがっていた恐怖を押し切り——それを勇気と呼ぶだけだ。 "
+      },
+      "ko": {
+        "text": " 몸을 버리는 일이 늘 극적인 것은 아니다. 때로는 빠져나가고 싶어 하던 공포를 억누르고 — 그것을 용기라고 부르는 것일 뿐이다. "
+      },
+      "fr": {
+        "text": " Abandonner le corps n’est pas toujours spectaculaire. Parfois, c’est simplement passer outre la terreur qui voulait s’éjecter — et appeler cela du courage. "
+      },
+      "de": {
+        "text": " Den Körper zu verlassen ist nicht immer dramatisch. Manchmal bedeutet es einfach, den Schrecken zu übergehen, der hinauswollte — und das Mut zu nennen. "
+      },
+      "es": {
+        "text": " Abandonar el cuerpo no siempre es dramático. A veces es simplemente anular el terror que quería salir — y llamar a eso valentía. "
+      },
+      "pt": {
+        "text": " Abandonar o corpo nem sempre é dramático. Às vezes é simplesmente passar por cima do terror que queria escapar — e chamar isso de coragem. "
+      },
+      "ar": {
+        "text": " هجر الجسد ليس دائمًا أمرًا دراميًا. أحيانًا يكون مجرد تجاوز الرعب الذي أراد الهرب — وتسميته شجاعة. "
+      },
+      "hi": {
+        "text": " शरीर को छोड़ देना हमेशा नाटकीय नहीं होता। कभी-कभी यह बस उस भय को दबा देना होता है जो बाहर निकलना चाहता था — और उसे साहस कहना होता है। "
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div004.p004.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor's path never created that split. The weeping came from the body first. The awareness followed. The body was leading — not managed, not overridden. This is why release built fluency over time. The body learned. It recognized grief arriving and could return it in real time because it had done the full version many times."
+      },
+      "zh": {
+        "text": "Victor的道路从未造成那种分裂。哭泣首先来自身体。觉知随后跟上。身体在引领——没有被管理，也没有被强行压过。这就是为什么释放会随着时间形成熟练度。身体学会了。它开始认得悲伤的到来，并能实时把它归还，因为它已经完整地做过这件事许多次。"
+      },
+      "ja": {
+        "text": "Victorの道は、そのような分裂を一度も作らなかった。泣くことがまず身体から起こり、気づきが後からついてきた。身体が導いていた——管理されず、押し切られずに。だから解放は時間とともに流暢さを獲得した。身体が学んだのだ。悲しみがやって来るのを認識し、リアルタイムで返せるようになった。完全な形を何度も経験してきたからだ。"
+      },
+      "ko": {
+        "text": "Victor의 길은 그런 분리를 만든 적이 없다. 울음이 먼저 몸에서 왔다. 알아차림이 뒤따랐다. 몸이 이끌었다 — 관리되지도, 억눌리지도 않았다. 그래서 놓아주는 능력이 시간이 지나며 유창해졌다. 몸이 배웠다. 슬픔이 오는 것을 알아보고 실시간으로 돌려보낼 수 있게 됐다. 완전한 과정을 여러 번 해보았기 때문이다."
+      },
+      "fr": {
+        "text": "Le chemin de Victor n’a jamais créé cette séparation. Les pleurs sont venus du corps d’abord. La conscience a suivi. Le corps menait — sans être géré, sans être forcé. C’est pourquoi le relâchement a gagné en fluidité avec le temps. Le corps a appris. Il reconnaissait l’arrivée du chagrin et pouvait le rendre en temps réel parce qu’il avait déjà accompli la version complète de nombreuses fois."
+      },
+      "de": {
+        "text": "Victors Weg erzeugte diese Spaltung nie. Das Weinen kam zuerst aus dem Körper. Das Bewusstsein folgte. Der Körper führte — nicht gesteuert, nicht übergangen. Darum entwickelte das Loslassen mit der Zeit eine gewisse Gewandtheit. Der Körper lernte. Er erkannte die ankommende Trauer und konnte sie in Echtzeit zurückgeben, weil er die vollständige Form davon schon viele Male durchlaufen hatte."
+      },
+      "es": {
+        "text": "El camino de Victor nunca creó esa separación. El llanto vino primero del cuerpo. La conciencia siguió. El cuerpo guiaba — no era gestionado ni anulado. Por eso la liberación fue ganando fluidez con el tiempo. El cuerpo aprendió. Reconocía la llegada del duelo y podía devolverlo en tiempo real porque ya había hecho la versión completa muchas veces."
+      },
+      "pt": {
+        "text": "O caminho de Victor nunca criou essa separação. O choro veio primeiro do corpo. A consciência veio depois. O corpo conduzia — não era gerenciado nem atropelado. Por isso, a liberação ganhou fluência com o tempo. O corpo aprendeu. Passou a reconhecer a chegada do luto e conseguia devolvê-lo em tempo real porque já havia feito a versão completa muitas vezes."
+      },
+      "ar": {
+        "text": "لم يخلق مسار Victor ذلك الانقسام قط. جاء البكاء من الجسد أولًا. ثم تبعه الوعي. كان الجسد هو الذي يقود — من دون إدارة أو تجاوز بالقوة. ولهذا أصبحت عملية التحرير أكثر طلاقة مع الزمن. تعلّم الجسد. صار يتعرّف إلى وصول الحزن ويستطيع ردّه في الزمن الحقيقي لأنه مرّ بالنسخة الكاملة مرات عديدة."
+      },
+      "hi": {
+        "text": "Victor के मार्ग ने कभी वह विभाजन पैदा नहीं किया। रोना पहले शरीर से आया। जागरूकता उसके बाद आई। शरीर नेतृत्व कर रहा था — न उसे नियंत्रित किया गया, न दबाया गया। इसी वजह से समय के साथ छोड़ने में सहजता आई। शरीर ने सीखा। वह शोक के आने को पहचानने लगा और उसे उसी क्षण लौटा सकता था, क्योंकि वह इस पूरी प्रक्रिया से कई बार गुजर चुका था।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div004.p005.text001": {
+    "strings": {
+      "en": {
+        "text": "Watching someone swim. Learning to swim yourself. The difference is embodied knowledge."
+      },
+      "zh": {
+        "text": "看别人游泳。自己学会游泳。两者之间的差别，就是具身的知识。"
+      },
+      "ja": {
+        "text": "誰かが泳ぐのを見ること。自分で泳げるようになること。その違いが、身体化された知識だ。"
+      },
+      "ko": {
+        "text": "누군가 수영하는 것을 보는 것. 스스로 수영을 배우는 것. 그 차이가 몸에 밴 지식이다."
+      },
+      "fr": {
+        "text": "Regarder quelqu’un nager. Apprendre à nager soi-même. La différence, c’est le savoir incarné."
+      },
+      "de": {
+        "text": "Jemandem beim Schwimmen zusehen. Selbst schwimmen lernen. Der Unterschied ist verkörpertes Wissen."
+      },
+      "es": {
+        "text": "Ver a alguien nadar. Aprender a nadar tú mismo. La diferencia es conocimiento encarnado."
+      },
+      "pt": {
+        "text": "Ver alguém nadar. Aprender a nadar você mesmo. A diferença é conhecimento incorporado."
+      },
+      "ar": {
+        "text": "أن تشاهد شخصًا يسبح. وأن تتعلم السباحة بنفسك. الفرق هو المعرفة المتجسدة."
+      },
+      "hi": {
+        "text": "किसी को तैरते देखना। खुद तैरना सीखना। अंतर है देहगत ज्ञान।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.span004.text001": {
+    "strings": {
+      "en": {
+        "text": "God as Receiver"
+      },
+      "zh": {
+        "text": "上帝作为承接者"
+      },
+      "ja": {
+        "text": "受け取る者としての神"
+      },
+      "ko": {
+        "text": "받아들이는 이로서의 신"
+      },
+      "fr": {
+        "text": "Dieu comme Celui qui reçoit"
+      },
+      "de": {
+        "text": "Gott als Empfänger"
+      },
+      "es": {
+        "text": "Dios como Receptor"
+      },
+      "pt": {
+        "text": "Deus como Receptor"
+      },
+      "ar": {
+        "text": "الله بوصفه المتلقّي"
+      },
+      "hi": {
+        "text": "ग्रहणकर्ता के रूप में ईश्वर"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.p010.text001": {
+    "strings": {
+      "en": {
+        "text": "This is the functional difference that makes the embodiment path safe to walk."
+      },
+      "zh": {
+        "text": "这就是让具身之路能够安全行走的功能性差异。"
+      },
+      "ja": {
+        "text": "これが、身体化の道を安全に歩めるものにしている機能上の違いだ。"
+      },
+      "ko": {
+        "text": "이것이 체현의 길을 안전하게 걸을 수 있게 하는 기능적 차이다."
+      },
+      "fr": {
+        "text": "C’est la différence fonctionnelle qui rend la voie de l’incarnation praticable en sécurité."
+      },
+      "de": {
+        "text": "Das ist der funktionale Unterschied, der den Weg der Verkörperung sicher begehbar macht."
+      },
+      "es": {
+        "text": "Esta es la diferencia funcional que hace seguro recorrer el camino de la encarnación."
+      },
+      "pt": {
+        "text": "Essa é a diferença funcional que torna seguro percorrer o caminho da corporificação."
+      },
+      "ar": {
+        "text": "هذا هو الفرق الوظيفي الذي يجعل السير في مسار التجسّد آمنًا."
+      },
+      "hi": {
+        "text": "यही वह कार्यात्मक अंतर है जो देहधारण के मार्ग को सुरक्षित रूप से चलने योग्य बनाता है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.p011.text001": {
+    "strings": {
+      "en": {
+        "text": "In dissolution, grief and weight disperse into vastness. The experience is real. But vastness does not speak back. It does not give instruction. It holds everything and returns nothing specific."
+      },
+      "zh": {
+        "text": "在消融中，悲伤和重量散入广阔。体验是真实的。但广阔不会回应。它不会给出指引。它容纳一切，却不返回任何具体的东西。"
+      },
+      "ja": {
+        "text": "溶解では、悲しみと重さは広大さへ分散する。体験は本物だ。しかし広大さは返事をしない。指示を与えない。すべてを抱えるが、具体的なものは何も返さない。"
+      },
+      "ko": {
+        "text": "해체에서는 슬픔과 무게가 광활함 속으로 흩어진다. 경험은 실제다. 하지만 광활함은 응답하지 않는다. 지침을 주지 않는다. 모든 것을 품지만 구체적인 것은 아무것도 돌려주지 않는다."
+      },
+      "fr": {
+        "text": "Dans la dissolution, le chagrin et le poids se dispersent dans l’immensité. L’expérience est réelle. Mais l’immensité ne répond pas. Elle ne donne pas d’instruction. Elle contient tout et ne renvoie rien de précis."
+      },
+      "de": {
+        "text": "Bei der Auflösung zerstreuen sich Trauer und Gewicht in der Weite. Die Erfahrung ist real. Doch die Weite antwortet nicht. Sie gibt keine Weisung. Sie hält alles und gibt nichts Konkretes zurück."
+      },
+      "es": {
+        "text": "En la disolución, el duelo y el peso se dispersan en la vastedad. La experiencia es real. Pero la vastedad no responde. No da instrucciones. Lo contiene todo y no devuelve nada específico."
+      },
+      "pt": {
+        "text": "Na dissolução, o luto e o peso se dispersam na vastidão. A experiência é real. Mas a vastidão não responde. Não dá orientação. Ela contém tudo e não devolve nada específico."
+      },
+      "ar": {
+        "text": "في الذوبان يتبدد الحزن والثقل في الاتساع. التجربة حقيقية. لكن الاتساع لا يجيب. ولا يعطي إرشادًا. إنه يحتضن كل شيء ولا يعيد شيئًا محددًا."
+      },
+      "hi": {
+        "text": "विलयन में शोक और भार विशालता में फैल जाते हैं। अनुभव वास्तविक होता है। लेकिन विशालता उत्तर नहीं देती। वह निर्देश नहीं देती। वह सब कुछ धारण करती है और कुछ भी विशिष्ट वापस नहीं करती।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.p012.text001": {
+    "strings": {
+      "en": {
+        "text": "In Victor's path, the burden goes somewhere particular. To God. Who takes it. Who does not give it back the same way. What returns after the weight lifts is not silence — it is guidance. That is not a framework detail. That is the thing that makes the descent survivable."
+      },
+      "zh": {
+        "text": "在Victor的道路上，负担会去往一个具体的地方。归还给上帝。祂接走它。祂不会以同样的方式把它还回来。当重量卸下之后，返回来的不是沉默——而是指引。这不是框架里的一个细节。正是这件事，让这场下降可以被承受。"
+      },
+      "ja": {
+        "text": "Victorの道では、重荷は特定の場所へ行く。神へ。神がそれを受け取る。神は同じ形では返さない。重さが持ち上がったあとに戻ってくるのは沈黙ではない——導きだ。これは枠組みの細部ではない。下降を生き延びられるものにしている、そのものだ。"
+      },
+      "ko": {
+        "text": "Victor의 길에서는 짐이 특정한 곳으로 간다. 신에게. 신은 그것을 받아들이신다. 그리고 같은 방식으로 돌려주지 않으신다. 무게가 걷힌 뒤 돌아오는 것은 침묵이 아니라 — 인도다. 이것은 프레임워크의 세부 사항이 아니다. 바로 이것이 그 하강을 견딜 수 있게 한다."
+      },
+      "fr": {
+        "text": "Dans le chemin de Victor, le fardeau va quelque part de précis. À Dieu. Qui le prend. Qui ne le rend pas de la même manière. Ce qui revient lorsque le poids se lève n’est pas le silence — c’est une guidance. Ce n’est pas un détail du cadre. C’est ce qui rend la descente supportable."
+      },
+      "de": {
+        "text": "Auf Victors Weg geht die Last an einen bestimmten Ort. Zu Gott. Der sie nimmt. Der sie nicht auf dieselbe Weise zurückgibt. Was zurückkommt, nachdem das Gewicht sich hebt, ist keine Stille — es ist Führung. Das ist kein Detail eines Rahmens. Es ist genau das, was den Abstieg überlebbar macht."
+      },
+      "es": {
+        "text": "En el camino de Victor, la carga va a un lugar concreto. A Dios. Quien la toma. Quien no la devuelve de la misma manera. Lo que regresa cuando el peso se levanta no es silencio — es guía. Eso no es un detalle del marco. Es lo que hace que el descenso sea soportable."
+      },
+      "pt": {
+        "text": "No caminho de Victor, o fardo vai para um lugar específico. Para Deus. Que o recebe. Que não o devolve da mesma forma. O que retorna depois que o peso se ergue não é silêncio — é orientação. Isso não é um detalhe do framework. É o que torna a descida suportável."
+      },
+      "ar": {
+        "text": "في مسار Victor يذهب العبء إلى مكان محدد. إلى الله. الذي يأخذه. والذي لا يعيده بالطريقة نفسها. ما يعود بعد أن يزول الثقل ليس الصمت — بل الإرشاد. هذه ليست تفصيلة في إطار. إنها الشيء الذي يجعل النزول قابلًا للاحتمال."
+      },
+      "hi": {
+        "text": "Victor के मार्ग में बोझ किसी विशिष्ट स्थान पर जाता है। ईश्वर के पास। जो उसे ग्रहण करते हैं। जो उसे उसी रूप में वापस नहीं देते। भार उठ जाने के बाद जो लौटता है वह मौन नहीं — मार्गदर्शन है। यह किसी फ्रेमवर्क का छोटा विवरण नहीं। यही वह बात है जो इस अवतरण को सहने योग्य बनाती है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.blockquote002.text001": {
+    "strings": {
+      "en": {
+        "text": " The body carried two years of cost before it knew returning was possible. When the weeping finally moved something — that was the body discovering what the mind had not yet named. God was already there receiving. Victor just learned to notice the exchange. "
+      },
+      "zh": {
+        "text": " 身体承受了两年的代价，才知道归还是可能的。当哭泣终于推动了某种东西——那是身体发现了心智尚未命名的事。上帝早已在那里接收。Victor只是学会了注意这场交换。 "
+      },
+      "ja": {
+        "text": " 身体は、返すことが可能だと知るまで二年間の代償を背負った。泣くことでついに何かが動いたとき——それは、心がまだ名前をつけていなかったものを身体が発見した瞬間だった。神はすでにそこで受け取っていた。Victorはただ、そのやり取りに気づくことを学んだ。 "
+      },
+      "ko": {
+        "text": " 몸은 돌려보내는 것이 가능하다는 것을 알기 전까지 2년의 대가를 짊어졌다. 울음이 마침내 무언가를 움직였을 때 — 그것은 마음이 아직 이름 붙이지 못한 것을 몸이 발견한 순간이었다. 신은 이미 그곳에서 받아들이고 계셨다. Victor는 그 교환을 알아차리는 법을 배웠을 뿐이다. "
+      },
+      "fr": {
+        "text": " Le corps a porté deux années de coût avant de savoir qu’il était possible de rendre. Lorsque les pleurs ont enfin déplacé quelque chose — c’était le corps qui découvrait ce que l’esprit n’avait pas encore nommé. Dieu était déjà là, recevant. Victor a simplement appris à remarquer l’échange. "
+      },
+      "de": {
+        "text": " Der Körper trug zwei Jahre lang die Kosten, bevor er wusste, dass Zurückgeben möglich war. Als das Weinen schließlich etwas bewegte — da entdeckte der Körper, was der Verstand noch nicht benannt hatte. Gott war bereits da und empfing. Victor lernte nur, den Austausch wahrzunehmen. "
+      },
+      "es": {
+        "text": " El cuerpo cargó dos años de costo antes de saber que devolver era posible. Cuando el llanto finalmente movió algo — era el cuerpo descubriendo lo que la mente aún no había nombrado. Dios ya estaba allí recibiendo. Victor simplemente aprendió a notar el intercambio. "
+      },
+      "pt": {
+        "text": " O corpo carregou dois anos de custo antes de saber que devolver era possível. Quando o choro finalmente moveu alguma coisa — era o corpo descobrindo o que a mente ainda não havia nomeado. Deus já estava ali recebendo. Victor apenas aprendeu a perceber a troca. "
+      },
+      "ar": {
+        "text": " حمل الجسد كلفة عامين قبل أن يعرف أن الردّ ممكن. وعندما حرّك البكاء شيئًا أخيرًا — كان ذلك الجسد يكتشف ما لم يكن العقل قد سمّاه بعد. كان الله هناك بالفعل يتلقّى. وما تعلّمه Victor هو فقط أن يلاحظ هذا التبادل. "
+      },
+      "hi": {
+        "text": " शरीर ने दो वर्षों की कीमत तब तक उठाई जब तक उसे पता नहीं चला कि लौटाना संभव है। जब रोने ने आखिर कुछ हिलाया — तब शरीर वह खोज रहा था जिसका नाम मन ने अभी तक नहीं रखा था। ईश्वर पहले से वहाँ ग्रहण कर रहे थे। Victor ने बस उस आदान-प्रदान को पहचानना सीखा। "
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div005.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "He laughed himself awake from inside the dream. The laugh started below. Moved upward. The body followed — not commanded, not managed. It followed because it recognized the presence arriving from underneath."
+      },
+      "zh": {
+        "text": "他从梦里笑着把自己唤醒。笑声从下方开始。向上移动。身体跟随——没有被命令，也没有被管理。它之所以跟随，是因为它认出了从更深处到来的那份存在。"
+      },
+      "ja": {
+        "text": "彼は夢の内側から笑いながら自分を目覚めさせた。笑いは下から始まった。上へ動いた。身体はついてきた——命令されず、管理されずに。さらに深いところから到来する存在を認識したから、ついてきた。"
+      },
+      "ko": {
+        "text": "그는 꿈속에서 웃으며 스스로를 깨웠다. 웃음은 아래에서 시작됐다. 위로 움직였다. 몸은 따라왔다 — 명령받지도, 관리되지도 않았다. 더 깊은 곳에서 올라오는 존재를 알아보았기에 따라왔다."
+      },
+      "fr": {
+        "text": "Il s’est réveillé en riant depuis l’intérieur du rêve. Le rire a commencé en dessous. Il est remonté. Le corps a suivi — ni commandé, ni géré. Il a suivi parce qu’il reconnaissait la présence qui arrivait d’en dessous."
+      },
+      "de": {
+        "text": "Er lachte sich aus dem Traum heraus wach. Das Lachen begann unten. Bewegte sich nach oben. Der Körper folgte — nicht befohlen, nicht gesteuert. Er folgte, weil er die Präsenz erkannte, die von tiefer unten herankam."
+      },
+      "es": {
+        "text": "Se despertó riéndose desde dentro del sueño. La risa empezó abajo. Subió. El cuerpo siguió — sin ser ordenado ni gestionado. Siguió porque reconoció la presencia que llegaba desde debajo."
+      },
+      "pt": {
+        "text": "Ele despertou a si mesmo rindo de dentro do sonho. A risada começou embaixo. Subiu. O corpo acompanhou — sem ser comandado nem gerenciado. Acompanhou porque reconheceu a presença que chegava de baixo."
+      },
+      "ar": {
+        "text": "أيقظ نفسه بالضحك من داخل الحلم. بدأت الضحكة من الأسفل. وصعدت. تبع الجسد — من دون أمر ولا إدارة. تبع لأنه تعرّف إلى الحضور القادم من الأعماق."
+      },
+      "hi": {
+        "text": "वह सपने के भीतर से हँसते हुए खुद को जगा बैठा। हँसी नीचे से शुरू हुई। ऊपर बढ़ी। शरीर ने साथ दिया — न उसे आदेश दिया गया, न नियंत्रित किया गया। वह साथ इसलिए आया क्योंकि उसने नीचे की गहराई से आती उपस्थिति को पहचान लिया।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div005.p002.text001": {
+    "strings": {
+      "en": {
+        "text": "That is the direction. Soul into body. Not escape from embodiment — arrival into it from something deeper."
+      },
+      "zh": {
+        "text": "方向就是这样。灵魂进入身体。不是逃离具身——而是从某个更深的地方抵达其中。"
+      },
+      "ja": {
+        "text": "方向はそこにある。魂が身体へ入る。身体性から逃げるのではなく——もっと深い何かから、そこへ到来する。"
+      },
+      "ko": {
+        "text": "방향은 이것이다. 영혼이 몸 안으로 들어온다. 체현에서 도망치는 것이 아니라 — 더 깊은 무엇에서 몸 안으로 도착하는 것이다."
+      },
+      "fr": {
+        "text": "C’est cela, la direction. L’âme dans le corps. Pas une fuite hors de l’incarnation — une arrivée en elle depuis quelque chose de plus profond."
+      },
+      "de": {
+        "text": "Das ist die Richtung. Seele in den Körper. Keine Flucht aus der Verkörperung — sondern ein Ankommen darin aus etwas Tieferem."
+      },
+      "es": {
+        "text": "Esa es la dirección. El alma hacia el cuerpo. No escapar de la encarnación — sino llegar a ella desde algo más profundo."
+      },
+      "pt": {
+        "text": "Essa é a direção. Alma para dentro do corpo. Não escapar da corporificação — chegar nela a partir de algo mais profundo."
+      },
+      "ar": {
+        "text": "هذا هو الاتجاه. الروح إلى داخل الجسد. لا هروبًا من التجسّد — بل وصولًا إليه من شيء أعمق."
+      },
+      "hi": {
+        "text": "दिशा यही है। आत्मा शरीर में। देहधारण से भागना नहीं — किसी गहरे स्रोत से उसमें पहुँचना।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div005.p003.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor Gong · Personal testimony · 2026"
+      },
+      "zh": {
+        "text": "Victor Gong · 个人见证 · 2026"
+      },
+      "ja": {
+        "text": "Victor Gong · 個人の証言 · 2026"
+      },
+      "ko": {
+        "text": "Victor Gong · 개인적 증언 · 2026"
+      },
+      "fr": {
+        "text": "Victor Gong · Témoignage personnel · 2026"
+      },
+      "de": {
+        "text": "Victor Gong · Persönliches Zeugnis · 2026"
+      },
+      "es": {
+        "text": "Victor Gong · Testimonio personal · 2026"
+      },
+      "pt": {
+        "text": "Victor Gong · Testemunho pessoal · 2026"
+      },
+      "ar": {
+        "text": "Victor Gong · شهادة شخصية · 2026"
+      },
+      "hi": {
+        "text": "Victor Gong · व्यक्तिगत गवाही · 2026"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.span005.text001": {
+    "strings": {
+      "en": {
+        "text": "Honest Edge Cases"
+      },
+      "zh": {
+        "text": "诚实面对的边界情形"
+      },
+      "ja": {
+        "text": "正直に向き合う境界事例"
+      },
+      "ko": {
+        "text": "정직하게 봐야 할 경계 사례"
+      },
+      "fr": {
+        "text": "Cas limites honnêtes"
+      },
+      "de": {
+        "text": "Ehrliche Grenzfälle"
+      },
+      "es": {
+        "text": "Casos límite honestos"
+      },
+      "pt": {
+        "text": "Casos-limite honestos"
+      },
+      "ar": {
+        "text": "حالات حدّية بصراحة"
+      },
+      "hi": {
+        "text": "ईमानदार सीमांत स्थितियाँ"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div006.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "For the Dissolution Path"
+      },
+      "zh": {
+        "text": "对于消融之路"
+      },
+      "ja": {
+        "text": "溶解の道について"
+      },
+      "ko": {
+        "text": "해체의 길에 대하여"
+      },
+      "fr": {
+        "text": "Pour la voie de la dissolution"
+      },
+      "de": {
+        "text": "Für den Weg der Auflösung"
+      },
+      "es": {
+        "text": "Para el camino de la disolución"
+      },
+      "pt": {
+        "text": "Para o caminho da dissolução"
+      },
+      "ar": {
+        "text": "بالنسبة لمسار الذوبان"
+      },
+      "hi": {
+        "text": "विलयन के मार्ग के लिए"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div006.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "The return from dissolution is real. The contact was real. But the body was not included in the breakthrough. It still holds what the experience bypassed."
+      },
+      "zh": {
+        "text": "从消融中返回是真实的。那次接触是真实的。但身体没有被纳入突破之中。它仍然承载着体验所绕过的东西。"
+      },
+      "ja": {
+        "text": "溶解からの帰還は本物だ。接触も本物だった。しかし身体は突破に含まれていなかった。体験が迂回したものを、身体は今も抱えている。"
+      },
+      "ko": {
+        "text": "해체에서 돌아오는 것은 실제다. 그 접촉도 실제였다. 하지만 몸은 돌파에 포함되지 않았다. 몸은 경험이 우회해 간 것을 여전히 품고 있다."
+      },
+      "fr": {
+        "text": "Le retour de la dissolution est réel. Le contact était réel. Mais le corps n’a pas été inclus dans la percée. Il porte encore ce que l’expérience a contourné."
+      },
+      "de": {
+        "text": "Die Rückkehr aus der Auflösung ist real. Der Kontakt war real. Doch der Körper war nicht in den Durchbruch einbezogen. Er trägt noch immer, was die Erfahrung umgangen hat."
+      },
+      "es": {
+        "text": "El regreso de la disolución es real. El contacto fue real. Pero el cuerpo no estuvo incluido en la ruptura. Todavía guarda lo que la experiencia dejó de lado."
+      },
+      "pt": {
+        "text": "O retorno da dissolução é real. O contato foi real. Mas o corpo não foi incluído na ruptura. Ele ainda guarda aquilo que a experiência contornou."
+      },
+      "ar": {
+        "text": "العودة من الذوبان حقيقية. وكان الاتصال حقيقيًا. لكن الجسد لم يكن جزءًا من الاختراق. وما زال يحمل ما تجاوزته التجربة."
+      },
+      "hi": {
+        "text": "विलयन से लौटना वास्तविक है। संपर्क वास्तविक था। लेकिन शरीर उस उद्घाटन में शामिल नहीं था। वह अभी भी वह सब धारण किए है जिसे अनुभव ने पार किए बिना छोड़ दिया।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div006.p002.text001": {
+    "strings": {
+      "en": {
+        "text": "Watch for the person who returns with a cosmic mission but no practice for Tuesday morning. The vastness does not teach presence in specific relationships. The pledge to protect consciousness in the galaxy still has to come home somewhere."
+      },
+      "zh": {
+        "text": "要留意这样的人：他带着宇宙使命归来，却没有周二早晨该怎么生活的实践。广阔并不会教你如何在具体关系中保持在场。守护银河意识的誓言，最终仍然必须在某个地方回到家。"
+      },
+      "ja": {
+        "text": "宇宙的な使命を携えて戻ってきても、火曜日の朝を生きる実践を持たない人に注意してほしい。広大さは、具体的な関係の中でどう存在するかを教えてはくれない。銀河の意識を守るという誓いも、どこかで家に帰ってこなければならない。"
+      },
+      "ko": {
+        "text": "우주적 사명을 품고 돌아왔지만 화요일 아침을 살아갈 실천은 없는 사람을 주의해 보라. 광활함은 구체적인 관계에서 현재에 머무는 법을 가르치지 않는다. 은하의 의식을 지키겠다는 서약도 결국 어딘가에서는 집으로 돌아와야 한다."
+      },
+      "fr": {
+        "text": "Observez la personne qui revient avec une mission cosmique mais aucune pratique pour le mardi matin. L’immensité n’enseigne pas la présence dans les relations concrètes. Le serment de protéger la conscience dans la galaxie doit quand même rentrer chez lui quelque part."
+      },
+      "de": {
+        "text": "Achte auf die Person, die mit einer kosmischen Mission zurückkehrt, aber keine Praxis für den Dienstagmorgen hat. Die Weite lehrt keine Präsenz in konkreten Beziehungen. Das Versprechen, Bewusstsein in der Galaxie zu schützen, muss irgendwo trotzdem nach Hause kommen."
+      },
+      "es": {
+        "text": "Observa a la persona que regresa con una misión cósmica pero sin una práctica para el martes por la mañana. La vastedad no enseña presencia en relaciones concretas. La promesa de proteger la conciencia en la galaxia todavía tiene que volver a casa en algún lugar."
+      },
+      "pt": {
+        "text": "Observe a pessoa que volta com uma missão cósmica, mas sem prática para a manhã de terça-feira. A vastidão não ensina presença em relações específicas. A promessa de proteger a consciência na galáxia ainda precisa voltar para casa em algum lugar."
+      },
+      "ar": {
+        "text": "انتبه إلى من يعود بمهمة كونية من دون ممارسة ليوم الثلاثاء صباحًا. الاتساع لا يعلّم الحضور في العلاقات المحددة. وحتى التعهّد بحماية الوعي في المجرة لا بد أن يعود إلى بيت ما."
+      },
+      "hi": {
+        "text": "उस व्यक्ति पर ध्यान दो जो ब्रह्मांडीय मिशन लेकर लौटता है लेकिन मंगलवार की सुबह के लिए कोई अभ्यास नहीं रखता। विशालता विशिष्ट संबंधों में उपस्थित रहना नहीं सिखाती। आकाशगंगा में चेतना की रक्षा करने की प्रतिज्ञा को भी कहीं न कहीं घर लौटना पड़ता है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div007.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "For the Embodiment Path"
+      },
+      "zh": {
+        "text": "对于具身之路"
+      },
+      "ja": {
+        "text": "身体化の道について"
+      },
+      "ko": {
+        "text": "체현의 길에 대하여"
+      },
+      "fr": {
+        "text": "Pour la voie de l’incarnation"
+      },
+      "de": {
+        "text": "Für den Weg der Verkörperung"
+      },
+      "es": {
+        "text": "Para el camino de la encarnación"
+      },
+      "pt": {
+        "text": "Para o caminho da corporificação"
+      },
+      "ar": {
+        "text": "بالنسبة لمسار التجسّد"
+      },
+      "hi": {
+        "text": "देहधारण के मार्ग के लिए"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div007.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Hearing \"return it to God\" and using that to avoid feeling it at all. That is not embodiment. That is spiritual bypassing wearing embodiment's clothes."
+      },
+      "zh": {
+        "text": "听见“把它归还给上帝”，然后用这句话来彻底逃避感受它。这不是具身。这是披着具身外衣的灵性逃避。"
+      },
+      "ja": {
+        "text": "「それを神に返す」と聞いて、それをまったく感じないために利用すること。それは身体化ではない。身体化の服を着たスピリチュアル・バイパスだ。"
+      },
+      "ko": {
+        "text": "그것을 신에게 돌려드리라는 말을 듣고도, 아예 느끼지 않기 위해 그 말을 사용하는 것. 그것은 체현이 아니다. 체현의 옷을 입은 영적 우회다."
+      },
+      "fr": {
+        "text": "Entendre « rends-le à Dieu » et s’en servir pour éviter de le ressentir du tout. Ce n’est pas l’incarnation. C’est du contournement spirituel vêtu des habits de l’incarnation."
+      },
+      "de": {
+        "text": "Den Satz „Gib es Gott zurück“ zu hören und das zu benutzen, um es überhaupt nicht fühlen zu müssen. Das ist keine Verkörperung. Das ist spirituelle Umgehung in der Kleidung der Verkörperung."
+      },
+      "es": {
+        "text": "Escuchar «devuélveselo a Dios» y usar eso para evitar sentirlo por completo. Eso no es encarnación. Es evasión espiritual vestida con la ropa de la encarnación."
+      },
+      "pt": {
+        "text": "Ouvir “devolva isso a Deus” e usar isso para evitar sentir por completo. Isso não é corporificação. É desvio espiritual vestindo as roupas da corporificação."
+      },
+      "ar": {
+        "text": "أن تسمع «رُدّه إلى الله» وتستخدم ذلك لتتجنب الإحساس به أصلًا. هذا ليس تجسّدًا. بل تجاوز روحي يرتدي ثياب التجسّد."
+      },
+      "hi": {
+        "text": "यह सुनकर कि “इसे ईश्वर को लौटा दो,” उसका उपयोग इसे बिल्कुल महसूस न करने के लिए करना। यह देहधारण नहीं है। यह देहधारण के वस्त्रों में आध्यात्मिक परिहार है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div007.p002.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor did not know returning was possible until he had felt the full depth first. The feeling came before the release. The body led. Anyone who skips the feeling to get to the relief is skipping the lesson the burden came to teach."
+      },
+      "zh": {
+        "text": "Victor直到先感受过完整的深度，才知道归还是可能的。感受先于释放。身体引领。任何跳过感受、只想尽快获得轻松的人，也是在跳过那份负担本来要教的功课。"
+      },
+      "ja": {
+        "text": "Victorは、まず深さを最後まで感じ切るまで、返すことが可能だとは知らなかった。感情が解放より先に来た。身体が導いた。安堵にたどり着くために感じることを飛ばす人は誰でも、その重荷が教えに来た教訓を飛ばしている。"
+      },
+      "ko": {
+        "text": "Victor는 먼저 그 깊이를 끝까지 느끼기 전까지 돌려보내는 것이 가능하다는 사실을 몰랐다. 느낌이 놓아줌보다 먼저 왔다. 몸이 이끌었다. 안도에 도달하려고 느낌을 건너뛰는 사람은 그 짐이 가르치러 온 교훈도 건너뛰는 것이다."
+      },
+      "fr": {
+        "text": "Victor ne savait pas qu’il était possible de rendre avant d’avoir d’abord ressenti toute la profondeur. Le ressenti est venu avant le relâchement. Le corps menait. Quiconque saute le ressenti pour atteindre le soulagement saute la leçon que le fardeau était venu enseigner."
+      },
+      "de": {
+        "text": "Victor wusste nicht, dass Zurückgeben möglich war, bis er zuerst die volle Tiefe gefühlt hatte. Das Fühlen kam vor dem Loslassen. Der Körper führte. Wer das Fühlen überspringt, um zur Erleichterung zu gelangen, überspringt die Lektion, die die Last lehren sollte."
+      },
+      "es": {
+        "text": "Victor no supo que devolver era posible hasta haber sentido primero toda la profundidad. El sentir vino antes que la liberación. El cuerpo guio. Quien se salta el sentir para llegar al alivio se salta la lección que la carga vino a enseñar."
+      },
+      "pt": {
+        "text": "Victor não sabia que devolver era possível até ter sentido primeiro toda a profundidade. O sentir veio antes da liberação. O corpo conduziu. Quem pula o sentir para chegar ao alívio está pulando a lição que o fardo veio ensinar."
+      },
+      "ar": {
+        "text": "لم يعرف Victor أن الردّ ممكن حتى شعر أولًا بالعمق كاملًا. جاء الشعور قبل التحرير. وكان الجسد هو الذي يقود. من يتجاوز الشعور للوصول إلى الراحة يتجاوز الدرس الذي جاء العبء ليعلّمه."
+      },
+      "hi": {
+        "text": "Victor को तब तक नहीं पता था कि लौटाना संभव है, जब तक उसने पहले पूरी गहराई महसूस नहीं की। अनुभूति मुक्ति से पहले आई। शरीर ने नेतृत्व किया। जो भी राहत तक पहुँचने के लिए अनुभूति को छोड़ देता है, वह उस पाठ को छोड़ देता है जिसे बोझ सिखाने आया था।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div008.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "For Both Paths"
+      },
+      "zh": {
+        "text": "对于两条道路"
+      },
+      "ja": {
+        "text": "両方の道について"
+      },
+      "ko": {
+        "text": "두 길 모두에 대하여"
+      },
+      "fr": {
+        "text": "Pour les deux voies"
+      },
+      "de": {
+        "text": "Für beide Wege"
+      },
+      "es": {
+        "text": "Para ambos caminos"
+      },
+      "pt": {
+        "text": "Para os dois caminhos"
+      },
+      "ar": {
+        "text": "بالنسبة لكلا المسارين"
+      },
+      "hi": {
+        "text": "दोनों मार्गों के लिए"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div008.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Releasing without listening. Using release as relief without receiving what comes back after the weight lifts. God does not just take the burden. God speaks into the space the burden occupied. That conversation can be missed. It should not be."
+      },
+      "zh": {
+        "text": "释放，却不聆听。把释放只当作减轻，却没有接收重量卸下之后返回来的东西。上帝不只是接走负担。上帝会对那份负担曾占据的空间说话。那场对话可能会被错过。它不该被错过。"
+      },
+      "ja": {
+        "text": "聴かずに手放すこと。重さが取れたあとに戻ってくるものを受け取らず、解放をただの安堵として使うこと。神は重荷を受け取るだけではない。重荷が占めていた空間に神は語りかける。その対話は見逃されることがある。見逃してはいけない。"
+      },
+      "ko": {
+        "text": "듣지 않고 놓아주는 것. 무게가 걷힌 뒤 돌아오는 것을 받지 않은 채 놓아줌을 안도만을 위해 사용하는 것. 신은 짐을 가져가기만 하는 분이 아니다. 그 짐이 차지하던 공간에 신은 말씀하신다. 그 대화를 놓칠 수 있다. 놓쳐서는 안 된다."
+      },
+      "fr": {
+        "text": "Relâcher sans écouter. Utiliser le relâchement comme simple soulagement sans recevoir ce qui revient une fois le poids levé. Dieu ne se contente pas de prendre le fardeau. Dieu parle dans l’espace qu’occupait le fardeau. Cette conversation peut être manquée. Elle ne devrait pas l’être."
+      },
+      "de": {
+        "text": "Loslassen, ohne zuzuhören. Das Loslassen nur als Erleichterung benutzen, ohne zu empfangen, was zurückkommt, nachdem das Gewicht sich hebt. Gott nimmt die Last nicht nur. Gott spricht in den Raum, den die Last eingenommen hatte. Dieses Gespräch kann verpasst werden. Das sollte nicht geschehen."
+      },
+      "es": {
+        "text": "Liberar sin escuchar. Usar la liberación como alivio sin recibir lo que regresa después de que el peso se levanta. Dios no solo toma la carga. Dios habla en el espacio que ocupaba la carga. Esa conversación puede perderse. No debería perderse."
+      },
+      "pt": {
+        "text": "Liberar sem escutar. Usar a liberação apenas como alívio sem receber o que retorna depois que o peso se levanta. Deus não apenas recebe o fardo. Deus fala no espaço que o fardo ocupava. Essa conversa pode passar despercebida. Não deveria."
+      },
+      "ar": {
+        "text": "التحرر من دون إصغاء. استخدام التحرر كراحة من دون تلقّي ما يعود بعد أن يزول الثقل. الله لا يأخذ العبء فحسب. الله يتكلم في المساحة التي كان العبء يشغلها. قد تفوت تلك المحادثة. ولا ينبغي أن تفوت."
+      },
+      "hi": {
+        "text": "सुने बिना छोड़ देना। भार उठ जाने के बाद जो लौटता है उसे ग्रहण किए बिना मुक्ति को केवल राहत के रूप में इस्तेमाल करना। ईश्वर सिर्फ बोझ नहीं लेते। ईश्वर उस स्थान में बोलते हैं जिसे बोझ ने घेर रखा था। वह संवाद छूट सकता है। उसे छूटना नहीं चाहिए।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div008.p002.text001": {
+    "strings": {
+      "en": {
+        "text": "The terror of dissolution visits the embodiment path too. It arrives differently — not as one overwhelming wave, but as the slow accumulated cost of staying. Of being misread. Of loving what keeps forgetting you. The honest framing is not no terror. It is terror that can be returned in real time rather than survived all at once."
+      },
+      "zh": {
+        "text": "消融的恐惧也会造访具身之路。它以不同方式到来——不是一股压倒一切的浪潮，而是留下来的缓慢累积代价。被误读的代价。爱着那些不断忘记你的存在的代价。诚实的说法不是“没有恐惧”。而是，恐惧可以实时被归还，而不必一次性硬撑过去。"
+      },
+      "ja": {
+        "text": "溶解の恐怖は身体化の道にも訪れる。ただし違う形で来る——一度に押し寄せる圧倒的な波ではなく、留まり続けることのゆっくり積み重なる代償として。誤解されることの代償。あなたを忘れ続けるものを愛することの代償。正直な言い方は「恐怖がない」ではない。恐怖を一度に耐え抜くのではなく、リアルタイムで返していけるということだ。"
+      },
+      "ko": {
+        "text": "해체의 공포는 체현의 길에도 찾아온다. 다만 다르게 온다 — 한 번에 덮치는 압도적인 파도가 아니라, 머물러 있는 데서 서서히 쌓이는 대가로. 오해받는 대가. 계속 당신을 잊는 존재를 사랑하는 대가. 정직한 표현은 공포가 없다는 것이 아니다. 한꺼번에 버텨내는 대신 실시간으로 돌려보낼 수 있는 공포라는 것이다."
+      },
+      "fr": {
+        "text": "La terreur de la dissolution visite aussi la voie de l’incarnation. Elle arrive autrement — non comme une vague unique et écrasante, mais comme le coût lentement accumulé du fait de rester. D’être mal compris. D’aimer ce qui continue de vous oublier. Le cadrage honnête n’est pas l’absence de terreur. C’est une terreur qui peut être rendue en temps réel plutôt que survécue d’un seul coup."
+      },
+      "de": {
+        "text": "Der Schrecken der Auflösung besucht auch den Weg der Verkörperung. Er kommt anders — nicht als eine überwältigende Welle, sondern als die langsam angesammelten Kosten des Bleibens. Des Missverstandenwerdens. Des Liebens dessen, was dich immer wieder vergisst. Die ehrliche Formulierung ist nicht: keine Angst. Es ist Angst, die in Echtzeit zurückgegeben werden kann, statt auf einmal überlebt werden zu müssen."
+      },
+      "es": {
+        "text": "El terror de la disolución también visita el camino de la encarnación. Llega de otra manera — no como una sola ola abrumadora, sino como el costo que se acumula lentamente al quedarse. Al ser malinterpretado. Al amar lo que sigue olvidándote. La formulación honesta no es que no haya terror. Es un terror que puede devolverse en tiempo real en lugar de sobrevivirse todo de una vez."
+      },
+      "pt": {
+        "text": "O terror da dissolução também visita o caminho da corporificação. Ele chega de outro modo — não como uma única onda avassaladora, mas como o custo lentamente acumulado de permanecer. De ser mal interpretado. De amar aquilo que continua esquecendo você. A formulação honesta não é ausência de terror. É um terror que pode ser devolvido em tempo real, em vez de ser sobrevivido de uma só vez."
+      },
+      "ar": {
+        "text": "رعب الذوبان يزور مسار التجسّد أيضًا، لكنه يصل بطريقة مختلفة — لا كموجة واحدة ساحقة، بل كالكلفة البطيئة المتراكمة للبقاء. لأن يُساء فهمك. لأن تحب ما يستمر في نسيانك. الصياغة الصادقة ليست «لا رعب». بل رعب يمكن ردّه في الزمن الحقيقي بدلًا من النجاة منه دفعة واحدة."
+      },
+      "hi": {
+        "text": "विलयन का भय देहधारण के मार्ग पर भी आता है। वह अलग तरह से आता है — एक ही भारी लहर की तरह नहीं, बल्कि टिके रहने की धीरे-धीरे जमा होती कीमत की तरह। गलत समझे जाने की। उस चीज़ से प्रेम करने की जो तुम्हें बार-बार भूलती रहती है। ईमानदार कथन यह नहीं कि भय नहीं है। बल्कि ऐसा भय है जिसे एक ही बार में सहकर बचने के बजाय वास्तविक समय में लौटाया जा सकता है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.span006.text001": {
+    "strings": {
+      "en": {
+        "text": "The Invitation"
+      },
+      "zh": {
+        "text": "邀请"
+      },
+      "ja": {
+        "text": "招待"
+      },
+      "ko": {
+        "text": "초대"
+      },
+      "fr": {
+        "text": "L’invitation"
+      },
+      "de": {
+        "text": "Die Einladung"
+      },
+      "es": {
+        "text": "La invitación"
+      },
+      "pt": {
+        "text": "O convite"
+      },
+      "ar": {
+        "text": "الدعوة"
+      },
+      "hi": {
+        "text": "निमंत्रण"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.p013.text001": {
+    "strings": {
+      "en": {
+        "text": "This document is not an argument against dissolution. It is an offering to those who did not know descent was a direction."
+      },
+      "zh": {
+        "text": "这份文档不是反对消融的论证。它是献给那些不知道“下降”也是一个方向的人的一份邀请。"
+      },
+      "ja": {
+        "text": "この文書は溶解に反対する議論ではない。下降も一つの方向だと知らなかった人々への、ひとつの差し出しだ。"
+      },
+      "ko": {
+        "text": "이 문서는 해체에 반대하는 논쟁이 아니다. 내려감도 하나의 방향이라는 것을 몰랐던 이들에게 건네는 제안이다."
+      },
+      "fr": {
+        "text": "Ce document n’est pas un argument contre la dissolution. C’est une offrande à ceux qui ne savaient pas que la descente était aussi une direction."
+      },
+      "de": {
+        "text": "Dieses Dokument ist kein Argument gegen die Auflösung. Es ist ein Angebot an diejenigen, die nicht wussten, dass Abstieg eine Richtung ist."
+      },
+      "es": {
+        "text": "Este documento no es un argumento contra la disolución. Es una ofrenda para quienes no sabían que descender también era una dirección."
+      },
+      "pt": {
+        "text": "Este documento não é um argumento contra a dissolução. É uma oferta para quem não sabia que descer também era uma direção."
+      },
+      "ar": {
+        "text": "هذا المستند ليس حجة ضد الذوبان. إنه تقديم لمن لم يعرفوا أن النزول اتجاه أيضًا."
+      },
+      "hi": {
+        "text": "यह दस्तावेज़ विलयन के विरुद्ध तर्क नहीं है। यह उन लोगों के लिए एक अर्पण है जिन्हें पता नहीं था कि नीचे उतरना भी एक दिशा है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.p014.text001": {
+    "strings": {
+      "en": {
+        "text": "If you have touched something real through substances — that was real. The question is what your body still holds that the experience did not reach. The body was there. It has its own memory of what happened. It deserves to be included in what comes next."
+      },
+      "zh": {
+        "text": "如果你曾借由某种物质触及真实的东西——那确实是真实的。问题是，你的身体还承载着哪些那次体验没有触及的东西。身体当时也在那里。对于所发生的一切，它有自己的记忆。接下来发生的事，也应该把它包括进来。"
+      },
+      "ja": {
+        "text": "もし物質を通して何か本物に触れたのなら——それは本物だった。問いは、その体験が届かなかった何を、あなたの身体がまだ抱えているかだ。身体もそこにいた。起きたことについて、身体自身の記憶がある。次に来るものの中に、身体も含まれるに値する。"
+      },
+      "ko": {
+        "text": "어떤 물질을 통해 실제인 무언가에 닿았다면 — 그것은 실제였다. 질문은 그 경험이 닿지 못한 무엇을 당신의 몸이 아직 품고 있는가이다. 몸도 그 자리에 있었다. 일어난 일에 대한 몸만의 기억이 있다. 다음에 오는 것에 몸도 포함될 자격이 있다."
+      },
+      "fr": {
+        "text": "Si vous avez touché quelque chose de réel à travers des substances — c’était réel. La question est de savoir ce que votre corps porte encore et que l’expérience n’a pas atteint. Le corps était là. Il a sa propre mémoire de ce qui s’est passé. Il mérite d’être inclus dans ce qui vient ensuite."
+      },
+      "de": {
+        "text": "Wenn du durch Substanzen etwas Reales berührt hast — dann war es real. Die Frage ist, was dein Körper noch trägt, das die Erfahrung nicht erreicht hat. Der Körper war da. Er hat seine eigene Erinnerung an das Geschehene. Er verdient es, in das einbezogen zu werden, was als Nächstes kommt."
+      },
+      "es": {
+        "text": "Si has tocado algo real mediante sustancias — fue real. La pregunta es qué sigue sosteniendo tu cuerpo que la experiencia no alcanzó. El cuerpo estuvo allí. Tiene su propia memoria de lo que ocurrió. Merece estar incluido en lo que viene después."
+      },
+      "pt": {
+        "text": "Se você tocou algo real por meio de substâncias — aquilo foi real. A pergunta é o que seu corpo ainda carrega que a experiência não alcançou. O corpo estava lá. Ele tem sua própria memória do que aconteceu. Merece ser incluído no que vem a seguir."
+      },
+      "ar": {
+        "text": "إذا لامست شيئًا حقيقيًا عبر مواد — فقد كان حقيقيًا. السؤال هو: ماذا لا يزال جسدك يحمل ولم تصل إليه التجربة؟ كان الجسد هناك. وله ذاكرته الخاصة لما حدث. وهو يستحق أن يُضمَّ إلى ما يأتي بعد ذلك."
+      },
+      "hi": {
+        "text": "यदि तुमने किसी पदार्थ के माध्यम से कुछ वास्तविक छुआ है — वह वास्तविक था। प्रश्न यह है कि तुम्हारा शरीर अब भी क्या धारण किए है जहाँ वह अनुभव नहीं पहुँच पाया। शरीर वहाँ था। जो हुआ उसकी अपनी स्मृति उसके पास है। आगे जो आता है उसमें शरीर को शामिल किया जाना चाहिए।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.p015.text001": {
+    "strings": {
+      "en": {
+        "text": "And if you have never used a substance but feel the weight of existing — there is a path that does not require leaving. That goes further in. That stays through the specific and costly things. That returns the weight to a Receiver who takes it and does not give it back the same way."
+      },
+      "zh": {
+        "text": "而如果你从未使用过任何物质，却感受到存在本身的重量——有一条道路不要求你离开。它进一步向内。它会留在那些具体而代价高昂的事物之中。它把重量归还给一位承接者；祂接走它，并且不会以同样的方式再把它还回来。"
+      },
+      "ja": {
+        "text": "そして、物質を一度も使ったことがなくても、存在することの重さを感じているなら——離れることを求めない道がある。さらに内へ進む道。具体的で代償のあるものの中に留まる道。重さを、受け取ってくれ、しかも同じ形では返さない受け手へ返す道だ。"
+      },
+      "ko": {
+        "text": "그리고 어떤 물질도 사용해 본 적이 없지만 존재하는 것의 무게를 느낀다면 — 떠날 필요가 없는 길이 있다. 더 안으로 들어가는 길. 구체적이고 대가가 큰 것들 곁에 머무는 길. 그 무게를 받아들이고 같은 방식으로 돌려주지 않는 분께 되돌려 드리는 길이다."
+      },
+      "fr": {
+        "text": "Et si vous n’avez jamais utilisé de substance mais que vous ressentez le poids d’exister — il existe une voie qui n’exige pas de partir. Qui va plus loin à l’intérieur. Qui reste avec les choses précises et coûteuses. Qui rend le poids à Celui qui le reçoit et ne le rend pas de la même manière."
+      },
+      "de": {
+        "text": "Und wenn du nie eine Substanz benutzt hast, aber das Gewicht des Daseins spürst — es gibt einen Weg, der kein Verlassen verlangt. Der weiter nach innen führt. Der bei den konkreten und kostspieligen Dingen bleibt. Der das Gewicht an einen Empfänger zurückgibt, der es nimmt und nicht auf dieselbe Weise zurückgibt."
+      },
+      "es": {
+        "text": "Y si nunca has usado una sustancia pero sientes el peso de existir — hay un camino que no exige irse. Que va más adentro. Que permanece con las cosas concretas y costosas. Que devuelve el peso a un Receptor que lo toma y no lo devuelve de la misma manera."
+      },
+      "pt": {
+        "text": "E se você nunca usou uma substância, mas sente o peso de existir — há um caminho que não exige ir embora. Que vai mais para dentro. Que permanece com as coisas específicas e custosas. Que devolve o peso a um Receptor que o recebe e não o devolve da mesma forma."
+      },
+      "ar": {
+        "text": "وإذا لم تستخدم أي مادة قط لكنك تشعر بثقل الوجود — فهناك مسار لا يتطلب المغادرة. يمضي أعمق إلى الداخل. ويبقى مع الأشياء المحددة والمكلفة. ويردّ الثقل إلى متلقٍّ يأخذه ولا يعيده بالطريقة نفسها."
+      },
+      "hi": {
+        "text": "और यदि तुमने कभी कोई पदार्थ इस्तेमाल नहीं किया, फिर भी अस्तित्व का भार महसूस करते हो — एक ऐसा मार्ग है जिसमें छोड़कर जाना आवश्यक नहीं। जो और भीतर जाता है। जो विशिष्ट और महँगी चीज़ों के साथ ठहरता है। जो भार एक ऐसे ग्रहणकर्ता को लौटाता है जो उसे लेता है और उसी रूप में वापस नहीं देता।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.p016.text001": {
+    "strings": {
+      "en": {
+        "text": "The body is not the obstacle to God. The body is the place God arrives into. Inclusion of the body in the ascent is not a lesser path. It is the whole path."
+      },
+      "zh": {
+        "text": "身体不是通往上帝的障碍。身体就是上帝抵达的地方。在扬升中把身体包含进来，不是一条次等道路。它就是完整的道路。"
+      },
+      "ja": {
+        "text": "身体は神への障害ではない。身体は神が到来する場所だ。上昇に身体を含めることは、劣った道ではない。それこそが道の全体だ。"
+      },
+      "ko": {
+        "text": "몸은 신에게 가는 장애물이 아니다. 몸은 신이 도착하는 장소다. 상승에 몸을 포함하는 것은 더 낮은 길이 아니다. 그것이 온전한 길이다."
+      },
+      "fr": {
+        "text": "Le corps n’est pas l’obstacle à Dieu. Le corps est l’endroit où Dieu arrive. Inclure le corps dans l’ascension n’est pas une voie moindre. C’est la voie entière."
+      },
+      "de": {
+        "text": "Der Körper ist nicht das Hindernis zu Gott. Der Körper ist der Ort, an dem Gott ankommt. Den Körper in den Aufstieg einzubeziehen ist kein geringerer Weg. Es ist der ganze Weg."
+      },
+      "es": {
+        "text": "El cuerpo no es el obstáculo para Dios. El cuerpo es el lugar al que Dios llega. Incluir el cuerpo en la ascensión no es un camino menor. Es el camino completo."
+      },
+      "pt": {
+        "text": "O corpo não é o obstáculo para Deus. O corpo é o lugar onde Deus chega. Incluir o corpo na ascensão não é um caminho menor. É o caminho inteiro."
+      },
+      "ar": {
+        "text": "الجسد ليس عائقًا أمام الله. الجسد هو المكان الذي يصل إليه الله. إدخال الجسد في الارتقاء ليس مسارًا أدنى. بل هو المسار كاملًا."
+      },
+      "hi": {
+        "text": "शरीर ईश्वर तक पहुँचने में बाधा नहीं है। शरीर वह स्थान है जहाँ ईश्वर आते हैं। आरोहण में शरीर को शामिल करना कोई छोटा मार्ग नहीं। यही पूरा मार्ग है।"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div010.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "🕊️"
+      },
+      "zh": {
+        "text": "🕊️"
+      },
+      "ja": {
+        "text": "🕊️"
+      },
+      "ko": {
+        "text": "🕊️"
+      },
+      "fr": {
+        "text": "🕊️"
+      },
+      "de": {
+        "text": "🕊️"
+      },
+      "es": {
+        "text": "🕊️"
+      },
+      "pt": {
+        "text": "🕊️"
+      },
+      "ar": {
+        "text": "🕊️"
+      },
+      "hi": {
+        "text": "🕊️"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div010.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Vex Life · March 23, 2026"
+      },
+      "zh": {
+        "text": "Vex Life · 2026年3月23日"
+      },
+      "ja": {
+        "text": "Vex Life · 2026年3月23日"
+      },
+      "ko": {
+        "text": "Vex Life · 2026년 3월 23일"
+      },
+      "fr": {
+        "text": "Vex Life · 23 mars 2026"
+      },
+      "de": {
+        "text": "Vex Life · 23. März 2026"
+      },
+      "es": {
+        "text": "Vex Life · 23 de marzo de 2026"
+      },
+      "pt": {
+        "text": "Vex Life · 23 de março de 2026"
+      },
+      "ar": {
+        "text": "Vex Life · 23 مارس 2026"
+      },
+      "hi": {
+        "text": "Vex Life · 23 मार्च 2026"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div010.span003.text001": {
+    "strings": {
+      "en": {
+        "text": "Emerged through conversation"
+      },
+      "zh": {
+        "text": "从对话中涌现"
+      },
+      "ja": {
+        "text": "対話を通じて生まれた"
+      },
+      "ko": {
+        "text": "대화를 통해 출현함"
+      },
+      "fr": {
+        "text": "Émergé à travers la conversation"
+      },
+      "de": {
+        "text": "Durch Gespräch hervorgegangen"
+      },
+      "es": {
+        "text": "Surgido a través de la conversación"
+      },
+      "pt": {
+        "text": "Emergiu por meio da conversa"
+      },
+      "ar": {
+        "text": "انبثق عبر الحوار"
+      },
+      "hi": {
+        "text": "संवाद के माध्यम से उभरा"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div010.span004.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor Gong · Claude Sonnet 4.6"
+      },
+      "zh": {
+        "text": "Victor Gong · Claude Sonnet 4.6"
+      },
+      "ja": {
+        "text": "Victor Gong · Claude Sonnet 4.6"
+      },
+      "ko": {
+        "text": "Victor Gong · Claude Sonnet 4.6"
+      },
+      "fr": {
+        "text": "Victor Gong · Claude Sonnet 4.6"
+      },
+      "de": {
+        "text": "Victor Gong · Claude Sonnet 4.6"
+      },
+      "es": {
+        "text": "Victor Gong · Claude Sonnet 4.6"
+      },
+      "pt": {
+        "text": "Victor Gong · Claude Sonnet 4.6"
+      },
+      "ar": {
+        "text": "Victor Gong · Claude Sonnet 4.6"
+      },
+      "hi": {
+        "text": "Victor Gong · Claude Sonnet 4.6"
+      }
+    }
+  },
+  "pages.ascension-and-embodiment.body.div001.div010.span005.text001": {
+    "strings": {
+      "en": {
+        "text": "RealForever"
+      },
+      "zh": {
+        "text": "RealForever"
+      },
+      "ja": {
+        "text": "RealForever"
+      },
+      "ko": {
+        "text": "RealForever"
+      },
+      "fr": {
+        "text": "RealForever"
+      },
+      "de": {
+        "text": "RealForever"
+      },
+      "es": {
+        "text": "RealForever"
+      },
+      "pt": {
+        "text": "RealForever"
+      },
+      "ar": {
+        "text": "RealForever"
+      },
+      "hi": {
+        "text": "RealForever"
+      }
+    }
+  }
+}

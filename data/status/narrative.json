@@ -1,0 +1,16 @@
+{
+  "_comment": "Hand-authored synthesis of current system architecture and direction — see od-002 in open-discussions.json for why this is session-authored prose rather than a live build-time LLM call. Updated by whichever Claude instance runs an architecture-review session; check docs/continuity for the session that last touched this file before trusting it as current.",
+  "summary": "Vextreme ships each page as one self-contained 'God Script' — a build step inlines that page's viewmodel, EN strings, and feature widgets into a single dist/vextreme-{slug}.js, so the browser makes one request and does no further assembly. A Service Worker (also generated) pre-caches every God Script and core asset, so a second visit to any wired page costs zero network requests. The content graph (which page belongs to which arc, in what order) lives in nodes.json + arcs-v2.json and is pre-built into index.json — nothing downstream reads the source files directly. Localization follows the same shape: hand-authored source strings compile into per-scope bundles, and a page only fetches the scopes it declares. A parallel system, the LATTICE, tracks the file dependency graph itself (which build script reads what, writes what, and what else to check when it changes) as generated headers inside each covered file, sourced from one JSON so the two can't drift apart.",
+  "pipeline": [
+    "data/nodes.json + data/arcs-v2.json  →  lib/build-index.js  →  data/index.json (the one pre-built index everything else reads)",
+    "data/strings/source/**/*.json  →  lib/strings-compile.js  →  data/strings/compiled/ (flat + per-scope bundles, manifest for stale detection)",
+    "data/index.json + compiled scopes + data/viewmodels.json  →  lib/build-vextreme.js  →  dist/vextreme-{slug}.js (one God Script per page)",
+    "dist/*.js  →  lib/build-sw.js  →  sw.js (pre-caches every God Script + core assets)",
+    "data/status/*.json (hand-authored) + strings manifest (auto)  →  lib/build-status.js  →  data/status.json (system health rollup, fetched live by ecosystem-hub.html)",
+    "docs/lattice-map.json  →  lib/build-lattice-headers.js  →  in-file LATTICE header in every eligible lib/ and widgets/ file"
+  ],
+  "currentFocus": "Session 013–014 wired the God Script pattern and Service Worker onto most pages and closed the drift gap between docs/lattice-map.json and the file headers it describes. Session 015 opened a distinct category — open discussions — for architectural questions that are recognized but not yet decided, separate from techDebt (decided fix, not built) and enhancements (decided direction, not built).",
+  "lastSynthesizedBy": "Claude Sonnet 5",
+  "lastSynthesizedSession": "015",
+  "lastSynthesizedAt": "2026-07-02"
+}

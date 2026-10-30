@@ -1,0 +1,188 @@
+{
+  "schemaVersion": "vex-content-forge.work-map/v0.33-compact-cumulative-root",
+  "continuity": "[VXG RealForever]",
+  "workMapRef": "workmap.vextreme.content-forge.session-vex-content-forge.3b1ce4d66a28.00d2bf465b",
+  "revisionRef": "workmap.revision.vextreme.content-forge.r037.route-family-vol-3-complete",
+  "revision": 37,
+  "revisionScope": "ROUTE_FAMILY_VOL_3_COMPLETE",
+  "purpose": "Consume Part 037 /vol-3 route family at breadth-intake depth; preserve the single Vol 3 Chapter 1 What is God source page as a new source-only identity with no exact current destination slot, retain authored spiritual/religious testimony as source framing rather than independent destination fact, close the supplied one-page route family at 1/1, and keep canonical page/node/arc/localization placement untouched.",
+  "cumulativeBasis": {
+    "priorMapPath": "docs/ingestion/workmaps/content-forge-r036.json",
+    "priorRevisionRef": "workmap.revision.vextreme.content-forge.r036.collection-testimonies-5-of-5-complete",
+    "deepBasisPath": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "inheritanceRule": "R037 extends R036; prior observations remain authoritative unless an explicit later event revises interpretation."
+  },
+  "cumulativeState": {
+    "observedPages": 247,
+    "unmappedTopLevel": "9_OF_9__102_OF_102__OBSERVED_COMPLETE",
+    "completedSourceGroups": [
+      "collection:convos-with-god__4_OF_4__OBSERVED_COMPLETE",
+      "route-family:epstein-and-ai-old__3_OF_3__OBSERVED_COMPLETE",
+      "collection:testimonies__5_OF_5__OBSERVED_COMPLETE",
+      "route-family:vol-3__1_OF_1__OBSERVED_COMPLETE"
+    ],
+    "activeSourceGroup": "route-family:vol-3__1_OF_1__OBSERVED_COMPLETE",
+    "workNodes": 273,
+    "edges": 398,
+    "clusters": 119,
+    "learnedRules": 156,
+    "unresolved": 115,
+    "remainingTrueRevisits": 6,
+    "canonicalPlacementEffects": 0,
+    "publicSourceEvidenceHtml": 174,
+    "protectedSourceMetadataOnly": 1
+  },
+  "activeNonCollapseRulesAdded": [
+    "SOURCE_ROUTE_FAMILY_OBSERVED_COMPLETE != CANONICAL_PLACEMENT_COMPLETE",
+    "VOLUME_CHAPTER_SOURCE_IDENTITY != EXISTING_GOD_TOPIC_ALIAS_BY_TITLE",
+    "SOURCE_EXTERNAL_REFERENCE != DESTINATION_RELATIONSHIP",
+    "SOURCE_AUTHORED_SPIRITUAL_OR_RELIGIOUS_CLAIM != INDEPENDENT_DESTINATION_FACT"
+  ],
+  "r037": {
+    "partRef": "PART_037_ROUTE_FAMILY_VOL_3",
+    "partSha256": "47ed7a6a5e70f67431e6fd1c0732c517a186e4fd962987a16ac43e56d519659c",
+    "sourceGroupState": "SOURCE_GROUP_OBSERVED_COMPLETE_1_OF_1",
+    "manifestEntryCount": 1,
+    "uniqueRenderedHtmlCount": 1,
+    "nodes": [
+      {
+        "workNodeRef": "workmap.source-page.vol-3-vol-3-chapter-1-what-is-god",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_037_ROUTE_FAMILY_VOL_3",
+          "partSha256": "47ed7a6a5e70f67431e6fd1c0732c517a186e4fd962987a16ac43e56d519659c",
+          "sourceRouteFamily": "route-family:vol-3",
+          "route": "/vol-3/vol-3-chapter-1-what-is-god",
+          "pageId": "70a7f983a57557e8",
+          "title": "Vol 3 Chapter 1 What is God — Vex Life",
+          "derivedSha256": "cf7d2893515a21b6e4d1ced5c31fe2496434403e5239d8839e3bc2994998ec18",
+          "preservedHtmlSha256": "7a3bb11e2dd515decb87375e55aef6a70849d43f177d81566e31faa33c97b610",
+          "preservedHtmlBytes": 52329,
+          "preservedGitBlobSha1": "a2d480c799e277178b4dfa3291ae3f9c951191c0",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 206,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "recordCount": 33,
+          "capturedInboundContentRoutes": [],
+          "capturedOutboundContentRoutes": [
+            "/"
+          ],
+          "referencedButUncapturedRoutes": [
+            "/gdxeF7Ww",
+            "/ge4-3d2D",
+            "/in/victorgong",
+            "/r/vexlife"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, POLITICAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "HOLD",
+          "placementState": "NO_EXACT_CANONICAL_NODE_OR PAGE OR CONTENT_INTENT; NEW_VOL_3_CHAPTER_SOURCE_IDENTITY; DESTINATION_CLASS_UNRESOLVED",
+          "lineage": {
+            "priorExactSourceVariantEstablished": false,
+            "relation": "SOURCE_ONLY_NEW_VOLUME_CHAPTER_IDENTITY__NO_ALIAS_OR_CANONICAL_SLOT_INFERRED"
+          }
+        }
+      }
+    ],
+    "edges": [],
+    "clusters": [
+      {
+        "clusterRef": "workmap.cluster.r037.vol-3-source-only-hold",
+        "state": "DESTINATION_CLASS_HOLD",
+        "clusterKind": "NEW_VOL_3_SOURCE_IDENTITY_WITHOUT_CANONICAL_SLOT",
+        "memberRefs": [
+          "workmap.source-page.vol-3-vol-3-chapter-1-what-is-god"
+        ],
+        "placement": "HOLD_FOR_DESTINATION_CLASS"
+      },
+      {
+        "clusterRef": "workmap.cluster.r037.vol-3-route-family-complete",
+        "state": "SOURCE_TOPOLOGY_OBSERVED_COMPLETE",
+        "clusterKind": "VOL_3_ROUTE_FAMILY_1_OF_1_CLOSURE",
+        "memberRefs": [
+          "workmap.source-page.vol-3-vol-3-chapter-1-what-is-god"
+        ],
+        "placement": "SOURCE_TOPOLOGY_ONLY",
+        "reason": "The supplied /vol-3 route family contains one observed source page. Route-family closure preserves source identity without creating destination node, alias, chapter-series, or arc authority."
+      }
+    ],
+    "learnedRules": [
+      {
+        "ruleRef": "rule.content-forge.route-family-complete-not-placement-complete-r037",
+        "rule": "SOURCE_ROUTE_FAMILY_OBSERVED_COMPLETE != CANONICAL_PLACEMENT_COMPLETE"
+      },
+      {
+        "ruleRef": "rule.content-forge.volume-chapter-not-topic-alias",
+        "rule": "VOLUME_CHAPTER_SOURCE_IDENTITY != EXISTING_GOD_TOPIC_ALIAS_BY_TITLE"
+      },
+      {
+        "ruleRef": "rule.content-forge.external-reference-not-destination-relationship",
+        "rule": "SOURCE_EXTERNAL_REFERENCE != DESTINATION_RELATIONSHIP"
+      },
+      {
+        "ruleRef": "rule.content-forge.authored-spiritual-claim-not-destination-fact-r037",
+        "rule": "SOURCE_AUTHORED_SPIRITUAL_OR_RELIGIOUS_CLAIM != INDEPENDENT_DESTINATION_FACT"
+      }
+    ],
+    "unresolved": [
+      {
+        "unresolvedRef": "unresolved.r037.vol-3-chapter-destination-class",
+        "question": "What destination-native class, if any, should /vol-3/vol-3-chapter-1-what-is-god receive given that no exact current node/page/content-intent exists?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_IDENTITY_ALIAS_OR_PAGE_PLACEMENT"
+      },
+      {
+        "unresolvedRef": "unresolved.r037.volume-series-reconciliation",
+        "question": "How should source volume/chapter route families such as /vol-3 relate to current Vextreme archives, records, or any later chapter-series representation?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "VOLUME_SERIES_DESTINATION_TAXONOMY_OR_ARC_FORMATION"
+      }
+    ],
+    "revisionEvents": [
+      {
+        "revisionEventRef": "workmap.revision-event.r037.consume-part",
+        "eventClass": "SOURCE_PART_CONSUMED",
+        "reason": "Exact Part 037 ZIP was verified and its one public-safe source page was consumed at breadth-intake depth."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r037.close-vol-3-family",
+        "eventClass": "SOURCE_GROUP_OBSERVED_COMPLETE",
+        "reason": "The supplied /vol-3 route family is fully observed at 1/1."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r037.hold-new-source-identity",
+        "eventClass": "DESTINATION_CLASS_HOLD",
+        "reason": "Vol 3 Chapter 1 What is God has no exact current destination slot; source identity does not create canonical placement authority."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r037.preserve-claim-framing",
+        "eventClass": "SOURCE_CLAIM_FRAMING_PRESERVED",
+        "reason": "Authored God/spiritual testimony is retained as source evidence without independent destination-fact verification."
+      }
+    ]
+  },
+  "scannerIndex": {
+    "priorCumulativeMap": "docs/ingestion/workmaps/content-forge-r036.json",
+    "restoredDeepBasis": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "currentReceipt": "docs/ingestion/batches/2026-09-30-breadth-part-037.json",
+    "currentPublicSourcePrefix": "docs/ingestion/source-pages/part-037/",
+    "completedSourceGroup": "sourcegroup.vexsite.route-family.vol-3",
+    "nextPart": {
+      "partRef": "PART_038_ROUTE_FAMILY_VOL_2",
+      "identityState": "AWAIT_NEXT_UPLOAD"
+    }
+  },
+  "resume": {
+    "primaryFrontier": "PART_038_ROUTE_FAMILY_VOL_2",
+    "nextAction": "Consume exact Part 038 /vol-2 route-family source into this same cumulative lattice; preserve source lineage without converting volume/chapter evidence into canonical placement."
+  }
+}

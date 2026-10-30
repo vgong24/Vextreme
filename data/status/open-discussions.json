@@ -1,0 +1,138 @@
+{
+  "_comment": "Hand-authored. Architectural questions under active reasoning — not yet resolved to a decided direction. Distinct from techDebt (known gap, decided fix) and enhancements (decided direction, not yet built): an open discussion is a fork in the road where the fork itself hasn't been chosen. Promote to techDebt/enhancements once decided; remove from here once shipped or explicitly rejected.",
+  "items": [
+    {
+      "id": "od-012",
+      "title": "Adopt Runtime View Profiles + a real Composition Container — one authored page, many runtime lenses (Production/Developer/QA/Localization/Accessibility), selectable from the FAB — or keep composing chrome piecewise as today",
+      "description": "Victor uploaded a full architectural proposal on 2026-07-10 (authored with Vex; preserved verbatim in docs/continuity/context-notes/runtime-view-profiles-composition-container-2026-07-10.md) after real regressions from the nav/FAB rollout showed authored HTML, runtime behavior, and production delivery sharing too much responsibility. Core ideas: (1) a Composition Container that assembles pages — loads authored content, attaches nav, loads runtime modules, selects the active View Profile — leaving authored HTML immutable; (2) Runtime View Profiles as named bundles of runtime modules (Developer View = DOM identifiers + runtime logs + source-truth references; Localization View = translation keys + missing-string indicators; QA View = screenshot regions + overflow detection; Production View = clean, no overlays), selectable per audience without changing the page — distinct from feature flags ('should a capability exist' vs 'how should this same page be perceived right now'). The regression-fix PR that created this entry already implemented the defensive half (v1 enhancement layer gated to consuming pages; fabWidgets per-widget opt-out; lib/audit-fab.js composition auditor) — lib/vextreme.js is now a proto-container that decorates without restyling. The generative half (a profile manifest, a View Profile FAB orb, per-module profile declarations) is undesigned and unauthorized.",
+      "considerations": [
+        "The proposal's own Section 11 sets the conversion bar: treat as architectural discussion first, then prototype ONE page behind the existing container and validate authored-HTML immutability, module isolation, and easier regression diagnosis before generalizing — do not start with a framework.",
+        "Two existing one-off features are each roughly one View Profile already: public Analysis Mode (widgets/fab-analysis.js, docs/architecture/15-analysis-mode.md) is a Developer/Localization lens, and the private SDK's source-lens design note is a governance-review lens. A real adoption should slot them into the general pattern rather than leaving three parallel lens mechanisms.",
+        "The FAB spiral (widgets/vex-fab.js) is the natural profile-selection mount point, per the proposal's own Section 10 (Language / View Profile / Runtime Modules / Debug) — but a new orb category should come only with the profile mechanism itself, not as another standalone widget.",
+        "Open questions the proposal itself names, still undecided: manifest-registered profiles? modules declaring compatible profiles? Production auto-disabling non-approved modules? permissions for sensitive profiles?",
+        "This entry is the conversion of a preserved context note, not authorization to implement — same rule as every context-note promotion (docs/continuity/CONTEXT-NOTES.md's conversion rule)."
+      ],
+      "raisedSession": "2026-07-10 (nav/FAB-rollout regression review; proposal uploaded same day)",
+      "priority": "high",
+      "status": "open",
+      "lens": "architect"
+    },
+    {
+      "id": "od-011",
+      "title": "God Script inclusion should be a default-on, per-slug-configurable pattern instead of a data-readiness accident — and the public SDK demo pages should be built through that same generic pattern instead of one-off hand-authored static HTML",
+      "description": "Victor raised this in two connected parts on 2026-07-10, after reviewing pages/sdk-identity-demo.html and pages/localization-source-truth-demo.html (public PR #103, #104): (1) noticing the demo pages carry no God Script and no real element IDs/mapping structure, and (2) naming the intended principle directly — 'the whole system follows the culture and global scalability patterns... pattern based development... without one-off assumptions, just configurable visibility.' Traced against the live repo before this entry was written (node lib/audit-pages.js; lib/build-vextreme.js read in full): today only 8 of 39 pages/ files have a God Script in dist/ at all, and only 1 (victor-methodology-presentation) is fully wired. Whether a page gets one is decided by hasScopeBundle() — true only if a compiled string-source bundle exists for that page's primary scope — a data-readiness gate, not a deliberate visibility/activity toggle. The two SDK demo pages are unwired by explicit design (see the private repo's L7-PUBLIC-DEMO-REFRESH-PLAN.md — no live loader on a page whose whole point is 'no live connection'), but the other ~28 unwired pages are unwired because no one ever authored a string-source file for them, not because anyone decided they should stay static. Separately: the demo pages show narrative prose ('Hero subtitle', 'Team heading') instead of literal canonical IDs or a real mapping/traversal view, because the accepted L7 plan explicitly excluded 'internal field/outcome names as literal vocabulary' (e.g. canonicalElementId) as a private-boundary risk — that was a deliberate choice in the plan Victor approved, not an oversight, but Victor is now reconsidering it given the pattern-based-development goal.",
+      "considerations": [
+        "This is not purely speculative the way most parked od- items are (od-003/007/009 explicitly wait for 'a real case' before designing) — two concrete cases already exist (the two demo pages), plus ~28 other pages already exhibiting the accidental-not-deliberate version of the gap. That argues for treating this with real weight rather than parking it indefinitely.",
+        "Do not conflate this with td-006/od-001 (arc-chunked string-bundle fetch scaling) — that pilot solves a different axis (network fetch fan-out per language switch, resolved end-to-end for one arc in Session 025) and is not evidence this God-Script-inclusion question is already solved.",
+        "A 'real IDs / real mapping' demo does not require relaxing the private SDK's boundary rules: a public-repo-only, deliberately-synthetic ID fixture (committed in this repo, never touching the private schema's literal field names) rendered through this repo's own generic build-script pattern (source JSON -> lib/build-X.js -> static output, the same shape every other generated artifact in this repo already uses) would show real, traceable, pattern-consistent IDs without any live call to the private SDK or any literal private field name appearing publicly.",
+        "If God Script default-inclusion becomes the decided direction, it needs an explicit, named carve-out mechanism for pages that must stay inert for security/boundary reasons (both current SDK demo pages qualify) — a blanket default-on rule would otherwise silently contradict the L7 security boundary Vex already reviewed and Victor already accepted.",
+        "Needs a plan-first pass before implementation, matching the discipline the L7 plan itself used (five required questions, Victor/Vex review before any code) — this is a foundational pattern change, not a one-page tweak.",
+        "Victor is deciding priority directly and relaying to Vex; do not treat this entry as authorization to implement any part of it."
+      ],
+      "raisedSession": "028 (not yet written as a session file — see docs/lattice-map.json's check-continuity-lag note; raised 2026-07-10 in the localization-source-truth-demo PR follow-up conversation)",
+      "priority": "high",
+      "status": "open",
+      "lens": "architect"
+    },
+    {
+      "id": "od-010",
+      "title": "Fractal expansion of the continuity/lessons memory pattern into per-department standing memory, plus an audit for other single-scope foundational structures never checked for the same expansion",
+      "description": "docs/continuity/ (INDEX.md + batch files) and config/lessons/*.json already are exactly the 'standing memory' connectionArchitecture.channels describes needing — an accumulating, periodically-synthesized record of decisions, mistakes, and practices, carried forward session to session. What they are not yet is divided per department the way connectionArchitecture.cellsNotBranches names ('when a council grows a new specialty, it divides like a cell... carrying awareness of its parent, its adjacent cells, and the head'). Today there is exactly one continuity/lessons cell, implicitly scoped to the whole repo (effectively the rd default department); media and institute inherit it rather than having their own. Victor named the more general version of this directly: continuity/lessons is probably not the only foundational function structure built once at origin scope that has never been checked for fractal-expansion candidacy — other single-scope structures (candidates to actually audit, not yet confirmed: data/status/*.json's three tracked-item files, lib/build-status.js's health rollup, docs/architecture/*.md itself) may have the same shape of gap.",
+      "considerations": [
+        "Do not build a per-department continuity/lessons cell now — media and institute do not yet generate enough independent decision volume to need their own synthesized record; splitting now would create two thin, mostly-empty logs rather than one useful one, the same anti-bloat reasoning already applied to od-008/od-009",
+        "The audit itself (which foundational structures are single-scope by historical accident vs. by genuine design) is cheap and doesn't require a real per-department case to be worth doing — unlike building the expansion, naming candidates now costs nothing and gives a future instance a starting list instead of a blank search",
+        "If/when a department generates enough real independent history to need its own memory, the shape to copy is already established: docs/continuity/'s INDEX.md (replace, don't append) + batch files (append-only) pattern, and config/lessons/*.json's schema — not a new format invented for the occasion",
+        "Victor's refinement (same session): the root-to-department link, when built, should not be a bare string (e.g. a department name duplicated in two files, trusted to stay in sync by convention) — it should be a small structured key object on both sides, enforced by a drift check, the same write-side/generated-or-cross-checked-read-side/CI-gated-drift-check shape docs/lattice-map.json + lib/build-lattice-headers.js --check already prove for file references and lib/check-key-alignment.js proves for slug/arc keys. A plain-string key is exactly the class of bug those two systems exist to catch (see the ARC_KEY_MAP stale-comment fix and the _meta.generated/_meta.commit merge-conflict fix, both this session) — no reason to reintroduce it here.",
+        "The key object should be allowed to grow metadata over time rather than be fully specified upfront (last-synced session, item count, sync cadence, etc.) — same incremental-growth shape docs/lattice-map.json's per-node objects already took, not a schema designed complete on day one",
+        "Promote to a planned enhancement once a specific department (most likely institute or media, if either becomes independently active enough) actually needs its own continuity cell, not before"
+      ],
+      "raisedSession": "022",
+      "priority": "low",
+      "status": "open",
+      "lens": "architect"
+    },
+    {
+      "id": "od-009",
+      "title": "Parallel/simultaneous instruction dispatch across multiple departments or orgs, instead of today's one-at-a-time processing",
+      "description": "config/content-intents.json + lib/apply-content-intents.js (Session 022) process pending intents one at a time in a single sequential loop — fine today (one repo, two departments, one AI instance issuing intents). Victor described a longer-term picture: as this scales toward genuinely multiple departments or independent orgs, a single orchestrated instruction might need to fan out to several targets simultaneously and have their results collected back together — the analogy given was sending several notes out at once to fulfill one score, rather than one note, one wait, the next note. This is a different shape of problem than sequential queue processing: it requires knowing how to split one intent into independent sub-instructions, dispatch them without one blocking the others, and reconcile partial completion/failure across multiple simultaneous targets (what if 3 of 5 succeed and 2 fail?).",
+      "considerations": [
+        "Do not design this now — same reasoning already applied at different scales to od-003, od-007, and od-008: a fan-out/parallel-dispatch mechanism designed against zero real multi-department or multi-org cases is very likely wrong in ways that only show up once real simultaneous targets exist to design against",
+        "This repo currently has exactly one AI instance and two departments (rd, media) — there is nothing to parallelize across yet; the sequential loop in lib/apply-content-intents.js is correctly scoped to the problem that actually exists today",
+        "The reconciliation question (partial success/failure across simultaneous targets) is the hard part, not the dispatch itself — any future design needs to answer that before the fan-out mechanism, not after",
+        "Promote to a planned enhancement once a real multi-department or multi-org case exists to design against, not before",
+        "If/when that case arrives: pages/bridge-council-os.html and pages/bridge-council-schema.html (read in full, Session 022; see docs/architecture/14-council-model.md) are a real, already-designed precedent for exactly this shape of problem — periodic, hierarchical multi-scope synthesis (team/department/org), with a published data schema (Context Objects, Synthesis Outputs, Query Records, Pattern Flags) and layer model (Connectors/Storage/Synthesis Engine/Access/Sentinel). Not identical to simultaneous fan-out, but close enough to read first rather than designing from scratch"
+      ],
+      "raisedSession": "022",
+      "priority": "low",
+      "status": "open",
+      "lens": "architect"
+    },
+    {
+      "id": "od-008",
+      "title": "Staged/proposal execution for higher-blast-radius content-management gestures (consolidation, deletion, connector rewiring)",
+      "description": "config/content-intents.json + lib/apply-content-intents.js (Session 022) handle one gesture — place (department/workType/arc for one slug) — which is low-stakes: reversible by re-declaring the intent, and a wrong placement is cosmetic. Victor described a longer-term gesture in the same shape but much higher stakes: detect duplicate/redundant content or modules across departments, synthesize which files are actually equivalent, and consolidate — create a new shared file, delete the originals, rewire every connector that depended on them. A wrong caller-graph trace here breaks whatever depended on the deleted file, possibly silently, and 'verify the final state matches intent' for a deletion requires exercising every path that touched the old files, not just confirming the new file exists — categorically different from placement's verification, which just reads the arc/department back.",
+      "considerations": [
+        "Do not design this now — a staging/proposal mechanism designed against zero real consolidation cases in this repo is very likely wrong in ways that only show up once a real case exists to design against, same reasoning already applied to od-003 and od-007 at different scales",
+        "The shape it should eventually have, not yet a spec: a 'propose' stage returning the full trace (what it found, what it would delete, what it would rewire) before anything destructive executes, human confirmation required between propose and apply, and verification that means confirming nothing dependent on the old state broke — not just that the new state exists",
+        "Blocked on pe-012 in practice, not just in principle: any connector trace this gesture would need to run depends on docs/lattice-map.json's edges actually being true, which nothing currently verifies",
+        "Promote to a planned enhancement once a real duplicate-content or module-consolidation case actually exists to design against, not before"
+      ],
+      "raisedSession": "022",
+      "priority": "low",
+      "status": "open",
+      "lens": "architect"
+    },
+    {
+      "id": "od-002",
+      "title": "Should build-time content synthesis use a live LLM call, or stay session-authored?",
+      "description": "The ecosystem hub's system-state content (architecture summary, cross-file narrative) could in principle be generated by calling a cheap/free LLM from lib/build-ecosystem-hub.js at build time, synthesizing across the siloed JSON sources (nodes.json, lattice-map.json, status/*.json) into prose no single file contains. That would make the build pipeline non-deterministic and would require a secret (API key) in CI, both of which this repo has deliberately avoided everywhere else — every existing build script is a pure function of its input files, and tests assert exact output. The alternative already in place elsewhere in this repo: Claude instances write continuity logs by hand each session, synthesizing exactly this kind of cross-file context, and commit the result as ordinary hand-authored content. data/status/narrative.json (added Session 015) applies that same pattern to the ecosystem hub — updated by whichever instance runs an architecture-review session, not generated by an unreviewed API call on every push.",
+      "considerations": [
+        "Keep narrative.json session-authored (current default) — deterministic, reviewable in the PR diff like everything else, costs nothing, but goes stale between sessions until someone updates it",
+        "Add an optional, manually-triggered synthesis script (not part of CI auto-build) that drafts narrative.json content for a human/session to review and commit — keeps the build pipeline pure while giving future instances a faster starting draft",
+        "Wire a live LLM call into the CI build — fastest to always-fresh content, but introduces a secret, real per-build cost, and non-deterministic output into a pipeline that currently has none of those; would need its own test strategy since output can't be asserted exactly"
+      ],
+      "raisedSession": "015",
+      "priority": "medium",
+      "status": "open"
+    },
+    {
+      "id": "od-003",
+      "title": "Future: local/lightweight model as an admin-facing chat interface, escalating to Claude instances when needed",
+      "description": "Longer-horizon idea: a locally-hosted individual model, given enough context (this repo's docs/continuity, lattice-map.json, status/*.json), could serve as a persistent conversational interface for the admin — engaging with GitHub directly, and escalating to a Claude instance (like this one) for work it can't do itself, with the Claude instance's contribution credited to it by name. This is a real infrastructure project, not a page addition: it needs a hosting story, a GitHub-write-capable auth path, an escalation/handoff protocol between the local model and a Claude session, and an attribution mechanism that survives the handoff. None of that exists yet and none of it is implied by anything currently in this repo.",
+      "considerations": [
+        "Scope it as a separate project entirely, outside this repo — Vextreme is a content/architecture template, not an agent-hosting platform; conflating the two would blur what this repo is for",
+        "Prototype the escalation protocol first (what does a 'local model asks Claude for help' handoff actually look like as data — a GitHub issue? a labeled PR comment?) before any hosting decision, since the protocol shape constrains the hosting choice",
+        "Revisit once od-002 is settled — the session-authored-narrative pattern is a smaller-scale version of the same 'AI synthesizes cross-context state' problem this idea is trying to solve at a larger scale"
+      ],
+      "raisedSession": "015",
+      "priority": "low",
+      "status": "open"
+    },
+    {
+      "id": "od-006",
+      "title": "An 'init baseline' scaffold — separate the reusable engine from Vextreme's specific content, so a new project can fork the architecture without the content",
+      "description": "This repo now carries two things that are conceptually separable but currently interleaved: the engine (the God Script pipeline, the LATTICE dependency-graph system, the CQRS status/continuity-log tracking, the culture doc and CLAUDE.md cold-start pattern) and the content (88 nodes, 16 arcs, Victor's specific story and string source files). A new, unrelated project that wanted this same architecture — build-time assembly, self-documenting dependency graph, session continuity as a first-class artifact — currently has no way to get it without also inheriting nodes.json, arcs-v2.json, and every string source file. The ask is a location (a directory, or a documented fork procedure, or both) that regenerates the blank engine plus the reasoning behind it, for a future project to branch from.",
+      "considerations": [
+        "Write the fork procedure as documentation first (a docs/architecture page or a top-level FORK.md: which files are engine, which are content, what to delete/blank when starting a new project) — cheap, forces the content/engine boundary to be answered precisely in prose before committing to any file-copying decision, and is useful even if a literal template directory is built later or never",
+        "Build a literal template/ directory (blanked data/*.json, the lib/ build scripts, docs/architecture/*, a fresh CLAUDE.md and culture.md) that a new project can copy wholesale — more immediately usable, but commits to file-structure decisions (is arc-nav.js content-specific? are the --ember color tokens Vextreme-branded or should a template be visually neutral?) that are expensive to revisit once other projects have already forked from them",
+        "Do the documentation step first, then decide whether a literal template is still worth building once the boundary is written down clearly — the same 'document before you build' sequencing that worked for od-004/od-005"
+      ],
+      "raisedSession": "020",
+      "priority": "medium",
+      "status": "open"
+    },
+    {
+      "id": "od-007",
+      "title": "Future, downstream of od-006: a cross-org discovery/relationship protocol between independent instances of this architecture",
+      "description": "Longer-horizon idea, raised alongside od-006: if other organizations forked this architecture (via whatever od-006 produces) and ran their own independent instance, could there be a communication channel any AI managing one instance could use to discover another instance, exchange information about its own system's state and capabilities, and identify potential value in the two connecting — an AI-readable discovery and relationship-synthesis layer between otherwise-separate systems. This is meaningfully further out than od-003 (a local-model chat interface for one admin) — it requires cross-organizational trust and identity (how does one instance verify who it's actually talking to), a decision about what internal state, if any, is safe to expose outside the org boundary, an actual communication protocol, and — the part that makes it currently unbuildable rather than just unbuilt — a second real instance of this architecture to test bridging against. Right now there is exactly one: this repo.",
+      "considerations": [
+        "Do not design this protocol now — a protocol designed against zero real second parties is very likely to be wrong in ways that only show up once a second instance actually exists to test against; this is the same reasoning od-003 already applied to the escalation-protocol question at smaller scale",
+        "Treat this as strictly downstream of od-006 — there is nothing to bridge between until a second instance exists, and od-006 is the mechanism by which a second instance could come to exist at all",
+        "If it's ever picked up, the trust/identity and what's-safe-to-expose questions need answering before any protocol shape decision, not after — this is a security boundary between organizations, not an internal architecture choice"
+      ],
+      "raisedSession": "020",
+      "priority": "low",
+      "status": "open"
+    }
+  ]
+}

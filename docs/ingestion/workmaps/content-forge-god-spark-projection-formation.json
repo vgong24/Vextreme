@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "vex-content-forge.god-spark-projection-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.god-spark.repository-native-projection.20261003",
+  "ownerRef": "github.issue.vextreme.159",
+  "predecessor": {
+    "prRef": "github.pull.vextreme.165",
+    "head": "b70d7e20dbbdf4a8a645bdf705d786c3afe31b84",
+    "tree": "1db56282e1a8c46f3597af13e82765c44e3baaa1",
+    "assuranceRef": "github.issue.vextreme.159.comment.5975674871",
+    "assuranceDisposition": "CLEAR_ON_EXACT_HEAD",
+    "sourceClaimState": "waiting",
+    "lifecycleEffectsHeld": [
+      "MARK_READY",
+      "ORDINARY_MERGE"
+    ]
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5975706758"
+  ],
+  "stageDisposition": "FORM_WHAT_IS_THE_GOD_SPARK_REPOSITORY_NATIVE_PROJECTION_AS_SEPARATE_STACKED_DRAFT",
+  "sourceSelection": {
+    "disposition": "PART_028_NESTED_SOURCE_VARIANT__EXACT_CANONICAL_SLOT_PAGE_ABSENT",
+    "path": "docs/ingestion/source-pages/part-028/convos-with-god-what-is-god-spark.html",
+    "gitBlob": "4a5adf908da239d61669b3ed1865866a619ba51f",
+    "repositoryBytes": 563451,
+    "sourceRoute": "/convos-with-god/what-is-god-spark",
+    "preservedHtmlSha256": "f23b3345bd0dc4481d8b956f62216629d93dbfb6d1650531d5722de5c3ab206e",
+    "preservedHtmlSha256Basis": "content-forge-consolidation-proposal record; not independently recomputed during successor formation",
+    "sourceOracle": {
+      "proposalPath": "docs/ingestion/workmaps/content-forge-consolidation-proposal.json",
+      "proposalRecordRef": "content-forge.source-record.4dfa5746617f2a64c802",
+      "workMap": "docs/ingestion/workmaps/content-forge-r028.json",
+      "revisionRef": "workmap.revision.vextreme.content-forge.r028.collection-convos-with-god-4-of-4-complete",
+      "pageId": "09d69eb9bd72dd3d",
+      "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED",
+      "sourceGroup": "SOURCE_GROUP_OBSERVED_COMPLETE_4_OF_4",
+      "repositoryFilePresenceAtPredecessorHead": "VERIFIED",
+      "status": "BOUND"
+    },
+    "rule": "SOURCE_LINEAGES_PRESERVED__DIRECT_COPY_FORBIDDEN"
+  },
+  "destination": {
+    "slug": "what-is-the-god-spark",
+    "canonicalNode": {
+      "id": 3,
+      "title": "What is the God Spark?",
+      "date": "October 8, 2025",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ]
+    },
+    "destinationClass": "EXISTING_CANONICAL_SLOT_PAGE_ABSENT",
+    "requiresJudgment": false,
+    "nodeRegistryMutationExpected": false,
+    "arcRegistryMutationExpected": false,
+    "contentIntentMutationExpected": false,
+    "predecessorWipIntentObserved": false,
+    "authoredPaths": {
+      "create": [
+        "pages/what-is-the-god-spark.html",
+        "data/strings/source/pages/what-is-the-god-spark.json",
+        "tests/60-content-forge-god-spark-projection.test.js"
+      ],
+      "modify": [
+        "data/viewmodels.json"
+      ],
+      "formation": [
+        "docs/ingestion/workmaps/content-forge-god-spark-projection-formation.json"
+      ]
+    },
+    "preimages": {
+      "pages/what-is-the-god-spark.html": "ABSENT",
+      "data/strings/source/pages/what-is-the-god-spark.json": "ABSENT",
+      "tests/60-content-forge-god-spark-projection.test.js": "ABSENT",
+      "data/viewmodels.json": "gitblob:9f35becb9816be4666f010c6ad9d262a381c20da"
+    }
+  },
+  "projectionRules": [
+    "PRESERVE_AUTHORED_ARTICLE_CONTENT_AND_ORDER",
+    "PRESERVE_LIST_STRUCTURE_AND_COMPATIBLE_SEMANTIC_HOOKS",
+    "PROJECT_AWAY_SQUARESPACE_CHROME_PROVIDER_ASSETS_RESCUE_RUNTIME_AND_RELATED_COLLECTION_SHELL",
+    "SOURCE_GENERATED_LOCALIZATION_IDS_ARE_PROVENANCE_NOT_DESTINATION_KEYS",
+    "ENABLE_EXISTING_V2_ARC_NAV_THROUGH_VIEWMODEL",
+    "USE_STRING_SOURCE_AND_BUILDERS_FOR_LOCALIZATION_AND_GENERATED_OUTPUTS",
+    "DO_NOT_REWRITE_EXISTING_NODE_OR_ARC_PLACEMENT"
+  ],
+  "generatedConsequences": [
+    "data/strings/compiled/**",
+    "data/index.json",
+    "data/analysis-index.json",
+    "data/page-health.json",
+    "data/status.json",
+    "data/terrain-map.json",
+    "dist/*.js",
+    "widgets/fab-lang.js",
+    "pages/archives.html",
+    "sitemap.xml",
+    "index.html",
+    "sw.js"
+  ],
+  "generatedPolicy": "BUILDER_OWNED__DO_NOT_HAND_PATCH__EXACT_OUTPUT_WINS",
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true
+  }
+}

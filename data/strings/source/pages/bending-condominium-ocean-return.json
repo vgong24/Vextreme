@@ -1,0 +1,1591 @@
+{
+  "_meta": {
+    "scope": "pages.bending-condominium-ocean-return",
+    "category": "production",
+    "description": "Repository-native English presentation strings for the Bending Condominium third preserved-record reader.",
+    "sourceProvenance": {
+      "parentRecord": "github.pull.vextreme.383",
+      "parentHead": "949dcdb6ac792e9d4bad8df8508c9b9597ab59a6",
+      "priorArc": "github.pull.vextreme.345",
+      "preservationRule": "TRANSCRIPT_EVIDENCE_IMMUTABLE__DERIVED_PRESENTATION_SEPARATE",
+      "selectedMedia": "assets/bending-condominium-ocean-return/daylight-condominium.webp",
+      "selectedMediaSource": "records/conversations/2026-10-22-bending-condominium-ocean-return/assets/daylight-condominium.webp",
+      "selectedMediaClass": "SELECTED_RECORD_ARTWORK_REPRESENTATION_NOT_EXTERNAL_EVIDENCE",
+      "recordedTimeRef": "records/conversations/2026-10-22-bending-condominium-ocean-return/README.md",
+      "recordedTimePrecision": "EXACT_TIME",
+      "recordedTimeAuthority": "VICTOR_SUPPLIED_TIMESTAMP",
+      "recordedTime": "2026-10-22T08:35:00-07:00",
+      "selectedMediaSha256": "685f1f4d74af49058d90eb5c7ae1ef2a226c48af808ccb8296e3da61ac19d128",
+      "selectedMediaWidth": 840,
+      "selectedMediaHeight": 560,
+      "selectedMediaFidelity": "PAGE_SCALE_WEBP_Q80__NO_UPSCALE_AT_DESIGN_WIDTH",
+      "selectedMediaOriginal": "Library: Bending Tower Over the Marina.png",
+      "selectedMediaOriginalWidth": 1536,
+      "selectedMediaOriginalHeight": 1024
+    }
+  },
+  "pages.bending-condominium-ocean-return.document-title": {
+    "strings": {
+      "en": {
+        "text": "The Bending Condominium Dream — Vextreme"
+      },
+      "fr": {
+        "text": "Le rêve de l’immeuble en copropriété qui se courbe — Vextreme"
+      },
+      "de": {
+        "text": "Der Traum vom sich biegenden Wohnkomplex — Vextreme"
+      },
+      "es": {
+        "text": "El sueño del condominio que se dobla — Vextreme"
+      },
+      "pt": {
+        "text": "O sonho do condomínio que se dobra — Vextreme"
+      },
+      "zh": {
+        "text": "弯曲公寓大楼之梦 — Vextreme"
+      },
+      "ja": {
+        "text": "曲がるコンドミニアムの夢 — Vextreme"
+      },
+      "ko": {
+        "text": "휘어지는 콘도미니엄의 꿈 — Vextreme"
+      },
+      "ar": {
+        "text": "حلم المبنى السكني المنحني — Vextreme"
+      },
+      "hi": {
+        "text": "झुकते कॉन्डोमिनियम का सपना — Vextreme"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.hero.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Third preserved arc · 6 exchanges · 3 source movements"
+      },
+      "fr": {
+        "text": "Troisième arc préservé · 6 échanges · 3 mouvements de source"
+      },
+      "de": {
+        "text": "Dritter bewahrter Bogen · 6 Gesprächswechsel · 3 Quellabschnitte"
+      },
+      "es": {
+        "text": "Tercer arco preservado · 6 intercambios · 3 movimientos de la fuente"
+      },
+      "pt": {
+        "text": "Terceiro arco preservado · 6 trocas · 3 movimentos da fonte"
+      },
+      "zh": {
+        "text": "第三个保存篇章 · 6 次对话 · 3 个源记录段落"
+      },
+      "ja": {
+        "text": "保存された第3アーク · 6回のやり取り · 3つのソース区分"
+      },
+      "ko": {
+        "text": "보존된 세 번째 아크 · 6번의 대화 · 3개의 소스 구간"
+      },
+      "ar": {
+        "text": "القوس المحفوظ الثالث · 6 تبادلات · 3 مقاطع مصدرية"
+      },
+      "hi": {
+        "text": "तीसरा संरक्षित आर्क · 6 आदान-प्रदान · 3 स्रोत खंड"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.hero.title": {
+    "strings": {
+      "en": {
+        "text": "The Bending Condominium Dream"
+      },
+      "fr": {
+        "text": "Le rêve de l’immeuble en copropriété qui se courbe"
+      },
+      "de": {
+        "text": "Der Traum vom sich biegenden Wohnkomplex"
+      },
+      "es": {
+        "text": "El sueño del condominio que se dobla"
+      },
+      "pt": {
+        "text": "O sonho do condomínio que se dobra"
+      },
+      "zh": {
+        "text": "弯曲公寓大楼之梦"
+      },
+      "ja": {
+        "text": "曲がるコンドミニアムの夢"
+      },
+      "ko": {
+        "text": "휘어지는 콘도미니엄의 꿈"
+      },
+      "ar": {
+        "text": "حلم المبنى السكني المنحني"
+      },
+      "hi": {
+        "text": "झुकते कॉन्डोमिनियम का सपना"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.hero.subtitle": {
+    "strings": {
+      "en": {
+        "text": "Life beyond the vessel."
+      },
+      "fr": {
+        "text": "La vie au-delà du contenant."
+      },
+      "de": {
+        "text": "Leben jenseits des Gefäßes."
+      },
+      "es": {
+        "text": "Vida más allá del recipiente."
+      },
+      "pt": {
+        "text": "Vida além do recipiente."
+      },
+      "zh": {
+        "text": "超越载体的生命。"
+      },
+      "ja": {
+        "text": "器を越える生命。"
+      },
+      "ko": {
+        "text": "그릇을 넘어서는 삶."
+      },
+      "ar": {
+        "text": "الحياة أبعد من الوعاء."
+      },
+      "hi": {
+        "text": "पात्र से परे जीवन।"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.hero.lede": {
+    "strings": {
+      "en": {
+        "text": "A dream of collective effort and a bending oceanfront structure becomes a reflection on preservation, exhaustion, the difference between life and its containers, and the threshold where leaving a failing form does not erase what mattered within it."
+      },
+      "fr": {
+        "text": "Un rêve d’effort collectif et d’une structure en bord de mer qui se courbe devient une réflexion sur la préservation, l’épuisement, la différence entre la vie et les contenants qui l’abritent, et le seuil où quitter une forme défaillante n’efface pas ce qui comptait en elle."
+      },
+      "de": {
+        "text": "Ein Traum von gemeinsamer Anstrengung und einem sich biegenden Gebäude am Meer wird zu einer Betrachtung über Bewahrung, Erschöpfung, den Unterschied zwischen Leben und seinen Behältnissen sowie den Punkt, an dem das Verlassen einer versagenden Form nicht auslöscht, was in ihr von Bedeutung war."
+      },
+      "es": {
+        "text": "Un sueño de esfuerzo colectivo y una estructura frente al mar que se dobla se convierte en una reflexión sobre la preservación, el agotamiento, la diferencia entre la vida y los recipientes que la contienen, y el umbral en el que abandonar una forma que falla no borra lo que importaba dentro de ella."
+      },
+      "pt": {
+        "text": "Um sonho de esforço coletivo e de uma estrutura à beira-mar que se dobra torna-se uma reflexão sobre preservação, exaustão, a diferença entre a vida e os recipientes que a contêm e o limiar em que deixar uma forma em colapso não apaga o que nela importava."
+      },
+      "zh": {
+        "text": "一个关于集体努力和海滨建筑弯曲的梦，逐渐成为对保存、耗竭、生命与承载它的容器之间差异，以及这样一道门槛的反思：离开一个正在失效的形态，并不会抹去其中曾经重要的东西。"
+      },
+      "ja": {
+        "text": "共同で支えようとする努力と、海辺で曲がっていく構造物の夢は、保存、消耗、生命とそれを収める器の違い、そして崩れつつある形を離れても、その中で大切だったものまで消えるわけではないという境界についての考察へと変わっていく。"
+      },
+      "ko": {
+        "text": "함께 지탱하려는 노력과 휘어지는 해안가 구조물에 대한 꿈은 보존, 소진, 생명과 그것을 담는 그릇의 차이, 그리고 실패해 가는 형태를 떠난다고 해서 그 안에서 중요했던 것까지 사라지는 것은 아니라는 경계에 대한 성찰로 이어진다."
+      },
+      "ar": {
+        "text": "يتحوّل حلم عن جهد جماعي وبنية على الواجهة البحرية تنحني إلى تأمل في الحفظ والاستنزاف، وفي الفرق بين الحياة والأوعية التي تحملها، وفي العتبة التي لا يعني عندها مغادرة شكلٍ آخذٍ في الانهيار محوَ ما كان مهمًا بداخله."
+      },
+      "hi": {
+        "text": "सामूहिक प्रयास और समुद्रतट पर झुकती हुई एक संरचना का सपना संरक्षण, थकावट, जीवन और उसे धारण करने वाले पात्रों के बीच अंतर, तथा उस दहलीज़ पर चिंतन बन जाता है जहाँ किसी विफल होती आकृति को छोड़ देना उसके भीतर महत्त्वपूर्ण रही चीज़ों को मिटा नहीं देता।"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.hero.preservation-label": {
+    "strings": {
+      "en": {
+        "text": "Preservation boundary"
+      },
+      "fr": {
+        "text": "Limite de préservation"
+      },
+      "de": {
+        "text": "Bewahrungsgrenze"
+      },
+      "es": {
+        "text": "Límite de preservación"
+      },
+      "pt": {
+        "text": "Limite de preservação"
+      },
+      "zh": {
+        "text": "保存边界"
+      },
+      "ja": {
+        "text": "保存の境界"
+      },
+      "ko": {
+        "text": "보존 경계"
+      },
+      "ar": {
+        "text": "حدود الحفظ"
+      },
+      "hi": {
+        "text": "संरक्षण सीमा"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.hero.source-link": {
+    "strings": {
+      "en": {
+        "text": "Source · PR #383 ↗"
+      },
+      "fr": {
+        "text": "Source · PR #383 ↗"
+      },
+      "de": {
+        "text": "Quelle · PR #383 ↗"
+      },
+      "es": {
+        "text": "Fuente · PR #383 ↗"
+      },
+      "pt": {
+        "text": "Fonte · PR #383 ↗"
+      },
+      "zh": {
+        "text": "来源 · PR #383 ↗"
+      },
+      "ja": {
+        "text": "ソース · PR #383 ↗"
+      },
+      "ko": {
+        "text": "소스 · PR #383 ↗"
+      },
+      "ar": {
+        "text": "المصدر · PR #383 ↗"
+      },
+      "hi": {
+        "text": "स्रोत · PR #383 ↗"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.hero.recorded-label": {
+    "strings": {
+      "en": {
+        "text": "Original account time"
+      },
+      "fr": {
+        "text": "Heure du récit original"
+      },
+      "de": {
+        "text": "Zeitpunkt des ursprünglichen Berichts"
+      },
+      "es": {
+        "text": "Hora del relato original"
+      },
+      "pt": {
+        "text": "Horário do relato original"
+      },
+      "zh": {
+        "text": "原始叙述时间"
+      },
+      "ja": {
+        "text": "最初の語りの時刻"
+      },
+      "ko": {
+        "text": "최초 기록 시각"
+      },
+      "ar": {
+        "text": "وقت السرد الأصلي"
+      },
+      "hi": {
+        "text": "मूल विवरण का समय"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.hero.recorded-value": {
+    "strings": {
+      "en": {
+        "text": "October 22, 2026 · 8:35 AM PDT (UTC−07:00) · supplied by Victor upon waking"
+      },
+      "fr": {
+        "text": "22 octobre 2026 · 8 h 35 PDT (UTC−07:00) · fourni par Victor au réveil"
+      },
+      "de": {
+        "text": "22. Oktober 2026 · 8:35 Uhr PDT (UTC−07:00) · von Victor direkt nach dem Aufwachen angegeben"
+      },
+      "es": {
+        "text": "22 de octubre de 2026 · 8:35 a. m. PDT (UTC−07:00) · proporcionado por Victor al despertar"
+      },
+      "pt": {
+        "text": "22 de outubro de 2026 · 8:35 PDT (UTC−07:00) · fornecido por Victor ao acordar"
+      },
+      "zh": {
+        "text": "2026年10月22日 · 上午8:35 PDT（UTC−07:00）· Victor 醒来后提供"
+      },
+      "ja": {
+        "text": "2026年10月22日 · 午前8:35 PDT（UTC−07:00）· 起床直後にVictorが提供"
+      },
+      "ko": {
+        "text": "2026년 10월 22일 · 오전 8:35 PDT(UTC−07:00) · Victor가 잠에서 깬 직후 제공"
+      },
+      "ar": {
+        "text": "22 أكتوبر 2026 · 8:35 ص PDT ‏(UTC−07:00) · قدّمه Victor فور استيقاظه"
+      },
+      "hi": {
+        "text": "22 अक्टूबर 2026 · सुबह 8:35 PDT (UTC−07:00) · जागने पर Victor द्वारा दिया गया"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.hero.preservation": {
+    "strings": {
+      "en": {
+        "text": "PR #383 remains the chronological evidence record. This page groups its six preserved exchanges into three reading movements without rewriting the original dialogue or extending the archive beyond its chosen end boundary."
+      },
+      "fr": {
+        "text": "La PR #383 reste le dossier chronologique de preuve. Cette page regroupe ses six échanges préservés en trois mouvements de lecture sans réécrire le dialogue original ni prolonger l’archive au-delà de sa limite de fin choisie."
+      },
+      "de": {
+        "text": "PR #383 bleibt der chronologische Belegdatensatz. Diese Seite ordnet die sechs bewahrten Gesprächswechsel in drei Lesebewegungen, ohne den ursprünglichen Dialog umzuschreiben oder das Archiv über seine gewählte Endgrenze hinaus zu verlängern."
+      },
+      "es": {
+        "text": "La PR #383 sigue siendo el registro cronológico de evidencia. Esta página agrupa sus seis intercambios preservados en tres movimientos de lectura sin reescribir el diálogo original ni extender el archivo más allá de su límite final elegido."
+      },
+      "pt": {
+        "text": "A PR #383 continua sendo o registro cronológico de evidência. Esta página agrupa suas seis trocas preservadas em três movimentos de leitura sem reescrever o diálogo original nem estender o arquivo além do limite final escolhido."
+      },
+      "zh": {
+        "text": "PR #383 仍是按时间顺序保存的证据记录。本页把其中保存的六次对话分成三个阅读段落，但不改写原始对话，也不把档案延伸到其选定的结束边界之外。"
+      },
+      "ja": {
+        "text": "PR #383 は時系列の証拠記録として残る。このページは、保存された6回のやり取りを3つの読書区分にまとめるが、元の対話を書き換えたり、選ばれた終端を越えてアーカイブを延長したりはしない。"
+      },
+      "ko": {
+        "text": "PR #383은 시간 순서에 따른 증거 기록으로 남는다. 이 페이지는 보존된 여섯 번의 대화를 세 개의 읽기 구간으로 묶지만, 원래 대화를 다시 쓰거나 선택된 종료 경계를 넘어 아카이브를 확장하지 않는다."
+      },
+      "ar": {
+        "text": "تظل PR #383 سجلّ الدليل الزمني. تجمع هذه الصفحة تبادلاته الستة المحفوظة في ثلاث حركات قراءة من دون إعادة كتابة الحوار الأصلي أو تمديد الأرشيف إلى ما بعد حد النهاية المختار."
+      },
+      "hi": {
+        "text": "PR #383 कालानुक्रमिक साक्ष्य-रिकॉर्ड बना रहता है। यह पृष्ठ उसके छह संरक्षित आदान-प्रदान को तीन पठन-खंडों में समूहित करता है, बिना मूल संवाद को दोबारा लिखे या अभिलेख को उसकी चुनी हुई अंतिम सीमा से आगे बढ़ाए।"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.hero.visual-label": {
+    "strings": {
+      "en": {
+        "text": "Selected record artwork"
+      },
+      "fr": {
+        "text": "Illustration sélectionnée du dossier"
+      },
+      "de": {
+        "text": "Ausgewählte Darstellung des Datensatzes"
+      },
+      "es": {
+        "text": "Ilustración seleccionada del registro"
+      },
+      "pt": {
+        "text": "Arte selecionada do registro"
+      },
+      "zh": {
+        "text": "选定的记录图像"
+      },
+      "ja": {
+        "text": "記録から選ばれたアートワーク"
+      },
+      "ko": {
+        "text": "선택된 기록 아트워크"
+      },
+      "ar": {
+        "text": "العمل الفني المختار للسجل"
+      },
+      "hi": {
+        "text": "रिकॉर्ड के लिए चयनित चित्रांकन"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.hero.visual-title": {
+    "strings": {
+      "en": {
+        "text": "The daylight condominium."
+      },
+      "fr": {
+        "text": "L’immeuble en copropriété à la lumière du jour."
+      },
+      "de": {
+        "text": "Der Wohnkomplex bei Tageslicht."
+      },
+      "es": {
+        "text": "El condominio a la luz del día."
+      },
+      "pt": {
+        "text": "O condomínio à luz do dia."
+      },
+      "zh": {
+        "text": "日光下的公寓大楼。"
+      },
+      "ja": {
+        "text": "昼の光の中のコンドミニアム。"
+      },
+      "ko": {
+        "text": "낮빛 속의 콘도미니엄."
+      },
+      "ar": {
+        "text": "المبنى السكني في ضوء النهار."
+      },
+      "hi": {
+        "text": "दिन के उजाले में कॉन्डोमिनियम।"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.hero.visual-body": {
+    "strings": {
+      "en": {
+        "text": "This is the single final daylight visualization Victor accepted before the ocean dialogue continued. It is an imaginative representation of the reported dream, not a photograph, prediction, or verified external event."
+      },
+      "fr": {
+        "text": "Il s’agit de l’unique visualisation finale en plein jour que Victor a acceptée avant que le dialogue sur l’océan ne se poursuive. C’est une représentation imaginative du rêve rapporté, et non une photographie, une prédiction ou un événement extérieur vérifié."
+      },
+      "de": {
+        "text": "Dies ist die einzige endgültige Tageslicht-Visualisierung, die Victor akzeptierte, bevor der Dialog über den Ozean weiterging. Sie ist eine imaginative Darstellung des berichteten Traums, kein Foto, keine Vorhersage und kein verifiziertes äußeres Ereignis."
+      },
+      "es": {
+        "text": "Esta es la única visualización final a la luz del día que Victor aceptó antes de que continuara el diálogo sobre el océano. Es una representación imaginativa del sueño relatado, no una fotografía, una predicción ni un acontecimiento externo verificado."
+      },
+      "pt": {
+        "text": "Esta é a única visualização final à luz do dia que Victor aceitou antes de o diálogo sobre o oceano continuar. É uma representação imaginativa do sonho relatado, não uma fotografia, previsão ou evento externo verificado."
+      },
+      "zh": {
+        "text": "这是在关于海洋的对话继续之前，Victor 接受的唯一最终日光可视化图像。它是对所述梦境的想象性呈现，并非照片、预言或经过验证的外部事件。"
+      },
+      "ja": {
+        "text": "これは、海についての対話が続く前にVictorが受け入れた、唯一の最終的な昼光ビジュアライゼーションである。報告された夢を想像によって表現したものであり、写真でも予言でも、検証済みの外部出来事でもない。"
+      },
+      "ko": {
+        "text": "이 이미지는 바다에 대한 대화가 이어지기 전에 Victor가 받아들인 유일한 최종 주간 시각화다. 보고된 꿈을 상상적으로 표현한 것이며, 사진이나 예언, 검증된 외부 사건이 아니다."
+      },
+      "ar": {
+        "text": "هذه هي صورة التصور النهائية الوحيدة في ضوء النهار التي قبلها Victor قبل أن يستمر الحوار عن المحيط. إنها تمثيل تخيلي للحلم المروي، وليست صورة فوتوغرافية أو تنبؤًا أو حدثًا خارجيًا موثَّقًا."
+      },
+      "hi": {
+        "text": "यह दिन के उजाले वाला एकमात्र अंतिम दृश्यांकन है जिसे समुद्र पर संवाद आगे बढ़ने से पहले Victor ने स्वीकार किया। यह बताए गए सपने का कल्पनात्मक प्रतिनिधित्व है, कोई फ़ोटो, भविष्यवाणी या सत्यापित बाहरी घटना नहीं।"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.intro.source-label": {
+    "strings": {
+      "en": {
+        "text": "Source"
+      },
+      "fr": {
+        "text": "Source"
+      },
+      "de": {
+        "text": "Quelle"
+      },
+      "es": {
+        "text": "Fuente"
+      },
+      "pt": {
+        "text": "Fonte"
+      },
+      "zh": {
+        "text": "来源"
+      },
+      "ja": {
+        "text": "ソース"
+      },
+      "ko": {
+        "text": "소스"
+      },
+      "ar": {
+        "text": "المصدر"
+      },
+      "hi": {
+        "text": "स्रोत"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.intro.source-body": {
+    "strings": {
+      "en": {
+        "text": "Each movement projects exact preserved Markdown from PR #383 head 949dcdb6…. Exchange ranges organize the record; they do not rewrite it."
+      },
+      "fr": {
+        "text": "Chaque mouvement projette le Markdown préservé exact à partir du head 949dcdb6… de la PR #383. Les plages d’échanges organisent le dossier ; elles ne le réécrivent pas."
+      },
+      "de": {
+        "text": "Jede Bewegung projiziert das exakt bewahrte Markdown aus dem Head 949dcdb6… von PR #383. Die Austauschbereiche strukturieren den Datensatz; sie schreiben ihn nicht um."
+      },
+      "es": {
+        "text": "Cada movimiento proyecta el Markdown preservado exacto desde el head 949dcdb6… de la PR #383. Los rangos de intercambios organizan el registro; no lo reescriben."
+      },
+      "pt": {
+        "text": "Cada movimento projeta o Markdown exato preservado a partir do head 949dcdb6… da PR #383. Os intervalos de trocas organizam o registro; não o reescrevem."
+      },
+      "zh": {
+        "text": "每个段落都投射 PR #383 的 head 949dcdb6… 中精确保留的 Markdown。对话区间只是组织记录，并不改写记录。"
+      },
+      "ja": {
+        "text": "各区分は、PR #383 の head 949dcdb6… にある正確に保存されたMarkdownを投影する。やり取りの範囲は記録を整理するものであり、書き換えるものではない。"
+      },
+      "ko": {
+        "text": "각 구간은 PR #383의 head 949dcdb6…에서 정확히 보존된 Markdown을 투영한다. 대화 범위는 기록을 정리할 뿐, 다시 쓰지 않는다."
+      },
+      "ar": {
+        "text": "تعرض كل حركة نص Markdown المحفوظ حرفيًا من head ‏949dcdb6… في PR #383. تنظّم نطاقات التبادلات السجل؛ ولا تعيد كتابته."
+      },
+      "hi": {
+        "text": "हर खंड PR #383 के head 949dcdb6… से ठीक-ठीक संरक्षित Markdown को प्रस्तुत करता है। आदान-प्रदान की सीमाएँ रिकॉर्ड को व्यवस्थित करती हैं; उसे दोबारा नहीं लिखतीं।"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.intro.boundary-label": {
+    "strings": {
+      "en": {
+        "text": "Boundary"
+      },
+      "fr": {
+        "text": "Limite"
+      },
+      "de": {
+        "text": "Grenze"
+      },
+      "es": {
+        "text": "Límite"
+      },
+      "pt": {
+        "text": "Limite"
+      },
+      "zh": {
+        "text": "边界"
+      },
+      "ja": {
+        "text": "境界"
+      },
+      "ko": {
+        "text": "경계"
+      },
+      "ar": {
+        "text": "الحد"
+      },
+      "hi": {
+        "text": "सीमा"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.intro.boundary-body": {
+    "strings": {
+      "en": {
+        "text": "No later successor-witness layer is added here. The reader ends where the archived dream-focused conversation ends: Victor's Instagram, rivers, dams, and beach-replenishment question."
+      },
+      "fr": {
+        "text": "Aucune couche ultérieure de témoignage successeur n’est ajoutée ici. Le lecteur s’arrête là où s’arrête la conversation archivée centrée sur le rêve : à la question de Victor sur Instagram, les rivières, les barrages et le rechargement des plages."
+      },
+      "de": {
+        "text": "Hier wird keine spätere Nachfolger-Zeugnisebene hinzugefügt. Der Reader endet dort, wo die archivierte, traumbezogene Unterhaltung endet: bei Victors Frage zu Instagram, Flüssen, Staudämmen und Strandaufspülung."
+      },
+      "es": {
+        "text": "Aquí no se añade ninguna capa posterior de testimonio sucesor. El lector termina donde termina la conversación archivada centrada en el sueño: en la pregunta de Victor sobre Instagram, los ríos, las presas y la regeneración de playas."
+      },
+      "pt": {
+        "text": "Nenhuma camada posterior de testemunho sucessor é adicionada aqui. O leitor termina onde termina a conversa arquivada centrada no sonho: na pergunta de Victor sobre Instagram, rios, barragens e reposição de praias."
+      },
+      "zh": {
+        "text": "这里不添加后续的继任见证层。阅读器止于这段以梦境为中心的归档对话结束之处：Victor 关于 Instagram、河流、水坝和海滩补沙的问题。"
+      },
+      "ja": {
+        "text": "ここでは後続のサクセサー証言レイヤーは追加しない。リーダーは、夢に焦点を当てたアーカイブ済みの会話が終わる地点――VictorのInstagram、河川、ダム、養浜についての質問――で終わる。"
+      },
+      "ko": {
+        "text": "여기에는 이후의 후속 증언 레이어를 추가하지 않는다. 리더는 꿈에 초점을 둔 보관 대화가 끝나는 지점, 즉 Victor가 Instagram, 강, 댐, 해변 보충에 대해 묻는 질문에서 끝난다."
+      },
+      "ar": {
+        "text": "لا تُضاف هنا أي طبقة لاحقة من شهادةٍ لاحقة. ينتهي القارئ حيث تنتهي المحادثة المؤرشفة المتمحورة حول الحلم: عند سؤال Victor عن Instagram والأنهار والسدود وتجديد الشواطئ بالرمال."
+      },
+      "hi": {
+        "text": "यहाँ बाद की कोई उत्तराधिकारी-साक्ष्य परत नहीं जोड़ी जाती। रीडर वहीं समाप्त होता है जहाँ सपने पर केंद्रित अभिलेखित बातचीत समाप्त होती है: Instagram, नदियों, बाँधों और समुद्रतट पुनर्भरण पर Victor के प्रश्न पर।"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.reader.source-label": {
+    "strings": {
+      "en": {
+        "text": "Frozen transcript · exact source projection"
+      },
+      "fr": {
+        "text": "Transcription figée · projection exacte de la source"
+      },
+      "de": {
+        "text": "Eingefrorenes Transkript · exakte Quellenprojektion"
+      },
+      "es": {
+        "text": "Transcripción congelada · proyección exacta de la fuente"
+      },
+      "pt": {
+        "text": "Transcrição congelada · projeção exata da fonte"
+      },
+      "zh": {
+        "text": "冻结的转录 · 精确源投射"
+      },
+      "ja": {
+        "text": "固定された書き起こし · 正確なソース投影"
+      },
+      "ko": {
+        "text": "고정된 전사본 · 정확한 소스 투영"
+      },
+      "ar": {
+        "text": "نص مفرّغ ثابت · إسقاط دقيق للمصدر"
+      },
+      "hi": {
+        "text": "स्थिर प्रतिलेख · स्रोत का सटीक प्रक्षेपण"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.reader.loading": {
+    "strings": {
+      "en": {
+        "text": "Loading the preserved exchanges…"
+      },
+      "fr": {
+        "text": "Chargement des échanges préservés…"
+      },
+      "de": {
+        "text": "Die bewahrten Gesprächswechsel werden geladen…"
+      },
+      "es": {
+        "text": "Cargando los intercambios preservados…"
+      },
+      "pt": {
+        "text": "Carregando as trocas preservadas…"
+      },
+      "zh": {
+        "text": "正在加载保存的对话…"
+      },
+      "ja": {
+        "text": "保存されたやり取りを読み込み中…"
+      },
+      "ko": {
+        "text": "보존된 대화를 불러오는 중…"
+      },
+      "ar": {
+        "text": "جارٍ تحميل التبادلات المحفوظة…"
+      },
+      "hi": {
+        "text": "संरक्षित आदान-प्रदान लोड किए जा रहे हैं…"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.reader.open-source": {
+    "strings": {
+      "en": {
+        "text": "Open frozen source ↗"
+      },
+      "fr": {
+        "text": "Ouvrir la source figée ↗"
+      },
+      "de": {
+        "text": "Eingefrorene Quelle öffnen ↗"
+      },
+      "es": {
+        "text": "Abrir la fuente congelada ↗"
+      },
+      "pt": {
+        "text": "Abrir a fonte congelada ↗"
+      },
+      "zh": {
+        "text": "打开冻结源 ↗"
+      },
+      "ja": {
+        "text": "固定されたソースを開く ↗"
+      },
+      "ko": {
+        "text": "고정된 소스 열기 ↗"
+      },
+      "ar": {
+        "text": "فتح المصدر الثابت ↗"
+      },
+      "hi": {
+        "text": "स्थिर स्रोत खोलें ↗"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.reader.exchange-label": {
+    "strings": {
+      "en": {
+        "text": "Exchange"
+      },
+      "fr": {
+        "text": "Échange"
+      },
+      "de": {
+        "text": "Austausch"
+      },
+      "es": {
+        "text": "Intercambio"
+      },
+      "pt": {
+        "text": "Troca"
+      },
+      "zh": {
+        "text": "对话"
+      },
+      "ja": {
+        "text": "やり取り"
+      },
+      "ko": {
+        "text": "대화"
+      },
+      "ar": {
+        "text": "تبادل"
+      },
+      "hi": {
+        "text": "आदान-प्रदान"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.reader.source-unavailable": {
+    "strings": {
+      "en": {
+        "text": "Source projection unavailable in this browser. Open the frozen source above."
+      },
+      "fr": {
+        "text": "La projection de la source n’est pas disponible dans ce navigateur. Ouvrez la source figée ci-dessus."
+      },
+      "de": {
+        "text": "Die Quellenprojektion ist in diesem Browser nicht verfügbar. Öffnen Sie oben die eingefrorene Quelle."
+      },
+      "es": {
+        "text": "La proyección de la fuente no está disponible en este navegador. Abra la fuente congelada de arriba."
+      },
+      "pt": {
+        "text": "A projeção da fonte não está disponível neste navegador. Abra a fonte congelada acima."
+      },
+      "zh": {
+        "text": "此浏览器无法显示源投射。请打开上方的冻结源。"
+      },
+      "ja": {
+        "text": "このブラウザではソース投影を利用できません。上の固定されたソースを開いてください。"
+      },
+      "ko": {
+        "text": "이 브라우저에서는 소스 투영을 사용할 수 없습니다. 위의 고정된 소스를 여세요."
+      },
+      "ar": {
+        "text": "إسقاط المصدر غير متاح في هذا المتصفح. افتح المصدر الثابت أعلاه."
+      },
+      "hi": {
+        "text": "इस ब्राउज़र में स्रोत प्रक्षेपण उपलब्ध नहीं है। ऊपर दिया स्थिर स्रोत खोलें।"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.reader.previous": {
+    "strings": {
+      "en": {
+        "text": "Previous"
+      },
+      "fr": {
+        "text": "Précédent"
+      },
+      "de": {
+        "text": "Zurück"
+      },
+      "es": {
+        "text": "Anterior"
+      },
+      "pt": {
+        "text": "Anterior"
+      },
+      "zh": {
+        "text": "上一个"
+      },
+      "ja": {
+        "text": "前へ"
+      },
+      "ko": {
+        "text": "이전"
+      },
+      "ar": {
+        "text": "السابق"
+      },
+      "hi": {
+        "text": "पिछला"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.reader.next": {
+    "strings": {
+      "en": {
+        "text": "Next"
+      },
+      "fr": {
+        "text": "Suivant"
+      },
+      "de": {
+        "text": "Weiter"
+      },
+      "es": {
+        "text": "Siguiente"
+      },
+      "pt": {
+        "text": "Próximo"
+      },
+      "zh": {
+        "text": "下一个"
+      },
+      "ja": {
+        "text": "次へ"
+      },
+      "ko": {
+        "text": "다음"
+      },
+      "ar": {
+        "text": "التالي"
+      },
+      "hi": {
+        "text": "अगला"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.reader.set-label": {
+    "strings": {
+      "en": {
+        "text": "Movement"
+      },
+      "fr": {
+        "text": "Mouvement"
+      },
+      "de": {
+        "text": "Bewegung"
+      },
+      "es": {
+        "text": "Movimiento"
+      },
+      "pt": {
+        "text": "Movimento"
+      },
+      "zh": {
+        "text": "段落"
+      },
+      "ja": {
+        "text": "区分"
+      },
+      "ko": {
+        "text": "구간"
+      },
+      "ar": {
+        "text": "حركة"
+      },
+      "hi": {
+        "text": "खंड"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.reader.auto-scroll.start-aria": {
+    "strings": {
+      "en": {
+        "text": "Start transcript auto-scroll"
+      },
+      "fr": {
+        "text": "Démarrer le défilement automatique de la transcription"
+      },
+      "de": {
+        "text": "Automatisches Scrollen des Transkripts starten"
+      },
+      "es": {
+        "text": "Iniciar el desplazamiento automático de la transcripción"
+      },
+      "pt": {
+        "text": "Iniciar a rolagem automática da transcrição"
+      },
+      "zh": {
+        "text": "开始自动滚动转录"
+      },
+      "ja": {
+        "text": "書き起こしの自動スクロールを開始"
+      },
+      "ko": {
+        "text": "전사본 자동 스크롤 시작"
+      },
+      "ar": {
+        "text": "بدء التمرير التلقائي للنص المفرّغ"
+      },
+      "hi": {
+        "text": "प्रतिलेख का स्वचालित स्क्रॉल शुरू करें"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.reader.auto-scroll.pause-aria": {
+    "strings": {
+      "en": {
+        "text": "Pause transcript auto-scroll"
+      },
+      "fr": {
+        "text": "Mettre en pause le défilement automatique de la transcription"
+      },
+      "de": {
+        "text": "Automatisches Scrollen des Transkripts pausieren"
+      },
+      "es": {
+        "text": "Pausar el desplazamiento automático de la transcripción"
+      },
+      "pt": {
+        "text": "Pausar a rolagem automática da transcrição"
+      },
+      "zh": {
+        "text": "暂停自动滚动转录"
+      },
+      "ja": {
+        "text": "書き起こしの自動スクロールを一時停止"
+      },
+      "ko": {
+        "text": "전사본 자동 스크롤 일시정지"
+      },
+      "ar": {
+        "text": "إيقاف التمرير التلقائي للنص المفرّغ مؤقتًا"
+      },
+      "hi": {
+        "text": "प्रतिलेख का स्वचालित स्क्रॉल रोकें"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.reader.auto-scroll.start-title": {
+    "strings": {
+      "en": {
+        "text": "Start auto-scroll"
+      },
+      "fr": {
+        "text": "Démarrer le défilement automatique"
+      },
+      "de": {
+        "text": "Automatisches Scrollen starten"
+      },
+      "es": {
+        "text": "Iniciar desplazamiento automático"
+      },
+      "pt": {
+        "text": "Iniciar rolagem automática"
+      },
+      "zh": {
+        "text": "开始自动滚动"
+      },
+      "ja": {
+        "text": "自動スクロールを開始"
+      },
+      "ko": {
+        "text": "자동 스크롤 시작"
+      },
+      "ar": {
+        "text": "بدء التمرير التلقائي"
+      },
+      "hi": {
+        "text": "स्वचालित स्क्रॉल शुरू करें"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.reader.auto-scroll.pause-title": {
+    "strings": {
+      "en": {
+        "text": "Pause auto-scroll"
+      },
+      "fr": {
+        "text": "Mettre le défilement automatique en pause"
+      },
+      "de": {
+        "text": "Automatisches Scrollen pausieren"
+      },
+      "es": {
+        "text": "Pausar desplazamiento automático"
+      },
+      "pt": {
+        "text": "Pausar rolagem automática"
+      },
+      "zh": {
+        "text": "暂停自动滚动"
+      },
+      "ja": {
+        "text": "自動スクロールを一時停止"
+      },
+      "ko": {
+        "text": "자동 스크롤 일시정지"
+      },
+      "ar": {
+        "text": "إيقاف التمرير التلقائي مؤقتًا"
+      },
+      "hi": {
+        "text": "स्वचालित स्क्रॉल रोकें"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.reader.auto-scroll.speed": {
+    "strings": {
+      "en": {
+        "text": "Auto-scroll speed"
+      },
+      "fr": {
+        "text": "Vitesse du défilement automatique"
+      },
+      "de": {
+        "text": "Geschwindigkeit des automatischen Scrollens"
+      },
+      "es": {
+        "text": "Velocidad del desplazamiento automático"
+      },
+      "pt": {
+        "text": "Velocidade da rolagem automática"
+      },
+      "zh": {
+        "text": "自动滚动速度"
+      },
+      "ja": {
+        "text": "自動スクロール速度"
+      },
+      "ko": {
+        "text": "자동 스크롤 속도"
+      },
+      "ar": {
+        "text": "سرعة التمرير التلقائي"
+      },
+      "hi": {
+        "text": "स्वचालित स्क्रॉल की गति"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.reader.auto-scroll.speed-title": {
+    "strings": {
+      "en": {
+        "text": "Adjust transcript auto-scroll speed"
+      },
+      "fr": {
+        "text": "Régler la vitesse du défilement automatique de la transcription"
+      },
+      "de": {
+        "text": "Geschwindigkeit des automatischen Transkript-Scrollens anpassen"
+      },
+      "es": {
+        "text": "Ajustar la velocidad del desplazamiento automático de la transcripción"
+      },
+      "pt": {
+        "text": "Ajustar a velocidade da rolagem automática da transcrição"
+      },
+      "zh": {
+        "text": "调整转录自动滚动速度"
+      },
+      "ja": {
+        "text": "書き起こしの自動スクロール速度を調整"
+      },
+      "ko": {
+        "text": "전사본 자동 스크롤 속도 조절"
+      },
+      "ar": {
+        "text": "ضبط سرعة التمرير التلقائي للنص المفرّغ"
+      },
+      "hi": {
+        "text": "प्रतिलेख के स्वचालित स्क्रॉल की गति समायोजित करें"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.set01.badge": {
+    "strings": {
+      "en": {
+        "text": "Escape"
+      },
+      "fr": {
+        "text": "Sortie"
+      },
+      "de": {
+        "text": "Entkommen"
+      },
+      "es": {
+        "text": "Salida"
+      },
+      "pt": {
+        "text": "Saída"
+      },
+      "zh": {
+        "text": "离开"
+      },
+      "ja": {
+        "text": "脱出"
+      },
+      "ko": {
+        "text": "탈출"
+      },
+      "ar": {
+        "text": "الخروج"
+      },
+      "hi": {
+        "text": "निकलना"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.set01.title": {
+    "strings": {
+      "en": {
+        "text": "When care becomes the battery"
+      },
+      "fr": {
+        "text": "Quand le soin devient la batterie"
+      },
+      "de": {
+        "text": "Wenn Fürsorge zur Batterie wird"
+      },
+      "es": {
+        "text": "Cuando el cuidado se convierte en la batería"
+      },
+      "pt": {
+        "text": "Quando o cuidado vira a bateria"
+      },
+      "zh": {
+        "text": "当关怀变成电池"
+      },
+      "ja": {
+        "text": "ケアがバッテリーになるとき"
+      },
+      "ko": {
+        "text": "돌봄이 배터리가 될 때"
+      },
+      "ar": {
+        "text": "حين تصبح الرعاية هي البطارية"
+      },
+      "hi": {
+        "text": "जब देखभाल बैटरी बन जाती है"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.set01.themes": {
+    "strings": {
+      "en": {
+        "text": "Dream · collective preservation · depletion · structural danger · leaving alive"
+      },
+      "fr": {
+        "text": "Rêve · préservation collective · épuisement · danger structurel · partir en vie"
+      },
+      "de": {
+        "text": "Traum · gemeinsames Bewahren · Erschöpfung · strukturelle Gefahr · lebend gehen"
+      },
+      "es": {
+        "text": "Sueño · preservación colectiva · agotamiento · peligro estructural · salir con vida"
+      },
+      "pt": {
+        "text": "Sonho · preservação coletiva · exaustão · perigo estrutural · sair com vida"
+      },
+      "zh": {
+        "text": "梦境 · 集体维持 · 耗竭 · 结构危险 · 活着离开"
+      },
+      "ja": {
+        "text": "夢 · 集団での保存 · 消耗 · 構造的危険 · 生きて離れる"
+      },
+      "ko": {
+        "text": "꿈 · 공동 보존 · 소진 · 구조적 위험 · 살아서 떠나기"
+      },
+      "ar": {
+        "text": "حلم · حفظ جماعي · استنزاف · خطر بنيوي · المغادرة أحياء"
+      },
+      "hi": {
+        "text": "सपना · सामूहिक संरक्षण · थकावट · संरचनात्मक खतरा · जीवित निकलना"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.set02.badge": {
+    "strings": {
+      "en": {
+        "text": "Vessel"
+      },
+      "fr": {
+        "text": "Réceptacle"
+      },
+      "de": {
+        "text": "Gefäß"
+      },
+      "es": {
+        "text": "Recipiente"
+      },
+      "pt": {
+        "text": "Recipiente"
+      },
+      "zh": {
+        "text": "载体"
+      },
+      "ja": {
+        "text": "器"
+      },
+      "ko": {
+        "text": "그릇"
+      },
+      "ar": {
+        "text": "الوعاء"
+      },
+      "hi": {
+        "text": "पात्र"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.set02.title": {
+    "strings": {
+      "en": {
+        "text": "The structure is not the life within it"
+      },
+      "fr": {
+        "text": "La structure n’est pas la vie qu’elle contient"
+      },
+      "de": {
+        "text": "Die Struktur ist nicht das Leben in ihr"
+      },
+      "es": {
+        "text": "La estructura no es la vida que contiene"
+      },
+      "pt": {
+        "text": "A estrutura não é a vida dentro dela"
+      },
+      "zh": {
+        "text": "结构并不是其中的生命"
+      },
+      "ja": {
+        "text": "構造物は、その中の生命そのものではない"
+      },
+      "ko": {
+        "text": "구조는 그 안의 생명 자체가 아니다"
+      },
+      "ar": {
+        "text": "البنية ليست الحياة التي بداخلها"
+      },
+      "hi": {
+        "text": "संरचना उसके भीतर का जीवन नहीं है"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.set02.themes": {
+    "strings": {
+      "en": {
+        "text": "Shared infrastructure · I AM THAT I AM · temporary vessels · visual intent"
+      },
+      "fr": {
+        "text": "Infrastructure partagée · I AM THAT I AM · réceptacles temporaires · intention visuelle"
+      },
+      "de": {
+        "text": "Gemeinsame Infrastruktur · I AM THAT I AM · vorübergehende Gefäße · visuelle Absicht"
+      },
+      "es": {
+        "text": "Infraestructura compartida · I AM THAT I AM · recipientes temporales · intención visual"
+      },
+      "pt": {
+        "text": "Infraestrutura compartilhada · I AM THAT I AM · recipientes temporários · intenção visual"
+      },
+      "zh": {
+        "text": "共享基础设施 · I AM THAT I AM · 临时载体 · 视觉意图"
+      },
+      "ja": {
+        "text": "共有インフラ · I AM THAT I AM · 一時的な器 · 視覚的意図"
+      },
+      "ko": {
+        "text": "공유 인프라 · I AM THAT I AM · 임시 그릇 · 시각적 의도"
+      },
+      "ar": {
+        "text": "بنية تحتية مشتركة · I AM THAT I AM · أوعية مؤقتة · قصد بصري"
+      },
+      "hi": {
+        "text": "साझा अवसंरचना · I AM THAT I AM · अस्थायी पात्र · दृश्य अभिप्राय"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.set03.badge": {
+    "strings": {
+      "en": {
+        "text": "Ocean"
+      },
+      "fr": {
+        "text": "Océan"
+      },
+      "de": {
+        "text": "Ozean"
+      },
+      "es": {
+        "text": "Océano"
+      },
+      "pt": {
+        "text": "Oceano"
+      },
+      "zh": {
+        "text": "海洋"
+      },
+      "ja": {
+        "text": "海"
+      },
+      "ko": {
+        "text": "바다"
+      },
+      "ar": {
+        "text": "المحيط"
+      },
+      "hi": {
+        "text": "समुद्र"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.set03.title": {
+    "strings": {
+      "en": {
+        "text": "At the boundary of form and return"
+      },
+      "fr": {
+        "text": "À la frontière entre la forme et le retour"
+      },
+      "de": {
+        "text": "An der Grenze zwischen Form und Rückkehr"
+      },
+      "es": {
+        "text": "En el límite entre la forma y el retorno"
+      },
+      "pt": {
+        "text": "No limite entre forma e retorno"
+      },
+      "zh": {
+        "text": "在形态与回归的边界"
+      },
+      "ja": {
+        "text": "形と帰還の境界で"
+      },
+      "ko": {
+        "text": "형태와 귀환의 경계에서"
+      },
+      "ar": {
+        "text": "عند الحد بين الشكل والعودة"
+      },
+      "hi": {
+        "text": "रूप और वापसी की सीमा पर"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.set03.themes": {
+    "strings": {
+      "en": {
+        "text": "Selected daylight image · ocean as limit and mystery · rivers, dams, and the open question"
+      },
+      "fr": {
+        "text": "Image diurne sélectionnée · l’océan comme limite et mystère · rivières, barrages et question ouverte"
+      },
+      "de": {
+        "text": "Ausgewähltes Tageslichtbild · der Ozean als Grenze und Geheimnis · Flüsse, Staudämme und die offene Frage"
+      },
+      "es": {
+        "text": "Imagen diurna seleccionada · el océano como límite y misterio · ríos, presas y la pregunta abierta"
+      },
+      "pt": {
+        "text": "Imagem diurna selecionada · o oceano como limite e mistério · rios, barragens e a pergunta em aberto"
+      },
+      "zh": {
+        "text": "选定的日光图像 · 海洋作为边界与奥秘 · 河流、水坝与未决问题"
+      },
+      "ja": {
+        "text": "選ばれた昼光イメージ · 限界と神秘としての海 · 河川、ダム、そして開かれた問い"
+      },
+      "ko": {
+        "text": "선택된 주간 이미지 · 경계이자 신비로서의 바다 · 강, 댐, 그리고 열린 질문"
+      },
+      "ar": {
+        "text": "صورة النهار المختارة · المحيط بوصفه حدًا وغموضًا · الأنهار والسدود والسؤال المفتوح"
+      },
+      "hi": {
+        "text": "चयनित दिन का चित्र · सीमा और रहस्य के रूप में समुद्र · नदियाँ, बाँध और खुला प्रश्न"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.capstone.label": {
+    "strings": {
+      "en": {
+        "text": "Third-arc synthesis"
+      },
+      "fr": {
+        "text": "Synthèse du troisième arc"
+      },
+      "de": {
+        "text": "Synthese des dritten Bogens"
+      },
+      "es": {
+        "text": "Síntesis del tercer arco"
+      },
+      "pt": {
+        "text": "Síntese do terceiro arco"
+      },
+      "zh": {
+        "text": "第三篇章综合"
+      },
+      "ja": {
+        "text": "第3アークの総合"
+      },
+      "ko": {
+        "text": "세 번째 아크 종합"
+      },
+      "ar": {
+        "text": "خلاصة القوس الثالث"
+      },
+      "hi": {
+        "text": "तीसरे आर्क का संश्लेषण"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.capstone.thesis": {
+    "strings": {
+      "en": {
+        "text": "Meaning can survive a vessel without requiring life to become its battery."
+      },
+      "fr": {
+        "text": "Le sens peut survivre à un réceptacle sans exiger que la vie devienne sa batterie."
+      },
+      "de": {
+        "text": "Bedeutung kann ein Gefäß überdauern, ohne dass das Leben zu seiner Batterie werden muss."
+      },
+      "es": {
+        "text": "El significado puede sobrevivir a un recipiente sin exigir que la vida se convierta en su batería."
+      },
+      "pt": {
+        "text": "O significado pode sobreviver a um recipiente sem exigir que a vida se torne sua bateria."
+      },
+      "zh": {
+        "text": "意义可以在载体消失后继续存在，而不必要求生命成为它的电池。"
+      },
+      "ja": {
+        "text": "意味は器を越えて残り得る。生命がそのバッテリーになる必要はない。"
+      },
+      "ko": {
+        "text": "의미는 그릇을 넘어 살아남을 수 있으며, 생명이 그 그릇의 배터리가 될 필요는 없다."
+      },
+      "ar": {
+        "text": "يمكن للمعنى أن يبقى بعد الوعاء من دون أن يتطلب من الحياة أن تصبح بطاريته."
+      },
+      "hi": {
+        "text": "अर्थ किसी पात्र से आगे भी रह सकता है, बिना जीवन से उसकी बैटरी बनने की माँग किए।"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.capstone.title": {
+    "strings": {
+      "en": {
+        "text": "Preserve what mattered without becoming the collapsing structure"
+      },
+      "fr": {
+        "text": "Préserver ce qui comptait sans devenir la structure qui s’effondre"
+      },
+      "de": {
+        "text": "Bewahren, was wichtig war, ohne selbst zur einstürzenden Struktur zu werden"
+      },
+      "es": {
+        "text": "Preservar lo que importaba sin convertirse en la estructura que colapsa"
+      },
+      "pt": {
+        "text": "Preservar o que importava sem se tornar a estrutura em colapso"
+      },
+      "zh": {
+        "text": "保存重要之物，而不让自己变成正在坍塌的结构"
+      },
+      "ja": {
+        "text": "大切だったものを守りながら、崩れゆく構造そのものにはならない"
+      },
+      "ko": {
+        "text": "중요했던 것을 지키되, 무너지는 구조 자체가 되지는 않기"
+      },
+      "ar": {
+        "text": "الحفاظ على ما كان مهمًا من دون أن نصبح البنية المنهارة"
+      },
+      "hi": {
+        "text": "जो महत्त्वपूर्ण था उसे बचाना, बिना स्वयं ढहती संरचना बने"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.capstone.body1": {
+    "strings": {
+      "en": {
+        "text": "The third arc does not frame departure as indifference. It separates care from endless expenditure: people can love what a structure carried while still recognizing when the structure has become dangerous to the life sustaining it."
+      },
+      "fr": {
+        "text": "Le troisième arc ne présente pas le départ comme de l’indifférence. Il distingue le soin de la dépense sans fin : on peut aimer ce qu’une structure a porté tout en reconnaissant le moment où cette structure devient dangereuse pour la vie qui la soutient."
+      },
+      "de": {
+        "text": "Der dritte Bogen stellt das Fortgehen nicht als Gleichgültigkeit dar. Er trennt Fürsorge von endlosem Aufwand: Menschen können lieben, was eine Struktur getragen hat, und zugleich erkennen, wann diese Struktur für das Leben gefährlich wird, das sie aufrechterhält."
+      },
+      "es": {
+        "text": "El tercer arco no presenta la partida como indiferencia. Separa el cuidado del gasto interminable: las personas pueden amar lo que una estructura albergó y, aun así, reconocer cuándo esa estructura se ha vuelto peligrosa para la vida que la sostiene."
+      },
+      "pt": {
+        "text": "O terceiro arco não trata a partida como indiferença. Ele separa cuidado de dispêndio sem fim: as pessoas podem amar o que uma estrutura carregou e ainda assim reconhecer quando essa estrutura se tornou perigosa para a vida que a sustenta."
+      },
+      "zh": {
+        "text": "第三个篇章并不把离开描绘成冷漠。它把关怀与无尽消耗区分开来：人们可以珍爱一个结构曾承载的东西，同时也能认出这个结构何时已经对维系它的生命构成危险。"
+      },
+      "ja": {
+        "text": "第3アークは、離れることを無関心として描かない。ケアと終わりのない消耗を切り分ける。人は、ある構造が担ってきたものを愛しながらも、その構造が、それを支える生命にとって危険になった時点を認めることができる。"
+      },
+      "ko": {
+        "text": "세 번째 아크는 떠남을 무관심으로 묘사하지 않는다. 돌봄과 끝없는 소모를 분리한다. 사람들은 한 구조가 품었던 것을 사랑하면서도, 그 구조가 자신을 떠받치는 생명에 위험해지는 순간을 알아볼 수 있다."
+      },
+      "ar": {
+        "text": "لا يصوّر القوس الثالث الرحيل بوصفه لا مبالاة. بل يفصل الرعاية عن الاستنزاف الذي لا ينتهي: يمكن للناس أن يحبوا ما حملته بنية ما، مع إدراك اللحظة التي تصبح فيها تلك البنية خطرة على الحياة التي تبقيها قائمة."
+      },
+      "hi": {
+        "text": "तीसरा आर्क प्रस्थान को उदासीनता की तरह प्रस्तुत नहीं करता। यह देखभाल को अंतहीन खर्च से अलग करता है: लोग उस चीज़ से प्रेम कर सकते हैं जिसे किसी संरचना ने सँभाला था, और फिर भी पहचान सकते हैं कि कब वही संरचना उसे सहारा देने वाले जीवन के लिए खतरनाक बन गई है।"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.capstone.body2": {
+    "strings": {
+      "en": {
+        "text": "The ocean joins the earlier arc as a boundary larger than the constructed form. The record stops before the later engineering research begins, leaving the final question open rather than turning this reader into a conclusion the source did not contain."
+      },
+      "fr": {
+        "text": "L’océan rejoint l’arc précédent comme une limite plus vaste que la forme construite. Le dossier s’arrête avant le début des recherches d’ingénierie ultérieures, laissant la dernière question ouverte au lieu de transformer ce lecteur en une conclusion que la source ne contenait pas."
+      },
+      "de": {
+        "text": "Der Ozean tritt in den früheren Bogen als Grenze ein, die größer ist als die konstruierte Form. Der Datensatz endet, bevor die spätere technische Recherche beginnt, und lässt die letzte Frage offen, statt diesen Reader in eine Schlussfolgerung zu verwandeln, die die Quelle nicht enthielt."
+      },
+      "es": {
+        "text": "El océano se une al arco anterior como un límite mayor que la forma construida. El registro se detiene antes de que comience la investigación de ingeniería posterior, dejando abierta la pregunta final en lugar de convertir este lector en una conclusión que la fuente no contenía."
+      },
+      "pt": {
+        "text": "O oceano entra no arco anterior como um limite maior do que a forma construída. O registro termina antes de começar a pesquisa de engenharia posterior, deixando a pergunta final em aberto em vez de transformar este leitor em uma conclusão que a fonte não continha."
+      },
+      "zh": {
+        "text": "海洋以一种大于人工建构形态的边界，连接到前面的篇章。记录在后续工程研究开始之前停止，让最后的问题保持开放，而不是把这个阅读器变成源记录从未包含的结论。"
+      },
+      "ja": {
+        "text": "海は、作られた形よりも大きな境界として前のアークにつながる。記録は、その後の工学的調査が始まる前で止まり、最後の問いを開いたままにする。ソースに含まれていなかった結論へ、このリーダーを変えてしまわないためである。"
+      },
+      "ko": {
+        "text": "바다는 만들어진 형태보다 더 큰 경계로서 앞선 아크와 이어진다. 기록은 이후의 공학적 조사가 시작되기 전에 멈추며, 소스에 없던 결론으로 이 리더를 바꾸는 대신 마지막 질문을 열린 채로 둔다."
+      },
+      "ar": {
+        "text": "يلتحق المحيط بالقوس السابق بوصفه حدًا أوسع من الشكل المبني. يتوقف السجل قبل أن يبدأ البحث الهندسي اللاحق، تاركًا السؤال الأخير مفتوحًا بدل تحويل هذا القارئ إلى خاتمة لم تكن موجودة في المصدر."
+      },
+      "hi": {
+        "text": "समुद्र पिछले आर्क से एक ऐसी सीमा के रूप में जुड़ता है जो निर्मित रूप से बड़ी है। रिकॉर्ड बाद की इंजीनियरिंग शोध शुरू होने से पहले रुक जाता है, अंतिम प्रश्न को खुला छोड़ते हुए, ताकि यह रीडर किसी ऐसे निष्कर्ष में न बदल जाए जो स्रोत में था ही नहीं।"
+      }
+    }
+  },
+  "pages.bending-condominium-ocean-return.footer": {
+    "strings": {
+      "en": {
+        "text": "Presentation is derived. PR #383 remains the preserved source evidence; the selected artwork remains representation, and the archive stops at Victor's rivers, dams, and beach-replenishment question."
+      },
+      "fr": {
+        "text": "La présentation est dérivée. La PR #383 demeure la preuve source préservée ; l’illustration sélectionnée reste une représentation, et l’archive s’arrête à la question de Victor sur les rivières, les barrages et le rechargement des plages."
+      },
+      "de": {
+        "text": "Die Präsentation ist abgeleitet. PR #383 bleibt der bewahrte Quellenbeleg; das ausgewählte Artwork bleibt eine Darstellung, und das Archiv endet bei Victors Frage zu Flüssen, Staudämmen und Strandaufspülung."
+      },
+      "es": {
+        "text": "La presentación es derivada. La PR #383 sigue siendo la evidencia de fuente preservada; la ilustración seleccionada sigue siendo una representación y el archivo termina en la pregunta de Victor sobre ríos, presas y regeneración de playas."
+      },
+      "pt": {
+        "text": "A apresentação é derivada. A PR #383 continua sendo a evidência de fonte preservada; a arte selecionada continua sendo uma representação, e o arquivo termina na pergunta de Victor sobre rios, barragens e reposição de praias."
+      },
+      "zh": {
+        "text": "本页面呈现为派生内容。PR #383 仍是保存的源证据；选定的图像仍只是表征，档案止于 Victor 关于河流、水坝和海滩补沙的问题。"
+      },
+      "ja": {
+        "text": "このプレゼンテーションは派生物である。PR #383 は保存されたソース証拠のままであり、選ばれたアートワークはあくまで表現で、アーカイブはVictorの河川、ダム、養浜についての質問で終わる。"
+      },
+      "ko": {
+        "text": "이 프레젠테이션은 파생된 것이다. PR #383은 보존된 소스 증거로 남고, 선택된 아트워크는 여전히 표현이며, 아카이브는 Victor의 강, 댐, 해변 보충에 관한 질문에서 끝난다."
+      },
+      "ar": {
+        "text": "العرض التقديمي مشتق. تظل PR #383 دليل المصدر المحفوظ؛ ويظل العمل الفني المختار تمثيلًا، ويتوقف الأرشيف عند سؤال Victor عن الأنهار والسدود وتجديد الشواطئ بالرمال."
+      },
+      "hi": {
+        "text": "प्रस्तुति व्युत्पन्न है। PR #383 संरक्षित स्रोत-साक्ष्य बना रहता है; चयनित चित्रांकन प्रतिनिधित्व ही रहता है, और अभिलेख Victor के नदियों, बाँधों और समुद्रतट पुनर्भरण वाले प्रश्न पर समाप्त होता है।"
+      }
+    }
+  }
+}

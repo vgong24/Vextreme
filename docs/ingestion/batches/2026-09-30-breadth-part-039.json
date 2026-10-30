@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.5",
+  "continuity": "[VXG RealForever]",
+  "issueRef": "github.issue.vextreme.159",
+  "breadthPrRef": "github.pull.vextreme.162",
+  "partRef": "PART_039_ROUTE_FAMILY_DREAM_DOCUMENTATION",
+  "inputZip": "039-route-family-dream-documentation.zip",
+  "inputZipSha256": "19674106b174b83d32442a86411124c3b71b6eed400dc13d38d7b74092b0c942",
+  "inputZipBytes": 93442,
+  "manifestEntryCount": 1,
+  "storedHtmlCount": 1,
+  "protectedWithheldCount": 0,
+  "staged": [
+    {
+      "route": "/dream-documentation/leaving-the-classroom",
+      "path": "docs/ingestion/source-pages/part-039/dream-documentation-leaving-the-classroom.html",
+      "sourceHtmlSha256": "68f7c12787e563e0fd16a62cafad4bc270cea3262e14d5aa3d766d4b83005b76",
+      "sourceHtmlBytes": 275924,
+      "sourceGitBlobSha1": "cdee53b844114c49030d2c7675f6b1e2026b31bd",
+      "sourceDerivedSha256": "cd969fcb966fe7d617764c608270a419d0f962b9456f089ff9765324a62a80a9",
+      "disposition": "HOLD",
+      "publicByteMaterialized": true
+    }
+  ],
+  "cumulativeObservedPages": 249,
+  "cumulativePublicSourceEvidenceHtml": 176,
+  "cumulativeProtectedSourceMetadataOnly": 1,
+  "partitionStreamState": "END_REACHED_AT_PART_039",
+  "effects": {
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false,
+    "merge": false,
+    "publication": false
+  },
+  "next": {
+    "partRef": null,
+    "identityState": "POST_BREADTH_CONSOLIDATION"
+  }
+}

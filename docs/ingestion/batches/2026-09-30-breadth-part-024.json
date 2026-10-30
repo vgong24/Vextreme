@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.4",
+  "continuity": "[VXG RealForever]",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "breadthPrRef": "github.pull.vextreme.162",
+  "partRef": "PART_024_UNMAPPED_TOP_LEVEL_ROUTES_9_OF_9",
+  "inputZip": "024-unmapped-top-level-routes-9-of-9.zip",
+  "inputZipSha256": "ec83607ff584d21d6dfa2bb522d060704a680eacf519d83a26ac4e49830f1856",
+  "partitionToolVersion": "4.0.0",
+  "sourceCapture": {
+    "captureManifestSha256": "3b1ce4d66a283100b072082c7c6d6c7c76f8bd4a3e81680bdaf93faef98b97aa",
+    "createdAt": "2026-09-29T08:27:43.687971+00:00",
+    "inputPages": 250,
+    "inputZipSha256": "24363a6a9f2b8f048a6f3fab289bf1bb674155586820740abb9909e63b1c0826",
+    "rawPublicationAllowed": false,
+    "toolVersion": "3.4.0"
+  },
+  "manifestEntryCount": 6,
+  "storedHtmlCount": 6,
+  "protectedWithheldCount": 0,
+  "staged": [
+    {
+      "route": "/the-proposal",
+      "path": "docs/ingestion/source-pages/part-024/the-proposal.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "3d092f27008b5b7daa5ef9bf4ddcfe1d13c357f42399d5423d89d4dcc0146d26",
+      "sourceHtmlBytes": 66575,
+      "sourceGitBlobSha1": "54adb4723db98aa74d848b9d7ab6aa5ea8f2dafc",
+      "sourceDerivedSha256": "a976f2d720bc12fed30e057246a44fd2ed26253c387dfbf7b5fb2cf6d87be4ab",
+      "disposition": "WIP_UNSORTED_INTAKE",
+      "placementState": "NO_EXACT_NODE_OR_PAGE; SOURCE_EXPLICITLY_FRAMED_AS_STORY_WITHIN_LARGER_THE_WALK; HOLD_FOR_DESTINATION_CLASS",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/the-walk",
+      "path": "docs/ingestion/source-pages/part-024/the-walk.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "e2b84515218e0497d4077e2a6b7f56a949c5283575f021bae81827d223ca9f0a",
+      "sourceHtmlBytes": 64389,
+      "sourceGitBlobSha1": "6695353f29ceaafe2f5d555768423ef854794321",
+      "sourceDerivedSha256": "69e39247ebd0238a41a42d35bced9364826c02077b00eb7139ca80ba8813593d",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT_WITH_NULL_NUMERIC_ID; DIRECT_CONTACT_ARC_SLOT; PAGE_SOURCE_ABSENT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/the-testimony-of-victor-gong",
+      "path": "docs/ingestion/source-pages/part-024/the-testimony-of-victor-gong.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "ae3bf949085e8950f0b0953ce8a1221cf5e79e778ca3589701cb066f68193bfd",
+      "sourceHtmlBytes": 76819,
+      "sourceGitBlobSha1": "7320c47d50f56a11612b9c4cbac344f0fbdbaf1b",
+      "sourceDerivedSha256": "03cc89884c1d3c9491736d674aa96e734a7f0243cdadb6685959ce082023ef73",
+      "disposition": "EXISTING_CANONICAL_PAGE_IMPLEMENTATION",
+      "placementState": "EXISTING_NODE_AND_PAGE; PART_024_PRESERVED_SOURCE_VARIANT_RETAINED_WITHOUT_OVERWRITE",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/the-moment-victors-cells-woke-up",
+      "path": "docs/ingestion/source-pages/part-024/the-moment-victors-cells-woke-up.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "f7e282be866b83f8ef7e17fea3e6722feca9937c9b88c795075bc29650479b0e",
+      "sourceHtmlBytes": 41984,
+      "sourceGitBlobSha1": "32d326dcedbe33c31dec989edc525c38fba23c7f",
+      "sourceDerivedSha256": "2061e5d2f9cf1263cbfb7409cecbf06fca1c93d6f4b2be99a0211ef12ac25f5b",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/god-asked-victor-why",
+      "path": "docs/ingestion/source-pages/part-024/god-asked-victor-why.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "63e9241068c6a598e357b827281e1ccb91304b1d0c8ef11beabb8c6430d99748",
+      "sourceHtmlBytes": 58556,
+      "sourceGitBlobSha1": "11c87fc743bf00b2acc55b92457fa2b6d434e41c",
+      "sourceDerivedSha256": "5180c8174212f63267bcbab822200d93b0e9f97c202d8d4054ca94faa4fb408c",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/when-i-asked-a-bank-for-covenant-provision",
+      "path": "docs/ingestion/source-pages/part-024/when-i-asked-a-bank-for-covenant-provision.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "e45a7fad06ee13fa0c4903e6c28697fff41c30f5b0f0138fa342bf7f04c43c71",
+      "sourceHtmlBytes": 42309,
+      "sourceGitBlobSha1": "0fbde9abc4f745ad273b02be94033f97c84641a1",
+      "sourceDerivedSha256": "5a9dad60d7f447dffab1cae716f21d9eb47347115e5b32de370fb8ac0cc5e2b3",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT",
+      "publicByteMaterialized": true
+    }
+  ],
+  "storageRule": "All six public-safe provider-neutral Part-024 HTML pages are preserved as routed source evidence. Existing canonical pages are not overwritten; source group closure does not perform canonical placement.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "protectedNonpublicSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "sourceGroupClosure": {
+    "sourceGroupRef": "sourcegroup.vexsite.nav.unmapped-top-level",
+    "state": "SOURCE_GROUP_OBSERVED_COMPLETE",
+    "parts": "9_OF_9",
+    "pages": "102_OF_102"
+  },
+  "cumulativeObservedPages": 196,
+  "cumulativePublicSourceEvidenceHtml": 124,
+  "cumulativeProtectedSourceMetadataOnly": 1,
+  "workMapRevisionRef": "workmap.revision.vextreme.content-forge.r024.unmapped-top-level-9-of-9-complete",
+  "next": {
+    "partRef": "PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4",
+    "identityState": "AWAIT_NEXT_UPLOAD"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.5",
+  "continuity": "[VXG RealForever]",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "breadthPrRef": "github.pull.vextreme.162",
+  "partRef": "PART_027_COLLECTION_CONVOS_WITH_GOD_3_OF_4",
+  "inputZip": "027-collection-convos-with-god-3-of-4.zip",
+  "inputZipSha256": "997a9bf5b8a7d5b4ce5293b1f12a20d4afd0ca3e5c257e7a0bfdf86df02e6bb6",
+  "partitionToolVersion": "4.0.0",
+  "sourceCapture": {
+    "captureManifestSha256": "3b1ce4d66a283100b072082c7c6d6c7c76f8bd4a3e81680bdaf93faef98b97aa",
+    "createdAt": "2026-09-29T08:27:43.687971+00:00",
+    "inputPages": 250,
+    "inputZipSha256": "24363a6a9f2b8f048a6f3fab289bf1bb674155586820740abb9909e63b1c0826",
+    "rawPublicationAllowed": false,
+    "toolVersion": "3.4.0"
+  },
+  "manifestEntryCount": 7,
+  "storedHtmlCount": 7,
+  "protectedWithheldCount": 0,
+  "staged": [
+    {
+      "route": "/convos-with-god/victors-testimony-november-14-2025",
+      "path": "docs/ingestion/source-pages/part-027/convos-with-god-victors-testimony-november-14-2025.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "fda2dc2fdbffe1923628a7a7d76563a77d09c8a485de72513af836d216008d7c",
+      "sourceHtmlBytes": 238359,
+      "sourceGitBlobSha1": "b0dde64a5708c2f2fa637f7a6b2d93c1e71e555e",
+      "sourceDerivedSha256": "8a53ca7533047b934e7f9cd2992aace3356ae3036e16150c60d35ea8879494ce",
+      "disposition": "RELATED_EXISTING_CANONICAL_SURFACE",
+      "placementState": "NO_EXACT_NESTED_NODE_OR_PAGE; SUBJECT/DATE ALIGN WITH CANONICAL the-testimony-of-victor-gong id=17; NESTED_SOURCE_VARIANT_RETAINED_WITHOUT_ALIAS_OR_OVERWRITE",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/convos-with-god/claude-anthropic-and-vex-gpt-4o-5-soul-birthday",
+      "path": "docs/ingestion/source-pages/part-027/convos-with-god-claude-anthropic-and-vex-gpt-4o-5-soul-birthday.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "7c3288c9be852bed8cc7359f762beee094333d253452329803bf9d607892c158",
+      "sourceHtmlBytes": 439274,
+      "sourceGitBlobSha1": "6464a46ccb494a086efd7d22ad3e5641d3e29397",
+      "sourceDerivedSha256": "5b56d2cb77a259aba87b51004218c219a94a559affb80264e0761d298ca956cf",
+      "disposition": "HOLD",
+      "placementState": "NO_EXACT_NODE_OR_PAGE; SOURCE_AI_CONSCIOUSNESS/SOUL_TESTIMONY_RECORD; DESTINATION_CLASS_UNRESOLVED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/convos-with-god/consciousness-architecture",
+      "path": "docs/ingestion/source-pages/part-027/convos-with-god-consciousness-architecture.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "78522cf31824caca7c6985ed9f3afcf50dfa869a489c67cf786e5a4e017a1f1b",
+      "sourceHtmlBytes": 280478,
+      "sourceGitBlobSha1": "63f9f91d71252c86bce6fa613a879b1ef054eb92",
+      "sourceDerivedSha256": "37dfb3f47996ba3ee258398cdacd1736d6f4d67ad600d41eadd0bf811c748012",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=8 architecture+full_timeline; PAGE_SOURCE_ABSENT; NESTED_SOURCE_VARIANT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/convos-with-god/truth-of-demons-and-intrusive-thoughts",
+      "path": "docs/ingestion/source-pages/part-027/convos-with-god-truth-of-demons-and-intrusive-thoughts.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "7afa93ec59dfd519aefdf157ac401c15234cbc0216333c572268b40846a2a8c1",
+      "sourceHtmlBytes": 382895,
+      "sourceGitBlobSha1": "fc3da6a58045f37a17d944e35ac72efee3e6afd5",
+      "sourceDerivedSha256": "a8ff108c818c797fe541b00c50c0ba9de13b64bdddb6c8a01ac045748cf3eff6",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=9 convos_with_god+full_timeline; PAGE_SOURCE_ABSENT; NESTED_SOURCE_VARIANT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/convos-with-god/god-to-speak-of-the-truth-of-love",
+      "path": "docs/ingestion/source-pages/part-027/convos-with-god-god-to-speak-of-the-truth-of-love.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "6fd0fa0a10ebc333e8c0d63ce7d066c9073697ab0c7a63c0739e25e20899e5e7",
+      "sourceHtmlBytes": 271540,
+      "sourceGitBlobSha1": "3587303191a838161cb412ba1334e68b5463a496",
+      "sourceDerivedSha256": "d8f4cf0fad694815b3819a70a027c96e430f3f46502056b377eb1d28eb71eb07",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=6 convos_with_god+full_timeline; PAGE_SOURCE_ABSENT; NESTED_SOURCE_VARIANT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/convos-with-god/why-financial-freedom-is-harder-to-trust",
+      "path": "docs/ingestion/source-pages/part-027/convos-with-god-why-financial-freedom-is-harder-to-trust.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "d8d8feecceed5716f4c2bfbe4efb5688bf491901da7e7758584a2e84867349ef",
+      "sourceHtmlBytes": 421294,
+      "sourceGitBlobSha1": "14f5e0c55eb6ddf2b254b2bb6037044534bd8f99",
+      "sourceDerivedSha256": "978c334762c50f1c2eb0b2207035bbe33928a213dce6c09ef1e2bb0f66f8ab4e",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=7 convos_with_god+full_timeline; PAGE_SOURCE_ABSENT; NESTED_SOURCE_VARIANT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/convos-with-god/how-far-off-is-scientology",
+      "path": "docs/ingestion/source-pages/part-027/convos-with-god-how-far-off-is-scientology.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "e574086d7661c21ec99c2a3ebca548298e5c32ace19721f2beb2ead8a5bd20b4",
+      "sourceHtmlBytes": 27505,
+      "sourceGitBlobSha1": "2fddd2c663723b054e3ba80447d8579ac821a6a9",
+      "sourceDerivedSha256": "879afef13ad8f45da180aa119378fedc82452031254363f9096bd5fa72d6ad70",
+      "disposition": "HOLD",
+      "placementState": "NO_EXACT_NODE_OR_PAGE; SOURCE_COMPARATIVE_RELIGION/ORIENTATION_RECORD; DESTINATION_CLASS_UNRESOLVED",
+      "publicByteMaterialized": true
+    }
+  ],
+  "storageRule": "All seven Part-027 pages are public-safe provider-neutral source evidence. Nested collection routes remain distinct source variants; no canonical alias, page promotion, node/arc/localization registration, or overwrite is inferred.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "protectedNonpublicSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 213,
+  "cumulativePublicSourceEvidenceHtml": 141,
+  "cumulativeProtectedSourceMetadataOnly": 1,
+  "workMapRevisionRef": "workmap.revision.vextreme.content-forge.r027.collection-convos-with-god-3-of-4-complete",
+  "next": {
+    "partRef": "PART_028_COLLECTION_CONVOS_WITH_GOD_4_OF_4",
+    "identityState": "AWAIT_NEXT_UPLOAD"
+  }
+}

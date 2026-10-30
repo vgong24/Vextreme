@@ -1,0 +1,69 @@
+name: Public feedback
+description: Share public-safe feedback about Vextreme's pages, accessibility, localization, or documentation.
+title: "[Public feedback] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve Vextreme.
+
+        This issue and every attachment are public. Do not include personal contact details, credentials, confidential material, security or privacy reports, business inquiries, pricing, contracts, or client information. Use [Direct Contact](https://www.vextreme24.com/direct-contact) for anything private or sensitive.
+
+        Submitting feedback records an observation. It does not create a promise, delivery timeline, commercial relationship, or acceptance decision.
+
+  - type: dropdown
+    id: feedback-area
+    attributes:
+      label: Feedback area
+      description: Choose the closest public-safe area. Select Other when the meaning is genuinely unmapped.
+      options:
+        - Page usability or navigation
+        - Accessibility
+        - Localization or language
+        - Documentation
+        - Public collaboration idea
+        - Other public feedback
+    validations:
+      required: true
+
+  - type: textarea
+    id: observation
+    attributes:
+      label: What did you observe?
+      description: Describe the public behavior or content. Do not include private identities, contact details, credentials, or confidential context.
+      placeholder: On the public page..., I observed...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-outcome
+    attributes:
+      label: What outcome would be more useful?
+      description: Explain the public-facing result you would expect without proposing private access, pricing, or contractual scope.
+      placeholder: A more useful public experience would...
+    validations:
+      required: true
+
+  - type: textarea
+    id: public-context
+    attributes:
+      label: Optional public context
+      description: Add public reproduction steps or public URLs only. Do not upload personal, confidential, copyrighted, security-sensitive, or client files.
+      placeholder: Public URL and reproduction steps, if relevant.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: public-safety
+    attributes:
+      label: Public-safety acknowledgements
+      options:
+        - label: I understand that this issue, my GitHub identity, and any uploads are public.
+          required: true
+        - label: I confirm that I have not included contact details, credentials, confidential material, security or privacy reports, business inquiries, pricing, contracts, or client information.
+          required: true
+        - label: I understand that submitting feedback does not create a commitment, timeline, commercial relationship, or acceptance decision.
+          required: true
+
+# [VXG RealForever]

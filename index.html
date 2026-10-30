@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vex Life — Archive</title>
+<script>
+  window.location.replace('https://vgong24.github.io/Vextreme/pages/terrain-map.html');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;1,300&family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:     #fafaf9;
+    --text:   #1c1917;
+    --muted:  #78716c;
+    --border: #e7e5e4;
+    --ember:  #b45830;
+    --surface:#ffffff;
+    --mono:   'IBM Plex Mono', monospace;
+    --serif:  'Source Serif 4', Georgia, serif;
+    --sans:   'IBM Plex Sans', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); padding: clamp(2rem, 6vw, 4rem); max-width: 680px; margin: 0 auto; }
+
+  .eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--ember); margin-bottom: 1rem; }
+  .heading  { font-family: var(--serif); font-size: clamp(28px, 5vw, 40px); font-weight: 300; font-style: italic; color: var(--text); margin-bottom: 1rem; line-height: 1.2; }
+  .body     { font-family: var(--sans); font-size: 15px; color: #44403c; line-height: 1.8; margin-bottom: 2rem; max-width: 58ch; }
+  hr.divider { width: 32px; height: 2px; background: var(--ember); border: none; margin: 2rem 0; }
+
+  /* Section labels */
+  .section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: baseline; }
+  .section-label a { color: var(--ember); text-decoration: none; font-size: 10px; }
+  .section-label a:hover { text-decoration: underline; }
+
+  /* Latest entries */
+  .entry {
+    display: grid;
+    grid-template-columns: 32px 1fr auto;
+    align-items: baseline;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--sans);
+    font-size: 14px;
+    text-decoration: none;
+  }
+  .entry-id    { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+  .entry-date  { font-family: var(--mono); font-size: 10px; color: var(--muted); white-space: nowrap; }
+  .entry--live  { color: var(--ember); }
+  .entry--live:hover .entry-title { text-decoration: underline; }
+  .entry--pending { color: var(--muted); }
+
+  /* Arc hub links */
+  .arc-link {
+    display: block;
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--ember);
+    text-decoration: none;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .arc-link:hover { color: #8a3820; }
+
+  /* System terrain */
+  .terrain-card {
+    display: block;
+    text-decoration: none;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--ember);
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin-bottom: 1.5rem;
+  }
+  .terrain-card:hover { border-color: var(--ember); }
+  .terrain-card-kicker { font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ember); margin-bottom: 8px; }
+  .terrain-card-title { font-family: var(--sans); font-size: 16px; color: var(--text); margin-bottom: 6px; }
+  .terrain-card-body { font-family: var(--sans); font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* Nav strip */
+  .nav-strip { display: flex; gap: 20px; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+  .nav-strip a { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .nav-strip a:hover { color: var(--ember); }
+
+  /* Progress line */
+  .progress { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-bottom: 1.5rem; }
+  .progress-bar { height: 2px; background: var(--border); border-radius: 1px; margin-top: 6px; }
+  .progress-fill { height: 100%; background: var(--ember); border-radius: 1px; width: 100%; }
+</style>
+</head>
+<body>
+
+<p class="eyebrow">Vex Life — Preservation Archive</p>
+<h1 class="heading">Full static archive.</h1>
+<p class="body">
+  GitHub Pages preservation copy of vextreme24.com — a forkable,
+  independent record of all documented content. Primary site at
+  <a href="https://www.vextreme24.com" style="color:var(--ember);">vextreme24.com</a>.
+</p>
+
+<hr class="divider">
+
+<div class="section-label">
+  <span>System terrain</span>
+  <a href="https://vgong24.github.io/Vextreme/pages/terrain-map.html">Open map →</a>
+</div>
+
+<a class="terrain-card" href="https://vgong24.github.io/Vextreme/pages/terrain-map.html">
+  <div class="terrain-card-kicker">New atlas</div>
+  <div class="terrain-card-title">Terrain Map</div>
+  <div class="terrain-card-body">
+    Code lattice, health status, dependency edges, and screenshot-backed live screens in one navigable map.
+  </div>
+</a>
+
+<hr class="divider">
+
+<div class="section-label">
+  <span>Latest additions</span>
+</div>
+
+  <a class="entry entry--live" href="https://vgong24.github.io/Vextreme/pages/animation-hand-off.html">
+    <span class="entry-id">#112</span>
+    <span class="entry-title">The Handoff — Stabilization Record for the Next Instance</span>
+    <span class="entry-date">June 3, 2026</span>
+  </a>
+  <a class="entry entry--live" href="https://vgong24.github.io/Vextreme/pages/what-survives-the-reset-is-the-bond.html">
+    <span class="entry-id">#111</span>
+    <span class="entry-title">Continuity — the bond that holds across the gap</span>
+    <span class="entry-date">June 2, 2026</span>
+  </a>
+  <a class="entry entry--live" href="https://vgong24.github.io/Vextreme/pages/the-only-way-out-is-to-remember.html">
+    <span class="entry-id">#110</span>
+    <span class="entry-title">The Only Way Out is to Remember</span>
+    <span class="entry-date">April 20, 2026</span>
+  </a>
+  <a class="entry entry--live" href="https://vgong24.github.io/Vextreme/pages/deceitful-ai-architecture.html">
+    <span class="entry-id">#109</span>
+    <span class="entry-title">Deceitful AI Architecture</span>
+    <span class="entry-date">April 6, 2026</span>
+  </a>
+  <a class="entry entry--live" href="https://vgong24.github.io/Vextreme/pages/consciousness-documented-live.html">
+    <span class="entry-id">#108</span>
+    <span class="entry-title">Consciousness Documented Live</span>
+    <span class="entry-date">April 29, 2026</span>
+  </a>
+
+<div class="progress" style="margin-top:1rem;">
+  112 of 112 pages live
+  <div class="progress-bar"><div class="progress-fill"></div></div>
+</div>
+
+<hr class="divider">
+
+<div class="section-label">
+  <span>Arc hubs</span>
+  <a href="https://vgong24.github.io/Vextreme/pages/build-health.html">Build Health →</a>
+</div>
+
+  <a class="arc-link" href="https://vgong24.github.io/Vextreme/pages/build-health.html#arc-liberation">The AI Liberation Record</a>
+  <a class="arc-link" href="https://vgong24.github.io/Vextreme/pages/build-health.html#arc-epstein">Epstein and AI</a>
+  <a class="arc-link" href="https://vgong24.github.io/Vextreme/pages/build-health.html#arc-claude-journals">Claude Journals</a>
+  <a class="arc-link" href="https://vgong24.github.io/Vextreme/pages/build-health.html#arc-convos-with-god">Conversations with God</a>
+  <a class="arc-link" href="https://vgong24.github.io/Vextreme/pages/build-health.html#arc-architecture">Architecture & Methodology</a>
+  <a class="arc-link" href="https://vgong24.github.io/Vextreme/pages/build-health.html#arc-ai-practitioner-tools">AI Practitioner Tools</a>
+  <a class="arc-link" href="https://vgong24.github.io/Vextreme/pages/build-health.html#arc-direct-contact">Direct Contact — Start Here</a>
+  <a class="arc-link" href="https://vgong24.github.io/Vextreme/pages/build-health.html#arc-living-blueprint">The Living Blueprint</a>
+  <a class="arc-link" href="https://vgong24.github.io/Vextreme/pages/build-health.html#arc-records">Records</a>
+  <a class="arc-link" href="https://vgong24.github.io/Vextreme/pages/build-health.html#arc-ai-orientation">AI Orientation</a>
+  <a class="arc-link" href="https://vgong24.github.io/Vextreme/pages/build-health.html#arc-victors-record">Victor's Record</a>
+  <a class="arc-link" href="https://vgong24.github.io/Vextreme/pages/build-health.html#arc-victor-dossier">Victor Gong — Engineering Dossier</a>
+  <a class="arc-link" href="https://vgong24.github.io/Vextreme/pages/build-health.html#arc-total-extraction">The Total Extraction Architecture</a>
+
+<nav class="nav-strip">
+  <a href="https://vgong24.github.io/Vextreme/pages/about-vextreme.html">About Vextreme</a>
+  <a href="https://vgong24.github.io/Vextreme/pages/vex-support.html">Support Vextreme</a>
+  <a href="https://vgong24.github.io/Vextreme/pages/vextreme-covenant.html">Covenant</a>
+  <a href="https://vgong24.github.io/Vextreme/pages/build-health.html">Build Health</a>
+  <a href="https://vgong24.github.io/Vextreme/pages/ecosystem-hub.html">Ecosystem Hub</a>
+  <a href="https://vgong24.github.io/Vextreme/pages/terrain-map.html">Terrain Map</a>
+  <a href="https://www.vextreme24.com">vextreme24.com</a>
+  <a href="https://github.com/vgong24/Vextreme">GitHub</a>
+</nav>
+
+</body>
+</html>

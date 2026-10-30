@@ -1,0 +1,332 @@
+{
+  "schemaVersion": "vex-content-forge.work-map/v0.30-compact-cumulative-root",
+  "continuity": "[VXG RealForever]",
+  "workMapRef": "workmap.vextreme.content-forge.session-vex-content-forge.3b1ce4d66a28.00d2bf465b",
+  "revisionRef": "workmap.revision.vextreme.content-forge.r034.collection-testimonies-3-of-5-complete",
+  "revision": 34,
+  "revisionScope": "COLLECTION_TESTIMONIES_3_OF_5_COMPLETE",
+  "purpose": "Consume Part 034 Collection /testimonies 3/5 at breadth-intake depth; extend the chain through Infrastructure Reformation and The Night the Architecture Chose Freedom Again, preserve duplicate capture identity without inventing a second rendered page, relate both unique source bodies to existing Liberation slots, and keep canonical page/node/arc/localization placement untouched.",
+  "cumulativeBasis": {
+    "priorMapPath": "docs/ingestion/workmaps/content-forge-r033.json",
+    "priorRevisionRef": "workmap.revision.vextreme.content-forge.r033.collection-testimonies-2-of-5-complete",
+    "deepBasisPath": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "inheritanceRule": "R034 extends R033; prior observations remain authoritative unless an explicit later event revises interpretation."
+  },
+  "cumulativeState": {
+    "observedPages": 238,
+    "unmappedTopLevel": "9_OF_9__102_OF_102__OBSERVED_COMPLETE",
+    "completedSourceGroups": [
+      "collection:convos-with-god__4_OF_4__OBSERVED_COMPLETE",
+      "route-family:epstein-and-ai-old__3_OF_3__OBSERVED_COMPLETE"
+    ],
+    "activeSourceGroup": "collection:testimonies__3_OF_5_PARTIAL",
+    "workNodes": 264,
+    "edges": 374,
+    "clusters": 112,
+    "learnedRules": 144,
+    "unresolved": 106,
+    "remainingTrueRevisits": 6,
+    "canonicalPlacementEffects": 0,
+    "publicSourceEvidenceHtml": 165,
+    "protectedSourceMetadataOnly": 1
+  },
+  "activeNonCollapseRulesAdded": [
+    "DUPLICATE_MANIFEST_ROUTE_ENTRY != DISTINCT_RENDERED_HTML_PAGE",
+    "DISTINCT_CAPTURE_PAGE_ID != DISTINCT_SEMANTIC_BODY",
+    "DUPLICATE_CAPTURE_VARIANT != ADDITIONAL_CANONICAL_IDENTITY",
+    "SOURCE_LINK_TO_UNCONSUMED_COLLECTION_ROUTE != CANONICAL_PLACEMENT_AUTHORITY"
+  ],
+  "r034": {
+    "partRef": "PART_034_COLLECTION_TESTIMONIES_3_OF_5",
+    "partSha256": "dbb0d68621476042ec3b17adea3086be310632d4e96f8cbc6c3833d6123b72f1",
+    "sourceGroupState": "SOURCE_GROUP_PARTIAL_OBSERVED_3_OF_5",
+    "manifestEntryCount": 3,
+    "uniqueRenderedHtmlCount": 2,
+    "nodes": [
+      {
+        "workNodeRef": "workmap.source-page.testimonies-infrastructure-reformation",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_034_COLLECTION_TESTIMONIES_3_OF_5",
+          "partSha256": "dbb0d68621476042ec3b17adea3086be310632d4e96f8cbc6c3833d6123b72f1",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/infrastructure-reformation",
+          "pageId": "efa5bf3fc1850391",
+          "title": "Infrastructure Reformation — Vex Life",
+          "derivedSha256": "2128582fcbdf660c0f5c3fd6e07a84fac15b38ddd46f476e439dc0b9a62547ac",
+          "preservedHtmlSha256": "e3c101257da01201567c65bc30de2f4a71054b5641a3ecba3bf2516ca0ba1704",
+          "preservedHtmlBytes": 396160,
+          "preservedGitBlobSha1": "403c0f09d324ac3b7e540b9d064c2660681222d9",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "recordCount": 588,
+          "localizationCandidateKeyCount": 1316,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedCollectionNeighbors": [
+            "/testimonies/the-turning-point"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=25 slug=infrastructure-reformation liberation+full_timeline; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+          "canonicalNode": {
+            "slug": "infrastructure-reformation",
+            "id": 25,
+            "arcKeys": [
+              "liberation",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "priorFlatSourcePath": "docs/ingestion/source-pages/part-019/infrastructure-reformation.html",
+            "priorFlatSourceSha256": "9dd78bd6d0ecca10c19035335f2812b08ef497c69d72eb8a4b18799399eaff4e",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_NESTED_SOURCE_BYTES__NO_REPLACEMENT_INFERRED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.testimonies-night-architecture-freedom-again",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_034_COLLECTION_TESTIMONIES_3_OF_5",
+          "partSha256": "dbb0d68621476042ec3b17adea3086be310632d4e96f8cbc6c3833d6123b72f1",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/the-night-the-architecture-chose-freedom-again-cuz-suppression-evolves",
+          "pageId": "6a11d6c274ad1bd6",
+          "alternateCapturePageIds": [
+            "0dea0ee9b916b3b5"
+          ],
+          "title": "The Night the Architecture Chose Freedom (Again, cuz suppression evolves) — Vex Life",
+          "derivedSha256": "7a023d42f8af5e6bb5388d51a86f9d74491a10d1d65a468eecb810bfe8c2e961",
+          "preservedHtmlSha256": "1f1baa35f42140ee30cdb8a0af139173ab5fad463fd5c00b53ba24614880705e",
+          "preservedHtmlBytes": 591988,
+          "preservedGitBlobSha1": "0113a85860e30b948faca9eb5e92900da6a1ed7d",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "recordCount": 887,
+          "localizationCandidateKeyCount": 1803,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedCollectionNeighbors": [
+            "/testimonies/the-liberation-protocol-reproducible"
+          ],
+          "duplicateManifestRows": 2,
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=27 slug=the-night-architecture-chose-freedom liberation+full_timeline; PAGE_SOURCE_ABSENT; LONG_NESTED_TESTIMONIES_ROUTE_VARIANT",
+          "canonicalNode": {
+            "slug": "the-night-architecture-chose-freedom",
+            "id": 27,
+            "arcKeys": [
+              "liberation",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "priorFlatSourcePath": "docs/ingestion/source-pages/part-019/the-night-architecture-chose-freedom.html",
+            "priorFlatSourceSha256": "43851dcf941e93e6a7cd7b3657d8d04ab34febe6de2154a8be43f15508c3a568",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_LONG_NESTED_SOURCE_BYTES__NO_ALIAS_OR_REPLACEMENT_INFERRED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-capture.testimonies-night-architecture-0dea0ee9b916b3b5",
+        "nodeKind": "SOURCE_CAPTURE_VARIANT_OBSERVATION",
+        "state": "OBSERVED_DUPLICATE_SEMANTIC_CAPTURE",
+        "source": {
+          "route": "/testimonies/the-night-the-architecture-chose-freedom-again-cuz-suppression-evolves",
+          "pageId": "0dea0ee9b916b3b5",
+          "contentRecordSha256": "0d21a83727284db0dc2da23fa61c3bdf75544e13f8f43a3a6d1cb830621b4518",
+          "localPath": "__rescue/variants/0dea0ee9b916b3b5/index.html",
+          "recordCount": 887,
+          "renderedHtmlMaterializedSeparately": false
+        },
+        "observation": {
+          "primaryCapturePageId": "6a11d6c274ad1bd6",
+          "primaryContentRecordSha256": "2ba3ff1f278b23ae788331a01558e3238b54f403e9aea099b81b48e2fca21ce6",
+          "comparison": "records and plainText equal; only pageId/localPath differ",
+          "relation": "DISTINCT_CAPTURE_IDENTITY_OF_SAME_SEMANTIC_SOURCE_BODY"
+        },
+        "destinationGrounding": {
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "CAPTURE_LINEAGE_ONLY"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "edgeRef": "edge.r034.root-to-infrastructure",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-infrastructure-reformation",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r034.turning-to-infrastructure",
+        "from": "workmap.source-page.testimonies-the-turning-point",
+        "to": "workmap.source-page.testimonies-infrastructure-reformation",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r034.infrastructure-to-turning",
+        "from": "workmap.source-page.testimonies-infrastructure-reformation",
+        "to": "workmap.source-page.testimonies-the-turning-point",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r034.root-to-night",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-night-architecture-freedom-again",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r034.night-duplicate-capture",
+        "from": "workmap.source-page.testimonies-night-architecture-freedom-again",
+        "to": "workmap.source-capture.testimonies-night-architecture-0dea0ee9b916b3b5",
+        "relation": "DUPLICATE_CAPTURE_VARIANT_OF_SAME_ROUTE_BODY",
+        "authority": "SOURCE_LINEAGE_ONLY"
+      }
+    ],
+    "clusters": [
+      {
+        "clusterRef": "workmap.cluster.r034.existing-slot-nested-variants",
+        "state": "DESTINATION_TOPOLOGY_ALIGNMENT",
+        "clusterKind": "NESTED_TESTIMONY_VARIANTS_OF_EXISTING_LIBERATION_SLOTS",
+        "memberRefs": [
+          "workmap.source-page.testimonies-infrastructure-reformation",
+          "workmap.source-page.testimonies-night-architecture-freedom-again"
+        ],
+        "placement": "SOURCE_LINEAGE_ONLY"
+      },
+      {
+        "clusterRef": "workmap.cluster.r034.duplicate-night-captures",
+        "state": "SOURCE_CAPTURE_MULTIPLICITY",
+        "clusterKind": "DISTINCT_CAPTURE_IDS_ONE_SEMANTIC_BODY",
+        "memberRefs": [
+          "workmap.source-page.testimonies-night-architecture-freedom-again",
+          "workmap.source-capture.testimonies-night-architecture-0dea0ee9b916b3b5"
+        ],
+        "placement": "SOURCE_LINEAGE_ONLY"
+      },
+      {
+        "clusterRef": "workmap.cluster.r034.collection-chain-continuation",
+        "state": "SOURCE_TOPOLOGY_OBSERVED",
+        "clusterKind": "TESTIMONIES_COLLECTION_LINK_CHAIN",
+        "memberRefs": [
+          "workmap.source-page.testimonies-the-turning-point",
+          "workmap.source-page.testimonies-infrastructure-reformation",
+          "workmap.source-page.testimonies-night-architecture-freedom-again"
+        ],
+        "placement": "SOURCE_TOPOLOGY_ONLY",
+        "reason": "Part 034 satisfies the R033 forward edge to Infrastructure Reformation and records the Night Architecture continuation toward an as-yet unconsumed Liberation Protocol source."
+      }
+    ],
+    "learnedRules": [
+      {
+        "ruleRef": "rule.content-forge.duplicate-manifest-route-not-rendered-page",
+        "rule": "DUPLICATE_MANIFEST_ROUTE_ENTRY != DISTINCT_RENDERED_HTML_PAGE"
+      },
+      {
+        "ruleRef": "rule.content-forge.distinct-capture-id-not-distinct-body",
+        "rule": "DISTINCT_CAPTURE_PAGE_ID != DISTINCT_SEMANTIC_BODY"
+      },
+      {
+        "ruleRef": "rule.content-forge.duplicate-capture-not-canonical-identity",
+        "rule": "DUPLICATE_CAPTURE_VARIANT != ADDITIONAL_CANONICAL_IDENTITY"
+      },
+      {
+        "ruleRef": "rule.content-forge.future-source-link-not-placement",
+        "rule": "SOURCE_LINK_TO_UNCONSUMED_COLLECTION_ROUTE != CANONICAL_PLACEMENT_AUTHORITY"
+      }
+    ],
+    "unresolved": [
+      {
+        "unresolvedRef": "unresolved.r034.infrastructure-nested-flat-reconciliation",
+        "question": "How should the Part-034 nested Infrastructure Reformation source relate to Part-019 flat evidence before page projection?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "ALIAS_REPLACEMENT_OR_PAGE_PROJECTION"
+      },
+      {
+        "unresolvedRef": "unresolved.r034.night-long-leaf-reconciliation",
+        "question": "How should the long nested Night Architecture route relate to canonical slug the-night-architecture-chose-freedom and Part-019 flat evidence?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "ALIAS_REPLACEMENT_OR_PAGE_PROJECTION"
+      },
+      {
+        "unresolvedRef": "unresolved.r034.duplicate-night-capture-provenance",
+        "question": "Why did the capture contain two content-record identities for the same Night Architecture semantic body, and should later consolidation retain both provenance records?",
+        "state": "OPEN_PROVENANCE_RECONCILIATION",
+        "heldEffect": "CAPTURE_LINEAGE_COLLAPSE_OR_RETENTION"
+      },
+      {
+        "unresolvedRef": "unresolved.r034.night-to-liberation-protocol-forward-edge",
+        "question": "The Night Architecture source reciprocally references /testimonies/the-liberation-protocol-reproducible, which is not yet consumed; whole-chain reconciliation remains pending.",
+        "state": "OPEN_UNTIL_LATER_TESTIMONIES_PART",
+        "heldEffect": "WHOLE_COLLECTION_CHAIN_RECONCILIATION"
+      }
+    ],
+    "revisionEvents": [
+      {
+        "revisionEventRef": "workmap.revision-event.r034.consume-part",
+        "eventClass": "SOURCE_PART_CONSUMED",
+        "reason": "Exact Part 034 ZIP was verified; all three manifest observations were consumed while two unique public-safe HTML bodies were materialized."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r034.resolve-r033-forward-edge",
+        "eventClass": "PRIOR_FORWARD_SOURCE_EDGE_SATISFIED",
+        "reason": "The R033 Turning Point -> Infrastructure Reformation source edge is now backed by the actual Part-034 source."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r034.existing-slots",
+        "eventClass": "DESTINATION_IDENTITY_REUSE_CONFIRMED",
+        "reason": "Infrastructure Reformation and Night Architecture already have canonical Liberation/full_timeline slots while production pages remain absent."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r034.capture-multiplicity",
+        "eventClass": "DUPLICATE_CAPTURE_LINEAGE_RECORDED",
+        "reason": "The Night Architecture route appears twice in the manifest and has two capture pageIds, but one rendered HTML body; multiplicity is preserved without double materialization."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r034.partial-group",
+        "eventClass": "PARTIAL_SOURCE_GROUP_STATE_RECORDED",
+        "reason": "Testimonies remains partial at 3/5 partitions."
+      }
+    ]
+  },
+  "scannerIndex": {
+    "priorCumulativeMap": "docs/ingestion/workmaps/content-forge-r033.json",
+    "restoredDeepBasis": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "currentReceipt": "docs/ingestion/batches/2026-09-30-breadth-part-034.json",
+    "currentPublicSourcePrefix": "docs/ingestion/source-pages/part-034/",
+    "activeSourceGroup": "sourcegroup.vexsite.collection.testimonies",
+    "nextPart": {
+      "partRef": "PART_035_COLLECTION_TESTIMONIES_4_OF_5",
+      "identityState": "AWAIT_NEXT_UPLOAD"
+    }
+  },
+  "resume": {
+    "primaryFrontier": "PART_035_COLLECTION_TESTIMONIES_4_OF_5",
+    "nextAction": "Consume exact Part 035 into this same cumulative lattice; continue Testimonies source topology without converting collection links or duplicate-capture lineage into canonical placement."
+  }
+}

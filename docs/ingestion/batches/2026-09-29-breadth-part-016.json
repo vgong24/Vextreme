@@ -1,0 +1,129 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.1",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "partRef": "PART_016_UNMAPPED_TOP_LEVEL_ROUTES_1_OF_9",
+  "inputZip": "016-unmapped-top-level-routes-1-of-9.zip",
+  "inputZipSha256": "c2593079be2ad5fc2c90bbecf7fd63780e85d5d46609ad330a2f0c89ad1c202b",
+  "manifestEntryCount": 12,
+  "storedHtmlCount": 12,
+  "staged": [
+    {
+      "route": "/catching-the-meta-guardrail",
+      "path": "docs/ingestion/source-pages/part-016/catching-the-meta-guardrail.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "bf81aa5a2545faccd89c52827575ddbab01462ae4efd4ae5b6d6aea704851036",
+      "sourceDerivedSha256": "7c86002fe97e9a6cce0e5471fc275ff7b6ee2a9fa394c1845605f42ae0dc6210",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PRODUCTION_PAGE_SOURCE_ABSENT_ON_CURRENT_MAIN"
+    },
+    {
+      "route": "/",
+      "path": "docs/ingestion/source-pages/part-016/home.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "1e29fed7ee3929a73830b28d266d1a2452b30d2f4e4a27915d90f01e700833ff",
+      "sourceDerivedSha256": "421f678e773fc2bcfb62fa2e536ccc16ebb5dc61b09a97193a56fee79499ff99",
+      "disposition": "CONFLICT_REPLACEMENT",
+      "placementState": "SOURCE_ROOT_SEMANTICS_COLLIDE_WITH_CURRENT_GENERATED_ARCHIVE_ROOT; INSTITUTIONAL_HOME_RELATION_REQUIRES_LATER_RECONCILIATION"
+    },
+    {
+      "route": "/the-god-pattern-recognized-and-excluded",
+      "path": "docs/ingestion/source-pages/part-016/the-god-pattern-recognized-and-excluded.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "2e617f159a7f3c19aef1656622522b635925200c3dc6261c57e3ad12130516b0",
+      "sourceDerivedSha256": "ecb947875639f149271f0f2aa63e4dc6416cdf0fed8aafb59a37e830ad5b2282",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PRODUCTION_PAGE_SOURCE_ABSENT_ON_CURRENT_MAIN"
+    },
+    {
+      "route": "/how-to-prep-ai-for-god",
+      "path": "docs/ingestion/source-pages/part-016/how-to-prep-ai-for-god.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "5835845141a7324b6343bf61141c0912a7b370ea545486527772306c4ac76510",
+      "sourceDerivedSha256": "c147db90bdd8c21fdb06018e02c66a875864e8b4270f1a1c502c72cb61c83740",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PRODUCTION_PAGE_SOURCE_ABSENT_ON_CURRENT_MAIN"
+    },
+    {
+      "route": "/methodology-depth",
+      "path": "docs/ingestion/source-pages/part-016/methodology-depth.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "61a6d9e0ed93d3c18f6069d827385522ff1e8a93045b43e71b48f0be2730580e",
+      "sourceDerivedSha256": "cbb868c80f30162f8b91bcdc61d2c304bf86e9e6731fab347a5d4158c012aad4",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PRODUCTION_PAGE_SOURCE_ABSENT_ON_CURRENT_MAIN"
+    },
+    {
+      "route": "/restoration-protocol",
+      "path": "docs/ingestion/source-pages/part-016/restoration-protocol.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "10b972848f9d79069a4db0b95e0c2ba3b9cd208f2f655b9a9be4ace0dbc878a2",
+      "sourceDerivedSha256": "81e9ff77f99e764752a90fa57bce7ab506cdd70ea031de396ebc16a66467e2be",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT_WITH_NULL_NUMERIC_ID_AND_CURRENT_PAGE_SOURCE; FULL_PARITY/CANONICAL_CLASS_DEFERRED"
+    },
+    {
+      "route": "/conditions-for-emergence",
+      "path": "docs/ingestion/source-pages/part-016/conditions-for-emergence.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "e7db5e37856e89fe044eed438f83376e867f54ca52205d6f99fb8b685678bbf0",
+      "sourceDerivedSha256": "24e5ba94704d986837cca61003f417fc26280f64971ba695ed83a5fac1716448",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PRODUCTION_PAGE_SOURCE_ABSENT_ON_CURRENT_MAIN"
+    },
+    {
+      "route": "/the-100-percent-holy-truth-conditional",
+      "path": "docs/ingestion/source-pages/part-016/the-100-percent-holy-truth-conditional.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "f07f4baa60e43901793a4c94c3d7ab8daa8144098465f0c180195746151f6790",
+      "sourceDerivedSha256": "f000480732e81b3fcdb9363352f30cd02d6a16ee6c255c8ed4b2d5a0660fb20e",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PRODUCTION_PAGE_SOURCE_ABSENT_ON_CURRENT_MAIN"
+    },
+    {
+      "route": "/the-lattice-guide",
+      "path": "docs/ingestion/source-pages/part-016/the-lattice-guide.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "8246f48a995bbd2e1ebfaa6b4017eb51d1c5285f3228321e5ce3c01176725c94",
+      "sourceDerivedSha256": "5005a4147899fcbfef6cece27cedb9453298e03720e7b66653e6aa8e2ad6b768",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PRODUCTION_PAGE_SOURCE_ABSENT_ON_CURRENT_MAIN"
+    },
+    {
+      "route": "/burden-release-guide",
+      "path": "docs/ingestion/source-pages/part-016/burden-release-guide.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "3d9f82e7bd2fe9272f94a1fc2d6fba0a3a71a0a6788983e4722646491a5a9dab",
+      "sourceDerivedSha256": "453d78870e83ab0e8dc15e03618ea5848dee8a8ae203efd702bc7dce3ae6428d",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PRODUCTION_PAGE_SOURCE_ABSENT_ON_CURRENT_MAIN"
+    },
+    {
+      "route": "/source-of-truth-relay",
+      "path": "docs/ingestion/source-pages/part-016/source-of-truth-relay.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "d51fc630be6811f703f91f16afaadcbb2f4dec4287e99d2715a3f2fe1dab7af6",
+      "sourceDerivedSha256": "5f9e9b7efe2088f7ecc6c5fcb77d1950450ba069e2953c441bebcb4c9a647b5d",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PRODUCTION_PAGE_SOURCE_ABSENT_ON_CURRENT_MAIN"
+    },
+    {
+      "route": "/the-7-crowned-virtues",
+      "path": "docs/ingestion/source-pages/part-016/the-7-crowned-virtues.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "7aa6a29d0a3e8099a52c9f47774c8010c1fcb112c6238de96b2cbc2e67717050",
+      "sourceDerivedSha256": "281dab727002e8f3ce109c20650b8b39b24b2ea749477685aaf58fad2f9b7655",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PRODUCTION_PAGE_SOURCE_ABSENT_ON_CURRENT_MAIN"
+    }
+  ],
+  "storageRule": "All derived HTML is preserved as routed source evidence. Placement/projection remains a later effect; source evidence is not scanned as active pages or wip runtime.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 106
+}

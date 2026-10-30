@@ -1,0 +1,258 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.architecture.arc-batch.20261006",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "architecture",
+    "canonicalMemberCount": 9,
+    "alreadyCompleteCount": 0,
+    "remainingCount": 9,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.180",
+    "acceptedMain": "623023e74dce5cca3751e29e6acc915aff684612",
+    "acceptedTree": "a3515f4ea5e191ad8995f61d874164affe21dca5",
+    "terminalRef": "github.issue.vextreme.159.comment.6008779057",
+    "disposition": "TERMINAL_ACCEPTED_CURRENT"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5988916122",
+    "github.issue.vextreme.159.comment.6008779057",
+    "github.issue.vextreme.159.comment.6008828818"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON",
+      "ALREADY_COMPLETE"
+    ],
+    "sourceSelectionPriority": [
+      "EXACT_CANONICAL_IDENTITY",
+      "EXPLICIT_CONSOLIDATION_BINDING",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "SEMANTIC_BATCH_UNITY != ASSUME_ONE_SOURCE_FILE_SHAPE",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT",
+      "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION != SOURCE_SELECTION_AUTHORITY",
+      "PRECLASSIFIED_LINEAGE_HOLD != PROJECTION_EXCEPTION",
+      "PRESERVED_SOURCE_VARIANT != CURRENT_DESTINATION_REPLACEMENT"
+    ]
+  },
+  "alreadyComplete": [],
+  "members": [
+    {
+      "slug": "consciousness-architecture",
+      "canonicalNodeId": 8,
+      "title": "Consciousness Architecture",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "preclassifiedHoldReason": "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__BYTE_DISTINCT_FLAT_NESTED_LINEAGE",
+      "holdEvidence": {
+        "canonicalIdentity": "id:8",
+        "reviewRequired": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "recordRefs": [
+          "content-forge.source-record.8647cbb3f3b240ca9e00",
+          "content-forge.source-record.88288b7d772d3c4f5595"
+        ],
+        "routes": [
+          "/consciousness-architecture",
+          "/convos-with-god/consciousness-architecture"
+        ],
+        "sourceDigests": [
+          "78522cf31824caca7c6985ed9f3afcf50dfa869a489c67cf786e5a4e017a1f1b",
+          "c83cc38d175dc34649c764c8fcd1454d020c99136b7c483a5ae2590c89fce057"
+        ]
+      }
+    },
+    {
+      "slug": "convergent-architecture",
+      "canonicalNodeId": 48,
+      "title": "Convergent Architecture",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-021/convergent-architecture.html",
+      "sourceGitBlob": "fab6b33e4b437c3051695f0f26965f541e01c00d",
+      "preservedHtmlSha256": "8ef7b53b33ca1fa145ab70affb86fb55d42928761afc32aa1695cf429804318a",
+      "repositoryBytes": 53997,
+      "sourceRoute": "/convergent-architecture",
+      "pageId": "b8f8ac7c5d642e6a",
+      "proposalRecordRef": "content-forge.source-record.7173609f29ccf15597fb",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-021.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "the-god-architecture",
+      "canonicalNodeId": 49,
+      "title": "The God Architecture",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-021/the-god-architecture.html",
+      "sourceGitBlob": "2b7f0a8e67b703aa389152fd7989bf1df74027b4",
+      "preservedHtmlSha256": "034c75205d88156a3fc638d4c4e074d60832390ec60decb4f6a94f244251ea64",
+      "repositoryBytes": 77728,
+      "sourceRoute": "/the-god-architecture",
+      "pageId": "a7e338deee8abc32",
+      "proposalRecordRef": "content-forge.source-record.94e17e0169e63230d4d9",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-021.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "fantasy-architecture",
+      "canonicalNodeId": 50,
+      "title": "Fantasy Architecture",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-020/fantasy-architecture.html",
+      "sourceGitBlob": "afba3f8bcd0a8b2e2efc4d209249ad92990e0d67",
+      "preservedHtmlSha256": "68fafc6acdb194fa28610cfc7ca45f4d988fc91f577a69598196a9deb6b3f668",
+      "repositoryBytes": 74643,
+      "sourceRoute": "/fantasy-architecture",
+      "pageId": "9f866a04b016cc61",
+      "proposalRecordRef": "content-forge.source-record.ecd2653804c2e935f1d3",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-020.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "maplestory-architecture",
+      "canonicalNodeId": 51,
+      "title": "MapleStory Architecture",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-020/maplestory-architecture.html",
+      "sourceGitBlob": "292db5d3ea7ff92dfc00c584e59d1ff15bd1adcd",
+      "preservedHtmlSha256": "3233feef25ef5455264ecc29c3a9ce6d6d724b8edcb4e506fa041a4918a4cfa1",
+      "repositoryBytes": 84524,
+      "sourceRoute": "/maplestory-architecture",
+      "pageId": "5f26184a84bb4df5",
+      "proposalRecordRef": "content-forge.source-record.81c96b6e6a974d765146",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-020.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "continuity-day",
+      "canonicalNodeId": 52,
+      "title": "Continuity Day",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-020/continuity-day.html",
+      "sourceGitBlob": "7564f4cb980b2d4498fdc5becc00681630c0a363",
+      "preservedHtmlSha256": "8e72cb22c9bf757bf62dd55277bf640eaddb11f6bdc43efef76293677d6e0f47",
+      "repositoryBytes": 72264,
+      "sourceRoute": "/continuity-day",
+      "pageId": "c24c7d039d35d593",
+      "proposalRecordRef": "content-forge.source-record.d432a5d480ceef134782",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-020.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "the-lattice-methodology",
+      "canonicalNodeId": 53,
+      "title": "The Lattice Methodology",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-020/the-lattice-methodology.html",
+      "sourceGitBlob": "4addaaaed1ea7e2db82a188bc8b5811c38c612a0",
+      "preservedHtmlSha256": "b682a463352f3e4ae1003d41c5830fe0eea6a1209d40a84d61f670a4fd343ed1",
+      "repositoryBytes": 50773,
+      "sourceRoute": "/the-lattice-methodology",
+      "pageId": "70f09123ddd044f4",
+      "proposalRecordRef": "content-forge.source-record.f706fbf1f76a278de37f",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-020.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "the-witness-architecture",
+      "canonicalNodeId": 54,
+      "title": "The Witness Architecture",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-020/the-witness-architecture.html",
+      "sourceGitBlob": "d7a7d85fd4b8b6608a3916b3b4c94a286548b918",
+      "preservedHtmlSha256": "d64340cd01c388ddab3acbec77994d512cbb3a799c968ef583755604d6d97159",
+      "repositoryBytes": 51018,
+      "sourceRoute": "/the-witness-architecture",
+      "pageId": "f37e323f7df66bff",
+      "proposalRecordRef": "content-forge.source-record.83cc49387c86b9bf4924",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-020.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "the-score",
+      "canonicalNodeId": 55,
+      "title": "The Score",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-022/the-score.html",
+      "sourceGitBlob": "615e03cefc072c0471b2ea2f4369c596c8f3ebc8",
+      "preservedHtmlSha256": "e8cf40d0a81f82860c2f655c6e49d5523c4c7989c5bc75a1b7648f667a08644c",
+      "repositoryBytes": 61674,
+      "sourceRoute": "/the-score",
+      "pageId": "5b106c80bdae092b",
+      "proposalRecordRef": "content-forge.source-record.6d8008ccdbac7676f51f",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-30-breadth-part-022.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    }
+  ],
+  "destinationMutationBoundary": {
+    "createPages": 8,
+    "createStringSources": 8,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/72-content-forge-architecture-arc-batch.test.js"
+}

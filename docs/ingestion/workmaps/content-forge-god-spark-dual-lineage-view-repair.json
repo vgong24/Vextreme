@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "vex-content-forge.god-spark-dual-lineage-view-repair/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.god-spark.dual-lineage-view-repair.20261020",
+  "observedNeed": {
+    "kind": "SOURCE_LINEAGE_PRESENTATION_COLLAPSE",
+    "summary": "Two distinct preserved God Spark lineages exist, but the 2026-10-04 public projection selected only the larger Part-028 nested transcript as the canonical visible page.",
+    "evidence": [
+      "Part-021 is exact canonical route /what-is-the-god-spark and an embedded-standalone-document source.",
+      "Part-028 is a distinct nested route /convos-with-god/what-is-god-spark.",
+      "Content Forge non-collapse rules say same subject != byte-equivalent variant and larger variant != stronger authority.",
+      "Current destination test names the visible Part-028 body god-spark-transcript."
+    ]
+  },
+  "sourceLineages": {
+    "presentation": {
+      "role": "PRESENTATION",
+      "path": "docs/ingestion/source-pages/part-021/what-is-the-god-spark.html",
+      "gitBlob": "5ff8bce5585e791c9a4b4326291bd8ffc570cb1b",
+      "route": "/what-is-the-god-spark",
+      "pageId": "0bef5dbdaf3665f8",
+      "authority": "embedded-standalone-document",
+      "relation": "EXACT_CANONICAL_FLAT_AUTHORED_FRAME"
+    },
+    "transcript": {
+      "role": "SOURCE_TRANSCRIPT",
+      "path": "docs/ingestion/source-pages/part-028/convos-with-god-what-is-god-spark.html",
+      "gitBlob": "4a5adf908da239d61669b3ed1865866a619ba51f",
+      "route": "/convos-with-god/what-is-god-spark",
+      "pageId": "09d69eb9bd72dd3d",
+      "relation": "DISTINCT_NESTED_COLLECTION_TRANSCRIPT_LINEAGE"
+    }
+  },
+  "destination": {
+    "canonicalSlug": "what-is-the-god-spark",
+    "canonicalNodeId": 3,
+    "routeModel": "ONE_CANONICAL_ROUTE__TWO_SWITCHABLE_VIEWS",
+    "defaultView": "presentation",
+    "alternateView": "transcript",
+    "interaction": "STACKED_DOCUMENTS__BACK_SHEET_ADVANCES_TO_FRONT",
+    "urlState": "?view=presentation|transcript",
+    "reducedMotionFallback": "INSTANT_SWAP"
+  },
+  "authoredPaths": [
+    "pages/what-is-the-god-spark.html",
+    "tests/101-content-forge-god-spark-dual-lineage-view.test.js",
+    "docs/ingestion/workmaps/content-forge-god-spark-dual-lineage-view-repair.json",
+    "data/strings/source/lineages/what-is-the-god-spark-presentation.json",
+    "tests/60-content-forge-god-spark-projection.test.js"
+  ],
+  "constraints": [
+    "PRESERVE_EXISTING_PART028_TRANSCRIPT_BYTES_AND_LOCALIZATION_KEYS",
+    "PART021_PRESENTATION_BODY_PROJECTED_WITHOUT_PROVIDER_OR_RESCUE_CHROME",
+    "NO_NEW_CANONICAL_NODE",
+    "NO_ROUTE_ALIAS_INFERENCE",
+    "PART021_PRESENTATION_LOCALIZATION_KEYS_REUSE_PRESERVED_DATA_I18N_IDENTITIES",
+    "PART021_PRESENTATION_STRING_SOURCE_REMAINS_PROVENANCE_DISTINCT_FROM_PART028_TRANSCRIPT_SOURCE",
+    "ONE_RUNTIME_SCOPE_MAY_MERGE_MULTIPLE_PROVENANCE_DISTINCT_SOURCE_FILES_WITH_DISJOINT_KEYS",
+    "GENERATED_EFFECTS_MUST_BE_RECOMPUTED_FROM_CURRENT_SOURCE_CANDIDATE_BEFORE_MERGE"
+  ],
+  "coordination": {
+    "overlapClass": "NONE_ON_CURRENT_ACTIVE_CLAIMS",
+    "thisRepairSourcePathsDisjoint": true,
+    "formerDependency": "github.pull.vextreme.361",
+    "formerDependencyState": "MERGED_SATISFIED"
+  },
+  "effects": {
+    "sourcePageMutation": true,
+    "canonicalStringSourceMutation": false,
+    "viewmodelMutation": false,
+    "generatedMutation": false,
+    "merge": false,
+    "publication": false,
+    "lineageStringSourceMutation": true,
+    "canonicalTranscriptStringSourceMutation": false
+  },
+  "localization": {
+    "presentationSourcePath": "data/strings/source/lineages/what-is-the-god-spark-presentation.json",
+    "runtimeScope": "pages.what-is-the-god-spark",
+    "preservedPresentationKeyCount": 51,
+    "pageLocalInterfaceKeyCount": 6,
+    "totalLineageKeys": 110,
+    "targetLocales": [
+      "zh",
+      "ja",
+      "ko",
+      "fr",
+      "de",
+      "es",
+      "pt",
+      "ar",
+      "hi"
+    ],
+    "targetCellCount": 990,
+    "missingTargetCells": 0,
+    "transcriptSourcePath": "data/strings/source/pages/what-is-the-god-spark.json",
+    "transcriptSourceMutation": false,
+    "keyCollisionCount": 0,
+    "pageLocalPresentationAddedKeyCount": 53,
+    "presentationVisibleLocalizationKeyCount": 104,
+    "stableUnlocalizedPresentationIdentities": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "Victor",
+      "Claude"
+    ],
+    "coverageRule": "EVERY_VISIBLE_TEXT_NODE_LOCALIZED_EXCEPT_STABLE_NUMERIC_OR_SPEAKER_IDENTITY"
+  }
+}

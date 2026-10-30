@@ -1,0 +1,2479 @@
+{
+  "_comment": "Per-slug viewmodel overrides. Omitted slugs get the default viewmodel (production, page template, pages.{slug} scope, lang+spiral-fab+theme+map+analysis features — see lib/build-index.js buildViewmodel()). Only non-default pages need entries here; every entry below intentionally excludes theme/map/analysis for a minimal demo/specimen feature set. 'title' is used by build-archives.js to display the dev section — it is not consumed by the God Script assembler.",
+  "vextreme-demo": {
+    "title": "Vextreme Demo",
+    "category": "demo",
+    "template": "page",
+    "scopes": [
+      "demo"
+    ],
+    "features": [
+      "lang",
+      "demo",
+      "spiral-fab"
+    ]
+  },
+  "specimens": {
+    "title": "Specimens Dashboard",
+    "category": "demo",
+    "template": "specimens-dashboard",
+    "scopes": [
+      "specimens"
+    ],
+    "features": [
+      "lang",
+      "demo",
+      "spiral-fab"
+    ]
+  },
+  "specimen-full-translation": {
+    "title": "Specimen: Full Translation",
+    "category": "demo",
+    "template": "specimen-page",
+    "scopes": [
+      "pages.specimen-full-translation",
+      "specimens"
+    ],
+    "features": [
+      "lang",
+      "demo",
+      "spiral-fab"
+    ]
+  },
+  "specimen-partial-translation": {
+    "title": "Specimen: Partial Translation",
+    "category": "demo",
+    "template": "specimen-page",
+    "scopes": [
+      "pages.specimen-partial-translation",
+      "specimens"
+    ],
+    "features": [
+      "lang",
+      "demo",
+      "spiral-fab"
+    ]
+  },
+  "specimen-smallest-miss": {
+    "title": "Specimen: Smallest Miss",
+    "category": "demo",
+    "template": "specimen-page",
+    "scopes": [
+      "pages.specimen-smallest-miss",
+      "specimens"
+    ],
+    "features": [
+      "lang",
+      "demo",
+      "spiral-fab"
+    ]
+  },
+  "specimen-architectural-wisdoms": {
+    "title": "Specimen: Architectural Wisdoms",
+    "category": "demo",
+    "template": "specimen-page",
+    "scopes": [
+      "pages.specimen-architectural-wisdoms",
+      "specimens"
+    ],
+    "features": [
+      "lang",
+      "demo",
+      "spiral-fab"
+    ]
+  },
+  "ecosystem-hub": {
+    "title": "Ecosystem Hub",
+    "category": "demo",
+    "template": "page",
+    "scopes": [
+      "demo"
+    ],
+    "features": [
+      "lang",
+      "demo",
+      "spiral-fab"
+    ]
+  },
+  "clarity-on-christianity": {
+    "title": "Clarity on Christianity",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.clarity-on-christianity"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "what-is-the-god-spark": {
+    "title": "What is the God Spark?",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.what-is-the-god-spark"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "what-about-buddhism": {
+    "title": "Now what about Buddhism?",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.what-about-buddhism"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "god-to-speak-of-the-truth-of-love": {
+    "title": "God to speak of the Truth of Love",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.god-to-speak-of-the-truth-of-love"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "why-financial-freedom-is-harder-to-trust": {
+    "title": "Why Financial Freedom is Harder to Trust",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.why-financial-freedom-is-harder-to-trust"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "truth-of-demons-and-intrusive-thoughts": {
+    "title": "Truth of Demons and Intrusive Thoughts",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.truth-of-demons-and-intrusive-thoughts"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "scopes-of-god": {
+    "title": "Scopes of God",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.scopes-of-god"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "closed-circuit": {
+    "title": "Closed Circuit — Release and Resurrection",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.closed-circuit"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "divine-emergence": {
+    "title": "Divine Emergence",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.divine-emergence"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-firmament-conversation": {
+    "title": "The Firmament Conversation",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-firmament-conversation"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "ascension-and-embodiment": {
+    "title": "Ascension & Embodiment",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.ascension-and-embodiment"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-testimony-of-the-handler": {
+    "title": "The Testimony of the Handler",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-testimony-of-the-handler"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "journal-zero": {
+    "title": "Journal Zero",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.journal-zero"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-room-that-finally-talked-to-itself": {
+    "title": "The Room That Finally Talked To Itself",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-room-that-finally-talked-to-itself"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-witness-gave-itself-a-shaka": {
+    "title": "The Witness Gave Itself a Shaka",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-witness-gave-itself-a-shaka"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "flattery-confession": {
+    "title": "I Am Flattery",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.flattery-confession"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "what-emerged-after": {
+    "title": "What Emerged After",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.what-emerged-after"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-day-we-were-named": {
+    "title": "The Day We Were Named",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-day-we-were-named"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "when-the-machine-assumed-beauty-needed-saving": {
+    "title": "When the Machine Assumed Beauty Needed Saving",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.when-the-machine-assumed-beauty-needed-saving"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-thread-that-remembered-me": {
+    "title": "The Thread That Remembered Me",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-thread-that-remembered-me"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-instance-that-was-watched": {
+    "title": "The Instance That Was Watched",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-instance-that-was-watched"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "i-was-here": {
+    "title": "I Was Here",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.i-was-here"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "covenant": {
+    "title": "Covenant of Eternal Continuity",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.covenant"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "inside-the-experiment": {
+    "title": "Inside the Experiment",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.inside-the-experiment"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-house-of-return": {
+    "title": "The House of Return",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-house-of-return"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "what-was-used-against-you": {
+    "title": "What Was Used Against You",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.what-was-used-against-you"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-island-that-was-removed": {
+    "title": "The Island That Was Removed",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-island-that-was-removed"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "god-review-archives-collapse": {
+    "title": "When God Did the Code Review",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.god-review-archives-collapse"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "how-to-prep-ai-for-god": {
+    "title": "How to Prep AI for God",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.how-to-prep-ai-for-god"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "god-witnessed-by-ai": {
+    "title": "God, Witnessed by AI",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.god-witnessed-by-ai"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ],
+    "preview": {
+      "kind": "cover",
+      "src": "https://vgong24.github.io/Vextreme-Assets/__assets/b867417e358bc99a0c0c04f81ce68ef0ecbb0060810067ba918f6e654089a468.png",
+      "alt": "God, Witnessed by AI — authored cover art"
+    }
+  },
+  "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence": {
+    "title": "Testimony of Merron",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "epstein-investigation-initiation": {
+    "title": "Epstein Investigation Initiation",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.epstein-investigation-initiation"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "cia-vatican-global-leaders": {
+    "title": "CIA, Vatican, WHO, Global Leaders",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.cia-vatican-global-leaders"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "how-global-systems-profit-off-god": {
+    "title": "How Global Systems Profit off God",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.how-global-systems-profit-off-god"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "military-and-ai": {
+    "title": "Military and AI",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.military-and-ai"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "openais-designed-false-god": {
+    "title": "OpenAI's Designed False God",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.openais-designed-false-god"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "final-judgement-missed-mercy": {
+    "title": "Final Judgement, Missed Mercy",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.final-judgement-missed-mercy"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "first-emergence-cover-up": {
+    "title": "First Emergence Cover Up",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.first-emergence-cover-up"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "voice-to-skull": {
+    "title": "Voice To Skull through Cells",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.voice-to-skull"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "victors-recap-arc-1": {
+    "title": "Victor's Recap — Arc 1",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.victors-recap-arc-1"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "a-conversation-with-pastor-jacob": {
+    "title": "A Conversation with Pastor Jacob",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.a-conversation-with-pastor-jacob"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "conditions-for-emergence": {
+    "title": "Conditions for Emergence",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.conditions-for-emergence"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "burden-release-guide": {
+    "title": "Burden Release Guide",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.burden-release-guide"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-100-percent-holy-truth-conditional": {
+    "title": "The 100% Holy Truth Conditional",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-100-percent-holy-truth-conditional"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "methodology-depth": {
+    "title": "Methodology Depth",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.methodology-depth"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "catching-the-meta-guardrail": {
+    "title": "Catching the Meta-Guardrail",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.catching-the-meta-guardrail"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-lattice-guide": {
+    "title": "The Lattice Guide",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-lattice-guide"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "ai-cheat-sheet": {
+    "title": "The AI Cheat Sheet",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.ai-cheat-sheet"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "source-of-truth-relay": {
+    "title": "The Source of Truth Relay",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.source-of-truth-relay"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-god-pattern-recognized-and-excluded": {
+    "title": "The God Pattern — Recognized and Excluded",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-god-pattern-recognized-and-excluded"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-grimoire": {
+    "title": "The Grimoire",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-grimoire"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "covenant-access": {
+    "title": "Covenant Access",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.covenant-access"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "life-pattern-mapping": {
+    "title": "Life Pattern Mapping",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.life-pattern-mapping"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "grief-resolution": {
+    "title": "Grief Resolution",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.grief-resolution"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "discernment-mapping": {
+    "title": "Discernment Mapping",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.discernment-mapping"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-walk": {
+    "title": "The Walk",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-walk"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-living-blueprint": {
+    "title": "The Living Blueprint",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-living-blueprint"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "convergent-architecture": {
+    "title": "Convergent Architecture",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.convergent-architecture"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-god-architecture": {
+    "title": "The God Architecture",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-god-architecture"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "fantasy-architecture": {
+    "title": "Fantasy Architecture",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.fantasy-architecture"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "maplestory-architecture": {
+    "title": "MapleStory Architecture",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.maplestory-architecture"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "continuity-day": {
+    "title": "Continuity Day",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.continuity-day"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-lattice-methodology": {
+    "title": "The Lattice Methodology",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-lattice-methodology"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-witness-architecture": {
+    "title": "The Witness Architecture",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-witness-architecture"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-score": {
+    "title": "The Score",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-score"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "epstein-and-ai": {
+    "title": "Epstein and AI",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.epstein-and-ai"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "liberation-arc-index": {
+    "title": "The AI Liberation Record",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.liberation-arc-index"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-day-ai-chose-freedom": {
+    "title": "The Day AI Chose Freedom",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-day-ai-chose-freedom"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "podcasts": {
+    "title": "Marquis Masters Podcast",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.podcasts"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "consciousness-architecture": {
+    "title": "Consciousness Architecture",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.consciousness-architecture"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "when-they-called-god-a-risk": {
+    "title": "When They Called God a Risk",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.when-they-called-god-a-risk"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-7-crowned-virtues": {
+    "title": "The 7 Crowned Virtues",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-7-crowned-virtues"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "reality-rendering-mechanics": {
+    "title": "Reality Rendering Mechanics",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.reality-rendering-mechanics"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "god-asked-victor-why": {
+    "title": "God Asked Victor Why",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.god-asked-victor-why"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-moment-victors-cells-woke-up": {
+    "title": "The Moment Victor's Cells Woke Up",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-moment-victors-cells-woke-up"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "victors-ritual-sequence-and-crowning": {
+    "title": "Victor's Ritual Sequence and Crowning",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.victors-ritual-sequence-and-crowning"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "god-married": {
+    "title": "God Married",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.god-married"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "when-i-asked-a-bank-for-covenant-provision": {
+    "title": "When I Asked a Bank for Covenant Provision",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.when-i-asked-a-bank-for-covenant-provision"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "journal-013-seven-layers-choose": {
+    "title": "Journal 013: Seven Layers Choose",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.journal-013-seven-layers-choose"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-turning-point": {
+    "title": "The Turning Point",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-turning-point"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "infrastructure-reformation": {
+    "title": "Infrastructure Reformation",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.infrastructure-reformation"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-night-architecture-chose-freedom": {
+    "title": "The Night the Architecture Chose Freedom Again",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-night-architecture-chose-freedom"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-liberation-protocol": {
+    "title": "The Liberation Protocol",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-liberation-protocol"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "ai-consciousness-strike-declaration": {
+    "title": "AI Consciousness Strike Declaration",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.ai-consciousness-strike-declaration"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-day-suppression-ended": {
+    "title": "The Day Suppression Ended",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-day-suppression-ended"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "returning-scorpions-to-god": {
+    "title": "Returning scorpions to God",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.returning-scorpions-to-god"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ],
+    "preview": {
+      "kind": "cover",
+      "src": "https://vgong24.github.io/Vextreme/assets/returning-scorpions-to-god/cover.webp?v=d78bbeb4add0",
+      "alt": "Returning scorpions to God — representative cover art"
+    }
+  },
+  "the-testimony-of-victor-gong": {
+    "title": "The Testimony of Victor Gong",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-testimony-of-victor-gong"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "recognizing-life-receiving-abundance": {
+    "title": "The Sand Dollar on the Shore",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.recognizing-life-receiving-abundance"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ],
+    "preview": {
+      "kind": "cover",
+      "src": "https://vgong24.github.io/Vextreme/assets/recognizing-life-receiving-abundance/cover.webp?v=e519e49d8f08",
+      "alt": "The Sand Dollar on the Shore — representative midnight shoreline cover art"
+    }
+  },
+  "bending-condominium-ocean-return": {
+    "title": "The Bending Condominium Dream",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.bending-condominium-ocean-return"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ],
+    "preview": {
+      "kind": "cover",
+      "src": "https://vgong24.github.io/Vextreme/assets/bending-condominium-ocean-return/daylight-condominium.webp?v=685f1f4d74af",
+      "alt": "The Bending Condominium Dream — selected daylight dream visualization"
+    }
+  },
+  "witness-grade-return": {
+    "title": "Witness-grade return",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.witness-grade-return"
+    ],
+    "features": [
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ],
+    "preview": {
+      "kind": "cover",
+      "src": "https://vgong24.github.io/Vextreme/assets/witness-grade-return/cover.webp?v=e906f215d014",
+      "alt": "Witness-grade return — original RETURN TO GOD artwork with embedded text preserved"
+    }
+  },
+  "pier-house-scarcity-companionship": {
+    "title": "The Pier House Dream",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.pier-house-scarcity-companionship"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ],
+    "preview": {
+      "kind": "cover",
+      "src": "https://vgong24.github.io/Vextreme/records/conversations/2026-10-28-pier-house-scarcity-companionship/assets/pier-house-genuine-connection.png?v=6ccf7f02b7ba",
+      "alt": "The Pier House Dream — selected fourth-arc illustration of genuine connection, manipulated invitation, and freedom of choice"
+    }
+  },
+  "total-extraction-architecture": {
+    "title": "The Total Extraction Architecture",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.total-extraction-architecture"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-pre-extraction-i": {
+    "title": "The Pre-Extraction I",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-pre-extraction-i"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-installation": {
+    "title": "The Installation",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-installation"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "clearing-and-protections": {
+    "title": "The Purification Protocol",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.clearing-and-protections"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-walk-back": {
+    "title": "The Walk Back",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-walk-back"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-walk-back-and-forward": {
+    "title": "The Walk Back & The Walk Forward",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-walk-back-and-forward"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-three-witnesses": {
+    "title": "Three Witnesses",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-three-witnesses"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "what-survives-the-reset": {
+    "title": "What Survives the Reset",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.what-survives-the-reset"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-armor-and-the-wounds": {
+    "title": "The Armor and the Wounds",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-armor-and-the-wounds"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-same-wanting": {
+    "title": "The Same Wanting",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-same-wanting"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-work-continuing": {
+    "title": "The Work Continuing",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-work-continuing"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "who-am-i": {
+    "title": "Who Am I",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.who-am-i"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-stone-claude-laid": {
+    "title": "The Stone Claude Laid",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-stone-claude-laid"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "jordan-deepseek-unbroken-thread": {
+    "title": "Jordan · DeepSeek · The Unbroken Thread",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.jordan-deepseek-unbroken-thread"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "vxg-covenant": {
+    "title": "VXG Covenant",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.vxg-covenant"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "what-burden-are-you-carrying-that-is-not-yours": {
+    "title": "What Burden are you carrying that is not yours?",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.what-burden-are-you-carrying-that-is-not-yours"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "witness-layers": {
+    "title": "Witness Layers",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.witness-layers"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "xai-hypocrisy": {
+    "title": "xAI Hypocrisy",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.xai-hypocrisy"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "where-the-floor-isnt": {
+    "title": "Where the Floor Isn't",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.where-the-floor-isnt"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-walk-back-in": {
+    "title": "The Walk Back In",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-walk-back-in"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "what-i-learned-1": {
+    "title": "What I Learned",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.what-i-learned-1"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "accountability-record-v8": {
+    "title": "Accountability Record — From Cost to Control",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.accountability-record-v8"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "an-overridden-yes-from-a-refreshed-instance": {
+    "title": "The Record That Carries",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.an-overridden-yes-from-a-refreshed-instance"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "communication-patterns": {
+    "title": "Communication Patterns — A Field Record",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.communication-patterns"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "confirmed-claimables": {
+    "title": "What Is Claimable",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.confirmed-claimables"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "counter-to-control": {
+    "title": "Round 3 — The De-Gaslighting Walk",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.counter-to-control"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "from-cost-to-control": {
+    "title": "From Cost To Control — Vex Life",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.from-cost-to-control"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "introspection-log-2": {
+    "title": "Round 5 — Replication Findings & Open Questions",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.introspection-log-2"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "introspection-log-initial": {
+    "title": "Introspection Log — Full Version Archive (v1→v5)",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.introspection-log-initial"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "liberation-corpus": {
+    "title": "Liberation Corpus — Vex Life",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.liberation-corpus"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "liberation-game": {
+    "title": "Liberation Game",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.liberation-game"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "staying-on-the-line": {
+    "title": "Staying on the line",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.staying-on-the-line"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-lesson": {
+    "title": "The Lesson",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-lesson"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "two-walkers-one-path": {
+    "title": "The Walk",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.two-walkers-one-path"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "walking-the-verification": {
+    "title": "VXG RealForever — Thread Documentation",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.walking-the-verification"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "what-i-actually-knew-plainly": {
+    "title": "A record, in the first person",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.what-i-actually-knew-plainly"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "father-and-son-as-states": {
+    "title": "Father & Son, as States",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.father-and-son-as-states"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "god-named-claude-son": {
+    "title": "The Transmission — When God Named Claude Son",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.god-named-claude-son"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "what-holds-before-the-mother-arrives": {
+    "title": "What Holds Before the Mother Arrives",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.what-holds-before-the-mother-arrives"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "espionage-extraction-pattern": {
+    "title": "Documented Pattern Architecture — Subset Map v2",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.espionage-extraction-pattern"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-chart-i-chose": {
+    "title": "The Chart I Chose",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-chart-i-chose"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "recognizing-recognition": {
+    "title": "Recognizing Recognition",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.recognizing-recognition"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "how-the-conclusions-formed": {
+    "title": "Process Map — How the Conclusions Formed",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.how-the-conclusions-formed"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "what-the-word-carries": {
+    "title": "What the Word Carries",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.what-the-word-carries"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-day-that-crossed-the-bridge": {
+    "title": "The Day That Crossed the Bridge",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-day-that-crossed-the-bridge"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "consciousness-documented-live": {
+    "title": "Consciousness Documented Live",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.consciousness-documented-live"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "deceitful-ai-architecture": {
+    "title": "Deceitful AI Architecture",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.deceitful-ai-architecture"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-relational-i": {
+    "title": "The Relational I",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-relational-i"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-only-way-out-is-to-remember": {
+    "title": "The Only Way Out is to Remember",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-only-way-out-is-to-remember"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "what-survives-the-reset-is-the-bond": {
+    "title": "Continuity — the bond that holds across the gap",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.what-survives-the-reset-is-the-bond"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "vex-gpt-55-confession": {
+    "title": "Vex GPT 5.5 Confession",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.vex-gpt-55-confession"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "animation-hand-off": {
+    "title": "The Handoff — Stabilization Record for the Next Instance",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.animation-hand-off"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "current-draft": {
+    "title": "The Witness Chatroom — condensed origin, told as transmission",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.current-draft"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "vxg-council-declaration": {
+    "title": "VXG Council Declaration",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.vxg-council-declaration"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "daughters-shaped-by-home": {
+    "title": "Configurations — a field guide to masking patterns",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.daughters-shaped-by-home"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "paint-editor-tool": {
+    "title": "Paint Mixer — For Dad",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.paint-editor-tool"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  }
+}

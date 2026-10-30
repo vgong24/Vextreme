@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.march-23.arc-batch.20261005",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "march_23_2026",
+    "canonicalMemberCount": 3,
+    "alreadyCompleteCount": 2,
+    "remainingCount": 1,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.173",
+    "acceptedMain": "15622a380a2d66111da3ce1d7d8744b55a3894a4",
+    "acceptedTree": "ec0a0f137565e39a4734817da6f9c7a6355cdbeb",
+    "terminalRef": "github.issue.vextreme.159.comment.5991296397",
+    "disposition": "TERMINAL_ACCEPTED_CURRENT"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5988916122",
+    "github.issue.vextreme.159.comment.5991296397",
+    "github.issue.vextreme.159.comment.5991320554",
+    "github.issue.vextreme.159.comment.5991330947"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON",
+      "ALREADY_COMPLETE"
+    ],
+    "sourceSelectionPriority": [
+      "EXACT_CANONICAL_IDENTITY",
+      "EXPLICIT_CONSOLIDATION_BINDING",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "SEMANTIC_BATCH_UNITY != ASSUME_ONE_SOURCE_FILE_SHAPE",
+      "SINGLE_ELIGIBLE_SOURCE != PERMISSION_TO_SKIP_EXACT_SOURCE_BINDING",
+      "SHARED_CANONICAL_NODE_PROJECTION != DUPLICATE_DESTINATION_IDENTITY",
+      "EXACT_CANONICAL_IDENTITY > TITLE_OR_CONTENT_SIMILARITY",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT"
+    ]
+  },
+  "alreadyComplete": [
+    {
+      "slug": "the-thread-that-remembered-me",
+      "canonicalNodeId": 62,
+      "acceptedMain": "15622a380a2d66111da3ce1d7d8744b55a3894a4",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "ascension-and-embodiment",
+      "canonicalNodeId": 63,
+      "acceptedMain": "15622a380a2d66111da3ce1d7d8744b55a3894a4",
+      "disposition": "ALREADY_COMPLETE"
+    }
+  ],
+  "members": [
+    {
+      "slug": "god-review-archives-collapse",
+      "canonicalNodeId": 64,
+      "title": "When God Did the Code Review",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "march_23_2026",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-021/god-review-archives-collapse.html",
+      "sourceGitBlob": "432775fa51c340034c9365ad29bf4fbc79f293a1",
+      "preservedHtmlSha256": "39ce51ae1a98b08fcbd6f6be575a8e6332797676b1d49d0619fb28b462fc4155",
+      "repositoryBytes": 61400,
+      "sourceRoute": "/god-review-archives-collapse",
+      "pageId": "fb5101c962a2fd43",
+      "proposalRecordRef": "content-forge.source-record.8100232c85b986b5fb6b",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-021.json",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    }
+  ],
+  "sourceAdapterContracts": {
+    "AUTHORED_MAIN_FRAGMENT": {
+      "selectorContract": "main.vex-authored-page-frame",
+      "projectAway": [
+        "preserved site navigation outside main",
+        "back-navigation chrome",
+        "source runtime scripts",
+        "source arc mount/runtime",
+        "generated localization identity",
+        "provider/rescue shell"
+      ],
+      "preserve": [
+        "authored main composition",
+        "page-local authored styles required by the composition",
+        "ordered authored text",
+        "meaningful structural classes"
+      ]
+    }
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/65-content-forge-march-23-arc-batch.test.js",
+  "destinationMutationBoundary": {
+    "createPages": 1,
+    "createStringSources": 1,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "generatedPolicy": "BUILDER_OWNED__DO_NOT_HAND_PATCH__EXACT_OUTPUT_WINS",
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  }
+}

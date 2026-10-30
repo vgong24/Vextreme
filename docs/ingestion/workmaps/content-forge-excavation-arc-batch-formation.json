@@ -1,0 +1,161 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.excavation.arc-batch.20261004",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "excavation",
+    "canonicalMemberCount": 5,
+    "alreadyCompleteCount": 2,
+    "remainingCount": 3,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.172",
+    "acceptedMain": "59242eb8c827d504c5e4cff5b7363a9f2362f818",
+    "acceptedTree": "0ce10deefc1d89fb40ca292659ed818f06e37a7c",
+    "terminalRef": "github.issue.vextreme.159.comment.5987140393",
+    "disposition": "TERMINAL_ACCEPTED_CURRENT"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5988916122",
+    "github.issue.vextreme.159.comment.5988969852",
+    "github.issue.vextreme.159.comment.5988974648",
+    "github.issue.vextreme.159.comment.5989020755"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON",
+      "ALREADY_COMPLETE"
+    ],
+    "sourceSelectionPriority": [
+      "EXACT_CANONICAL_IDENTITY",
+      "EXPLICIT_CONSOLIDATION_BINDING",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "SEMANTIC_BATCH_UNITY != ASSUME_ONE_SOURCE_FILE_SHAPE",
+      "SINGLE_ELIGIBLE_SOURCE != PERMISSION_TO_SKIP_EXACT_SOURCE_BINDING",
+      "SHARED_CANONICAL_NODE_PROJECTION != DUPLICATE_DESTINATION_IDENTITY",
+      "EXACT_CANONICAL_IDENTITY > TITLE_OR_CONTENT_SIMILARITY",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT"
+    ]
+  },
+  "alreadyComplete": [
+    {
+      "slug": "the-testimony-of-the-handler",
+      "canonicalNodeId": 65,
+      "acceptedMain": "59242eb8c827d504c5e4cff5b7363a9f2362f818",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "i-was-here",
+      "canonicalNodeId": 69,
+      "acceptedMain": "59242eb8c827d504c5e4cff5b7363a9f2362f818",
+      "disposition": "ALREADY_COMPLETE"
+    }
+  ],
+  "members": [
+    {
+      "slug": "the-house-of-return",
+      "canonicalNodeId": 37,
+      "title": "The House of Return",
+      "arcKeys": [
+        "records",
+        "excavation",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-023/the-house-of-return.html",
+      "sourceGitBlob": "5808c377c0ac677bd0dc9356545ba35fe7a07fd9",
+      "repositoryBytes": 36525,
+      "sourceRoute": "/the-house-of-return",
+      "pageId": "0337058a882e7d07",
+      "proposalRecordRef": "content-forge.source-record.39b5c887a426bff694a1",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "what-was-used-against-you",
+      "canonicalNodeId": 66,
+      "title": "What Was Used Against You",
+      "arcKeys": [
+        "records",
+        "excavation",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-023/what-was-used-against-you.html",
+      "sourceGitBlob": "9929445f6d8a5b3cb9ecbe0f64d8f4536730b8bc",
+      "repositoryBytes": 60142,
+      "sourceRoute": "/what-was-used-against-you",
+      "pageId": "ab397b5eb1eb648f",
+      "proposalRecordRef": "content-forge.source-record.876eca4c7a952c3c9754",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "the-island-that-was-removed",
+      "canonicalNodeId": 68,
+      "title": "The Island That Was Removed",
+      "arcKeys": [
+        "victors_record",
+        "excavation",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-023/the-island-that-was-removed.html",
+      "sourceGitBlob": "e8ecc9d7cdda37e969128bb40d728a8e238311e7",
+      "repositoryBytes": 40283,
+      "sourceRoute": "/the-island-that-was-removed",
+      "pageId": "f831ca2beb8e8182",
+      "proposalRecordRef": "content-forge.source-record.8eddb46921c638f22337",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    }
+  ],
+  "sourceAdapterContracts": {
+    "AUTHORED_MAIN_FRAGMENT": {
+      "selectorContract": "main.vex-authored-page-frame",
+      "projectAway": [
+        "preserved site navigation outside main",
+        "back-navigation chrome",
+        "source runtime scripts",
+        "source arc mount/runtime",
+        "generated localization identity",
+        "provider/rescue shell"
+      ],
+      "preserve": [
+        "authored main composition",
+        "page-local authored styles required by the composition",
+        "ordered authored text",
+        "meaningful structural classes"
+      ]
+    }
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/64-content-forge-excavation-arc-batch.test.js",
+  "destinationMutationBoundary": {
+    "createPages": 3,
+    "createStringSources": 3,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "generatedPolicy": "BUILDER_OWNED__DO_NOT_HAND_PATCH__EXACT_OUTPUT_WINS",
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  }
+}

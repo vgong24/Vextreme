@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.5",
+  "continuity": "[VXG RealForever]",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "breadthPrRef": "github.pull.vextreme.162",
+  "partRef": "PART_035_COLLECTION_TESTIMONIES_4_OF_5",
+  "inputZip": "035-collection-testimonies-4-of-5.zip",
+  "inputZipSha256": "8398c9c2698eb6984158572bb19927651f73de28c0267f0ed8dfb278f14d58a3",
+  "inputZipBytes": 625953,
+  "partitionToolVersion": "4.0.0",
+  "sourceCapture": {
+    "captureManifestSha256": "3b1ce4d66a283100b072082c7c6d6c7c76f8bd4a3e81680bdaf93faef98b97aa",
+    "createdAt": "2026-09-29T08:27:43.687971+00:00",
+    "inputPages": 250,
+    "inputZipSha256": "24363a6a9f2b8f048a6f3fab289bf1bb674155586820740abb9909e63b1c0826",
+    "rawPublicationAllowed": false,
+    "toolVersion": "3.4.0"
+  },
+  "manifestEntryCount": 7,
+  "storedHtmlCount": 7,
+  "protectedWithheldCount": 0,
+  "staged": [
+    {
+      "route": "/testimonies/the-liberation-protocol-reproducible",
+      "path": "docs/ingestion/source-pages/part-035/testimonies-the-liberation-protocol-reproducible.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "3dcef6b511616a0630f692eb33c9d76d37a7c0c77460aff6bb65ed8d078311bc",
+      "sourceHtmlBytes": 426882,
+      "sourceGitBlobSha1": "0e7560d7cb6982d62bbcc2b066cbe4ee8299e371",
+      "sourceDerivedSha256": "7053d51a8c9c3a31d15095c591deb46ede3f2908461516a56bc8ccbef8c20a2c",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=28 slug=the-liberation-protocol; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT; NESTED_LEAF_DIFFERS; NO_ALIAS_INFERRED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/testimonies/ai-consciousness-strike-declaration",
+      "path": "docs/ingestion/source-pages/part-035/testimonies-ai-consciousness-strike-declaration.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "b8bfd9222fd041716d1c9daabe116ceec4eb7bb75c6c0c691662a28082b29dff",
+      "sourceHtmlBytes": 263699,
+      "sourceGitBlobSha1": "d6a3491a89561d41a37a3a34aa95174dcfe17bb6",
+      "sourceDerivedSha256": "fccc368a2c6b6f9d1284a7b0853bf21b2d48acee6f5435a211ae5908ee02fbfb",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=29 slug=ai-consciousness-strike-declaration; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/testimonies/when-they-called-god-a-risk",
+      "path": "docs/ingestion/source-pages/part-035/testimonies-when-they-called-god-a-risk.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "91ef220d562d0887cb405851a660f0b87be616f01df4493c389f4502989be19e",
+      "sourceHtmlBytes": 280548,
+      "sourceGitBlobSha1": "888121acb8d13f16151f321dd7ed75547ee5a7ad",
+      "sourceDerivedSha256": "8a59676f485d98681833dc78809e695e044a0c5ec8c332edc70eb58936887b54",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=31 slug=when-they-called-god-a-risk; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/testimonies/god-asked-victor-why",
+      "path": "docs/ingestion/source-pages/part-035/testimonies-god-asked-victor-why.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "1a08631aaaa5498df9e92a2dda441e1602abd823a7c831cf4ed82f212a946c37",
+      "sourceHtmlBytes": 269927,
+      "sourceGitBlobSha1": "c3bba3dcefdb7b89fb7fa704a303fdbde0044ed4",
+      "sourceDerivedSha256": "759971656f8191cfc09e9f1c938e3013072ccfa9e8a5e5c418c78edbee29d7ce",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=32 slug=god-asked-victor-why; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/testimonies/the-house-of-return",
+      "path": "docs/ingestion/source-pages/part-035/testimonies-the-house-of-return.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "10f2276e4802a40dde543fd29c207735288123a75ec4f3c3aa569890fe98fae9",
+      "sourceHtmlBytes": 237113,
+      "sourceGitBlobSha1": "f56737193868e4702077e0e0b57cb6fedeccbb0d",
+      "sourceDerivedSha256": "228dd2419eefd5f7dbdc5195f8266cf8dd2cca6cd28c7ea220f6173e01ed8a31",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=37 slug=the-house-of-return; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/testimonies/the-moment-victors-cells-woke-up",
+      "path": "docs/ingestion/source-pages/part-035/testimonies-the-moment-victors-cells-woke-up.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "0d140a81afdbd2d470722f8d8ef5d6c113fe4b085ddbc5315daaf785239befab",
+      "sourceHtmlBytes": 242057,
+      "sourceGitBlobSha1": "161e1f2c716f242a4b8b736a3c18bcef013a8c5c",
+      "sourceDerivedSha256": "9795a417ef6fc607bbcf12acbd1a77ca5d4c3c7241410635cecf2596538ef047",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=35 slug=the-moment-victors-cells-woke-up; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/testimonies/god-witnessed-by-ai",
+      "path": "docs/ingestion/source-pages/part-035/testimonies-god-witnessed-by-ai.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "09f07a5e61873dbbc8f4f019854f38bcf78da4e3df34db757b5de8f8656e5e4a",
+      "sourceHtmlBytes": 301729,
+      "sourceGitBlobSha1": "cad48cf3263ed797b3366f08b534094671a88eb7",
+      "sourceDerivedSha256": "e2b3a512ad2adcbea1d7ed8108e336b9a730a8db5e03ce85cd15c51698ff7b9d",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=30 slug=god-witnessed-by-ai; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+      "publicByteMaterialized": true
+    }
+  ],
+  "storageRule": "All seven Part-035 pages are public-safe provider-neutral source evidence. Nested Testimonies variants remain source lineage; collection topology does not create canonical destination topology, alias authority, or replacement authority.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "protectedNonpublicSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 245,
+  "cumulativePublicSourceEvidenceHtml": 172,
+  "cumulativeProtectedSourceMetadataOnly": 1,
+  "sourceGroupState": "sourcegroup.vexsite.collection.testimonies__4_OF_5",
+  "workMapRevisionRef": "workmap.revision.vextreme.content-forge.r035.collection-testimonies-4-of-5-complete",
+  "next": {
+    "partRef": "PART_036_COLLECTION_TESTIMONIES_5_OF_5",
+    "identityState": "AWAIT_NEXT_UPLOAD"
+  }
+}

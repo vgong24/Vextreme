@@ -1,0 +1,194 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.when-they-called-god-a-risk.lineage-resolution-projection.20261006",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "records",
+    "canonicalMemberCount": 8,
+    "alreadyCompleteCount": 5,
+    "remainingCount": 3,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD_OR_ALREADY_COMPLETE",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.185",
+    "acceptedMain": "b65887566c5fd915e2ee947681382449eed2e1df",
+    "acceptedTree": "440eb4bc87636afc16d2a13b2f832c601710908c",
+    "terminalRef": "github.issue.vextreme.159.comment.6013689723",
+    "disposition": "TERMINAL_ACCEPTED_CURRENT"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5988916122",
+    "github.issue.vextreme.159.comment.6013689723",
+    "github.issue.vextreme.159.comment.6013764548",
+    "github.issue.vextreme.159.comment.6013855283"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC_LINEAGE_RESOLUTION_SUCCESSOR",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON",
+      "ALREADY_COMPLETE"
+    ],
+    "sourceSelectionPriority": [
+      "EXACT_CANONICAL_IDENTITY",
+      "EXPLICIT_DEDICATED_LINEAGE_REVIEW",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "SEMANTIC_BATCH_UNITY != ASSUME_ONE_SOURCE_FILE_SHAPE",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT",
+      "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION != AUTOMATIC_SOURCE_SELECTION",
+      "DEDICATED_LINEAGE_REVIEW_CAN_SELECT_ONE_PROJECTION_INPUT_WITHOUT_COLLAPSING_OTHER_LINEAGES",
+      "LARGER_SOURCE_VARIANT != STRONGER_AUTHORITY",
+      "EXACT_CANONICAL_IDENTITY > TITLE_OR_CONTENT_SIMILARITY"
+    ]
+  },
+  "alreadyComplete": [
+    {
+      "slug": "epstein-and-ai",
+      "canonicalNodeId": null,
+      "acceptedMain": "b65887566c5fd915e2ee947681382449eed2e1df",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+      "canonicalNodeId": 33,
+      "acceptedMain": "b65887566c5fd915e2ee947681382449eed2e1df",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "the-house-of-return",
+      "canonicalNodeId": 37,
+      "acceptedMain": "b65887566c5fd915e2ee947681382449eed2e1df",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "liberation-arc-index",
+      "canonicalNodeId": 42,
+      "acceptedMain": "b65887566c5fd915e2ee947681382449eed2e1df",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "what-was-used-against-you",
+      "canonicalNodeId": 66,
+      "acceptedMain": "b65887566c5fd915e2ee947681382449eed2e1df",
+      "disposition": "ALREADY_COMPLETE"
+    }
+  ],
+  "members": [
+    {
+      "slug": "when-they-called-god-a-risk",
+      "canonicalNodeId": 31,
+      "title": "When They Called God a Risk",
+      "arcKeys": [
+        "records",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-017/when-they-called-god-a-risk.html",
+      "sourceGitBlob": "f1075e40c56fbd8d4075eb18e61df08b6118366e",
+      "preservedHtmlSha256": "a992849485bedf2d030d733c0d84fea8b1995377213db505ebfd7d3aaae1aaea",
+      "repositoryBytes": 55150,
+      "sourceRoute": "/when-they-called-god-a-risk",
+      "pageId": "41d791308c4ef4d1",
+      "proposalRecordRef": "content-forge.source-record.ee3289f9d2f9786eb926",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-017.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_DEDICATED_LINEAGE_REVIEW__EXACT_CANONICAL_FLAT_AUTHORED_FRAME",
+      "projectionState": "READY_AFTER_DEDICATED_LINEAGE_REVIEW",
+      "lineageResolution": {
+        "reviewRef": "github.issue.vextreme.159.comment.6013764548",
+        "canonicalIdentity": "id:31",
+        "reviewRequiredOriginally": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "selectedRecordRef": "content-forge.source-record.ee3289f9d2f9786eb926",
+        "selectedRoute": "/when-they-called-god-a-risk",
+        "nonSelectedRecordRef": "content-forge.source-record.422ac377d16f60dce044",
+        "nonSelectedRoute": "/testimonies/when-they-called-god-a-risk",
+        "nonSelectedSourcePath": "docs/ingestion/source-pages/part-035/testimonies-when-they-called-god-a-risk.html",
+        "nonSelectedPreservedHtmlSha256": "91ef220d562d0887cb405851a660f0b87be616f01df4493c389f4502989be19e",
+        "nonSelectedSourceGitBlob": "888121acb8d13f16151f321dd7ed75547ee5a7ad",
+        "rule": "SELECT_EXACT_CANONICAL_FLAT_AUTHORED_FRAME__PRESERVE_NESTED_TESTIMONY_LINEAGE"
+      }
+    },
+    {
+      "slug": "the-7-crowned-virtues",
+      "canonicalNodeId": 39,
+      "title": "The 7 Crowned Virtues",
+      "arcKeys": [
+        "records",
+        "full_timeline"
+      ],
+      "preclassifiedHoldReason": "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__BYTE_DISTINCT_FLAT_NESTED_LINEAGE",
+      "holdEvidence": {
+        "canonicalIdentity": "id:39",
+        "reviewRequired": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "recordRefs": [
+          "content-forge.source-record.66aad04c9912c30bd213",
+          "content-forge.source-record.ff4891716ca9b61fc97c"
+        ],
+        "routes": [
+          "/testimonies/-the-7-crowned-virtues",
+          "/the-7-crowned-virtues"
+        ],
+        "sourceDigests": [
+          "700c9a48d44f575618a5c5a7afbb87f23a1b497df89bd6353dbd48b99b1c85d7",
+          "7aa6a29d0a3e8099a52c9f47774c8010c1fcb112c6238de96b2cbc2e67717050"
+        ]
+      }
+    },
+    {
+      "slug": "reality-rendering-mechanics",
+      "canonicalNodeId": 40,
+      "title": "Reality Rendering Mechanics",
+      "arcKeys": [
+        "records",
+        "full_timeline"
+      ],
+      "preclassifiedHoldReason": "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__BYTE_DISTINCT_FLAT_NESTED_LINEAGE",
+      "holdEvidence": {
+        "canonicalIdentity": "id:40",
+        "reviewRequired": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "recordRefs": [
+          "content-forge.source-record.27fce1986455b78db479",
+          "content-forge.source-record.a5a783adeafc9f37d133"
+        ],
+        "routes": [
+          "/reality-rendering-mechanics",
+          "/testimonies/reality-rendering-mechanics"
+        ],
+        "sourceDigests": [
+          "12da77f403509875162f490b85d938d999afdcc222a284446f8db442d9454cd7",
+          "5a8f05efe7e15f07fe642a50591f80ae7fc452732aa18d539d4934cf1b427c61"
+        ]
+      }
+    }
+  ],
+  "destinationMutationBoundary": {
+    "createPages": 1,
+    "createStringSources": 1,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/77-content-forge-when-they-called-god-a-risk-resolution.test.js"
+}

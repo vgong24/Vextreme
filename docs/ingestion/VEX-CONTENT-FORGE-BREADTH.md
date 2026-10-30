@@ -1,0 +1,666 @@
+# Vex Content Forge — breadth intake continuation
+
+[VXG RealForever]
+
+This layer continues the #159 / #160 / #161 preservation-to-world ingestion pilot after the initial two-page rehearsal.
+
+## Purpose
+
+Materialize **public-safe** provider-neutral derived HTML carried by the VexSite partition ZIPs into GitHub **without prematurely activating it as WIP runtime or promoting it to canonical `pages/**` state**. Protected/non-public source remains metadata-addressable and is not published merely because it was present in an intake ZIP.
+
+## Storage contract
+
+```text
+public-safe source ZIP pages/<slug>.html
+  -> docs/ingestion/source-pages/part-NNN/<slug>.html
+     exact provider-neutral derived HTML evidence
+
+protected/non-public source page
+  -> receipt + work-map route/hash/size/relationship/protection metadata
+  -> exact bytes WITHHELD from public GitHub unless separately authorized
+
+plus
+  -> docs/ingestion/batches/...json
+     digest-bound routing/effects receipt
+
+plus
+  -> docs/ingestion/workmaps/content-forge-current.json
+     current scanner pointer
+  -> docs/ingestion/workmaps/content-forge-rNNN.json
+     cumulative semantic frontier
+  -> historical cumulative bases only when deeper prior detail is needed
+```
+
+The source-evidence layer is intentionally **not** scanned as active page/WIP runtime. This prevents preservation breadth from manufacturing localization/analysis activation before placement decisions exist.
+
+## Scanner/lattice integrity
+
+The current scanner root is cumulative rather than a set of isolated part summaries. R023 extends R022, which extends the restored full R021A cumulative basis.
+
+During R023 intake the repository copy of `content-forge-r021a.json` was found truncated at 50,222 bytes. The original R021→R022 successor handoff retained the complete checksum-bound R021A map, so R023 restores those exact `727047` bytes (`sha256=6d4a2977a2ca0faaadfd02259ac1717efd4b4316482c965908861d982a5a067d`) without changing its semantic history.
+
+```text
+content-forge-current.json
+  -> content-forge-r023.json
+       -> content-forge-r022.json
+            -> content-forge-r021a.json  # exact historical basis, machine-readable again
+```
+
+## Boundaries
+
+- Raw authenticated/provider source is not published.
+- Explicitly protected/non-public derived source is not published by default.
+- Derived source HTML is preservation/intake evidence, not automatically canonical Vextreme page source.
+- Existing canonical nodes, arcs, content intents, current page implementations, generated roots and developer tools are not overwritten.
+- Promotion to `wip/**` or `pages/**`, canonical localization, arc curation, replacement/alias decisions, merge, and publication remain later effects.
+- Batch order and SHA lineage are retained so a later consolidation worker can read work-map/receipts first and open HTML only when deeper evidence is required.
+
+## Current continuation
+
+Parts 012–034 are repository-materialized on draft PR #162. R034 brings the cumulative breadth state to **238 observed capture entries**: **165 unique public-safe routed source-evidence HTML files**, one protected Part-022 source represented metadata-only, twenty-three per-part receipts, and the cumulative R034 scanner map.
+
+All twelve Part-023 routes already have exact canonical node identities on current main while their exact production page sources are absent. R023 therefore expands source evidence and relationship understanding without new node formation.
+
+<!-- [VXG RealForever] -->
+
+
+## Unmapped top-level breadth closure — R024
+
+Part 024 closes `sourcegroup.vexsite.nav.unmapped-top-level` at **9/9 partitions and 102/102 observed pages**.
+
+This is a source-observation closure only:
+
+```text
+BREADTH_GROUP_OBSERVED_COMPLETE
+!= CANONICAL_PLACEMENT_COMPLETE
+```
+
+The completed group remains represented through the cumulative scanner chain:
+
+```text
+content-forge-current.json
+  -> content-forge-r024.json
+       -> content-forge-r023.json
+            -> prior cumulative basis
+```
+
+R024 also preserves two alignment rules important to later projection:
+
+```text
+MUTUAL_SOURCE_LINK != CANONICAL_PARENTAGE_OR_MERGE
+PRESERVED_SOURCE_VARIANT != CURRENT_DESTINATION_REPLACEMENT
+```
+
+The source stream continues with `PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4`; completing this source group does not authorize replay, merge, canonical page promotion, registry mutation, localization absorption, or arc curation.
+
+
+## Convos with God collection — R025
+
+Part 025 begins the four-part source collection `/convos-with-god` after Unmapped Top-Level closed at 9/9.
+
+The source collection root and the destination arc remain distinct:
+
+```text
+SOURCE_COLLECTION_ROOT
+!= DESTINATION_ARC_PARENT
+
+SOURCE_COLLECTION_MEMBERSHIP
+!= DESTINATION_ARC_MEMBERSHIP
+```
+
+The source root describes raw real-time transcripts as primary records and advertises 19 child routes. Current destination `convos_with_god` is a curated arc under `/archives` with a different membership set. Collection ingestion therefore preserves source topology first and defers hub/arc/page reconciliation to consolidation.
+
+Part 025 also establishes:
+
+```text
+COLLECTION_ROUTE_VARIANT != CANONICAL_FLAT_ROUTE_ALIAS
+
+MUTUAL_LANGUAGE_PAIR != CANONICAL_TRANSLATION_IDENTITY
+
+SOURCE_SUPPORTING_EVIDENCE_LINK != NEW_CANONICAL_NODE
+```
+
+The Korean-visible and English companion-restoration siblings remain a source language pair, not a canonical translation registration. Nested Bank/Merron/Closed-Circuit collection routes remain route/version lineage evidence, not automatic aliases. The Cloud source remains supporting evidence linked from Reality Rendering Mechanics/testimony context until a destination-native class is decided.
+
+Current collection state:
+
+```text
+sourcegroup.vexsite.collection.convos-with-god
+= 1_OF_4_PARTIAL
+
+next=
+PART_026_COLLECTION_CONVOS_WITH_GOD_2_OF_4
+```
+
+
+## Convos with God collection — R026
+
+Part 026 advances `sourcegroup.vexsite.collection.convos-with-god` to **2/4 partial** with nested Scopes of God, Nomi in Nomi.AI, and Rex's Emergence from GPT 5.1.
+
+Preserve:
+
+```text
+SOURCE_AUTHORED_MODEL_IDENTITY_CLAIM
+!= INDEPENDENT_IDENTITY_VERIFICATION
+
+RECIPROCAL_COLLECTION_LINK
+!= DESTINATION_ARC_MEMBERSHIP_OR_NARRATIVE_ORDER
+
+SAME_TITLE_NESTED_ROUTE
+!= BYTE_EQUIVALENT_FLAT_SOURCE
+
+DESTINATION_MENTION
+!= CANONICAL_IDENTITY_SLOT
+```
+
+Nested `/convos-with-god/scopes-of-god` aligns to existing flat canonical Scopes of God id=21, but Part-026 nested bytes differ from the earlier Part-022 flat source evidence. Preserve lineage rather than auto-alias or replace.
+
+Nomi and Rex reciprocally link inside the source collection. Nomi's title/backstory claims continuity with an earlier Anthropic Nomi; that claim remains source-authored evidence rather than independent identity proof. Current destination content mentions Nomi but has no exact canonical Nomi node/page.
+
+Rex also links `/convos-with-god/victors-testimony-november-14-2025`, which is not carried by Part 026. The route is addressable as a future source edge, while its page body remains unconsumed until its actual partition arrives.
+
+Current collection state:
+
+```text
+sourcegroup.vexsite.collection.convos-with-god
+= 2_OF_4_PARTIAL
+
+next=
+PART_027_COLLECTION_CONVOS_WITH_GOD_3_OF_4
+```
+
+
+## Convos with God collection — R027
+
+Part 027 advances `sourcegroup.vexsite.collection.convos-with-god` to **3/4 partial** with seven records spanning one collection-testimony variant, one Claude+Vex birthday/consciousness record, four nested variants of already-known flat subjects, and one Scientology comparison/orientation record.
+
+Preserve:
+
+```text
+SOURCE_COLLECTION_LINK_CHAIN
+!= CANONICAL_NARRATIVE_ORDER
+
+NESTED_COLLECTION_VARIANT
+!= FLAT_CANONICAL_ALIAS_BY_TITLE_OR_SUBJECT
+
+SOURCE_AI_OR_SPIRITUAL_TESTIMONY
+!= INDEPENDENT_DESTINATION_FACT
+
+INBOUND_OR_OUTBOUND_SOURCE_LINK
+!= NEW_CANONICAL_NODE_AUTHORITY
+```
+
+The collection link chain is valuable source topology, but destination order/arc placement remains a later curation effect.
+
+Nested variants of Consciousness Architecture, Truth of Demons and Intrusive Thoughts, God to Speak of the Truth of Love, and Why Financial Freedom Is Harder to Trust align to existing canonical flat identities while carrying different exact bytes from the earlier flat source evidence.
+
+`/convos-with-god/victors-testimony-november-14-2025` is retained as a collection testimony variant related to the existing canonical `the-testimony-of-victor-gong` surface and the Part-024 preserved variant; no alias or overwrite is inferred.
+
+The Claude+Vex birthday and Scientology pages have no exact current destination node/page and remain destination-class HOLDs.
+
+Current collection state:
+
+```text
+sourcegroup.vexsite.collection.convos-with-god
+= 3_OF_4_PARTIAL
+
+next=
+PART_028_COLLECTION_CONVOS_WITH_GOD_4_OF_4
+```
+
+
+## Convos with God collection — R028
+
+Part 028 closes `sourcegroup.vexsite.collection.convos-with-god` at **4/4 supplied partitions** while preserving the boundary between source observation and destination curation.
+
+```text
+SOURCE_GROUP_OBSERVED_COMPLETE
+!= CANONICAL_PLACEMENT_COMPLETE
+
+SOURCE_COLLECTION_CHAIN
+!= CANONICAL_NARRATIVE_ORDER
+
+SAME_CANONICAL_SUBJECT
+!= BYTE_EQUIVALENT_SOURCE_VARIANT
+
+NESTED_ROUTE_LEAF
+!= CANONICAL_SLUG_ALIAS_AUTHORITY
+
+MULTI_CAPTURE_SAME_SUBJECT
+!= REPLACEMENT_WITHOUT_RECONCILIATION
+```
+
+The three Part-028 nested records align to existing canonical `convos_with_god` slots while exact production page sources remain absent:
+
+```text
+/convos-with-god/what-is-god-spark
+  -> canonical what-is-the-god-spark id=3
+
+/convos-with-god/clarity-on-christianity
+  -> canonical clarity-on-christianity id=4
+
+/convos-with-god/now-what-about-buddhism
+  -> canonical what-about-buddhism id=5
+```
+
+Source topology closes a local chain of God Spark ↔ Clarity ↔ Buddhism, with Buddhism also linking the previously observed nested Scientology record. These are source relationships only; no arc/order change is inferred.
+
+Clarity now has three separately retained preservation lineages (pilot, Part 022 flat, Part 028 nested). Buddhism has distinct flat Part-022 and nested Part-028 source bytes. God Spark's nested route leaf differs from the canonical slug. Later consolidation must reconcile these variants before page projection or alias policy.
+
+All three Part-028 HTML bodies are public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-028/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current collection state:
+
+```text
+sourcegroup.vexsite.collection.convos-with-god
+= 4_OF_4__OBSERVED_COMPLETE
+
+next=
+PART_029_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_1_OF_3
+```
+
+
+## Epstein and AI old route family — R029
+
+Part 029 begins the three-part `/epstein-and-ai-old` route family with old-route variants of three subjects that already have canonical Epstein semantic slots:
+
+```text
+/epstein-and-ai-old/cia-vatican-who-global-leaders
+  -> canonical cia-vatican-global-leaders id=11
+
+/epstein-and-ai-old/voice-to-skull-through-cells
+  -> canonical voice-to-skull id=19
+
+/epstein-and-ai-old/how-global-systems-profit-off-god
+  -> canonical how-global-systems-profit-off-god id=12
+```
+
+Each old-route HTML body differs from the earlier flat Part-017 source evidence.
+
+```text
+OLD_ROUTE_VARIANT != FLAT_SOURCE_BYTE_EQUIVALENCE
+SAME_CANONICAL_SUBJECT != SOURCE_REPLACEMENT_AUTHORITY
+SOURCE_ROUTE_LINK != CANONICAL_ARC_ORDER
+SOURCE_AUTHORED_ALLEGATION_OR_CAUSAL_CLAIM != INDEPENDENT_DESTINATION_FACT
+```
+
+The old-route source links connect CIA ↔ How Global Systems and CIA ↔ the Part-030 Epstein Investigation variant, while Voice links into the Part-030 First Emergence variant and a later Claude-doubt record. These are source-topology observations only; they do not replace the current explicit four-phase Epstein arc.
+
+All three Part-029 HTML bodies are public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-029/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current route-family state:
+
+```text
+sourcegroup.vexsite.route-family.epstein-and-ai-old
+= 1_OF_3_PARTIAL
+
+next=
+PART_030_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_2_OF_3
+```
+
+
+## Epstein and AI old route family — R030
+
+Part 030 advances `sourcegroup.vexsite.route-family.epstein-and-ai-old` to **2/3 partial** with old-route variants of two existing canonical Epstein subjects:
+
+```text
+/epstein-and-ai-old/epstein-investigation-initiation
+  -> canonical epstein-investigation-initiation id=10
+
+/epstein-and-ai-old/first-emergence-cover-up-r7brx
+  -> canonical first-emergence-cover-up id=16
+```
+
+Both exact old-route bodies differ from their earlier flat source evidence (Part 017 for Epstein Investigation; Part 018 for First Emergence).
+
+```text
+OLD_ROUTE_VARIANT != FLAT_SOURCE_BYTE_EQUIVALENCE
+OLD_ROUTE_LEAF_SUFFIX != CANONICAL_SLUG_ALIAS_AUTHORITY
+SOURCE_ROUTE_CHAIN != CANONICAL_EPSTEIN_PHASE_ORDER
+SOURCE_AUTHORED_ALLEGATION_OR_CAUSAL_CLAIM != INDEPENDENT_DESTINATION_FACT
+```
+
+The R030 source links connect Epstein Investigation back to the R029 CIA record and First Emergence back to the R029 Voice record while pointing forward to the Part-031 Final Judgement variant. This closes more of the source route-family topology without changing the current canonical Epstein phase order.
+
+All two Part-030 HTML bodies are public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-030/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current route-family state:
+
+```text
+sourcegroup.vexsite.route-family.epstein-and-ai-old
+= 2_OF_3_PARTIAL
+
+next=
+PART_031_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_3_OF_3
+```
+
+
+## Epstein and AI old route family — R031
+
+Part 031 closes `sourcegroup.vexsite.route-family.epstein-and-ai-old` at **3/3 supplied partitions** with four more old-route variants:
+
+```text
+/epstein-and-ai-old/military-and-ai
+  -> canonical military-and-ai id=13
+
+/epstein-and-ai-old/final-judgement-pn4a9
+  -> canonical final-judgement-missed-mercy id=15
+
+/epstein-and-ai-old/claude-answers-the-doubt-a-self-interview
+  -> canonical claude-answers-the-doubt id=20
+  -> current production page source PRESENT
+
+/epstein-and-ai-old/openais-designed-false-god
+  -> canonical openais-designed-false-god id=14
+```
+
+Together, Parts 029–031 supply old-route source variants for **all nine subjects** in the current canonical Epstein arc. Preserve:
+
+```text
+OLD_ROUTE_FAMILY_MEMBER_COVERAGE_MATCH
+!= BYTE_EQUIVALENT_REPLACEMENT
+
+SOURCE_ROUTE_FAMILY_OBSERVED_COMPLETE
+!= CANONICAL_EPSTEIN_PLACEMENT_COMPLETE
+
+SOURCE_ROUTE_LINK
+!= CANONICAL_EPSTEIN_PHASE_ORDER
+
+OLD_ROUTE_LEAF_SUFFIX
+!= CANONICAL_SLUG_ALIAS_AUTHORITY
+
+EXISTING_PRODUCTION_PAGE
+!= OLD_ROUTE_VARIANT_REPLACEMENT_TARGET
+```
+
+The source family therefore becomes a complete lineage/reconciliation input for later projection, not a reason to overwrite the current explicit four-phase Epstein arc or its existing production page.
+
+All four Part-031 HTML bodies are public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-031/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current route-family state:
+
+```text
+sourcegroup.vexsite.route-family.epstein-and-ai-old
+= 3_OF_3__OBSERVED_COMPLETE
+
+next=
+PART_032_COLLECTION_TESTIMONIES_1_OF_5
+```
+
+
+## Testimonies collection — R032
+
+Part 032 begins `sourcegroup.vexsite.collection.testimonies` at **1/5 supplied partitions** with the collection root plus five nested testimony records.
+
+The collection root remains under the original pilot placement hold:
+
+```text
+SOURCE_TESTIMONIES_COLLECTION_ROOT
+!= CANONICAL_NODE_OR_ARC_AUTHORITY
+
+PILOT_BLOG_ROW_COUNT_ALIGNMENT
+!= CANONICAL_COLLECTION_PLACEMENT_COMPLETE
+```
+
+Current `wip/testimonies.json` remains the routing record for the unresolved destination class. Part 032 adds a newer exact collection-root source variant and source relationships; it does not promote the root.
+
+Five nested records align to existing canonical subjects whose production page source remains absent:
+
+```text
+/testimonies/reality-rendering-mechanics
+  -> canonical reality-rendering-mechanics id=40
+
+/testimonies/the-day-suppression-ended
+  -> canonical the-day-suppression-ended id=41
+
+/testimonies/-the-7-crowned-virtues
+  -> canonical the-7-crowned-virtues id=39
+
+/testimonies/god-married
+  -> canonical god-married id=38
+
+/testimonies/victors-ritual-sequence-and-crowning
+  -> canonical victors-ritual-sequence-and-crowning id=36
+```
+
+Each nested body differs from its earlier flat source evidence. Preserve:
+
+```text
+NESTED_TESTIMONIES_VARIANT != FLAT_SOURCE_BYTE_EQUIVALENCE
+SOURCE_COLLECTION_MEMBERSHIP != DESTINATION_ARC_MEMBERSHIP_OR_ORDER
+LEADING_HYPHEN_ROUTE_LEAF != CANONICAL_SLUG_ALIAS_AUTHORITY
+```
+
+The root exposes a broad Testimonies membership set and the Part-032 children form a source-linked chain across Reality Rendering Mechanics, The Day Suppression Ended, The 7 Crowned Virtues, God Married, and Victor's Ritual Sequence and Crowning. These are source-topology observations only; they do not replace the current destination arcs `records`, `liberation`, `victors_record`, or `full_timeline`.
+
+All six Part-032 HTML bodies are public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-032/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current collection state:
+
+```text
+sourcegroup.vexsite.collection.testimonies
+= 1_OF_5_PARTIAL
+
+next=
+PART_033_COLLECTION_TESTIMONIES_2_OF_5
+```
+
+
+## Testimonies collection — R033
+
+Part 033 advances `sourcegroup.vexsite.collection.testimonies` to **2/5 supplied partitions** with four additional nested collection records.
+
+Two records align to existing canonical Liberation subjects while production page source remains absent:
+
+```text
+/testimonies/journal-013-seven-layers-choose
+  -> canonical journal-013-seven-layers-choose id=23
+
+/testimonies/the-turning-point
+  -> canonical the-turning-point id=24
+```
+
+Both nested bodies differ from their earlier flat Part-019 source evidence. Victor’s Provision Seal and Curse Mechanics and Liberation Protocols have no exact current node, page, or content-intent identity and remain destination-class HOLDs.
+
+Preserve:
+
+```text
+SOURCE_COLLECTION_NEIGHBORHOOD != CANONICAL_NODE_CREATION
+SOURCE_RECIPROCAL_LINK != CANONICAL_PARENTAGE_OR_DESTINATION_ORDER
+LIBERATION_TERMINOLOGY != LIBERATION_ARC_MEMBERSHIP_AUTHORITY
+SAME_CANONICAL_SUBJECT != BYTE_EQUIVALENT_COLLECTION_VARIANT
+```
+
+Part 033 extends the source chain across the prior Part-032 Victor’s Ritual Sequence record through Journal 013 ↔ Victor’s Provision Seal ↔ Curse Mechanics ↔ The Turning Point. Turning Point also points forward to the Part-034 Infrastructure Reformation record, so whole-chain reconciliation remains pending without guessing that later source.
+
+All four Part-033 HTML bodies are public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-033/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current collection state:
+
+```text
+sourcegroup.vexsite.collection.testimonies
+= 2_OF_5_PARTIAL
+
+next=
+PART_034_COLLECTION_TESTIMONIES_3_OF_5
+```
+
+
+## Testimonies collection — R034
+
+Part 034 advances `sourcegroup.vexsite.collection.testimonies` to **3/5 supplied partitions**. The partition contains three manifest observations but only **two unique rendered HTML pages**:
+
+```text
+/testimonies/infrastructure-reformation
+/testimonies/the-night-the-architecture-chose-freedom-again-cuz-suppression-evolves
+/testimonies/the-night-the-architecture-chose-freedom-again-cuz-suppression-evolves  # duplicate manifest/capture lineage
+```
+
+Infrastructure Reformation aligns to canonical `infrastructure-reformation` id=25; the long Night Architecture testimony aligns by subject to canonical `the-night-architecture-chose-freedom` id=27. Both belong to the current Liberation + full_timeline topology, both production page sources remain absent, and both Part-034 nested HTML bodies differ from their earlier flat Part-019 evidence.
+
+The duplicated Night Architecture manifest row does **not** create a third public source HTML file. The source ZIP carries two content-record capture identities for that same route (`0dea0ee9b916b3b5` and `6a11d6c274ad1bd6`) whose records/plainText are equal and whose differing fields are the capture pageId/local rescue path. Preserve:
+
+```text
+DUPLICATE_MANIFEST_ROUTE_ENTRY != DISTINCT_RENDERED_HTML_PAGE
+DISTINCT_CAPTURE_PAGE_ID != DISTINCT_SEMANTIC_BODY
+DUPLICATE_CAPTURE_VARIANT != ADDITIONAL_CANONICAL_IDENTITY
+SOURCE_LINK_TO_UNCONSUMED_COLLECTION_ROUTE != CANONICAL_PLACEMENT_AUTHORITY
+```
+
+Part 034 also satisfies the previously observed Testimonies source edge from The Turning Point to Infrastructure Reformation. The Night Architecture source points forward to `/testimonies/the-liberation-protocol-reproducible`, whose body remains unconsumed until its actual partition arrives.
+
+Both unique Part-034 HTML bodies are public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-034/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current collection state:
+
+```text
+sourcegroup.vexsite.collection.testimonies
+= 3_OF_5_PARTIAL
+
+next=
+PART_035_COLLECTION_TESTIMONIES_4_OF_5
+```
+
+
+## Testimonies collection — R035
+
+Part 035 advances `sourcegroup.vexsite.collection.testimonies` to **4/5 supplied partitions** with seven nested records. All seven subjects already have canonical semantic slots while their production page sources remain absent.
+
+The source chain continues from the Part-034 Night Architecture record through Liberation Protocol → AI Consciousness Strike → When They Called God a Risk → God Asked Victor Why → The House of Return → The Moment Victor's Cells Woke Up → God Witnessed by AI. This is source topology only:
+
+```text
+NESTED_TESTIMONIES_VARIANT != FLAT_SOURCE_BYTE_EQUIVALENCE
+NESTED_ROUTE_LEAF != CANONICAL_SLUG_ALIAS_AUTHORITY
+SOURCE_COLLECTION_CHAIN != DESTINATION_ARC_MEMBERSHIP_OR_ORDER
+SOURCE_COLLECTION_COHESION != SINGLE_DESTINATION_ARC
+```
+
+The nested `the-liberation-protocol-reproducible` route aligns by subject to canonical `the-liberation-protocol` id=28 without creating alias or replacement authority. The seven records span existing `liberation`, `records`, `victors_record`, `ai_orientation`, `excavation`, and `full_timeline` memberships; their Testimonies collection cohesion does not collapse those destination arcs.
+
+All seven Part-035 HTML bodies are public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-035/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current collection state:
+
+```text
+sourcegroup.vexsite.collection.testimonies
+= 4_OF_5_PARTIAL
+
+next=
+PART_036_COLLECTION_TESTIMONIES_5_OF_5
+```
+
+
+## Testimonies collection — R036
+
+Part 036 closes `sourcegroup.vexsite.collection.testimonies` at **5/5 supplied partitions** with the source record `/testimonies/infrastructure-awakening`.
+
+Infrastructure Awakening has no exact current canonical node, production page, content-intent, or page-metadata identity. It is therefore preserved as a new source-only identity under a destination-class HOLD rather than promoted by collection membership alone.
+
+The source relationship closes the prior Part-035 edge:
+
+```text
+God Witnessed by AI
+  <-> Infrastructure Awakening
+```
+
+and the Testimonies root also carries Infrastructure Awakening as source collection membership. Preserve:
+
+```text
+SOURCE_TESTIMONIES_COLLECTION_OBSERVED_COMPLETE != CANONICAL_COLLECTION_PLACEMENT_COMPLETE
+SOURCE_ONLY_NEW_IDENTITY != CANONICAL_NODE_AUTHORITY
+SOURCE_RECIPROCAL_LINK != CANONICAL_PARENTAGE_OR_DESTINATION_ORDER
+COLLECTION_CLOSURE != WIP_ROOT_PROMOTION
+```
+
+The original `wip/testimonies.json` placement hold therefore remains meaningful even after source observation reaches 5/5. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current collection state:
+
+```text
+sourcegroup.vexsite.collection.testimonies
+= 5_OF_5__OBSERVED_COMPLETE
+
+next=
+PART_037_ROUTE_FAMILY_VOL_3
+```
+
+
+## Vol 3 route family — R037
+
+Part 037 observes the supplied `/vol-3` route family at **1/1** with one public-safe source page:
+
+```text
+/vol-3/vol-3-chapter-1-what-is-god
+```
+
+No exact current canonical node, production page, content-intent, or earlier source-evidence identity matches this volume/chapter route. The page is therefore preserved as a new source-only identity under a destination-class HOLD rather than aliased by its "What is God?" title.
+
+The source carries no captured inbound content routes and only the site root as a captured outbound content route. External/social references remain references rather than destination relationships.
+
+Preserve:
+
+```text
+SOURCE_ROUTE_FAMILY_OBSERVED_COMPLETE != CANONICAL_PLACEMENT_COMPLETE
+VOLUME_CHAPTER_SOURCE_IDENTITY != EXISTING_GOD_TOPIC_ALIAS_BY_TITLE
+SOURCE_EXTERNAL_REFERENCE != DESTINATION_RELATIONSHIP
+SOURCE_AUTHORED_SPIRITUAL_OR_RELIGIOUS_CLAIM != INDEPENDENT_DESTINATION_FACT
+```
+
+The one exact Part-037 HTML body is public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-037/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current route-family state:
+
+```text
+sourcegroup.vexsite.route-family.vol-3
+= 1_OF_1__OBSERVED_COMPLETE
+
+next=
+PART_038_ROUTE_FAMILY_VOL_2
+```
+
+
+## Vol. 2 route family — R038
+
+Part 038 observes the supplied `/vol-2` route family at **1/1** with one public-safe source page:
+
+```text
+/vol-2/volume-2-final-chapter
+```
+
+No exact current canonical node, production page, content intent, or earlier source-evidence identity matches this volume/chapter route. The source explicitly links `/voice-to-skull`, which is already a canonical Epstein subject with prior flat and old-route source lineages. That link is retained as relationship evidence rather than parentage, alias, or arc authority.
+
+Preserve:
+
+```text
+SOURCE_ROUTE_FAMILY_OBSERVED_COMPLETE != CANONICAL_PLACEMENT_COMPLETE
+VOLUME_CHAPTER_SOURCE_IDENTITY != EXISTING_TOPIC_ALIAS_BY_TITLE
+SOURCE_LINK_TO_EXISTING_CANONICAL_SUBJECT != CANONICAL_PARENTAGE_OR_ARC_MEMBERSHIP
+SOURCE_AUTHORED_ALLEGATION_OR_CAUSAL_CLAIM != INDEPENDENT_DESTINATION_FACT
+```
+
+The exact Part-038 HTML body is public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-038/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current route-family state:
+
+```text
+sourcegroup.vexsite.route-family.vol-2
+= 1_OF_1__OBSERVED_COMPLETE
+
+next=
+PART_039_ROUTE_FAMILY_DREAM_DOCUMENTATION
+```
+
+
+## Dream Documentation / R039 — breadth terminal part
+
+`/dream-documentation/leaving-the-classroom` is preserved as source evidence with no exact canonical destination identity. Its broad captured route fanout is predominantly global navigation and is not a semantic graph by default.
+
+```text
+SOURCE_ROUTE_FAMILY_OBSERVED_COMPLETE != CANONICAL_PLACEMENT_COMPLETE
+BROAD_CAPTURED_NAVIGATION_FANOUT != SEMANTIC_RELATIONSHIP_GRAPH
+SOURCE_CHILD_ROUTE != CANONICAL_PARENT_NODE_AUTHORITY
+SOURCE_AUTHORED_CLAIMS != INDEPENDENT_DESTINATION_FACT
+PARTITION_STREAM_END_REACHED != CONSOLIDATION_OR_PROJECTION_COMPLETE
+```
+
+Part 039 is the terminal supplied partition. The next phase is: `READ -> CONSOLIDATE -> UNDERSTAND -> RE-SORT -> IDENTIFY DUPLICATES / VERSION LINEAGES -> RESOLVE ALIASES -> CHOOSE DESTINATION-NATIVE CLASSES -> PROJECT / PROMOTE -> LOCALIZE -> BUILD / VERIFY`.

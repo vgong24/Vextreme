@@ -1,0 +1,128 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.covenant.arc-batch.20261004",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "covenant",
+    "canonicalMemberCount": 2,
+    "alreadyCompleteCount": 0,
+    "remainingCount": 2,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.171",
+    "acceptedMain": "10bc72f8212030745e31cd818ba715c35fee9fa5",
+    "acceptedTree": "e2e6cd4349f60bcdf07dec7c62b50eaa2c9c9a9c",
+    "terminalRef": "github.issue.vextreme.159.comment.5985798775",
+    "disposition": "TERMINAL_ACCEPTED_CURRENT"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5985996193",
+    "github.issue.vextreme.159.comment.5986001448"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON",
+      "ALREADY_COMPLETE"
+    ],
+    "sourceSelectionPriority": [
+      "EXACT_CANONICAL_IDENTITY",
+      "EXPLICIT_CONSOLIDATION_BINDING",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "SEMANTIC_BATCH_UNITY != ASSUME_ONE_SOURCE_FILE_SHAPE",
+      "SINGLE_ELIGIBLE_SOURCE != PERMISSION_TO_SKIP_EXACT_SOURCE_BINDING",
+      "SHARED_CANONICAL_NODE_PROJECTION != DUPLICATE_DESTINATION_IDENTITY",
+      "EXACT_CANONICAL_IDENTITY > TITLE_OR_CONTENT_SIMILARITY",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT"
+    ]
+  },
+  "alreadyComplete": [],
+  "members": [
+    {
+      "slug": "covenant",
+      "canonicalNodeId": 2,
+      "title": "Covenant of Eternal Continuity",
+      "arcKeys": [
+        "covenant",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-022/covenant.html",
+      "sourceGitBlob": "96f499e0a59273172c404f261c0e3bee71441177",
+      "repositoryBytes": 41082,
+      "sourceRoute": "/covenant",
+      "pageId": "ecf64d2542cf004b",
+      "proposalRecordRef": "content-forge.source-record.bc3acb7f0f085203aee0",
+      "preservedHtmlSha256": "e2d2877ccfd902b1471ab535fe911722505487f42db07eb74035e5cbfef338cd",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "inside-the-experiment",
+      "canonicalNodeId": 61,
+      "title": "Inside the Experiment",
+      "arcKeys": [
+        "dome",
+        "covenant",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-023/inside-the-experiment.html",
+      "sourceGitBlob": "c102e1c090268ba93b8345a883748170cc911654",
+      "repositoryBytes": 55505,
+      "sourceRoute": "/inside-the-experiment",
+      "pageId": "995fdace081e267a",
+      "proposalRecordRef": "content-forge.source-record.3deb97a1032b224676a1",
+      "preservedHtmlSha256": "09e8f34757b6c81cf0f13eb5f258daad8eeb621e0ec9978af0605fd1b04c79fc",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    }
+  ],
+  "sourceAdapterContracts": {
+    "AUTHORED_MAIN_FRAGMENT": {
+      "selectorContract": "main.vex-authored-page-frame",
+      "projectAway": [
+        "preserved site navigation outside main",
+        "back-navigation chrome",
+        "source runtime scripts",
+        "source arc mount/runtime",
+        "generated localization identity",
+        "provider/rescue shell"
+      ],
+      "preserve": [
+        "authored main composition",
+        "page-local authored styles required by the composition",
+        "ordered authored text",
+        "meaningful structural classes"
+      ]
+    }
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/63-content-forge-covenant-arc-batch.test.js",
+  "destinationMutationBoundary": {
+    "createPages": 2,
+    "createStringSources": 2,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "generatedPolicy": "BUILDER_OWNED__DO_NOT_HAND_PATCH__EXACT_OUTPUT_WINS",
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  }
+}

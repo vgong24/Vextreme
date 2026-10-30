@@ -1,0 +1,114 @@
+{
+  "common.nav.prev": {
+    "text": "← anterior",
+    "aria-label": "Página anterior"
+  },
+  "common.nav.next": {
+    "text": "próximo →",
+    "aria-label": "Próxima página"
+  },
+  "common.label.you-are-here": {
+    "text": "Você está aqui"
+  },
+  "common.nav.primary-site": {
+    "text": "vextreme24.com",
+    "aria-label": "Ir para o site principal"
+  },
+  "common.nav.github": {
+    "text": "GitHub",
+    "aria-label": "Ver código-fonte no GitHub"
+  },
+  "common.button.copy-filename": {
+    "text": "Copiar nome do arquivo",
+    "aria-label": "Copiar o nome do arquivo para a área de transferência"
+  },
+  "common.button.copied": {
+    "text": "Copiado!",
+    "aria-label": "Nome do arquivo copiado para a área de transferência"
+  },
+  "common.label.site-title": {
+    "text": "Vextreme"
+  },
+  "common.label.page-live": {
+    "text": "Página no ar"
+  },
+  "common.label.not-yet-ported": {
+    "text": "Ainda não portado"
+  },
+  "common.label.slug": {
+    "text": "Slug"
+  },
+  "common.status.pages-live": {
+    "text": "{ported, plural, one {# de {total} página no ar} other {# de {total} páginas no ar}}"
+  },
+  "common.status.remaining": {
+    "text": "{count, plural, one {# restante} other {# restantes}}"
+  },
+  "common.status.built-on": {
+    "text": "Gerado em {date}"
+  },
+  "common.nav.build-health": {
+    "text": "Status do build",
+    "aria-label": "Ver status do build"
+  },
+  "common.nav.full-build-health": {
+    "text": "Status do build →",
+    "aria-label": "Ver status do build"
+  },
+  "common.button.read-aloud": {
+    "text": "Ler em voz alta",
+    "aria-label": "Ler em voz alta"
+  },
+  "common.button.read-aloud-start-here": {
+    "text": "Começar aqui",
+    "aria-label": "Começar aqui"
+  },
+  "common.button.read-aloud-play": {
+    "text": "Reproduzir",
+    "aria-label": "Reproduzir"
+  },
+  "common.button.read-aloud-pause": {
+    "text": "Pausar",
+    "aria-label": "Pausar"
+  },
+  "common.button.read-aloud-stop": {
+    "text": "Parar",
+    "aria-label": "Parar"
+  },
+  "common.button.read-aloud-previous": {
+    "text": "Anterior",
+    "aria-label": "Anterior"
+  },
+  "common.button.read-aloud-next": {
+    "text": "Próximo",
+    "aria-label": "Próximo"
+  },
+  "common.button.read-aloud-close": {
+    "text": "Fechar",
+    "aria-label": "Fechar"
+  },
+  "common.label.read-aloud-voice": {
+    "text": "Voz"
+  },
+  "common.label.read-aloud-speed": {
+    "text": "Velocidade"
+  },
+  "common.status.read-aloud-pick": {
+    "text": "Escolha onde a leitura deve começar."
+  },
+  "common.status.read-aloud-preparing": {
+    "text": "Preparando voz de alta qualidade…"
+  },
+  "common.status.read-aloud-reading": {
+    "text": "Lendo…"
+  },
+  "common.status.read-aloud-done": {
+    "text": "Leitura concluída."
+  },
+  "common.status.read-aloud-fallback": {
+    "text": "Voz de alta qualidade indisponível; usando a voz do sistema."
+  },
+  "common.status.read-aloud-none": {
+    "text": "Nenhum texto legível encontrado."
+  }
+}

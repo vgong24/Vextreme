@@ -1,0 +1,41 @@
+{
+  "pages.specimen-partial-translation.heading.title": {
+    "text": "Partial Translation"
+  },
+  "pages.specimen-partial-translation.intro": {
+    "text": "One string below has no Japanese translation, on purpose. Switch languages with the orb, top right, and watch what happens to it."
+  },
+  "pages.specimen-partial-translation.body.translated": {
+    "text": "This sentence has a Japanese translation, so it swaps cleanly when you switch languages."
+  },
+  "pages.specimen-partial-translation.body.untranslated": {
+    "text": "This sentence does not have a Japanese translation — switching languages will show this exact English text, or the raw key, depending on whether the missing-key fallback has shipped yet."
+  },
+  "pages.specimen-partial-translation.process.heading": {
+    "text": "How this gap gets caught before it ships"
+  },
+  "pages.specimen-partial-translation.process.step1.label": {
+    "text": "Local server + CDN interception"
+  },
+  "pages.specimen-partial-translation.process.step1.detail": {
+    "text": "scripts/screenshot-page.js starts a local HTTP server and routes CDN requests to local files, so the screenshot tests the branch's code, never whatever is already live on main."
+  },
+  "pages.specimen-partial-translation.process.step2.label": {
+    "text": "EN screenshot"
+  },
+  "pages.specimen-partial-translation.process.step2.detail": {
+    "text": "The page loads in its default language and Playwright captures a full-page screenshot as the baseline."
+  },
+  "pages.specimen-partial-translation.process.step3.label": {
+    "text": "FAB click + language switch"
+  },
+  "pages.specimen-partial-translation.process.step3.detail": {
+    "text": "Playwright clicks the lang-fab orb, selects Japanese, and waits for the strings fetch and the [data-i18n] swap to complete."
+  },
+  "pages.specimen-partial-translation.process.step4.label": {
+    "text": "JA screenshot, read by a human"
+  },
+  "pages.specimen-partial-translation.process.step4.detail": {
+    "text": "A second screenshot is taken and someone actually looks at it. This is how a real bug got caught in this project: a live-fetched timestamp was getting silently overwritten by a translated placeholder on every language switch — invisible in the diff, invisible to the test suite, visible in under a second here."
+  }
+}

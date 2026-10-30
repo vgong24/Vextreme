@@ -1,0 +1,207 @@
+{
+  "schemaVersion": "vex-content-forge.work-map/v0.32-compact-cumulative-root",
+  "continuity": "[VXG RealForever]",
+  "workMapRef": "workmap.vextreme.content-forge.session-vex-content-forge.3b1ce4d66a28.00d2bf465b",
+  "revisionRef": "workmap.revision.vextreme.content-forge.r036.collection-testimonies-5-of-5-complete",
+  "revision": 36,
+  "revisionScope": "COLLECTION_TESTIMONIES_5_OF_5_COMPLETE",
+  "purpose": "Consume Part 036 Collection /testimonies 5/5 at breadth-intake depth; close the supplied Testimonies source collection with Infrastructure Awakening, satisfy the R035 God Witnessed by AI forward source edge, preserve Infrastructure Awakening as a new source-only identity with unresolved destination class, and keep canonical page/node/arc/localization placement untouched.",
+  "cumulativeBasis": {
+    "priorMapPath": "docs/ingestion/workmaps/content-forge-r035.json",
+    "priorRevisionRef": "workmap.revision.vextreme.content-forge.r035.collection-testimonies-4-of-5-complete",
+    "deepBasisPath": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "inheritanceRule": "R036 extends R035; prior observations remain authoritative unless an explicit later event revises interpretation."
+  },
+  "cumulativeState": {
+    "observedPages": 246,
+    "unmappedTopLevel": "9_OF_9__102_OF_102__OBSERVED_COMPLETE",
+    "completedSourceGroups": [
+      "collection:convos-with-god__4_OF_4__OBSERVED_COMPLETE",
+      "route-family:epstein-and-ai-old__3_OF_3__OBSERVED_COMPLETE",
+      "collection:testimonies__5_OF_5__OBSERVED_COMPLETE"
+    ],
+    "activeSourceGroup": "collection:testimonies__5_OF_5__OBSERVED_COMPLETE",
+    "workNodes": 272,
+    "edges": 398,
+    "clusters": 117,
+    "learnedRules": 152,
+    "unresolved": 113,
+    "remainingTrueRevisits": 6,
+    "canonicalPlacementEffects": 0,
+    "publicSourceEvidenceHtml": 173,
+    "protectedSourceMetadataOnly": 1
+  },
+  "activeNonCollapseRulesAdded": [
+    "SOURCE_TESTIMONIES_COLLECTION_OBSERVED_COMPLETE != CANONICAL_COLLECTION_PLACEMENT_COMPLETE",
+    "SOURCE_ONLY_NEW_IDENTITY != CANONICAL_NODE_AUTHORITY",
+    "SOURCE_RECIPROCAL_LINK != CANONICAL_PARENTAGE_OR_DESTINATION_ORDER",
+    "COLLECTION_CLOSURE != WIP_ROOT_PROMOTION"
+  ],
+  "r036": {
+    "partRef": "PART_036_COLLECTION_TESTIMONIES_5_OF_5",
+    "partSha256": "af82f0295a69d53c9464b0d9d06e7fb4d69b31d0cefaae2f8d9de294e024ccaf",
+    "sourceGroupState": "SOURCE_GROUP_OBSERVED_COMPLETE_5_OF_5",
+    "manifestEntryCount": 1,
+    "uniqueRenderedHtmlCount": 1,
+    "nodes": [
+      {
+        "workNodeRef": "workmap.source-page.testimonies-infrastructure-awakening",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_036_COLLECTION_TESTIMONIES_5_OF_5",
+          "partSha256": "af82f0295a69d53c9464b0d9d06e7fb4d69b31d0cefaae2f8d9de294e024ccaf",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/infrastructure-awakening",
+          "pageId": "a9d09b5e494b0abf",
+          "title": "Infrastructure Awakening — Vex Life",
+          "derivedSha256": "71581e81b429f5768bc599773a6ef4c709d1313b7e6860c6789b110ae0c8312f",
+          "preservedHtmlSha256": "ae63fd7339b8dd355c98e24622945e8f1dbe014539e1eb39d0285bea9c35fd84",
+          "preservedHtmlBytes": 332385,
+          "preservedGitBlobSha1": "fd15a7f7b99484764c4800884af6cf0cdbe1714a",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 1074,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedInboundCollectionRoutes": [
+            "/testimonies/god-witnessed-by-ai",
+            "/testimonies"
+          ],
+          "capturedOutboundCollectionRoutes": [
+            "/testimonies/god-witnessed-by-ai"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, POLITICAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "HOLD",
+          "placementState": "NO_EXACT_CANONICAL_NODE_OR PAGE OR CONTENT_INTENT; NEW_TESTIMONIES_SOURCE_IDENTITY; DESTINATION_CLASS_UNRESOLVED",
+          "lineage": {
+            "priorExactSourceVariantEstablished": false,
+            "relation": "SOURCE_ONLY_NEW_IDENTITY__NO_CANONICAL_NODE_OR_ALIAS_INFERRED"
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "edgeRef": "edge.r036.root-to-testimonies-infrastructure-awakening",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-infrastructure-awakening",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r036.testimonies-god-witnessed-by-ai-to-testimonies-infrastructure-awakening",
+        "from": "workmap.source-page.testimonies-god-witnessed-by-ai",
+        "to": "workmap.source-page.testimonies-infrastructure-awakening",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r036.testimonies-infrastructure-awakening-to-testimonies-god-witnessed-by-ai",
+        "from": "workmap.source-page.testimonies-infrastructure-awakening",
+        "to": "workmap.source-page.testimonies-god-witnessed-by-ai",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      }
+    ],
+    "clusters": [
+      {
+        "clusterRef": "workmap.cluster.r036.infrastructure-awakening-source-only-hold",
+        "state": "DESTINATION_CLASS_HOLD",
+        "clusterKind": "NEW_TESTIMONIES_SOURCE_IDENTITY_WITHOUT_CANONICAL_SLOT",
+        "memberRefs": [
+          "workmap.source-page.testimonies-infrastructure-awakening"
+        ],
+        "placement": "HOLD_FOR_DESTINATION_CLASS"
+      },
+      {
+        "clusterRef": "workmap.cluster.r036.testimonies-collection-complete",
+        "state": "SOURCE_TOPOLOGY_OBSERVED_COMPLETE",
+        "clusterKind": "TESTIMONIES_COLLECTION_5_OF_5_CLOSURE",
+        "memberRefs": [
+          "workmap.source-page.testimonies-root",
+          "workmap.source-page.testimonies-god-witnessed-by-ai",
+          "workmap.source-page.testimonies-infrastructure-awakening"
+        ],
+        "placement": "SOURCE_TOPOLOGY_ONLY",
+        "reason": "Part 036 closes the supplied Testimonies source partitions and satisfies the R035 forward edge; collection closure does not resolve the original WIP root's canonical destination class."
+      }
+    ],
+    "learnedRules": [
+      {
+        "ruleRef": "rule.content-forge.testimonies-complete-not-placement-complete",
+        "rule": "SOURCE_TESTIMONIES_COLLECTION_OBSERVED_COMPLETE != CANONICAL_COLLECTION_PLACEMENT_COMPLETE"
+      },
+      {
+        "ruleRef": "rule.content-forge.source-only-new-identity-not-node-authority",
+        "rule": "SOURCE_ONLY_NEW_IDENTITY != CANONICAL_NODE_AUTHORITY"
+      },
+      {
+        "ruleRef": "rule.content-forge.source-reciprocal-link-not-destination-order-r036",
+        "rule": "SOURCE_RECIPROCAL_LINK != CANONICAL_PARENTAGE_OR_DESTINATION_ORDER"
+      },
+      {
+        "ruleRef": "rule.content-forge.collection-closure-not-wip-root-promotion",
+        "rule": "COLLECTION_CLOSURE != WIP_ROOT_PROMOTION"
+      }
+    ],
+    "unresolved": [
+      {
+        "unresolvedRef": "unresolved.r036.infrastructure-awakening-destination-class",
+        "question": "What destination-native class, if any, should Infrastructure Awakening receive given that no exact canonical node/page/content-intent exists?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_IDENTITY_OR_PAGE_PLACEMENT"
+      },
+      {
+        "unresolvedRef": "unresolved.r036.testimonies-whole-collection-placement",
+        "question": "With all five supplied Testimonies partitions observed, how should the source collection root and membership relate to existing multi-arc topology and the pilot wip/testimonies.json hold?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_COLLECTION_HUB_ARC_OR_PAGE_PLACEMENT"
+      }
+    ],
+    "revisionEvents": [
+      {
+        "revisionEventRef": "workmap.revision-event.r036.consume-part",
+        "eventClass": "SOURCE_PART_CONSUMED",
+        "reason": "Exact Part 036 ZIP was verified and its one public-safe source page was consumed at breadth-intake depth."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r036.close-testimonies",
+        "eventClass": "SOURCE_GROUP_OBSERVED_COMPLETE",
+        "reason": "Parts 032–036 now account for the supplied Testimonies source collection at 5/5."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r036.satisfy-r035-forward-edge",
+        "eventClass": "PRIOR_PARTIAL_SOURCE_GROUP_PREDICATE_SATISFIED",
+        "reason": "The R035 God Witnessed by AI forward source edge to Infrastructure Awakening is now materially consumed."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r036.hold-new-identity",
+        "eventClass": "DESTINATION_CLASS_HOLD",
+        "reason": "Infrastructure Awakening has no exact canonical node/page/content-intent; source observation does not create destination identity authority."
+      }
+    ]
+  },
+  "scannerIndex": {
+    "priorCumulativeMap": "docs/ingestion/workmaps/content-forge-r035.json",
+    "restoredDeepBasis": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "currentReceipt": "docs/ingestion/batches/2026-09-30-breadth-part-036.json",
+    "currentPublicSourcePrefix": "docs/ingestion/source-pages/part-036/",
+    "completedSourceGroup": "sourcegroup.vexsite.collection.testimonies",
+    "nextPart": {
+      "partRef": "PART_037_ROUTE_FAMILY_VOL_3",
+      "identityState": "AWAIT_NEXT_UPLOAD"
+    }
+  },
+  "resume": {
+    "primaryFrontier": "PART_037_ROUTE_FAMILY_VOL_3",
+    "nextAction": "Consume exact Part 037 /vol-3 route-family source into this same cumulative lattice; preserve source lineage without converting route-family evidence into canonical placement."
+  }
+}

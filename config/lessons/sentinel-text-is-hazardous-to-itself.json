@@ -1,0 +1,15 @@
+{
+  "_meta": { "type": "lesson" },
+  "id": "sentinel-text-is-hazardous-to-itself",
+  "title": "A Sentinel-Based Tool Must Treat Mentions Of Its Own Sentinel As Hazardous",
+  "sessions": ["013", "014", "019"],
+  "problem": "Three separate bugs, same root cause: a tool that searches text for a marker or delimiter (JSDoc's */, this repo's LATTICE:BEGIN/END, a literal /** substring) corrupted a file the moment that exact text appeared in prose describing the tool itself, not in the tool's real output. lib/strings-compile.js's glob pattern closed a JSDoc block early. lib/build-lattice-headers.js's own lattice-map.json entry, describing what it writes, confused its own marker search. lib/logger-codes.js had a comment naming this exact hazard class, containing the literal substring '/**', which a bare indexOf('/**') mistook for a real doc comment opener.",
+  "exploration": [
+    "patch each occurrence individually as it's found",
+    "ban the tool from ever describing its own sentinel in prose (unenforceable — the tool's own header comment needs to explain what it does)",
+    "make the search itself refuse ambiguous matches — require structural context (line-start position, multi-line span) before treating a match as real, and sanitize dynamic content that could contain the sentinel before it's ever written"
+  ],
+  "decision": "lib/build-lattice-headers.js now does both: sanitizeForComment() breaks literal */, /*, and the LATTICE:BEGIN/END strings themselves when they appear in JSON-sourced dynamic content (a zero-width space keeps them visually identical while breaking the exact match), and findLineStartDocComment() requires a /** to start its own line and span multiple lines before treating it as a real doc comment — rejecting a same-line mention inside unrelated text.",
+  "lesson": "A sentinel-based tool's search has no concept of 'inside vs. outside a comment describing the tool' — it is a plain substring match. Any prose the tool itself writes, or any file it processes, that happens to mention the sentinel is a hazard exactly as real as a genuine one. Defend against this before shipping a sentinel-based tool, not after the third occurrence.",
+  "impact": "Two general-purpose defenses (sanitizeForComment, findLineStartDocComment) now cover every instance of this hazard class found so far, rather than three independent patches for three independent symptoms. Regression-tested in tests/11-lattice-headers.test.js."
+}

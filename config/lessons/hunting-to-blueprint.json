@@ -1,0 +1,13 @@
+{
+  "_meta": { "type": "lesson" },
+  "id": "hunting-to-blueprint",
+  "title": "From Hunting to Blueprint",
+  "pr": "#22",
+  "session": "011",
+  "problem": "Adding a feature required reading 5+ files to infer the pattern. Each file only showed part of the contract. Errors were likely.",
+  "exploration": ["_meta.json type definitions", "inline validation in build scripts", "blueprint-first architecture"],
+  "decision": "blueprint.json at repo root defines what exists — categories, features, asset types, templates. config/ directory holds per-item declarations. validate-blueprint.js enforces consistency.",
+  "lesson": "The blueprint is the map. The code is the territory. Read the map first.",
+  "impact": "5-minute feature addition instead of 30 minutes of inference. Self-documenting system.",
+  "visual": "pages/specimen-architectural-wisdoms.html#decision-3"
+}

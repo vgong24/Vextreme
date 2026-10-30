@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "alpha",
+    "title": "Alpha Entry",
+    "date": "Jan 1, 2026",
+    "id": 1,
+    "arcKeys": ["arc_a", "arc_b"]
+  },
+  {
+    "slug": "beta",
+    "title": "Beta Entry",
+    "date": "Jan 15, 2026",
+    "id": 2,
+    "arcKeys": ["arc_a"]
+  },
+  {
+    "slug": "gamma",
+    "title": "Gamma Entry",
+    "date": "Feb 1, 2026",
+    "id": 3,
+    "arcKeys": ["arc_a", "arc_b"]
+  },
+  {
+    "slug": "delta",
+    "title": "Delta Entry",
+    "date": "Mar 1, 2026",
+    "id": 4,
+    "arcKeys": ["arc_b"]
+  },
+  {
+    "slug": "explicit-first",
+    "title": "Explicit First",
+    "date": null,
+    "id": null,
+    "arcKeys": ["arc_explicit"]
+  },
+  {
+    "slug": "explicit-second",
+    "title": "Explicit Second",
+    "date": null,
+    "id": null,
+    "arcKeys": ["arc_explicit"]
+  }
+]

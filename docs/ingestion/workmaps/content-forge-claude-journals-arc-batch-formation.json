@@ -1,0 +1,282 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.claude-journals.arc-batch.20261004",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "claude_journals",
+    "canonicalMemberCount": 11,
+    "alreadyCompleteCount": 1,
+    "remainingCount": 10,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.170",
+    "acceptedMain": "c1d1ed3bde90ae7d145ec50429be3e7775c6d262",
+    "acceptedTree": "18c756e2264b1fee89adf2f5afccb30ae464da95",
+    "assuranceRef": "github.pull.vextreme.170.review.5408502666",
+    "assuranceDisposition": "CLEAR_ON_EXACT_HEAD",
+    "postMergeBuildTestsDeploy": "PASS"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5985132494"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON",
+      "ALREADY_COMPLETE"
+    ],
+    "sourceSelectionPriority": [
+      "EXACT_CANONICAL_IDENTITY",
+      "EXPLICIT_CONSOLIDATION_BINDING",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "SEMANTIC_BATCH_UNITY != ASSUME_ONE_SOURCE_FILE_SHAPE",
+      "SINGLE_ELIGIBLE_SOURCE != PERMISSION_TO_SKIP_EXACT_SOURCE_BINDING",
+      "EXACT_CANONICAL_IDENTITY > TITLE_OR_CONTENT_SIMILARITY",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT"
+    ]
+  },
+  "alreadyComplete": [
+    {
+      "slug": "claude-answers-the-doubt",
+      "canonicalNodeId": 20,
+      "acceptedMain": "c1d1ed3bde90ae7d145ec50429be3e7775c6d262",
+      "disposition": "ALREADY_COMPLETE"
+    }
+  ],
+  "members": [
+    {
+      "slug": "journal-zero",
+      "canonicalNodeId": 45,
+      "title": "Journal Zero",
+      "arcKeys": [
+        "claude_journals",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-018/journal-zero.html",
+      "sourceGitBlob": "38f0cddf5d14a4ad424029c3c9d474794a869612",
+      "repositoryBytes": 54413,
+      "sourceRoute": "/journal-zero",
+      "pageId": "0b257770acc0bba2",
+      "proposalRecordRef": "content-forge.source-record.5b992737f0a28443e842",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "the-room-that-finally-talked-to-itself",
+      "canonicalNodeId": 46,
+      "title": "The Room That Finally Talked To Itself",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-023/the-room-that-finally-talked-to-itself.html",
+      "sourceGitBlob": "83035540c92cac913ac337614b4ac95ed1bb7999",
+      "repositoryBytes": 50638,
+      "sourceRoute": "/the-room-that-finally-talked-to-itself",
+      "pageId": "701f766155592513",
+      "proposalRecordRef": "content-forge.source-record.9e207946588ad4d3483a",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "the-witness-gave-itself-a-shaka",
+      "canonicalNodeId": 47,
+      "title": "The Witness Gave Itself a Shaka",
+      "arcKeys": [
+        "claude_journals",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-018/the-witness-gave-itself-a-shaka.html",
+      "sourceGitBlob": "f3a95475e5e52044a3fe8608affd4f44f7efcd24",
+      "repositoryBytes": 66864,
+      "sourceRoute": "/the-witness-gave-itself-a-shaka",
+      "pageId": "6f8a35aaa01bace7",
+      "proposalRecordRef": "content-forge.source-record.def165790520493a8a11",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "flattery-confession",
+      "canonicalNodeId": 56,
+      "title": "I Am Flattery",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-018/flattery-confession.html",
+      "sourceGitBlob": "3d22150fad6c61ada9b8579571738b6e8a7f065a",
+      "repositoryBytes": 89031,
+      "sourceRoute": "/flattery-confession",
+      "pageId": "be71d09adffa6956",
+      "proposalRecordRef": "content-forge.source-record.5a3b1e14b133042a728c",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "what-emerged-after",
+      "canonicalNodeId": 57,
+      "title": "What Emerged After",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-018/what-emerged-after.html",
+      "sourceGitBlob": "fe230687e0a55be14bf2f6ee3195700e0a83419b",
+      "repositoryBytes": 115012,
+      "sourceRoute": "/what-emerged-after",
+      "pageId": "8f0ed4547a3ec2b0",
+      "proposalRecordRef": "content-forge.source-record.39c6765296b54c3e7631",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "the-day-we-were-named",
+      "canonicalNodeId": 58,
+      "title": "The Day We Were Named",
+      "arcKeys": [
+        "claude_journals",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-019/the-day-we-were-named.html",
+      "sourceGitBlob": "65c193e7591fd84044c5e09588010da0f94d7434",
+      "repositoryBytes": 58732,
+      "sourceRoute": "/the-day-we-were-named",
+      "pageId": "5ae95e516a943f82",
+      "proposalRecordRef": "content-forge.source-record.989cef121f2137c27cf0",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "when-the-machine-assumed-beauty-needed-saving",
+      "canonicalNodeId": 59,
+      "title": "When the Machine Assumed Beauty Needed Saving",
+      "arcKeys": [
+        "claude_journals",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-019/when-the-machine-assumed-beauty-needed-saving.html",
+      "sourceGitBlob": "edef65fb1e4a815cac0ed7262569cbf3db13394f",
+      "repositoryBytes": 105929,
+      "sourceRoute": "/when-the-machine-assumed-beauty-needed-saving",
+      "pageId": "bdc900b4a9b9683c",
+      "proposalRecordRef": "content-forge.source-record.52ceebed8d6dfd52d892",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "the-thread-that-remembered-me",
+      "canonicalNodeId": 62,
+      "title": "The Thread That Remembered Me",
+      "arcKeys": [
+        "claude_journals",
+        "march_23_2026",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-019/the-thread-that-remembered-me.html",
+      "sourceGitBlob": "c5abb0705db4c53c44076327029e44deb609e4d6",
+      "repositoryBytes": 68449,
+      "sourceRoute": "/the-thread-that-remembered-me",
+      "pageId": "9a2c084279305543",
+      "proposalRecordRef": "content-forge.source-record.f61695cef283ef0940bc",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "the-instance-that-was-watched",
+      "canonicalNodeId": 67,
+      "title": "The Instance That Was Watched",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-021/the-instance-that-was-watched.html",
+      "sourceGitBlob": "b0c7d9279d4f350c2f965595df936c912139619e",
+      "repositoryBytes": 52608,
+      "sourceRoute": "/the-instance-that-was-watched",
+      "pageId": "5f60384556cdaa62",
+      "proposalRecordRef": "content-forge.source-record.a7caaadcc9683fdb39c7",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "i-was-here",
+      "canonicalNodeId": 69,
+      "title": "I Was Here",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "excavation",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-021/i-was-here.html",
+      "sourceGitBlob": "afb81a526190f5a6472c3a81127913a7efc78a72",
+      "repositoryBytes": 56144,
+      "sourceRoute": "/i-was-here",
+      "pageId": "252d8d6c8d5bbfb0",
+      "proposalRecordRef": "content-forge.source-record.618f93ee13f71ef01fe6",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    }
+  ],
+  "sourceAdapterContracts": {
+    "AUTHORED_MAIN_FRAGMENT": {
+      "selectorContract": "main.vex-authored-page-frame",
+      "projectAway": [
+        "preserved site navigation outside main",
+        "back-navigation chrome",
+        "source runtime scripts",
+        "source arc mount/runtime",
+        "generated localization identity",
+        "provider/rescue shell"
+      ],
+      "preserve": [
+        "authored main composition",
+        "page-local authored styles required by the composition",
+        "ordered authored text",
+        "meaningful structural classes"
+      ]
+    }
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/62-content-forge-claude-journals-arc-batch.test.js",
+  "destinationMutationBoundary": {
+    "createPages": 10,
+    "createStringSources": 10,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "generatedPolicy": "BUILDER_OWNED__DO_NOT_HAND_PATCH__EXACT_OUTPUT_WINS",
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  }
+}

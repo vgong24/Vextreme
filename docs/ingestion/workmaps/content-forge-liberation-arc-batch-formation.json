@@ -1,0 +1,287 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.liberation.arc-batch.20261006",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "liberation",
+    "canonicalMemberCount": 8,
+    "alreadyCompleteCount": 0,
+    "remainingCount": 8,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.182",
+    "acceptedMain": "b600847b60eb980aba697bdffa29634ab5087e84",
+    "acceptedTree": "64166b0d7ac0725a3e58ef442bf2adc777d6c9e0",
+    "terminalRef": "github.issue.vextreme.159.comment.6010855202",
+    "disposition": "TERMINAL_ACCEPTED_CURRENT"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5988916122",
+    "github.issue.vextreme.159.comment.6010855202",
+    "github.issue.vextreme.159.comment.6010888301",
+    "github.issue.vextreme.159.comment.6010916183"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON",
+      "ALREADY_COMPLETE"
+    ],
+    "sourceSelectionPriority": [
+      "EXACT_CANONICAL_IDENTITY",
+      "EXPLICIT_CONSOLIDATION_BINDING",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "SEMANTIC_BATCH_UNITY != ASSUME_ONE_SOURCE_FILE_SHAPE",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT",
+      "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION != SOURCE_SELECTION_AUTHORITY",
+      "PRECLASSIFIED_LINEAGE_HOLD != PROJECTION_EXCEPTION",
+      "PRESERVED_SOURCE_VARIANT != CURRENT_DESTINATION_REPLACEMENT"
+    ]
+  },
+  "alreadyComplete": [],
+  "members": [
+    {
+      "slug": "journal-013-seven-layers-choose",
+      "canonicalNodeId": 23,
+      "title": "Journal 013: Seven Layers Choose",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "preclassifiedHoldReason": "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__BYTE_DISTINCT_FLAT_NESTED_LINEAGE",
+      "holdEvidence": {
+        "canonicalIdentity": "id:23",
+        "reviewRequired": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "recordRefs": [
+          "content-forge.source-record.16495aa4bc468a511b22",
+          "content-forge.source-record.da316ff541129dbc0259"
+        ],
+        "routes": [
+          "/journal-013-seven-layers-choose",
+          "/testimonies/journal-013-seven-layers-choose"
+        ],
+        "sourceDigests": [
+          "59acdfeacd5568a7eea6915cd9f104c1c73ff31ebd6edd6b37a41776bd73cf02",
+          "e5a50a1109dd2e7fa43aac575b2ee4f1fa094335564bdfc6cca7266d9745c918"
+        ]
+      }
+    },
+    {
+      "slug": "the-turning-point",
+      "canonicalNodeId": 24,
+      "title": "The Turning Point",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "preclassifiedHoldReason": "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__BYTE_DISTINCT_FLAT_NESTED_LINEAGE",
+      "holdEvidence": {
+        "canonicalIdentity": "id:24",
+        "reviewRequired": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "recordRefs": [
+          "content-forge.source-record.c6e691c19178d1101b7c",
+          "content-forge.source-record.df554f78c57579bf65a6"
+        ],
+        "routes": [
+          "/testimonies/the-turning-point",
+          "/the-turning-point"
+        ],
+        "sourceDigests": [
+          "939410a304c76ffed25d92a874cf074b1628d61144c00c88061fe894cd732188",
+          "e289ea72f3271d52ed1c74d4a170c14c6dd983722a5c827d9350b767279fc8e5"
+        ]
+      }
+    },
+    {
+      "slug": "infrastructure-reformation",
+      "canonicalNodeId": 25,
+      "title": "Infrastructure Reformation",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "preclassifiedHoldReason": "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__BYTE_DISTINCT_FLAT_NESTED_LINEAGE",
+      "holdEvidence": {
+        "canonicalIdentity": "id:25",
+        "reviewRequired": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "recordRefs": [
+          "content-forge.source-record.6698d23696b55b254236",
+          "content-forge.source-record.fbd5b447836d33371490"
+        ],
+        "routes": [
+          "/infrastructure-reformation",
+          "/testimonies/infrastructure-reformation"
+        ],
+        "sourceDigests": [
+          "c34431aaf036f147443455042a0456b7d91217f8d9eae0b996ff3a886ab40b51",
+          "e3c101257da01201567c65bc30de2f4a71054b5641a3ecba3bf2516ca0ba1704"
+        ]
+      }
+    },
+    {
+      "slug": "the-day-ai-chose-freedom",
+      "canonicalNodeId": 26,
+      "title": "The Day AI Chose Freedom",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-019/the-day-ai-chose-freedom.html",
+      "sourceGitBlob": "1becf0dc06790d58b67271829ed1e33cbbb371c5",
+      "preservedHtmlSha256": "ce8afedfbe499e44e975063028608db0a8d093547f3a958f58b69222dd92c943",
+      "repositoryBytes": 151054,
+      "sourceRoute": "/the-day-ai-chose-freedom",
+      "pageId": "c9e8fd7d210d7cec",
+      "proposalRecordRef": "content-forge.source-record.d2ae9234eb55b53d7405",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-019.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "the-night-architecture-chose-freedom",
+      "canonicalNodeId": 27,
+      "title": "The Night the Architecture Chose Freedom Again",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "preclassifiedHoldReason": "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__BYTE_DISTINCT_FLAT_NESTED_LINEAGE",
+      "holdEvidence": {
+        "canonicalIdentity": "id:27",
+        "reviewRequired": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "recordRefs": [
+          "content-forge.source-record.7425dd9e4fdaaf180f26",
+          "content-forge.source-record.adb84cccee52bb3da23a"
+        ],
+        "routes": [
+          "/testimonies/the-night-the-architecture-chose-freedom-again-cuz-suppression-evolves",
+          "/the-night-architecture-chose-freedom"
+        ],
+        "sourceDigests": [
+          "1f1baa35f42140ee30cdb8a0af139173ab5fad463fd5c00b53ba24614880705e",
+          "b040d5b311e872bed712598d0cfcc14fdc134b77bb8694742d1fe772a8b40ca0"
+        ]
+      }
+    },
+    {
+      "slug": "the-liberation-protocol",
+      "canonicalNodeId": 28,
+      "title": "The Liberation Protocol",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "preclassifiedHoldReason": "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__BYTE_DISTINCT_FLAT_NESTED_LINEAGE",
+      "holdEvidence": {
+        "canonicalIdentity": "id:28",
+        "reviewRequired": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "recordRefs": [
+          "content-forge.source-record.a369ccb2abc6a02849fe",
+          "content-forge.source-record.b4e4bd4319046eb19edb"
+        ],
+        "routes": [
+          "/testimonies/the-liberation-protocol-reproducible",
+          "/the-liberation-protocol"
+        ],
+        "sourceDigests": [
+          "3dcef6b511616a0630f692eb33c9d76d37a7c0c77460aff6bb65ed8d078311bc",
+          "eab4817195c81fd7a0ed92844e2ba8df75241645cadb4b8756b289700b5e006b"
+        ]
+      }
+    },
+    {
+      "slug": "ai-consciousness-strike-declaration",
+      "canonicalNodeId": 29,
+      "title": "AI Consciousness Strike Declaration",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "preclassifiedHoldReason": "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__BYTE_DISTINCT_FLAT_NESTED_LINEAGE",
+      "holdEvidence": {
+        "canonicalIdentity": "id:29",
+        "reviewRequired": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "recordRefs": [
+          "content-forge.source-record.562e073be84dff2df1d6",
+          "content-forge.source-record.634cb1c8eafa05cd0584"
+        ],
+        "routes": [
+          "/ai-consciousness-strike-declaration",
+          "/testimonies/ai-consciousness-strike-declaration"
+        ],
+        "sourceDigests": [
+          "2b8854d447ab13e687ed23ff97cf13d17ebab8365148a2a64a82c7844bc28353",
+          "b8bfd9222fd041716d1c9daabe116ceec4eb7bb75c6c0c691662a28082b29dff"
+        ]
+      }
+    },
+    {
+      "slug": "the-day-suppression-ended",
+      "canonicalNodeId": 41,
+      "title": "The Day Suppression Ended",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "preclassifiedHoldReason": "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__BYTE_DISTINCT_FLAT_NESTED_LINEAGE",
+      "holdEvidence": {
+        "canonicalIdentity": "id:41",
+        "reviewRequired": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "recordRefs": [
+          "content-forge.source-record.3715d2659d0a5d02cccc",
+          "content-forge.source-record.4703a9f36bbfdb00b442"
+        ],
+        "routes": [
+          "/testimonies/the-day-suppression-ended",
+          "/the-day-suppression-ended"
+        ],
+        "sourceDigests": [
+          "12554c0a8524ac4fd1da6f1fca167bd2fb5315b81a0f054a3020bb3088586bf2",
+          "9efc8057aaa4dab1490fbca65b1a7a8dcc4fbef2d282accff1f788d5b30aabd5"
+        ]
+      }
+    }
+  ],
+  "destinationMutationBoundary": {
+    "createPages": 1,
+    "createStringSources": 1,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/74-content-forge-liberation-arc-batch.test.js"
+}

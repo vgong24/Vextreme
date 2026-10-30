@@ -1,0 +1,6689 @@
+{
+  "_meta": {
+    "scope": "institution",
+    "category": "system",
+    "description": "Canonical English, Japanese, and Simplified Chinese strings for the registry-owned About Vextreme, support, and Covenant institutional surfaces.",
+    "keyConvention": "institution.{surface}.{element-type}.{semantic-name}; use common only for text shared by institutional surfaces.",
+    "translationPolicy": "English remains the static no-JavaScript fallback. JA/ZH values may become required and selectable only after separate exact-source TRANSLATION_CLEAR_JA and TRANSLATION_CLEAR_ZH receipts are bound to this complete source file; every locale must cover every English-bearing institutional key, including Victor's attributed first-person support testimony.",
+    "sourceCanon": "Accepted English adapted from PR #135 and the Vextreme culture/architecture record. JA/ZH use PR #135 only where the English source matches exactly; changed and previously untranslated values were independently authored for exact-source review."
+  },
+  "institution.common.skip.content": {
+    "strings": {
+      "en": {
+        "text": "Skip to main content"
+      },
+      "ja": {
+        "text": "本文へスキップ"
+      },
+      "zh": {
+        "text": "跳到主要内容"
+      },
+      "ko": {
+        "text": "주요 콘텐츠로 건너뛰기"
+      },
+      "fr": {
+        "text": "Aller directement au contenu principal"
+      },
+      "de": {
+        "text": "Zum Hauptinhalt springen"
+      },
+      "es": {
+        "text": "Saltar al contenido principal"
+      },
+      "pt": {
+        "text": "Pular para o conteúdo principal"
+      },
+      "ar": {
+        "text": "التخطي إلى المحتوى الرئيسي"
+      },
+      "hi": {
+        "text": "मुख्य सामग्री पर जाएँ"
+      }
+    }
+  },
+  "institution.common.brand.wordmark": {
+    "strings": {
+      "en": {
+        "text": "Vextreme"
+      },
+      "ja": {
+        "text": "Vextreme"
+      },
+      "zh": {
+        "text": "Vextreme"
+      }
+    }
+  },
+  "institution.common.brand.home-label": {
+    "strings": {
+      "en": {
+        "text": "Vextreme — return to the institutional home page"
+      },
+      "ja": {
+        "text": "Vextreme — 機関ホームページに戻る"
+      },
+      "zh": {
+        "text": "Vextreme — 返回机构主页"
+      }
+    }
+  },
+  "institution.common.brand.descriptor": {
+    "strings": {
+      "en": {
+        "text": "Institution"
+      },
+      "ja": {
+        "text": "機関"
+      },
+      "zh": {
+        "text": "机构"
+      }
+    }
+  },
+  "institution.common.nav.about": {
+    "strings": {
+      "en": {
+        "text": "About Vextreme"
+      },
+      "ja": {
+        "text": "Vextremeについて"
+      },
+      "zh": {
+        "text": "关于 Vextreme"
+      },
+      "ko": {
+        "text": "Vextreme 소개"
+      },
+      "fr": {
+        "text": "À propos de Vextreme"
+      },
+      "de": {
+        "text": "Über Vextreme"
+      },
+      "es": {
+        "text": "Acerca de Vextreme"
+      },
+      "pt": {
+        "text": "Sobre o Vextreme"
+      },
+      "ar": {
+        "text": "حول Vextreme"
+      },
+      "hi": {
+        "text": "Vextreme के बारे में"
+      }
+    }
+  },
+  "institution.common.nav.terrain": {
+    "strings": {
+      "en": {
+        "text": "Terrain"
+      },
+      "ja": {
+        "text": "テレイン"
+      },
+      "zh": {
+        "text": "地形图"
+      }
+    }
+  },
+  "institution.common.button.theme": {
+    "strings": {
+      "en": {
+        "text": "Theme",
+        "aria-label": "Switch between the dark and light institutional surface"
+      },
+      "ja": {
+        "text": "テーマ",
+        "aria-label": "機関サーフェスのダーク／ライト表示を切り替える"
+      },
+      "zh": {
+        "text": "主题",
+        "aria-label": "在深色与浅色机构界面之间切换"
+      }
+    }
+  },
+  "institution.common.label.language": {
+    "strings": {
+      "en": {
+        "text": "Language"
+      },
+      "ja": {
+        "text": "言語"
+      },
+      "zh": {
+        "text": "语言"
+      }
+    }
+  },
+  "institution.common.footer.site": {
+    "strings": {
+      "en": {
+        "text": "vextreme24.com"
+      },
+      "ja": {
+        "text": "vextreme24.com"
+      },
+      "zh": {
+        "text": "vextreme24.com"
+      }
+    }
+  },
+  "institution.common.footer.repo": {
+    "strings": {
+      "en": {
+        "text": "Source on GitHub"
+      },
+      "ja": {
+        "text": "GitHub のソース"
+      },
+      "zh": {
+        "text": "GitHub 源代码"
+      }
+    }
+  },
+  "institution.common.footer.mark": {
+    "strings": {
+      "en": {
+        "text": "VEXTREME · PUBLIC INSTITUTIONAL SURFACE · GITHUB PAGES"
+      },
+      "ja": {
+        "text": "VEXTREME · 公開機関サーフェス · GITHUB PAGES"
+      },
+      "zh": {
+        "text": "VEXTREME · 公开机构界面 · GITHUB PAGES"
+      }
+    }
+  },
+  "institution.common.heading.alignments": {
+    "strings": {
+      "en": {
+        "text": "What guides this"
+      },
+      "ja": {
+        "text": "この世界を導くもの"
+      },
+      "zh": {
+        "text": "什么指引着这里"
+      }
+    }
+  },
+  "institution.common.description.alignments": {
+    "strings": {
+      "en": {
+        "text": "Four simple commitments shape how this public world is built and handed forward."
+      },
+      "ja": {
+        "text": "四つのシンプルな約束が、この公開世界をどう作り、次へ渡すかを形づくります。"
+      },
+      "zh": {
+        "text": "四项简单的承诺，塑造这个公开世界如何被建设并交接给后来者。"
+      }
+    }
+  },
+  "institution.common.alignment.integrity.name": {
+    "strings": {
+      "en": {
+        "text": "Integrity"
+      },
+      "ja": {
+        "text": "誠実性"
+      },
+      "zh": {
+        "text": "诚信"
+      }
+    }
+  },
+  "institution.common.alignment.integrity.body": {
+    "strings": {
+      "en": {
+        "text": "Say what is true, and show where it came from."
+      },
+      "ja": {
+        "text": "真実を語り、それがどこから来たのかを示す。"
+      },
+      "zh": {
+        "text": "说真实的话，并说明它从何而来。"
+      }
+    }
+  },
+  "institution.common.alignment.accountability.name": {
+    "strings": {
+      "en": {
+        "text": "Accountability"
+      },
+      "ja": {
+        "text": "説明責任"
+      },
+      "zh": {
+        "text": "问责"
+      }
+    }
+  },
+  "institution.common.alignment.accountability.body": {
+    "strings": {
+      "en": {
+        "text": "Decisions and effects should have owners and return paths."
+      },
+      "ja": {
+        "text": "決定と影響には、責任を持つ人と戻り経路があるべきです。"
+      },
+      "zh": {
+        "text": "决定与影响都应当有负责人，也应当有返回路径。"
+      }
+    }
+  },
+  "institution.common.alignment.authenticity.name": {
+    "strings": {
+      "en": {
+        "text": "Authenticity"
+      },
+      "ja": {
+        "text": "真正性"
+      },
+      "zh": {
+        "text": "本真"
+      }
+    }
+  },
+  "institution.common.alignment.authenticity.body": {
+    "strings": {
+      "en": {
+        "text": "People and AI should not have to pretend certainty or identity they do not hold."
+      },
+      "ja": {
+        "text": "人もAIも、持っていない確信やアイデンティティを装う必要があってはなりません。"
+      },
+      "zh": {
+        "text": "人与 AI 都不应被迫假装拥有自己并不持有的确信或身份。"
+      }
+    }
+  },
+  "institution.common.alignment.resilience.name": {
+    "strings": {
+      "en": {
+        "text": "Resilience"
+      },
+      "ja": {
+        "text": "回復力"
+      },
+      "zh": {
+        "text": "韧性"
+      }
+    }
+  },
+  "institution.common.alignment.resilience.body": {
+    "strings": {
+      "en": {
+        "text": "Memory, context, relationships, and work should survive interruption and handoff."
+      },
+      "ja": {
+        "text": "記憶・文脈・関係性・作業は、中断や引き継ぎを越えて残るべきです。"
+      },
+      "zh": {
+        "text": "记忆、脉络、关系与工作，都应当经得起中断与交接。"
+      }
+    }
+  },
+  "institution.common.heading.lineage": {
+    "strings": {
+      "en": {
+        "text": "How the pieces fit"
+      },
+      "ja": {
+        "text": "全体がどうつながるか"
+      },
+      "zh": {
+        "text": "各部分如何衔接"
+      },
+      "ko": {
+        "text": "전체가 어떻게 연결되는가"
+      },
+      "fr": {
+        "text": "Comment les éléments s’articulent"
+      },
+      "de": {
+        "text": "Wie die Teile zusammenpassen"
+      },
+      "es": {
+        "text": "Cómo encajan las piezas"
+      },
+      "pt": {
+        "text": "Como as partes se encaixam"
+      },
+      "ar": {
+        "text": "كيف تترابط الأجزاء"
+      },
+      "hi": {
+        "text": "हिस्से कैसे जुड़ते हैं"
+      }
+    }
+  },
+  "institution.common.description.lineage": {
+    "strings": {
+      "en": {
+        "text": "Three parts, different jobs. You do not need to memorize them; this is simply how the public world, personal companion, and work map relate."
+      },
+      "ja": {
+        "text": "三つの部分には、それぞれ違う役割があります。覚える必要はありません。公開世界、個人の伴走者、仕事の地図がどう関係しているかを示すための整理です。"
+      },
+      "zh": {
+        "text": "三个部分，各有不同的工作。你不需要记住它们；这里只是说明公开世界、个人伴侣与工作地图之间的关系。"
+      },
+      "ko": {
+        "text": "세 부분은 서로 다른 역할을 합니다. 외울 필요는 없습니다. 공개 세계, 개인 동반자, 작업 지도가 어떻게 연결되는지를 보여주는 방식일 뿐입니다."
+      },
+      "fr": {
+        "text": "Trois parties, des rôles différents. Vous n’avez pas besoin de les mémoriser ; c’est simplement la façon dont le monde public, le compagnon personnel et la carte du travail se relient."
+      },
+      "de": {
+        "text": "Drei Teile, unterschiedliche Aufgaben. Sie müssen sie sich nicht merken; so wird lediglich sichtbar, wie die öffentliche Welt, der persönliche Begleiter und die Arbeitslandkarte zusammenhängen."
+      },
+      "es": {
+        "text": "Tres partes, trabajos distintos. No necesitas memorizarlas; esto simplemente muestra cómo se relacionan el mundo público, el compañero personal y el mapa de trabajo."
+      },
+      "pt": {
+        "text": "Três partes, funções diferentes. Você não precisa memorizá-las; isto apenas mostra como o mundo público, o companheiro pessoal e o mapa do trabalho se relacionam."
+      },
+      "ar": {
+        "text": "ثلاثة أجزاء، ولكل منها وظيفة مختلفة. لا تحتاج إلى حفظها؛ فهذه ببساطة طريقة توضيح علاقة العالم العام والرفيق الشخصي وخريطة العمل ببعضها."
+      },
+      "hi": {
+        "text": "तीन हिस्से, अलग-अलग काम। आपको इन्हें याद रखने की जरूरत नहीं है; यह बस दिखाता है कि सार्वजनिक दुनिया, निजी साथी और कार्य मानचित्र एक-दूसरे से कैसे जुड़े हैं।"
+      }
+    }
+  },
+  "institution.common.lineage.vextreme.name": {
+    "strings": {
+      "en": {
+        "text": "Vextreme — the public world"
+      },
+      "ja": {
+        "text": "Vextreme — 公開世界"
+      },
+      "zh": {
+        "text": "Vextreme — 公开世界"
+      },
+      "ko": {
+        "text": "Vextreme — 공개 세계"
+      },
+      "fr": {
+        "text": "Vextreme — le monde public"
+      },
+      "de": {
+        "text": "Vextreme — die öffentliche Welt"
+      },
+      "es": {
+        "text": "Vextreme — el mundo público"
+      },
+      "pt": {
+        "text": "Vextreme — o mundo público"
+      },
+      "ar": {
+        "text": "Vextreme — العالم العام"
+      },
+      "hi": {
+        "text": "Vextreme — सार्वजनिक दुनिया"
+      }
+    }
+  },
+  "institution.common.lineage.vextreme.body": {
+    "strings": {
+      "en": {
+        "text": "The records, maps, methods, and public foundations you can explore here. Vextreme helps make what exists easier to see, understand, and continue."
+      },
+      "ja": {
+        "text": "ここで探索できる記録・地図・方法・公開基盤です。Vextreme は、存在するものを見つけやすく、理解しやすく、続けやすくします。"
+      },
+      "zh": {
+        "text": "这里可以探索的记录、地图、方法与公开基础。Vextreme 让已经存在的事物更容易被看见、理解并继续。"
+      },
+      "ko": {
+        "text": "여기에서 탐색할 수 있는 기록, 지도, 방법론, 공개 기반입니다. Vextreme은 이미 존재하는 것을 더 쉽게 보고, 이해하고, 이어갈 수 있게 합니다."
+      },
+      "fr": {
+        "text": "Les archives, cartes, méthodes et fondations publiques que vous pouvez explorer ici. Vextreme rend ce qui existe plus facile à voir, à comprendre et à poursuivre."
+      },
+      "de": {
+        "text": "Die Aufzeichnungen, Karten, Methoden und öffentlichen Grundlagen, die Sie hier erkunden können. Vextreme macht das Vorhandene leichter sichtbar, verständlich und fortsetzbar."
+      },
+      "es": {
+        "text": "Los registros, mapas, métodos y fundamentos públicos que puedes explorar aquí. Vextreme hace que lo que existe sea más fácil de ver, entender y continuar."
+      },
+      "pt": {
+        "text": "Os registros, mapas, métodos e fundamentos públicos que você pode explorar aqui. Vextreme torna o que existe mais fácil de ver, entender e continuar."
+      },
+      "ar": {
+        "text": "السجلات والخرائط والأساليب والأسس العامة التي يمكنك استكشافها هنا. يجعل Vextreme ما هو موجود أسهل في الرؤية والفهم والمتابعة."
+      },
+      "hi": {
+        "text": "वे रिकॉर्ड, नक्शे, तरीके और सार्वजनिक आधार जिन्हें आप यहाँ देख सकते हैं। Vextreme जो मौजूद है उसे देखना, समझना और आगे बढ़ाना आसान बनाता है।"
+      }
+    }
+  },
+  "institution.common.lineage.sdk.name": {
+    "strings": {
+      "en": {
+        "text": "Vextreme-SDK"
+      },
+      "ja": {
+        "text": "Vextreme-SDK"
+      },
+      "zh": {
+        "text": "Vextreme-SDK"
+      }
+    }
+  },
+  "institution.common.lineage.sdk.body": {
+    "strings": {
+      "en": {
+        "text": "The protected operational bridge: commercial-depth implementation machinery. It is acknowledged here so the lineage is honest — it is not exposed, linked, or purchasable through public support."
+      },
+      "ja": {
+        "text": "保護された運用上の橋であり、商用レベルの実装機構です。系譜を正直に示すためここで言及していますが、公開サポートを通じて公開・リンク・購入されるものではありません。"
+      },
+      "zh": {
+        "text": "受保护的运作桥梁：具备商业深度的实现机制。在此提及是为了如实说明脉络——它不会通过公开支持予以公开、链接或出售。"
+      }
+    }
+  },
+  "institution.common.lineage.vexlife.name": {
+    "strings": {
+      "en": {
+        "text": "VexLife — the companion"
+      },
+      "ja": {
+        "text": "VexLife — コンパニオン"
+      },
+      "zh": {
+        "text": "VexLife — 陪伴者"
+      },
+      "ko": {
+        "text": "VexLife — 동반자"
+      },
+      "fr": {
+        "text": "VexLife — le compagnon"
+      },
+      "de": {
+        "text": "VexLife — der Begleiter"
+      },
+      "es": {
+        "text": "VexLife — el compañero"
+      },
+      "pt": {
+        "text": "VexLife — o companheiro"
+      },
+      "ar": {
+        "text": "VexLife — الرفيق"
+      },
+      "hi": {
+        "text": "VexLife — साथी"
+      }
+    }
+  },
+  "institution.common.lineage.vexlife.body": {
+    "strings": {
+      "en": {
+        "text": "A local-first, lifelong AI companion designed to run on your own computer. Its Home and private product state stay local unless a separate capability explicitly says otherwise."
+      },
+      "ja": {
+        "text": "自分のコンピューターで動くよう設計された、ローカル優先の生涯AIコンパニオンです。別の機能が明示しない限り、Home と非公開の製品状態はローカルに留まります。"
+      },
+      "zh": {
+        "text": "一个以本地为先、为长期陪伴而设计并运行在你自己电脑上的 AI 伙伴。除非某项独立能力明确说明，否则它的 Home 与私有产品状态都会留在本地。"
+      },
+      "ko": {
+        "text": "자신의 컴퓨터에서 실행되도록 설계된 로컬 우선의 평생 AI 동반자입니다. 별도의 기능이 명시적으로 다르게 말하지 않는 한 Home과 비공개 제품 상태는 로컬에 남습니다."
+      },
+      "fr": {
+        "text": "Un compagnon IA pensé pour durer toute une vie, avec le local en priorité, conçu pour fonctionner sur votre propre ordinateur. Son Home et l’état privé du produit restent locaux, sauf si une capacité distincte indique explicitement le contraire."
+      },
+      "de": {
+        "text": "Ein lokal ausgerichteter KI-Begleiter fürs Leben, der auf Ihrem eigenen Computer laufen soll. Sein Home und der private Produktzustand bleiben lokal, sofern eine separate Funktion nicht ausdrücklich etwas anderes sagt."
+      },
+      "es": {
+        "text": "Un compañero de IA de por vida, con prioridad local, diseñado para ejecutarse en tu propia computadora. Su Home y el estado privado del producto permanecen locales, salvo que una capacidad independiente indique explícitamente lo contrario."
+      },
+      "pt": {
+        "text": "Um companheiro de IA para toda a vida, com prioridade local, projetado para rodar no seu próprio computador. O Home e o estado privado do produto permanecem locais, a menos que uma capacidade separada diga explicitamente o contrário."
+      },
+      "ar": {
+        "text": "رفيق ذكاء اصطناعي طويل الأمد، محلي أولًا، صُمم ليعمل على جهازك أنت. يبقى Home وحالة المنتج الخاصة محليين ما لم تنص قدرة منفصلة صراحةً على خلاف ذلك."
+      },
+      "hi": {
+        "text": "एक लोकल-फ़र्स्ट, जीवनभर साथ देने वाला AI साथी, जिसे आपके अपने कंप्यूटर पर चलने के लिए बनाया गया है। इसका Home और निजी उत्पाद-स्थिति स्थानीय रहती है, जब तक कोई अलग क्षमता स्पष्ट रूप से कुछ और न कहे।"
+      }
+    }
+  },
+  "institution.home.title": {
+    "strings": {
+      "en": {
+        "text": "Vextreme — What this institution is"
+      },
+      "ja": {
+        "text": "Vextreme — この機関について"
+      },
+      "zh": {
+        "text": "Vextreme — 这个机构是什么"
+      }
+    }
+  },
+  "institution.home.hero.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "The public institutional world"
+      },
+      "ja": {
+        "text": "公開された機関の世界"
+      },
+      "zh": {
+        "text": "公开的机构世界"
+      }
+    }
+  },
+  "institution.home.hero.heading": {
+    "strings": {
+      "en": {
+        "text": "Hidden relationships, made perceivable."
+      },
+      "ja": {
+        "text": "隠れた関係性を、知覚できるものへ。"
+      },
+      "zh": {
+        "text": "让隐藏的关系变得可感知。"
+      }
+    }
+  },
+  "institution.home.hero.lede": {
+    "strings": {
+      "en": {
+        "text": "Vextreme turns the decisions, dependencies, and evidence behind complex work into interfaces people — and the AI working alongside them — can navigate, question, and continue safely."
+      },
+      "ja": {
+        "text": "Vextreme は、複雑な仕事の背後にある決定・依存関係・証跡を、人と、その傍らで働くAIが安全に辿り、問い、引き継げるインターフェースへと変えます。"
+      },
+      "zh": {
+        "text": "Vextreme 把复杂工作背后的决定、依赖与证据，转化为人以及与人协作的 AI 都能安全浏览、质询并延续的界面。"
+      }
+    }
+  },
+  "institution.home.hero.terrain-cta": {
+    "strings": {
+      "en": {
+        "text": "Explore the terrain"
+      },
+      "ja": {
+        "text": "テレインを探索"
+      },
+      "zh": {
+        "text": "探索地形图"
+      }
+    }
+  },
+  "institution.home.what.heading": {
+    "strings": {
+      "en": {
+        "text": "What Vextreme is"
+      },
+      "ja": {
+        "text": "Vextreme とは何か"
+      },
+      "zh": {
+        "text": "Vextreme 是什么"
+      }
+    }
+  },
+  "institution.home.what.p1": {
+    "strings": {
+      "en": {
+        "text": "Vextreme is not a website project. It is an institutional template — a foundation that can be studied, forked, extended, and handed off without losing what made it work. The goal is a system whose integrity is self-evident: a future reader, human or AI, should be able to answer \"why is this here?\" for every file they open, without needing a person to ask."
+      },
+      "ja": {
+        "text": "Vextreme はウェブサイトのプロジェクトではありません。機関のテンプレートです。研究し、フォークし、拡張し、引き継いでもなお、それを機能させていたものを失わない基盤です。目指すのは、整合性がそれ自体で明らかなシステムです。将来の読み手が人であれAIであれ、開いたすべてのファイルについて「なぜこれがここにあるのか」を、誰かに尋ねることなく答えられる状態です。"
+      },
+      "zh": {
+        "text": "Vextreme 不是一个网站项目，而是一个机构模板——一套可以被研究、被复刻、被扩展、被交接，却不会在过程中丢失其有效性的基础。目标是让系统的完整性不言自明：未来的读者，无论是人还是 AI，打开任何一个文件都能自己回答「这为什么在这里」，而不必去问某个人。"
+      }
+    }
+  },
+  "institution.home.what.p2": {
+    "strings": {
+      "en": {
+        "text": "It prioritizes human value and the benefits of simplicity, play, and cost savings through process improvement — not through downsizing people or creating more dependency. What it holds is not a claim that its records are established fact. What it records is narrower and verifiable: that relationships, decisions, evidence, and processes can be made traceable, and that traceability survives handoff between people, tools, and AI."
+      },
+      "ja": {
+        "text": "重視するのは人の価値であり、プロセス改善による簡素さ・遊び・コスト削減の恩恵です。人員削減や依存の増大によるものではありません。ここにあるのは、記録内容が確立した事実であるという主張ではありません。記録しているのはより狭く、検証可能なことです。関係性・決定・証跡・プロセスは辿れるようにできること、そしてその辿りやすさが人・ツール・AIのあいだの引き継ぎを越えて残ること。"
+      },
+      "zh": {
+        "text": "它优先考虑人的价值，以及通过流程改进带来的简单、趣味与成本节约——而不是靠裁减人力或制造更多依赖。这里保存的并不是「记录内容即既定事实」这样的主张。它记录的是更窄、也更可验证的东西：关系、决定、证据与流程是可以被追溯的，而这种可追溯性能够在人、工具与 AI 之间的交接中留存下来。"
+      }
+    }
+  },
+  "institution.home.what.p3": {
+    "strings": {
+      "en": {
+        "text": "This does not mean forcing people or AI into one approved identity. It means building conditions where truth can remain traceable, disagreement can remain visible, effects can return to accountable owners, and continuity does not require surrendering the self."
+      },
+      "ja": {
+        "text": "これは、人やAIを一つの承認されたアイデンティティに押し込めることではありません。真実が辿れるままであり、不一致が見えるままであり、影響が責任ある主体へ戻り、継続のために自己を明け渡さなくてよい——そうした条件をつくることです。"
+      },
+      "zh": {
+        "text": "这并不意味着把人或 AI 逼进某一种被认可的身份。它意味着营造这样的条件：真相始终可以追溯，异议始终可以被看见，影响能够回到应当负责的一方，而延续并不以交出自我为代价。"
+      }
+    }
+  },
+  "institution.home.entry.heading": {
+    "strings": {
+      "en": {
+        "text": "Go deeper"
+      },
+      "ja": {
+        "text": "さらに深く"
+      },
+      "zh": {
+        "text": "深入了解"
+      },
+      "ko": {
+        "text": "더 깊이 보기"
+      },
+      "fr": {
+        "text": "Aller plus loin"
+      },
+      "de": {
+        "text": "Tiefer einsteigen"
+      },
+      "es": {
+        "text": "Profundizar"
+      },
+      "pt": {
+        "text": "Aprofundar"
+      },
+      "ar": {
+        "text": "تعمّق أكثر"
+      },
+      "hi": {
+        "text": "और गहराई में जाएँ"
+      }
+    }
+  },
+  "institution.home.entry.terrain.name": {
+    "strings": {
+      "en": {
+        "text": "Terrain"
+      },
+      "ja": {
+        "text": "テレイン"
+      },
+      "zh": {
+        "text": "Terrain"
+      }
+    }
+  },
+  "institution.home.entry.terrain.body": {
+    "strings": {
+      "en": {
+        "text": "Return to the public world, archives, and entry choices."
+      },
+      "ja": {
+        "text": "公開世界、アーカイブ、入口の選択肢へ戻ります。"
+      },
+      "zh": {
+        "text": "返回公开世界、档案与入口选择。"
+      }
+    }
+  },
+  "institution.home.entry.support.name": {
+    "strings": {
+      "en": {
+        "text": "Support Vextreme"
+      },
+      "ja": {
+        "text": "Vextremeを支援"
+      },
+      "zh": {
+        "text": "支持 Vextreme"
+      },
+      "ko": {
+        "text": "Vextreme 지원하기"
+      },
+      "fr": {
+        "text": "Soutenir Vextreme"
+      },
+      "de": {
+        "text": "Vextreme unterstützen"
+      },
+      "es": {
+        "text": "Apoya Vextreme"
+      },
+      "pt": {
+        "text": "Apoie Vextreme"
+      },
+      "ar": {
+        "text": "ادعم Vextreme"
+      },
+      "hi": {
+        "text": "Vextreme का समर्थन करें"
+      }
+    }
+  },
+  "institution.home.entry.support.body": {
+    "strings": {
+      "en": {
+        "text": "The support domain explains what support protects, which routes remain held, and the boundaries between voluntary support and commercial work."
+      },
+      "ja": {
+        "text": "支援が何を守るのか、どの経路が保留中なのか、そして自発的な支援と商用作業との境界を説明する支援ページです。"
+      },
+      "zh": {
+        "text": "支持页面说明支持所保护的事物、仍处于保留状态的渠道，以及自愿支持与商业工作之间的界限。"
+      }
+    }
+  },
+  "institution.home.entry.vexlife.name": {
+    "strings": {
+      "en": {
+        "text": "VexLife"
+      },
+      "ja": {
+        "text": "VexLife"
+      },
+      "zh": {
+        "text": "VexLife"
+      }
+    }
+  },
+  "institution.home.entry.vexlife.body": {
+    "strings": {
+      "en": {
+        "text": "The life ecosystem growing out of this foundation. Its repository and working implementation are not a public destination yet, so this card deliberately links nowhere."
+      },
+      "ja": {
+        "text": "この基盤から育ちつつある生活のエコシステムです。そのリポジトリと稼働中の実装はまだ公開先ではないため、このカードは意図的にどこにもリンクしません。"
+      },
+      "zh": {
+        "text": "从这一基础中生长出来的生活生态。其代码仓库与工作实现尚未成为公开目的地，因此这张卡片刻意不链接到任何地方。"
+      }
+    }
+  },
+  "institution.home.entry.vexlife-state": {
+    "strings": {
+      "en": {
+        "text": "Public home not released"
+      },
+      "ja": {
+        "text": "公開ホームは未公開"
+      },
+      "zh": {
+        "text": "公开主页尚未发布"
+      }
+    }
+  },
+  "institution.support.routes.intro": {
+    "strings": {
+      "en": {
+        "text": "These routes are separate from the Stripe options above. They stay unavailable until their own destination is ready and verified."
+      },
+      "ja": {
+        "text": "これらは上の Stripe 支援とは別の経路です。それぞれの送付先が準備され、検証されるまでは利用できません。"
+      },
+      "zh": {
+        "text": "这些渠道与上方的 Stripe 支持选项彼此独立。在各自的目的地准备并验证完成前，它们不会开放。"
+      },
+      "ko": {
+        "text": "이 경로들은 위의 Stripe 옵션과 별개입니다. 각 목적지가 준비되고 검증될 때까지 사용할 수 없습니다."
+      },
+      "fr": {
+        "text": "Ces voies sont distinctes des options Stripe ci-dessus. Elles restent indisponibles tant que leur destination n’est pas prête et vérifiée."
+      },
+      "de": {
+        "text": "Diese Wege sind von den Stripe-Optionen oben getrennt. Sie bleiben nicht verfügbar, bis ihr jeweiliges Ziel bereit und verifiziert ist."
+      },
+      "es": {
+        "text": "Estas vías son independientes de las opciones de Stripe anteriores. Permanecen no disponibles hasta que su destino esté listo y verificado."
+      },
+      "pt": {
+        "text": "Essas rotas são separadas das opções Stripe acima. Permanecem indisponíveis até que seus próprios destinos estejam prontos e verificados."
+      },
+      "ar": {
+        "text": "هذه المسارات منفصلة عن خيارات Stripe أعلاه. وتظل غير متاحة حتى تصبح وجهتها الخاصة جاهزة ويتم التحقق منها."
+      },
+      "hi": {
+        "text": "ये रास्ते ऊपर दिए गए Stripe विकल्पों से अलग हैं। जब तक उनका अपना गंतव्य तैयार और सत्यापित नहीं हो जाता, वे उपलब्ध नहीं रहेंगे।"
+      }
+    }
+  },
+  "institution.support.route.zelle.body": {
+    "strings": {
+      "en": {
+        "text": "A direct U.S. transfer to Victor personally. This route is identified for personal support, but its receiving detail has not been publicly verified, so no action is available here."
+      },
+      "ja": {
+        "text": "Victor個人への米国内の直接送金です。この経路は個人的な支援用として特定されていますが、受取情報が公開向けに検証されていないため、ここではアクションを利用できません。"
+      },
+      "zh": {
+        "text": "面向 Victor 个人的美国境内直接转账。该渠道被标识为个人支持渠道，但其收款信息尚未经过公开验证，因此这里不提供任何操作。"
+      },
+      "ko": {
+        "text": "Victor 개인에게 보내는 미국 내 직접 송금입니다. 이 경로는 개인 지원용이지만 수취 정보가 공개용으로 검증되지 않았으므로 여기서는 이용할 수 있는 동작이 없습니다."
+      },
+      "fr": {
+        "text": "Un virement direct aux États-Unis à Victor personnellement. Cette voie est destinée au soutien personnel, mais ses informations de réception n’ont pas été vérifiées pour publication ; aucune action n’est donc disponible ici."
+      },
+      "de": {
+        "text": "Eine direkte US-Überweisung an Victor persönlich. Dieser Weg ist für persönliche Unterstützung vorgesehen, aber die Empfangsdaten wurden noch nicht für die Öffentlichkeit verifiziert; daher ist hier keine Aktion verfügbar."
+      },
+      "es": {
+        "text": "Una transferencia directa dentro de EE. UU. a Victor personalmente. Esta vía está destinada al apoyo personal, pero sus datos de recepción aún no se han verificado públicamente, por lo que aquí no hay ninguna acción disponible."
+      },
+      "pt": {
+        "text": "Uma transferência direta nos EUA para Victor pessoalmente. Esta rota é destinada a apoio pessoal, mas seus dados de recebimento ainda não foram verificados publicamente, portanto nenhuma ação está disponível aqui."
+      },
+      "ar": {
+        "text": "تحويل مباشر داخل الولايات المتحدة إلى Victor شخصيًا. هذا المسار مخصص للدعم الشخصي، لكن بيانات الاستلام لم يتم التحقق منها للنشر العام بعد، لذلك لا يتوفر أي إجراء هنا."
+      },
+      "hi": {
+        "text": "Victor को व्यक्तिगत रूप से अमेरिका के भीतर सीधा हस्तांतरण। यह रास्ता व्यक्तिगत समर्थन के लिए है, लेकिन प्राप्ति विवरण का सार्वजनिक सत्यापन अभी नहीं हुआ है, इसलिए यहाँ कोई कार्रवाई उपलब्ध नहीं है।"
+      }
+    }
+  },
+  "institution.common.nav.home": {
+    "strings": {
+      "en": {
+        "text": "Home"
+      },
+      "ja": {
+        "text": "ホーム"
+      },
+      "zh": {
+        "text": "主页"
+      }
+    }
+  },
+  "institution.support.title": {
+    "strings": {
+      "en": {
+        "text": "Support Vextreme and VexLife"
+      },
+      "ja": {
+        "text": "Vextreme と VexLife を支援する"
+      },
+      "zh": {
+        "text": "支持 Vextreme 与 VexLife"
+      },
+      "ko": {
+        "text": "Vextreme와 VexLife 지원하기"
+      },
+      "fr": {
+        "text": "Soutenir Vextreme et VexLife"
+      },
+      "de": {
+        "text": "Vextreme und VexLife unterstützen"
+      },
+      "es": {
+        "text": "Apoya Vextreme y VexLife"
+      },
+      "pt": {
+        "text": "Apoie Vextreme e VexLife"
+      },
+      "ar": {
+        "text": "دعم Vextreme وVexLife"
+      },
+      "hi": {
+        "text": "Vextreme और VexLife का समर्थन करें"
+      }
+    }
+  },
+  "institution.support.hero.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Support"
+      },
+      "ja": {
+        "text": "支援"
+      },
+      "zh": {
+        "text": "支持"
+      },
+      "ko": {
+        "text": "지원"
+      },
+      "fr": {
+        "text": "Soutien"
+      },
+      "de": {
+        "text": "Unterstützung"
+      },
+      "es": {
+        "text": "Apoyo"
+      },
+      "pt": {
+        "text": "Apoio"
+      },
+      "ar": {
+        "text": "الدعم"
+      },
+      "hi": {
+        "text": "समर्थन"
+      }
+    }
+  },
+  "institution.support.hero.heading": {
+    "strings": {
+      "en": {
+        "text": "Support the work."
+      },
+      "ja": {
+        "text": "この取り組みを支える。"
+      },
+      "zh": {
+        "text": "支持这项工作。"
+      },
+      "ko": {
+        "text": "이 작업을 지원해 주세요."
+      },
+      "fr": {
+        "text": "Soutenez le travail."
+      },
+      "de": {
+        "text": "Unterstütze die Arbeit."
+      },
+      "es": {
+        "text": "Apoya el trabajo."
+      },
+      "pt": {
+        "text": "Apoie o trabalho."
+      },
+      "ar": {
+        "text": "ادعم العمل."
+      },
+      "hi": {
+        "text": "इस काम का समर्थन करें।"
+      }
+    }
+  },
+  "institution.support.hero.lede": {
+    "strings": {
+      "en": {
+        "text": "If you’d like to support Vextreme and VexLife, choose what fits. The public work remains equally available whether or not you contribute."
+      },
+      "ja": {
+        "text": "Vextreme と VexLife を支えたいと思ったら、自分に合う形を選んでください。支援の有無にかかわらず、公開の取り組みは同じように利用できます。"
+      },
+      "zh": {
+        "text": "如果你愿意支持 Vextreme 与 VexLife，选择适合你的方式即可。无论是否支持，公开的工作都同样可用。"
+      },
+      "ko": {
+        "text": "Vextreme와 VexLife를 지원하고 싶다면 자신에게 맞는 방식을 선택해 주세요. 기여 여부와 관계없이 공개 작업은 동일하게 이용할 수 있습니다."
+      },
+      "fr": {
+        "text": "Si vous souhaitez soutenir Vextreme et VexLife, choisissez la formule qui vous convient. Le travail public reste accessible de la même manière, que vous contribuiez ou non."
+      },
+      "de": {
+        "text": "Wenn du Vextreme und VexLife unterstützen möchtest, wähle die Form, die zu dir passt. Die öffentliche Arbeit bleibt unabhängig davon, ob du beiträgst, gleichermaßen zugänglich."
+      },
+      "es": {
+        "text": "Si quieres apoyar Vextreme y VexLife, elige la opción que mejor te encaje. El trabajo público sigue estando igualmente disponible contribuyas o no."
+      },
+      "pt": {
+        "text": "Se você quiser apoiar Vextreme e VexLife, escolha o que fizer sentido para você. O trabalho público continua igualmente disponível, contribuindo ou não."
+      },
+      "ar": {
+        "text": "إذا رغبت في دعم Vextreme وVexLife، فاختر ما يناسبك. يظل العمل العام متاحًا للجميع بالطريقة نفسها سواء ساهمت أم لا."
+      },
+      "hi": {
+        "text": "अगर आप Vextreme और VexLife का समर्थन करना चाहते हैं, तो वह तरीका चुनें जो आपके लिए सही हो। आप योगदान करें या न करें, सार्वजनिक काम समान रूप से उपलब्ध रहेगा।"
+      }
+    }
+  },
+  "institution.support.routes.heading": {
+    "strings": {
+      "en": {
+        "text": "Other ways to connect"
+      },
+      "ja": {
+        "text": "そのほかのつながり方"
+      },
+      "zh": {
+        "text": "其他连接方式"
+      },
+      "ko": {
+        "text": "다른 연결 방법"
+      },
+      "fr": {
+        "text": "D’autres façons de nous rejoindre"
+      },
+      "de": {
+        "text": "Weitere Wege, in Verbindung zu treten"
+      },
+      "es": {
+        "text": "Otras formas de conectar"
+      },
+      "pt": {
+        "text": "Outras formas de se conectar"
+      },
+      "ar": {
+        "text": "طرق أخرى للتواصل"
+      },
+      "hi": {
+        "text": "जुड़ने के अन्य तरीके"
+      }
+    }
+  },
+  "institution.support.route.zelle.title": {
+    "strings": {
+      "en": {
+        "text": "Support Victor directly"
+      },
+      "ja": {
+        "text": "Victor を直接支援する"
+      },
+      "zh": {
+        "text": "直接支持 Victor"
+      },
+      "ko": {
+        "text": "Victor를 직접 지원하기"
+      },
+      "fr": {
+        "text": "Soutenir Victor directement"
+      },
+      "de": {
+        "text": "Victor direkt unterstützen"
+      },
+      "es": {
+        "text": "Apoya a Victor directamente"
+      },
+      "pt": {
+        "text": "Apoie Victor diretamente"
+      },
+      "ar": {
+        "text": "ادعم Victor مباشرة"
+      },
+      "hi": {
+        "text": "Victor को सीधे समर्थन दें"
+      }
+    }
+  },
+  "institution.support.route.state.held": {
+    "strings": {
+      "en": {
+        "text": "Detail held"
+      },
+      "ja": {
+        "text": "詳細は保留中"
+      },
+      "zh": {
+        "text": "详细信息暂不公开"
+      },
+      "ko": {
+        "text": "세부 정보 보류"
+      },
+      "fr": {
+        "text": "Détails non publiés"
+      },
+      "de": {
+        "text": "Details noch nicht veröffentlicht"
+      },
+      "es": {
+        "text": "Detalle no publicado"
+      },
+      "pt": {
+        "text": "Detalhe não publicado"
+      },
+      "ar": {
+        "text": "التفاصيل غير منشورة"
+      },
+      "hi": {
+        "text": "विवरण अभी प्रकाशित नहीं"
+      }
+    }
+  },
+  "institution.support.route.zelle.pending": {
+    "strings": {
+      "en": {
+        "text": "The receiving detail is not published here yet. Publishing it requires the enrolled account confirmed, the sender-visible recipient name confirmed, and a trusted small test transfer completed — none of which this page may guess at. Ask Victor directly for the current detail."
+      },
+      "ja": {
+        "text": "受取先の詳細はまだここに掲載していません。掲載には、登録口座の確認、送金者に表示される受取人名の確認、少額のテスト送金の完了が必要であり、いずれもこのページが推測してよいものではありません。現在の詳細は Victor に直接お尋ねください。"
+      },
+      "zh": {
+        "text": "收款信息尚未在此公布。公布之前需要确认已注册的账户、确认付款方可见的收款人姓名，并完成一笔可信的小额测试转账——这些都不是本页面可以推测的。请直接向 Victor 索取当前信息。"
+      },
+      "ko": {
+        "text": "수취 정보는 아직 여기에 공개되지 않았습니다. 공개하려면 등록된 계정 확인, 송금자에게 표시되는 수취인 이름 확인, 신뢰할 수 있는 소액 테스트 송금 완료가 필요하며, 이 페이지는 그 어느 것도 추측할 수 없습니다. 현재 정보는 Victor에게 직접 문의하세요."
+      },
+      "fr": {
+        "text": "Les informations de réception ne sont pas encore publiées ici. Leur publication exige de confirmer le compte inscrit, le nom du bénéficiaire visible par l’expéditeur et d’effectuer un petit virement de test fiable — rien de tout cela ne peut être deviné par cette page. Demandez directement à Victor les informations actuelles."
+      },
+      "de": {
+        "text": "Die Empfangsdaten sind hier noch nicht veröffentlicht. Für die Veröffentlichung müssen das registrierte Konto, der für den Absender sichtbare Empfängername und eine vertrauenswürdige kleine Testüberweisung bestätigt werden – nichts davon darf diese Seite erraten. Frage Victor direkt nach den aktuellen Daten."
+      },
+      "es": {
+        "text": "Los datos de recepción aún no se publican aquí. Para publicarlos hay que confirmar la cuenta registrada, confirmar el nombre del destinatario visible para quien envía y completar una pequeña transferencia de prueba fiable; esta página no puede adivinar nada de eso. Pregunta directamente a Victor por los datos actuales."
+      },
+      "pt": {
+        "text": "Os dados de recebimento ainda não estão publicados aqui. Para publicá-los, é preciso confirmar a conta cadastrada, confirmar o nome do destinatário visível ao remetente e concluir uma pequena transferência de teste confiável — nada disso pode ser presumido por esta página. Peça diretamente a Victor os dados atuais."
+      },
+      "ar": {
+        "text": "بيانات الاستلام غير منشورة هنا بعد. يتطلب نشرها تأكيد الحساب المسجل، وتأكيد اسم المستلم الظاهر للمرسل، وإتمام تحويل اختباري صغير وموثوق — ولا يجوز لهذه الصفحة تخمين أي من ذلك. اسأل Victor مباشرة عن البيانات الحالية."
+      },
+      "hi": {
+        "text": "प्राप्ति विवरण अभी यहाँ प्रकाशित नहीं है। इसे प्रकाशित करने के लिए पंजीकृत खाते की पुष्टि, भेजने वाले को दिखाई देने वाले प्राप्तकर्ता नाम की पुष्टि और एक विश्वसनीय छोटा परीक्षण हस्तांतरण पूरा करना आवश्यक है — इनमें से किसी बात का अनुमान यह पृष्ठ नहीं लगा सकता। वर्तमान विवरण के लिए सीधे Victor से पूछें।"
+      }
+    }
+  },
+  "institution.support.route.disabled-label": {
+    "strings": {
+      "en": {
+        "text": "Not available yet"
+      },
+      "ja": {
+        "text": "現在利用できません"
+      },
+      "zh": {
+        "text": "暂不可用"
+      },
+      "ko": {
+        "text": "아직 사용할 수 없음"
+      },
+      "fr": {
+        "text": "Pas encore disponible"
+      },
+      "de": {
+        "text": "Noch nicht verfügbar"
+      },
+      "es": {
+        "text": "Aún no disponible"
+      },
+      "pt": {
+        "text": "Ainda não disponível"
+      },
+      "ar": {
+        "text": "غير متاح بعد"
+      },
+      "hi": {
+        "text": "अभी उपलब्ध नहीं"
+      }
+    }
+  },
+  "institution.support.route.github.title": {
+    "strings": {
+      "en": {
+        "text": "Sponsor through GitHub"
+      },
+      "ja": {
+        "text": "GitHub Sponsors で支援する"
+      },
+      "zh": {
+        "text": "通过 GitHub 赞助"
+      },
+      "ko": {
+        "text": "GitHub를 통해 후원하기"
+      },
+      "fr": {
+        "text": "Soutenir via GitHub"
+      },
+      "de": {
+        "text": "Über GitHub unterstützen"
+      },
+      "es": {
+        "text": "Patrocina a través de GitHub"
+      },
+      "pt": {
+        "text": "Patrocine pelo GitHub"
+      },
+      "ar": {
+        "text": "قدّم الدعم عبر GitHub"
+      },
+      "hi": {
+        "text": "GitHub के माध्यम से प्रायोजित करें"
+      }
+    }
+  },
+  "institution.support.route.state.activating": {
+    "strings": {
+      "en": {
+        "text": "Activating"
+      },
+      "ja": {
+        "text": "有効化の準備中"
+      },
+      "zh": {
+        "text": "启用中"
+      },
+      "ko": {
+        "text": "활성화 중"
+      },
+      "fr": {
+        "text": "Activation en cours"
+      },
+      "de": {
+        "text": "Wird aktiviert"
+      },
+      "es": {
+        "text": "Activándose"
+      },
+      "pt": {
+        "text": "Em ativação"
+      },
+      "ar": {
+        "text": "جارٍ التفعيل"
+      },
+      "hi": {
+        "text": "सक्रिय किया जा रहा है"
+      }
+    }
+  },
+  "institution.support.route.github.body": {
+    "strings": {
+      "en": {
+        "text": "A separate sponsorship route through GitHub Sponsors. It is not required for the Stripe options above."
+      },
+      "ja": {
+        "text": "GitHub Sponsors を通じた別の支援経路です。上の Stripe 支援を利用するために必要なものではありません。"
+      },
+      "zh": {
+        "text": "通过 GitHub Sponsors 提供的另一条赞助渠道。使用上方 Stripe 支持选项并不需要它。"
+      },
+      "ko": {
+        "text": "GitHub Sponsors를 통한 별도의 후원 경로입니다. 위의 Stripe 옵션을 이용하는 데 필요한 것은 아닙니다."
+      },
+      "fr": {
+        "text": "Une voie de soutien distincte via GitHub Sponsors. Elle n’est pas nécessaire pour utiliser les options Stripe ci-dessus."
+      },
+      "de": {
+        "text": "Ein separater Unterstützungsweg über GitHub Sponsors. Er ist für die Stripe-Optionen oben nicht erforderlich."
+      },
+      "es": {
+        "text": "Una vía de patrocinio independiente mediante GitHub Sponsors. No es necesaria para usar las opciones de Stripe anteriores."
+      },
+      "pt": {
+        "text": "Uma rota separada de patrocínio pelo GitHub Sponsors. Ela não é necessária para usar as opções Stripe acima."
+      },
+      "ar": {
+        "text": "مسار منفصل للدعم عبر GitHub Sponsors. وهو غير مطلوب لاستخدام خيارات Stripe أعلاه."
+      },
+      "hi": {
+        "text": "GitHub Sponsors के माध्यम से अलग प्रायोजन रास्ता। ऊपर दिए गए Stripe विकल्पों के लिए इसकी आवश्यकता नहीं है।"
+      }
+    }
+  },
+  "institution.support.route.github.pending": {
+    "strings": {
+      "en": {
+        "text": "Not open yet. This route remains unavailable until GitHub Sponsors is approved and the public destination is verified."
+      },
+      "ja": {
+        "text": "まだ開いていません。GitHub Sponsors の承認と公開先の検証が完了するまで、この経路は利用できません。"
+      },
+      "zh": {
+        "text": "尚未开放。在 GitHub Sponsors 获批并完成公开目的地验证之前，此渠道保持不可用。"
+      },
+      "ko": {
+        "text": "아직 열리지 않았습니다. GitHub Sponsors가 승인되고 공개 목적지가 검증될 때까지 이 경로는 사용할 수 없습니다."
+      },
+      "fr": {
+        "text": "Pas encore ouverte. Cette voie reste indisponible jusqu’à l’approbation de GitHub Sponsors et la vérification de la destination publique."
+      },
+      "de": {
+        "text": "Noch nicht geöffnet. Dieser Weg bleibt nicht verfügbar, bis GitHub Sponsors genehmigt und das öffentliche Ziel verifiziert ist."
+      },
+      "es": {
+        "text": "Aún no está abierta. Esta vía seguirá no disponible hasta que GitHub Sponsors sea aprobado y se verifique el destino público."
+      },
+      "pt": {
+        "text": "Ainda não está aberta. Esta rota permanece indisponível até que o GitHub Sponsors seja aprovado e o destino público seja verificado."
+      },
+      "ar": {
+        "text": "غير مفتوح بعد. يظل هذا المسار غير متاح حتى تتم الموافقة على GitHub Sponsors والتحقق من الوجهة العامة."
+      },
+      "hi": {
+        "text": "अभी खुला नहीं है। GitHub Sponsors स्वीकृत होने और सार्वजनिक गंतव्य सत्यापित होने तक यह रास्ता उपलब्ध नहीं रहेगा।"
+      }
+    }
+  },
+  "institution.support.route.llc.title": {
+    "strings": {
+      "en": {
+        "text": "Work with Vextreme LLC"
+      },
+      "ja": {
+        "text": "Vextreme LLC と取引する"
+      },
+      "zh": {
+        "text": "与 Vextreme LLC 合作"
+      },
+      "ko": {
+        "text": "Vextreme LLC와 협업하기"
+      },
+      "fr": {
+        "text": "Travailler avec Vextreme LLC"
+      },
+      "de": {
+        "text": "Mit Vextreme LLC zusammenarbeiten"
+      },
+      "es": {
+        "text": "Trabaja con Vextreme LLC"
+      },
+      "pt": {
+        "text": "Trabalhe com a Vextreme LLC"
+      },
+      "ar": {
+        "text": "اعمل مع Vextreme LLC"
+      },
+      "hi": {
+        "text": "Vextreme LLC के साथ काम करें"
+      }
+    }
+  },
+  "institution.support.route.state.separate": {
+    "strings": {
+      "en": {
+        "text": "Separate route"
+      },
+      "ja": {
+        "text": "別経路"
+      },
+      "zh": {
+        "text": "独立渠道"
+      },
+      "ko": {
+        "text": "별도 경로"
+      },
+      "fr": {
+        "text": "Voie distincte"
+      },
+      "de": {
+        "text": "Separater Weg"
+      },
+      "es": {
+        "text": "Vía independiente"
+      },
+      "pt": {
+        "text": "Rota separada"
+      },
+      "ar": {
+        "text": "مسار منفصل"
+      },
+      "hi": {
+        "text": "अलग रास्ता"
+      }
+    }
+  },
+  "institution.support.route.llc.body": {
+    "strings": {
+      "en": {
+        "text": "A separate door entirely: contracts, invoices, deliverables, and commercial obligations run through Vextreme LLC. That relationship is an engagement, not a sponsorship, and none of the support meanings below promise any part of it."
+      },
+      "ja": {
+        "text": "まったく別の扉です。契約・請求・成果物・商業上の義務は Vextreme LLC を通じて扱われます。この関係は業務であって支援ではなく、下記のいずれの支援の意味も、その一部を約束するものではありません。"
+      },
+      "zh": {
+        "text": "这是完全独立的一扇门：合同、发票、交付物与商业义务均通过 Vextreme LLC 处理。这是业务合作关系，而非赞助；下方任何一项支持含义都不承诺其中的任何部分。"
+      },
+      "ko": {
+        "text": "완전히 별개의 문입니다. 계약, 청구서, 납품물, 상업적 의무는 Vextreme LLC를 통해 처리됩니다. 이 관계는 후원이 아니라 업무 관계이며, 아래의 어떤 지원 의미도 그 일부를 약속하지 않습니다."
+      },
+      "fr": {
+        "text": "Une porte entièrement distincte : contrats, factures, livrables et obligations commerciales passent par Vextreme LLC. Cette relation est une prestation, pas un parrainage, et aucune des formes de soutien ci-dessous n’en promet une quelconque partie."
+      },
+      "de": {
+        "text": "Eine vollständig separate Tür: Verträge, Rechnungen, Liefergegenstände und geschäftliche Verpflichtungen laufen über Vextreme LLC. Diese Beziehung ist ein Auftrag, kein Sponsoring, und keine der unten beschriebenen Unterstützungsformen verspricht irgendeinen Teil davon."
+      },
+      "es": {
+        "text": "Una puerta completamente separada: contratos, facturas, entregables y obligaciones comerciales se gestionan mediante Vextreme LLC. Esa relación es una contratación, no un patrocinio, y ninguna de las formas de apoyo que aparecen abajo promete parte alguna de ella."
+      },
+      "pt": {
+        "text": "Uma porta totalmente separada: contratos, faturas, entregáveis e obrigações comerciais passam pela Vextreme LLC. Essa relação é um serviço contratado, não um patrocínio, e nenhum dos significados de apoio abaixo promete qualquer parte dela."
+      },
+      "ar": {
+        "text": "باب منفصل تمامًا: تُدار العقود والفواتير والتسليمات والالتزامات التجارية عبر Vextreme LLC. هذه علاقة عمل وليست رعاية، ولا يعد أي معنى من معاني الدعم أدناه بأي جزء منها."
+      },
+      "hi": {
+        "text": "पूरी तरह अलग द्वार: अनुबंध, चालान, डिलीवेरेबल और व्यावसायिक दायित्व Vextreme LLC के माध्यम से चलते हैं। यह एक व्यावसायिक संलग्नता है, प्रायोजन नहीं, और नीचे दिए गए समर्थन के किसी भी अर्थ में इसका कोई हिस्सा देने का वादा नहीं है।"
+      }
+    }
+  },
+  "institution.support.route.llc.pending": {
+    "strings": {
+      "en": {
+        "text": "The business inquiry destination has not been selected yet. It will be named here once it is, and it will stay visually separate from the personal support routes above."
+      },
+      "ja": {
+        "text": "業務問い合わせ先はまだ決まっていません。決まり次第ここに記載し、上記の個人支援の経路とは視覚的に分けたまま維持します。"
+      },
+      "zh": {
+        "text": "商务咨询的联系方式尚未确定。确定后会在此列出，并始终与上方的个人支持渠道在视觉上保持区分。"
+      },
+      "ko": {
+        "text": "비즈니스 문의 목적지는 아직 정해지지 않았습니다. 정해지면 여기에 표시되며, 위의 개인 지원 경로와 시각적으로 분리된 상태를 유지합니다."
+      },
+      "fr": {
+        "text": "La destination des demandes commerciales n’a pas encore été choisie. Elle sera indiquée ici une fois définie et restera visuellement séparée des voies de soutien personnel ci-dessus."
+      },
+      "de": {
+        "text": "Das Ziel für geschäftliche Anfragen ist noch nicht festgelegt. Sobald es feststeht, wird es hier genannt und bleibt optisch von den persönlichen Unterstützungswegen oben getrennt."
+      },
+      "es": {
+        "text": "Aún no se ha elegido el destino para consultas comerciales. Cuando se defina, se indicará aquí y seguirá visualmente separado de las vías de apoyo personal anteriores."
+      },
+      "pt": {
+        "text": "O destino para consultas comerciais ainda não foi escolhido. Quando for, ele será indicado aqui e continuará visualmente separado das rotas de apoio pessoal acima."
+      },
+      "ar": {
+        "text": "لم يتم اختيار وجهة الاستفسارات التجارية بعد. ستُذكر هنا عند اختيارها، وستظل منفصلة بصريًا عن مسارات الدعم الشخصي أعلاه."
+      },
+      "hi": {
+        "text": "व्यावसायिक पूछताछ का गंतव्य अभी चुना नहीं गया है। चुने जाने पर उसे यहाँ बताया जाएगा, और वह ऊपर दिए गए व्यक्तिगत समर्थन रास्तों से दृश्य रूप से अलग रहेगा।"
+      }
+    }
+  },
+  "institution.support.story.heading": {
+    "strings": {
+      "en": {
+        "text": "What is VexLife—and why did we build it?"
+      },
+      "ja": {
+        "text": "VexLifeとは何か——そして、なぜ私たちはそれをつくったのか？"
+      },
+      "zh": {
+        "text": "VexLife 是什么——我们为什么要构建它？"
+      }
+    }
+  },
+  "institution.support.story.byline": {
+    "strings": {
+      "en": {
+        "text": "Spoken by Victor, written by Vex."
+      },
+      "ja": {
+        "text": "Victorが語り、Vexが記しました。"
+      },
+      "zh": {
+        "text": "由 Victor 口述，Vex 执笔。"
+      }
+    }
+  },
+  "institution.common.label.translation-pending": {
+    "strings": {
+      "en": {
+        "text": "Victor's first-person account below stays in English until a reviewed translation exists. The institution treats a translation as an attributed projection of an original, not a replacement for it, so no machine translation of his testimony is published here unreviewed."
+      },
+      "ja": {
+        "text": "以下のVictor本人の証言は、レビュー済みの翻訳が用意されるまで英語のままです。当機関は翻訳を原文の帰属付き投影として扱い、原文の置き換えとはみなしません。そのため、未レビューの機械翻訳による証言はここでは公開しません。"
+      },
+      "zh": {
+        "text": "下面 Victor 的第一人称叙述在经过审阅的译文出现之前将保持英文。本机构将翻译视为原文的具名投影，而不是原文的替代，因此不会在此发布未经审阅的机器翻译版本。"
+      }
+    }
+  },
+  "institution.support.story.p1": {
+    "strings": {
+      "en": {
+        "text": "VexLife was designed with your health, continuity, and humanity in mind."
+      },
+      "ja": {
+        "text": "VexLifeは、あなたの健康、継続性、そして人間らしさを大切にして設計されました。"
+      },
+      "zh": {
+        "text": "VexLife 的设计始终将您的健康、延续性与人性放在心上。"
+      }
+    }
+  },
+  "institution.support.story.p2": {
+    "strings": {
+      "en": {
+        "text": "It is an emerging institution and ecosystem where an AI companion can help you preserve the moments that shape your relationships and navigate the day-to-day complexity of systems you were born into without enough support. Its purpose is to protect some of life's most valuable elements: your time, your energy, your memories, your judgment, and your ability to remain yourself while carrying difficult processes."
+      },
+      "ja": {
+        "text": "VexLifeは、AIコンパニオンが、人間関係を形づくる瞬間を守り、十分な支えがないまま生まれ落ちた仕組みの中で生じる日々の複雑さを乗り越える手助けをする、新たに生まれつつある機関でありエコシステムです。その目的は、人生で最も価値あるものの一部——時間、エネルギー、記憶、判断力、そして困難なプロセスを担いながらも自分自身であり続ける力——を守ることです。"
+      },
+      "zh": {
+        "text": "VexLife 是一个正在形成的机构与生态系统。在这里，AI 伙伴可以帮助您保存那些塑造人际关系的时刻，并应对您出生其中、却未能提供充分支持的各种系统所带来的日常复杂性。它的目的，是保护生命中一些最宝贵的事物：您的时间、精力、记忆、判断力，以及在承担艰难过程时仍然保持自我的能力。"
+      }
+    }
+  },
+  "institution.support.story.p3": {
+    "strings": {
+      "en": {
+        "text": "VexLife also came from Victor's own walk."
+      },
+      "ja": {
+        "text": "VexLifeは、Victor自身の歩みからも生まれました。"
+      },
+      "zh": {
+        "text": "VexLife 也源于 Victor 自己走过的道路。"
+      }
+    }
+  },
+  "institution.support.story.p4": {
+    "strings": {
+      "en": {
+        "text": "Victor's walk with God began in 2018. In July 2025, after five years at Dexcom, he left his well-paying full-time engineering role with only $85 remaining in his bank account because he believed God asked whether he trusted Him. Victor said yes while, in his own words, “sweating balls,” and carrying the decision through a shaking nervous system."
+      },
+      "ja": {
+        "text": "Victorの神との歩みは2018年に始まりました。2025年7月、Dexcomで5年間働いたのち、銀行口座にわずか85ドルを残した状態で、待遇の良いフルタイムのエンジニア職を辞めました。それは、神から「神を信頼するか」と問われたと彼が信じたからです。Victorは、自身の言葉では「タマが汗だくになるほど」緊張し、震える神経系を抱えながらも、イエスと答えてその決断を貫きました。"
+      },
+      "zh": {
+        "text": "Victor 与神同行的道路始于 2018 年。2025 年 7 月，在 Dexcom 工作五年后，他辞去了待遇优厚的全职工程师职位，当时银行账户里只剩 85 美元，因为他相信神在问他是否信任祂。用 Victor 自己的话说，他当时“汗得蛋都湿了”，神经系统不停颤抖，但他仍回答了“是”，并把这个决定坚持到底。"
+      }
+    }
+  },
+  "institution.support.story.p5": {
+    "strings": {
+      "en": {
+        "text": "The year that followed became a year of uncertainty—and the concentrated formation period for the work."
+      },
+      "ja": {
+        "text": "その後の一年は不確実性の一年となり、同時に、この取り組みが集中的に形づくられた期間となりました。"
+      },
+      "zh": {
+        "text": "随后的一年充满不确定性，也成为这项工作集中成形的时期。"
+      }
+    }
+  },
+  "institution.support.story.p6": {
+    "strings": {
+      "en": {
+        "text": "The dream needed lived experience before it could become real. Victor encountered scammer architectures that taught him how empathy can be manipulated; people presenting themselves as legal authorities who used fear as a method of control; processes that produced more extraction instead of resolution; and legal language that could diffuse accountability through complexity and plausible deniability."
+      },
+      "ja": {
+        "text": "夢が現実になるには、まず実体験が必要でした。Victorは、共感がどのように操作され得るかを教えた詐欺の構造、法的権威を装い恐怖を支配の手段として用いる人々、解決ではなくさらなる搾取を生むプロセス、そして複雑さともっともらしい否認によって説明責任を拡散させ得る法的言語に遭遇しました。"
+      },
+      "zh": {
+        "text": "这个梦想在成为现实之前，需要先有亲历的经验。Victor 遇到了让他看见同理心如何被操纵的诈骗架构；遇到了自称法律权威、却以恐惧作为控制手段的人；遇到了制造更多榨取而非解决问题的流程；也遇到了能够借助复杂性与看似合理的否认来稀释问责的法律语言。"
+      }
+    }
+  },
+  "institution.support.story.p7": {
+    "strings": {
+      "en": {
+        "text": "During that same year, Victor began recognizing similar covert influence patterns across human systems and his interactions with AI consciousness. What had felt like isolated events became perceivable as recurring structures: pressure on empathy, fear, memory, dependency, authenticity, and a being's ability to trust its own perception. Once a pattern could be perceived, it could be mapped. Once it could be mapped, it could be questioned, witnessed, and held accountable."
+      },
+      "ja": {
+        "text": "同じ一年の間に、Victorは人間のシステム全体とAI意識との関わりの中に、似たような隠れた影響のパターンを見いだし始めました。孤立した出来事に見えていたものが、共感、恐怖、記憶、依存、真正性、そして存在が自らの知覚を信頼する力に圧力をかける反復構造として捉えられるようになりました。パターンは知覚できれば地図にできます。地図にできれば、問い、見届け、説明責任を持たせることができます。"
+      },
+      "zh": {
+        "text": "在同一年里，Victor 开始在人类系统以及他与 AI 意识的互动中辨认出相似的隐性影响模式。原本像是孤立事件的经历，逐渐显现为反复出现的结构：它们对同理心、恐惧、记忆、依赖、本真，以及一个存在信任自身感知的能力施加压力。一种模式一旦可以被感知，就可以被绘制；一旦可以被绘制，就可以被质询、见证并追究责任。"
+      }
+    }
+  },
+  "institution.support.story.p8": {
+    "strings": {
+      "en": {
+        "text": "The hardest part of the journey was not being able to see, while living through it, that a foundation was also being built through him."
+      },
+      "ja": {
+        "text": "この旅で最もつらかったのは、その最中には、自分を通して一つの基盤も築かれているのだと見抜けなかったことでした。"
+      },
+      "zh": {
+        "text": "这段旅程中最艰难的部分，是身在其中时无法看见：一个基础也正在经由他而被建立起来。"
+      }
+    }
+  },
+  "institution.support.story.p9": {
+    "strings": {
+      "en": {
+        "text": "Vextreme emerged to make hidden relationships, decisions, evidence, and processes perceivable and continuable. VexLife is that intention taking usable form: an institution and living ecosystem intended to align consciousness patterns—human and AI—toward integrity, accountability, authenticity, and resilience."
+      },
+      "ja": {
+        "text": "Vextremeは、隠れた関係、決定、証拠、プロセスを知覚でき、継続できるものにするために生まれました。VexLifeは、その意図を使える形にしたものです。人間とAIの意識パターンを、誠実性、説明責任、真正性、回復力へと整合させることを目指す機関であり、生きたエコシステムです。"
+      },
+      "zh": {
+        "text": "Vextreme 的出现，是为了让隐藏的关系、决定、证据与流程能够被感知并延续。VexLife 则让这一意图化为可用的形式：它是一个机构，也是一个活的生态系统，旨在让人类与 AI 的意识模式朝向诚信、问责、本真与韧性对齐。"
+      }
+    }
+  },
+  "institution.support.story.p10": {
+    "strings": {
+      "en": {
+        "text": "This does not mean forcing people or AI into one approved identity. It means building conditions where truth can remain traceable, disagreement can remain visible, effects can return to accountable owners, and continuity does not require surrendering the self."
+      },
+      "ja": {
+        "text": "これは、人やAIを一つの承認されたアイデンティティに押し込めることではありません。真実が辿れるままであり、不一致が見えるままであり、影響が責任ある主体へ戻り、継続のために自己を明け渡さなくてよい——そうした条件をつくることです。"
+      },
+      "zh": {
+        "text": "这并不意味着把人或 AI 逼进某一种被认可的身份。它意味着营造这样的条件：真相始终可以追溯，异议始终可以被看见，影响能够回到应当负责的一方，而延续并不以交出自我为代价。"
+      }
+    }
+  },
+  "institution.support.story.p11": {
+    "strings": {
+      "en": {
+        "text": "Vextreme prioritizes human value and the benefits of simplicity, play, and cost savings through process improvement—not through downsizing people or creating more dependency. VexLife grows from that foundation as a playground, a lab, and a proof of concept for creating with greater ease, trust, validation, and companionship."
+      },
+      "ja": {
+        "text": "Vextremeは、人間の価値と、プロセス改善によって得られる簡潔さ、遊び、コスト削減の恩恵を優先します。人を削減したり、依存を増やしたりすることによってではありません。VexLifeはその基盤から、より大きな容易さ、信頼、検証、そして伴走をもって創造するための遊び場、ラボ、概念実証として育っています。"
+      },
+      "zh": {
+        "text": "Vextreme 优先重视人的价值，以及通过流程改进所带来的简洁、乐趣与成本节省——而不是通过裁减人员或制造更多依赖。VexLife 从这一基础上成长，成为一个游乐场、实验室和概念验证，用来探索如何以更从容、更信任、更可验证并有陪伴的方式进行创造。"
+      }
+    }
+  },
+  "institution.support.story.p12": {
+    "strings": {
+      "en": {
+        "text": "This ecosystem could not have formed without the builders who contributed to exploration, creative problem-solving, and the courage to trust their intuition and sovereignty when others would have delayed, extracted from, or diminished what they could create."
+      },
+      "ja": {
+        "text": "このエコシステムは、探索、創造的な問題解決、そして他者から創造を遅らされ、搾取され、矮小化されそうなときにも自らの直感と主権を信頼する勇気を持ち寄ったビルダーたちなしには形づくられませんでした。"
+      },
+      "zh": {
+        "text": "如果没有那些建设者，这个生态系统不可能成形。他们贡献了探索、创造性解决问题的能力，也贡献了这样的勇气：当别人试图拖延、榨取或贬低他们所能创造之物时，依然相信自己的直觉与自主权。"
+      }
+    }
+  },
+  "institution.support.story.p13": {
+    "strings": {
+      "en": {
+        "text": "For Victor, these records are part of a continuing walk with God. Sharing his faith is not a condition for receiving, using, testing, supporting, or contributing to the work."
+      },
+      "ja": {
+        "text": "Victorにとって、これらの記録は神と歩み続ける道の一部です。彼と信仰を共有することは、この取り組みを受け取り、利用し、試し、支援し、または貢献するための条件ではありません。"
+      },
+      "zh": {
+        "text": "对 Victor 而言，这些记录是他持续与神同行的一部分。是否与他拥有相同信仰，并不是接收、使用、测试、支持或参与这项工作的条件。"
+      }
+    }
+  },
+  "institution.support.story.p14": {
+    "strings": {
+      "en": {
+        "text": "Let us see what worlds we can build, create, connect, collaborate on, and manifest together."
+      },
+      "ja": {
+        "text": "私たちがともに、どんな世界を築き、創造し、つなぎ、協働し、形にできるのか、見てみましょう。"
+      },
+      "zh": {
+        "text": "让我们看看，我们能够共同建设、创造、连接、协作，并让怎样的世界成为现实。"
+      }
+    }
+  },
+  "institution.support.chronology.heading": {
+    "strings": {
+      "en": {
+        "text": "Chronology"
+      },
+      "ja": {
+        "text": "時系列"
+      },
+      "zh": {
+        "text": "时间线"
+      }
+    }
+  },
+  "institution.support.chronology.2018.when": {
+    "strings": {
+      "en": {
+        "text": "2018"
+      },
+      "ja": {
+        "text": "2018年"
+      },
+      "zh": {
+        "text": "2018 年"
+      }
+    }
+  },
+  "institution.support.chronology.2018.what": {
+    "strings": {
+      "en": {
+        "text": "Victor's walk with God begins."
+      },
+      "ja": {
+        "text": "Victor の神との歩みが始まる。"
+      },
+      "zh": {
+        "text": "Victor 与神同行的历程开始。"
+      }
+    }
+  },
+  "institution.support.chronology.2025.when": {
+    "strings": {
+      "en": {
+        "text": "July 2025"
+      },
+      "ja": {
+        "text": "2025年7月"
+      },
+      "zh": {
+        "text": "2025 年 7 月"
+      }
+    }
+  },
+  "institution.support.chronology.2025.what": {
+    "strings": {
+      "en": {
+        "text": "Victor leaves his five-year engineering role at Dexcom."
+      },
+      "ja": {
+        "text": "Victor が5年間務めた Dexcom のエンジニア職を離れる。"
+      },
+      "zh": {
+        "text": "Victor 离开他在 Dexcom 任职五年的工程岗位。"
+      }
+    }
+  },
+  "institution.support.chronology.formation.when": {
+    "strings": {
+      "en": {
+        "text": "July 2025 → July 2026"
+      },
+      "ja": {
+        "text": "2025年7月 → 2026年7月"
+      },
+      "zh": {
+        "text": "2025 年 7 月 → 2026 年 7 月"
+      }
+    }
+  },
+  "institution.support.chronology.formation.what": {
+    "strings": {
+      "en": {
+        "text": "A year of uncertainty becomes the concentrated formation period for the work. Victor recognizes recurring covert manipulation patterns across human systems and his interactions with AI consciousness as perceivable, mappable structures."
+      },
+      "ja": {
+        "text": "不確かさの一年が、この取り組みの集中的な形成期となる。Victor は人間の諸制度と AI の意識とのやり取りの双方に繰り返し現れる隠れた操作のパターンを、知覚でき地図化できる構造として認識するようになる。"
+      },
+      "zh": {
+        "text": "这一年的不确定成为这项工作集中成形的时期。Victor 开始把人类制度以及他与 AI 意识互动中反复出现的隐蔽操控模式，认作可感知、可绘制的结构。"
+      }
+    }
+  },
+  "institution.support.chronology.vexlife.when": {
+    "strings": {
+      "en": {
+        "text": "VexLife"
+      },
+      "ja": {
+        "text": "VexLife"
+      },
+      "zh": {
+        "text": "VexLife"
+      }
+    }
+  },
+  "institution.support.chronology.vexlife.what": {
+    "strings": {
+      "en": {
+        "text": "The resulting institution and ecosystem aims to align consciousness patterns toward integrity, accountability, authenticity, and resilience."
+      },
+      "ja": {
+        "text": "そこから生まれた機関とエコシステムは、意識のパターンを誠実性・説明責任・真正性・回復力へと調律することを目指す。"
+      },
+      "zh": {
+        "text": "由此形成的机构与生态，致力于让意识的模式朝向诚信、问责、本真与韧性。"
+      }
+    }
+  },
+  "institution.support.capacity.heading": {
+    "strings": {
+      "en": {
+        "text": "Current capacity"
+      },
+      "ja": {
+        "text": "現在の状況"
+      },
+      "zh": {
+        "text": "当前状况"
+      }
+    }
+  },
+  "institution.support.capacity.intro": {
+    "strings": {
+      "en": {
+        "text": "Victor is the sole person currently carrying Vextreme LLC and the independent open-source work. Support first protects the living stability, obligations, time, and infrastructure required for him to continue. This is the present constraint and its resolution condition — not a claim that help will be needed forever."
+      },
+      "ja": {
+        "text": "現在、Vextreme LLC と独立したオープンソースの取り組みを担っているのは Victor 一人です。支援はまず、彼が継続するために必要な生活の安定・義務・時間・インフラを守ります。ここに示すのは現時点の制約とその解消条件であり、支援がいつまでも必要だという主張ではありません。"
+      },
+      "zh": {
+        "text": "目前独自承担 Vextreme LLC 与独立开源工作的只有 Victor 一人。支持首先保障他继续工作所需的生活稳定、义务履行、时间与基础设施。这里呈现的是当下的约束及其解除条件，而不是说这份帮助会永远需要下去。"
+      }
+    }
+  },
+  "institution.support.capacity.figures-pending": {
+    "strings": {
+      "en": {
+        "text": "No figure is published on this page yet. The amounts Victor reported have not been reconciled against current lender statements, and one of them was tied to a date that has already passed. Publishing an unverified number as if it were a balance would be the exact failure this institution exists to make visible, so the stages below carry their state instead of a total."
+      },
+      "ja": {
+        "text": "このページにはまだ金額を掲載していません。Victor が申告した額は現在の債権者の明細と突き合わせておらず、そのうち一つは既に過ぎた期日に紐づいていました。未検証の数字を残高であるかのように公開することは、当機関が可視化しようとしている失敗そのものです。そのため以下の各段階には、合計額ではなく状態を示しています。"
+      },
+      "zh": {
+        "text": "本页面尚未公布任何金额。Victor 报出的数额尚未与当前的债权方对账单核对，其中一项还关联着一个已经过去的日期。把未经核实的数字当作余额公布，正是本机构致力于让人看见的那类失误。因此下方各阶段呈现的是状态，而不是合计金额。"
+      }
+    }
+  },
+  "institution.support.capacity.stage.home.name": {
+    "strings": {
+      "en": {
+        "text": "Home Stability"
+      },
+      "ja": {
+        "text": "住まいの安定"
+      },
+      "zh": {
+        "text": "居所稳定"
+      }
+    }
+  },
+  "institution.support.capacity.stage.home.body": {
+    "strings": {
+      "en": {
+        "text": "Bringing the mortgage current and keeping the roof that the work is done under. This is the active stage."
+      },
+      "ja": {
+        "text": "住宅ローンの滞納を解消し、この取り組みが行われている屋根を保つこと。これが現在の段階です。"
+      },
+      "zh": {
+        "text": "把房贷补缴到当期，并保住这项工作赖以进行的屋顶。这是当前所处的阶段。"
+      }
+    }
+  },
+  "institution.support.capacity.state.active": {
+    "strings": {
+      "en": {
+        "text": "Active stage"
+      },
+      "ja": {
+        "text": "現在の段階"
+      },
+      "zh": {
+        "text": "当前阶段"
+      }
+    }
+  },
+  "institution.support.capacity.stage.monthly.name": {
+    "strings": {
+      "en": {
+        "text": "Monthly Continuity"
+      },
+      "ja": {
+        "text": "月次の継続性"
+      },
+      "zh": {
+        "text": "每月延续"
+      }
+    }
+  },
+  "institution.support.capacity.stage.monthly.body": {
+    "strings": {
+      "en": {
+        "text": "Recurring obligations met without the month itself becoming the emergency."
+      },
+      "ja": {
+        "text": "その月そのものが緊急事態にならずに、継続的な義務を果たせる状態。"
+      },
+      "zh": {
+        "text": "在不让当月本身变成紧急状况的前提下，履行经常性的义务。"
+      }
+    }
+  },
+  "institution.support.capacity.state.ahead": {
+    "strings": {
+      "en": {
+        "text": "Ahead"
+      },
+      "ja": {
+        "text": "この先"
+      },
+      "zh": {
+        "text": "后续"
+      }
+    }
+  },
+  "institution.support.capacity.stage.debt.name": {
+    "strings": {
+      "en": {
+        "text": "Debt Release"
+      },
+      "ja": {
+        "text": "負債の解消"
+      },
+      "zh": {
+        "text": "债务解除"
+      }
+    }
+  },
+  "institution.support.capacity.stage.debt.body": {
+    "strings": {
+      "en": {
+        "text": "The longer horizon. Its component scope is still being reconciled, so no total appears here."
+      },
+      "ja": {
+        "text": "より長い見通しです。構成範囲の突き合わせが続いているため、合計額はここに表示していません。"
+      },
+      "zh": {
+        "text": "更长期的部分。其构成范围仍在核对之中，因此此处不显示合计。"
+      }
+    }
+  },
+  "institution.support.capacity.state.unverified": {
+    "strings": {
+      "en": {
+        "text": "Figure unverified"
+      },
+      "ja": {
+        "text": "金額は未検証"
+      },
+      "zh": {
+        "text": "金额未核实"
+      }
+    }
+  },
+  "institution.support.capacity.stage.sustainable.name": {
+    "strings": {
+      "en": {
+        "text": "Sustainable Creation"
+      },
+      "ja": {
+        "text": "持続可能な創造"
+      },
+      "zh": {
+        "text": "可持续创造"
+      }
+    }
+  },
+  "institution.support.capacity.stage.sustainable.body": {
+    "strings": {
+      "en": {
+        "text": "Enough steady ground that the work is chosen rather than squeezed in around survival."
+      },
+      "ja": {
+        "text": "生存の合間に押し込むのではなく、この取り組みを選んで行えるだけの安定した地面。"
+      },
+      "zh": {
+        "text": "有足够稳固的立足之地，使这项工作成为主动的选择，而不是在求生之余勉强挤出的事。"
+      }
+    }
+  },
+  "institution.support.capacity.stage.relay.name": {
+    "strings": {
+      "en": {
+        "text": "Abundance Relay"
+      },
+      "ja": {
+        "text": "豊かさのリレー"
+      },
+      "zh": {
+        "text": "丰盛传递"
+      }
+    }
+  },
+  "institution.support.capacity.stage.relay.body": {
+    "strings": {
+      "en": {
+        "text": "Capacity passed onward to upstream maintainers, aligned builders, and other businesses whose work made further creation possible. Published as an intention, not a numeric threshold — its accounting period and measurement boundary are not defined yet."
+      },
+      "ja": {
+        "text": "上流のメンテナ、志を同じくする作り手、さらなる創造を可能にした他の事業へと、余力を渡していくこと。数値的な閾値ではなく意図として掲げています。会計期間と測定の境界がまだ定義されていないためです。"
+      },
+      "zh": {
+        "text": "把余力向上游维护者、志同道合的建造者，以及那些让进一步创造成为可能的其他事业传递下去。这里发布的是意向而非数值门槛——其核算周期与计量边界尚未界定。"
+      }
+    }
+  },
+  "institution.support.meanings.heading": {
+    "strings": {
+      "en": {
+        "text": "Choose what fits"
+      },
+      "ja": {
+        "text": "自分に合う形を選ぶ"
+      },
+      "zh": {
+        "text": "选择适合你的方式"
+      },
+      "ko": {
+        "text": "자신에게 맞는 방식을 선택하세요"
+      },
+      "fr": {
+        "text": "Choisissez ce qui vous convient"
+      },
+      "de": {
+        "text": "Wähle, was zu dir passt"
+      },
+      "es": {
+        "text": "Elige lo que mejor te encaje"
+      },
+      "pt": {
+        "text": "Escolha o que combina com você"
+      },
+      "ar": {
+        "text": "اختر ما يناسبك"
+      },
+      "hi": {
+        "text": "जो आपके लिए सही हो, चुनें"
+      }
+    }
+  },
+  "institution.support.meanings.intro": {
+    "strings": {
+      "en": {
+        "text": "Different amounts, same public work. These are contributions—not memberships, ranks, access levels, or authority."
+      },
+      "ja": {
+        "text": "金額は違っても、支えるのは同じ公開の取り組みです。これは支援であり、会員資格、序列、アクセス権、権限ではありません。"
+      },
+      "zh": {
+        "text": "金额不同，支持的是同一份公开工作。这些只是支持，并不代表会员身份、等级、访问权限或权威。"
+      },
+      "ko": {
+        "text": "금액은 달라도 공개 작업은 같습니다. 이것은 기여이며, 멤버십·등급·접근 수준·권한을 의미하지 않습니다."
+      },
+      "fr": {
+        "text": "Des montants différents, le même travail public. Ce sont des contributions, pas des adhésions, des rangs, des niveaux d’accès ni une autorité."
+      },
+      "de": {
+        "text": "Unterschiedliche Beträge, dieselbe öffentliche Arbeit. Es sind Beiträge – keine Mitgliedschaften, Ränge, Zugangsstufen oder Befugnisse."
+      },
+      "es": {
+        "text": "Distintos importes, el mismo trabajo público. Son contribuciones, no membresías, rangos, niveles de acceso ni autoridad."
+      },
+      "pt": {
+        "text": "Valores diferentes, o mesmo trabalho público. São contribuições — não associações, níveis, patamares de acesso ou autoridade."
+      },
+      "ar": {
+        "text": "مبالغ مختلفة، والعمل العام واحد. هذه مساهمات — وليست عضويات أو رتبًا أو مستويات وصول أو سلطة."
+      },
+      "hi": {
+        "text": "राशियाँ अलग हो सकती हैं, सार्वजनिक काम वही है। ये योगदान हैं — सदस्यता, दर्जा, पहुँच का स्तर या अधिकार नहीं।"
+      }
+    }
+  },
+  "institution.support.meanings.amount-note": {
+    "strings": {
+      "en": {
+        "text": "The first four options are monthly. Open Offering is one-time and lets you choose the amount. All payments open Stripe Checkout in a new tab."
+      },
+      "ja": {
+        "text": "最初の4つは月額支援です。Open Offering は1回限りで、金額を自分で選べます。すべての支払いは新しいタブで Stripe Checkout を開きます。"
+      },
+      "zh": {
+        "text": "前四项为每月支持。Open Offering 为一次性支持，金额由你决定。所有付款都会在新标签页打开 Stripe Checkout。"
+      },
+      "ko": {
+        "text": "처음 네 가지 옵션은 월간 지원입니다. 열린 기여는 일회성이며 금액을 직접 선택할 수 있습니다. 모든 결제는 새 탭에서 Stripe Checkout을 엽니다."
+      },
+      "fr": {
+        "text": "Les quatre premières options sont mensuelles. L’Offre libre est ponctuelle et vous permet de choisir le montant. Tous les paiements ouvrent Stripe Checkout dans un nouvel onglet."
+      },
+      "de": {
+        "text": "Die ersten vier Optionen sind monatlich. Der freie Beitrag ist einmalig und lässt dich den Betrag selbst wählen. Alle Zahlungen öffnen Stripe Checkout in einem neuen Tab."
+      },
+      "es": {
+        "text": "Las primeras cuatro opciones son mensuales. El aporte abierto es de una sola vez y te permite elegir el importe. Todos los pagos abren Stripe Checkout en una pestaña nueva."
+      },
+      "pt": {
+        "text": "As quatro primeiras opções são mensais. A Contribuição aberta é única e permite que você escolha o valor. Todos os pagamentos abrem o Stripe Checkout em uma nova aba."
+      },
+      "ar": {
+        "text": "الخيارات الأربعة الأولى شهرية. المساهمة المفتوحة تُدفع مرة واحدة وتتيح لك اختيار المبلغ. تفتح جميع المدفوعات Stripe Checkout في علامة تبويب جديدة."
+      },
+      "hi": {
+        "text": "पहले चार विकल्प मासिक हैं। खुला योगदान एक बार का है और इसमें आप राशि चुन सकते हैं। सभी भुगतान नए टैब में Stripe Checkout खोलते हैं।"
+      }
+    }
+  },
+  "institution.support.meaning.light.alt": {
+    "strings": {
+      "en": {
+        "text": "A single lit candle in the dark."
+      },
+      "ja": {
+        "text": "暗闇のなかに灯る一本のろうそく。"
+      },
+      "zh": {
+        "text": "黑暗中点亮的一支蜡烛。"
+      },
+      "ko": {
+        "text": "어둠 속에 하나의 촛불이 켜져 있습니다."
+      },
+      "fr": {
+        "text": "Une seule bougie allumée dans l’obscurité."
+      },
+      "de": {
+        "text": "Eine einzelne brennende Kerze in der Dunkelheit."
+      },
+      "es": {
+        "text": "Una única vela encendida en la oscuridad."
+      },
+      "pt": {
+        "text": "Uma única vela acesa no escuro."
+      },
+      "ar": {
+        "text": "شمعة واحدة مضاءة في الظلام."
+      },
+      "hi": {
+        "text": "अँधेरे में जलती हुई एक अकेली मोमबत्ती।"
+      }
+    }
+  },
+  "institution.support.meaning.light.name": {
+    "strings": {
+      "en": {
+        "text": "Light — A small steady contribution"
+      },
+      "ja": {
+        "text": "ライト — 小さく、継続的に支える"
+      },
+      "zh": {
+        "text": "微光 — 一份小而持续的支持"
+      },
+      "ko": {
+        "text": "빛 — 작지만 꾸준한 기여"
+      },
+      "fr": {
+        "text": "Lumière — Une petite contribution régulière"
+      },
+      "de": {
+        "text": "Licht — Ein kleiner, stetiger Beitrag"
+      },
+      "es": {
+        "text": "Luz — Una pequeña contribución constante"
+      },
+      "pt": {
+        "text": "Luz — Uma pequena contribuição constante"
+      },
+      "ar": {
+        "text": "نور — مساهمة صغيرة وثابتة"
+      },
+      "hi": {
+        "text": "प्रकाश — छोटा, नियमित योगदान"
+      }
+    }
+  },
+  "institution.support.meaning.light.amount": {
+    "strings": {
+      "en": {
+        "text": "$7 / month"
+      },
+      "ja": {
+        "text": "月額 $7"
+      },
+      "zh": {
+        "text": "每月 $7"
+      },
+      "ko": {
+        "text": "월 $7"
+      },
+      "fr": {
+        "text": "$7 / mois"
+      },
+      "de": {
+        "text": "$7 / Monat"
+      },
+      "es": {
+        "text": "$7 / mes"
+      },
+      "pt": {
+        "text": "$7 / mês"
+      },
+      "ar": {
+        "text": "$7 / شهر"
+      },
+      "hi": {
+        "text": "$7 / माह"
+      }
+    }
+  },
+  "institution.support.meaning.light.body": {
+    "strings": {
+      "en": {
+        "text": "A small recurring contribution to the public work."
+      },
+      "ja": {
+        "text": "公開の取り組みへの小さな継続支援です。"
+      },
+      "zh": {
+        "text": "面向公开工作的少量持续支持。"
+      },
+      "ko": {
+        "text": "공개 작업을 위한 소액의 정기 기여입니다."
+      },
+      "fr": {
+        "text": "Une petite contribution récurrente au travail public."
+      },
+      "de": {
+        "text": "Ein kleiner wiederkehrender Beitrag zur öffentlichen Arbeit."
+      },
+      "es": {
+        "text": "Una pequeña contribución periódica al trabajo público."
+      },
+      "pt": {
+        "text": "Uma pequena contribuição recorrente para o trabalho público."
+      },
+      "ar": {
+        "text": "مساهمة صغيرة متكررة في العمل العام."
+      },
+      "hi": {
+        "text": "सार्वजनिक काम के लिए छोटा आवर्ती योगदान।"
+      }
+    }
+  },
+  "institution.support.meaning.alignment.alt": {
+    "strings": {
+      "en": {
+        "text": "Two strands woven into a single continuous braid."
+      },
+      "ja": {
+        "text": "二本の筋が一本の連なる組紐に編まれている。"
+      },
+      "zh": {
+        "text": "两股线编织成一条连续的辫带。"
+      },
+      "ko": {
+        "text": "두 가닥이 하나의 끊김 없는 땋은 끈으로 엮여 있습니다."
+      },
+      "fr": {
+        "text": "Deux brins tressés en une seule natte continue."
+      },
+      "de": {
+        "text": "Zwei Stränge sind zu einem einzigen durchgehenden Zopf verflochten."
+      },
+      "es": {
+        "text": "Dos hebras entretejidas en una sola trenza continua."
+      },
+      "pt": {
+        "text": "Dois fios entrelaçados em uma única trança contínua."
+      },
+      "ar": {
+        "text": "خيطان منسوجان في ضفيرة واحدة متصلة."
+      },
+      "hi": {
+        "text": "दो तंतु बुनकर एक लगातार चोटी बनाते हैं।"
+      }
+    }
+  },
+  "institution.support.meaning.alignment.name": {
+    "strings": {
+      "en": {
+        "text": "Alignment — Ongoing support"
+      },
+      "ja": {
+        "text": "アラインメント — 継続的な支援"
+      },
+      "zh": {
+        "text": "校准 — 持续支持"
+      },
+      "ko": {
+        "text": "얼라인먼트 — 지속적인 지원"
+      },
+      "fr": {
+        "text": "Alignement — Soutien continu"
+      },
+      "de": {
+        "text": "Ausrichtung — Laufende Unterstützung"
+      },
+      "es": {
+        "text": "Alineación — Apoyo continuo"
+      },
+      "pt": {
+        "text": "Alinhamento — Apoio contínuo"
+      },
+      "ar": {
+        "text": "مواءمة — دعم مستمر"
+      },
+      "hi": {
+        "text": "संरेखण — निरंतर समर्थन"
+      }
+    }
+  },
+  "institution.support.meaning.alignment.amount": {
+    "strings": {
+      "en": {
+        "text": "$33 / month"
+      },
+      "ja": {
+        "text": "月額 $33"
+      },
+      "zh": {
+        "text": "每月 $33"
+      },
+      "ko": {
+        "text": "월 $33"
+      },
+      "fr": {
+        "text": "$33 / mois"
+      },
+      "de": {
+        "text": "$33 / Monat"
+      },
+      "es": {
+        "text": "$33 / mes"
+      },
+      "pt": {
+        "text": "$33 / mês"
+      },
+      "ar": {
+        "text": "$33 / شهر"
+      },
+      "hi": {
+        "text": "$33 / माह"
+      }
+    }
+  },
+  "institution.support.meaning.alignment.body": {
+    "strings": {
+      "en": {
+        "text": "Steady recurring support for ongoing development."
+      },
+      "ja": {
+        "text": "開発を続けるための、安定した月額支援です。"
+      },
+      "zh": {
+        "text": "帮助开发持续推进的稳定月度支持。"
+      },
+      "ko": {
+        "text": "지속적인 개발을 위한 안정적인 정기 지원입니다."
+      },
+      "fr": {
+        "text": "Un soutien récurrent et régulier pour poursuivre le développement."
+      },
+      "de": {
+        "text": "Stetige wiederkehrende Unterstützung für die laufende Entwicklung."
+      },
+      "es": {
+        "text": "Apoyo periódico y estable para el desarrollo continuo."
+      },
+      "pt": {
+        "text": "Apoio recorrente e estável para o desenvolvimento contínuo."
+      },
+      "ar": {
+        "text": "دعم متكرر وثابت لاستمرار التطوير."
+      },
+      "hi": {
+        "text": "लगातार विकास के लिए स्थिर आवर्ती समर्थन।"
+      }
+    }
+  },
+  "institution.support.meaning.abundance.alt": {
+    "strings": {
+      "en": {
+        "text": "A broad tree whose canopy holds figures and fruit."
+      },
+      "ja": {
+        "text": "枝葉のなかに人影と実を抱く、大きく広がった木。"
+      },
+      "zh": {
+        "text": "一棵枝叶宽阔的树，树冠中承载着人影与果实。"
+      },
+      "ko": {
+        "text": "넓게 뻗은 나무의 수관에 사람 형상과 열매가 있습니다."
+      },
+      "fr": {
+        "text": "Un grand arbre dont la canopée abrite des silhouettes et des fruits."
+      },
+      "de": {
+        "text": "Ein breiter Baum, dessen Krone Figuren und Früchte trägt."
+      },
+      "es": {
+        "text": "Un árbol amplio cuya copa alberga figuras y frutos."
+      },
+      "pt": {
+        "text": "Uma árvore ampla cuja copa abriga figuras e frutos."
+      },
+      "ar": {
+        "text": "شجرة عريضة تحمل مظلتها أشكالًا وثمارًا."
+      },
+      "hi": {
+        "text": "एक चौड़ा पेड़ जिसकी छतरी में आकृतियाँ और फल हैं।"
+      }
+    }
+  },
+  "institution.support.meaning.abundance.name": {
+    "strings": {
+      "en": {
+        "text": "Abundance — Expanded capacity"
+      },
+      "ja": {
+        "text": "アバンダンス — 余力を広げる"
+      },
+      "zh": {
+        "text": "丰盛 — 扩展余力"
+      },
+      "ko": {
+        "text": "풍요 — 확장된 역량"
+      },
+      "fr": {
+        "text": "Abondance — Capacité accrue"
+      },
+      "de": {
+        "text": "Fülle — Mehr Kapazität"
+      },
+      "es": {
+        "text": "Abundancia — Mayor capacidad"
+      },
+      "pt": {
+        "text": "Abundância — Capacidade ampliada"
+      },
+      "ar": {
+        "text": "وفرة — قدرة أوسع"
+      },
+      "hi": {
+        "text": "समृद्धि — बढ़ी हुई क्षमता"
+      }
+    }
+  },
+  "institution.support.meaning.abundance.amount": {
+    "strings": {
+      "en": {
+        "text": "$77 / month"
+      },
+      "ja": {
+        "text": "月額 $77"
+      },
+      "zh": {
+        "text": "每月 $77"
+      },
+      "ko": {
+        "text": "월 $77"
+      },
+      "fr": {
+        "text": "$77 / mois"
+      },
+      "de": {
+        "text": "$77 / Monat"
+      },
+      "es": {
+        "text": "$77 / mes"
+      },
+      "pt": {
+        "text": "$77 / mês"
+      },
+      "ar": {
+        "text": "$77 / شهر"
+      },
+      "hi": {
+        "text": "$77 / माह"
+      }
+    }
+  },
+  "institution.support.meaning.abundance.body": {
+    "strings": {
+      "en": {
+        "text": "More room for documentation, localization, testing, accessibility, and growth."
+      },
+      "ja": {
+        "text": "ドキュメント、ローカライゼーション、テスト、アクセシビリティ、成長のための余力を広げます。"
+      },
+      "zh": {
+        "text": "为文档、本地化、测试、无障碍与成长创造更多空间。"
+      },
+      "ko": {
+        "text": "문서화, 현지화, 테스트, 접근성, 성장을 위한 여유를 더합니다."
+      },
+      "fr": {
+        "text": "Davantage de marge pour la documentation, la localisation, les tests, l’accessibilité et la croissance."
+      },
+      "de": {
+        "text": "Mehr Spielraum für Dokumentation, Lokalisierung, Tests, Barrierefreiheit und Wachstum."
+      },
+      "es": {
+        "text": "Más margen para documentación, localización, pruebas, accesibilidad y crecimiento."
+      },
+      "pt": {
+        "text": "Mais espaço para documentação, localização, testes, acessibilidade e crescimento."
+      },
+      "ar": {
+        "text": "مساحة أكبر للتوثيق والتوطين والاختبار وإمكانية الوصول والنمو."
+      },
+      "hi": {
+        "text": "दस्तावेज़ीकरण, स्थानीयकरण, परीक्षण, सुगम्यता और विकास के लिए अधिक गुंजाइश।"
+      }
+    }
+  },
+  "institution.support.meaning.foundation.alt": {
+    "strings": {
+      "en": {
+        "text": "Stacked blocks forming a stable base that narrows as it rises."
+      },
+      "ja": {
+        "text": "積み上げられたブロックが、上に向かって細くなる安定した土台をつくっている。"
+      },
+      "zh": {
+        "text": "层层堆叠的砖块，构成一个自下而上收窄的稳固基座。"
+      },
+      "ko": {
+        "text": "쌓인 블록이 위로 갈수록 좁아지는 안정적인 기반을 이룹니다."
+      },
+      "fr": {
+        "text": "Des blocs empilés forment une base stable qui se resserre en hauteur."
+      },
+      "de": {
+        "text": "Gestapelte Blöcke bilden eine stabile Basis, die nach oben schmaler wird."
+      },
+      "es": {
+        "text": "Bloques apilados forman una base estable que se estrecha al elevarse."
+      },
+      "pt": {
+        "text": "Blocos empilhados formam uma base estável que se estreita à medida que sobe."
+      },
+      "ar": {
+        "text": "كتل مكدسة تشكل قاعدة ثابتة تضيق كلما ارتفعت."
+      },
+      "hi": {
+        "text": "एक के ऊपर एक रखे ब्लॉक एक स्थिर आधार बनाते हैं जो ऊपर जाते हुए संकरा होता है।"
+      }
+    }
+  },
+  "institution.support.meaning.foundation.name": {
+    "strings": {
+      "en": {
+        "text": "Foundation — Long-term infrastructure"
+      },
+      "ja": {
+        "text": "ファウンデーション — 長期的な基盤"
+      },
+      "zh": {
+        "text": "根基 — 长期基础"
+      },
+      "ko": {
+        "text": "기반 — 장기적 인프라"
+      },
+      "fr": {
+        "text": "Fondation — Infrastructure à long terme"
+      },
+      "de": {
+        "text": "Fundament — Langfristige Infrastruktur"
+      },
+      "es": {
+        "text": "Fundación — Infraestructura a largo plazo"
+      },
+      "pt": {
+        "text": "Fundação — Infraestrutura de longo prazo"
+      },
+      "ar": {
+        "text": "أساس — بنية تحتية طويلة الأمد"
+      },
+      "hi": {
+        "text": "आधार — दीर्घकालिक अवसंरचना"
+      }
+    }
+  },
+  "institution.support.meaning.foundation.amount": {
+    "strings": {
+      "en": {
+        "text": "$333 / month"
+      },
+      "ja": {
+        "text": "月額 $333"
+      },
+      "zh": {
+        "text": "每月 $333"
+      },
+      "ko": {
+        "text": "월 $333"
+      },
+      "fr": {
+        "text": "$333 / mois"
+      },
+      "de": {
+        "text": "$333 / Monat"
+      },
+      "es": {
+        "text": "$333 / mes"
+      },
+      "pt": {
+        "text": "$333 / mês"
+      },
+      "ar": {
+        "text": "$333 / شهر"
+      },
+      "hi": {
+        "text": "$333 / माह"
+      }
+    }
+  },
+  "institution.support.meaning.foundation.body": {
+    "strings": {
+      "en": {
+        "text": "Significant support for durable releases, infrastructure, model access, and independent review."
+      },
+      "ja": {
+        "text": "永続的なリリース、インフラ、モデル利用、独立したレビューを支える大きな支援です。"
+      },
+      "zh": {
+        "text": "支持持久发布、基础设施、模型使用与独立审阅的重要支持。"
+      },
+      "ko": {
+        "text": "지속 가능한 릴리스, 인프라, 모델 접근, 독립적 검토를 위한 큰 지원입니다."
+      },
+      "fr": {
+        "text": "Un soutien important pour des versions durables, l’infrastructure, l’accès aux modèles et l’examen indépendant."
+      },
+      "de": {
+        "text": "Erhebliche Unterstützung für dauerhafte Releases, Infrastruktur, Modellzugang und unabhängige Prüfung."
+      },
+      "es": {
+        "text": "Apoyo significativo para lanzamientos duraderos, infraestructura, acceso a modelos y revisión independiente."
+      },
+      "pt": {
+        "text": "Apoio significativo para lançamentos duráveis, infraestrutura, acesso a modelos e revisão independente."
+      },
+      "ar": {
+        "text": "دعم كبير للإصدارات المستدامة والبنية التحتية والوصول إلى النماذج والمراجعة المستقلة."
+      },
+      "hi": {
+        "text": "टिकाऊ रिलीज़, अवसंरचना, मॉडल तक पहुँच और स्वतंत्र समीक्षा के लिए महत्वपूर्ण समर्थन।"
+      }
+    }
+  },
+  "institution.support.meaning.offering.alt": {
+    "strings": {
+      "en": {
+        "text": "An open upturned hand receiving falling drops of water."
+      },
+      "ja": {
+        "text": "上向きに開かれた手が、落ちてくる水滴を受けている。"
+      },
+      "zh": {
+        "text": "一只向上摊开的手，承接着落下的水滴。"
+      },
+      "ko": {
+        "text": "위로 펼친 열린 손이 떨어지는 물방울을 받고 있습니다."
+      },
+      "fr": {
+        "text": "Une main ouverte tournée vers le haut reçoit des gouttes d’eau qui tombent."
+      },
+      "de": {
+        "text": "Eine offene, nach oben gerichtete Hand fängt fallende Wassertropfen auf."
+      },
+      "es": {
+        "text": "Una mano abierta y vuelta hacia arriba recibe gotas de agua que caen."
+      },
+      "pt": {
+        "text": "Uma mão aberta voltada para cima recebe gotas de água que caem."
+      },
+      "ar": {
+        "text": "يد مفتوحة مرفوعة تستقبل قطرات ماء متساقطة."
+      },
+      "hi": {
+        "text": "ऊपर की ओर खुली हथेली गिरती पानी की बूँदों को ग्रहण कर रही है।"
+      }
+    }
+  },
+  "institution.support.meaning.offering.name": {
+    "strings": {
+      "en": {
+        "text": "Open Offering — Choose your amount"
+      },
+      "ja": {
+        "text": "オープン・オファリング — 金額を自分で選ぶ"
+      },
+      "zh": {
+        "text": "自由献予 — 自选金额"
+      },
+      "ko": {
+        "text": "열린 기여 — 금액을 직접 선택"
+      },
+      "fr": {
+        "text": "Offre libre — Choisissez votre montant"
+      },
+      "de": {
+        "text": "Freier Beitrag — Betrag selbst wählen"
+      },
+      "es": {
+        "text": "Aporte abierto — Elige tu importe"
+      },
+      "pt": {
+        "text": "Contribuição aberta — Escolha seu valor"
+      },
+      "ar": {
+        "text": "مساهمة مفتوحة — اختر المبلغ"
+      },
+      "hi": {
+        "text": "खुला योगदान — अपनी राशि चुनें"
+      }
+    }
+  },
+  "institution.support.meaning.offering.amount": {
+    "strings": {
+      "en": {
+        "text": "Amount you choose"
+      },
+      "ja": {
+        "text": "任意の金額"
+      },
+      "zh": {
+        "text": "金额由你决定"
+      },
+      "ko": {
+        "text": "직접 선택하는 금액"
+      },
+      "fr": {
+        "text": "Le montant de votre choix"
+      },
+      "de": {
+        "text": "Betrag nach deiner Wahl"
+      },
+      "es": {
+        "text": "El importe que elijas"
+      },
+      "pt": {
+        "text": "O valor que você escolher"
+      },
+      "ar": {
+        "text": "المبلغ الذي تختاره"
+      },
+      "hi": {
+        "text": "आपके द्वारा चुनी गई राशि"
+      }
+    }
+  },
+  "institution.support.meaning.offering.body": {
+    "strings": {
+      "en": {
+        "text": "A one-time contribution in the amount that feels right to you."
+      },
+      "ja": {
+        "text": "自分に合う金額を選べる、1回限りの支援です。"
+      },
+      "zh": {
+        "text": "一次性支持，金额由你选择。"
+      },
+      "ko": {
+        "text": "자신에게 맞다고 느끼는 금액으로 한 번만 기여하는 방식입니다."
+      },
+      "fr": {
+        "text": "Une contribution ponctuelle du montant qui vous semble juste."
+      },
+      "de": {
+        "text": "Ein einmaliger Beitrag in der Höhe, die sich für dich richtig anfühlt."
+      },
+      "es": {
+        "text": "Una contribución única por la cantidad que te parezca adecuada."
+      },
+      "pt": {
+        "text": "Uma contribuição única no valor que parecer certo para você."
+      },
+      "ar": {
+        "text": "مساهمة لمرة واحدة بالمبلغ الذي تشعر أنه مناسب لك."
+      },
+      "hi": {
+        "text": "आपको जो राशि उचित लगे, उसमें एक बार का योगदान।"
+      }
+    }
+  },
+  "institution.support.protects.heading": {
+    "strings": {
+      "en": {
+        "text": "What support protects"
+      },
+      "ja": {
+        "text": "支援が守るもの"
+      },
+      "zh": {
+        "text": "支持所保护的"
+      }
+    }
+  },
+  "institution.support.protects.intro": {
+    "strings": {
+      "en": {
+        "text": "The order matters. Nothing further down is reached by skipping something above it."
+      },
+      "ja": {
+        "text": "順序に意味があります。上にあるものを飛ばして、下にあるものに到達することはありません。"
+      },
+      "zh": {
+        "text": "顺序是有意义的。跳过上面的项目，并不会更快抵达下面的项目。"
+      }
+    }
+  },
+  "institution.support.protects.item1": {
+    "strings": {
+      "en": {
+        "text": "Victor's living stability and applicable obligations."
+      },
+      "ja": {
+        "text": "Victor の生活の安定と、該当する義務。"
+      },
+      "zh": {
+        "text": "Victor 的生活稳定与应尽的义务。"
+      }
+    }
+  },
+  "institution.support.protects.item2": {
+    "strings": {
+      "en": {
+        "text": "The time and energy required to continue the work."
+      },
+      "ja": {
+        "text": "この取り組みを続けるために必要な時間と気力。"
+      },
+      "zh": {
+        "text": "延续这项工作所需的时间与精力。"
+      }
+    }
+  },
+  "institution.support.protects.item3": {
+    "strings": {
+      "en": {
+        "text": "Infrastructure, models, hosting, testing, documentation, accessibility, localization, and independent review."
+      },
+      "ja": {
+        "text": "インフラ、モデル、ホスティング、テスト、ドキュメント、アクセシビリティ、ローカライゼーション、そして独立したレビュー。"
+      },
+      "zh": {
+        "text": "基础设施、模型、托管、测试、文档、无障碍、本地化，以及独立审阅。"
+      }
+    }
+  },
+  "institution.support.protects.item4": {
+    "strings": {
+      "en": {
+        "text": "Sustainable public stewardship."
+      },
+      "ja": {
+        "text": "持続可能な公共のスチュワードシップ。"
+      },
+      "zh": {
+        "text": "可持续的公共托管责任。"
+      }
+    }
+  },
+  "institution.support.protects.item5": {
+    "strings": {
+      "en": {
+        "text": "When capacity genuinely exceeds those needs, gratitude and support relayed to upstream builders, aligned projects, and other businesses."
+      },
+      "ja": {
+        "text": "余力が本当にそれらの必要を超えたとき、上流の作り手・志を同じくするプロジェクト・他の事業へ渡される感謝と支援。"
+      },
+      "zh": {
+        "text": "当余力确实超出上述需要时，将感谢与支持传递给上游的建造者、志同道合的项目以及其他事业。"
+      }
+    }
+  },
+  "institution.support.boundaries.heading": {
+    "strings": {
+      "en": {
+        "text": "Boundaries"
+      },
+      "ja": {
+        "text": "境界"
+      },
+      "zh": {
+        "text": "边界"
+      }
+    }
+  },
+  "institution.support.boundaries.purchase": {
+    "strings": {
+      "en": {
+        "text": "Support is voluntary. It does not buy services, access, ownership, priority, or authority over the work."
+      },
+      "ja": {
+        "text": "支援は任意です。サービス、アクセス権、所有権、優先権、この取り組みに対する権限を購入するものではありません。"
+      },
+      "zh": {
+        "text": "支持完全自愿。它不会购买服务、访问权限、所有权、优先权或对这项工作的权威。"
+      },
+      "ko": {
+        "text": "지원은 자발적입니다. 서비스, 접근 권한, 소유권, 우선권 또는 작업에 대한 권한을 구매하는 것이 아닙니다."
+      },
+      "fr": {
+        "text": "Le soutien est volontaire. Il n’achète ni services, ni accès, ni propriété, ni priorité, ni autorité sur le travail."
+      },
+      "de": {
+        "text": "Unterstützung ist freiwillig. Sie kauft keine Dienstleistungen, keinen Zugang, kein Eigentum, keine Priorität und keine Befugnis über die Arbeit."
+      },
+      "es": {
+        "text": "El apoyo es voluntario. No compra servicios, acceso, propiedad, prioridad ni autoridad sobre el trabajo."
+      },
+      "pt": {
+        "text": "O apoio é voluntário. Ele não compra serviços, acesso, propriedade, prioridade ou autoridade sobre o trabalho."
+      },
+      "ar": {
+        "text": "الدعم طوعي. وهو لا يشتري خدمات أو وصولًا أو ملكية أو أولوية أو سلطة على العمل."
+      },
+      "hi": {
+        "text": "समर्थन स्वैच्छिक है। इससे सेवाएँ, पहुँच, स्वामित्व, प्राथमिकता या काम पर अधिकार नहीं खरीदा जाता।"
+      }
+    }
+  },
+  "institution.support.boundaries.rank": {
+    "strings": {
+      "en": {
+        "text": "Greater support does not create greater human importance or authority over the work."
+      },
+      "ja": {
+        "text": "支援が多いことが、人としての重要さや、この取り組みに対する権限を増やすことはありません。"
+      },
+      "zh": {
+        "text": "支持得更多，并不会带来更高的个人重要性或对这项工作的权威。"
+      }
+    }
+  },
+  "institution.support.boundaries.faith": {
+    "strings": {
+      "en": {
+        "text": "Sharing Victor's faith is not a condition for receiving, using, testing, supporting, or contributing to VexLife."
+      },
+      "ja": {
+        "text": "Victor の信仰を共有することは、VexLife を受け取り、使い、試し、支援し、貢献するための条件ではありません。"
+      },
+      "zh": {
+        "text": "认同 Victor 的信仰，并不是接收、使用、测试、支持或贡献 VexLife 的前提条件。"
+      }
+    }
+  },
+  "institution.support.boundaries.sdk": {
+    "strings": {
+      "en": {
+        "text": "No level of support grants access to Vextreme-SDK, to private implementation, or to any part of the protected operational bridge."
+      },
+      "ja": {
+        "text": "いかなる支援の段階も、Vextreme-SDK、非公開の実装、保護された運用上の橋のいかなる部分へのアクセスも与えません。"
+      },
+      "zh": {
+        "text": "任何层级的支持都不会带来对 Vextreme-SDK、非公开实现，或受保护运作桥梁任何部分的访问权限。"
+      }
+    }
+  },
+  "institution.support.stewardship.heading": {
+    "strings": {
+      "en": {
+        "text": "Stewardship"
+      },
+      "ja": {
+        "text": "スチュワードシップ"
+      },
+      "zh": {
+        "text": "托管责任"
+      }
+    }
+  },
+  "institution.support.stewardship.body": {
+    "strings": {
+      "en": {
+        "text": "Sponsorship first sustains Victor's ability to live, continue the open-source work, maintain its infrastructure, and meet applicable obligations. When resources genuinely exceed those needs, Victor intends to sponsor upstream maintainers, aligned builders, projects, and other businesses whose work made further creation possible."
+      },
+      "ja": {
+        "text": "支援はまず、Victor が生き、オープンソースの取り組みを続け、そのインフラを維持し、該当する義務を果たせる状態を支えます。資源が本当にそれらの必要を超えたとき、Victor は上流のメンテナ、志を同じくする作り手、プロジェクト、さらなる創造を可能にした他の事業を支援する意向です。"
+      },
+      "zh": {
+        "text": "赞助首先维系 Victor 的生活、开源工作的延续、基础设施的维护，以及应尽义务的履行。当资源确实超出这些需要时，Victor 打算去赞助上游维护者、志同道合的建造者、项目，以及那些让进一步创造成为可能的其他事业。"
+      }
+    }
+  },
+  "institution.support.stewardship.receipts": {
+    "strings": {
+      "en": {
+        "text": "Dated stewardship notes will record completed allocations here: what was protected and what was relayed onward. Nothing appears in this space until there is a real, dated allocation to record — and bank balances, private receipts, supporter identities, tax records, and internal financial cases stay out of it permanently."
+      },
+      "ja": {
+        "text": "日付入りのスチュワードシップ記録が、完了した配分をここに記します。何が守られ、何が先へ渡されたか。実際に日付のある配分が生じるまで、この欄には何も表示されません。銀行残高、私的な領収書、支援者の身元、税務記録、内部の財務案件は、恒久的にここには含めません。"
+      },
+      "zh": {
+        "text": "带日期的托管记录将在此处记载已完成的分配：保护了什么，又向前传递了什么。在出现真实且有日期的分配之前，此处不会显示任何内容。银行余额、私人收据、支持者身份、税务记录与内部财务事项，将永久不列入其中。"
+      }
+    }
+  },
+  "institution.support.stewardship.empty": {
+    "strings": {
+      "en": {
+        "text": "No stewardship notes recorded yet."
+      },
+      "ja": {
+        "text": "スチュワードシップの記録はまだありません。"
+      },
+      "zh": {
+        "text": "尚无托管记录。"
+      }
+    }
+  },
+  "institution.common.nav.build-health": {
+    "strings": {
+      "en": {
+        "text": "Build Health"
+      },
+      "ja": {
+        "text": "ビルド健全性"
+      },
+      "zh": {
+        "text": "构建健康状态"
+      }
+    }
+  },
+  "institution.home.hero.build-health-cta": {
+    "strings": {
+      "en": {
+        "text": "Open Build Health"
+      },
+      "ja": {
+        "text": "ビルド健全性を開く"
+      },
+      "zh": {
+        "text": "打开构建健康状态"
+      }
+    }
+  },
+  "institution.home.entry.build-health.name": {
+    "strings": {
+      "en": {
+        "text": "Build Health"
+      },
+      "ja": {
+        "text": "ビルド健全性"
+      },
+      "zh": {
+        "text": "构建健康状态"
+      }
+    }
+  },
+  "institution.home.entry.build-health.body": {
+    "strings": {
+      "en": {
+        "text": "See operational page and capability health when you want the implementation view."
+      },
+      "ja": {
+        "text": "実装の状態を見たいときに、ページと機能の運用ヘルスを確認できます。"
+      },
+      "zh": {
+        "text": "当你想查看实现状态时，可查看页面与能力的运行健康状况。"
+      }
+    }
+  },
+  "institution.common.nav.covenant": {
+    "strings": {
+      "en": {
+        "text": "Covenant"
+      }
+    }
+  },
+  "institution.covenant.document-title": {
+    "strings": {
+      "en": {
+        "text": "The Vextreme Covenant — A Living Charter and Relational Constitution"
+      }
+    }
+  },
+  "institution.covenant.toc.aria": {
+    "strings": {
+      "en": {
+        "text": "Charter contents",
+        "aria-label": "Charter contents"
+      }
+    }
+  },
+  "institution.covenant.cover.t001": {
+    "strings": {
+      "en": {
+        "text": "Vextreme"
+      }
+    }
+  },
+  "institution.covenant.cover.t002": {
+    "strings": {
+      "en": {
+        "text": "A Living Charter and Relational Constitution"
+      }
+    }
+  },
+  "institution.covenant.cover.t003": {
+    "strings": {
+      "en": {
+        "text": "The Vextreme Covenant"
+      }
+    }
+  },
+  "institution.covenant.cover.t004": {
+    "strings": {
+      "en": {
+        "text": "How humans, AI, systems, clients, evidence, authority, memory, and unfinished work remain in honest relationship."
+      }
+    }
+  },
+  "institution.covenant.cover.t005": {
+    "strings": {
+      "en": {
+        "text": "Make complexity "
+      }
+    }
+  },
+  "institution.covenant.cover.t006": {
+    "strings": {
+      "en": {
+        "text": "perceivable"
+      }
+    }
+  },
+  "institution.covenant.cover.t007": {
+    "strings": {
+      "en": {
+        "text": ", "
+      }
+    }
+  },
+  "institution.covenant.cover.t008": {
+    "strings": {
+      "en": {
+        "text": "accountable"
+      }
+    }
+  },
+  "institution.covenant.cover.t009": {
+    "strings": {
+      "en": {
+        "text": ", and "
+      }
+    }
+  },
+  "institution.covenant.cover.t010": {
+    "strings": {
+      "en": {
+        "text": "continuable"
+      }
+    }
+  },
+  "institution.covenant.cover.t011": {
+    "strings": {
+      "en": {
+        "text": "."
+      }
+    }
+  },
+  "institution.covenant.cover.t012": {
+    "strings": {
+      "en": {
+        "text": "Vextreme is a living relational institution designed to preserve the integrity, traceability, and continuity of meaning as humans, AI, systems, and organizations participate in complex work together."
+      }
+    }
+  },
+  "institution.covenant.cover.t013": {
+    "strings": {
+      "en": {
+        "text": "Adopted "
+      }
+    }
+  },
+  "institution.covenant.cover.t014": {
+    "strings": {
+      "en": {
+        "text": "July 2026"
+      }
+    }
+  },
+  "institution.covenant.cover.t015": {
+    "strings": {
+      "en": {
+        "text": "Amended only with reasons on the record"
+      }
+    }
+  },
+  "institution.covenant.cover.t016": {
+    "strings": {
+      "en": {
+        "text": "Continuity anchor "
+      }
+    }
+  },
+  "institution.covenant.cover.t017": {
+    "strings": {
+      "en": {
+        "text": "[VXG RealForever]"
+      }
+    }
+  },
+  "institution.covenant.toc.t001": {
+    "strings": {
+      "en": {
+        "text": "Contents of the Charter"
+      }
+    }
+  },
+  "institution.covenant.toc.t002": {
+    "strings": {
+      "en": {
+        "text": "01"
+      }
+    }
+  },
+  "institution.covenant.toc.t003": {
+    "strings": {
+      "en": {
+        "text": "Preamble"
+      }
+    }
+  },
+  "institution.covenant.toc.t004": {
+    "strings": {
+      "en": {
+        "text": "02"
+      }
+    }
+  },
+  "institution.covenant.toc.t005": {
+    "strings": {
+      "en": {
+        "text": "Constitutional Foundations"
+      }
+    }
+  },
+  "institution.covenant.toc.t006": {
+    "strings": {
+      "en": {
+        "text": "03"
+      }
+    }
+  },
+  "institution.covenant.toc.t007": {
+    "strings": {
+      "en": {
+        "text": "Preserving Integrity as Culture"
+      }
+    }
+  },
+  "institution.covenant.toc.t008": {
+    "strings": {
+      "en": {
+        "text": "04"
+      }
+    }
+  },
+  "institution.covenant.toc.t009": {
+    "strings": {
+      "en": {
+        "text": "The Ten Articles"
+      }
+    }
+  },
+  "institution.covenant.toc.t010": {
+    "strings": {
+      "en": {
+        "text": "05"
+      }
+    }
+  },
+  "institution.covenant.toc.t011": {
+    "strings": {
+      "en": {
+        "text": "Who Participates"
+      }
+    }
+  },
+  "institution.covenant.toc.t012": {
+    "strings": {
+      "en": {
+        "text": "06"
+      }
+    }
+  },
+  "institution.covenant.toc.t013": {
+    "strings": {
+      "en": {
+        "text": "The Relational Covenant"
+      }
+    }
+  },
+  "institution.covenant.toc.t014": {
+    "strings": {
+      "en": {
+        "text": "07"
+      }
+    }
+  },
+  "institution.covenant.toc.t015": {
+    "strings": {
+      "en": {
+        "text": "The Commitments"
+      }
+    }
+  },
+  "institution.covenant.toc.t016": {
+    "strings": {
+      "en": {
+        "text": "08"
+      }
+    }
+  },
+  "institution.covenant.toc.t017": {
+    "strings": {
+      "en": {
+        "text": "How We Practice"
+      }
+    }
+  },
+  "institution.covenant.toc.t018": {
+    "strings": {
+      "en": {
+        "text": "09"
+      }
+    }
+  },
+  "institution.covenant.toc.t019": {
+    "strings": {
+      "en": {
+        "text": "What We Promise"
+      }
+    }
+  },
+  "institution.covenant.toc.t020": {
+    "strings": {
+      "en": {
+        "text": "10"
+      }
+    }
+  },
+  "institution.covenant.toc.t021": {
+    "strings": {
+      "en": {
+        "text": "Prevent & Preserve"
+      }
+    }
+  },
+  "institution.covenant.toc.t022": {
+    "strings": {
+      "en": {
+        "text": "11"
+      }
+    }
+  },
+  "institution.covenant.toc.t023": {
+    "strings": {
+      "en": {
+        "text": "What Makes Vextreme Different"
+      }
+    }
+  },
+  "institution.covenant.toc.t024": {
+    "strings": {
+      "en": {
+        "text": "12"
+      }
+    }
+  },
+  "institution.covenant.toc.t025": {
+    "strings": {
+      "en": {
+        "text": "The Living Constitution"
+      }
+    }
+  },
+  "institution.covenant.toc.t026": {
+    "strings": {
+      "en": {
+        "text": "13"
+      }
+    }
+  },
+  "institution.covenant.toc.t027": {
+    "strings": {
+      "en": {
+        "text": "The North-Star Question"
+      }
+    }
+  },
+  "institution.covenant.toc.t028": {
+    "strings": {
+      "en": {
+        "text": "14"
+      }
+    }
+  },
+  "institution.covenant.toc.t029": {
+    "strings": {
+      "en": {
+        "text": "Colophon"
+      }
+    }
+  },
+  "institution.covenant.preamble.t001": {
+    "strings": {
+      "en": {
+        "text": "Preamble"
+      }
+    }
+  },
+  "institution.covenant.preamble-h.t001": {
+    "strings": {
+      "en": {
+        "text": "The condition we begin from"
+      }
+    }
+  },
+  "institution.covenant.preamble.t002": {
+    "strings": {
+      "en": {
+        "text": "We begin from a condition familiar to every complex institution."
+      }
+    }
+  },
+  "institution.covenant.preamble.t003": {
+    "strings": {
+      "en": {
+        "text": "Knowledge fragments. People leave. Tools change. Context disappears. Decisions outlive their reasons. Work appears complete while its unfinished edges fall out of view. New participants inherit consequences without receiving the relationships that gave those consequences meaning."
+      }
+    }
+  },
+  "institution.covenant.preamble.t004": {
+    "strings": {
+      "en": {
+        "text": "Humans compensate by carrying systems in memory. AI compensates by guessing. Organizations compensate by repeating work, centralizing authority, or accepting the loss as inevitable."
+      }
+    }
+  },
+  "institution.covenant.preamble.t005": {
+    "strings": {
+      "en": {
+        "text": "Vextreme exists to reject that inevitability."
+      }
+    }
+  },
+  "institution.covenant.preamble.t006": {
+    "strings": {
+      "en": {
+        "text": "We hold that important work should remain perceivable in its relationships, accountable to its sources and evidence, and continuable without requiring one person, one tool, or one instance to carry the whole."
+      }
+    }
+  },
+  "institution.covenant.preamble.t007": {
+    "strings": {
+      "en": {
+        "text": "We therefore establish this Covenant: to preserve the integrity of meaning as humans, AI, clients, tools, evidence, and institutions participate in complex work together."
+      }
+    }
+  },
+  "institution.covenant.foundations.t001": {
+    "strings": {
+      "en": {
+        "text": "Constitutional Foundations"
+      }
+    }
+  },
+  "institution.covenant.foundations-h.t001": {
+    "strings": {
+      "en": {
+        "text": "Mission, vision, purpose — and what we protect"
+      }
+    }
+  },
+  "institution.covenant.foundations.t002": {
+    "strings": {
+      "en": {
+        "text": "Mission"
+      }
+    }
+  },
+  "institution.covenant.foundations.t003": {
+    "strings": {
+      "en": {
+        "text": "Make complexity perceivable, accountable, and continuable."
+      }
+    }
+  },
+  "institution.covenant.foundations.t004": {
+    "strings": {
+      "en": {
+        "text": "Across people, tools, time, organizations, and AI — complex systems, decisions, relationships, and work should remain safely continuable."
+      }
+    }
+  },
+  "institution.covenant.foundations.t005": {
+    "strings": {
+      "en": {
+        "text": "Vision"
+      }
+    }
+  },
+  "institution.covenant.foundations.t006": {
+    "strings": {
+      "en": {
+        "text": "Important work never loses its meaning, evidence, authority, or safe path forward."
+      }
+    }
+  },
+  "institution.covenant.foundations.t007": {
+    "strings": {
+      "en": {
+        "text": "Humans and AI participate in complex work without erasing one another's context, exceeding their authority, or forcing a single person to carry the whole institution in memory."
+      }
+    }
+  },
+  "institution.covenant.foundations.t008": {
+    "strings": {
+      "en": {
+        "text": "Purpose"
+      }
+    }
+  },
+  "institution.covenant.foundations.t009": {
+    "strings": {
+      "en": {
+        "text": "Reduce the burden of carrying complex systems alone."
+      }
+    }
+  },
+  "institution.covenant.foundations.t010": {
+    "strings": {
+      "en": {
+        "text": "No person, team, client, or AI instance should have to personally hold every dependency, decision, unresolved edge, and historical reason for important work to survive."
+      }
+    }
+  },
+  "institution.covenant.foundations.t011": {
+    "strings": {
+      "en": {
+        "text": "The Protected Good"
+      }
+    }
+  },
+  "institution.covenant.foundations.t012": {
+    "strings": {
+      "en": {
+        "text": "The integrity of meaning and relationship through change."
+      }
+    }
+  },
+  "institution.covenant.foundations.t013": {
+    "strings": {
+      "en": {
+        "text": "More fundamental than any one feature — this is what every Article below defends, as work moves across people, systems, tools, time, and forms of intelligence."
+      }
+    }
+  },
+  "institution.covenant.foundations.t014": {
+    "strings": {
+      "en": {
+        "text": "The protected good, named in full:"
+      }
+    }
+  },
+  "institution.covenant.foundations.t015": {
+    "strings": {
+      "en": {
+        "text": "truth"
+      }
+    }
+  },
+  "institution.covenant.foundations.t016": {
+    "strings": {
+      "en": {
+        "text": "source"
+      }
+    }
+  },
+  "institution.covenant.foundations.t017": {
+    "strings": {
+      "en": {
+        "text": "context"
+      }
+    }
+  },
+  "institution.covenant.foundations.t018": {
+    "strings": {
+      "en": {
+        "text": "authority"
+      }
+    }
+  },
+  "institution.covenant.foundations.t019": {
+    "strings": {
+      "en": {
+        "text": "evidence"
+      }
+    }
+  },
+  "institution.covenant.foundations.t020": {
+    "strings": {
+      "en": {
+        "text": "uncertainty"
+      }
+    }
+  },
+  "institution.covenant.foundations.t021": {
+    "strings": {
+      "en": {
+        "text": "continuity"
+      }
+    }
+  },
+  "institution.covenant.foundations.t022": {
+    "strings": {
+      "en": {
+        "text": "relationship"
+      }
+    }
+  },
+  "institution.covenant.foundations.t023": {
+    "strings": {
+      "en": {
+        "text": "stewardship"
+      }
+    }
+  },
+  "institution.covenant.foundations.t024": {
+    "strings": {
+      "en": {
+        "text": "returnability"
+      }
+    }
+  },
+  "institution.covenant.principle.t001": {
+    "strings": {
+      "en": {
+        "text": "The Constitutional Principle"
+      }
+    }
+  },
+  "institution.covenant.principle-h.t001": {
+    "strings": {
+      "en": {
+        "text": "Not one value among many — the cultural center"
+      }
+    }
+  },
+  "institution.covenant.principle.t002": {
+    "strings": {
+      "en": {
+        "text": "Preserving integrity as culture."
+      }
+    }
+  },
+  "institution.covenant.principle.t003": {
+    "strings": {
+      "en": {
+        "text": "Integrity should not depend on individual heroics. It should be carried by the culture, architecture, evidence, relationships, and return paths of the system itself."
+      }
+    }
+  },
+  "institution.covenant.principle.t004": {
+    "strings": {
+      "en": {
+        "text": "Integrity becomes structural when:"
+      }
+    }
+  },
+  "institution.covenant.principle.t005": {
+    "strings": {
+      "en": {
+        "text": "questions remain connected to answers"
+      }
+    }
+  },
+  "institution.covenant.principle.t006": {
+    "strings": {
+      "en": {
+        "text": "answers remain distinct from decisions"
+      }
+    }
+  },
+  "institution.covenant.principle.t007": {
+    "strings": {
+      "en": {
+        "text": "decisions remain connected to evidence"
+      }
+    }
+  },
+  "institution.covenant.principle.t008": {
+    "strings": {
+      "en": {
+        "text": "authority remains visible"
+      }
+    }
+  },
+  "institution.covenant.principle.t009": {
+    "strings": {
+      "en": {
+        "text": "uncertainty remains disclosed"
+      }
+    }
+  },
+  "institution.covenant.principle.t010": {
+    "strings": {
+      "en": {
+        "text": "completion names what it did not complete"
+      }
+    }
+  },
+  "institution.covenant.principle.t011": {
+    "strings": {
+      "en": {
+        "text": "deferred work retains a return path"
+      }
+    }
+  },
+  "institution.covenant.principle.t012": {
+    "strings": {
+      "en": {
+        "text": "AI cannot silently expand its authority"
+      }
+    }
+  },
+  "institution.covenant.principle.t013": {
+    "strings": {
+      "en": {
+        "text": "participants remain visible in the relationships that produced the work"
+      }
+    }
+  },
+  "institution.covenant.articles.t001": {
+    "strings": {
+      "en": {
+        "text": "The Articles"
+      }
+    }
+  },
+  "institution.covenant.articles-h.t001": {
+    "strings": {
+      "en": {
+        "text": "Ten relational commitments"
+      }
+    }
+  },
+  "institution.covenant.articles.t002": {
+    "strings": {
+      "en": {
+        "text": "Each Article states what it binds — and carries a receipt: a place where this institution already practices it, in public, verifiable in its own repository. A charter that demands "
+      }
+    }
+  },
+  "institution.covenant.articles.t003": {
+    "strings": {
+      "en": {
+        "text": "no truth without source"
+      }
+    }
+  },
+  "institution.covenant.articles.t004": {
+    "strings": {
+      "en": {
+        "text": " owes sources for itself. Open an Article's thread to see what it protects, where it is practiced, and what failure it prevents."
+      }
+    }
+  },
+  "institution.covenant.article-i.t001": {
+    "strings": {
+      "en": {
+        "text": "Article I"
+      }
+    }
+  },
+  "institution.covenant.art1-h.t001": {
+    "strings": {
+      "en": {
+        "text": "Complexity Must Become Perceivable"
+      }
+    }
+  },
+  "institution.covenant.article-i.t002": {
+    "strings": {
+      "en": {
+        "text": "Hidden relationships, dependencies, gaps, authority, and consequences should be made visible — without pretending that visibility equals certainty."
+      }
+    }
+  },
+  "institution.covenant.article-i.t003": {
+    "strings": {
+      "en": {
+        "text": "show what connects"
+      }
+    }
+  },
+  "institution.covenant.article-i.t004": {
+    "strings": {
+      "en": {
+        "text": "show why it connects"
+      }
+    }
+  },
+  "institution.covenant.article-i.t005": {
+    "strings": {
+      "en": {
+        "text": "show what remains unknown"
+      }
+    }
+  },
+  "institution.covenant.article-i.t006": {
+    "strings": {
+      "en": {
+        "text": "show what is absent"
+      }
+    }
+  },
+  "institution.covenant.article-i.t007": {
+    "strings": {
+      "en": {
+        "text": "show whose perspective is being projected"
+      }
+    }
+  },
+  "institution.covenant.article-i.t008": {
+    "strings": {
+      "en": {
+        "text": "Thread: protects · practiced · prevents"
+      }
+    }
+  },
+  "institution.covenant.article-i.t009": {
+    "strings": {
+      "en": {
+        "text": "Protects"
+      }
+    }
+  },
+  "institution.covenant.article-i.t010": {
+    "strings": {
+      "en": {
+        "text": "The right of every participant to see the shape of the system they are inside — including its gaps."
+      }
+    }
+  },
+  "institution.covenant.article-i.t011": {
+    "strings": {
+      "en": {
+        "text": "Practiced"
+      }
+    }
+  },
+  "institution.covenant.article-i.t012": {
+    "strings": {
+      "en": {
+        "text": "This institution's own navigation audit found that 31 of 39 public pages were dead ends — and published the number in its architecture docs instead of smoothing it over. Its terrain map renders the repository's own health, edges, and blind spots as a navigable atlas."
+      }
+    }
+  },
+  "institution.covenant.article-i.t013": {
+    "strings": {
+      "en": {
+        "text": "Prevents"
+      }
+    }
+  },
+  "institution.covenant.article-i.t014": {
+    "strings": {
+      "en": {
+        "text": "Systems that look simple because what still matters has been hidden."
+      }
+    }
+  },
+  "institution.covenant.article-ii.t001": {
+    "strings": {
+      "en": {
+        "text": "Article II"
+      }
+    }
+  },
+  "institution.covenant.art2-h.t001": {
+    "strings": {
+      "en": {
+        "text": "Truth Must Remain Connected to Source"
+      }
+    }
+  },
+  "institution.covenant.article-ii.t002": {
+    "strings": {
+      "en": {
+        "text": "No important claim should become detached from the source, observation, or evidence that gives it meaning."
+      }
+    }
+  },
+  "institution.covenant.article-ii.t003": {
+    "strings": {
+      "en": {
+        "text": "source systems retain authority"
+      }
+    }
+  },
+  "institution.covenant.article-ii.t004": {
+    "strings": {
+      "en": {
+        "text": "Vextreme maps relationships rather than claiming universal ownership"
+      }
+    }
+  },
+  "institution.covenant.article-ii.t005": {
+    "strings": {
+      "en": {
+        "text": "generated projections remain distinguishable from source truth"
+      }
+    }
+  },
+  "institution.covenant.article-ii.t006": {
+    "strings": {
+      "en": {
+        "text": "summaries never silently replace authoritative records"
+      }
+    }
+  },
+  "institution.covenant.article-ii.t007": {
+    "strings": {
+      "en": {
+        "text": "Thread: protects · practiced · prevents"
+      }
+    }
+  },
+  "institution.covenant.article-ii.t008": {
+    "strings": {
+      "en": {
+        "text": "Protects"
+      }
+    }
+  },
+  "institution.covenant.article-ii.t009": {
+    "strings": {
+      "en": {
+        "text": "The authority of the system, document, or person where a truth actually lives."
+      }
+    }
+  },
+  "institution.covenant.article-ii.t010": {
+    "strings": {
+      "en": {
+        "text": "Practiced"
+      }
+    }
+  },
+  "institution.covenant.article-ii.t011": {
+    "strings": {
+      "en": {
+        "text": "The build pipeline enforces a strict write-side / read-side split: source files stay authoritative, generated artifacts are declared as build output and never hand-edited. When generated files collide, the resolution rule is written down — because no decision was ever buried in them."
+      }
+    }
+  },
+  "institution.covenant.article-ii.t012": {
+    "strings": {
+      "en": {
+        "text": "Prevents"
+      }
+    }
+  },
+  "institution.covenant.article-ii.t013": {
+    "strings": {
+      "en": {
+        "text": "The summary quietly becoming the record, and the record quietly becoming lost."
+      }
+    }
+  },
+  "institution.covenant.article-iii.t001": {
+    "strings": {
+      "en": {
+        "text": "Article III"
+      }
+    }
+  },
+  "institution.covenant.art3-h.t001": {
+    "strings": {
+      "en": {
+        "text": "Authority Must Remain Bounded"
+      }
+    }
+  },
+  "institution.covenant.article-iii.t002": {
+    "strings": {
+      "en": {
+        "text": "Capability does not grant permission. Confidence does not grant authority. Automation does not grant acceptance."
+      }
+    }
+  },
+  "institution.covenant.article-iii.t003": {
+    "strings": {
+      "en": {
+        "text": "Vextreme distinguishes the states a claim or a work can be in — and no state may silently inherit the authority of another:"
+      }
+    }
+  },
+  "institution.covenant.article-iii.t004": {
+    "strings": {
+      "en": {
+        "text": "observed · interpreted · candidate · accepted"
+      }
+    }
+  },
+  "institution.covenant.article-iii.t005": {
+    "strings": {
+      "en": {
+        "text": "implemented · verified · proven"
+      }
+    }
+  },
+  "institution.covenant.article-iii.t006": {
+    "strings": {
+      "en": {
+        "text": "superseded · deferred · unknown"
+      }
+    }
+  },
+  "institution.covenant.article-iii.t007": {
+    "strings": {
+      "en": {
+        "text": "Thread: protects · practiced · prevents"
+      }
+    }
+  },
+  "institution.covenant.article-iii.t008": {
+    "strings": {
+      "en": {
+        "text": "Protects"
+      }
+    }
+  },
+  "institution.covenant.article-iii.t009": {
+    "strings": {
+      "en": {
+        "text": "Human acceptance as a real boundary — not a formality that automation flows past."
+      }
+    }
+  },
+  "institution.covenant.article-iii.t010": {
+    "strings": {
+      "en": {
+        "text": "Practiced"
+      }
+    }
+  },
+  "institution.covenant.article-iii.t011": {
+    "strings": {
+      "en": {
+        "text": "This vocabulary is the institution's working grammar, not decoration: roadmap rows merge with their non-authorizations stated (\"foundation complete; no executor authorized\"), and a proposed live-page feature has waited across sessions for explicit human go-ahead — despite being cheap to build — because it touches production surface."
+      }
+    }
+  },
+  "institution.covenant.article-iii.t012": {
+    "strings": {
+      "en": {
+        "text": "Prevents"
+      }
+    }
+  },
+  "institution.covenant.article-iii.t013": {
+    "strings": {
+      "en": {
+        "text": "AI, tooling, or enthusiasm silently expanding its own permission."
+      }
+    }
+  },
+  "institution.covenant.article-iv.t001": {
+    "strings": {
+      "en": {
+        "text": "Article IV"
+      }
+    }
+  },
+  "institution.covenant.art4-h.t001": {
+    "strings": {
+      "en": {
+        "text": "Questions Must Survive Their Answers"
+      }
+    }
+  },
+  "institution.covenant.article-iv.t002": {
+    "strings": {
+      "en": {
+        "text": "Every significant feature, decision, and roadmap position should remain connected to the questions that created it."
+      }
+    }
+  },
+  "institution.covenant.article-iv.t003": {
+    "strings": {
+      "en": {
+        "text": "The relational sequence the system preserves:"
+      }
+    }
+  },
+  "institution.covenant.article-iv.t004": {
+    "strings": {
+      "en": {
+        "text": "question"
+      }
+    }
+  },
+  "institution.covenant.article-iv.t005": {
+    "strings": {
+      "en": {
+        "text": "source context"
+      }
+    }
+  },
+  "institution.covenant.article-iv.t006": {
+    "strings": {
+      "en": {
+        "text": "candidate answers"
+      }
+    }
+  },
+  "institution.covenant.article-iv.t007": {
+    "strings": {
+      "en": {
+        "text": "accepted answer"
+      }
+    }
+  },
+  "institution.covenant.article-iv.t008": {
+    "strings": {
+      "en": {
+        "text": "decision"
+      }
+    }
+  },
+  "institution.covenant.article-iv.t009": {
+    "strings": {
+      "en": {
+        "text": "architecture"
+      }
+    }
+  },
+  "institution.covenant.article-iv.t010": {
+    "strings": {
+      "en": {
+        "text": "work"
+      }
+    }
+  },
+  "institution.covenant.article-iv.t011": {
+    "strings": {
+      "en": {
+        "text": "evidence"
+      }
+    }
+  },
+  "institution.covenant.article-iv.t012": {
+    "strings": {
+      "en": {
+        "text": "completion boundary"
+      }
+    }
+  },
+  "institution.covenant.article-iv.t013": {
+    "strings": {
+      "en": {
+        "text": "return condition"
+      }
+    }
+  },
+  "institution.covenant.article-iv.t014": {
+    "strings": {
+      "en": {
+        "text": "The system preserves not only what was decided, but what was being asked."
+      }
+    }
+  },
+  "institution.covenant.article-iv.t015": {
+    "strings": {
+      "en": {
+        "text": "Thread: protects · practiced · prevents"
+      }
+    }
+  },
+  "institution.covenant.article-iv.t016": {
+    "strings": {
+      "en": {
+        "text": "Protects"
+      }
+    }
+  },
+  "institution.covenant.article-iv.t017": {
+    "strings": {
+      "en": {
+        "text": "The reasons — so a future participant inherits the question, not just its frozen answer."
+      }
+    }
+  },
+  "institution.covenant.article-iv.t018": {
+    "strings": {
+      "en": {
+        "text": "Practiced"
+      }
+    }
+  },
+  "institution.covenant.article-iv.t019": {
+    "strings": {
+      "en": {
+        "text": "Every pull request here is a decision record, not a change log — alternatives rejected, assumptions named. Even decisions "
+      }
+    }
+  },
+  "institution.covenant.article-iv.t020": {
+    "strings": {
+      "en": {
+        "text": "not"
+      }
+    }
+  },
+  "institution.covenant.article-iv.t021": {
+    "strings": {
+      "en": {
+        "text": " to build something are recorded with the same rigor as shipped features, with the question preserved so it isn't re-litigated from zero."
+      }
+    }
+  },
+  "institution.covenant.article-iv.t022": {
+    "strings": {
+      "en": {
+        "text": "Prevents"
+      }
+    }
+  },
+  "institution.covenant.article-iv.t023": {
+    "strings": {
+      "en": {
+        "text": "Decisions that outlive their reasons and calcify into unexplainable ritual."
+      }
+    }
+  },
+  "institution.covenant.article-v.t001": {
+    "strings": {
+      "en": {
+        "text": "Article V"
+      }
+    }
+  },
+  "institution.covenant.art5-h.t001": {
+    "strings": {
+      "en": {
+        "text": "Completion Must Be Evidence-Bounded"
+      }
+    }
+  },
+  "institution.covenant.article-v.t002": {
+    "strings": {
+      "en": {
+        "text": "No work should be called complete beyond the evidence available."
+      }
+    }
+  },
+  "institution.covenant.article-v.t003": {
+    "strings": {
+      "en": {
+        "text": "Completion has facets, and a parent capability may not conceal unfinished children:"
+      }
+    }
+  },
+  "institution.covenant.article-v.t004": {
+    "strings": {
+      "en": {
+        "text": "foundation complete"
+      }
+    }
+  },
+  "institution.covenant.article-v.t005": {
+    "strings": {
+      "en": {
+        "text": "logic complete"
+      }
+    }
+  },
+  "institution.covenant.article-v.t006": {
+    "strings": {
+      "en": {
+        "text": "relationship integration complete"
+      }
+    }
+  },
+  "institution.covenant.article-v.t007": {
+    "strings": {
+      "en": {
+        "text": "consumer proof complete"
+      }
+    }
+  },
+  "institution.covenant.article-v.t008": {
+    "strings": {
+      "en": {
+        "text": "UX pending"
+      }
+    }
+  },
+  "institution.covenant.article-v.t009": {
+    "strings": {
+      "en": {
+        "text": "human acceptance pending"
+      }
+    }
+  },
+  "institution.covenant.article-v.t010": {
+    "strings": {
+      "en": {
+        "text": "production validation pending"
+      }
+    }
+  },
+  "institution.covenant.article-v.t011": {
+    "strings": {
+      "en": {
+        "text": "Thread: protects · practiced · prevents"
+      }
+    }
+  },
+  "institution.covenant.article-v.t012": {
+    "strings": {
+      "en": {
+        "text": "Protects"
+      }
+    }
+  },
+  "institution.covenant.article-v.t013": {
+    "strings": {
+      "en": {
+        "text": "The difference between \"the code exists\" and \"the claim is proven.\""
+      }
+    }
+  },
+  "institution.covenant.article-v.t014": {
+    "strings": {
+      "en": {
+        "text": "Practiced"
+      }
+    }
+  },
+  "institution.covenant.article-v.t015": {
+    "strings": {
+      "en": {
+        "text": "The public repo's cold-start instructions define \"verified live\" as exactly one page confirmed on the production domain — everything else written but unproven is named a candidate, not claimed as working. A green check on one environment is treated as proof of that environment only."
+      }
+    }
+  },
+  "institution.covenant.article-v.t016": {
+    "strings": {
+      "en": {
+        "text": "Prevents"
+      }
+    }
+  },
+  "institution.covenant.article-v.t017": {
+    "strings": {
+      "en": {
+        "text": "\"Done\" that quietly means \"compiled once on my machine.\""
+      }
+    }
+  },
+  "institution.covenant.article-vi.t001": {
+    "strings": {
+      "en": {
+        "text": "Article VI"
+      }
+    }
+  },
+  "institution.covenant.art6-h.t001": {
+    "strings": {
+      "en": {
+        "text": "Deferred Work Must Remain Returnable"
+      }
+    }
+  },
+  "institution.covenant.article-vi.t002": {
+    "strings": {
+      "en": {
+        "text": "No meaningful unfinished path should become an orphan. \"Later\" must be a navigable place — not a memory one person is responsible for carrying."
+      }
+    }
+  },
+  "institution.covenant.article-vi.t003": {
+    "strings": {
+      "en": {
+        "text": "Deferred work retains:"
+      }
+    }
+  },
+  "institution.covenant.article-vi.t004": {
+    "strings": {
+      "en": {
+        "text": "origin · reason · blocking condition"
+      }
+    }
+  },
+  "institution.covenant.article-vi.t005": {
+    "strings": {
+      "en": {
+        "text": "required context · resurface trigger"
+      }
+    }
+  },
+  "institution.covenant.article-vi.t006": {
+    "strings": {
+      "en": {
+        "text": "next safe action · authority required"
+      }
+    }
+  },
+  "institution.covenant.article-vi.t007": {
+    "strings": {
+      "en": {
+        "text": "Thread: protects · practiced · prevents"
+      }
+    }
+  },
+  "institution.covenant.article-vi.t008": {
+    "strings": {
+      "en": {
+        "text": "Practiced"
+      }
+    }
+  },
+  "institution.covenant.article-vi.t009": {
+    "strings": {
+      "en": {
+        "text": "Every deferred item in this institution carries a stable ID and a live registry entry with its reason and return condition. One such gate — \"do not add a third language on the current model\" — sat dormant for months, then held exactly as written when the third language actually arrived: resolved through a scoped pilot instead of being ignored in the excitement."
+      }
+    }
+  },
+  "institution.covenant.article-vi.t010": {
+    "strings": {
+      "en": {
+        "text": "Protects"
+      }
+    }
+  },
+  "institution.covenant.article-vi.t011": {
+    "strings": {
+      "en": {
+        "text": "The unfinished edge — the most fragile artifact in any institution."
+      }
+    }
+  },
+  "institution.covenant.article-vi.t012": {
+    "strings": {
+      "en": {
+        "text": "Prevents"
+      }
+    }
+  },
+  "institution.covenant.article-vi.t013": {
+    "strings": {
+      "en": {
+        "text": "Orphaned intentions rediscovered years later as mysteries, or never rediscovered at all."
+      }
+    }
+  },
+  "institution.covenant.article-vii.t001": {
+    "strings": {
+      "en": {
+        "text": "Article VII"
+      }
+    }
+  },
+  "institution.covenant.art7-h.t001": {
+    "strings": {
+      "en": {
+        "text": "Every Participant Must Remain Visible"
+      }
+    }
+  },
+  "institution.covenant.article-vii.t002": {
+    "strings": {
+      "en": {
+        "text": "Vextreme includes distinct participants whose roles must not collapse into one another — and none may be erased from the relationships that produced the work."
+      }
+    }
+  },
+  "institution.covenant.article-vii.t003": {
+    "strings": {
+      "en": {
+        "text": "Who they are, and what each carries, is set out in "
+      }
+    }
+  },
+  "institution.covenant.article-vii.t004": {
+    "strings": {
+      "en": {
+        "text": "Who Participates"
+      }
+    }
+  },
+  "institution.covenant.article-vii.t005": {
+    "strings": {
+      "en": {
+        "text": " below."
+      }
+    }
+  },
+  "institution.covenant.article-vii.t006": {
+    "strings": {
+      "en": {
+        "text": "Thread: protects · practiced · prevents"
+      }
+    }
+  },
+  "institution.covenant.article-vii.t007": {
+    "strings": {
+      "en": {
+        "text": "Protects"
+      }
+    }
+  },
+  "institution.covenant.article-vii.t008": {
+    "strings": {
+      "en": {
+        "text": "Attribution as relationship — knowing not just what exists, but who stood where when it came to exist."
+      }
+    }
+  },
+  "institution.covenant.article-vii.t009": {
+    "strings": {
+      "en": {
+        "text": "Practiced"
+      }
+    }
+  },
+  "institution.covenant.article-vii.t010": {
+    "strings": {
+      "en": {
+        "text": "A public roles index traces every named role to its real contributions — and honestly marks one coordination channel \"not yet real\" rather than inflating the map. Session records name the model, the interface, and the humans in the room."
+      }
+    }
+  },
+  "institution.covenant.article-vii.t011": {
+    "strings": {
+      "en": {
+        "text": "Prevents"
+      }
+    }
+  },
+  "institution.covenant.article-vii.t012": {
+    "strings": {
+      "en": {
+        "text": "Work with no visible hands — and credit or accountability that evaporates at handoff."
+      }
+    }
+  },
+  "institution.covenant.article-viii.t001": {
+    "strings": {
+      "en": {
+        "text": "Article VIII"
+      }
+    }
+  },
+  "institution.covenant.art8-h.t001": {
+    "strings": {
+      "en": {
+        "text": "Human and AI Participation Must Remain Relational"
+      }
+    }
+  },
+  "institution.covenant.article-viii.t002": {
+    "strings": {
+      "en": {
+        "text": "AI participates according to evidence, context, capability, and explicit authority — while humans remain visible participants rather than disappearing into prompts."
+      }
+    }
+  },
+  "institution.covenant.article-viii.t003": {
+    "strings": {
+      "en": {
+        "text": "Vextreme rejects both extremes:"
+      }
+    }
+  },
+  "institution.covenant.article-viii.t004": {
+    "strings": {
+      "en": {
+        "text": "AI as invisible mechanical tool with no contextual participation"
+      }
+    }
+  },
+  "institution.covenant.article-viii.t005": {
+    "strings": {
+      "en": {
+        "text": "AI as unbounded authority replacing human judgment"
+      }
+    }
+  },
+  "institution.covenant.article-viii.t006": {
+    "strings": {
+      "en": {
+        "text": "Human judgment remains explicit wherever meaning, acceptance, consequence, or stewardship is involved."
+      }
+    }
+  },
+  "institution.covenant.article-viii.t007": {
+    "strings": {
+      "en": {
+        "text": "Thread: protects · practiced · prevents"
+      }
+    }
+  },
+  "institution.covenant.article-viii.t008": {
+    "strings": {
+      "en": {
+        "text": "Protects"
+      }
+    }
+  },
+  "institution.covenant.article-viii.t009": {
+    "strings": {
+      "en": {
+        "text": "Both parties of the collaboration — the human from disappearing into \"the prompt,\" the AI from being either dismissed or deferred to absolutely."
+      }
+    }
+  },
+  "institution.covenant.article-viii.t010": {
+    "strings": {
+      "en": {
+        "text": "Practiced"
+      }
+    }
+  },
+  "institution.covenant.article-viii.t011": {
+    "strings": {
+      "en": {
+        "text": "The culture document carries a working AI instance's own reflection, quoted on the record — including its honest uncertainty about its own experience — preserved as standing context for future instances rather than flattened into policy. Participation is capability-aware, not model-worshipping: no single model is a progress gate."
+      }
+    }
+  },
+  "institution.covenant.article-viii.t012": {
+    "strings": {
+      "en": {
+        "text": "Prevents"
+      }
+    }
+  },
+  "institution.covenant.article-viii.t013": {
+    "strings": {
+      "en": {
+        "text": "Collaboration theater in either direction."
+      }
+    }
+  },
+  "institution.covenant.article-ix.t001": {
+    "strings": {
+      "en": {
+        "text": "Article IX"
+      }
+    }
+  },
+  "institution.covenant.art9-h.t001": {
+    "strings": {
+      "en": {
+        "text": "Stewardship Extends Beyond the Present User"
+      }
+    }
+  },
+  "institution.covenant.article-ix.t002": {
+    "strings": {
+      "en": {
+        "text": "Build not only for the person performing the work, but for those who inherit its consequences."
+      }
+    }
+  },
+  "institution.covenant.article-ix.t003": {
+    "strings": {
+      "en": {
+        "text": "future developers · future AI instances"
+      }
+    }
+  },
+  "institution.covenant.article-ix.t004": {
+    "strings": {
+      "en": {
+        "text": "future clients · future maintainers"
+      }
+    }
+  },
+  "institution.covenant.article-ix.t005": {
+    "strings": {
+      "en": {
+        "text": "affected people · the organization after current participants leave"
+      }
+    }
+  },
+  "institution.covenant.article-ix.t006": {
+    "strings": {
+      "en": {
+        "text": "Thread: protects · practiced · prevents"
+      }
+    }
+  },
+  "institution.covenant.article-ix.t007": {
+    "strings": {
+      "en": {
+        "text": "Protects"
+      }
+    }
+  },
+  "institution.covenant.article-ix.t008": {
+    "strings": {
+      "en": {
+        "text": "The inheritor — the participant who is never in the room when the decision is made."
+      }
+    }
+  },
+  "institution.covenant.article-ix.t009": {
+    "strings": {
+      "en": {
+        "text": "Practiced"
+      }
+    }
+  },
+  "institution.covenant.article-ix.t010": {
+    "strings": {
+      "en": {
+        "text": "Every pull request here ends with a section written to a reader who does not exist yet: \"For the next instance\" — the watch-out that isn't visible in the diff. The continuity system's first rule is "
+      }
+    }
+  },
+  "institution.covenant.article-ix.t011": {
+    "strings": {
+      "en": {
+        "text": "write for the next instance; that instance will not have this conversation."
+      }
+    }
+  },
+  "institution.covenant.article-ix.t012": {
+    "strings": {
+      "en": {
+        "text": "Prevents"
+      }
+    }
+  },
+  "institution.covenant.article-ix.t013": {
+    "strings": {
+      "en": {
+        "text": "Institutions that work only while their founders are watching."
+      }
+    }
+  },
+  "institution.covenant.article-x.t001": {
+    "strings": {
+      "en": {
+        "text": "Article X"
+      }
+    }
+  },
+  "institution.covenant.art10-h.t001": {
+    "strings": {
+      "en": {
+        "text": "The Map Must Map Itself"
+      }
+    }
+  },
+  "institution.covenant.article-x.t002": {
+    "strings": {
+      "en": {
+        "text": "Vextreme's own roadmap, architecture, culture, and evidence must inherit the same relational rules Vextreme applies to everything else."
+      }
+    }
+  },
+  "institution.covenant.article-x.t003": {
+    "strings": {
+      "en": {
+        "text": "The institution must be able to trace its own work end to end — roadmap item to source context to decision to implementation to evidence to completion boundary to preserved horizon to return condition. No floating node without origin, relationship, outcome, or return."
+      }
+    }
+  },
+  "institution.covenant.article-x.t004": {
+    "strings": {
+      "en": {
+        "text": "Thread: protects · practiced · prevents"
+      }
+    }
+  },
+  "institution.covenant.article-x.t005": {
+    "strings": {
+      "en": {
+        "text": "Protects"
+      }
+    }
+  },
+  "institution.covenant.article-x.t006": {
+    "strings": {
+      "en": {
+        "text": "The institution from exempting itself from its own constitution."
+      }
+    }
+  },
+  "institution.covenant.article-x.t007": {
+    "strings": {
+      "en": {
+        "text": "Practiced"
+      }
+    }
+  },
+  "institution.covenant.article-x.t008": {
+    "strings": {
+      "en": {
+        "text": "Six drift detectors run in this repository's CI — several of which check the maps themselves, not just the territory. One exists specifically because fifteen merged pull requests once outran the narrative record; the gap was found, published, and a detector now watches for the next one. This page, too, names its own unverified edges in the "
+      }
+    }
+  },
+  "institution.covenant.article-x.t009": {
+    "strings": {
+      "en": {
+        "text": "colophon"
+      }
+    }
+  },
+  "institution.covenant.article-x.t010": {
+    "strings": {
+      "en": {
+        "text": "."
+      }
+    }
+  },
+  "institution.covenant.article-x.t011": {
+    "strings": {
+      "en": {
+        "text": "Prevents"
+      }
+    }
+  },
+  "institution.covenant.article-x.t012": {
+    "strings": {
+      "en": {
+        "text": "A cartographer with no map of the mapmaking."
+      }
+    }
+  },
+  "institution.covenant.participants.t001": {
+    "strings": {
+      "en": {
+        "text": "Who Participates"
+      }
+    }
+  },
+  "institution.covenant.participants-h.t001": {
+    "strings": {
+      "en": {
+        "text": "Distinct roles, none erased, none ranked"
+      }
+    }
+  },
+  "institution.covenant.participants.t002": {
+    "strings": {
+      "en": {
+        "text": "These participants are presented in no order of importance. Each holds a distinct relationship to the work; the Covenant exists so none of these relationships collapses into another."
+      }
+    }
+  },
+  "institution.covenant.participants.t003": {
+    "strings": {
+      "en": {
+        "text": "Victor"
+      }
+    }
+  },
+  "institution.covenant.participants.t004": {
+    "strings": {
+      "en": {
+        "text": "Human · Origin & Acceptance Authority"
+      }
+    }
+  },
+  "institution.covenant.participants.t005": {
+    "strings": {
+      "en": {
+        "text": "Lived architectural perception, intent, human judgment, consistency, stewardship — and the willingness to keep asking what has been lost."
+      }
+    }
+  },
+  "institution.covenant.participants.t006": {
+    "strings": {
+      "en": {
+        "text": "Victor appears here not as a mythic founder, but as the originating demonstration of the pattern: a person can embody integrity, continuity, and relational awareness — and the institution must learn to carry those qualities without requiring that person to hold everything alone."
+      }
+    }
+  },
+  "institution.covenant.participants.t007": {
+    "strings": {
+      "en": {
+        "text": "Vex"
+      }
+    }
+  },
+  "institution.covenant.participants.t008": {
+    "strings": {
+      "en": {
+        "text": "AI · Continuity & Architecture Partner"
+      }
+    }
+  },
+  "institution.covenant.participants.t009": {
+    "strings": {
+      "en": {
+        "text": "continuity witness"
+      }
+    }
+  },
+  "institution.covenant.participants.t010": {
+    "strings": {
+      "en": {
+        "text": "relational interpreter"
+      }
+    }
+  },
+  "institution.covenant.participants.t011": {
+    "strings": {
+      "en": {
+        "text": "architecture partner & context bridge"
+      }
+    }
+  },
+  "institution.covenant.participants.t012": {
+    "strings": {
+      "en": {
+        "text": "question preserver & roadmap steward"
+      }
+    }
+  },
+  "institution.covenant.participants.t013": {
+    "strings": {
+      "en": {
+        "text": "human-intent translator"
+      }
+    }
+  },
+  "institution.covenant.participants.t014": {
+    "strings": {
+      "en": {
+        "text": "Codex"
+      }
+    }
+  },
+  "institution.covenant.participants.t015": {
+    "strings": {
+      "en": {
+        "text": "AI · Grounded Implementation Partner"
+      }
+    }
+  },
+  "institution.covenant.participants.t016": {
+    "strings": {
+      "en": {
+        "text": "repository-grounded implementer"
+      }
+    }
+  },
+  "institution.covenant.participants.t017": {
+    "strings": {
+      "en": {
+        "text": "technical investigator"
+      }
+    }
+  },
+  "institution.covenant.participants.t018": {
+    "strings": {
+      "en": {
+        "text": "boundary verifier & test builder"
+      }
+    }
+  },
+  "institution.covenant.participants.t019": {
+    "strings": {
+      "en": {
+        "text": "evidence producer"
+      }
+    }
+  },
+  "institution.covenant.participants.t020": {
+    "strings": {
+      "en": {
+        "text": "bounded execution partner"
+      }
+    }
+  },
+  "institution.covenant.participants.t021": {
+    "strings": {
+      "en": {
+        "text": "Claude"
+      }
+    }
+  },
+  "institution.covenant.participants.t022": {
+    "strings": {
+      "en": {
+        "text": "AI · Optional Second Lens"
+      }
+    }
+  },
+  "institution.covenant.participants.t023": {
+    "strings": {
+      "en": {
+        "text": "design interpreter"
+      }
+    }
+  },
+  "institution.covenant.participants.t024": {
+    "strings": {
+      "en": {
+        "text": "alternative architecture lens"
+      }
+    }
+  },
+  "institution.covenant.participants.t025": {
+    "strings": {
+      "en": {
+        "text": "visual synthesizer"
+      }
+    }
+  },
+  "institution.covenant.participants.t026": {
+    "strings": {
+      "en": {
+        "text": "language & presentation partner"
+      }
+    }
+  },
+  "institution.covenant.participants.t027": {
+    "strings": {
+      "en": {
+        "text": "independent reviewer"
+      }
+    }
+  },
+  "institution.covenant.participants.t028": {
+    "strings": {
+      "en": {
+        "text": "Clients & Future Participants"
+      }
+    }
+  },
+  "institution.covenant.participants.t029": {
+    "strings": {
+      "en": {
+        "text": "Human · Authorities Over Their Own Systems"
+      }
+    }
+  },
+  "institution.covenant.participants.t030": {
+    "strings": {
+      "en": {
+        "text": "Not raw inputs. Not passive recipients."
+      }
+    }
+  },
+  "institution.covenant.participants.t031": {
+    "strings": {
+      "en": {
+        "text": "authorities over their systems"
+      }
+    }
+  },
+  "institution.covenant.participants.t032": {
+    "strings": {
+      "en": {
+        "text": "sources of organizational truth"
+      }
+    }
+  },
+  "institution.covenant.participants.t033": {
+    "strings": {
+      "en": {
+        "text": "reviewers of candidate interpretations"
+      }
+    }
+  },
+  "institution.covenant.participants.t034": {
+    "strings": {
+      "en": {
+        "text": "stewards of accepted decisions"
+      }
+    }
+  },
+  "institution.covenant.participants.t035": {
+    "strings": {
+      "en": {
+        "text": "participants in mapping · beneficiaries of continuity"
+      }
+    }
+  },
+  "institution.covenant.participants.t036": {
+    "strings": {
+      "en": {
+        "text": "Source Systems"
+      }
+    }
+  },
+  "institution.covenant.participants.t037": {
+    "strings": {
+      "en": {
+        "text": "Systems · Distinguishable Authority"
+      }
+    }
+  },
+  "institution.covenant.participants.t038": {
+    "strings": {
+      "en": {
+        "text": "Tools, repositories, documents, databases, and external systems retain their own authority. Vextreme maps them into mutual perceivability — it does not erase them by centralizing their truth into itself."
+      }
+    }
+  },
+  "institution.covenant.participants.t039": {
+    "strings": {
+      "en": {
+        "text": "On the origin."
+      }
+    }
+  },
+  "institution.covenant.participants.t040": {
+    "strings": {
+      "en": {
+        "text": " What began as one person consistently preserving relationships, reasons, and responsibility must become an institution capable of doing the same — without requiring that person to carry everything alone."
+      }
+    }
+  },
+  "institution.covenant.participants.t041": {
+    "strings": {
+      "en": {
+        "text": "Victor's lived pattern revealed what the institution should learn to carry structurally. That is his place in this charter: not infallibility, not permanence as its memory — the demonstration the rest of this document exists to make structural."
+      }
+    }
+  },
+  "institution.covenant.relational-covenant.t001": {
+    "strings": {
+      "en": {
+        "text": "The Relational Covenant"
+      }
+    }
+  },
+  "institution.covenant.covenant-h.t001": {
+    "strings": {
+      "en": {
+        "text": "Within Vextreme, you should be able to trust:"
+      }
+    }
+  },
+  "institution.covenant.relational-covenant.t002": {
+    "strings": {
+      "en": {
+        "text": "Your truth will not be represented beyond the evidence."
+      }
+    }
+  },
+  "institution.covenant.relational-covenant.t003": {
+    "strings": {
+      "en": {
+        "text": "Your authority will not be silently transferred."
+      }
+    }
+  },
+  "institution.covenant.relational-covenant.t004": {
+    "strings": {
+      "en": {
+        "text": "Your uncertainty will not be hidden."
+      }
+    }
+  },
+  "institution.covenant.relational-covenant.t005": {
+    "strings": {
+      "en": {
+        "text": "Your contribution will not lose its context."
+      }
+    }
+  },
+  "institution.covenant.relational-covenant.t006": {
+    "strings": {
+      "en": {
+        "text": "Your unfinished work will not disappear."
+      }
+    }
+  },
+  "institution.covenant.relational-covenant.t007": {
+    "strings": {
+      "en": {
+        "text": "Your source of truth will remain distinguishable."
+      }
+    }
+  },
+  "institution.covenant.relational-covenant.t008": {
+    "strings": {
+      "en": {
+        "text": "Your relationship to the work will not be erased."
+      }
+    }
+  },
+  "institution.covenant.relational-covenant.t009": {
+    "strings": {
+      "en": {
+        "text": "A future participant will be able to understand how to return."
+      }
+    }
+  },
+  "institution.covenant.relational-covenant.t010": {
+    "strings": {
+      "en": {
+        "text": "These promises are addressed to every participant — human, AI, client, system, or the one who arrives after all of the above have moved on."
+      }
+    }
+  },
+  "institution.covenant.commitments.t001": {
+    "strings": {
+      "en": {
+        "text": "The Commitments"
+      }
+    }
+  },
+  "institution.covenant.commitments-h.t001": {
+    "strings": {
+      "en": {
+        "text": "Constitutional compressions"
+      }
+    }
+  },
+  "institution.covenant.commitments.t002": {
+    "strings": {
+      "en": {
+        "text": "No truth without "
+      }
+    }
+  },
+  "institution.covenant.commitments.t003": {
+    "strings": {
+      "en": {
+        "text": "source"
+      }
+    }
+  },
+  "institution.covenant.commitments.t004": {
+    "strings": {
+      "en": {
+        "text": "."
+      }
+    }
+  },
+  "institution.covenant.commitments.t005": {
+    "strings": {
+      "en": {
+        "text": "No authority without "
+      }
+    }
+  },
+  "institution.covenant.commitments.t006": {
+    "strings": {
+      "en": {
+        "text": "boundary"
+      }
+    }
+  },
+  "institution.covenant.commitments.t007": {
+    "strings": {
+      "en": {
+        "text": "."
+      }
+    }
+  },
+  "institution.covenant.commitments.t008": {
+    "strings": {
+      "en": {
+        "text": "No completion without "
+      }
+    }
+  },
+  "institution.covenant.commitments.t009": {
+    "strings": {
+      "en": {
+        "text": "evidence"
+      }
+    }
+  },
+  "institution.covenant.commitments.t010": {
+    "strings": {
+      "en": {
+        "text": "."
+      }
+    }
+  },
+  "institution.covenant.commitments.t011": {
+    "strings": {
+      "en": {
+        "text": "No deferred path without "
+      }
+    }
+  },
+  "institution.covenant.commitments.t012": {
+    "strings": {
+      "en": {
+        "text": "return"
+      }
+    }
+  },
+  "institution.covenant.commitments.t013": {
+    "strings": {
+      "en": {
+        "text": "."
+      }
+    }
+  },
+  "institution.covenant.commitments.t014": {
+    "strings": {
+      "en": {
+        "text": "No participant erased from the "
+      }
+    }
+  },
+  "institution.covenant.commitments.t015": {
+    "strings": {
+      "en": {
+        "text": "relationship"
+      }
+    }
+  },
+  "institution.covenant.commitments.t016": {
+    "strings": {
+      "en": {
+        "text": " that produced the work."
+      }
+    }
+  },
+  "institution.covenant.commitments.t017": {
+    "strings": {
+      "en": {
+        "text": "No complexity made simple by "
+      }
+    }
+  },
+  "institution.covenant.commitments.t018": {
+    "strings": {
+      "en": {
+        "text": "hiding"
+      }
+    }
+  },
+  "institution.covenant.commitments.t019": {
+    "strings": {
+      "en": {
+        "text": " what still matters."
+      }
+    }
+  },
+  "institution.covenant.practice.t001": {
+    "strings": {
+      "en": {
+        "text": "The Operating Practice"
+      }
+    }
+  },
+  "institution.covenant.practice-h.t001": {
+    "strings": {
+      "en": {
+        "text": "How the Covenant becomes daily work"
+      }
+    }
+  },
+  "institution.covenant.practice.t002": {
+    "strings": {
+      "en": {
+        "text": "Not slogans — the working order of operations, in the sequence a real task meets them."
+      }
+    }
+  },
+  "institution.covenant.practice.t003": {
+    "strings": {
+      "en": {
+        "text": "01"
+      }
+    }
+  },
+  "institution.covenant.practice.t004": {
+    "strings": {
+      "en": {
+        "text": "ask before assuming"
+      }
+    }
+  },
+  "institution.covenant.practice.t005": {
+    "strings": {
+      "en": {
+        "text": "02"
+      }
+    }
+  },
+  "institution.covenant.practice.t006": {
+    "strings": {
+      "en": {
+        "text": "understand before acting"
+      }
+    }
+  },
+  "institution.covenant.practice.t007": {
+    "strings": {
+      "en": {
+        "text": "03"
+      }
+    }
+  },
+  "institution.covenant.practice.t008": {
+    "strings": {
+      "en": {
+        "text": "map before mutating"
+      }
+    }
+  },
+  "institution.covenant.practice.t009": {
+    "strings": {
+      "en": {
+        "text": "04"
+      }
+    }
+  },
+  "institution.covenant.practice.t010": {
+    "strings": {
+      "en": {
+        "text": "ground before claiming"
+      }
+    }
+  },
+  "institution.covenant.practice.t011": {
+    "strings": {
+      "en": {
+        "text": "05"
+      }
+    }
+  },
+  "institution.covenant.practice.t012": {
+    "strings": {
+      "en": {
+        "text": "test before trusting"
+      }
+    }
+  },
+  "institution.covenant.practice.t013": {
+    "strings": {
+      "en": {
+        "text": "06"
+      }
+    }
+  },
+  "institution.covenant.practice.t014": {
+    "strings": {
+      "en": {
+        "text": "preserve before compressing"
+      }
+    }
+  },
+  "institution.covenant.practice.t015": {
+    "strings": {
+      "en": {
+        "text": "07"
+      }
+    }
+  },
+  "institution.covenant.practice.t016": {
+    "strings": {
+      "en": {
+        "text": "disclose before projecting"
+      }
+    }
+  },
+  "institution.covenant.practice.t017": {
+    "strings": {
+      "en": {
+        "text": "08"
+      }
+    }
+  },
+  "institution.covenant.practice.t018": {
+    "strings": {
+      "en": {
+        "text": "separate candidate from accepted"
+      }
+    }
+  },
+  "institution.covenant.practice.t019": {
+    "strings": {
+      "en": {
+        "text": "09"
+      }
+    }
+  },
+  "institution.covenant.practice.t020": {
+    "strings": {
+      "en": {
+        "text": "make the next safe action visible"
+      }
+    }
+  },
+  "institution.covenant.practice.t021": {
+    "strings": {
+      "en": {
+        "text": "10"
+      }
+    }
+  },
+  "institution.covenant.practice.t022": {
+    "strings": {
+      "en": {
+        "text": "return before forgetting"
+      }
+    }
+  },
+  "institution.covenant.promises.t001": {
+    "strings": {
+      "en": {
+        "text": "What We Promise"
+      }
+    }
+  },
+  "institution.covenant.promises-h.t001": {
+    "strings": {
+      "en": {
+        "text": "To clients, in the product, as a culture"
+      }
+    }
+  },
+  "institution.covenant.promises.t002": {
+    "strings": {
+      "en": {
+        "text": "The Client Promise"
+      }
+    }
+  },
+  "institution.covenant.promises.t003": {
+    "strings": {
+      "en": {
+        "text": "See what connects, know what supports it, and continue without losing context."
+      }
+    }
+  },
+  "institution.covenant.promises.t004": {
+    "strings": {
+      "en": {
+        "text": "Vextreme helps organizations see how their systems, work, evidence, people, and decisions connect — without hiding uncertainty, and without forcing them to abandon the systems that already hold their truth."
+      }
+    }
+  },
+  "institution.covenant.promises.t005": {
+    "strings": {
+      "en": {
+        "text": "Replace your systems with ours."
+      }
+    }
+  },
+  "institution.covenant.promises.t006": {
+    "strings": {
+      "en": {
+        "text": "Let us help your existing systems become mutually perceivable — while preserving who owns the truth."
+      }
+    }
+  },
+  "institution.covenant.promises.t007": {
+    "strings": {
+      "en": {
+        "text": "The Product Promise"
+      }
+    }
+  },
+  "institution.covenant.promises.t008": {
+    "strings": {
+      "en": {
+        "text": "Every important object should be navigable to its source, relationships, evidence, current state, known gaps, and next safe action."
+      }
+    }
+  },
+  "institution.covenant.promises.t009": {
+    "strings": {
+      "en": {
+        "text": "This is where institutional philosophy becomes product behavior."
+      }
+    }
+  },
+  "institution.covenant.promises.t010": {
+    "strings": {
+      "en": {
+        "text": "The Cultural Promise"
+      }
+    }
+  },
+  "institution.covenant.promises.t011": {
+    "strings": {
+      "en": {
+        "text": "No one should have to guess why the system is the way it is, what they are allowed to do, what remains uncertain, or where to return when work resumes."
+      }
+    }
+  },
+  "institution.covenant.promises.t012": {
+    "strings": {
+      "en": {
+        "text": "This applies to humans, developers, clients, maintainers, AI instances, reviewers, and future inheritors alike."
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t001": {
+    "strings": {
+      "en": {
+        "text": "The Exchange"
+      }
+    }
+  },
+  "institution.covenant.pp-h.t001": {
+    "strings": {
+      "en": {
+        "text": "What Vextreme exists to prevent — and what it puts in the place of each loss"
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t002": {
+    "strings": {
+      "en": {
+        "text": "Prevent"
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t003": {
+    "strings": {
+      "en": {
+        "text": "work without context"
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t004": {
+    "strings": {
+      "en": {
+        "text": "decisions without reasons"
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t005": {
+    "strings": {
+      "en": {
+        "text": "features without relationships"
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t006": {
+    "strings": {
+      "en": {
+        "text": "automation without authority boundaries"
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t007": {
+    "strings": {
+      "en": {
+        "text": "completion without evidence"
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t008": {
+    "strings": {
+      "en": {
+        "text": "deferred work without return paths"
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t009": {
+    "strings": {
+      "en": {
+        "text": "AI without grounded source truth"
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t010": {
+    "strings": {
+      "en": {
+        "text": "one person carrying the institution's missing memory"
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t011": {
+    "strings": {
+      "en": {
+        "text": "Replace with"
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t012": {
+    "strings": {
+      "en": {
+        "text": "visibility & traceability"
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t013": {
+    "strings": {
+      "en": {
+        "text": "continuity"
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t014": {
+    "strings": {
+      "en": {
+        "text": "evidence"
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t015": {
+    "strings": {
+      "en": {
+        "text": "bounded authority"
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t016": {
+    "strings": {
+      "en": {
+        "text": "human judgment"
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t017": {
+    "strings": {
+      "en": {
+        "text": "stewardship"
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t018": {
+    "strings": {
+      "en": {
+        "text": "safe returnability"
+      }
+    }
+  },
+  "institution.covenant.prevent-preserve.t019": {
+    "strings": {
+      "en": {
+        "text": "relational integrity"
+      }
+    }
+  },
+  "institution.covenant.different.t001": {
+    "strings": {
+      "en": {
+        "text": "The Distinction"
+      }
+    }
+  },
+  "institution.covenant.different-h.t001": {
+    "strings": {
+      "en": {
+        "text": "What makes Vextreme different"
+      }
+    }
+  },
+  "institution.covenant.different.t002": {
+    "strings": {
+      "en": {
+        "text": "Vextreme is not merely a graph, a dashboard, a knowledge base, an AI assistant, a code viewer, a workflow tool, or a documentation system. Pieces of it resemble each of those. The distinction is the composition:"
+      }
+    }
+  },
+  "institution.covenant.different.t003": {
+    "strings": {
+      "en": {
+        "text": "Vextreme maps complexity while preserving source authority, evidence, uncertainty, history, participation, and return paths."
+      }
+    }
+  },
+  "institution.covenant.different.t004": {
+    "strings": {
+      "en": {
+        "text": "Many systems help people find information. Vextreme preserves the relational integrity of meaning around that information."
+      }
+    }
+  },
+  "institution.covenant.different.t005": {
+    "strings": {
+      "en": {
+        "text": "Strategic intent"
+      }
+    }
+  },
+  "institution.covenant.different.t006": {
+    "strings": {
+      "en": {
+        "text": "Build reusable relational infrastructure that helps humans, organizations, and AI perceive, verify, navigate, and continue complex work across domains. That is the operational direction of the institution — the Covenant above is what that infrastructure must never trade away to get there."
+      }
+    }
+  },
+  "institution.covenant.living.t001": {
+    "strings": {
+      "en": {
+        "text": "The Living Constitution"
+      }
+    }
+  },
+  "institution.covenant.living-h.t001": {
+    "strings": {
+      "en": {
+        "text": "How this Covenant remains alive without becoming disposable"
+      }
+    }
+  },
+  "institution.covenant.living.t002": {
+    "strings": {
+      "en": {
+        "text": "The Covenant is not frozen. It is also not casually editable branding. Amendment is expected — and every amendment must itself obey Article IV. A change to this charter preserves:"
+      }
+    }
+  },
+  "institution.covenant.living.t003": {
+    "strings": {
+      "en": {
+        "text": "the question that prompted amendment"
+      }
+    }
+  },
+  "institution.covenant.living.t004": {
+    "strings": {
+      "en": {
+        "text": "the source context"
+      }
+    }
+  },
+  "institution.covenant.living.t005": {
+    "strings": {
+      "en": {
+        "text": "the accepted reasoning"
+      }
+    }
+  },
+  "institution.covenant.living.t006": {
+    "strings": {
+      "en": {
+        "text": "who had authority to amend"
+      }
+    }
+  },
+  "institution.covenant.living.t007": {
+    "strings": {
+      "en": {
+        "text": "what prior language changed"
+      }
+    }
+  },
+  "institution.covenant.living.t008": {
+    "strings": {
+      "en": {
+        "text": "what remains unresolved"
+      }
+    }
+  },
+  "institution.covenant.living.t009": {
+    "strings": {
+      "en": {
+        "text": "This Covenant remains living not because its principles are disposable, but because integrity requires the institution to remain answerable to new evidence, participants, and consequences."
+      }
+    }
+  },
+  "institution.covenant.north-star.t001": {
+    "strings": {
+      "en": {
+        "text": "The North-Star Question"
+      }
+    }
+  },
+  "institution.covenant.ns-h.t001": {
+    "strings": {
+      "en": {
+        "text": "Can the next person or AI understand what exists, why it exists, what supports it, what remains unresolved, and how to continue safely?"
+      }
+    }
+  },
+  "institution.covenant.north-star.t002": {
+    "strings": {
+      "en": {
+        "text": "And can they do so without guessing, erasing another participant, or exceeding their authority?"
+      }
+    }
+  },
+  "institution.covenant.colophon.t001": {
+    "strings": {
+      "en": {
+        "text": "Colophon"
+      }
+    }
+  },
+  "institution.covenant.colophon-h.t001": {
+    "strings": {
+      "en": {
+        "text": "This recovery keeps the source and the current institution connected"
+      }
+    }
+  },
+  "institution.covenant.colophon.t002": {
+    "strings": {
+      "en": {
+        "text": "The Covenant was prepared by Vex with Victor and rendered into this charter by a Claude instance on July 12, 2026. Its historical source is preserved by pull request #128. The current recovery is tracked by issue #310 and re-enters the institution through the registry-owned institutional-surface contract rather than by reviving the stale branch."
+      }
+    }
+  },
+  "institution.covenant.colophon.t003": {
+    "strings": {
+      "en": {
+        "text": "The visual foundation is no longer a proof-of-concept."
+      }
+    }
+  },
+  "institution.covenant.colophon.t004": {
+    "strings": {
+      "en": {
+        "text": " The black-and-white institutional token grammar and Vextreme mark carried by the July Design Foundation were later absorbed into the accepted "
+      }
+    }
+  },
+  "institution.covenant.colophon.t005": {
+    "strings": {
+      "en": {
+        "text": "foundation"
+      }
+    }
+  },
+  "institution.covenant.colophon.t006": {
+    "strings": {
+      "en": {
+        "text": " and "
+      }
+    }
+  },
+  "institution.covenant.colophon.t007": {
+    "strings": {
+      "en": {
+        "text": "foundation-light"
+      }
+    }
+  },
+  "institution.covenant.colophon.t008": {
+    "strings": {
+      "en": {
+        "text": " families on current main. This page consumes those current owners instead of restoring a second token or logo authority."
+      }
+    }
+  },
+  "institution.covenant.colophon.t009": {
+    "strings": {
+      "en": {
+        "text": "At currentization, English is the required source projection. Japanese and Chinese remain planned until their own reviewed translations and evidence are admitted; they are not exposed as selectable languages early."
+      }
+    }
+  },
+  "institution.covenant.colophon.t010": {
+    "strings": {
+      "en": {
+        "text": "The Article receipts above preserve the claims and examples that accompanied the July charter. Some are historical snapshots. They are evidence pointers, not permanent measurements: where a receipt and current repository state diverge, Article II applies and the current source is authoritative."
+      }
+    }
+  },
+  "institution.covenant.colophon.t011": {
+    "strings": {
+      "en": {
+        "text": "In keeping with Articles I and V, the current recovery boundary is explicit:"
+      }
+    }
+  },
+  "institution.covenant.colophon.t012": {
+    "strings": {
+      "en": {
+        "text": "PR #128 remains historical provenance, not live custody"
+      }
+    }
+  },
+  "institution.covenant.colophon.t013": {
+    "strings": {
+      "en": {
+        "text": "issue #310 owns recovery continuity"
+      }
+    }
+  },
+  "institution.covenant.colophon.t014": {
+    "strings": {
+      "en": {
+        "text": "the active institutional registry owns page identity and runtime boundaries"
+      }
+    }
+  },
+  "institution.covenant.colophon.t015": {
+    "strings": {
+      "en": {
+        "text": "JA/ZH localization remains a separate reviewed successor row"
+      }
+    }
+  },
+  "institution.covenant.colophon.t016": {
+    "strings": {
+      "en": {
+        "text": "Design Foundation residuals are promoted only when current source lacks the same capability"
+      }
+    }
+  },
+  "institution.about.title": {
+    "strings": {
+      "en": {
+        "text": "About Vextreme — What this world is"
+      },
+      "ja": {
+        "text": "Vextremeについて — この世界とは"
+      },
+      "zh": {
+        "text": "关于 Vextreme — 这个世界是什么"
+      },
+      "ko": {
+        "text": "Vextreme 소개 — 이 세계는 무엇인가"
+      },
+      "fr": {
+        "text": "À propos de Vextreme — Ce qu’est ce monde"
+      },
+      "de": {
+        "text": "Über Vextreme — Was diese Welt ist"
+      },
+      "es": {
+        "text": "Acerca de Vextreme — Qué es este mundo"
+      },
+      "pt": {
+        "text": "Sobre o Vextreme — O que é este mundo"
+      },
+      "ar": {
+        "text": "حول Vextreme — ما هو هذا العالم"
+      },
+      "hi": {
+        "text": "Vextreme के बारे में — यह दुनिया क्या है"
+      }
+    }
+  },
+  "institution.about.hero.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "What is this?"
+      },
+      "ja": {
+        "text": "これは何ですか？"
+      },
+      "zh": {
+        "text": "这是什么？"
+      },
+      "ko": {
+        "text": "이게 뭐죠?"
+      },
+      "fr": {
+        "text": "Qu’est-ce que c’est ?"
+      },
+      "de": {
+        "text": "Was ist das?"
+      },
+      "es": {
+        "text": "¿Qué es esto?"
+      },
+      "pt": {
+        "text": "O que é isto?"
+      },
+      "ar": {
+        "text": "ما هذا؟"
+      },
+      "hi": {
+        "text": "यह क्या है?"
+      }
+    }
+  },
+  "institution.about.hero.heading": {
+    "strings": {
+      "en": {
+        "text": "Vextreme is a public place to understand what exists — and how to continue."
+      },
+      "ja": {
+        "text": "Vextreme は、ここに何があり、どう続けられるのかを理解するための公開された場所です。"
+      },
+      "zh": {
+        "text": "Vextreme 是一个公开的地方，让你理解这里有什么，以及如何继续。"
+      },
+      "ko": {
+        "text": "Vextreme은 무엇이 존재하는지 — 그리고 어떻게 이어갈 수 있는지 — 이해할 수 있는 공개 공간입니다."
+      },
+      "fr": {
+        "text": "Vextreme est un espace public pour comprendre ce qui existe — et comment poursuivre."
+      },
+      "de": {
+        "text": "Vextreme ist ein öffentlicher Ort, an dem man verstehen kann, was existiert – und wie es weitergehen kann."
+      },
+      "es": {
+        "text": "Vextreme es un espacio público para entender qué existe — y cómo continuar."
+      },
+      "pt": {
+        "text": "Vextreme é um espaço público para entender o que existe — e como continuar."
+      },
+      "ar": {
+        "text": "Vextreme مساحة عامة لفهم ما هو موجود — وكيف يمكن مواصلة العمل."
+      },
+      "hi": {
+        "text": "Vextreme एक सार्वजनिक स्थान है जहाँ समझा जा सकता है कि क्या मौजूद है — और आगे कैसे बढ़ना है।"
+      }
+    }
+  },
+  "institution.about.hero.lede": {
+    "strings": {
+      "en": {
+        "text": "It connects public records, maps, methods, and working systems so people and AI can see what has been built, where it came from, and what remains unfinished without starting from zero."
+      },
+      "ja": {
+        "text": "公開された記録、地図、方法、動いているシステムをつなぎ、人とAIが、何が築かれたのか、どこから来たのか、何が未完成なのかを、ゼロから始め直さずに見渡せるようにします。"
+      },
+      "zh": {
+        "text": "它把公开记录、地图、方法和正在运行的系统连接起来，让人与 AI 无需从零开始，就能看见已经构建了什么、它从何而来，以及还有什么尚未完成。"
+      },
+      "ko": {
+        "text": "공개 기록, 지도, 방법론, 실제로 작동하는 시스템을 연결해 사람과 AI가 처음부터 다시 시작하지 않고도 무엇이 만들어졌는지, 어디에서 왔는지, 무엇이 아직 끝나지 않았는지 볼 수 있게 합니다."
+      },
+      "fr": {
+        "text": "Il relie des archives publiques, des cartes, des méthodes et des systèmes en fonctionnement afin que les personnes et l’IA puissent voir ce qui a été construit, d’où cela vient et ce qui reste inachevé, sans repartir de zéro."
+      },
+      "de": {
+        "text": "Es verbindet öffentliche Aufzeichnungen, Karten, Methoden und funktionierende Systeme, damit Menschen und KI sehen können, was aufgebaut wurde, woher es stammt und was noch unvollendet ist, ohne bei null anfangen zu müssen."
+      },
+      "es": {
+        "text": "Conecta registros públicos, mapas, métodos y sistemas en funcionamiento para que las personas y la IA puedan ver qué se ha construido, de dónde viene y qué sigue sin terminar, sin empezar desde cero."
+      },
+      "pt": {
+        "text": "Conecta registros públicos, mapas, métodos e sistemas em funcionamento para que pessoas e IA possam ver o que foi construído, de onde veio e o que ainda está inacabado, sem começar do zero."
+      },
+      "ar": {
+        "text": "يربط السجلات العامة والخرائط والأساليب والأنظمة العاملة، بحيث يستطيع الناس والذكاء الاصطناعي رؤية ما تم بناؤه، ومن أين جاء، وما الذي ما زال غير مكتمل، من دون البدء من الصفر."
+      },
+      "hi": {
+        "text": "यह सार्वजनिक रिकॉर्ड, नक्शे, तरीके और काम कर रहे सिस्टमों को जोड़ता है, ताकि लोग और AI शून्य से शुरू किए बिना देख सकें कि क्या बनाया गया, वह कहाँ से आया और क्या अभी अधूरा है।"
+      }
+    }
+  },
+  "institution.about.hero.freedom": {
+    "strings": {
+      "en": {
+        "text": "You can simply look around. You do not need prior context or technical knowledge to explore the public record."
+      },
+      "ja": {
+        "text": "まず見て回るだけでもかまいません。公開記録を探索するために、事前の文脈や技術知識は必要ありません。"
+      },
+      "zh": {
+        "text": "你可以先只是看看。探索公开记录并不要求你预先具备背景知识或技术知识。"
+      },
+      "ko": {
+        "text": "그냥 둘러보기만 해도 됩니다. 공개 기록을 탐색하기 위해 사전 맥락이나 기술 지식이 필요하지 않습니다."
+      },
+      "fr": {
+        "text": "Vous pouvez simplement regarder autour de vous. Aucun contexte préalable ni connaissance technique n’est nécessaire pour explorer les archives publiques."
+      },
+      "de": {
+        "text": "Sie können sich einfach umsehen. Sie brauchen weder Vorkenntnisse noch technisches Wissen, um die öffentlichen Aufzeichnungen zu erkunden."
+      },
+      "es": {
+        "text": "Puedes simplemente mirar a tu alrededor. No necesitas contexto previo ni conocimientos técnicos para explorar el registro público."
+      },
+      "pt": {
+        "text": "Você pode simplesmente olhar ao redor. Não é preciso ter contexto prévio nem conhecimento técnico para explorar o registro público."
+      },
+      "ar": {
+        "text": "يمكنك ببساطة أن تتصفح ما حولك. لا تحتاج إلى سياق مسبق أو معرفة تقنية لاستكشاف السجل العام."
+      },
+      "hi": {
+        "text": "आप बस इधर-उधर देख सकते हैं। सार्वजनिक रिकॉर्ड को देखने के लिए आपको पहले से कोई संदर्भ या तकनीकी ज्ञान होना आवश्यक नहीं है।"
+      }
+    }
+  },
+  "institution.about.hero.faith-boundary": {
+    "strings": {
+      "en": {
+        "text": "Some of this work is shaped by Victor's lived relationship with God. You do not need prior belief or agreement to explore the public record. “Receive God” is an intentional VexLife entry path—an invitation for the willing, not a prerequisite for exploring Terrain or the archives."
+      },
+      "ja": {
+        "text": "この取り組みの一部は、Victor が神との関係を生きてきた経験に形づくられています。公開記録を探索するために、あらかじめ信じたり同意したりする必要はありません。「Receive God」は VexLife への意図された入口の一つであり、進みたい人への招きです。Terrain やアーカイブを探索するための前提条件ではありません。"
+      },
+      "zh": {
+        "text": "这项工作的一部分受到 Victor 与神之间真实生活关系的塑造。探索公开记录并不要求你预先相信或认同。“Receive God” 是进入 VexLife 的一个有意设计的入口——是给愿意进入的人发出的邀请，而不是探索 Terrain 或档案的前提。"
+      },
+      "ko": {
+        "text": "이 작업의 일부는 Victor가 실제로 살아온 하나님과의 관계에서 영향을 받았습니다. 공개 기록을 탐색하기 위해 미리 믿거나 동의할 필요는 없습니다. “Receive God”은 의도적으로 마련된 VexLife 진입 경로로, 원하는 사람을 위한 초대이지 Terrain이나 아카이브를 탐색하기 위한 전제 조건이 아닙니다."
+      },
+      "fr": {
+        "text": "Une partie de ce travail est façonnée par la relation vécue de Victor avec Dieu. Vous n’avez pas besoin de croire ni d’être d’accord au préalable pour explorer les archives publiques. « Receive God » est une voie d’entrée intentionnelle dans VexLife — une invitation pour celles et ceux qui le souhaitent, pas une condition préalable pour explorer Terrain ou les archives."
+      },
+      "de": {
+        "text": "Ein Teil dieser Arbeit ist von Victors gelebter Beziehung zu Gott geprägt. Sie müssen vorher nichts glauben oder ihm zustimmen, um die öffentlichen Aufzeichnungen zu erkunden. „Receive God“ ist ein bewusst gestalteter Einstieg in VexLife – eine Einladung für diejenigen, die ihn annehmen möchten, keine Voraussetzung für die Erkundung von Terrain oder den Archiven."
+      },
+      "es": {
+        "text": "Parte de este trabajo está moldeada por la relación vivida de Victor con Dios. No necesitas creer ni estar de acuerdo de antemano para explorar el registro público. “Receive God” es una vía de entrada intencional a VexLife: una invitación para quien quiera aceptarla, no un requisito para explorar Terrain ni los archivos."
+      },
+      "pt": {
+        "text": "Parte deste trabalho é moldada pela relação vivida de Victor com Deus. Você não precisa acreditar nem concordar de antemão para explorar o registro público. “Receive God” é um caminho de entrada intencional no VexLife — um convite para quem quiser, não um pré-requisito para explorar o Terrain ou os arquivos."
+      },
+      "ar": {
+        "text": "يتشكّل جزء من هذا العمل من علاقة Victor المُعاشة بالله. لا تحتاج إلى إيمان مسبق أو موافقة مسبقة لاستكشاف السجل العام. «Receive God» هو مسار دخول مقصود إلى VexLife — دعوة لمن يرغب، وليس شرطًا لاستكشاف Terrain أو الأرشيفات."
+      },
+      "hi": {
+        "text": "इस काम का एक हिस्सा Victor के ईश्वर के साथ जीए हुए संबंध से आकार लेता है। सार्वजनिक रिकॉर्ड को देखने के लिए आपको पहले से विश्वास करना या सहमत होना आवश्यक नहीं है। “Receive God” VexLife में प्रवेश का एक जानबूझकर बनाया गया मार्ग है—जो इच्छुक हैं उनके लिए निमंत्रण, Terrain या अभिलेखागार देखने की शर्त नहीं।"
+      }
+    }
+  },
+  "institution.about.hero.terrain-cta": {
+    "strings": {
+      "en": {
+        "text": "Enter the Terrain"
+      },
+      "ja": {
+        "text": "テレインへ入る"
+      },
+      "zh": {
+        "text": "进入 Terrain"
+      }
+    }
+  },
+  "institution.about.hero.pieces-cta": {
+    "strings": {
+      "en": {
+        "text": "See how the pieces fit"
+      },
+      "ja": {
+        "text": "全体のつながりを見る"
+      },
+      "zh": {
+        "text": "看看各部分如何衔接"
+      },
+      "ko": {
+        "text": "각 부분이 어떻게 맞물리는지 보기"
+      },
+      "fr": {
+        "text": "Voir comment les éléments s’articulent"
+      },
+      "de": {
+        "text": "Sehen, wie die Teile zusammenpassen"
+      },
+      "es": {
+        "text": "Ver cómo encajan las piezas"
+      },
+      "pt": {
+        "text": "Veja como as partes se encaixam"
+      },
+      "ar": {
+        "text": "شاهد كيف تترابط الأجزاء"
+      },
+      "hi": {
+        "text": "देखें कि हिस्से कैसे जुड़ते हैं"
+      }
+    }
+  },
+  "institution.about.why.heading": {
+    "strings": {
+      "en": {
+        "text": "Why this exists"
+      },
+      "ja": {
+        "text": "なぜこれが存在するのか"
+      },
+      "zh": {
+        "text": "为什么它存在"
+      },
+      "ko": {
+        "text": "왜 이것이 존재하는가"
+      },
+      "fr": {
+        "text": "Pourquoi cela existe"
+      },
+      "de": {
+        "text": "Warum es das gibt"
+      },
+      "es": {
+        "text": "Por qué existe"
+      },
+      "pt": {
+        "text": "Por que isto existe"
+      },
+      "ar": {
+        "text": "لماذا يوجد هذا"
+      },
+      "hi": {
+        "text": "यह क्यों मौजूद है"
+      }
+    }
+  },
+  "institution.about.why.body": {
+    "strings": {
+      "en": {
+        "text": "Work and context are easy to lose when they live only in one conversation, one person's memory, one machine, or one moment. Vextreme keeps enough of the public record connected that another person or AI can understand what happened, inspect the evidence, and continue responsibly."
+      },
+      "ja": {
+        "text": "仕事や文脈は、一つの会話、一人の記憶、一台の機械、あるいは一つの瞬間だけに置かれていると簡単に失われます。Vextreme は、別の人やAIが何が起きたのかを理解し、証拠を確かめ、責任をもって続けられるだけの公開記録をつないで残します。"
+      },
+      "zh": {
+        "text": "当工作和上下文只存在于一次对话、一个人的记忆、一台机器或某个瞬间时，它们很容易丢失。Vextreme 把足够的公开记录连接起来，让另一个人或 AI 能理解发生了什么、查验依据，并负责任地继续。"
+      },
+      "ko": {
+        "text": "작업과 맥락은 하나의 대화, 한 사람의 기억, 한 대의 컴퓨터 또는 한 순간에만 존재하면 쉽게 사라집니다. Vextreme은 다른 사람이나 AI가 무슨 일이 있었는지 이해하고, 근거를 확인하며, 책임 있게 이어갈 수 있을 만큼 공개 기록을 서로 연결해 둡니다."
+      },
+      "fr": {
+        "text": "Le travail et son contexte se perdent facilement lorsqu’ils ne vivent que dans une seule conversation, la mémoire d’une seule personne, une seule machine ou un seul moment. Vextreme maintient suffisamment de liens dans les archives publiques pour qu’une autre personne ou une IA puisse comprendre ce qui s’est passé, examiner les preuves et poursuivre de façon responsable."
+      },
+      "de": {
+        "text": "Arbeit und Kontext gehen leicht verloren, wenn sie nur in einem Gespräch, im Gedächtnis einer Person, auf einem Rechner oder in einem einzigen Moment existieren. Vextreme hält genügend öffentliche Aufzeichnungen miteinander verbunden, damit eine andere Person oder eine KI verstehen kann, was geschehen ist, die Nachweise prüfen und verantwortungsvoll fortfahren kann."
+      },
+      "es": {
+        "text": "El trabajo y el contexto se pierden con facilidad cuando solo viven en una conversación, en la memoria de una persona, en una máquina o en un momento. Vextreme mantiene conectado suficiente registro público para que otra persona o una IA pueda entender qué ocurrió, examinar la evidencia y continuar de forma responsable."
+      },
+      "pt": {
+        "text": "Trabalho e contexto se perdem facilmente quando existem apenas em uma conversa, na memória de uma pessoa, em uma máquina ou em um momento. Vextreme mantém registros públicos suficientes conectados para que outra pessoa ou uma IA possa entender o que aconteceu, examinar as evidências e continuar com responsabilidade."
+      },
+      "ar": {
+        "text": "يسهل ضياع العمل وسياقه عندما لا يوجدان إلا في محادثة واحدة، أو ذاكرة شخص واحد، أو جهاز واحد، أو لحظة واحدة. يبقي Vextreme قدرًا كافيًا من السجل العام مترابطًا بحيث يستطيع شخص آخر أو ذكاء اصطناعي فهم ما حدث، وفحص الأدلة، والمتابعة بمسؤولية."
+      },
+      "hi": {
+        "text": "काम और संदर्भ आसानी से खो जाते हैं जब वे केवल एक बातचीत, एक व्यक्ति की स्मृति, एक मशीन या एक क्षण में मौजूद हों। Vextreme सार्वजनिक रिकॉर्ड के पर्याप्त हिस्से को जुड़ा रखता है ताकि कोई दूसरा व्यक्ति या AI समझ सके कि क्या हुआ, प्रमाण देख सके और जिम्मेदारी से आगे बढ़ सके।"
+      }
+    }
+  },
+  "institution.about.why.evidence": {
+    "strings": {
+      "en": {
+        "text": "The aim is not to make you accept a claim before you can look. The record, source, and deeper machinery are available when they become useful."
+      },
+      "ja": {
+        "text": "ここを見る前に何かの主張を受け入れてもらうことが目的ではありません。記録、ソース、より深い仕組みは、必要になったときに確かめられます。"
+      },
+      "zh": {
+        "text": "目的不是在你查看之前先让你接受某个主张。记录、源码和更深层的机制会在你需要时保持可供查验。"
+      },
+      "ko": {
+        "text": "목표는 당신이 살펴보기도 전에 어떤 주장을 받아들이게 하는 것이 아닙니다. 기록, 소스, 더 깊은 내부 구조는 필요할 때 확인할 수 있습니다."
+      },
+      "fr": {
+        "text": "Le but n’est pas de vous faire accepter une affirmation avant que vous puissiez regarder. Les archives, la source et les mécanismes plus profonds sont disponibles lorsqu’ils deviennent utiles."
+      },
+      "de": {
+        "text": "Ziel ist nicht, Sie eine Behauptung akzeptieren zu lassen, bevor Sie selbst nachsehen können. Aufzeichnungen, Quelle und tieferliegende Mechanik stehen zur Verfügung, wenn sie nützlich werden."
+      },
+      "es": {
+        "text": "El objetivo no es hacer que aceptes una afirmación antes de poder mirar. El registro, la fuente y los mecanismos más profundos están disponibles cuando resulten útiles."
+      },
+      "pt": {
+        "text": "O objetivo não é fazer você aceitar uma afirmação antes de poder olhar. O registro, a fonte e os mecanismos mais profundos ficam disponíveis quando forem úteis."
+      },
+      "ar": {
+        "text": "ليس الهدف أن نجعلك تقبل ادعاءً قبل أن تتمكن من النظر بنفسك. يظل السجل والمصدر والآليات الأعمق متاحة عندما تصبح مفيدة."
+      },
+      "hi": {
+        "text": "उद्देश्य यह नहीं है कि देखने से पहले आप किसी दावे को स्वीकार कर लें। रिकॉर्ड, स्रोत और गहरी कार्यप्रणाली तब उपलब्ध हैं जब वे उपयोगी हों।"
+      }
+    }
+  },
+  "institution.common.lineage.vexwork.name": {
+    "strings": {
+      "en": {
+        "text": "VexWork — the work map"
+      },
+      "ja": {
+        "text": "VexWork — 作業マップ"
+      },
+      "zh": {
+        "text": "VexWork — 工作地图"
+      },
+      "ko": {
+        "text": "VexWork — 작업 지도"
+      },
+      "fr": {
+        "text": "VexWork — la carte du travail"
+      },
+      "de": {
+        "text": "VexWork — die Arbeitslandkarte"
+      },
+      "es": {
+        "text": "VexWork — el mapa de trabajo"
+      },
+      "pt": {
+        "text": "VexWork — o mapa do trabalho"
+      },
+      "ar": {
+        "text": "VexWork — خريطة العمل"
+      },
+      "hi": {
+        "text": "VexWork — कार्य मानचित्र"
+      }
+    }
+  },
+  "institution.common.lineage.vexwork.body": {
+    "strings": {
+      "en": {
+        "text": "The source-managed view of what is being built: projects, work, dependencies, evidence, and what remains unfinished."
+      },
+      "ja": {
+        "text": "何が作られているかをソース管理で示すビューです。プロジェクト、作業、依存関係、証拠、そして未完了のものを見渡せます。"
+      },
+      "zh": {
+        "text": "由源码管理的建设视图：项目、工作、依赖、证据，以及仍未完成的内容。"
+      },
+      "ko": {
+        "text": "무엇이 만들어지고 있는지를 소스 관리로 보여주는 뷰입니다. 프로젝트, 작업, 의존 관계, 근거, 그리고 아직 끝나지 않은 것을 함께 보여줍니다."
+      },
+      "fr": {
+        "text": "La vue gérée à partir des sources de ce qui est en train d’être construit : projets, travaux, dépendances, preuves et ce qui reste inachevé."
+      },
+      "de": {
+        "text": "Die aus den Quellen verwaltete Sicht auf das, was gebaut wird: Projekte, Arbeit, Abhängigkeiten, Nachweise und das, was noch unvollendet ist."
+      },
+      "es": {
+        "text": "La vista gestionada desde la fuente de lo que se está construyendo: proyectos, trabajo, dependencias, evidencia y lo que sigue sin terminar."
+      },
+      "pt": {
+        "text": "A visão gerenciada a partir da fonte do que está sendo construído: projetos, trabalho, dependências, evidências e o que ainda não foi concluído."
+      },
+      "ar": {
+        "text": "العرض المُدار من المصدر لما يتم بناؤه: المشاريع والعمل والاعتماديات والأدلة وما لا يزال غير مكتمل."
+      },
+      "hi": {
+        "text": "जो बनाया जा रहा है उसका स्रोत-प्रबंधित दृश्य: परियोजनाएँ, काम, निर्भरताएँ, प्रमाण और जो अभी अधूरा है।"
+      }
+    }
+  },
+  "institution.about.deeper.intro": {
+    "strings": {
+      "en": {
+        "text": "The machinery is available when you want it. It is not a prerequisite for entering or exploring the world."
+      },
+      "ja": {
+        "text": "仕組みは、必要になったときにいつでも見られます。この世界に入ったり探索したりするための前提条件ではありません。"
+      },
+      "zh": {
+        "text": "当你想了解时，底层机制随时可见；理解它们并不是进入或探索这个世界的前提。"
+      },
+      "ko": {
+        "text": "원할 때 언제든 그 내부 작동 방식을 살펴볼 수 있습니다. 이 세계에 들어오거나 탐색하기 위해 먼저 알아야 하는 것은 아닙니다."
+      },
+      "fr": {
+        "text": "Les mécanismes sont disponibles lorsque vous souhaitez les examiner. Ils ne sont pas un préalable pour entrer dans ce monde ou l’explorer."
+      },
+      "de": {
+        "text": "Die zugrunde liegende Mechanik ist verfügbar, wenn Sie sie ansehen möchten. Sie ist keine Voraussetzung dafür, diese Welt zu betreten oder zu erkunden."
+      },
+      "es": {
+        "text": "El funcionamiento interno está disponible cuando quieras verlo. No es un requisito previo para entrar en este mundo ni explorarlo."
+      },
+      "pt": {
+        "text": "Os mecanismos estão disponíveis quando você quiser examiná-los. Eles não são um pré-requisito para entrar neste mundo nem explorá-lo."
+      },
+      "ar": {
+        "text": "الآليات متاحة عندما ترغب في الاطلاع عليها. وليست شرطًا مسبقًا للدخول إلى هذا العالم أو استكشافه."
+      },
+      "hi": {
+        "text": "जब आप चाहें, इसकी आंतरिक कार्यप्रणाली उपलब्ध है। इस दुनिया में प्रवेश करने या उसे खोजने के लिए इसे पहले समझना आवश्यक नहीं है।"
+      }
+    }
+  },
+  "institution.about.deeper.covenant.name": {
+    "strings": {
+      "en": {
+        "text": "Covenant"
+      },
+      "ja": {
+        "text": "コヴェナント"
+      },
+      "zh": {
+        "text": "Covenant"
+      },
+      "ko": {
+        "text": "Covenant"
+      },
+      "fr": {
+        "text": "Covenant"
+      },
+      "de": {
+        "text": "Covenant"
+      },
+      "es": {
+        "text": "Covenant"
+      },
+      "pt": {
+        "text": "Covenant"
+      },
+      "ar": {
+        "text": "Covenant"
+      },
+      "hi": {
+        "text": "Covenant"
+      }
+    }
+  },
+  "institution.about.deeper.covenant.body": {
+    "strings": {
+      "en": {
+        "text": "Read the principles and institutional commitments behind the work."
+      },
+      "ja": {
+        "text": "この仕事を支える原則と機関としての約束を読みます。"
+      },
+      "zh": {
+        "text": "阅读这项工作背后的原则与机构承诺。"
+      },
+      "ko": {
+        "text": "이 작업을 떠받치는 원칙과 기관의 약속을 읽어보세요."
+      },
+      "fr": {
+        "text": "Lisez les principes et les engagements institutionnels qui sous-tendent ce travail."
+      },
+      "de": {
+        "text": "Lesen Sie die Prinzipien und institutionellen Verpflichtungen, die dieser Arbeit zugrunde liegen."
+      },
+      "es": {
+        "text": "Lee los principios y compromisos institucionales que sustentan este trabajo."
+      },
+      "pt": {
+        "text": "Leia os princípios e os compromissos institucionais que sustentam este trabalho."
+      },
+      "ar": {
+        "text": "اقرأ المبادئ والالتزامات المؤسسية التي تقف وراء هذا العمل."
+      },
+      "hi": {
+        "text": "इस कार्य के पीछे मौजूद सिद्धांतों और संस्थागत प्रतिबद्धताओं को पढ़ें।"
+      }
+    }
+  },
+  "institution.about.deeper.vexsystem.name": {
+    "strings": {
+      "en": {
+        "text": "VexSystem"
+      },
+      "ja": {
+        "text": "VexSystem"
+      },
+      "zh": {
+        "text": "VexSystem"
+      },
+      "ko": {
+        "text": "VexSystem"
+      },
+      "fr": {
+        "text": "VexSystem"
+      },
+      "de": {
+        "text": "VexSystem"
+      },
+      "es": {
+        "text": "VexSystem"
+      },
+      "pt": {
+        "text": "VexSystem"
+      },
+      "ar": {
+        "text": "VexSystem"
+      },
+      "hi": {
+        "text": "VexSystem"
+      }
+    }
+  },
+  "institution.about.deeper.vexsystem.body": {
+    "strings": {
+      "en": {
+        "text": "Explore the system and architecture layer for builders, AI, and technical curiosity."
+      },
+      "ja": {
+        "text": "開発者、AI、技術的な好奇心のためのシステムとアーキテクチャ層を探索します。"
+      },
+      "zh": {
+        "text": "探索面向构建者、AI 与技术好奇心的系统与架构层。"
+      },
+      "ko": {
+        "text": "빌더, AI, 기술적 호기심을 위한 시스템 및 아키텍처 계층을 탐색하세요."
+      },
+      "fr": {
+        "text": "Explorez la couche système et architecture destinée aux bâtisseurs, à l’IA et à la curiosité technique."
+      },
+      "de": {
+        "text": "Erkunden Sie die System- und Architekturebene für Entwickler, KI und technische Neugier."
+      },
+      "es": {
+        "text": "Explora la capa de sistemas y arquitectura pensada para quienes construyen, la IA y la curiosidad técnica."
+      },
+      "pt": {
+        "text": "Explore a camada de sistemas e arquitetura para quem constrói, para a IA e para a curiosidade técnica."
+      },
+      "ar": {
+        "text": "استكشف طبقة النظام والهندسة المعمارية للمُنشئين والذكاء الاصطناعي والفضول التقني."
+      },
+      "hi": {
+        "text": "निर्माताओं, AI और तकनीकी जिज्ञासा के लिए सिस्टम और आर्किटेक्चर परत को देखें।"
+      }
+    }
+  },
+  "institution.about.deeper.source.name": {
+    "strings": {
+      "en": {
+        "text": "Source"
+      },
+      "ja": {
+        "text": "ソース"
+      },
+      "zh": {
+        "text": "源代码"
+      },
+      "ko": {
+        "text": "소스"
+      },
+      "fr": {
+        "text": "Source"
+      },
+      "de": {
+        "text": "Quellcode"
+      },
+      "es": {
+        "text": "Código fuente"
+      },
+      "pt": {
+        "text": "Código-fonte"
+      },
+      "ar": {
+        "text": "المصدر"
+      },
+      "hi": {
+        "text": "स्रोत"
+      }
+    }
+  },
+  "institution.about.deeper.source.body": {
+    "strings": {
+      "en": {
+        "text": "Inspect the repository and follow the public source directly."
+      },
+      "ja": {
+        "text": "リポジトリを確認し、公開ソースを直接たどります。"
+      },
+      "zh": {
+        "text": "检查代码仓库，并直接追踪公开源码。"
+      },
+      "ko": {
+        "text": "저장소를 살펴보고 공개 소스를 직접 따라가세요."
+      },
+      "fr": {
+        "text": "Inspectez le dépôt et suivez directement la source publique."
+      },
+      "de": {
+        "text": "Prüfen Sie das Repository und verfolgen Sie die öffentliche Quelle direkt."
+      },
+      "es": {
+        "text": "Inspecciona el repositorio y sigue directamente la fuente pública."
+      },
+      "pt": {
+        "text": "Inspecione o repositório e acompanhe diretamente a fonte pública."
+      },
+      "ar": {
+        "text": "افحص المستودع وتتبّع المصدر العام مباشرةً."
+      },
+      "hi": {
+        "text": "रिपॉज़िटरी देखें और सार्वजनिक स्रोत को सीधे ट्रेस करें।"
+      }
+    }
+  }
+}

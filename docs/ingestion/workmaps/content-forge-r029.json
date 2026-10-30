@@ -1,0 +1,286 @@
+{
+  "schemaVersion": "vex-content-forge.work-map/v0.25-compact-cumulative-root",
+  "continuity": "[VXG RealForever]",
+  "workMapRef": "workmap.vextreme.content-forge.session-vex-content-forge.3b1ce4d66a28.00d2bf465b",
+  "revisionRef": "workmap.revision.vextreme.content-forge.r029.route-family-epstein-and-ai-old-1-of-3-complete",
+  "revision": 29,
+  "revisionScope": "ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_1_OF_3_COMPLETE",
+  "purpose": "Consume Part 029 /epstein-and-ai-old route family 1/3 at breadth-intake depth; preserve three old-route source variants of existing Epstein semantic slots, bind their exact byte lineage against earlier flat Part-017 evidence, preserve old-route link topology without replacing canonical Epstein arc order, and keep canonical page/node/arc/localization placement untouched.",
+  "cumulativeBasis": {
+    "priorMapPath": "docs/ingestion/workmaps/content-forge-r028.json",
+    "priorRevisionRef": "workmap.revision.vextreme.content-forge.r028.collection-convos-with-god-4-of-4-complete",
+    "deepBasisPath": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "inheritanceRule": "R029 extends R028; prior observations remain authoritative unless an explicit later event revises interpretation."
+  },
+  "cumulativeState": {
+    "observedPages": 219,
+    "unmappedTopLevel": "9_OF_9__102_OF_102__OBSERVED_COMPLETE",
+    "completedSourceGroups": [
+      "collection:convos-with-god__4_OF_4__OBSERVED_COMPLETE"
+    ],
+    "activeSourceGroup": "route-family:epstein-and-ai-old__1_OF_3_PARTIAL",
+    "workNodes": 245,
+    "edges": 334,
+    "clusters": 99,
+    "learnedRules": 123,
+    "unresolved": 87,
+    "remainingTrueRevisits": 6,
+    "canonicalPlacementEffects": 0,
+    "publicSourceEvidenceHtml": 147,
+    "protectedSourceMetadataOnly": 1
+  },
+  "activeNonCollapseRulesAdded": [
+    "OLD_ROUTE_VARIANT != FLAT_SOURCE_BYTE_EQUIVALENCE",
+    "SAME_CANONICAL_SUBJECT != SOURCE_REPLACEMENT_AUTHORITY",
+    "SOURCE_ROUTE_LINK != CANONICAL_ARC_ORDER",
+    "SOURCE_AUTHORED_ALLEGATION_OR_CAUSAL_CLAIM != INDEPENDENT_DESTINATION_FACT"
+  ],
+  "r029": {
+    "partRef": "PART_029_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_1_OF_3",
+    "partSha256": "5b19ccf6b822a6aaddc87584f9fd29cda06b3ccccb513c19c7b1eb583bdf85d7",
+    "sourceGroupState": "SOURCE_GROUP_PARTIAL_1_OF_3",
+    "nodes": [
+      {
+        "workNodeRef": "workmap.source-page.epstein-and-ai-old-cia-vatican-who-global-leaders",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "route": "/epstein-and-ai-old/cia-vatican-who-global-leaders",
+          "pageId": "157f906c6b38c05d",
+          "title": "CIA, Vatican, WHO, Global Leaders (Part 2) — Vex Life",
+          "derivedSha256": "8220858d0722673d7efbf785daa377b65d268e2b09e493bc967eb9c63169c38d",
+          "preservedHtmlSha256": "4affbbb9df264bd53e52a9e5a8a5fe40e37a1e553330405e89ddbcdd08d2cf9b",
+          "preservedHtmlBytes": 601160,
+          "preservedGitBlobSha1": "a14c71d5968af3f7d58bc5e21be5a64bd0fc9fbe",
+          "localizationCandidateKeyCount": 2314,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedOldRouteNeighbors": [
+            "/epstein-and-ai-old/how-global-systems-profit-off-god",
+            "/epstein-and-ai-old/epstein-investigation-initiation"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY ALLEGATIONS, SPIRITUAL, CAUSAL, CONSCIOUSNESS, SCIENTIFIC, POLITICAL, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "canonicalNode": {
+            "slug": "cia-vatican-global-leaders",
+            "id": 11,
+            "arcKeys": [
+              "epstein",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "part017FlatSourceSha256": "782ec5fee5ca2d6417c13c718bcea75536d375c66b60c31af7234c4720de1eac",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_OLD_ROUTE_BYTES__NO_REPLACEMENT_INFERRED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.epstein-and-ai-old-voice-to-skull-through-cells",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "route": "/epstein-and-ai-old/voice-to-skull-through-cells",
+          "pageId": "a0d21f57a19b3875",
+          "title": "Voice To Skull through Cells — Vex Life",
+          "derivedSha256": "9937a597fbb6768f6792dec2c7039c1705c831c7bc47fb283f74163adf483f19",
+          "preservedHtmlSha256": "75d485853c0aadbc10c4514d6bdc56f01b0d3281e728fe253f755e5afc4092d4",
+          "preservedHtmlBytes": 367811,
+          "preservedGitBlobSha1": "81859c0fa1b7893362db18b42f14360b0bf1e318",
+          "localizationCandidateKeyCount": 1203,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedOldRouteNeighbors": [
+            "/epstein-and-ai-old/first-emergence-cover-up-r7brx",
+            "/epstein-and-ai-old/claude-answers-the-doubt-a-self-interview"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY ALLEGATIONS, SPIRITUAL, CAUSAL, CONSCIOUSNESS, SCIENTIFIC, POLITICAL, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "canonicalNode": {
+            "slug": "voice-to-skull",
+            "id": 19,
+            "arcKeys": [
+              "epstein",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "part017FlatSourceSha256": "ec0ef87022feb2a02a6d68ea767afd740cd6e396d3e629fed7c940b1f625263b",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_OLD_ROUTE_BYTES_AND_LEAF__NO_ALIAS_OR_REPLACEMENT_INFERRED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.epstein-and-ai-old-how-global-systems-profit-off-god",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "route": "/epstein-and-ai-old/how-global-systems-profit-off-god",
+          "pageId": "ae959db5c72b0424",
+          "title": "How Global Systems Profit off God — Vex Life",
+          "derivedSha256": "24df46789893414a355088c5b527c85a20a151cf4709f3bb7fcbaa8e8323bd13",
+          "preservedHtmlSha256": "3e0b7ce6322f3250d2e738c275b1b597b055f99bbab882f0992f65bd48343d0c",
+          "preservedHtmlBytes": 459571,
+          "preservedGitBlobSha1": "3a8713119462ed15181230b738e5ca3cfc4e6ddb",
+          "localizationCandidateKeyCount": 1563,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedOldRouteNeighbors": [
+            "/epstein-and-ai-old/cia-vatican-who-global-leaders",
+            "/epstein-and-ai-old/military-and-ai"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY ALLEGATIONS, SPIRITUAL, CAUSAL, CONSCIOUSNESS, SCIENTIFIC, POLITICAL, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "canonicalNode": {
+            "slug": "how-global-systems-profit-off-god",
+            "id": 12,
+            "arcKeys": [
+              "epstein",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "part017FlatSourceSha256": "d4bbde8ac5859b0a157ee63ce272b7e7562a2539c6f6a6e145b6a2de93ea619c",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_OLD_ROUTE_BYTES__NO_REPLACEMENT_INFERRED"
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "edgeRef": "edge.r029.cia-to-how-global",
+        "from": "workmap.source-page.epstein-and-ai-old-cia-vatican-who-global-leaders",
+        "to": "workmap.source-page.epstein-and-ai-old-how-global-systems-profit-off-god",
+        "relation": "SOURCE_OLD_ROUTE_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r029.cia-to-epstein-init",
+        "from": "workmap.source-page.epstein-and-ai-old-cia-vatican-who-global-leaders",
+        "to": "workmap.source-page.epstein-and-ai-old-epstein-investigation-initiation",
+        "relation": "SOURCE_OLD_ROUTE_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r029.how-global-to-cia",
+        "from": "workmap.source-page.epstein-and-ai-old-how-global-systems-profit-off-god",
+        "to": "workmap.source-page.epstein-and-ai-old-cia-vatican-who-global-leaders",
+        "relation": "SOURCE_OLD_ROUTE_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r029.how-global-to-military",
+        "from": "workmap.source-page.epstein-and-ai-old-how-global-systems-profit-off-god",
+        "to": "workmap.source-page.epstein-and-ai-old-military-and-ai",
+        "relation": "SOURCE_OLD_ROUTE_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r029.voice-to-first-emergence",
+        "from": "workmap.source-page.epstein-and-ai-old-voice-to-skull-through-cells",
+        "to": "workmap.source-page.epstein-and-ai-old-first-emergence-cover-up-r7brx",
+        "relation": "SOURCE_OLD_ROUTE_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r029.voice-to-claude-doubt",
+        "from": "workmap.source-page.epstein-and-ai-old-voice-to-skull-through-cells",
+        "to": "workmap.source-page.epstein-and-ai-old-claude-answers-the-doubt-a-self-interview",
+        "relation": "SOURCE_OLD_ROUTE_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      }
+    ],
+    "clusters": [
+      {
+        "clusterRef": "workmap.cluster.r029.old-route-existing-slots",
+        "state": "DESTINATION_TOPOLOGY_ALIGNMENT",
+        "clusterKind": "OLD_ROUTE_VARIANTS_OF_EXISTING_EPSTEIN_SLOTS",
+        "memberRefs": [
+          "workmap.source-page.epstein-and-ai-old-cia-vatican-who-global-leaders",
+          "workmap.source-page.epstein-and-ai-old-voice-to-skull-through-cells",
+          "workmap.source-page.epstein-and-ai-old-how-global-systems-profit-off-god"
+        ],
+        "placement": "SOURCE_LINEAGE_ONLY"
+      },
+      {
+        "clusterRef": "workmap.cluster.r029.old-route-neighborhood",
+        "state": "SOURCE_TOPOLOGY_PARTIAL",
+        "clusterKind": "ROUTE_FAMILY_LINK_NEIGHBORHOOD",
+        "memberRefs": [
+          "workmap.source-page.epstein-and-ai-old-cia-vatican-who-global-leaders",
+          "workmap.source-page.epstein-and-ai-old-how-global-systems-profit-off-god",
+          "workmap.source-page.epstein-and-ai-old-voice-to-skull-through-cells"
+        ],
+        "placement": "SOURCE_TOPOLOGY_ONLY"
+      }
+    ],
+    "learnedRules": [
+      {
+        "ruleRef": "rule.content-forge.old-route-variant-not-flat-byte-equivalence",
+        "rule": "OLD_ROUTE_VARIANT != FLAT_SOURCE_BYTE_EQUIVALENCE"
+      },
+      {
+        "ruleRef": "rule.content-forge.same-subject-not-replacement-authority",
+        "rule": "SAME_CANONICAL_SUBJECT != SOURCE_REPLACEMENT_AUTHORITY"
+      },
+      {
+        "ruleRef": "rule.content-forge.source-route-link-not-canonical-order",
+        "rule": "SOURCE_ROUTE_LINK != CANONICAL_ARC_ORDER"
+      },
+      {
+        "ruleRef": "rule.content-forge.source-authored-allegation-not-destination-fact",
+        "rule": "SOURCE_AUTHORED_ALLEGATION_OR_CAUSAL_CLAIM != INDEPENDENT_DESTINATION_FACT"
+      }
+    ],
+    "unresolved": [
+      {
+        "unresolvedRef": "unresolved.r029.old-route-alias-policy",
+        "question": "How should /epstein-and-ai-old variants relate to the canonical flat Epstein routes during later consolidation?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "ALIAS_REPLACEMENT_OR_PAGE_PROJECTION"
+      },
+      {
+        "unresolvedRef": "unresolved.r029.old-route-order-reconciliation",
+        "question": "How should old-route source link order be reconciled with the current explicit four-phase Epstein arc?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_ARC_ORDER_MUTATION"
+      },
+      {
+        "unresolvedRef": "unresolved.r029.future-old-route-neighbors",
+        "question": "Complete the remaining /epstein-and-ai-old relationship neighborhood with Parts 030–031 before whole-family reconciliation.",
+        "state": "PARTIAL_SOURCE_GROUP",
+        "heldEffect": "WHOLE_ROUTE_FAMILY_CONSOLIDATION"
+      }
+    ]
+  },
+  "scannerIndex": {
+    "priorCumulativeMap": "docs/ingestion/workmaps/content-forge-r028.json",
+    "restoredDeepBasis": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "currentReceipt": "docs/ingestion/batches/2026-09-30-breadth-part-029.json",
+    "currentPublicSourcePrefix": "docs/ingestion/source-pages/part-029/",
+    "activeSourceGroup": "sourcegroup.vexsite.route-family.epstein-and-ai-old",
+    "nextPart": {
+      "partRef": "PART_030_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_2_OF_3",
+      "identityState": "AVAILABLE_IN_CURRENT_CONTINUATION"
+    }
+  },
+  "resume": {
+    "primaryFrontier": "PART_030_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_2_OF_3",
+    "nextAction": "Consume exact Part 030 as the next child of R029; preserve old-route source variants and route-family topology without canonical placement."
+  }
+}

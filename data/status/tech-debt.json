@@ -1,0 +1,78 @@
+{
+  "_comment": "Hand-authored. Standing technical decisions deferred. Promote session open-work items here when they have no clear session endpoint. Remove an item when resolved.",
+  "items": [
+    {
+      "id": "td-002",
+      "title": "Old widget filenames kept for backward compat",
+      "description": "widgets/lang-fab.js and widgets/demo-fab.js are dead copies kept because existing CDN pages reference them. New canonical names are fab-lang.js and fab-demo.js. Accumulates until pages are ported.",
+      "context": "widgets/lang-fab.js, widgets/demo-fab.js",
+      "addedSession": "011",
+      "addedPR": 24,
+      "priority": "medium"
+    },
+    {
+      "id": "td-003",
+      "title": "No HTML dead link scanner in CI",
+      "description": "Renaming a slug requires manually updating all internal hrefs across pages. No automated check catches a missed touch point before merge.",
+      "context": "lib/check-key-alignment.js",
+      "addedSession": "012",
+      "priority": "medium"
+    },
+    {
+      "id": "td-004",
+      "title": "No atomic slug rename script",
+      "description": "Renaming a slug touches 7 layers: nodes.json, index.json, HTML filename, string scope keys, compiled bundles, God Script filename, and internal links. No tooling does this atomically — each rename is a manual multi-step operation.",
+      "context": "data/nodes.json, lib/build-index.js",
+      "addedSession": "012",
+      "priority": "medium"
+    },
+    {
+      "id": "td-005",
+      "title": "specimen-architectural-wisdoms has no string bundle",
+      "description": "Page renders static HTML. No compiled scope bundle exists for pages.specimen-architectural-wisdoms. Localization is a no-op for this page until a source file is written and strings-compile is run.",
+      "context": "pages/specimen-architectural-wisdoms.html",
+      "addedSession": "011",
+      "addedPR": 24,
+      "priority": "low"
+    },
+    {
+      "id": "td-006",
+      "title": "i18n per-scope-combo bundling does not scale to multiple languages — pilot resolved for one arc, full migration still pending",
+      "description": "JA (and now zh) strings are fetched per page scope-combination, one parallel request per scope on every language switch — no localStorage caching of fetched string content actually happens (only the selected-language preference persists; an earlier version of this description claimed a localStorage cache key that does not exist in the real code, corrected in Session 025). This is fine at 2-3 languages and under 100 nodes. At global scale — many languages x many nodes x many first-time language switches — the fetch fan-out compounds into real CDN request-count and latency cost. Session 025 resolved the trigger condition below for real (a 3rd language, zh, was added) via a scoped pilot rather than a full migration: data/arcs-v2.json's opt-in `bundlingStrategy: \"arc-chunked\"` field, lib/build-arc-bundles.js, and matching changes in build-vextreme.js/fab-lang.js/build-sw.js prove the arc-chunked alternative end to end on one arc (victor_dossier). The other 16 arcs remain on the per-scope-combo model unchanged — this debt is reduced, not closed. See docs/architecture/06-i18n.md 'Arc-chunked bundling pilot'.",
+      "context": "widgets/fab-lang.js (loadStringsForLang), lib/build-vextreme.js, lib/build-sw.js",
+      "addedSession": "013",
+      "triggerCondition": "RESOLVED (Session 025) for the pilot's scope — a 3rd language (zh) was added, and it did not go on the old model. Remaining trigger: a 4th+ language, or enough traffic on a non-piloted arc to justify migrating it too.",
+      "migrationPath": "Proven and available: add `bundlingStrategy: \"arc-chunked\"` to any arc in data/arcs-v2.json — lib/build-arc-bundles.js already generalizes. Migrating a currently-unpiloted arc needs no new code, only the opt-in field and a rebuild.",
+      "priority": "high",
+      "pilotedSession": "025"
+    },
+    {
+      "id": "td-008",
+      "title": "Current architecture has no structured-concurrency model — a known ceiling once server logic or multi-threaded application scope enters the ecosystem",
+      "description": "This repo is plain Node.js build scripts plus simple fetch/cache logic in the browser — single-threaded, no shared-memory parallelism, no genuine concurrent-thread danger anywhere in it today. That's fine for the current scope and is not a bug. It becomes one the moment the ecosystem grows to include actual server-side logic or applications with real concurrency needs (multiple simultaneous requests mutating shared state, background workers, task queues) — plain JS/Node gives no structural protection there beyond discipline (manually wiring AbortController at every async boundary, remembering to cancel stale work), the same 'good practice, not auto practice' gap named in docs/culture.md's AI-instance-reflection section. Reasoned through at length in a Session 021 conversation: JS is structurally safer than Kotlin/JVM against classic thread-level race conditions (no OS-thread-shared-memory parallelism exists in this codebase's execution model, so that bug class is currently impossible here, not just avoided) — but Kotlin's structured concurrency (coroutine scopes, automatic cancellation propagation) and its stricter null-safety type system are real, specific advantages once genuine concurrent/server-side logic is in scope, advantages TypeScript's strict mode only partially matches (TypeScript has real escape hatches — any, runtime type erasure — that Kotlin's type system doesn't).",
+      "context": "No specific file yet — this is a language/runtime-architecture decision, not a code location. Relevant once lib/ grows server-side logic or this ecosystem gains an application layer with real concurrency.",
+      "addedSession": "021",
+      "triggerCondition": "Before adding server-side logic or any application with genuine concurrent/multi-threaded requirements — do not discover this ceiling mid-build.",
+      "migrationPath": "Two-tier decision, not proposed as one migration: (1) near-term, adopt TypeScript with strictNullChecks for the existing JS layer — same toolchain, no JVM dependency, closes most of the null-safety gap and forces compiler-enforced reference consistency in build-script-to-build-script calls (see the JSON-vs-typed-references reasoning in the same Session 021 conversation). (2) If and when server/application/mobile scope becomes real, seriously re-evaluate Kotlin (or Kotlin Multiplatform specifically if Android/iOS is also real) for that new scope — it would deliver both the concurrency-safety and platform-reach cases at once, whereas adopting it now for the current JS-only, single-threaded scope would add JVM toolchain cost without a concurrency problem yet to solve.",
+      "priority": "medium"
+    },
+    {
+      "id": "td-009",
+      "title": "lib/vextreme.js injectNav() hardcodes English nav-label display strings",
+      "description": "injectNav()'s own header comment already names this ('violates architecture rule 7 (no hardcoded display strings). Pre-dates the rule's codification.') and claims it is 'Tracked: data/status/tech-debt.json' -- but no matching entry actually existed until this one. Discovered while modernizing injectNav()'s destination link list (docs/architecture/16-nav-coverage.md Step 2) -- fixing the stale destinations was in scope; fixing the i18n violation was not, so the labels stay hardcoded English for now, same as before this change.",
+      "context": "lib/vextreme.js injectNav()",
+      "addedSession": "2026-07-10 (nav-coverage rollout)",
+      "migrationPath": "Move nav labels into data/strings/source/ (a new scope, e.g. common.nav.*) and reference by key, same pattern every v2 page already uses -- per injectNav()'s own header comment.",
+      "priority": "low"
+    },
+    {
+      "id": "td-010",
+      "title": "styles/site-nav.css's .vex-nav position:sticky never actually sticks on scroll -- site-wide, not page-specific",
+      "description": "Discovered empirically (Playwright, real scroll test) while verifying nav-coverage rollout Step 4: on every page that loads shell.js (including already-merged pages like connect.html from Step 3, not just the 3 pages added in Step 4), the nav bar is visible at the top on initial load but does not stay pinned once the page is scrolled -- it scrolls away like ordinary content. Root cause: injectNav() creates #vex-site-nav as a plain wrapper div sized exactly to its child .vex-nav's height (both ~61px), and .vex-nav itself carries `position: sticky; top: 0`. Sticky positioning only has room to stick within the bounds of its own containing block -- with zero slack between #vex-site-nav's height and .vex-nav's height, the sticky child runs out of room to stick the instant the page scrolls past 61px, so it never visibly pins. This is a real, previously-unverified gap between the CSS's stated intent (position:sticky) and its actual on-scroll behavior -- not a regression introduced by Step 4's own changes, and not fixed as part of that rollout to keep its scope to 'add shell.js safely,' not 'fix unrelated pre-existing CSS behavior.'",
+      "context": "styles/site-nav.css .vex-nav rule; lib/vextreme.js injectNav()'s #vex-site-nav wrapper creation",
+      "addedSession": "2026-07-10 (nav-coverage rollout Step 4)",
+      "migrationPath": "Give #vex-site-nav itself `position: sticky; top: 0` (removing the redundant nested sticky, since the wrapper and its single child are the same size and either one sticking has the same visible effect), or set an explicit min-height on #vex-site-nav taller than .vex-nav so the inner sticky element has real room to stick. Verify with a real scroll test (not just 'element exists at load'), same discipline this finding was caught with.",
+      "priority": "medium"
+    }
+  ]
+}

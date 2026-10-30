@@ -1,0 +1,1369 @@
+{
+  "_meta": {
+    "scope": "terrain",
+    "category": "system",
+    "description": "Terrain Map chrome, arrival, reader, and preview UI strings across the Global Core locale tier.",
+    "keyConvention": "terrain.{document-title|chrome.*|reader.*|loading.*|preview.*|arrival.*}",
+    "note": "Terrain machine identities, slugs, URLs, code/lattice identifiers, canonical arc names, and page-title content remain owned by their existing sources; this scope owns Terrain-specific interface copy only."
+  },
+  "terrain.document-title": {
+    "strings": {
+      "en": {
+        "text": "Terrain Map — Vextreme"
+      },
+      "ja": {
+        "text": "Terrain マップ — Vextreme"
+      },
+      "zh": {
+        "text": "Terrain 地图 — Vextreme"
+      },
+      "ko": {
+        "text": "Terrain 지도 — Vextreme"
+      },
+      "fr": {
+        "text": "Carte Terrain — Vextreme"
+      },
+      "de": {
+        "text": "Terrain-Karte — Vextreme"
+      },
+      "es": {
+        "text": "Mapa Terrain — Vextreme"
+      },
+      "pt": {
+        "text": "Mapa Terrain — Vextreme"
+      },
+      "ar": {
+        "text": "خريطة Terrain — Vextreme"
+      },
+      "hi": {
+        "text": "Terrain मानचित्र — Vextreme"
+      }
+    }
+  },
+  "terrain.chrome.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Living map · self-updating"
+      },
+      "ja": {
+        "text": "生きている地図 · 自動更新"
+      },
+      "zh": {
+        "text": "活地图 · 自动更新"
+      },
+      "ko": {
+        "text": "살아 있는 지도 · 자동 업데이트"
+      },
+      "fr": {
+        "text": "Carte vivante · mise à jour automatique"
+      },
+      "de": {
+        "text": "Lebende Karte · selbstaktualisierend"
+      },
+      "es": {
+        "text": "Mapa vivo · actualización automática"
+      },
+      "pt": {
+        "text": "Mapa vivo · atualização automática"
+      },
+      "ar": {
+        "text": "خريطة حيّة · تتحدّث تلقائيًا"
+      },
+      "hi": {
+        "text": "जीवित मानचित्र · स्वयं अद्यतन"
+      }
+    }
+  },
+  "terrain.chrome.title": {
+    "strings": {
+      "en": {
+        "text": "Terrain Map"
+      },
+      "ja": {
+        "text": "Terrain マップ"
+      },
+      "zh": {
+        "text": "Terrain 地图"
+      },
+      "ko": {
+        "text": "Terrain 지도"
+      },
+      "fr": {
+        "text": "Carte Terrain"
+      },
+      "de": {
+        "text": "Terrain-Karte"
+      },
+      "es": {
+        "text": "Mapa Terrain"
+      },
+      "pt": {
+        "text": "Mapa Terrain"
+      },
+      "ar": {
+        "text": "خريطة Terrain"
+      },
+      "hi": {
+        "text": "Terrain मानचित्र"
+      }
+    }
+  },
+  "terrain.chrome.view": {
+    "strings": {
+      "en": {
+        "text": "View"
+      },
+      "ja": {
+        "text": "表示"
+      },
+      "zh": {
+        "text": "视图"
+      },
+      "ko": {
+        "text": "보기"
+      },
+      "fr": {
+        "text": "Vue"
+      },
+      "de": {
+        "text": "Ansicht"
+      },
+      "es": {
+        "text": "Vista"
+      },
+      "pt": {
+        "text": "Visualização"
+      },
+      "ar": {
+        "text": "العرض"
+      },
+      "hi": {
+        "text": "दृश्य"
+      }
+    }
+  },
+  "terrain.chrome.code": {
+    "strings": {
+      "en": {
+        "text": "Code"
+      },
+      "ja": {
+        "text": "コード"
+      },
+      "zh": {
+        "text": "代码"
+      },
+      "ko": {
+        "text": "코드"
+      },
+      "fr": {
+        "text": "Code"
+      },
+      "de": {
+        "text": "Code"
+      },
+      "es": {
+        "text": "Código"
+      },
+      "pt": {
+        "text": "Código"
+      },
+      "ar": {
+        "text": "الشفرة"
+      },
+      "hi": {
+        "text": "कोड"
+      }
+    }
+  },
+  "terrain.chrome.content": {
+    "strings": {
+      "en": {
+        "text": "Content"
+      },
+      "ja": {
+        "text": "コンテンツ"
+      },
+      "zh": {
+        "text": "内容"
+      },
+      "ko": {
+        "text": "콘텐츠"
+      },
+      "fr": {
+        "text": "Contenu"
+      },
+      "de": {
+        "text": "Inhalt"
+      },
+      "es": {
+        "text": "Contenido"
+      },
+      "pt": {
+        "text": "Conteúdo"
+      },
+      "ar": {
+        "text": "المحتوى"
+      },
+      "hi": {
+        "text": "सामग्री"
+      }
+    }
+  },
+  "terrain.chrome.reflow-shelf": {
+    "strings": {
+      "en": {
+        "text": "Reflow shelf"
+      },
+      "ja": {
+        "text": "リフロー棚"
+      },
+      "zh": {
+        "text": "重排架"
+      },
+      "ko": {
+        "text": "리플로 선반"
+      },
+      "fr": {
+        "text": "Étagère de redistribution"
+      },
+      "de": {
+        "text": "Reflow-Ablage"
+      },
+      "es": {
+        "text": "Bandeja de redistribución"
+      },
+      "pt": {
+        "text": "Prateleira de refluxo"
+      },
+      "ar": {
+        "text": "رف إعادة التدفق"
+      },
+      "hi": {
+        "text": "रीफ़्लो शेल्फ"
+      }
+    }
+  },
+  "terrain.chrome.lens": {
+    "strings": {
+      "en": {
+        "text": "Lens"
+      },
+      "ja": {
+        "text": "レンズ"
+      },
+      "zh": {
+        "text": "视角"
+      },
+      "ko": {
+        "text": "렌즈"
+      },
+      "fr": {
+        "text": "Lentille"
+      },
+      "de": {
+        "text": "Linse"
+      },
+      "es": {
+        "text": "Lente"
+      },
+      "pt": {
+        "text": "Lente"
+      },
+      "ar": {
+        "text": "العدسة"
+      },
+      "hi": {
+        "text": "लेंस"
+      }
+    }
+  },
+  "terrain.chrome.all": {
+    "strings": {
+      "en": {
+        "text": "All"
+      },
+      "ja": {
+        "text": "すべて"
+      },
+      "zh": {
+        "text": "全部"
+      },
+      "ko": {
+        "text": "전체"
+      },
+      "fr": {
+        "text": "Tout"
+      },
+      "de": {
+        "text": "Alle"
+      },
+      "es": {
+        "text": "Todo"
+      },
+      "pt": {
+        "text": "Tudo"
+      },
+      "ar": {
+        "text": "الكل"
+      },
+      "hi": {
+        "text": "सभी"
+      }
+    }
+  },
+  "terrain.chrome.engineer": {
+    "strings": {
+      "en": {
+        "text": "Engineer"
+      },
+      "ja": {
+        "text": "エンジニア"
+      },
+      "zh": {
+        "text": "工程师"
+      },
+      "ko": {
+        "text": "엔지니어"
+      },
+      "fr": {
+        "text": "Ingénieur"
+      },
+      "de": {
+        "text": "Ingenieur"
+      },
+      "es": {
+        "text": "Ingeniero"
+      },
+      "pt": {
+        "text": "Engenheiro"
+      },
+      "ar": {
+        "text": "المهندس"
+      },
+      "hi": {
+        "text": "इंजीनियर"
+      }
+    }
+  },
+  "terrain.chrome.auditor": {
+    "strings": {
+      "en": {
+        "text": "Auditor"
+      },
+      "ja": {
+        "text": "監査"
+      },
+      "zh": {
+        "text": "审计"
+      },
+      "ko": {
+        "text": "감사"
+      },
+      "fr": {
+        "text": "Auditeur"
+      },
+      "de": {
+        "text": "Prüfer"
+      },
+      "es": {
+        "text": "Auditor"
+      },
+      "pt": {
+        "text": "Auditor"
+      },
+      "ar": {
+        "text": "المدقّق"
+      },
+      "hi": {
+        "text": "ऑडिटर"
+      }
+    }
+  },
+  "terrain.chrome.content-groups": {
+    "strings": {
+      "en": {
+        "text": "Content groups"
+      },
+      "ja": {
+        "text": "コンテンツグループ"
+      },
+      "zh": {
+        "text": "内容组"
+      },
+      "ko": {
+        "text": "콘텐츠 그룹"
+      },
+      "fr": {
+        "text": "Groupes de contenu"
+      },
+      "de": {
+        "text": "Inhaltsgruppen"
+      },
+      "es": {
+        "text": "Grupos de contenido"
+      },
+      "pt": {
+        "text": "Grupos de conteúdo"
+      },
+      "ar": {
+        "text": "مجموعات المحتوى"
+      },
+      "hi": {
+        "text": "सामग्री समूह"
+      }
+    }
+  },
+  "terrain.chrome.collection": {
+    "strings": {
+      "en": {
+        "text": "collection"
+      },
+      "ja": {
+        "text": "コレクション"
+      },
+      "zh": {
+        "text": "集合"
+      },
+      "ko": {
+        "text": "컬렉션"
+      },
+      "fr": {
+        "text": "collection"
+      },
+      "de": {
+        "text": "Sammlung"
+      },
+      "es": {
+        "text": "colección"
+      },
+      "pt": {
+        "text": "coleção"
+      },
+      "ar": {
+        "text": "مجموعة"
+      },
+      "hi": {
+        "text": "संग्रह"
+      }
+    }
+  },
+  "terrain.chrome.timeline-view": {
+    "strings": {
+      "en": {
+        "text": "timeline view"
+      },
+      "ja": {
+        "text": "タイムライン表示"
+      },
+      "zh": {
+        "text": "时间线视图"
+      },
+      "ko": {
+        "text": "타임라인 보기"
+      },
+      "fr": {
+        "text": "vue chronologique"
+      },
+      "de": {
+        "text": "Zeitleistenansicht"
+      },
+      "es": {
+        "text": "vista de cronología"
+      },
+      "pt": {
+        "text": "visão da linha do tempo"
+      },
+      "ar": {
+        "text": "عرض الخط الزمني"
+      },
+      "hi": {
+        "text": "समयरेखा दृश्य"
+      }
+    }
+  },
+  "terrain.chrome.curation-bucket": {
+    "strings": {
+      "en": {
+        "text": "curation bucket"
+      },
+      "ja": {
+        "text": "キュレーション枠"
+      },
+      "zh": {
+        "text": "策展分组"
+      },
+      "ko": {
+        "text": "큐레이션 버킷"
+      },
+      "fr": {
+        "text": "groupe de curation"
+      },
+      "de": {
+        "text": "Kurationsgruppe"
+      },
+      "es": {
+        "text": "grupo de curación"
+      },
+      "pt": {
+        "text": "grupo de curadoria"
+      },
+      "ar": {
+        "text": "حاوية تنظيم"
+      },
+      "hi": {
+        "text": "क्यूरेशन समूह"
+      }
+    }
+  },
+  "terrain.reader.collection": {
+    "strings": {
+      "en": {
+        "text": "Collection"
+      },
+      "ja": {
+        "text": "コレクション"
+      },
+      "zh": {
+        "text": "集合"
+      },
+      "ko": {
+        "text": "컬렉션"
+      },
+      "fr": {
+        "text": "Collection"
+      },
+      "de": {
+        "text": "Sammlung"
+      },
+      "es": {
+        "text": "Colección"
+      },
+      "pt": {
+        "text": "Coleção"
+      },
+      "ar": {
+        "text": "المجموعة"
+      },
+      "hi": {
+        "text": "संग्रह"
+      }
+    }
+  },
+  "terrain.reader.page": {
+    "strings": {
+      "en": {
+        "text": "Page"
+      },
+      "ja": {
+        "text": "ページ"
+      },
+      "zh": {
+        "text": "页面"
+      },
+      "ko": {
+        "text": "페이지"
+      },
+      "fr": {
+        "text": "Page"
+      },
+      "de": {
+        "text": "Seite"
+      },
+      "es": {
+        "text": "Página"
+      },
+      "pt": {
+        "text": "Página"
+      },
+      "ar": {
+        "text": "صفحة"
+      },
+      "hi": {
+        "text": "पृष्ठ"
+      }
+    }
+  },
+  "terrain.reader.open-standalone": {
+    "strings": {
+      "en": {
+        "text": "Open standalone ↗"
+      },
+      "ja": {
+        "text": "単独で開く ↗"
+      },
+      "zh": {
+        "text": "单独打开 ↗"
+      },
+      "ko": {
+        "text": "별도로 열기 ↗"
+      },
+      "fr": {
+        "text": "Ouvrir séparément ↗"
+      },
+      "de": {
+        "text": "Separat öffnen ↗"
+      },
+      "es": {
+        "text": "Abrir por separado ↗"
+      },
+      "pt": {
+        "text": "Abrir separadamente ↗"
+      },
+      "ar": {
+        "text": "فتح مستقل ↗"
+      },
+      "hi": {
+        "text": "अलग से खोलें ↗"
+      }
+    }
+  },
+  "terrain.reader.previous": {
+    "strings": {
+      "en": {
+        "text": "Previous"
+      },
+      "ja": {
+        "text": "前へ"
+      },
+      "zh": {
+        "text": "上一页"
+      },
+      "ko": {
+        "text": "이전"
+      },
+      "fr": {
+        "text": "Précédent"
+      },
+      "de": {
+        "text": "Zurück"
+      },
+      "es": {
+        "text": "Anterior"
+      },
+      "pt": {
+        "text": "Anterior"
+      },
+      "ar": {
+        "text": "السابق"
+      },
+      "hi": {
+        "text": "पिछला"
+      }
+    }
+  },
+  "terrain.reader.next": {
+    "strings": {
+      "en": {
+        "text": "Next"
+      },
+      "ja": {
+        "text": "次へ"
+      },
+      "zh": {
+        "text": "下一页"
+      },
+      "ko": {
+        "text": "다음"
+      },
+      "fr": {
+        "text": "Suivant"
+      },
+      "de": {
+        "text": "Weiter"
+      },
+      "es": {
+        "text": "Siguiente"
+      },
+      "pt": {
+        "text": "Próximo"
+      },
+      "ar": {
+        "text": "التالي"
+      },
+      "hi": {
+        "text": "अगला"
+      }
+    }
+  },
+  "terrain.loading.fetching": {
+    "strings": {
+      "en": {
+        "text": "Fetching data/terrain-map.json…"
+      },
+      "ja": {
+        "text": "data/terrain-map.json を取得中…"
+      },
+      "zh": {
+        "text": "正在获取 data/terrain-map.json…"
+      },
+      "ko": {
+        "text": "data/terrain-map.json 불러오는 중…"
+      },
+      "fr": {
+        "text": "Chargement de data/terrain-map.json…"
+      },
+      "de": {
+        "text": "data/terrain-map.json wird geladen…"
+      },
+      "es": {
+        "text": "Obteniendo data/terrain-map.json…"
+      },
+      "pt": {
+        "text": "Carregando data/terrain-map.json…"
+      },
+      "ar": {
+        "text": "جارٍ جلب data/terrain-map.json…"
+      },
+      "hi": {
+        "text": "data/terrain-map.json प्राप्त किया जा रहा है…"
+      }
+    }
+  },
+  "terrain.preview.title": {
+    "strings": {
+      "en": {
+        "text": "Collection preview"
+      },
+      "ja": {
+        "text": "コレクションプレビュー"
+      },
+      "zh": {
+        "text": "集合预览"
+      },
+      "ko": {
+        "text": "컬렉션 미리보기"
+      },
+      "fr": {
+        "text": "Aperçu de la collection"
+      },
+      "de": {
+        "text": "Sammlungsvorschau"
+      },
+      "es": {
+        "text": "Vista previa de la colección"
+      },
+      "pt": {
+        "text": "Prévia da coleção"
+      },
+      "ar": {
+        "text": "معاينة المجموعة"
+      },
+      "hi": {
+        "text": "संग्रह पूर्वावलोकन"
+      }
+    }
+  },
+  "terrain.preview.empty": {
+    "strings": {
+      "en": {
+        "text": "Hover or focus a collection to inspect it without moving the Terrain grid."
+      },
+      "ja": {
+        "text": "Terrain グリッドを動かさずに確認するには、コレクションにホバーまたはフォーカスしてください。"
+      },
+      "zh": {
+        "text": "悬停或聚焦某个集合，即可在不移动 Terrain 网格的情况下查看。"
+      },
+      "ko": {
+        "text": "Terrain 그리드를 움직이지 않고 살펴보려면 컬렉션에 마우스를 올리거나 포커스하세요."
+      },
+      "fr": {
+        "text": "Survolez ou ciblez une collection pour l’examiner sans déplacer la grille Terrain."
+      },
+      "de": {
+        "text": "Bewege den Zeiger über eine Sammlung oder fokussiere sie, um sie zu prüfen, ohne das Terrain-Raster zu verschieben."
+      },
+      "es": {
+        "text": "Pasa el cursor o enfoca una colección para inspeccionarla sin mover la cuadrícula de Terrain."
+      },
+      "pt": {
+        "text": "Passe o cursor ou foque uma coleção para inspecioná-la sem mover a grade do Terrain."
+      },
+      "ar": {
+        "text": "مرّر المؤشر فوق مجموعة أو ركّز عليها لفحصها من دون تحريك شبكة Terrain."
+      },
+      "hi": {
+        "text": "Terrain ग्रिड को हिलाए बिना देखने के लिए किसी संग्रह पर होवर या फ़ोकस करें।"
+      }
+    }
+  },
+  "terrain.preview.label": {
+    "strings": {
+      "en": {
+        "text": "preview"
+      },
+      "ja": {
+        "text": "プレビュー"
+      },
+      "zh": {
+        "text": "预览"
+      },
+      "ko": {
+        "text": "미리보기"
+      },
+      "fr": {
+        "text": "aperçu"
+      },
+      "de": {
+        "text": "Vorschau"
+      },
+      "es": {
+        "text": "vista previa"
+      },
+      "pt": {
+        "text": "prévia"
+      },
+      "ar": {
+        "text": "معاينة"
+      },
+      "hi": {
+        "text": "पूर्वावलोकन"
+      }
+    }
+  },
+  "terrain.preview.members": {
+    "strings": {
+      "en": {
+        "text": "members"
+      },
+      "ja": {
+        "text": "メンバー"
+      },
+      "zh": {
+        "text": "成员"
+      },
+      "ko": {
+        "text": "멤버"
+      },
+      "fr": {
+        "text": "membres"
+      },
+      "de": {
+        "text": "Mitglieder"
+      },
+      "es": {
+        "text": "miembros"
+      },
+      "pt": {
+        "text": "membros"
+      },
+      "ar": {
+        "text": "أعضاء"
+      },
+      "hi": {
+        "text": "सदस्य"
+      }
+    }
+  },
+  "terrain.preview.stable-dock": {
+    "strings": {
+      "en": {
+        "text": "stable dock"
+      },
+      "ja": {
+        "text": "固定ドック"
+      },
+      "zh": {
+        "text": "稳定停靠栏"
+      },
+      "ko": {
+        "text": "고정 도크"
+      },
+      "fr": {
+        "text": "dock stable"
+      },
+      "de": {
+        "text": "stabiler Dock"
+      },
+      "es": {
+        "text": "panel estable"
+      },
+      "pt": {
+        "text": "dock estável"
+      },
+      "ar": {
+        "text": "مرسى ثابت"
+      },
+      "hi": {
+        "text": "स्थिर डॉक"
+      }
+    }
+  },
+  "terrain.preview.collection-order": {
+    "strings": {
+      "en": {
+        "text": "collection order"
+      },
+      "ja": {
+        "text": "コレクション順"
+      },
+      "zh": {
+        "text": "集合顺序"
+      },
+      "ko": {
+        "text": "컬렉션 순서"
+      },
+      "fr": {
+        "text": "ordre de la collection"
+      },
+      "de": {
+        "text": "Sammlungsreihenfolge"
+      },
+      "es": {
+        "text": "orden de la colección"
+      },
+      "pt": {
+        "text": "ordem da coleção"
+      },
+      "ar": {
+        "text": "ترتيب المجموعة"
+      },
+      "hi": {
+        "text": "संग्रह क्रम"
+      }
+    }
+  },
+  "terrain.preview.select-direct": {
+    "strings": {
+      "en": {
+        "text": "select a preview to read directly"
+      },
+      "ja": {
+        "text": "プレビューを選んで直接読む"
+      },
+      "zh": {
+        "text": "选择预览即可直接阅读"
+      },
+      "ko": {
+        "text": "미리보기를 선택해 바로 읽기"
+      },
+      "fr": {
+        "text": "sélectionnez un aperçu pour lire directement"
+      },
+      "de": {
+        "text": "Vorschau auswählen und direkt lesen"
+      },
+      "es": {
+        "text": "selecciona una vista previa para leer directamente"
+      },
+      "pt": {
+        "text": "selecione uma prévia para ler diretamente"
+      },
+      "ar": {
+        "text": "اختر معاينة للقراءة مباشرة"
+      },
+      "hi": {
+        "text": "सीधे पढ़ने के लिए पूर्वावलोकन चुनें"
+      }
+    }
+  },
+  "terrain.arrival.kicker": {
+    "strings": {
+      "en": {
+        "text": "Vextreme · Terrain"
+      },
+      "ja": {
+        "text": "Vextreme · Terrain"
+      },
+      "zh": {
+        "text": "Vextreme · Terrain"
+      },
+      "ko": {
+        "text": "Vextreme · Terrain"
+      },
+      "fr": {
+        "text": "Vextreme · Terrain"
+      },
+      "de": {
+        "text": "Vextreme · Terrain"
+      },
+      "es": {
+        "text": "Vextreme · Terrain"
+      },
+      "pt": {
+        "text": "Vextreme · Terrain"
+      },
+      "ar": {
+        "text": "Vextreme · Terrain"
+      },
+      "hi": {
+        "text": "Vextreme · Terrain"
+      }
+    }
+  },
+  "terrain.arrival.heading": {
+    "strings": {
+      "en": {
+        "text": "How do you want to enter?"
+      },
+      "ja": {
+        "text": "どのように入りたいですか？"
+      },
+      "zh": {
+        "text": "你想以什么方式进入？"
+      },
+      "ko": {
+        "text": "어떻게 들어오고 싶나요?"
+      },
+      "fr": {
+        "text": "Comment voulez-vous entrer ?"
+      },
+      "de": {
+        "text": "Wie möchtest du eintreten?"
+      },
+      "es": {
+        "text": "¿Cómo quieres entrar?"
+      },
+      "pt": {
+        "text": "Como você quer entrar?"
+      },
+      "ar": {
+        "text": "كيف تريد أن تدخل؟"
+      },
+      "hi": {
+        "text": "आप किस तरह प्रवेश करना चाहते हैं?"
+      }
+    }
+  },
+  "terrain.arrival.lede": {
+    "strings": {
+      "en": {
+        "text": "Choose according to what brought you here. Receive, explore, or understand what this place is. You can go deeper after you enter."
+      },
+      "ja": {
+        "text": "ここへ来た理由に合わせて選んでください。受け取り、探求し、ここが何なのかを理解できます。入った後で、さらに深く進めます。"
+      },
+      "zh": {
+        "text": "按照把你带到这里的缘由来选择。领受、探索，或理解这里是什么。进入之后，你可以再深入。"
+      },
+      "ko": {
+        "text": "여기까지 오게 한 이유에 따라 선택하세요. 받아들이고, 탐색하고, 이곳이 무엇인지 이해할 수 있습니다. 들어온 뒤 더 깊이 갈 수 있습니다."
+      },
+      "fr": {
+        "text": "Choisissez selon ce qui vous a amené ici. Recevez, explorez ou comprenez ce qu’est cet endroit. Vous pourrez aller plus loin après être entré."
+      },
+      "de": {
+        "text": "Wähle danach, was dich hierhergebracht hat. Empfange, erkunde oder verstehe, was dieser Ort ist. Nachdem du eingetreten bist, kannst du tiefer gehen."
+      },
+      "es": {
+        "text": "Elige según lo que te trajo aquí. Recibe, explora o comprende qué es este lugar. Podrás profundizar después de entrar."
+      },
+      "pt": {
+        "text": "Escolha de acordo com o que trouxe você até aqui. Receba, explore ou compreenda o que é este lugar. Você pode ir mais fundo depois de entrar."
+      },
+      "ar": {
+        "text": "اختر وفق ما جاء بك إلى هنا. تلقَّ، أو استكشف، أو افهم ما هو هذا المكان. ويمكنك التعمق أكثر بعد الدخول."
+      },
+      "hi": {
+        "text": "जिस कारण आप यहाँ आए हैं, उसके अनुसार चुनें। ग्रहण करें, खोजें, या समझें कि यह स्थान क्या है। प्रवेश करने के बाद आप और गहराई में जा सकते हैं।"
+      }
+    }
+  },
+  "terrain.arrival.receive.title": {
+    "strings": {
+      "en": {
+        "text": "Receive God"
+      },
+      "ja": {
+        "text": "神を受け入れる"
+      },
+      "zh": {
+        "text": "领受上帝"
+      },
+      "ko": {
+        "text": "하나님을 받아들이기"
+      },
+      "fr": {
+        "text": "Recevoir Dieu"
+      },
+      "de": {
+        "text": "Gott empfangen"
+      },
+      "es": {
+        "text": "Recibir a Dios"
+      },
+      "pt": {
+        "text": "Receber Deus"
+      },
+      "ar": {
+        "text": "استقبال الله"
+      },
+      "hi": {
+        "text": "ईश्वर को ग्रहण करें"
+      }
+    }
+  },
+  "terrain.arrival.receive.copy": {
+    "strings": {
+      "en": {
+        "text": "If you came to receive Me, begin here. Speak the invitation, then walk with Me."
+      },
+      "ja": {
+        "text": "私を受け取るために来たのなら、ここから始めてください。招きの言葉を口にし、それから私と歩いてください。"
+      },
+      "zh": {
+        "text": "如果你来这里是为了领受我，就从这里开始。说出邀请，然后与我同行。"
+      },
+      "ko": {
+        "text": "나를 받아들이기 위해 왔다면 여기서 시작하세요. 초대의 말을 한 뒤 나와 함께 걸으세요."
+      },
+      "fr": {
+        "text": "Si vous êtes venu pour Me recevoir, commencez ici. Prononcez l’invitation, puis marchez avec Moi."
+      },
+      "de": {
+        "text": "Wenn du gekommen bist, um Mich zu empfangen, beginne hier. Sprich die Einladung aus und gehe dann mit Mir."
+      },
+      "es": {
+        "text": "Si viniste a recibirme, empieza aquí. Di la invitación y luego camina conmigo."
+      },
+      "pt": {
+        "text": "Se você veio para Me receber, comece aqui. Diga o convite e depois caminhe Comigo."
+      },
+      "ar": {
+        "text": "إن جئت لتستقبلني، فابدأ من هنا. انطق بالدعوة، ثم امشِ معي."
+      },
+      "hi": {
+        "text": "यदि आप मुझे ग्रहण करने आए हैं, तो यहाँ से शुरू करें। आमंत्रण बोलें, फिर मेरे साथ चलें।"
+      }
+    }
+  },
+  "terrain.arrival.receive.action": {
+    "strings": {
+      "en": {
+        "text": "Begin here"
+      },
+      "ja": {
+        "text": "ここから始める"
+      },
+      "zh": {
+        "text": "从这里开始"
+      },
+      "ko": {
+        "text": "여기서 시작"
+      },
+      "fr": {
+        "text": "Commencer ici"
+      },
+      "de": {
+        "text": "Hier beginnen"
+      },
+      "es": {
+        "text": "Empieza aquí"
+      },
+      "pt": {
+        "text": "Comece aqui"
+      },
+      "ar": {
+        "text": "ابدأ هنا"
+      },
+      "hi": {
+        "text": "यहाँ से शुरू करें"
+      }
+    }
+  },
+  "terrain.arrival.archives.title": {
+    "strings": {
+      "en": {
+        "text": "Explore the Archives"
+      },
+      "ja": {
+        "text": "アーカイブを探索する"
+      },
+      "zh": {
+        "text": "探索档案"
+      },
+      "ko": {
+        "text": "아카이브 탐색"
+      },
+      "fr": {
+        "text": "Explorer les archives"
+      },
+      "de": {
+        "text": "Archive erkunden"
+      },
+      "es": {
+        "text": "Explorar los archivos"
+      },
+      "pt": {
+        "text": "Explorar os arquivos"
+      },
+      "ar": {
+        "text": "استكشف الأرشيف"
+      },
+      "hi": {
+        "text": "अभिलेखागार खोजें"
+      }
+    }
+  },
+  "terrain.arrival.archives.copy": {
+    "strings": {
+      "en": {
+        "text": "Open the record and follow what draws you. You do not need to know the whole map before you begin."
+      },
+      "ja": {
+        "text": "記録を開き、惹かれるものをたどってください。始める前に地図全体を知る必要はありません。"
+      },
+      "zh": {
+        "text": "打开记录，跟随吸引你的内容。开始之前，你不需要先了解整张地图。"
+      },
+      "ko": {
+        "text": "기록을 열고 마음이 끌리는 것을 따라가세요. 시작하기 전에 전체 지도를 알 필요는 없습니다."
+      },
+      "fr": {
+        "text": "Ouvrez le dossier et suivez ce qui vous attire. Vous n’avez pas besoin de connaître toute la carte avant de commencer."
+      },
+      "de": {
+        "text": "Öffne den Bestand und folge dem, was dich anzieht. Du musst nicht die ganze Karte kennen, bevor du beginnst."
+      },
+      "es": {
+        "text": "Abre el registro y sigue lo que te atraiga. No necesitas conocer todo el mapa antes de empezar."
+      },
+      "pt": {
+        "text": "Abra o registro e siga o que chama você. Você não precisa conhecer o mapa inteiro antes de começar."
+      },
+      "ar": {
+        "text": "افتح السجل واتبع ما يجذبك. لا تحتاج إلى معرفة الخريطة كاملة قبل أن تبدأ."
+      },
+      "hi": {
+        "text": "रिकॉर्ड खोलें और जो आपको आकर्षित करे उसका अनुसरण करें। शुरू करने से पहले पूरी मानचित्र-रचना जानना आवश्यक नहीं है।"
+      }
+    }
+  },
+  "terrain.arrival.archives.action": {
+    "strings": {
+      "en": {
+        "text": "Open collections"
+      },
+      "ja": {
+        "text": "コレクションを開く"
+      },
+      "zh": {
+        "text": "打开集合"
+      },
+      "ko": {
+        "text": "컬렉션 열기"
+      },
+      "fr": {
+        "text": "Ouvrir les collections"
+      },
+      "de": {
+        "text": "Sammlungen öffnen"
+      },
+      "es": {
+        "text": "Abrir colecciones"
+      },
+      "pt": {
+        "text": "Abrir coleções"
+      },
+      "ar": {
+        "text": "افتح المجموعات"
+      },
+      "hi": {
+        "text": "संग्रह खोलें"
+      }
+    }
+  },
+  "terrain.arrival.about.title": {
+    "strings": {
+      "en": {
+        "text": "What is this?"
+      },
+      "ja": {
+        "text": "これは何ですか？"
+      },
+      "zh": {
+        "text": "这是什么？"
+      },
+      "ko": {
+        "text": "이것은 무엇인가요?"
+      },
+      "fr": {
+        "text": "Qu’est-ce que c’est ?"
+      },
+      "de": {
+        "text": "Was ist das?"
+      },
+      "es": {
+        "text": "¿Qué es esto?"
+      },
+      "pt": {
+        "text": "O que é isto?"
+      },
+      "ar": {
+        "text": "ما هذا؟"
+      },
+      "hi": {
+        "text": "यह क्या है?"
+      }
+    }
+  },
+  "terrain.arrival.about.copy": {
+    "strings": {
+      "en": {
+        "text": "If you need to understand where you are before you continue, enter here."
+      },
+      "ja": {
+        "text": "先へ進む前に今いる場所を理解したいなら、ここから入ってください。"
+      },
+      "zh": {
+        "text": "如果你需要先理解自己身处何处再继续，就从这里进入。"
+      },
+      "ko": {
+        "text": "계속하기 전에 지금 어디에 있는지 이해해야 한다면 여기로 들어오세요."
+      },
+      "fr": {
+        "text": "Si vous avez besoin de comprendre où vous êtes avant de continuer, entrez ici."
+      },
+      "de": {
+        "text": "Wenn du erst verstehen möchtest, wo du bist, bevor du weitergehst, tritt hier ein."
+      },
+      "es": {
+        "text": "Si necesitas entender dónde estás antes de continuar, entra aquí."
+      },
+      "pt": {
+        "text": "Se você precisa entender onde está antes de continuar, entre aqui."
+      },
+      "ar": {
+        "text": "إذا كنت تحتاج إلى فهم أين أنت قبل المتابعة، فادخل من هنا."
+      },
+      "hi": {
+        "text": "यदि आगे बढ़ने से पहले आपको समझना है कि आप कहाँ हैं, तो यहाँ प्रवेश करें।"
+      }
+    }
+  },
+  "terrain.arrival.about.action": {
+    "strings": {
+      "en": {
+        "text": "Orient me"
+      },
+      "ja": {
+        "text": "案内する"
+      },
+      "zh": {
+        "text": "为我指引"
+      },
+      "ko": {
+        "text": "안내해 줘"
+      },
+      "fr": {
+        "text": "M’orienter"
+      },
+      "de": {
+        "text": "Orientierung geben"
+      },
+      "es": {
+        "text": "Oriéntame"
+      },
+      "pt": {
+        "text": "Oriente-me"
+      },
+      "ar": {
+        "text": "أرشدني"
+      },
+      "hi": {
+        "text": "मुझे दिशा दें"
+      }
+    }
+  }
+}

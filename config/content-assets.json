@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "vextreme.content-assets/v2",
+  "resolution": "BUILD_TIME",
+  "provider": {
+    "repository": "vgong24/Vextreme-Assets",
+    "manifestPath": "asset-manifest.json",
+    "manifestSchemaVersion": "vextreme-assets.import-manifest/v1",
+    "manifestGitBlob": "a299b974bc0e24edfe4af0a75ac6b9c392ef7b47"
+  },
+  "baseUrl": "https://vgong24.github.io/Vextreme-Assets",
+  "logicalReference": {
+    "prefix": "/__assets/",
+    "assetIdFormat": "64_HEX_EXPORTED_ID"
+  },
+  "location": {
+    "defaultPathTemplate": "__assets/{assetId}.{extension}",
+    "overrides": {}
+  }
+}

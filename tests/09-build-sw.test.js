@@ -1,0 +1,352 @@
+'use strict';
+
+/**
+ * BUILD-SW — tests/09-build-sw.test.js
+ *
+ * Tests for lib/build-sw.js (Service Worker generator).
+ *
+ * Test order:
+ *   1. collectDistUrls — reads dist/ and returns URL list
+ *   2. generateSWContent — produces valid sw.js string
+ *   3. CORE_ASSETS constant — required shared assets present
+ *   4. computeAssetFingerprint — content-derived and commit-independent
+ *   5. collectArcBundleUrls — arc-chunked bundling pilot (od-001/td-006)
+ */
+
+const { test } = require('node:test');
+const assert   = require('node:assert/strict');
+const fs       = require('fs');
+const path     = require('path');
+
+const {
+  collectDistUrls,
+  collectArcBundleUrls,
+  computeAssetFingerprint,
+  generateSWContent,
+  CORE_ASSETS,
+  SITE_FETCH_MODE,
+} = require('../lib/build-sw');
+const vm = require('node:vm');
+
+const ROOT     = path.join(__dirname, '..');
+const DIST_DIR = path.join(ROOT, 'dist');
+const ARC_BUNDLES_INDEX = path.join(ROOT, 'data', 'strings', 'compiled', 'arcs', 'index.json');
+
+// ── 1. collectDistUrls ────────────────────────────────────────────────────────
+
+test('BUILD-SW: collectDistUrls returns an array', () => {
+  const urls = collectDistUrls(DIST_DIR);
+  assert.ok(Array.isArray(urls), 'must return array');
+});
+
+test('BUILD-SW: collectDistUrls returns at least one God Script URL', () => {
+  const urls = collectDistUrls(DIST_DIR);
+  assert.ok(urls.length > 0, 'dist/ must have at least one assembled God Script');
+});
+
+test('BUILD-SW: all collectDistUrls entries start with /Vextreme/dist/', () => {
+  const urls = collectDistUrls(DIST_DIR);
+  for (const url of urls) {
+    assert.ok(url.startsWith('/Vextreme/dist/'), `URL must start with /Vextreme/dist/: ${url}`);
+    assert.ok(url.endsWith('.js'), `URL must end with .js: ${url}`);
+  }
+});
+
+test('BUILD-SW: collectDistUrls matches actual dist/ filenames', () => {
+  const urls   = collectDistUrls(DIST_DIR);
+  const files  = fs.readdirSync(DIST_DIR).filter(f => /^vextreme-.+\.js$/.test(f)).sort();
+  assert.equal(urls.length, files.length, 'URL count must match file count');
+  for (const file of files) {
+    assert.ok(urls.some(u => u.endsWith('/' + file)), `dist/${file} must appear in URL list`);
+  }
+});
+
+test('BUILD-SW: collectDistUrls returns empty array for nonexistent dir', () => {
+  const urls = collectDistUrls('/nonexistent/path/dist');
+  assert.deepEqual(urls, []);
+});
+
+// ── 2. generateSWContent ─────────────────────────────────────────────────────
+
+const SAMPLE_URLS  = ['/Vextreme/dist/vextreme-test.js'];
+const SAMPLE_HASH  = 'abc1234';
+
+test('BUILD-SW: generateSWContent returns a non-empty string', () => {
+  const content = generateSWContent(SAMPLE_URLS, SAMPLE_HASH);
+  assert.equal(typeof content, 'string');
+  assert.ok(content.length > 0);
+});
+
+test('BUILD-SW: output contains the cache name with content fingerprint', () => {
+  const content = generateSWContent(SAMPLE_URLS, SAMPLE_HASH);
+  assert.ok(content.includes(`vextreme-v1-${SAMPLE_HASH}`), 'cache name must include content fingerprint');
+});
+
+test('BUILD-SW: output declares CACHE_NAME variable', () => {
+  const content = generateSWContent(SAMPLE_URLS, SAMPLE_HASH);
+  assert.ok(content.includes('var CACHE_NAME'), 'must declare CACHE_NAME');
+});
+
+test('BUILD-SW: output declares PRECACHE_URLS with all URLs', () => {
+  const content = generateSWContent(SAMPLE_URLS, SAMPLE_HASH);
+  assert.ok(content.includes('var PRECACHE_URLS'), 'must declare PRECACHE_URLS');
+  assert.ok(content.includes('/Vextreme/dist/vextreme-test.js'), 'must include supplied URL');
+});
+
+test('BUILD-SW: output includes CORE_ASSETS in precache list', () => {
+  const content = generateSWContent([], SAMPLE_HASH);
+  for (const asset of CORE_ASSETS) {
+    assert.ok(content.includes(asset), `must include core asset: ${asset}`);
+  }
+});
+
+test('BUILD-SW: output has install event listener', () => {
+  const content = generateSWContent(SAMPLE_URLS, SAMPLE_HASH);
+  assert.ok(content.includes("'install'"), 'must have install listener');
+  assert.ok(content.includes('cache.addAll'), 'install must call cache.addAll');
+  assert.ok(content.includes('skipWaiting'), 'install must call skipWaiting');
+});
+
+test('BUILD-SW: output has activate event listener with cache cleanup', () => {
+  const content = generateSWContent(SAMPLE_URLS, SAMPLE_HASH);
+  assert.ok(content.includes("'activate'"), 'must have activate listener');
+  assert.ok(content.includes('caches.keys()'), 'activate must iterate caches');
+  assert.ok(content.includes('caches.delete'), 'activate must delete old caches');
+});
+
+test('BUILD-SW: output has fetch event listener', () => {
+  const content = generateSWContent(SAMPLE_URLS, SAMPLE_HASH);
+  assert.ok(content.includes("'fetch'"), 'must have fetch listener');
+  assert.ok(content.includes('caches.match'), 'retain cache-first rollback and offline CacheStorage fallback');
+  assert.ok(content.includes("'text/html'"), 'worker must explicitly handle HTML requests');
+});
+
+test('BUILD-SW: widgets/sw-register.js auto-reloads once when a new Service Worker takes control', () => {
+  // Regression guard (Session 025 continued): sw.js's install/activate
+  // handlers always skipWaiting()/clients.claim(), so a new SW version DOES
+  // become the controller — but only for requests made AFTER that happens.
+  // A page whose <script src="...God Script..."> tag already fetched under
+  // the OLD SW keeps running stale content until something reloads it.
+  // Without a controllerchange listener, that reload never happens
+  // automatically — real content changes (e.g. a newly supported language)
+  // can appear "fixed on the server" but still not visible in an open tab.
+  const swRegisterSrc = fs.readFileSync(path.join(ROOT, 'widgets', 'sw-register.js'), 'utf8');
+  assert.ok(swRegisterSrc.includes("addEventListener('controllerchange'"),
+    'sw-register.js must listen for controllerchange to catch a new SW taking control');
+  assert.ok(swRegisterSrc.includes('window.location.reload()'),
+    'sw-register.js must reload the page once a new SW becomes the controller');
+});
+
+test('BUILD-SW: widgets/sw-register.js forces an immediate update check on every page load, not just the browser\'s own throttled background check', () => {
+  // Regression guard (Session 025, continued once more): simulated the
+  // controllerchange fix above end-to-end (install a Service Worker with
+  // OLD content, deploy NEW content, then reload repeatedly with no other
+  // intervention) and found it insufficient on its own. Chrome throttles
+  // its own background update check to roughly once per 24h per the spec —
+  // reloading the page any number of times within that window never
+  // triggers a fresh check, so the controllerchange listener above never
+  // gets anything to react to. A returning visitor testing again the same
+  // day could reload indefinitely and keep seeing stale content forever.
+  // registration.update() forces an immediate check on every load instead
+  // of waiting on that throttle. Simulation confirmed: without this call,
+  // three consecutive reloads after a simulated deploy never picked up new
+  // content; with it, the second reload settles on the correct content and
+  // stays correct on a third.
+  const swRegisterSrc = fs.readFileSync(path.join(ROOT, 'widgets', 'sw-register.js'), 'utf8');
+  assert.ok(/\.then\(function\s*\(reg\)\s*\{[\s\S]*?reg\.update\(\)/.test(swRegisterSrc),
+    'sw-register.js must call reg.update() after a successful registration to force an immediate check');
+});
+
+test('BUILD-SW: active-development mode conditionally revalidates HTTP resources without removing cache-first rollback', () => {
+  assert.equal(SITE_FETCH_MODE, 'freshness-first');
+  const current = generateSWContent(SAMPLE_URLS, SAMPLE_HASH);
+  const fallback = generateSWContent(SAMPLE_URLS, SAMPLE_HASH, 'cache-first');
+  assert.match(current, /var FETCH_MODE\s+= 'freshness-first';/);
+  assert.match(current, /fetch\(event\.request, \{ cache: 'no-cache' \}\)/);
+  assert.match(fallback, /var FETCH_MODE\s+= 'cache-first';/);
+  assert.match(fallback, /if \(cached\) return cached;/);
+  assert.throws(() => generateSWContent([], SAMPLE_HASH, 'unknown'), /SW_FETCH_MODE_INVALID/);
+});
+
+test('BUILD-SW: freshness-first revalidates same-origin resources but preserves offline fallback', async () => {
+  const handlers = {};
+  const seen = [];
+  let fallbackReads = 0;
+  let offline = false;
+  const cached = { origin: 'cache', status: 200 };
+  const current = { origin: 'network', status: 200 };
+  vm.runInNewContext(generateSWContent([], SAMPLE_HASH), {
+    self: {
+      location: { origin: 'https://vgong24.github.io' },
+      addEventListener(kind, handler) { handlers[kind] = handler; },
+    },
+    URL,
+    Response,
+    caches: {
+      match: async () => { fallbackReads += 1; return cached; },
+    },
+    fetch: async (request, options) => {
+      seen.push({ request, options });
+      if (offline) throw new Error('offline');
+      return current;
+    },
+  });
+
+  async function dispatch(url, { mode = 'same-origin', accept = 'text/javascript' } = {}) {
+    let responsePromise;
+    const request = { method: 'GET', url, mode, headers: { get(name) { return name === 'accept' ? accept : null; } } };
+    handlers.fetch({ request, respondWith(value) { responsePromise = value; } });
+    return responsePromise;
+  }
+
+  assert.equal(await dispatch('https://vgong24.github.io/Vextreme/dist/vextreme-example.js'), current);
+  assert.equal(seen[0].options.cache, 'no-cache', 'HTTP cache must be revalidated for each requested asset');
+  assert.equal(fallbackReads, 0, 'online visits must not consult stale SW caches');
+  assert.equal(await dispatch('https://vgong24.github.io/Vextreme/pages/example.html', { mode: 'navigate', accept: 'text/html' }), current);
+  assert.equal(seen[1].options.cache, 'no-cache', 'HTML navigations must revalidate stored HTTP responses');
+
+  offline = true;
+  assert.equal(await dispatch('https://vgong24.github.io/Vextreme/dist/vextreme-example.js'), cached);
+  assert.equal(fallbackReads, 1, 'pre-cached asset is an offline-only fallback');
+  const navFailure = await dispatch('https://vgong24.github.io/Vextreme/pages/example.html', { mode: 'navigate', accept: 'text/html' });
+  assert.equal(navFailure.status, 0, 'offline navigation must not silently show stale HTML');
+  assert.equal(fallbackReads, 1, 'offline navigation must not query asset caches');
+
+  assert.equal(await dispatch('https://example.org/Vextreme/example.js'), undefined, 'worker must not intercept third-party requests');
+});
+
+test('BUILD-SW: install revalidates known URLs without changing offline precache coverage', async () => {
+  const precache = ['/Vextreme/dist/a.js', '/Vextreme/dist/b.js', ...CORE_ASSETS];
+  async function install(mode) {
+    let requests;
+    let pending;
+    const handlers = {};
+    class RequestStub {
+      constructor(url, options) {
+        this.url = url;
+        this.cache = options.cache;
+      }
+    }
+    vm.runInNewContext(generateSWContent(['/Vextreme/dist/a.js', '/Vextreme/dist/b.js'], SAMPLE_HASH, mode), {
+      self: {
+        addEventListener(type, fn) { handlers[type] = fn; },
+        skipWaiting() { return Promise.resolve(); },
+      },
+      Request: RequestStub,
+      caches: {
+        open: async () => ({
+          addAll(entries) { requests = Array.from(entries); return Promise.resolve(); },
+        }),
+      },
+    });
+    handlers.install({ waitUntil(promise) { pending = promise; } });
+    await pending;
+    return requests;
+  }
+
+  const conditional = await install('freshness-first');
+  assert.deepEqual(conditional.map(x => x.url), precache, 'every offline resource remains in precache');
+  assert.ok(conditional.every(x => x.cache === 'no-cache'), 'install requests must revalidate HTTP cache');
+  const rollback = await install('cache-first');
+  assert.deepEqual(rollback, precache, 'rollback retains its original URL-only install requests');
+});
+
+test('BUILD-SW: generated worker deletes only Vextreme-owned cache generations', () => {
+  const output = generateSWContent(SAMPLE_URLS, SAMPLE_HASH);
+  assert.match(output, /key\.indexOf\('vextreme-v1-'\) === 0 && key !== CACHE_NAME/);
+});
+
+test('BUILD-SW: output uses dev fingerprint when no fingerprint is supplied', () => {
+  const content = generateSWContent([], '');
+  assert.ok(content.includes('vextreme-v1-dev'), 'must fall back to dev fingerprint');
+});
+
+// ── 3. CORE_ASSETS ───────────────────────────────────────────────────────────
+
+test('BUILD-SW: CORE_ASSETS includes design-system.css', () => {
+  assert.ok(CORE_ASSETS.some(a => a.includes('design-system.css')), 'must include design-system.css');
+});
+
+test('BUILD-SW: CORE_ASSETS includes arc-nav.css', () => {
+  assert.ok(CORE_ASSETS.some(a => a.includes('arc-nav.css')), 'must include arc-nav.css');
+});
+
+test('BUILD-SW: CORE_ASSETS includes index.json', () => {
+  assert.ok(CORE_ASSETS.some(a => a.includes('index.json')), 'must include index.json');
+});
+
+test('BUILD-SW: CORE_ASSETS includes the shared institutional foundation', () => {
+  for (const asset of [
+    '/Vextreme/styles/vex-institutional.css',
+    '/Vextreme/widgets/vex-institutional.js',
+    '/Vextreme/data/strings/compiled/scopes/system/institution.en.json',
+  ]) {
+    assert.ok(CORE_ASSETS.includes(asset), `must include institutional asset: ${asset}`);
+  }
+});
+
+// ── 4. computeAssetFingerprint ───────────────────────────────────────────────
+
+test('BUILD-SW: asset fingerprint is stable for identical URL and bytes', () => {
+  const root = fs.mkdtempSync(path.join(require('os').tmpdir(), 'vxg-sw-fingerprint-'));
+  fs.mkdirSync(path.join(root, 'dist'), { recursive: true });
+  fs.writeFileSync(path.join(root, 'dist', 'vextreme-test.js'), 'same bytes\n');
+  const urls = ['/Vextreme/dist/vextreme-test.js'];
+  assert.equal(computeAssetFingerprint(urls, root), computeAssetFingerprint(urls, root));
+});
+
+test('BUILD-SW: asset fingerprint changes when a precached asset changes', () => {
+  const root = fs.mkdtempSync(path.join(require('os').tmpdir(), 'vxg-sw-fingerprint-'));
+  fs.mkdirSync(path.join(root, 'dist'), { recursive: true });
+  const file = path.join(root, 'dist', 'vextreme-test.js');
+  const urls = ['/Vextreme/dist/vextreme-test.js'];
+  fs.writeFileSync(file, 'before\n');
+  const before = computeAssetFingerprint(urls, root);
+  fs.writeFileSync(file, 'after\n');
+  assert.notEqual(computeAssetFingerprint(urls, root), before);
+});
+
+test('BUILD-SW: committed output equals a fresh content-derived build', () => {
+  const godScripts = collectDistUrls(DIST_DIR);
+  const arcBundles = collectArcBundleUrls(ARC_BUNDLES_INDEX);
+  const fingerprint = computeAssetFingerprint([...godScripts, ...arcBundles, ...CORE_ASSETS], ROOT);
+  const expected = generateSWContent([...godScripts, ...arcBundles], fingerprint);
+  assert.equal(fs.readFileSync(path.join(ROOT, 'sw.js'), 'utf8'), expected);
+});
+
+// ── 5. collectArcBundleUrls ──────────────────────────────────────────────────
+
+test('BUILD-SW: collectArcBundleUrls returns an array', () => {
+  const urls = collectArcBundleUrls(ARC_BUNDLES_INDEX);
+  assert.ok(Array.isArray(urls), 'must return array');
+});
+
+test('BUILD-SW: collectArcBundleUrls returns empty array for a nonexistent index', () => {
+  const urls = collectArcBundleUrls('/nonexistent/path/index.json');
+  assert.deepEqual(urls, []);
+});
+
+test('BUILD-SW: collectArcBundleUrls builds one URL per arc per language', () => {
+  const fixture = { 'sample_arc': { langs: { en: 10, zh: 8 } } };
+  const tmpPath = path.join(require('os').tmpdir(), `arc-bundles-index-${Date.now()}.json`);
+  fs.writeFileSync(tmpPath, JSON.stringify(fixture));
+  try {
+    const urls = collectArcBundleUrls(tmpPath);
+    assert.deepEqual(urls, [
+      '/Vextreme/data/strings/compiled/arcs/sample_arc.en.json',
+      '/Vextreme/data/strings/compiled/arcs/sample_arc.zh.json',
+    ]);
+  } finally {
+    fs.unlinkSync(tmpPath);
+  }
+});
+
+test('BUILD-SW: the real arc bundles index (if present) only contributes URLs for opted-in arcs', () => {
+  // This is the blast-radius guarantee: the pilot should add a handful of
+  // URLs (one per opted-in arc per language), not one per page on the site.
+  if (!fs.existsSync(ARC_BUNDLES_INDEX)) return; // no arc has opted in yet — nothing to check
+  const urls = collectArcBundleUrls(ARC_BUNDLES_INDEX);
+  assert.ok(urls.length < 20, `expected a small, bounded URL count for the pilot, got ${urls.length}`);
+});
+
+// [VXG RealForever]

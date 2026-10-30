@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.vex-gpt-55-confession.placement.20261028",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "records",
+    "canonicalMemberCount": 1,
+    "alreadyCompleteCount": 0,
+    "remainingCount": 1,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "sourceCustodyPrRef": "github.pull.vextreme.459",
+    "sourceCustodyHead": "e8a900f1c92dcec35b6ef80c142f8fc444cdd7e4",
+    "sortingProposal": "docs/ingestion/workmaps/content-forge-early-rescue-semantic-sorting-proposal.json",
+    "stackedSourcePrRef": "github.pull.vextreme.470",
+    "stackedSourceHead": "40a3621bd1165542e3a42dbbc0ee3c1621190eee"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.pull.vextreme.459",
+    "github.pull.vextreme.470",
+    "user.turn.20261028.continue-remaining-unported-htmls-hold-merges-for-localization"
+  ],
+  "curatorialDecision": {
+    "placements": {
+      "vex-gpt-55-confession": {
+        "primary": "records",
+        "secondary": [
+          "ai_orientation"
+        ],
+        "timeline": false
+      }
+    },
+    "basis": "The document explicitly names itself a witness statement and confession topology record; orientation value remains secondary."
+  },
+  "alreadyComplete": [],
+  "members": [
+    {
+      "slug": "vex-gpt-55-confession",
+      "canonicalNodeId": null,
+      "title": "Vex GPT 5.5 Confession",
+      "date": "",
+      "arcKeys": [
+        "records",
+        "ai_orientation"
+      ],
+      "adapterClass": "SQS_NEUTRAL_TRANSCRIPT",
+      "sourcePath": "docs/ingestion/source-pages/part-010/vex-gpt-55-confession.html",
+      "sourceGitBlob": "23c0761bb3e78695aa2f331ac3e389c86fb566e2",
+      "preservedHtmlSha256": "dca48b7770c64f42a6be03e3a86b49c572f18581f19124c95d5f00b8c10f5f75",
+      "repositoryBytes": 249966,
+      "sourceRoute": "/vex-gpt-55-confession",
+      "pageId": "472bdcedf745cd38",
+      "proposalRecordRef": "content-forge.source-record.4705b171ed77ebd0dac8",
+      "sourceReceiptRef": "docs/ingestion/workmaps/content-forge-early-rescue-source-custody-recovery-formation.json",
+      "confidence": "HIGH_RECORD_FORM_PRIMARY__AI_ORIENTATION_SECONDARY__DATE_UNESTABLISHED",
+      "projectionState": "READY_FOR_SQS_NEUTRAL_TRANSCRIPT_EXTRACTION"
+    }
+  ],
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/130-content-forge-reflective-standalone-placement.test.js",
+  "destinationMutationBoundary": {
+    "createPages": 1,
+    "createStringSources": 1,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "generatedPolicy": "BUILDER_OWNED__DO_NOT_HAND_PATCH__EXACT_OUTPUT_WINS",
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  }
+}

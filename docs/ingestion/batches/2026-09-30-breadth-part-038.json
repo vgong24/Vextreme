@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.5",
+  "continuity": "[VXG RealForever]",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "breadthPrRef": "github.pull.vextreme.162",
+  "partRef": "PART_038_ROUTE_FAMILY_VOL_2",
+  "inputZip": "038-route-family-vol-2.zip",
+  "inputZipSha256": "1d8e5d813b95c9b931cc25c9656b6df0d034b41dd9712d473f7ad29014403d17",
+  "inputZipBytes": 37517,
+  "partitionToolVersion": "4.0.0",
+  "sourceCapture": {
+    "captureManifestSha256": "3b1ce4d66a283100b072082c7c6d6c7c76f8bd4a3e81680bdaf93faef98b97aa",
+    "createdAt": "2026-09-29T08:27:43.687971+00:00",
+    "inputPages": 250,
+    "inputZipSha256": "24363a6a9f2b8f048a6f3fab289bf1bb674155586820740abb9909e63b1c0826",
+    "rawPublicationAllowed": false,
+    "toolVersion": "3.4.0"
+  },
+  "manifestEntryCount": 1,
+  "storedHtmlCount": 1,
+  "protectedWithheldCount": 0,
+  "staged": [
+    {
+      "route": "/vol-2/volume-2-final-chapter",
+      "path": "docs/ingestion/source-pages/part-038/vol-2-volume-2-final-chapter.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "705ae7c207343a29c4f2fdc85338f45812634dc6e0ed8aa29d2a7772c4fab986",
+      "sourceHtmlBytes": 51877,
+      "sourceGitBlobSha1": "50b9e4e022972742a15a1ce7c63a81cc7cbb3375",
+      "sourceDerivedSha256": "411ea0d53af629f196afc652b4dc484636a7506f83a32ed5c3c63c1a49064849",
+      "disposition": "HOLD",
+      "placementState": "NO_EXACT_CANONICAL_NODE_OR PAGE OR CONTENT_INTENT OR PRIOR SOURCE-EVIDENCE IDENTITY; NEW_VOL_2_FINAL_CHAPTER_SOURCE_IDENTITY; DESTINATION_CLASS_UNRESOLVED",
+      "publicByteMaterialized": true
+    }
+  ],
+  "storageRule": "Part-038 Vol. 2 final chapter is public-safe provider-neutral source evidence. Its source-authored /voice-to-skull link is relationship evidence to an existing canonical subject, not alias, parentage, arc-membership, or destination-placement authority.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "protectedNonpublicSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 248,
+  "cumulativePublicSourceEvidenceHtml": 175,
+  "cumulativeProtectedSourceMetadataOnly": 1,
+  "sourceGroupClosure": "sourcegroup.vexsite.route-family.vol-2__1_OF_1__OBSERVED_COMPLETE",
+  "workMapRevisionRef": "workmap.revision.vextreme.content-forge.r038.route-family-vol-2-complete",
+  "next": {
+    "partRef": "PART_039_ROUTE_FAMILY_DREAM_DOCUMENTATION",
+    "identityState": "AWAIT_NEXT_UPLOAD"
+  }
+}

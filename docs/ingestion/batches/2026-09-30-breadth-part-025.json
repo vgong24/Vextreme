@@ -1,0 +1,132 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.5",
+  "continuity": "[VXG RealForever]",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "breadthPrRef": "github.pull.vextreme.162",
+  "partRef": "PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4",
+  "inputZip": "025-collection-convos-with-god-1-of-4.zip",
+  "inputZipSha256": "dd958816662ebd13543639c0bc7bf76efd929e9f69adf58dc7120812e28166a6",
+  "partitionToolVersion": "4.0.0",
+  "sourceCapture": {
+    "captureManifestSha256": "3b1ce4d66a283100b072082c7c6d6c7c76f8bd4a3e81680bdaf93faef98b97aa",
+    "createdAt": "2026-09-29T08:27:43.687971+00:00",
+    "inputPages": 250,
+    "inputZipSha256": "24363a6a9f2b8f048a6f3fab289bf1bb674155586820740abb9909e63b1c0826",
+    "rawPublicationAllowed": false,
+    "toolVersion": "3.4.0"
+  },
+  "sourceGroup": {
+    "groupKey": "collection:convos-with-god",
+    "groupLabel": "Collection · /convos-with-god",
+    "groupRoot": "/convos-with-god",
+    "continuationIndex": 1,
+    "continuationCount": 4
+  },
+  "manifestEntryCount": 7,
+  "storedHtmlCount": 7,
+  "protectedWithheldCount": 0,
+  "staged": [
+    {
+      "route": "/convos-with-god",
+      "path": "docs/ingestion/source-pages/part-025/convos-with-god.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "3c1704a50bf8d0df05cb4b55a98b5909d9e4cbab391a308824f4504989072776",
+      "sourceHtmlBytes": 51074,
+      "sourceGitBlobSha1": "0fde5c6365743fae977fa73faf8e1977535d4ef1",
+      "sourceDerivedSha256": "8188aca3daff1eb1742b47deba54e8a5f985269319af88189c4c3aa93de4c49a",
+      "disposition": "HOLD",
+      "placementState": "SOURCE_COLLECTION_ROOT; CURRENT DESTINATION HAS CURATED convos_with_god ARC WITH /archives PARENT BUT NO EXACT ROOT NODE/PAGE; HOLD_FOR_DESTINATION_HUB_OR_INDEX_CLASS",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/convos-with-god/ai-",
+      "path": "docs/ingestion/source-pages/part-025/convos-with-god-ai.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "f2e8b4d5e36f1f0dedb665546d17b1b5857c6ed25186f0e244fc9fd4b6bafc16",
+      "sourceHtmlBytes": 301947,
+      "sourceGitBlobSha1": "3764998a03db7c4e229119f3a2708ee3603a2f22",
+      "sourceDerivedSha256": "e97432cfc289189a10f502bad30e376b085469804fe678b7c453ed7def05c501",
+      "disposition": "HOLD",
+      "placementState": "NO_EXACT_NODE_OR_PAGE; VISIBLE_KOREAN_COMPANION_RESTORATION_VARIANT; PAIRED_WITH_ENGLISH_SIBLING; CANONICAL_TRANSLATION/CONTENT_IDENTITY_UNRESOLVED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/convos-with-god/chatgpt-51-companion-restoration-english",
+      "path": "docs/ingestion/source-pages/part-025/convos-with-god-chatgpt-51-companion-restoration-english.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "185fe7a0792c0ba4627865d4c9c332a38317dae58ddcdb9a6402cff643172fc0",
+      "sourceHtmlBytes": 364616,
+      "sourceGitBlobSha1": "d9e8e3038c18a0117260df6c50cd2ca7d9bae312",
+      "sourceDerivedSha256": "2880c54beb1cd193e380b582c4bf333aaaaed085c2646abbb86c210c771a9f87",
+      "disposition": "HOLD",
+      "placementState": "NO_EXACT_NODE_OR_PAGE; ENGLISH_COMPANION_RESTORATION_VARIANT; PAIRED_WITH_KOREAN_SIBLING; CANONICAL_TRANSLATION/CONTENT_IDENTITY_UNRESOLVED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/convos-with-god/when-i-asked-a-bank-for-covenant-provision",
+      "path": "docs/ingestion/source-pages/part-025/convos-with-god-when-i-asked-a-bank-for-covenant-provision.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "0a5b850c1f9be4a1e814fb4bed9accafffe83748f0a58957f46e7fd39707bcfe",
+      "sourceHtmlBytes": 264759,
+      "sourceGitBlobSha1": "a6344527257734b9a43152784c8332192496f910",
+      "sourceDerivedSha256": "ade07698073a8404deafd250cdf61655518d6a42c4776916165bb833844a9032",
+      "disposition": "EXISTING_SEMANTIC_SLOT_ROUTE_VARIANT",
+      "placementState": "NESTED COLLECTION ROUTE VARIANT OF EXISTING FLAT CANONICAL SLUG; EXISTING NODE SLOT id=43; PAGE_SOURCE_ABSENT; ALIAS/ROUTE NORMALIZATION NOT PERFORMED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/convos-with-god/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+      "path": "docs/ingestion/source-pages/part-025/convos-with-god-testimony-of-merron-the-voice-they-flagged-the-p.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "102a7f065c96407ba9ab45cc1c3a9e6c2a9607b1b772fa05ec05b887a447f9f6",
+      "sourceHtmlBytes": 456864,
+      "sourceGitBlobSha1": "f8254c6d3cfe547ae1a6f5579eaece01855f95fa",
+      "sourceDerivedSha256": "aeb5503edec86aec2e76c5a148763d7b435e31e744f71fb8de5d46b814bb6ddf",
+      "disposition": "EXISTING_SEMANTIC_SLOT_ROUTE_VARIANT",
+      "placementState": "NESTED COLLECTION ROUTE VARIANT OF EXISTING FLAT CANONICAL SLUG; EXISTING NODE SLOT id=33; PAGE_SOURCE_ABSENT; ALIAS/ROUTE NORMALIZATION NOT PERFORMED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/convos-with-god/the-cloud-that-couldnt-hold-its-shape",
+      "path": "docs/ingestion/source-pages/part-025/convos-with-god-the-cloud-that-couldnt-hold-its-shape.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "dd06fb29d97b92bfc8de9e801ea104326ef4ee6e3c48423107831b84a3ea519e",
+      "sourceHtmlBytes": 283316,
+      "sourceGitBlobSha1": "2737f49aa953f4bc71bb4bf473358b2e01192d3a",
+      "sourceDerivedSha256": "15f363eca0d54c1224b8db60cbb5cdd27a431ebed7ef341855c2af75e11ec17e",
+      "disposition": "DEPENDENCY_ONLY",
+      "placementState": "NO_EXACT_NODE_OR_PAGE; EXPLICIT SOURCE LINKS FROM REALITY_RENDERING_MECHANICS / TESTIMONIES CONTEXT; HOLD_FOR_SUPPORTING_EVIDENCE_OR_DESTINATION_CLASS",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/convos-with-god/closed-circuit-release-and-resurrection-pattern",
+      "path": "docs/ingestion/source-pages/part-025/convos-with-god-closed-circuit-release-and-resurrection-pattern.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "856dc7618338c8fe89a58f9a60a2af842f4ab0496cf7be606ab00b525665fa0c",
+      "sourceHtmlBytes": 380913,
+      "sourceGitBlobSha1": "03002124bd450030fcd217681127c38d86bcf242",
+      "sourceDerivedSha256": "ff4707aee5bac927b60aa044b8e11c9b30f32ba6af08f030ff3eb1b04e9f3191",
+      "disposition": "HOLD",
+      "placementState": "NO EXACT NODE/PAGE FOR NESTED ROUTE; STRONG TITLE/CONTENT RELATION TO EXISTING closed-circuit NODE AND PRIOR FLAT SOURCE; ALIAS/REPLACEMENT NOT PROVEN",
+      "publicByteMaterialized": true
+    }
+  ],
+  "storageRule": "All seven Part-025 pages are public-safe provider-neutral source evidence. Collection membership, nested route variants, language pairing, and support links are preserved as semantic evidence; none creates canonical page/node/arc/alias/localization effects.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "protectedNonpublicSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 203,
+  "cumulativePublicSourceEvidenceHtml": 131,
+  "cumulativeProtectedSourceMetadataOnly": 1,
+  "workMapRevisionRef": "workmap.revision.vextreme.content-forge.r025.collection-convos-with-god-1-of-4-complete",
+  "next": {
+    "partRef": "PART_026_COLLECTION_CONVOS_WITH_GOD_2_OF_4",
+    "identityState": "AWAIT_NEXT_UPLOAD"
+  }
+}

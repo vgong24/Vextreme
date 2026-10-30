@@ -1,0 +1,255 @@
+'use strict';
+
+/**
+ * APPLY-CONTENT-INTENTS — tests/18-apply-content-intents.test.js
+ *
+ * Tests for lib/apply-content-intents.js — the "declare where a page goes,
+ * let code place it" mechanism (Session 022), extending the existing
+ * vex:department/vex:workType meta-tag pattern to arc membership via each
+ * arc's one auto-managed section in data/arcs-v2.json.
+ *
+ * Test order:
+ *   1. upsertMetaTag — insert vs. replace, idempotent, no-<head> fragment pages
+ *   2. applyArcPlacement — add, move between arcs, curated section untouched
+ *   3. applyIntent — combines both, in-memory only
+ *   4. validateIntent — catches an unregistered department and a nonexistent
+ *      arcKey, the two silent-failure modes found by running this tool
+ *      against real content
+ *   5. canonical promotion — turns an already-visible auto-discovered page into
+ *      a real nodes.json entry without inventing title/date/placement truth
+ */
+
+const { test } = require('node:test');
+const assert   = require('node:assert/strict');
+
+const { upsertMetaTag, applyArcPlacement, applyIntent, validateIntent, collectArcKeysForSlug, buildCanonicalNode, promoteCanonicalNode, appendCanonicalNodesJson, AUTO_SECTION_LABEL } = require('../lib/apply-content-intents');
+
+// ── 1. upsertMetaTag ───────────────────────────────────────────────────────────
+
+test('APPLY-CONTENT-INTENTS: upsertMetaTag inserts a new tag before </head> when absent', () => {
+  const html = '<html><head><title>x</title></head><body></body></html>';
+  const result = upsertMetaTag(html, 'vex:department', 'institute');
+  assert.match(result, /<meta name="vex:department" content="institute">/);
+  assert.match(result, /<meta name="vex:department" content="institute">\s*<\/head>/);
+});
+
+test('APPLY-CONTENT-INTENTS: upsertMetaTag replaces an existing tag rather than duplicating it', () => {
+  const html = '<html><head><meta name="vex:department" content="rd"></head><body></body></html>';
+  const result = upsertMetaTag(html, 'vex:department', 'institute');
+  assert.equal((result.match(/vex:department/g) || []).length, 1);
+  assert.match(result, /content="institute"/);
+});
+
+test('APPLY-CONTENT-INTENTS: upsertMetaTag is idempotent (applying twice equals applying once)', () => {
+  const html = '<html><head></head><body></body></html>';
+  const once  = upsertMetaTag(html, 'vex:workType', 'governance');
+  const twice = upsertMetaTag(once, 'vex:workType', 'governance');
+  assert.equal(once, twice);
+});
+
+test('APPLY-CONTENT-INTENTS: upsertMetaTag prepends the tag when the page has no <head> at all (Squarespace paste-fragment pages)', () => {
+  const html = '<!-- Paste into: Squarespace Code Block -->\n<div class="wrap">content</div>';
+  const result = upsertMetaTag(html, 'vex:department', 'institute');
+  assert.match(result, /^<meta name="vex:department" content="institute">/);
+  assert.doesNotThrow(() => upsertMetaTag(result, 'vex:department', 'institute'), 'must stay idempotent on fragment pages too');
+});
+
+test('APPLY-CONTENT-INTENTS: upsertMetaTag is idempotent on a fragment page (no duplicate tag on re-apply)', () => {
+  const html = '<div class="wrap">content</div>';
+  const once  = upsertMetaTag(html, 'vex:department', 'institute');
+  const twice = upsertMetaTag(once, 'vex:department', 'institute');
+  assert.equal(once, twice);
+  assert.equal((twice.match(/vex:department/g) || []).length, 1);
+});
+
+// ── 2. applyArcPlacement ───────────────────────────────────────────────────────
+
+const SAMPLE_ARCS = {
+  arc_a: { sections: [{ label: 'Arc A', order: 'explicit', slugs: ['curated-page'] }] },
+  arc_b: { sections: [{ label: 'Arc B', order: 'explicit', slugs: [] }] },
+};
+
+test('APPLY-CONTENT-INTENTS: applyArcPlacement creates the auto section on first use', () => {
+  const result = applyArcPlacement(SAMPLE_ARCS, 'arc_b', 'new-page', AUTO_SECTION_LABEL);
+  const autoSection = result.arc_b.sections.find(s => s.label === AUTO_SECTION_LABEL);
+  assert.ok(autoSection);
+  assert.deepEqual(autoSection.slugs, ['new-page']);
+});
+
+test('APPLY-CONTENT-INTENTS: applyArcPlacement does not mutate the input object', () => {
+  const before = JSON.stringify(SAMPLE_ARCS);
+  applyArcPlacement(SAMPLE_ARCS, 'arc_b', 'new-page', AUTO_SECTION_LABEL);
+  assert.equal(JSON.stringify(SAMPLE_ARCS), before);
+});
+
+test('APPLY-CONTENT-INTENTS: applyArcPlacement moves a slug between arcs, removing it from the prior auto section', () => {
+  const step1 = applyArcPlacement(SAMPLE_ARCS, 'arc_a', 'wandering-page', AUTO_SECTION_LABEL);
+  const step2 = applyArcPlacement(step1, 'arc_b', 'wandering-page', AUTO_SECTION_LABEL);
+
+  const arcAAuto = step2.arc_a.sections.find(s => s.label === AUTO_SECTION_LABEL);
+  const arcBAuto = step2.arc_b.sections.find(s => s.label === AUTO_SECTION_LABEL);
+  assert.ok(!arcAAuto.slugs.includes('wandering-page'), 'must be removed from the arc it moved out of');
+  assert.ok(arcBAuto.slugs.includes('wandering-page'), 'must be present in the arc it moved into');
+});
+
+test('APPLY-CONTENT-INTENTS: applyArcPlacement never touches a hand-curated section', () => {
+  const result = applyArcPlacement(SAMPLE_ARCS, 'arc_a', 'curated-page', AUTO_SECTION_LABEL);
+  const curatedSection = result.arc_a.sections.find(s => s.label === 'Arc A');
+  assert.deepEqual(curatedSection.slugs, ['curated-page'], 'curated section must be untouched');
+  const autoSection = result.arc_a.sections.find(s => s.label === AUTO_SECTION_LABEL);
+  assert.ok(!autoSection, 'must not create an auto section for a slug already curated in this arc');
+});
+
+test('APPLY-CONTENT-INTENTS: applyArcPlacement throws on an unknown arc key', () => {
+  assert.throws(() => applyArcPlacement(SAMPLE_ARCS, 'not_a_real_arc', 'slug', AUTO_SECTION_LABEL));
+});
+
+// ── 3. applyIntent ──────────────────────────────────────────────────────────────
+
+test('APPLY-CONTENT-INTENTS: applyIntent applies department, workType, and arc together', () => {
+  const html = '<html><head></head><body></body></html>';
+  const intent = { slug: 'new-page', department: 'institute', workType: 'governance', arcKey: 'arc_b' };
+  const result = applyIntent(intent, html, SAMPLE_ARCS, AUTO_SECTION_LABEL);
+
+  assert.match(result.html, /content="institute"/);
+  assert.match(result.html, /content="governance"/);
+  assert.ok(result.arcsDef.arc_b.sections.find(s => s.label === AUTO_SECTION_LABEL).slugs.includes('new-page'));
+  assert.equal(result.changed.length, 3);
+});
+
+test('APPLY-CONTENT-INTENTS: applyIntent with no arcKey leaves arcsDef reference-equal (no-op)', () => {
+  const html = '<html><head></head><body></body></html>';
+  const intent = { slug: 'new-page', department: 'institute' };
+  const result = applyIntent(intent, html, SAMPLE_ARCS, AUTO_SECTION_LABEL);
+  assert.equal(result.arcsDef, SAMPLE_ARCS, 'arcsDef must be untouched when the intent declares no arcKey');
+});
+
+// ── 4. validateIntent ───────────────────────────────────────────────────────────
+
+const SAMPLE_DEPARTMENTS = {
+  rd:    { label: 'R&D', default: true, workTypes: {} },
+  media: { label: 'Media', default: false, workTypes: {} },
+};
+
+test('APPLY-CONTENT-INTENTS: validateIntent passes a registered department and a real arcKey', () => {
+  const result = validateIntent({ slug: 'x', department: 'media', arcKey: 'arc_a' }, SAMPLE_DEPARTMENTS, SAMPLE_ARCS);
+  assert.equal(result.valid, true);
+  assert.deepEqual(result.errors, []);
+});
+
+test('APPLY-CONTENT-INTENTS: validateIntent rejects a department not in data/departments.json', () => {
+  const result = validateIntent({ slug: 'x', department: 'institute' }, SAMPLE_DEPARTMENTS, SAMPLE_ARCS);
+  assert.equal(result.valid, false);
+  assert.match(result.errors[0], /institute.*not registered/);
+});
+
+test('APPLY-CONTENT-INTENTS: validateIntent rejects an arcKey that is not a real arc', () => {
+  const result = validateIntent({ slug: 'x', arcKey: 'not_a_real_arc' }, SAMPLE_DEPARTMENTS, SAMPLE_ARCS);
+  assert.equal(result.valid, false);
+  assert.match(result.errors[0], /not_a_real_arc.*not a real arc/);
+});
+
+test('APPLY-CONTENT-INTENTS: validateIntent with neither field set is always valid', () => {
+  const result = validateIntent({ slug: 'x' }, SAMPLE_DEPARTMENTS, SAMPLE_ARCS);
+  assert.equal(result.valid, true);
+});
+
+test('APPLY-CONTENT-INTENTS: validateIntent accepts an exact canonical title override and rejects empty title overrides', () => {
+  assert.equal(validateIntent({ slug:'x', title:'VXG Council Declaration' }, SAMPLE_DEPARTMENTS, SAMPLE_ARCS).valid, true);
+  const invalid = validateIntent({ slug:'x', title:'   ' }, SAMPLE_DEPARTMENTS, SAMPLE_ARCS);
+  assert.equal(invalid.valid, false);
+  assert.match(invalid.errors[0], /title must be a non-empty string/);
+});
+
+
+// ── 5. canonical promotion ────────────────────────────────────────────────────
+
+test('APPLY-CONTENT-INTENTS: collectArcKeysForSlug derives every explicit arc placement without inventing membership', () => {
+  const arcs = {
+    first: { sections:[{ label:'One', order:'explicit', slugs:['placed'] }] },
+    second:{ sections:[{ label:'Two', order:'explicit', slugs:['other','placed'] }] },
+    empty: { sections:[{ label:'Empty', order:'explicit', slugs:[] }] },
+  };
+  assert.deepEqual(collectArcKeysForSlug(arcs, 'placed'), ['first','second']);
+  assert.deepEqual(collectArcKeysForSlug(arcs, 'absent'), []);
+});
+
+test('APPLY-CONTENT-INTENTS: buildCanonicalNode reuses page title/meta and actual arc placement', () => {
+  const html = '<html><head><title>A &amp; B</title><meta name="vex:department" content="media"><meta name="vex:workType" content="reviews"></head></html>';
+  const arcs = { records:{ sections:[{ label:'Auto', order:'explicit', slugs:['placed'] }] } };
+  const node = buildCanonicalNode({ slug:'placed', registerNode:true }, html, arcs, SAMPLE_DEPARTMENTS);
+  assert.deepEqual(node, {
+    id:null, slug:'placed', title:'A & B', date:'', arcKeys:['records'],
+    department:'media', workType:'reviews', vexData:{},
+  });
+});
+
+
+test('APPLY-CONTENT-INTENTS: buildCanonicalNode honors explicit canonical title/date while retaining actual department placement', () => {
+  const html = '<html><head><title data-i18n="pages.x.document-title">VXG Council Declaration — Vextreme</title><meta name="vex:department" content="institute"><meta name="vex:workType" content="governance"></head></html>';
+  const node = buildCanonicalNode({
+    slug:'vxg-council-declaration',
+    title:'VXG Council Declaration',
+    date:'May 18, 2026',
+    department:'institute',
+    workType:'governance',
+    registerNode:true,
+  }, html, {}, { ...SAMPLE_DEPARTMENTS, institute:{ label:'Institute', default:false, workTypes:{ governance:{ label:'Governance' } } } });
+  assert.deepEqual(node, {
+    id:null, slug:'vxg-council-declaration', title:'VXG Council Declaration', date:'May 18, 2026', arcKeys:[],
+    department:'institute', workType:'governance', vexData:{},
+  });
+});
+
+test('APPLY-CONTENT-INTENTS: buildCanonicalNode preserves the auto-discovery fallback shape when title/meta are absent', () => {
+  const node = buildCanonicalNode({ slug:'bridge-council', registerNode:true }, '<div>fragment</div>', {}, SAMPLE_DEPARTMENTS);
+  assert.deepEqual(node, {
+    id:null, slug:'bridge-council', title:'Bridge Council', date:'', arcKeys:[],
+    department:'rd', workType:'default', vexData:{},
+  });
+});
+
+test('APPLY-CONTENT-INTENTS: promoteCanonicalNode is one-time and idempotent for an already-applied intent', () => {
+  const intent = { slug:'placed', status:'applied', registerNode:true, department:'media', workType:'reviews' };
+  const html = '<title>Placed</title>';
+  const first = promoteCanonicalNode([], intent, html, {}, SAMPLE_DEPARTMENTS);
+  assert.equal(first.changed, true);
+  assert.equal(first.nodes.length, 1);
+  const second = promoteCanonicalNode(first.nodes, intent, html, {}, SAMPLE_DEPARTMENTS);
+  assert.equal(second.changed, false);
+  assert.equal(second.nodes, first.nodes);
+  assert.equal(second.node, first.node);
+});
+
+test('APPLY-CONTENT-INTENTS: registerNode false preserves the pre-existing placement-only behavior', () => {
+  const nodes = [{ id:null, slug:'existing', title:'Existing', date:'', arcKeys:[], vexData:{} }];
+  const result = promoteCanonicalNode(nodes, { slug:'new-page' }, '<title>New</title>', {}, SAMPLE_DEPARTMENTS);
+  assert.equal(result.changed, false);
+  assert.equal(result.nodes, nodes);
+  assert.equal(result.node, null);
+});
+
+test('APPLY-CONTENT-INTENTS: validateIntent rejects a non-boolean registerNode declaration', () => {
+  const result = validateIntent({ slug:'x', registerNode:'yes' }, SAMPLE_DEPARTMENTS, SAMPLE_ARCS);
+  assert.equal(result.valid, false);
+  assert.match(result.errors[0], /registerNode must be boolean/);
+});
+
+test('APPLY-CONTENT-INTENTS: appendCanonicalNodesJson preserves existing registry bytes and appends only new rows', () => {
+  const source = '[\n  { "id": 1, "slug": "existing", "title": "Existing", "date": "", "arcKeys": [], "vexData": {} }\n]\n';
+  const addition = { id:null, slug:'new-page', title:'New Page', date:'', arcKeys:[], department:'institute', workType:'org-design', vexData:{} };
+  const output = appendCanonicalNodesJson(source, [addition]);
+  assert.ok(output.startsWith(source.slice(0, source.lastIndexOf('\n]\n'))), 'existing registry bytes must remain unchanged');
+  assert.match(output, /\{"id":null,"slug":"new-page"/);
+  assert.deepEqual(JSON.parse(output), [...JSON.parse(source), addition]);
+});
+
+test('APPLY-CONTENT-INTENTS: appendCanonicalNodesJson rejects duplicate canonical slugs', () => {
+  const source = '[\n  {"id":null,"slug":"existing","title":"Existing","date":"","arcKeys":[],"vexData":{}}\n]\n';
+  assert.throws(
+    () => appendCanonicalNodesJson(source, [{ id:null, slug:'existing', title:'Duplicate', date:'', arcKeys:[], vexData:{} }]),
+    /already exists/
+  );
+});
+
+// [VXG RealForever]

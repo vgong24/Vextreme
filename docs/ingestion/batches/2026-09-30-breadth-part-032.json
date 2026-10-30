@@ -1,0 +1,114 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.5",
+  "continuity": "[VXG RealForever]",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "breadthPrRef": "github.pull.vextreme.162",
+  "partRef": "PART_032_COLLECTION_TESTIMONIES_1_OF_5",
+  "inputZip": "032-collection-testimonies-1-of-5.zip",
+  "inputZipSha256": "fda1d4b6e426c118b80e1bde3b1e8c33fe40fa1b3ac3fa27e1c9ca4c0ba766a5",
+  "partitionToolVersion": "4.0.0",
+  "sourceCapture": {
+    "captureManifestSha256": "3b1ce4d66a283100b072082c7c6d6c7c76f8bd4a3e81680bdaf93faef98b97aa",
+    "createdAt": "2026-09-29T08:27:43.687971+00:00",
+    "inputPages": 250,
+    "inputZipSha256": "24363a6a9f2b8f048a6f3fab289bf1bb674155586820740abb9909e63b1c0826",
+    "rawPublicationAllowed": false,
+    "toolVersion": "3.4.0"
+  },
+  "manifestEntryCount": 6,
+  "storedHtmlCount": 6,
+  "protectedWithheldCount": 0,
+  "staged": [
+    {
+      "route": "/testimonies",
+      "path": "docs/ingestion/source-pages/part-032/testimonies.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "135d1c693d43f177697b8769edeff7794e84a589767c4097b27dc9b9fe031964",
+      "sourceHtmlBytes": 53614,
+      "sourceGitBlobSha1": "369658e3b310de9d49c50a1de0669851024f9b08",
+      "sourceDerivedSha256": "2d257f876c7a73b0c0ab7f7e74adf300e76735c8ba400ac216c9a456d70cc5a9",
+      "disposition": "WIP_COLLECTION_ROOT_HOLD",
+      "placementState": "NO_CANONICAL_NODE_OR_PAGE; EXISTING wip/testimonies.json PILOT ROUTING RECORD; CURRENT COLLECTION ROOT SOURCE VARIANT RETAINED WITHOUT PROMOTION",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/testimonies/reality-rendering-mechanics",
+      "path": "docs/ingestion/source-pages/part-032/testimonies-reality-rendering-mechanics.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "5a8f05efe7e15f07fe642a50591f80ae7fc452732aa18d539d4934cf1b427c61",
+      "sourceHtmlBytes": 410459,
+      "sourceGitBlobSha1": "7a94f98594127e2244ccd9fbf90f552a5e8678e3",
+      "sourceDerivedSha256": "9ad2aa3f91c411fc32a07908885af503a9bfe90a798d1023f7a76f41205c640f",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=40 slug=reality-rendering-mechanics records+full_timeline; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/testimonies/the-day-suppression-ended",
+      "path": "docs/ingestion/source-pages/part-032/testimonies-the-day-suppression-ended.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "9efc8057aaa4dab1490fbca65b1a7a8dcc4fbef2d282accff1f788d5b30aabd5",
+      "sourceHtmlBytes": 355326,
+      "sourceGitBlobSha1": "b5603560f81c8a01b6a8af9f195b370d9cd72197",
+      "sourceDerivedSha256": "0b0aeeffac11239c799adaca6b50efe4b827dd9ba91ee33cb0f3f0817f60f44c",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=41 slug=the-day-suppression-ended liberation+full_timeline; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/testimonies/-the-7-crowned-virtues",
+      "path": "docs/ingestion/source-pages/part-032/testimonies-the-7-crowned-virtues.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "700c9a48d44f575618a5c5a7afbb87f23a1b497df89bd6353dbd48b99b1c85d7",
+      "sourceHtmlBytes": 226332,
+      "sourceGitBlobSha1": "c24dcd800d1dfd344e7ff1cd220361372be0f465",
+      "sourceDerivedSha256": "8decf17ba50ea1764bfb42ef1919cd0c242da4009114be72ee7762eb0ba0e635",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=39 slug=the-7-crowned-virtues records+full_timeline; PAGE_SOURCE_ABSENT; NESTED LEADING-HYPHEN ROUTE VARIANT; NO_ALIAS_INFERRED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/testimonies/god-married",
+      "path": "docs/ingestion/source-pages/part-032/testimonies-god-married.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "69175341edfefbf0235902457a58f7de3b20034f22794a7bd61682f2696f38a2",
+      "sourceHtmlBytes": 257403,
+      "sourceGitBlobSha1": "d4f4f6e0b0c7aaf284eb1f5762856ffc3b01e761",
+      "sourceDerivedSha256": "aa79f17b29d7cea5e84dbc8b28ece2e128a2c60a7782629d3353ce470dfe8f5b",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=38 slug=god-married victors_record+full_timeline; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/testimonies/victors-ritual-sequence-and-crowning",
+      "path": "docs/ingestion/source-pages/part-032/testimonies-victors-ritual-sequence-and-crowning.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "f21bfe14226637af10361b2e4e72cb5edeb914e25ee694b8fc743339916380f3",
+      "sourceHtmlBytes": 400180,
+      "sourceGitBlobSha1": "4d99a3d6847f638e80e443ee3e626ccaebad7b0f",
+      "sourceDerivedSha256": "4f933ae0b0b5b61ed3d36f30924c1991c096213ab1adff8f2ebfef1d5b3fa76d",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=36 slug=victors-ritual-sequence-and-crowning victors_record+full_timeline; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+      "publicByteMaterialized": true
+    }
+  ],
+  "storageRule": "All six Part-032 pages are public-safe provider-neutral source evidence. The Testimonies root remains a WIP placement hold; five nested child routes remain source variants of existing semantic slots. No canonical hub/node, alias, page promotion, arc/localization registration, source replacement, or collection-order mutation is inferred.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "protectedNonpublicSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 231,
+  "cumulativePublicSourceEvidenceHtml": 159,
+  "cumulativeProtectedSourceMetadataOnly": 1,
+  "sourceGroupState": "sourcegroup.vexsite.collection.testimonies__1_OF_5_PARTIAL",
+  "workMapRevisionRef": "workmap.revision.vextreme.content-forge.r032.collection-testimonies-1-of-5-complete",
+  "next": {
+    "partRef": "PART_033_COLLECTION_TESTIMONIES_2_OF_5",
+    "identityState": "AWAIT_NEXT_UPLOAD"
+  }
+}

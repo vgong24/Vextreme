@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "vex-content-forge.podcasts-projection-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.podcasts.repository-native-projection.20261006",
+  "ownerRef": "github.issue.vextreme.159",
+  "predecessor": {
+    "prRef": "github.pull.vextreme.183",
+    "acceptedMain": "2f5720581c64bbf90767d703391d986647de641b",
+    "acceptedTree": "8ede13980de17e72fb42750907c2d8d31926884f",
+    "terminalRef": "github.issue.vextreme.159.comment.6011368560",
+    "disposition": "TERMINAL_ACCEPTED_CURRENT"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5988916122",
+    "github.issue.vextreme.159.comment.6011368560",
+    "github.issue.vextreme.159.comment.6011429195"
+  ],
+  "stageDisposition": "FORM_PODCASTS_REPOSITORY_NATIVE_PROJECTION_AS_SINGLETON_CANONICAL_COMPLETION",
+  "sourceSelection": {
+    "disposition": "PART_020_FLAT_SOURCE_VARIANT__EXACT_CANONICAL_SLOT_PAGE_ABSENT",
+    "path": "docs/ingestion/source-pages/part-020/podcasts.html",
+    "gitBlob": "94fa252b75f3350d6703699cd1f10ebf43511c42",
+    "repositoryBytes": 43237,
+    "sourceRoute": "/podcasts",
+    "preservedHtmlSha256": "0ca99b655ff77726aecf402698045df7c6d3d113514b7ed2933d9bcc8022ff32",
+    "sourceOracle": {
+      "proposalPath": "docs/ingestion/workmaps/content-forge-consolidation-proposal.json",
+      "proposalRecordRef": "content-forge.source-record.0da47fb472b1b29c53e1",
+      "sourceReceipt": "docs/ingestion/batches/2026-09-29-breadth-part-020.json",
+      "pageId": "92aec3608298f7d7",
+      "partRef": "PART_020_UNMAPPED_TOP_LEVEL_ROUTES_5_OF_9",
+      "status": "BOUND"
+    },
+    "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+    "rule": "SOURCE_LINEAGES_PRESERVED__DIRECT_COPY_FORBIDDEN"
+  },
+  "destination": {
+    "slug": "podcasts",
+    "canonicalNode": {
+      "id": 18,
+      "title": "Marquis Masters Podcast",
+      "date": "November 14, 2025",
+      "arcKeys": [
+        "full_timeline"
+      ]
+    },
+    "destinationClass": "EXISTING_CANONICAL_SLOT_PAGE_ABSENT",
+    "requiresJudgment": false,
+    "nodeRegistryMutationExpected": false,
+    "arcRegistryMutationExpected": false,
+    "contentIntentMutationExpected": false,
+    "aliasMutationExpected": false,
+    "authoredPaths": {
+      "create": [
+        "pages/podcasts.html",
+        "data/strings/source/pages/podcasts.json",
+        "tests/75-content-forge-podcasts-projection.test.js"
+      ],
+      "modify": [
+        "data/viewmodels.json"
+      ],
+      "formation": [
+        "docs/ingestion/workmaps/content-forge-podcasts-projection-formation.json"
+      ]
+    },
+    "preimages": {
+      "pages/podcasts.html": "ABSENT",
+      "data/strings/source/pages/podcasts.json": "ABSENT",
+      "tests/75-content-forge-podcasts-projection.test.js": "ABSENT"
+    }
+  },
+  "projectionMechanism": {
+    "sourcePath": "tools/vex-content-forge/project_arc_batch.js",
+    "sourceExportReuse": "projectMember + writeAtomic exposed task-locally through in-memory Module._compile only",
+    "persistedProjectorMutation": false,
+    "rule": "TASK_LOCAL_ADAPTER_REUSES_CURRENT_PROJECTMEMBER__NO_SYNTHETIC_ARC__NO_PROJECTOR_COMMIT"
+  },
+  "projectionRules": [
+    "PRESERVE_AUTHORED_MAIN_CONTENT_AND_ORDER",
+    "PROJECT_AWAY_PROVIDER_RESCUE_AND_SOURCE_GENERATED_IDENTITY",
+    "ENABLE_EXISTING_V2_ARC_NAV_THROUGH_VIEWMODEL",
+    "USE_STRING_SOURCE_AND_BUILDERS_FOR_LOCALIZATION_AND_GENERATED_OUTPUTS",
+    "DO_NOT_REWRITE_EXISTING_NODE_OR_ARC_PLACEMENT"
+  ],
+  "generatedConsequences": [
+    "data/strings/compiled/**",
+    "data/index.json",
+    "data/analysis-index.json",
+    "data/page-health.json",
+    "data/status.json",
+    "data/terrain-map.json",
+    "dist/*.js",
+    "widgets/fab-lang.js",
+    "pages/build-health.html",
+    "sitemap.xml",
+    "index.html",
+    "sw.js"
+  ],
+  "generatedPolicy": "BUILDER_OWNED__DO_NOT_HAND_PATCH__EXACT_OUTPUT_WINS",
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  }
+}

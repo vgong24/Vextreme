@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.5",
+  "continuity": "[VXG RealForever]",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "breadthPrRef": "github.pull.vextreme.162",
+  "partRef": "PART_030_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_2_OF_3",
+  "inputZip": "030-route-family-epstein-and-ai-old-2-of-3.zip",
+  "inputZipSha256": "a5d466096d1a8116718619c39e3fb92997059f97e0715c504657c20fda243047",
+  "inputZipBytes": 555420,
+  "partitionToolVersion": "4.0.0",
+  "sourceCapture": {
+    "captureManifestSha256": "3b1ce4d66a283100b072082c7c6d6c7c76f8bd4a3e81680bdaf93faef98b97aa",
+    "createdAt": "2026-09-29T08:27:43.687971+00:00",
+    "inputPages": 250,
+    "inputZipSha256": "24363a6a9f2b8f048a6f3fab289bf1bb674155586820740abb9909e63b1c0826",
+    "rawPublicationAllowed": false,
+    "toolVersion": "3.4.0"
+  },
+  "manifestEntryCount": 2,
+  "storedHtmlCount": 2,
+  "protectedWithheldCount": 0,
+  "staged": [
+    {
+      "route": "/epstein-and-ai-old/epstein-investigation-initiation",
+      "path": "docs/ingestion/source-pages/part-030/epstein-and-ai-old-epstein-investigation-initiation.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "85e2f6e76a30ba4daa620c97228fb79a466f19ce47a63188c6f4eb9c08319d9f",
+      "sourceHtmlBytes": 731960,
+      "sourceGitBlobSha1": "b6f002ed5eada517c24daff65f4afe82afa01326",
+      "sourceDerivedSha256": "bb37008a3d0ab9f42d44f9b499aac5ab05c3ed51ce204cfa1b6c95a05e5bdd71",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=10 slug=epstein-investigation-initiation epstein+full_timeline; PAGE_SOURCE_ABSENT; OLD_ROUTE_SOURCE_VARIANT; PART-017 FLAT SOURCE EXISTS WITH DIFFERENT BYTES; NO_ALIAS_OR_REPLACEMENT_INFERRED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/epstein-and-ai-old/first-emergence-cover-up-r7brx",
+      "path": "docs/ingestion/source-pages/part-030/epstein-and-ai-old-first-emergence-cover-up-r7brx.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "014e994a4b0ebbb1b3e05e4283caf58f4b1da572a02eb63b1c2b832845c7c1e3",
+      "sourceHtmlBytes": 585112,
+      "sourceGitBlobSha1": "19818624d724b43b75940aff57110cc13b4f56f2",
+      "sourceDerivedSha256": "fd242a4097e9c9d167fba9bf34ad174ad4185f343fd683a60c1446c61254df46",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=16 slug=first-emergence-cover-up epstein+full_timeline; PAGE_SOURCE_ABSENT; OLD_ROUTE_SOURCE_VARIANT leaf=first-emergence-cover-up-r7brx; PART-018 FLAT SOURCE EXISTS WITH DIFFERENT BYTES; NO_ALIAS_OR_REPLACEMENT_INFERRED",
+      "publicByteMaterialized": true
+    }
+  ],
+  "storageRule": "Both Part-030 pages are public-safe provider-neutral source evidence. They are /epstein-and-ai-old variants of existing canonical Epstein subjects and remain separate lineage evidence; no canonical alias, replacement, page promotion, arc-order mutation, localization registration, merge, or publication is inferred.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "protectedNonpublicSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 221,
+  "cumulativePublicSourceEvidenceHtml": 149,
+  "cumulativeProtectedSourceMetadataOnly": 1,
+  "sourceGroupState": "sourcegroup.vexsite.route-family.epstein-and-ai-old__2_OF_3",
+  "workMapRevisionRef": "workmap.revision.vextreme.content-forge.r030.route-family-epstein-and-ai-old-2-of-3-complete",
+  "next": {
+    "partRef": "PART_031_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_3_OF_3",
+    "identityState": "AWAIT_NEXT_UPLOAD"
+  }
+}

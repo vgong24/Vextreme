@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.direct-contact.arc-batch.20261005",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "direct_contact",
+    "canonicalMemberCount": 6,
+    "alreadyCompleteCount": 4,
+    "remainingCount": 2,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.179",
+    "acceptedMain": "f494aff584999839bb740c431f77fa97b434322e",
+    "acceptedTree": "dfa6df16df86234d397ab90f0127cb3898a8c35b",
+    "terminalRef": "github.issue.vextreme.159.comment.6007718514",
+    "disposition": "TERMINAL_ACCEPTED_CURRENT"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5988916122",
+    "github.issue.vextreme.159.comment.6007718514",
+    "github.issue.vextreme.159.comment.6007781202"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC",
+    "memberDisposition": ["PROJECTED", "HOLD_WITH_EXACT_REASON", "ALREADY_COMPLETE"],
+    "sourceSelectionPriority": [
+      "EXACT_CANONICAL_IDENTITY",
+      "EXPLICIT_CONSOLIDATION_BINDING",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "SEMANTIC_BATCH_UNITY != ASSUME_ONE_SOURCE_FILE_SHAPE",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT",
+      "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION != SOURCE_SELECTION_AUTHORITY",
+      "PRECLASSIFIED_LINEAGE_HOLD != PROJECTION_EXCEPTION",
+      "PRESERVED_SOURCE_VARIANT != CURRENT_DESTINATION_REPLACEMENT",
+      "TAKE_A_WALK != THE_WALK"
+    ]
+  },
+  "alreadyComplete": [
+    {"slug":"the-100-percent-holy-truth-conditional","canonicalNodeId":null,"acceptedMain":"f494aff584999839bb740c431f77fa97b434322e","disposition":"ALREADY_COMPLETE"},
+    {"slug":"burden-release-guide","canonicalNodeId":null,"acceptedMain":"f494aff584999839bb740c431f77fa97b434322e","disposition":"ALREADY_COMPLETE"},
+    {"slug":"restoration-protocol","canonicalNodeId":null,"acceptedMain":"f494aff584999839bb740c431f77fa97b434322e","disposition":"ALREADY_COMPLETE"},
+    {"slug":"the-testimony-of-victor-gong","canonicalNodeId":17,"acceptedMain":"f494aff584999839bb740c431f77fa97b434322e","disposition":"ALREADY_COMPLETE"}
+  ],
+  "members": [
+    {
+      "slug": "the-walk",
+      "canonicalNodeId": null,
+      "title": "The Walk",
+      "arcKeys": ["direct_contact"],
+      "sourcePath": "docs/ingestion/source-pages/part-024/the-walk.html",
+      "sourceGitBlob": "6695353f29ceaafe2f5d555768423ef854794321",
+      "preservedHtmlSha256": "e2b84515218e0497d4077e2a6b7f56a949c5283575f021bae81827d223ca9f0a",
+      "repositoryBytes": 64389,
+      "sourceRoute": "/the-walk",
+      "pageId": "aafc8a4612381d6c",
+      "proposalRecordRef": "content-forge.source-record.d30c2c1faf4dfc18707b",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-30-breadth-part-024.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "the-living-blueprint",
+      "canonicalNodeId": null,
+      "title": "The Living Blueprint",
+      "arcKeys": ["direct_contact"],
+      "sourcePath": "docs/ingestion/source-pages/part-020/the-living-blueprint.html",
+      "sourceGitBlob": "fe223cc493529b185c0b5ff3619291e37ddab8b1",
+      "preservedHtmlSha256": "d166f50066bc80995d7698dce3639d64b427acbf4bb619be85e0979cf741d5ce",
+      "repositoryBytes": 44859,
+      "sourceRoute": "/the-living-blueprint",
+      "pageId": "ec1a5344e0f44505",
+      "proposalRecordRef": "content-forge.source-record.72673769f97fd4d4c5dd",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-020.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    }
+  ],
+  "destinationMutationBoundary": {
+    "createPages": 2,
+    "createStringSources": 2,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/71-content-forge-direct-contact-arc-batch.test.js"
+}

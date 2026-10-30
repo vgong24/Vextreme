@@ -1,0 +1,8 @@
+{
+  "_meta": { "type": "category" },
+  "id": "experimental",
+  "directory": "experimental",
+  "default": false,
+  "description": "R&D features under active development. Branch-only during development, never committed to main in a broken state.",
+  "navVisibility": "none"
+}

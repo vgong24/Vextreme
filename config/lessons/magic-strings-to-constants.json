@@ -1,0 +1,13 @@
+{
+  "_meta": { "type": "lesson" },
+  "id": "magic-strings-to-constants",
+  "title": "From Magic Strings to Named Constants",
+  "pr": "#20",
+  "session": "010",
+  "problem": "Hardcoded strings scattered in build scripts — 'demo', 'ja', 'production'. IDE can't navigate to their meaning. Typos fail silently.",
+  "exploration": ["_meta.group", "_meta.category", "vex-config.js as source of truth"],
+  "decision": "Named constants in lib/vex-config.js. Category.DEMO, Feature.LANG, Language.JA. Every build script imports and uses the constant, never the string literal.",
+  "lesson": "The variable name is the intention. The string value is irrelevant.",
+  "impact": "IDE-navigable, self-documenting, auditable via grep for constant usage.",
+  "visual": "pages/specimen-architectural-wisdoms.html#decision-2"
+}

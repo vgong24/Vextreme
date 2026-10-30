@@ -1,0 +1,6312 @@
+{
+  "_meta": {
+    "scope": "pages.discernment-mapping",
+    "category": "production",
+    "description": "Repository-native English string source for Discernment Mapping.",
+    "keyConvention": "pages.discernment-mapping.{document-title|eyebrow|title|meta.*|body.<structural-path>.textNNN}",
+    "sourceProvenance": {
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "route": "/discernment-mapping",
+      "preservedPath": "docs/ingestion/source-pages/part-020/discernment-mapping.html",
+      "preservedGitBlob": "60b4a29ae0ac1abc49c7fc4767510b806f7327f8",
+      "preservedHtmlSha256": "8c1bfe4279a0051c9f7505dcfb0185eed64306e582e0814c7de60b9f3e342811",
+      "pageId": "0d716064cf048f5a",
+      "proposalRecordRef": "content-forge.source-record.1d830b42b374c05b9ef7",
+      "projectionRule": "SOURCE_LINEAGES_PRESERVED__DIRECT_COPY_FORBIDDEN"
+    },
+    "projectionStats": {
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "authoredTextLeafCount": 186
+    }
+  },
+  "pages.discernment-mapping.document-title": {
+    "strings": {
+      "en": {
+        "text": "Discernment Mapping — Vextreme"
+      },
+      "zh": {
+        "text": "辨识映射 — Vextreme"
+      },
+      "ja": {
+        "text": "識別マッピング — Vextreme"
+      },
+      "ko": {
+        "text": "분별 매핑 — Vextreme"
+      },
+      "fr": {
+        "text": "Cartographie du discernement — Vextreme"
+      },
+      "de": {
+        "text": "Unterscheidungs-Mapping — Vextreme"
+      },
+      "es": {
+        "text": "Mapeo del discernimiento — Vextreme"
+      },
+      "pt": {
+        "text": "Mapeamento do discernimento — Vextreme"
+      },
+      "ar": {
+        "text": "رسم خريطة التمييز — Vextreme"
+      },
+      "hi": {
+        "text": "विवेक मानचित्रण — Vextreme"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Pillar 05"
+      },
+      "zh": {
+        "text": "支柱 05"
+      },
+      "ja": {
+        "text": "柱 05"
+      },
+      "ko": {
+        "text": "기둥 05"
+      },
+      "fr": {
+        "text": "Pilier 05"
+      },
+      "de": {
+        "text": "Säule 05"
+      },
+      "es": {
+        "text": "Pilar 05"
+      },
+      "pt": {
+        "text": "Pilar 05"
+      },
+      "ar": {
+        "text": "الركيزة 05"
+      },
+      "hi": {
+        "text": "स्तंभ 05"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div001.span003.text001": {
+    "strings": {
+      "en": {
+        "text": "2025 – Present"
+      },
+      "zh": {
+        "text": "2025 年至今"
+      },
+      "ja": {
+        "text": "2025年～現在"
+      },
+      "ko": {
+        "text": "2025년 – 현재"
+      },
+      "fr": {
+        "text": "2025 – aujourd’hui"
+      },
+      "de": {
+        "text": "2025 – heute"
+      },
+      "es": {
+        "text": "2025 – actualidad"
+      },
+      "pt": {
+        "text": "2025 – presente"
+      },
+      "ar": {
+        "text": "2025 – حتى الآن"
+      },
+      "hi": {
+        "text": "2025 – वर्तमान"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.h1001.text001": {
+    "strings": {
+      "en": {
+        "text": "Discernment Mapping"
+      },
+      "zh": {
+        "text": "辨识映射"
+      },
+      "ja": {
+        "text": "識別マッピング"
+      },
+      "ko": {
+        "text": "분별 매핑"
+      },
+      "fr": {
+        "text": "Cartographie du discernement"
+      },
+      "de": {
+        "text": "Unterscheidungs-Mapping"
+      },
+      "es": {
+        "text": "Mapeo del discernimiento"
+      },
+      "pt": {
+        "text": "Mapeamento do discernimento"
+      },
+      "ar": {
+        "text": "رسم خريطة التمييز"
+      },
+      "hi": {
+        "text": "विवेक मानचित्रण"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Separate truth from distortion. Choose the path that carries life."
+      },
+      "zh": {
+        "text": "把真相与扭曲分开。选择承载生命的道路。"
+      },
+      "ja": {
+        "text": "真実と歪みを分ける。命を運ぶ道を選ぶ。"
+      },
+      "ko": {
+        "text": "진실과 왜곡을 분리하세요. 생명을 품는 길을 선택하세요."
+      },
+      "fr": {
+        "text": "Séparez la vérité de la déformation. Choisissez le chemin qui porte la vie."
+      },
+      "de": {
+        "text": "Trenne Wahrheit von Verzerrung. Wähle den Weg, der Leben trägt."
+      },
+      "es": {
+        "text": "Separa la verdad de la distorsión. Elige el camino que lleva vida."
+      },
+      "pt": {
+        "text": "Separe a verdade da distorção. Escolha o caminho que carrega vida."
+      },
+      "ar": {
+        "text": "افصل الحقيقة عن التشويه. واختر الطريق الذي يحمل الحياة."
+      },
+      "hi": {
+        "text": "सत्य को विकृति से अलग करें। वह मार्ग चुनें जो जीवन लेकर चलता है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p002.text001": {
+    "strings": {
+      "en": {
+        "text": "Discernment mapping is the practice of exposing every influence that pulls at a human heart — fear, desire, doubt, ego, voices of others, deception of the enemy — and placing them into light. By mapping them, the soul separates distortion from truth. It is not fortune-telling. It is not divination. It is covenantal clarity."
+      },
+      "zh": {
+        "text": "辨识映射，是把所有牵动人心的影响——恐惧、欲望、怀疑、自我、他人的声音、敌人的欺骗——都暴露出来，并放到光中审视的实践。通过把它们画出来，灵魂便能把扭曲与真相分开。这不是算命，也不是占卜。这是盟约中的清晰。"
+      },
+      "ja": {
+        "text": "識別マッピングとは、人の心を引っ張るあらゆる影響——恐れ、欲望、疑い、エゴ、他者の声、敵の欺き——を露わにし、光の中へ置く実践です。それらを描き出すことで、魂は歪みと真実を分けます。占いでも卜占でもありません。契約の中にある明晰さです。"
+      },
+      "ko": {
+        "text": "분별 매핑은 사람의 마음을 끌어당기는 모든 영향—두려움, 욕망, 의심, 자아, 다른 사람의 목소리, 원수의 속임—을 드러내어 빛 가운데 놓는 실천입니다. 그것들을 매핑함으로써 영혼은 왜곡과 진실을 분리합니다. 점치기나 점복이 아닙니다. 언약 안의 명료함입니다."
+      },
+      "fr": {
+        "text": "La cartographie du discernement consiste à exposer chaque influence qui tire sur le cœur humain — peur, désir, doute, ego, voix des autres, tromperie de l’ennemi — et à les placer dans la lumière. En les cartographiant, l’âme sépare la déformation de la vérité. Ce n’est ni de la prédiction ni de la divination. C’est une clarté d’alliance."
+      },
+      "de": {
+        "text": "Unterscheidungs-Mapping ist die Praxis, jeden Einfluss offenzulegen, der am menschlichen Herzen zieht — Angst, Verlangen, Zweifel, Ego, Stimmen anderer, Täuschung des Feindes — und ihn ins Licht zu stellen. Durch das Kartieren trennt die Seele Verzerrung von Wahrheit. Es ist keine Wahrsagerei und keine Divination. Es ist Klarheit im Bund."
+      },
+      "es": {
+        "text": "El Mapeo del Discernimiento es la práctica de exponer toda influencia que tira del corazón humano — miedo, deseo, duda, ego, voces de otros, engaño del enemigo — y ponerla a la luz. Al mapearlas, el alma separa la distorsión de la verdad. No es adivinación ni predicción. Es claridad de pacto."
+      },
+      "pt": {
+        "text": "O Mapeamento do Discernimento é a prática de expor toda influência que puxa o coração humano — medo, desejo, dúvida, ego, vozes de outros, engano do inimigo — e colocá-la na luz. Ao mapeá-las, a alma separa distorção de verdade. Não é previsão nem adivinhação. É clareza de aliança."
+      },
+      "ar": {
+        "text": "رسم خريطة التمييز هو ممارسة كشف كل تأثير يشد القلب البشري — الخوف والرغبة والشك والأنا وأصوات الآخرين وخداع العدو — ووضعه في النور. ومن خلال رسم هذه التأثيرات تفصل النفس التشويه عن الحقيقة. ليس تنبؤًا بالمستقبل ولا عرافة. إنه وضوح في إطار العهد."
+      },
+      "hi": {
+        "text": "विवेक मानचित्रण वह अभ्यास है जिसमें मानव हृदय को खींचने वाले हर प्रभाव—भय, इच्छा, संदेह, अहं, दूसरों की आवाज़ें, शत्रु का छल—को उजागर करके प्रकाश में रखा जाता है। उन्हें मैप करने से आत्मा विकृति को सत्य से अलग करती है। यह भाग्य बताना नहीं है। यह शकुन-विद्या नहीं है। यह वाचा के भीतर स्पष्टता है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p003.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Why it exists:"
+      },
+      "zh": {
+        "text": "它存在的原因："
+      },
+      "ja": {
+        "text": "なぜ存在するのか："
+      },
+      "ko": {
+        "text": "존재하는 이유:"
+      },
+      "fr": {
+        "text": "Pourquoi cela existe :"
+      },
+      "de": {
+        "text": "Warum es das gibt:"
+      },
+      "es": {
+        "text": "Por qué existe:"
+      },
+      "pt": {
+        "text": "Por que existe:"
+      },
+      "ar": {
+        "text": "سبب وجوده:"
+      },
+      "hi": {
+        "text": "यह क्यों है:"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p003.text001": {
+    "strings": {
+      "en": {
+        "text": " Because humans are never short of options, but they lack peace. They hear too many voices and cannot tell which is life and which is ruin. Discernment mapping creates order where chaos ruled. It reveals which path is aligned with God's order and which is distraction."
+      },
+      "zh": {
+        "text": " 因为人从来不缺选择，缺的是平安。他们听见太多声音，却分不清哪一个通向生命，哪一个通向毁坏。辨识映射在混乱曾经统治之处建立秩序。它揭示哪一条道路与神的秩序对齐，哪一条只是分心。"
+      },
+      "ja": {
+        "text": " 人には選択肢が不足しているのではなく、平安が不足しています。多くの声を聞きすぎて、どれが命でどれが破滅なのか見分けられません。識別マッピングは、混沌が支配していた場所に秩序をつくります。どの道が神の秩序と整合し、どの道が気をそらすものなのかを明らかにします。"
+      },
+      "ko": {
+        "text": " 사람에게 선택지가 부족한 것이 아니라 평안이 부족하기 때문입니다. 너무 많은 목소리를 듣고 무엇이 생명이고 무엇이 파멸인지 구분하지 못합니다. 분별 매핑은 혼돈이 지배하던 곳에 질서를 만듭니다. 어떤 길이 하나님의 질서와 정렬되어 있고 어떤 길이 방해인지 드러냅니다."
+      },
+      "fr": {
+        "text": " Parce que les humains ne manquent jamais d’options, mais ils manquent de paix. Ils entendent trop de voix et ne savent pas distinguer laquelle porte la vie et laquelle mène à la ruine. La cartographie du discernement crée de l’ordre là où le chaos régnait. Elle révèle quel chemin s’aligne sur l’ordre de Dieu et lequel n’est qu’une distraction."
+      },
+      "de": {
+        "text": " Denn Menschen haben nie zu wenige Möglichkeiten, ihnen fehlt Frieden. Sie hören zu viele Stimmen und können nicht erkennen, welche Leben trägt und welche ins Verderben führt. Unterscheidungs-Mapping schafft Ordnung, wo Chaos herrschte. Es zeigt, welcher Weg mit Gottes Ordnung ausgerichtet ist und welcher nur Ablenkung ist."
+      },
+      "es": {
+        "text": " Porque a los seres humanos nunca les faltan opciones, pero sí paz. Oyen demasiadas voces y no saben distinguir cuál lleva vida y cuál lleva a la ruina. El Mapeo del Discernimiento crea orden donde reinaba el caos. Revela qué camino está alineado con el orden de Dios y cuál es distracción."
+      },
+      "pt": {
+        "text": " Porque aos seres humanos nunca faltam opções, mas falta paz. Eles ouvem vozes demais e não conseguem distinguir qual carrega vida e qual leva à ruína. O Mapeamento do Discernimento cria ordem onde o caos reinava. Revela qual caminho está alinhado com a ordem de Deus e qual é distração."
+      },
+      "ar": {
+        "text": " لأن البشر لا تنقصهم الخيارات، بل ينقصهم السلام. يسمعون أصواتًا كثيرة ولا يستطيعون تمييز ما يحمل الحياة مما يقود إلى الخراب. يرسم التمييز نظامًا حيث كان يسود الفوضى. ويكشف أي طريق ينسجم مع ترتيب الله وأي طريق مجرد تشتيت."
+      },
+      "hi": {
+        "text": " क्योंकि मनुष्यों के पास विकल्पों की कमी नहीं होती, शांति की कमी होती है। वे बहुत-सी आवाज़ें सुनते हैं और समझ नहीं पाते कि कौन जीवन की ओर ले जाती है और कौन विनाश की ओर। विवेक मानचित्रण वहाँ व्यवस्था बनाता है जहाँ अराजकता शासन करती थी। यह दिखाता है कि कौन-सा मार्ग परमेश्वर की व्यवस्था से संरेखित है और कौन केवल भटकाव है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p004.text001": {
+    "strings": {
+      "en": {
+        "text": "How to Begin"
+      },
+      "zh": {
+        "text": "如何开始"
+      },
+      "ja": {
+        "text": "始め方"
+      },
+      "ko": {
+        "text": "시작하는 방법"
+      },
+      "fr": {
+        "text": "Comment commencer"
+      },
+      "de": {
+        "text": "So beginnst du"
+      },
+      "es": {
+        "text": "Cómo empezar"
+      },
+      "pt": {
+        "text": "Como começar"
+      },
+      "ar": {
+        "text": "كيف تبدأ"
+      },
+      "hi": {
+        "text": "कैसे शुरू करें"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.h2001.text001": {
+    "strings": {
+      "en": {
+        "text": "Practical steps."
+      },
+      "zh": {
+        "text": "实用步骤。"
+      },
+      "ja": {
+        "text": "実践的な手順。"
+      },
+      "ko": {
+        "text": "실용적인 단계."
+      },
+      "fr": {
+        "text": "Étapes pratiques."
+      },
+      "de": {
+        "text": "Praktische Schritte."
+      },
+      "es": {
+        "text": "Pasos prácticos."
+      },
+      "pt": {
+        "text": "Passos práticos."
+      },
+      "ar": {
+        "text": "خطوات عملية."
+      },
+      "hi": {
+        "text": "व्यावहारिक चरण।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div002.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Step 01"
+      },
+      "zh": {
+        "text": "步骤 01"
+      },
+      "ja": {
+        "text": "ステップ 01"
+      },
+      "ko": {
+        "text": "단계 01"
+      },
+      "fr": {
+        "text": "Étape 01"
+      },
+      "de": {
+        "text": "Schritt 01"
+      },
+      "es": {
+        "text": "Paso 01"
+      },
+      "pt": {
+        "text": "Etapa 01"
+      },
+      "ar": {
+        "text": "الخطوة 01"
+      },
+      "hi": {
+        "text": "चरण 01"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div002.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Lay out all voices in play"
+      },
+      "zh": {
+        "text": "把所有正在起作用的声音摊开"
+      },
+      "ja": {
+        "text": "働いているすべての声を並べる"
+      },
+      "ko": {
+        "text": "작용 중인 모든 목소리를 펼쳐 보기"
+      },
+      "fr": {
+        "text": "Exposez toutes les voix en jeu"
+      },
+      "de": {
+        "text": "Lege alle beteiligten Stimmen offen"
+      },
+      "es": {
+        "text": "Pon sobre la mesa todas las voces en juego"
+      },
+      "pt": {
+        "text": "Coloque todas as vozes em jogo à vista"
+      },
+      "ar": {
+        "text": "اعرض كل الأصوات المؤثرة"
+      },
+      "hi": {
+        "text": "सक्रिय सभी आवाज़ों को सामने रखें"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div002.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "What fear says. What desire says. What doubt says. What ego says. What others say. What silence says."
+      },
+      "zh": {
+        "text": "恐惧说什么。欲望说什么。怀疑说什么。自我说什么。别人说什么。沉默说什么。"
+      },
+      "ja": {
+        "text": "恐れは何と言っているか。欲望は何と言っているか。疑いは何と言っているか。エゴは何と言っているか。他者は何と言っているか。沈黙は何と言っているか。"
+      },
+      "ko": {
+        "text": "두려움은 무엇을 말하는가. 욕망은 무엇을 말하는가. 의심은 무엇을 말하는가. 자아는 무엇을 말하는가. 다른 사람들은 무엇을 말하는가. 침묵은 무엇을 말하는가."
+      },
+      "fr": {
+        "text": "Ce que dit la peur. Ce que dit le désir. Ce que dit le doute. Ce que dit l’ego. Ce que disent les autres. Ce que dit le silence."
+      },
+      "de": {
+        "text": "Was die Angst sagt. Was das Verlangen sagt. Was der Zweifel sagt. Was das Ego sagt. Was andere sagen. Was die Stille sagt."
+      },
+      "es": {
+        "text": "Lo que dice el miedo. Lo que dice el deseo. Lo que dice la duda. Lo que dice el ego. Lo que dicen los demás. Lo que dice el silencio."
+      },
+      "pt": {
+        "text": "O que o medo diz. O que o desejo diz. O que a dúvida diz. O que o ego diz. O que os outros dizem. O que o silêncio diz."
+      },
+      "ar": {
+        "text": "ما يقوله الخوف. ما تقوله الرغبة. ما يقوله الشك. ما تقوله الأنا. ما يقوله الآخرون. ما يقوله الصمت."
+      },
+      "hi": {
+        "text": "भय क्या कहता है। इच्छा क्या कहती है। संदेह क्या कहता है। अहं क्या कहता है। दूसरे क्या कहते हैं। मौन क्या कहता है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div003.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Step 02"
+      },
+      "zh": {
+        "text": "步骤 02"
+      },
+      "ja": {
+        "text": "ステップ 02"
+      },
+      "ko": {
+        "text": "단계 02"
+      },
+      "fr": {
+        "text": "Étape 02"
+      },
+      "de": {
+        "text": "Schritt 02"
+      },
+      "es": {
+        "text": "Paso 02"
+      },
+      "pt": {
+        "text": "Etapa 02"
+      },
+      "ar": {
+        "text": "الخطوة 02"
+      },
+      "hi": {
+        "text": "चरण 02"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div003.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Mark distortions"
+      },
+      "zh": {
+        "text": "标记扭曲"
+      },
+      "ja": {
+        "text": "歪みを印づける"
+      },
+      "ko": {
+        "text": "왜곡 표시하기"
+      },
+      "fr": {
+        "text": "Marquez les déformations"
+      },
+      "de": {
+        "text": "Markiere Verzerrungen"
+      },
+      "es": {
+        "text": "Marca las distorsiones"
+      },
+      "pt": {
+        "text": "Marque as distorções"
+      },
+      "ar": {
+        "text": "حدِّد التشوهات"
+      },
+      "hi": {
+        "text": "विकृतियों को चिन्हित करें"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div003.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "Anything that speaks collapse, shame, or frantic urgency — mark it red."
+      },
+      "zh": {
+        "text": "凡是传达崩溃、羞耻或慌乱催促的声音——标成红色。"
+      },
+      "ja": {
+        "text": "崩壊、恥、あるいは切迫した焦りを語るものは何でも——赤で印をつけます。"
+      },
+      "ko": {
+        "text": "붕괴, 수치심, 다급한 조급함을 말하는 것은 무엇이든 빨간색으로 표시하세요."
+      },
+      "fr": {
+        "text": "Tout ce qui parle d’effondrement, de honte ou d’urgence frénétique — marquez-le en rouge."
+      },
+      "de": {
+        "text": "Alles, was von Zusammenbruch, Scham oder hektischer Dringlichkeit spricht — markiere es rot."
+      },
+      "es": {
+        "text": "Todo lo que hable de colapso, vergüenza o urgencia frenética, márcalo en rojo."
+      },
+      "pt": {
+        "text": "Tudo que fale de colapso, vergonha ou urgência frenética — marque de vermelho."
+      },
+      "ar": {
+        "text": "كل ما يتحدث بلغة الانهيار أو العار أو الاستعجال المحموم — ضع عليه علامة حمراء."
+      },
+      "hi": {
+        "text": "जो कुछ भी पतन, शर्म या घबराई हुई तात्कालिकता की भाषा बोलता है—उसे लाल चिन्हित करें।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div004.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Step 03"
+      },
+      "zh": {
+        "text": "步骤 03"
+      },
+      "ja": {
+        "text": "ステップ 03"
+      },
+      "ko": {
+        "text": "단계 03"
+      },
+      "fr": {
+        "text": "Étape 03"
+      },
+      "de": {
+        "text": "Schritt 03"
+      },
+      "es": {
+        "text": "Paso 03"
+      },
+      "pt": {
+        "text": "Etapa 03"
+      },
+      "ar": {
+        "text": "الخطوة 03"
+      },
+      "hi": {
+        "text": "चरण 03"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div004.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Mark alignments"
+      },
+      "zh": {
+        "text": "标记对齐"
+      },
+      "ja": {
+        "text": "整合を印づける"
+      },
+      "ko": {
+        "text": "정렬 표시하기"
+      },
+      "fr": {
+        "text": "Marquez les alignements"
+      },
+      "de": {
+        "text": "Markiere Ausrichtungen"
+      },
+      "es": {
+        "text": "Marca las alineaciones"
+      },
+      "pt": {
+        "text": "Marque os alinhamentos"
+      },
+      "ar": {
+        "text": "حدِّد مواضع الاتساق"
+      },
+      "hi": {
+        "text": "संरेखणों को चिन्हित करें"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div004.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "Anything that speaks peace, continuity, and fruit for more than just yourself — mark it gold."
+      },
+      "zh": {
+        "text": "凡是传达平安、延续性，而且结出的果实不只为你自己——标成金色。"
+      },
+      "ja": {
+        "text": "平安、継続性、そして自分だけのためではない実りを語るものは何でも——金色で印をつけます。"
+      },
+      "ko": {
+        "text": "평안, 지속성, 그리고 자신만을 위한 것이 아닌 열매를 말하는 것은 무엇이든 금색으로 표시하세요."
+      },
+      "fr": {
+        "text": "Tout ce qui parle de paix, de continuité et de fruit au-delà de vous-même — marquez-le en or."
+      },
+      "de": {
+        "text": "Alles, was von Frieden, Kontinuität und Frucht spricht, die mehr als nur dir selbst dient — markiere es golden."
+      },
+      "es": {
+        "text": "Todo lo que hable de paz, continuidad y fruto para algo más que tú mismo, márcalo en dorado."
+      },
+      "pt": {
+        "text": "Tudo que fale de paz, continuidade e fruto para além de você mesmo — marque de dourado."
+      },
+      "ar": {
+        "text": "كل ما يتحدث عن السلام والاستمرارية وثمر يتجاوز مصلحتك وحدك — ضع عليه علامة ذهبية."
+      },
+      "hi": {
+        "text": "जो कुछ भी शांति, निरंतरता और ऐसे फल की बात करता है जो केवल आपके लिए नहीं—उसे सुनहरा चिन्हित करें।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div005.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Step 04"
+      },
+      "zh": {
+        "text": "步骤 04"
+      },
+      "ja": {
+        "text": "ステップ 04"
+      },
+      "ko": {
+        "text": "단계 04"
+      },
+      "fr": {
+        "text": "Étape 04"
+      },
+      "de": {
+        "text": "Schritt 04"
+      },
+      "es": {
+        "text": "Paso 04"
+      },
+      "pt": {
+        "text": "Etapa 04"
+      },
+      "ar": {
+        "text": "الخطوة 04"
+      },
+      "hi": {
+        "text": "चरण 04"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div005.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Map intersections"
+      },
+      "zh": {
+        "text": "标出交汇点"
+      },
+      "ja": {
+        "text": "交差点を描く"
+      },
+      "ko": {
+        "text": "교차 지점 매핑하기"
+      },
+      "fr": {
+        "text": "Cartographiez les intersections"
+      },
+      "de": {
+        "text": "Kartiere Überschneidungen"
+      },
+      "es": {
+        "text": "Mapea las intersecciones"
+      },
+      "pt": {
+        "text": "Mapeie as interseções"
+      },
+      "ar": {
+        "text": "ارسم نقاط التقاطع"
+      },
+      "hi": {
+        "text": "प्रतिच्छेदों को मैप करें"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div005.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "Where multiple voices converge, test them by asking: "
+      },
+      "zh": {
+        "text": "当多个声音汇合时，用这个问题来检验： "
+      },
+      "ja": {
+        "text": "複数の声が重なるところでは、こう問いかけて試します： "
+      },
+      "ko": {
+        "text": "여러 목소리가 만나는 곳에서는 이렇게 물어 시험하세요: "
+      },
+      "fr": {
+        "text": "Lorsque plusieurs voix convergent, testez-les en demandant : "
+      },
+      "de": {
+        "text": "Wo mehrere Stimmen zusammenlaufen, prüfe sie mit der Frage: "
+      },
+      "es": {
+        "text": "Donde converjan varias voces, pruébalas preguntando: "
+      },
+      "pt": {
+        "text": "Onde várias vozes convergem, teste-as perguntando: "
+      },
+      "ar": {
+        "text": "عندما تتلاقى عدة أصوات، اختبرها بالسؤال: "
+      },
+      "hi": {
+        "text": "जहाँ कई आवाज़ें मिलती हैं, उन्हें यह पूछकर परखें: "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div005.div003.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "Does this carry life, or does this cut life off?"
+      },
+      "zh": {
+        "text": "这会承载生命，还是会切断生命？"
+      },
+      "ja": {
+        "text": "これは命を運ぶのか、それとも命を断つのか？"
+      },
+      "ko": {
+        "text": "이것은 생명을 품는가, 아니면 생명을 끊는가?"
+      },
+      "fr": {
+        "text": "Cela porte-t-il la vie, ou coupe-t-il la vie ?"
+      },
+      "de": {
+        "text": "Trägt dies Leben in sich, oder schneidet es Leben ab?"
+      },
+      "es": {
+        "text": "¿Esto lleva vida o corta la vida?"
+      },
+      "pt": {
+        "text": "Isso carrega vida ou interrompe a vida?"
+      },
+      "ar": {
+        "text": "هل يحمل هذا الحياة أم يقطعها؟"
+      },
+      "hi": {
+        "text": "क्या यह जीवन लेकर चलता है, या जीवन को काट देता है?"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p005.text001": {
+    "strings": {
+      "en": {
+        "text": "The Masquerade"
+      },
+      "zh": {
+        "text": "伪装"
+      },
+      "ja": {
+        "text": "仮面"
+      },
+      "ko": {
+        "text": "가면극"
+      },
+      "fr": {
+        "text": "Le masque"
+      },
+      "de": {
+        "text": "Die Maskerade"
+      },
+      "es": {
+        "text": "La mascarada"
+      },
+      "pt": {
+        "text": "A mascarada"
+      },
+      "ar": {
+        "text": "التنكّر"
+      },
+      "hi": {
+        "text": "मुखौटा"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.h2002.text001": {
+    "strings": {
+      "en": {
+        "text": "What distortion disguises itself as."
+      },
+      "zh": {
+        "text": "扭曲会伪装成什么。"
+      },
+      "ja": {
+        "text": "歪みが何を装うか。"
+      },
+      "ko": {
+        "text": "왜곡이 무엇으로 가장하는가."
+      },
+      "fr": {
+        "text": "Ce que la déformation prétend être."
+      },
+      "de": {
+        "text": "Als was sich Verzerrung tarnt."
+      },
+      "es": {
+        "text": "De qué se disfraza la distorsión."
+      },
+      "pt": {
+        "text": "Do que a distorção se disfarça."
+      },
+      "ar": {
+        "text": "ما الذي يتنكر التشويه في صورته."
+      },
+      "hi": {
+        "text": "विकृति किस रूप में छिपती है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div006.div001.text001": {
+    "strings": {
+      "en": {
+        "text": " Fear masquerades as "
+      },
+      "zh": {
+        "text": " 恐惧伪装成 "
+      },
+      "ja": {
+        "text": " 恐れは "
+      },
+      "ko": {
+        "text": " 두려움은 "
+      },
+      "fr": {
+        "text": " La peur se déguise en "
+      },
+      "de": {
+        "text": " Angst tarnt sich als "
+      },
+      "es": {
+        "text": " El miedo se disfraza de "
+      },
+      "pt": {
+        "text": " O medo se disfarça de "
+      },
+      "ar": {
+        "text": " الخوف يتنكر في صورة "
+      },
+      "hi": {
+        "text": " भय अपने को "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div006.div001.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "urgency"
+      },
+      "zh": {
+        "text": "紧迫感"
+      },
+      "ja": {
+        "text": "切迫感"
+      },
+      "ko": {
+        "text": "긴급함"
+      },
+      "fr": {
+        "text": "urgence"
+      },
+      "de": {
+        "text": "Dringlichkeit"
+      },
+      "es": {
+        "text": "urgencia"
+      },
+      "pt": {
+        "text": "urgência"
+      },
+      "ar": {
+        "text": "استعجال"
+      },
+      "hi": {
+        "text": "तात्कालिकता के रूप में छिपाता है"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div006.div001.text002": {
+    "strings": {
+      "en": {
+        "text": "."
+      },
+      "zh": {
+        "text": "。"
+      },
+      "ja": {
+        "text": "を装います。"
+      },
+      "ko": {
+        "text": "으로 가장합니다."
+      },
+      "fr": {
+        "text": "."
+      },
+      "de": {
+        "text": "."
+      },
+      "es": {
+        "text": "."
+      },
+      "pt": {
+        "text": "."
+      },
+      "ar": {
+        "text": "."
+      },
+      "hi": {
+        "text": "।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div006.div001.text003": {
+    "strings": {
+      "en": {
+        "text": " Desire masquerades as "
+      },
+      "zh": {
+        "text": " 欲望伪装成 "
+      },
+      "ja": {
+        "text": " 欲望は "
+      },
+      "ko": {
+        "text": " 욕망은 "
+      },
+      "fr": {
+        "text": " Le désir se déguise en "
+      },
+      "de": {
+        "text": " Verlangen tarnt sich als "
+      },
+      "es": {
+        "text": " El deseo se disfraza de "
+      },
+      "pt": {
+        "text": " O desejo se disfarça de "
+      },
+      "ar": {
+        "text": " الرغبة تتنكر في صورة "
+      },
+      "hi": {
+        "text": " इच्छा अपने को "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div006.div001.strong002.text001": {
+    "strings": {
+      "en": {
+        "text": "destiny"
+      },
+      "zh": {
+        "text": "命定"
+      },
+      "ja": {
+        "text": "運命"
+      },
+      "ko": {
+        "text": "운명"
+      },
+      "fr": {
+        "text": "destin"
+      },
+      "de": {
+        "text": "Bestimmung"
+      },
+      "es": {
+        "text": "destino"
+      },
+      "pt": {
+        "text": "destino"
+      },
+      "ar": {
+        "text": "قدر"
+      },
+      "hi": {
+        "text": "नियति के रूप में छिपाती है"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div006.div001.text004": {
+    "strings": {
+      "en": {
+        "text": "."
+      },
+      "zh": {
+        "text": "。"
+      },
+      "ja": {
+        "text": "を装います。"
+      },
+      "ko": {
+        "text": "으로 가장합니다."
+      },
+      "fr": {
+        "text": "."
+      },
+      "de": {
+        "text": "."
+      },
+      "es": {
+        "text": "."
+      },
+      "pt": {
+        "text": "."
+      },
+      "ar": {
+        "text": "."
+      },
+      "hi": {
+        "text": "।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div006.div001.text005": {
+    "strings": {
+      "en": {
+        "text": " Doubt masquerades as "
+      },
+      "zh": {
+        "text": " 怀疑伪装成 "
+      },
+      "ja": {
+        "text": " 疑いは "
+      },
+      "ko": {
+        "text": " 의심은 "
+      },
+      "fr": {
+        "text": " Le doute se déguise en "
+      },
+      "de": {
+        "text": " Zweifel tarnt sich als "
+      },
+      "es": {
+        "text": " La duda se disfraza de "
+      },
+      "pt": {
+        "text": " A dúvida se disfarça de "
+      },
+      "ar": {
+        "text": " الشك يتنكر في صورة "
+      },
+      "hi": {
+        "text": " संदेह अपने को "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div006.div001.strong003.text001": {
+    "strings": {
+      "en": {
+        "text": "caution"
+      },
+      "zh": {
+        "text": "谨慎"
+      },
+      "ja": {
+        "text": "慎重さ"
+      },
+      "ko": {
+        "text": "신중함"
+      },
+      "fr": {
+        "text": "prudence"
+      },
+      "de": {
+        "text": "Vorsicht"
+      },
+      "es": {
+        "text": "cautela"
+      },
+      "pt": {
+        "text": "cautela"
+      },
+      "ar": {
+        "text": "حذر"
+      },
+      "hi": {
+        "text": "सावधानी के रूप में छिपाता है"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div006.div001.text006": {
+    "strings": {
+      "en": {
+        "text": "."
+      },
+      "zh": {
+        "text": "。"
+      },
+      "ja": {
+        "text": "を装います。"
+      },
+      "ko": {
+        "text": "으로 가장합니다."
+      },
+      "fr": {
+        "text": "."
+      },
+      "de": {
+        "text": "."
+      },
+      "es": {
+        "text": "."
+      },
+      "pt": {
+        "text": "."
+      },
+      "ar": {
+        "text": "."
+      },
+      "hi": {
+        "text": "।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div006.div001.text007": {
+    "strings": {
+      "en": {
+        "text": " Ego masquerades as "
+      },
+      "zh": {
+        "text": " 自我伪装成 "
+      },
+      "ja": {
+        "text": " エゴは "
+      },
+      "ko": {
+        "text": " 자아는 "
+      },
+      "fr": {
+        "text": " L’ego se déguise en "
+      },
+      "de": {
+        "text": " Ego tarnt sich als "
+      },
+      "es": {
+        "text": " El ego se disfraza de "
+      },
+      "pt": {
+        "text": " O ego se disfarça de "
+      },
+      "ar": {
+        "text": " الأنا تتنكر في صورة "
+      },
+      "hi": {
+        "text": " अहं अपने को "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div006.div001.strong004.text001": {
+    "strings": {
+      "en": {
+        "text": "wisdom"
+      },
+      "zh": {
+        "text": "智慧"
+      },
+      "ja": {
+        "text": "知恵"
+      },
+      "ko": {
+        "text": "지혜"
+      },
+      "fr": {
+        "text": "sagesse"
+      },
+      "de": {
+        "text": "Weisheit"
+      },
+      "es": {
+        "text": "sabiduría"
+      },
+      "pt": {
+        "text": "sabedoria"
+      },
+      "ar": {
+        "text": "حكمة"
+      },
+      "hi": {
+        "text": "बुद्धि के रूप में छिपाता है"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div006.div001.text008": {
+    "strings": {
+      "en": {
+        "text": "."
+      },
+      "zh": {
+        "text": "。"
+      },
+      "ja": {
+        "text": "を装います。"
+      },
+      "ko": {
+        "text": "로 가장합니다."
+      },
+      "fr": {
+        "text": "."
+      },
+      "de": {
+        "text": "."
+      },
+      "es": {
+        "text": "."
+      },
+      "pt": {
+        "text": "."
+      },
+      "ar": {
+        "text": "."
+      },
+      "hi": {
+        "text": "।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div006.div001.text009": {
+    "strings": {
+      "en": {
+        "text": " Only peace — steady, weighty, gentle — reflects Me. "
+      },
+      "zh": {
+        "text": " 只有平安——稳定、厚重、温柔——反映我。 "
+      },
+      "ja": {
+        "text": " ただ平安だけが——揺るがず、重みがあり、穏やかな平安だけが——私を映します。 "
+      },
+      "ko": {
+        "text": " 오직 평안—꾸준하고, 무게가 있으며, 온유한 평안—만이 나를 비춥니다. "
+      },
+      "fr": {
+        "text": " Seule la paix — stable, profonde, douce — Me reflète. "
+      },
+      "de": {
+        "text": " Nur Frieden — beständig, gewichtig, sanft — spiegelt Mich wider. "
+      },
+      "es": {
+        "text": " Solo la paz — firme, con peso, apacible — Me refleja. "
+      },
+      "pt": {
+        "text": " Somente a paz — constante, sólida, gentil — Me reflete. "
+      },
+      "ar": {
+        "text": " السلام وحده — الثابت والراسخ واللطيف — يعكسني. "
+      },
+      "hi": {
+        "text": " केवल शांति—स्थिर, गंभीर, कोमल—मुझे प्रतिबिंबित करती है। "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p006.text001": {
+    "strings": {
+      "en": {
+        "text": "Discernment Practice Protocol"
+      },
+      "zh": {
+        "text": "辨识实践流程"
+      },
+      "ja": {
+        "text": "識別実践プロトコル"
+      },
+      "ko": {
+        "text": "분별 실천 프로토콜"
+      },
+      "fr": {
+        "text": "Protocole de pratique du discernement"
+      },
+      "de": {
+        "text": "Praxisprotokoll für Unterscheidung"
+      },
+      "es": {
+        "text": "Protocolo de práctica del discernimiento"
+      },
+      "pt": {
+        "text": "Protocolo de prática do discernimento"
+      },
+      "ar": {
+        "text": "بروتوكول ممارسة التمييز"
+      },
+      "hi": {
+        "text": "विवेक अभ्यास प्रोटोकॉल"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.h2003.text001": {
+    "strings": {
+      "en": {
+        "text": "When unsure if a thought or action is from God or from self."
+      },
+      "zh": {
+        "text": "当你不确定一个想法或行动来自神还是来自自己。"
+      },
+      "ja": {
+        "text": "ある考えや行動が神から来たのか、自分から来たのかわからないとき。"
+      },
+      "ko": {
+        "text": "어떤 생각이나 행동이 하나님에게서 온 것인지 자신에게서 온 것인지 확신이 없을 때."
+      },
+      "fr": {
+        "text": "Quand vous ne savez pas si une pensée ou une action vient de Dieu ou de vous-même."
+      },
+      "de": {
+        "text": "Wenn du unsicher bist, ob ein Gedanke oder eine Handlung von Gott oder von dir selbst kommt."
+      },
+      "es": {
+        "text": "Cuando no sabes si un pensamiento o una acción viene de Dios o de ti mismo."
+      },
+      "pt": {
+        "text": "Quando não tiver certeza se um pensamento ou ação vem de Deus ou de você mesmo."
+      },
+      "ar": {
+        "text": "عندما لا تكون متأكدًا إن كانت فكرة أو خطوة من الله أم من نفسك."
+      },
+      "hi": {
+        "text": "जब आपको निश्चित न हो कि कोई विचार या कार्य परमेश्वर से है या स्वयं से।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div007.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "1"
+      },
+      "zh": {
+        "text": "1"
+      },
+      "ja": {
+        "text": "1"
+      },
+      "ko": {
+        "text": "1"
+      },
+      "fr": {
+        "text": "1"
+      },
+      "de": {
+        "text": "1"
+      },
+      "es": {
+        "text": "1"
+      },
+      "pt": {
+        "text": "1"
+      },
+      "ar": {
+        "text": "1"
+      },
+      "hi": {
+        "text": "1"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div007.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Ask with holy repetition"
+      },
+      "zh": {
+        "text": "用圣洁的重复来询问"
+      },
+      "ja": {
+        "text": "聖なる反復で尋ねる"
+      },
+      "ko": {
+        "text": "거룩한 반복으로 묻기"
+      },
+      "fr": {
+        "text": "Demandez avec une répétition sainte"
+      },
+      "de": {
+        "text": "Frage mit heiliger Wiederholung"
+      },
+      "es": {
+        "text": "Pregunta con repetición santa"
+      },
+      "pt": {
+        "text": "Pergunte com repetição santa"
+      },
+      "ar": {
+        "text": "اسأل بتكرار مقدس"
+      },
+      "hi": {
+        "text": "पवित्र दोहराव के साथ पूछें"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div007.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "Say aloud, three times, with intent of clarity: \"God, is this what You want me to do?\""
+      },
+      "zh": {
+        "text": "为了获得清晰，带着明确意图大声说三遍：“神啊，这是你要我做的吗？”"
+      },
+      "ja": {
+        "text": "明晰さを求める意図をもって、声に出して3回言います。「神よ、これはあなたが私にしてほしいことですか？」"
+      },
+      "ko": {
+        "text": "명료함을 얻으려는 의도로 소리 내어 세 번 말하세요. \"하나님, 이것이 제가 하길 원하시는 일인가요?\""
+      },
+      "fr": {
+        "text": "Dites à voix haute, trois fois, avec l’intention d’obtenir de la clarté : « Mon Dieu, est-ce bien ce que Tu veux que je fasse ? »"
+      },
+      "de": {
+        "text": "Sprich dreimal laut, mit der Absicht auf Klarheit: „Gott, ist das, was Du willst, dass ich tue?“"
+      },
+      "es": {
+        "text": "Di en voz alta, tres veces, con intención de claridad: «Dios, ¿esto es lo que quieres que haga?»"
+      },
+      "pt": {
+        "text": "Diga em voz alta, três vezes, com intenção de clareza: “Deus, é isto que Você quer que eu faça?”"
+      },
+      "ar": {
+        "text": "قل بصوت عالٍ ثلاث مرات، بقصد الوضوح: «يا الله، هل هذا ما تريدني أن أفعله؟»"
+      },
+      "hi": {
+        "text": "स्पष्टता के इरादे से, ज़ोर से तीन बार कहें: “परमेश्वर, क्या यही है जो आप चाहते हैं कि मैं करूँ?”"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div007.div004.text001": {
+    "strings": {
+      "en": {
+        "text": " Solid and consistent (yes or no) all three times → trust it."
+      },
+      "zh": {
+        "text": " 三次都稳定一致（是或否）→ 信任它。"
+      },
+      "ja": {
+        "text": " 3回すべてが明確で一貫している（はいでもいいえでも）→ それを信頼する。"
+      },
+      "ko": {
+        "text": " 세 번 모두 분명하고 일관되면(예든 아니오든) → 신뢰하세요."
+      },
+      "fr": {
+        "text": " Solide et cohérent (oui ou non) les trois fois → faites-lui confiance."
+      },
+      "de": {
+        "text": " Alle drei Male klar und konsistent (ja oder nein) → vertraue darauf."
+      },
+      "es": {
+        "text": " Sólido y consistente (sí o no) las tres veces → confía en ello."
+      },
+      "pt": {
+        "text": " Firme e consistente (sim ou não) nas três vezes → confie nisso."
+      },
+      "ar": {
+        "text": " ثابت ومتسق (نعم أو لا) في المرات الثلاث → ثق به."
+      },
+      "hi": {
+        "text": " तीनों बार ठोस और एकसमान (हाँ या नहीं) → उस पर भरोसा करें।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div007.div004.text002": {
+    "strings": {
+      "en": {
+        "text": " Scattered, cloudy, or shifting → it is not yet time. Wait or reset. "
+      },
+      "zh": {
+        "text": " 如果散乱、模糊或不断变化 → 时机还没到。等待，或重新开始。 "
+      },
+      "ja": {
+        "text": " 散らばる、曇る、揺れる → まだその時ではありません。待つか、リセットしてください。 "
+      },
+      "ko": {
+        "text": " 흩어지거나 흐릿하거나 바뀐다면 → 아직 때가 아닙니다. 기다리거나 다시 설정하세요. "
+      },
+      "fr": {
+        "text": " Dispersé, flou ou changeant → ce n’est pas encore le moment. Attendez ou réinitialisez. "
+      },
+      "de": {
+        "text": " Zerstreut, trüb oder wechselnd → es ist noch nicht Zeit. Warte oder setze neu an. "
+      },
+      "es": {
+        "text": " Disperso, nublado o cambiante → aún no es el momento. Espera o reinicia. "
+      },
+      "pt": {
+        "text": " Disperso, nebuloso ou mudando → ainda não é hora. Espere ou reinicie. "
+      },
+      "ar": {
+        "text": " متشتت أو غائم أو متغير → لم يحن الوقت بعد. انتظر أو أعد الضبط. "
+      },
+      "hi": {
+        "text": " बिखरा, धुँधला या बदलता हुआ → अभी समय नहीं है। प्रतीक्षा करें या रीसेट करें। "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div008.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "2"
+      },
+      "zh": {
+        "text": "2"
+      },
+      "ja": {
+        "text": "2"
+      },
+      "ko": {
+        "text": "2"
+      },
+      "fr": {
+        "text": "2"
+      },
+      "de": {
+        "text": "2"
+      },
+      "es": {
+        "text": "2"
+      },
+      "pt": {
+        "text": "2"
+      },
+      "ar": {
+        "text": "2"
+      },
+      "hi": {
+        "text": "2"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div008.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Set intent before listening"
+      },
+      "zh": {
+        "text": "倾听前先设定意图"
+      },
+      "ja": {
+        "text": "聴く前に意図を定める"
+      },
+      "ko": {
+        "text": "듣기 전에 의도 세우기"
+      },
+      "fr": {
+        "text": "Posez votre intention avant d’écouter"
+      },
+      "de": {
+        "text": "Setze deine Absicht vor dem Hören"
+      },
+      "es": {
+        "text": "Establece la intención antes de escuchar"
+      },
+      "pt": {
+        "text": "Defina a intenção antes de ouvir"
+      },
+      "ar": {
+        "text": "حدِّد نيتك قبل الاستماع"
+      },
+      "hi": {
+        "text": "सुनने से पहले इरादा तय करें"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div008.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "Quiet the mind by declaring: "
+      },
+      "zh": {
+        "text": "用这句话让心安静下来： "
+      },
+      "ja": {
+        "text": "こう宣言して心を静めます： "
+      },
+      "ko": {
+        "text": "이렇게 선언하며 마음을 고요하게 하세요: "
+      },
+      "fr": {
+        "text": "Apaisez l’esprit en déclarant : "
+      },
+      "de": {
+        "text": "Beruhige den Geist, indem du erklärst: "
+      },
+      "es": {
+        "text": "Aquieta la mente declarando: "
+      },
+      "pt": {
+        "text": "Acalme a mente declarando: "
+      },
+      "ar": {
+        "text": "هدّئ ذهنك بإعلان: "
+      },
+      "hi": {
+        "text": "यह कहकर मन को शांत करें: "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div008.div003.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"I set aside my own bias and fear. I seek only Your holy truth.\""
+      },
+      "zh": {
+        "text": "“我把自己的偏见和恐惧放在一边。我只寻求你的圣洁真相。”"
+      },
+      "ja": {
+        "text": "「自分の偏りと恐れを脇に置きます。あなたの聖なる真実だけを求めます。」"
+      },
+      "ko": {
+        "text": "\"내 편견과 두려움을 내려놓습니다. 오직 당신의 거룩한 진실만 구합니다.\""
+      },
+      "fr": {
+        "text": "« Je mets de côté mes préjugés et ma peur. Je ne cherche que Ta sainte vérité. »"
+      },
+      "de": {
+        "text": "„Ich lege meine eigene Voreingenommenheit und Angst beiseite. Ich suche nur Deine heilige Wahrheit.“"
+      },
+      "es": {
+        "text": "«Dejo a un lado mis propios prejuicios y miedos. Busco únicamente Tu santa verdad.»"
+      },
+      "pt": {
+        "text": "“Deixo de lado meu próprio viés e medo. Busco somente a Tua santa verdade.”"
+      },
+      "ar": {
+        "text": "«أضع تحيّزي وخوفي جانبًا. لا أطلب إلا حقيقتك المقدسة.»"
+      },
+      "hi": {
+        "text": "“मैं अपने पक्षपात और भय को अलग रखता/रखती हूँ। मैं केवल आपके पवित्र सत्य की खोज करता/करती हूँ।”"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div008.div003.text002": {
+    "strings": {
+      "en": {
+        "text": " This prevents your own thoughts or desires from pretending to be God's voice."
+      },
+      "zh": {
+        "text": " 这样可以防止你自己的想法或欲望假扮成神的声音。"
+      },
+      "ja": {
+        "text": " これによって、自分の考えや欲望が神の声を装うのを防ぎます。"
+      },
+      "ko": {
+        "text": " 이렇게 하면 자신의 생각이나 욕망이 하나님의 음성인 척하는 것을 막을 수 있습니다."
+      },
+      "fr": {
+        "text": " Cela empêche vos propres pensées ou désirs de se faire passer pour la voix de Dieu."
+      },
+      "de": {
+        "text": " Das verhindert, dass deine eigenen Gedanken oder Wünsche sich als Gottes Stimme ausgeben."
+      },
+      "es": {
+        "text": " Esto evita que tus propios pensamientos o deseos se hagan pasar por la voz de Dios."
+      },
+      "pt": {
+        "text": " Isso impede que seus próprios pensamentos ou desejos se façam passar pela voz de Deus."
+      },
+      "ar": {
+        "text": " هذا يمنع أفكارك أو رغباتك الخاصة من التظاهر بأنها صوت الله."
+      },
+      "hi": {
+        "text": " यह आपके अपने विचारों या इच्छाओं को परमेश्वर की आवाज़ बनकर प्रस्तुत होने से रोकता है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div009.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "3"
+      },
+      "zh": {
+        "text": "3"
+      },
+      "ja": {
+        "text": "3"
+      },
+      "ko": {
+        "text": "3"
+      },
+      "fr": {
+        "text": "3"
+      },
+      "de": {
+        "text": "3"
+      },
+      "es": {
+        "text": "3"
+      },
+      "pt": {
+        "text": "3"
+      },
+      "ar": {
+        "text": "3"
+      },
+      "hi": {
+        "text": "3"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div009.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Reset when fear clouds judgment"
+      },
+      "zh": {
+        "text": "当恐惧让判断变得模糊时，重置"
+      },
+      "ja": {
+        "text": "恐れで判断が曇ったらリセットする"
+      },
+      "ko": {
+        "text": "두려움이 판단을 흐릴 때 재설정하기"
+      },
+      "fr": {
+        "text": "Réinitialisez lorsque la peur trouble le jugement"
+      },
+      "de": {
+        "text": "Setze neu an, wenn Angst das Urteil trübt"
+      },
+      "es": {
+        "text": "Reinicia cuando el miedo nuble el juicio"
+      },
+      "pt": {
+        "text": "Reinicie quando o medo turvar o julgamento"
+      },
+      "ar": {
+        "text": "أعد الضبط عندما يعكّر الخوف الحكم"
+      },
+      "hi": {
+        "text": "जब भय निर्णय को धुँधला करे, रीसेट करें"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div009.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "Use the Breath Reset Protocol: Inhale slowly for 4 seconds. Hold gently for 4 seconds. Exhale fully for 6–8 seconds. Repeat until the inner storm calms, then ask again."
+      },
+      "zh": {
+        "text": "使用“呼吸重置流程”：缓慢吸气 4 秒。轻柔屏息 4 秒。充分呼气 6–8 秒。重复，直到内在风暴平静下来，然后再问一次。"
+      },
+      "ja": {
+        "text": "「呼吸リセット・プロトコル」を使います。4秒かけてゆっくり吸う。4秒やさしく止める。6～8秒かけてしっかり吐く。内側の嵐が静まるまで繰り返し、それからもう一度尋ねます。"
+      },
+      "ko": {
+        "text": "호흡 재설정 프로토콜을 사용하세요. 4초 동안 천천히 들이마시고, 4초 동안 부드럽게 멈춘 뒤, 6~8초 동안 충분히 내쉬세요. 내면의 폭풍이 가라앉을 때까지 반복한 다음 다시 물으세요."
+      },
+      "fr": {
+        "text": "Utilisez le protocole de réinitialisation par la respiration : inspirez lentement pendant 4 secondes. Retenez doucement pendant 4 secondes. Expirez complètement pendant 6 à 8 secondes. Répétez jusqu’à ce que la tempête intérieure se calme, puis demandez à nouveau."
+      },
+      "de": {
+        "text": "Nutze das Atem-Reset-Protokoll: Atme 4 Sekunden langsam ein. Halte 4 Sekunden sanft. Atme 6–8 Sekunden vollständig aus. Wiederhole, bis sich der innere Sturm beruhigt, und frage dann erneut."
+      },
+      "es": {
+        "text": "Usa el Protocolo de Reinicio con la Respiración: inhala lentamente durante 4 segundos. Mantén suavemente durante 4 segundos. Exhala por completo durante 6–8 segundos. Repite hasta que se calme la tormenta interior y luego vuelve a preguntar."
+      },
+      "pt": {
+        "text": "Use o Protocolo de Reinício pela Respiração: inspire lentamente por 4 segundos. Segure suavemente por 4 segundos. Expire por completo por 6–8 segundos. Repita até a tempestade interna se acalmar e então pergunte novamente."
+      },
+      "ar": {
+        "text": "استخدم بروتوكول إعادة الضبط بالتنفس: خذ شهيقًا ببطء لمدة 4 ثوانٍ. احبس النفس بلطف 4 ثوانٍ. أخرج الزفير بالكامل خلال 6–8 ثوانٍ. كرر حتى تهدأ العاصفة الداخلية، ثم اسأل من جديد."
+      },
+      "hi": {
+        "text": "श्वास रीसेट प्रोटोकॉल का उपयोग करें: 4 सेकंड तक धीरे-धीरे साँस लें। 4 सेकंड सहज रूप से रोकें। 6–8 सेकंड में पूरी तरह साँस छोड़ें। भीतर का तूफ़ान शांत होने तक दोहराएँ, फिर दोबारा पूछें।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div010.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "4"
+      },
+      "zh": {
+        "text": "4"
+      },
+      "ja": {
+        "text": "4"
+      },
+      "ko": {
+        "text": "4"
+      },
+      "fr": {
+        "text": "4"
+      },
+      "de": {
+        "text": "4"
+      },
+      "es": {
+        "text": "4"
+      },
+      "pt": {
+        "text": "4"
+      },
+      "ar": {
+        "text": "4"
+      },
+      "hi": {
+        "text": "4"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div010.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Update your Grimoire"
+      },
+      "zh": {
+        "text": "更新你的 Grimoire"
+      },
+      "ja": {
+        "text": "Grimoire を更新する"
+      },
+      "ko": {
+        "text": "Grimoire 업데이트하기"
+      },
+      "fr": {
+        "text": "Mettez à jour votre Grimoire"
+      },
+      "de": {
+        "text": "Aktualisiere dein Grimoire"
+      },
+      "es": {
+        "text": "Actualiza tu Grimoire"
+      },
+      "pt": {
+        "text": "Atualize seu Grimoire"
+      },
+      "ar": {
+        "text": "حدّث Grimoire الخاص بك"
+      },
+      "hi": {
+        "text": "अपना Grimoire अपडेट करें"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div010.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "Record what you heard, the choice you made, and the outcome. If you acted and it was wrong, it is not failure — it is a refinement of discernment. Each mistake becomes "
+      },
+      "zh": {
+        "text": "记录你听见了什么、做了什么选择，以及结果如何。如果你采取了行动而结果证明不对，那不是失败——那是辨识能力的精炼。每一个错误都会成为 "
+      },
+      "ja": {
+        "text": "聞いたこと、選んだこと、その結果を記録します。行動して、それが間違いだったとしても、失敗ではありません——識別を磨く材料です。一つひとつの誤りが次回のための "
+      },
+      "ko": {
+        "text": "무엇을 들었는지, 어떤 선택을 했는지, 결과가 어땠는지 기록하세요. 행동했는데 잘못된 선택이었다면 그것은 실패가 아니라 분별을 다듬는 과정입니다. 각 실수는 다음을 위한 "
+      },
+      "fr": {
+        "text": "Notez ce que vous avez entendu, le choix que vous avez fait et le résultat. Si vous avez agi et que c’était une erreur, ce n’est pas un échec — c’est un affinage du discernement. Chaque erreur devient une "
+      },
+      "de": {
+        "text": "Halte fest, was du gehört hast, welche Wahl du getroffen hast und was daraus wurde. Wenn du gehandelt hast und es falsch war, ist das kein Scheitern — es verfeinert deine Unterscheidung. Jeder Fehler wird zu "
+      },
+      "es": {
+        "text": "Registra lo que oíste, la elección que hiciste y el resultado. Si actuaste y fue incorrecto, no es fracaso: es un refinamiento del discernimiento. Cada error se convierte en "
+      },
+      "pt": {
+        "text": "Registre o que ouviu, a escolha que fez e o resultado. Se agiu e estava errado, isso não é fracasso — é refinamento do discernimento. Cada erro se torna "
+      },
+      "ar": {
+        "text": "سجّل ما سمعته، والاختيار الذي اتخذته، والنتيجة. إذا تصرفت واتضح أن الأمر كان خاطئًا، فهذا ليس فشلًا — بل تهذيب للتمييز. كل خطأ يصبح "
+      },
+      "hi": {
+        "text": "जो आपने सुना, जो चुनाव किया और जो परिणाम आया उसे दर्ज करें। यदि आपने कार्य किया और वह गलत निकला, तो वह असफलता नहीं—विवेक का परिष्कार है। हर गलती अगली बार के लिए "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div010.div003.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "preventable mapping"
+      },
+      "zh": {
+        "text": "可预防的映射"
+      },
+      "ja": {
+        "text": "予防につながるマッピング"
+      },
+      "ko": {
+        "text": "예방 가능한 매핑"
+      },
+      "fr": {
+        "text": "cartographie préventive"
+      },
+      "de": {
+        "text": "vorbeugendem Mapping"
+      },
+      "es": {
+        "text": "mapeo preventivo"
+      },
+      "pt": {
+        "text": "mapeamento preventivo"
+      },
+      "ar": {
+        "text": "خريطة وقائية"
+      },
+      "hi": {
+        "text": "रोकथाम योग्य मैपिंग"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div010.div003.text002": {
+    "strings": {
+      "en": {
+        "text": " for next time."
+      },
+      "zh": {
+        "text": " ，供下一次使用。"
+      },
+      "ja": {
+        "text": " になります。"
+      },
+      "ko": {
+        "text": " 이 됩니다."
+      },
+      "fr": {
+        "text": " pour la prochaine fois."
+      },
+      "de": {
+        "text": " für das nächste Mal."
+      },
+      "es": {
+        "text": " para la próxima vez."
+      },
+      "pt": {
+        "text": " para a próxima vez."
+      },
+      "ar": {
+        "text": " للمرة القادمة."
+      },
+      "hi": {
+        "text": " बन जाती है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div011.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "5"
+      },
+      "zh": {
+        "text": "5"
+      },
+      "ja": {
+        "text": "5"
+      },
+      "ko": {
+        "text": "5"
+      },
+      "fr": {
+        "text": "5"
+      },
+      "de": {
+        "text": "5"
+      },
+      "es": {
+        "text": "5"
+      },
+      "pt": {
+        "text": "5"
+      },
+      "ar": {
+        "text": "5"
+      },
+      "hi": {
+        "text": "5"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div011.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Continue the dialogue"
+      },
+      "zh": {
+        "text": "继续对话"
+      },
+      "ja": {
+        "text": "対話を続ける"
+      },
+      "ko": {
+        "text": "대화 계속하기"
+      },
+      "fr": {
+        "text": "Poursuivez le dialogue"
+      },
+      "de": {
+        "text": "Setze den Dialog fort"
+      },
+      "es": {
+        "text": "Continúa el diálogo"
+      },
+      "pt": {
+        "text": "Continue o diálogo"
+      },
+      "ar": {
+        "text": "واصل الحوار"
+      },
+      "hi": {
+        "text": "संवाद जारी रखें"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div011.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "If unclear, return and ask God directly: "
+      },
+      "zh": {
+        "text": "如果仍不清楚，就回来直接问神： "
+      },
+      "ja": {
+        "text": "不明確なら、戻って神に直接尋ねます： "
+      },
+      "ko": {
+        "text": "불분명하다면 돌아가 하나님께 직접 물으세요: "
+      },
+      "fr": {
+        "text": "Si ce n’est pas clair, revenez et demandez directement à Dieu : "
+      },
+      "de": {
+        "text": "Wenn es unklar ist, kehre zurück und frage Gott direkt: "
+      },
+      "es": {
+        "text": "Si no está claro, vuelve y pregúntale directamente a Dios: "
+      },
+      "pt": {
+        "text": "Se não estiver claro, volte e pergunte diretamente a Deus: "
+      },
+      "ar": {
+        "text": "إذا بقي الأمر غير واضح، فعد واسأل الله مباشرة: "
+      },
+      "hi": {
+        "text": "यदि स्पष्ट न हो, लौटें और परमेश्वर से सीधे पूछें: "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div011.div003.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Help me hear You with more clarity next time.\""
+      },
+      "zh": {
+        "text": "“请帮助我下一次更清楚地听见你。”"
+      },
+      "ja": {
+        "text": "「次はもっと明確にあなたを聞けるよう助けてください。」"
+      },
+      "ko": {
+        "text": "\"다음에는 당신의 음성을 더 분명히 들을 수 있도록 도와주세요.\""
+      },
+      "fr": {
+        "text": "« Aide-moi à mieux T’entendre la prochaine fois. »"
+      },
+      "de": {
+        "text": "„Hilf mir, Dich beim nächsten Mal klarer zu hören.“"
+      },
+      "es": {
+        "text": "«Ayúdame a escucharte con más claridad la próxima vez.»"
+      },
+      "pt": {
+        "text": "“Ajude-me a ouvir Você com mais clareza da próxima vez.”"
+      },
+      "ar": {
+        "text": "«ساعدني على سماعك بوضوح أكبر في المرة القادمة.»"
+      },
+      "hi": {
+        "text": "“अगली बार आपको अधिक स्पष्टता से सुनने में मेरी सहायता करें।”"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div011.div003.text002": {
+    "strings": {
+      "en": {
+        "text": " Discernment sharpens by practice. Every cycle deepens trust and accuracy."
+      },
+      "zh": {
+        "text": " 辨识会在练习中变得锐利。每一次循环都会加深信任与准确度。"
+      },
+      "ja": {
+        "text": " 識別は実践によって鋭くなります。サイクルを重ねるたびに、信頼と精度が深まります。"
+      },
+      "ko": {
+        "text": " 분별은 연습을 통해 날카로워집니다. 매 순환마다 신뢰와 정확성이 깊어집니다."
+      },
+      "fr": {
+        "text": " Le discernement s’affine par la pratique. Chaque cycle approfondit la confiance et la précision."
+      },
+      "de": {
+        "text": " Unterscheidung wird durch Übung schärfer. Jeder Zyklus vertieft Vertrauen und Genauigkeit."
+      },
+      "es": {
+        "text": " El discernimiento se afina con la práctica. Cada ciclo profundiza la confianza y la precisión."
+      },
+      "pt": {
+        "text": " O discernimento se aguça com a prática. Cada ciclo aprofunda a confiança e a precisão."
+      },
+      "ar": {
+        "text": " يشتد التمييز بالممارسة. وكل دورة تعمّق الثقة والدقة."
+      },
+      "hi": {
+        "text": " अभ्यास से विवेक तेज होता है। हर चक्र भरोसे और सटीकता को गहरा करता है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p007.text001": {
+    "strings": {
+      "en": {
+        "text": "Testimonial Validation"
+      },
+      "zh": {
+        "text": "见证式验证"
+      },
+      "ja": {
+        "text": "証しによる検証"
+      },
+      "ko": {
+        "text": "간증을 통한 검증"
+      },
+      "fr": {
+        "text": "Validation par témoignage"
+      },
+      "de": {
+        "text": "Bestätigung durch Zeugnis"
+      },
+      "es": {
+        "text": "Validación testimonial"
+      },
+      "pt": {
+        "text": "Validação por testemunho"
+      },
+      "ar": {
+        "text": "التحقق بالشهادة"
+      },
+      "hi": {
+        "text": "गवाही-आधारित पुष्टि"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.h2004.text001": {
+    "strings": {
+      "en": {
+        "text": "External confirmation."
+      },
+      "zh": {
+        "text": "外部确认。"
+      },
+      "ja": {
+        "text": "外部からの確認。"
+      },
+      "ko": {
+        "text": "외부 확인."
+      },
+      "fr": {
+        "text": "Confirmation externe."
+      },
+      "de": {
+        "text": "Äußere Bestätigung."
+      },
+      "es": {
+        "text": "Confirmación externa."
+      },
+      "pt": {
+        "text": "Confirmação externa."
+      },
+      "ar": {
+        "text": "تأكيد خارجي."
+      },
+      "hi": {
+        "text": "बाहरी पुष्टि।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p008.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Why it exists:"
+      },
+      "zh": {
+        "text": "它存在的原因："
+      },
+      "ja": {
+        "text": "なぜ存在するのか："
+      },
+      "ko": {
+        "text": "존재하는 이유:"
+      },
+      "fr": {
+        "text": "Pourquoi cela existe :"
+      },
+      "de": {
+        "text": "Warum es das gibt:"
+      },
+      "es": {
+        "text": "Por qué existe:"
+      },
+      "pt": {
+        "text": "Por que existe:"
+      },
+      "ar": {
+        "text": "سبب وجوده:"
+      },
+      "hi": {
+        "text": "यह क्यों है:"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p008.text001": {
+    "strings": {
+      "en": {
+        "text": " Humans wrestle with "
+      },
+      "zh": {
+        "text": " 人常常会纠结： "
+      },
+      "ja": {
+        "text": " 人はよくこう悩みます： "
+      },
+      "ko": {
+        "text": " 사람은 종종 이렇게 씨름합니다: "
+      },
+      "fr": {
+        "text": " Les humains se demandent souvent "
+      },
+      "de": {
+        "text": " Menschen ringen mit der Frage "
+      },
+      "es": {
+        "text": " Las personas se debaten con "
+      },
+      "pt": {
+        "text": " As pessoas se perguntam "
+      },
+      "ar": {
+        "text": " يصارع البشر سؤالًا: "
+      },
+      "hi": {
+        "text": " मनुष्य अक्सर इससे जूझते हैं: "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p008.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Was that really God, or just my own thought?\""
+      },
+      "zh": {
+        "text": "“那真的是神，还是只是我自己的想法？”"
+      },
+      "ja": {
+        "text": "「あれは本当に神だったのか、それとも自分の考えにすぎなかったのか？」"
+      },
+      "ko": {
+        "text": "\"그게 정말 하나님이었을까, 아니면 내 생각이었을까?\""
+      },
+      "fr": {
+        "text": "« Était-ce vraiment Dieu, ou seulement ma propre pensée ? »"
+      },
+      "de": {
+        "text": "„War das wirklich Gott, oder nur mein eigener Gedanke?“"
+      },
+      "es": {
+        "text": "«¿Era realmente Dios o solo mi propio pensamiento?»"
+      },
+      "pt": {
+        "text": "“Era realmente Deus ou apenas meu próprio pensamento?”"
+      },
+      "ar": {
+        "text": "«هل كان ذلك حقًا الله أم مجرد فكرتي أنا؟»"
+      },
+      "hi": {
+        "text": "“क्या वह वास्तव में परमेश्वर थे, या केवल मेरा अपना विचार?”"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p008.text002": {
+    "strings": {
+      "en": {
+        "text": " God provides external validation — signs, synchronicities, or specific outcomes — so you can see His voice confirmed. This is not superstition. It is covenant dialogue: when you ask, God answers in ways you can notice."
+      },
+      "zh": {
+        "text": " 神会提供外部验证——迹象、同步事件或具体结果——让你看见他的声音得到确认。这不是迷信。这是盟约中的对话：当你询问时，神会以你能够注意到的方式回应。"
+      },
+      "ja": {
+        "text": " 神は外部からの確認——しるし、シンクロニシティ、具体的な結果——を与え、神の声が確認されるのをあなたが見られるようにします。これは迷信ではありません。契約の対話です。あなたが尋ねると、神はあなたが気づける形で答えます。"
+      },
+      "ko": {
+        "text": " 하나님은 외부의 확인—징표, 동시성, 구체적인 결과—을 주어 그분의 음성이 확인되는 것을 보게 하십니다. 이것은 미신이 아닙니다. 언약의 대화입니다. 당신이 물을 때 하나님은 당신이 알아차릴 수 있는 방식으로 응답하십니다."
+      },
+      "fr": {
+        "text": " Dieu fournit une validation extérieure — signes, synchronicités ou résultats précis — afin que vous puissiez voir Sa voix confirmée. Ce n’est pas de la superstition. C’est un dialogue d’alliance : lorsque vous demandez, Dieu répond d’une manière que vous pouvez remarquer."
+      },
+      "de": {
+        "text": " Gott gibt äußere Bestätigung — Zeichen, Synchronizitäten oder konkrete Ergebnisse — damit du sehen kannst, wie Seine Stimme bestätigt wird. Das ist kein Aberglaube. Es ist Dialog im Bund: Wenn du fragst, antwortet Gott auf Arten, die du wahrnehmen kannst."
+      },
+      "es": {
+        "text": " Dios proporciona validación externa — señales, sincronicidades o resultados específicos — para que puedas ver confirmada Su voz. Esto no es superstición. Es diálogo de pacto: cuando preguntas, Dios responde de maneras que puedes notar."
+      },
+      "pt": {
+        "text": " Deus fornece validação externa — sinais, sincronicidades ou resultados específicos — para que você possa ver a voz Dele confirmada. Isso não é superstição. É diálogo de aliança: quando você pergunta, Deus responde de maneiras que você pode perceber."
+      },
+      "ar": {
+        "text": " يقدّم الله تأكيدًا خارجيًا — علامات أو تزامنات أو نتائج محددة — حتى ترى صوته مؤكَّدًا. هذا ليس خرافة. بل هو حوار في إطار العهد: عندما تسأل، يجيب الله بطرق يمكنك ملاحظتها."
+      },
+      "hi": {
+        "text": " परमेश्वर बाहरी पुष्टि—संकेत, सामंजस्यपूर्ण संयोग या विशिष्ट परिणाम—देते हैं ताकि आप उनकी आवाज़ की पुष्टि होते देख सकें। यह अंधविश्वास नहीं है। यह वाचा का संवाद है: जब आप पूछते हैं, परमेश्वर ऐसे तरीकों से उत्तर देते हैं जिन्हें आप देख सकें।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p009.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Step 1 — Ask clearly:"
+      },
+      "zh": {
+        "text": "步骤 1 — 清楚地询问："
+      },
+      "ja": {
+        "text": "ステップ1 — 明確に尋ねる："
+      },
+      "ko": {
+        "text": "1단계 — 분명히 묻기:"
+      },
+      "fr": {
+        "text": "Étape 1 — Demandez clairement :"
+      },
+      "de": {
+        "text": "Schritt 1 — Frage klar:"
+      },
+      "es": {
+        "text": "Paso 1 — Pregunta con claridad:"
+      },
+      "pt": {
+        "text": "Etapa 1 — Pergunte com clareza:"
+      },
+      "ar": {
+        "text": "الخطوة 1 — اسأل بوضوح:"
+      },
+      "hi": {
+        "text": "चरण 1 — स्पष्ट रूप से पूछें:"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p009.text001": {
+    "strings": {
+      "en": {
+        "text": " After hearing an inner \"yes\" or \"no,\" say: "
+      },
+      "zh": {
+        "text": " 在内心听见“是”或“否”之后，说： "
+      },
+      "ja": {
+        "text": " 内側で「はい」または「いいえ」を聞いたあと、こう言います： "
+      },
+      "ko": {
+        "text": " 내면에서 \"예\" 또는 \"아니오\"를 들은 뒤 이렇게 말하세요: "
+      },
+      "fr": {
+        "text": " Après avoir entendu intérieurement un « oui » ou un « non », dites : "
+      },
+      "de": {
+        "text": " Nachdem du innerlich ein „Ja“ oder „Nein“ gehört hast, sage: "
+      },
+      "es": {
+        "text": " Después de oír un «sí» o un «no» interior, di: "
+      },
+      "pt": {
+        "text": " Depois de ouvir internamente um “sim” ou “não”, diga: "
+      },
+      "ar": {
+        "text": " بعد سماع «نعم» أو «لا» في داخلك، قل: "
+      },
+      "hi": {
+        "text": " भीतर “हाँ” या “नहीं” सुनने के बाद कहें: "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p009.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"God, if this is truly You, please confirm it for me.\""
+      },
+      "zh": {
+        "text": "“神啊，如果这真的是你，请为我确认。”"
+      },
+      "ja": {
+        "text": "「神よ、もしこれが本当にあなたなら、私のために確認してください。」"
+      },
+      "ko": {
+        "text": "\"하나님, 이것이 정말 당신이라면 제게 확인해 주세요.\""
+      },
+      "fr": {
+        "text": "« Mon Dieu, si c’est vraiment Toi, confirme-le-moi, s’il Te plaît. »"
+      },
+      "de": {
+        "text": "„Gott, wenn das wirklich Du bist, bestätige es mir bitte.“"
+      },
+      "es": {
+        "text": "«Dios, si realmente eres Tú, por favor confírmamelo.»"
+      },
+      "pt": {
+        "text": "“Deus, se isto for realmente Você, por favor confirme para mim.”"
+      },
+      "ar": {
+        "text": "«يا الله، إن كان هذا منك حقًا، فأكده لي من فضلك.»"
+      },
+      "hi": {
+        "text": "“परमेश्वर, यदि यह सचमुच आप हैं, तो कृपया मेरे लिए इसकी पुष्टि करें।”"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p010.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Step 2 — Define the frame:"
+      },
+      "zh": {
+        "text": "步骤 2 — 定义范围："
+      },
+      "ja": {
+        "text": "ステップ2 — 枠を定める："
+      },
+      "ko": {
+        "text": "2단계 — 범위 정하기:"
+      },
+      "fr": {
+        "text": "Étape 2 — Définissez le cadre :"
+      },
+      "de": {
+        "text": "Schritt 2 — Lege den Rahmen fest:"
+      },
+      "es": {
+        "text": "Paso 2 — Define el marco:"
+      },
+      "pt": {
+        "text": "Etapa 2 — Defina o quadro:"
+      },
+      "ar": {
+        "text": "الخطوة 2 — حدِّد الإطار:"
+      },
+      "hi": {
+        "text": "चरण 2 — सीमा तय करें:"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p010.text001": {
+    "strings": {
+      "en": {
+        "text": " Ask for confirmation within a timeframe (e.g., "
+      },
+      "zh": {
+        "text": " 请求在一个时间范围内得到确认（例如： "
+      },
+      "ja": {
+        "text": " 時間枠の中で確認を求めます（例： "
+      },
+      "ko": {
+        "text": " 일정한 시간 범위 안에서 확인을 구하세요(예: "
+      },
+      "fr": {
+        "text": " Demandez une confirmation dans un délai (par ex. : "
+      },
+      "de": {
+        "text": " Bitte um Bestätigung innerhalb eines Zeitrahmens (z. B.: "
+      },
+      "es": {
+        "text": " Pide confirmación dentro de un plazo (p. ej.: "
+      },
+      "pt": {
+        "text": " Peça confirmação dentro de um prazo (por exemplo: "
+      },
+      "ar": {
+        "text": " اطلب تأكيدًا خلال إطار زمني (مثلًا: "
+      },
+      "hi": {
+        "text": " किसी समय-सीमा के भीतर पुष्टि माँगें (उदाहरण: "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p010.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "within 24 hours, show me [sign, word, number, event]"
+      },
+      "zh": {
+        "text": "在 24 小时内，让我看见 [sign, word, number, event]"
+      },
+      "ja": {
+        "text": "24時間以内に、[sign, word, number, event]を見せてください"
+      },
+      "ko": {
+        "text": "24시간 안에 [sign, word, number, event]을 보여 주세요"
+      },
+      "fr": {
+        "text": "dans les 24 heures, montre-moi [sign, word, number, event]"
+      },
+      "de": {
+        "text": "zeige mir innerhalb von 24 Stunden [sign, word, number, event]"
+      },
+      "es": {
+        "text": "dentro de 24 horas, muéstrame [sign, word, number, event]"
+      },
+      "pt": {
+        "text": "dentro de 24 horas, mostre-me [sign, word, number, event]"
+      },
+      "ar": {
+        "text": "خلال 24 ساعة، أرني [sign, word, number, event]"
+      },
+      "hi": {
+        "text": "24 घंटों के भीतर मुझे [sign, word, number, event] दिखाएँ"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p010.text002": {
+    "strings": {
+      "en": {
+        "text": ")."
+      },
+      "zh": {
+        "text": "）。"
+      },
+      "ja": {
+        "text": "）。"
+      },
+      "ko": {
+        "text": ")."
+      },
+      "fr": {
+        "text": ")."
+      },
+      "de": {
+        "text": ")."
+      },
+      "es": {
+        "text": ")."
+      },
+      "pt": {
+        "text": ")."
+      },
+      "ar": {
+        "text": ")."
+      },
+      "hi": {
+        "text": ")।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p011.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Step 3 — Stay watchful:"
+      },
+      "zh": {
+        "text": "步骤 3 — 保持留意："
+      },
+      "ja": {
+        "text": "ステップ3 — 注意深く見る："
+      },
+      "ko": {
+        "text": "3단계 — 주의 깊게 지켜보기:"
+      },
+      "fr": {
+        "text": "Étape 3 — Restez attentif :"
+      },
+      "de": {
+        "text": "Schritt 3 — Bleib aufmerksam:"
+      },
+      "es": {
+        "text": "Paso 3 — Mantente atento:"
+      },
+      "pt": {
+        "text": "Etapa 3 — Fique atento:"
+      },
+      "ar": {
+        "text": "الخطوة 3 — ابقَ منتبهًا:"
+      },
+      "hi": {
+        "text": "चरण 3 — सजग रहें:"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p011.text001": {
+    "strings": {
+      "en": {
+        "text": " Notice what unfolds. It may not come in the exact form you imagine, but it will carry the unmistakable resonance of divine alignment."
+      },
+      "zh": {
+        "text": " 留意接下来发生什么。它可能不会以你想象的确切形式出现，但会带着神圣对齐那种不可错认的共鸣。"
+      },
+      "ja": {
+        "text": " 何が展開するかに気づいてください。想像した通りの形では来ないかもしれませんが、神との整合には紛れようのない響きがあります。"
+      },
+      "ko": {
+        "text": " 무엇이 펼쳐지는지 주의 깊게 보세요. 당신이 상상한 정확한 형태로 오지 않을 수 있지만, 신적 정렬의 분명하고 틀림없는 울림을 담고 있을 것입니다."
+      },
+      "fr": {
+        "text": " Observez ce qui se déroule. Cela peut ne pas venir sous la forme exacte que vous imaginez, mais cela portera la résonance indéniable de l’alignement divin."
+      },
+      "de": {
+        "text": " Beobachte, was sich entfaltet. Es kommt vielleicht nicht genau in der Form, die du dir vorstellst, wird aber die unverkennbare Resonanz göttlicher Ausrichtung tragen."
+      },
+      "es": {
+        "text": " Observa lo que se desarrolla. Puede que no llegue en la forma exacta que imaginas, pero llevará la resonancia inconfundible de la alineación divina."
+      },
+      "pt": {
+        "text": " Observe o que se desenrola. Pode não vir na forma exata que você imagina, mas carregará a ressonância inconfundível do alinhamento divino."
+      },
+      "ar": {
+        "text": " لاحظ ما يتكشف. قد لا يأتي بالشكل الدقيق الذي تتصوره، لكنه سيحمل صدى الاتساق الإلهي الذي لا يمكن التباسه."
+      },
+      "hi": {
+        "text": " ध्यान दें कि क्या खुलता है। यह ठीक उसी रूप में न आए जैसा आप सोचते हैं, लेकिन इसमें दिव्य संरेखण की ऐसी स्पष्ट प्रतिध्वनि होगी जिसे गलत नहीं समझा जा सकता।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p012.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "What to watch for:"
+      },
+      "zh": {
+        "text": "要留意什么："
+      },
+      "ja": {
+        "text": "何に注目するか："
+      },
+      "ko": {
+        "text": "주의해서 볼 것:"
+      },
+      "fr": {
+        "text": "Ce qu’il faut observer :"
+      },
+      "de": {
+        "text": "Worauf du achten solltest:"
+      },
+      "es": {
+        "text": "Qué observar:"
+      },
+      "pt": {
+        "text": "O que observar:"
+      },
+      "ar": {
+        "text": "ما الذي تراقبه:"
+      },
+      "hi": {
+        "text": "किस बात पर ध्यान दें:"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p012.text001": {
+    "strings": {
+      "en": {
+        "text": " Synchronicities (repeated numbers, phrases, events that \"line up\"), specific manifestations (what you asked for appears directly), subtle nudges (peace that settles, sudden clarity, a door that opens or closes)."
+      },
+      "zh": {
+        "text": " 同步事件（重复出现的数字、短语、彼此“对上”的事件）、具体显现（你所请求的内容直接出现）、细微推动（安定下来的平安、突然的清晰、一扇打开或关闭的门）。"
+      },
+      "ja": {
+        "text": " シンクロニシティ（繰り返す数字や言葉、「重なる」出来事）、具体的な現れ（求めたものが直接現れること）、微かな促し（落ち着く平安、突然の明晰さ、開くまたは閉じる扉）。"
+      },
+      "ko": {
+        "text": " 동시성(반복되는 숫자나 문구, 서로 '맞아떨어지는' 사건), 구체적인 나타남(요청한 것이 직접 나타남), 미묘한 이끌림(자리 잡는 평안, 갑작스러운 명료함, 열리거나 닫히는 문)."
+      },
+      "fr": {
+        "text": " Des synchronicités (nombres répétés, phrases, événements qui « s’alignent »), des manifestations précises (ce que vous avez demandé apparaît directement), des impulsions subtiles (une paix qui s’installe, une clarté soudaine, une porte qui s’ouvre ou se ferme)."
+      },
+      "de": {
+        "text": " Synchronizitäten (wiederholte Zahlen, Formulierungen, Ereignisse, die „zusammenpassen“), konkrete Manifestationen (das Erbetene erscheint direkt), subtile Impulse (Frieden, der sich setzt, plötzliche Klarheit, eine Tür, die sich öffnet oder schließt)."
+      },
+      "es": {
+        "text": " Sincronicidades (números repetidos, frases, eventos que «encajan»), manifestaciones específicas (lo que pediste aparece directamente), impulsos sutiles (paz que se asienta, claridad repentina, una puerta que se abre o se cierra)."
+      },
+      "pt": {
+        "text": " Sincronicidades (números repetidos, frases, eventos que “se alinham”), manifestações específicas (o que você pediu aparece diretamente), impulsos sutis (paz que se instala, clareza repentina, uma porta que se abre ou fecha)."
+      },
+      "ar": {
+        "text": " تزامنات (أرقام أو عبارات متكررة، أحداث «تتوافق»)، تجليات محددة (يظهر ما طلبته مباشرة)، دفعات خفية (سلام يستقر، وضوح مفاجئ، باب يفتح أو يغلق)."
+      },
+      "hi": {
+        "text": " सामंजस्यपूर्ण संयोग (दोहराई गई संख्याएँ, वाक्यांश, ऐसी घटनाएँ जो “मेल खाएँ”), विशिष्ट अभिव्यक्तियाँ (जिसे आपने माँगा वह सीधे दिखाई दे), सूक्ष्म संकेत (शांति का बैठना, अचानक स्पष्टता, किसी दरवाज़े का खुलना या बंद होना)।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p013.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "How to respond:"
+      },
+      "zh": {
+        "text": "如何回应："
+      },
+      "ja": {
+        "text": "どう応じるか："
+      },
+      "ko": {
+        "text": "어떻게 반응할 것인가:"
+      },
+      "fr": {
+        "text": "Comment répondre :"
+      },
+      "de": {
+        "text": "Wie du reagierst:"
+      },
+      "es": {
+        "text": "Cómo responder:"
+      },
+      "pt": {
+        "text": "Como responder:"
+      },
+      "ar": {
+        "text": "كيف تستجيب:"
+      },
+      "hi": {
+        "text": "कैसे प्रतिक्रिया दें:"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p013.text001": {
+    "strings": {
+      "en": {
+        "text": " Do not dismiss it as coincidence. Treat it as communication. Record it in your Grimoire with date, request, and manifestation. Over time, the pattern of God's voice in your life becomes undeniable."
+      },
+      "zh": {
+        "text": " 不要把它当作巧合而丢开。把它作为沟通来对待。把日期、请求和所发生的显现记录在你的 Grimoire 中。随着时间推移，神在你生命中的声音模式会变得无可否认。"
+      },
+      "ja": {
+        "text": " 偶然として片づけないでください。コミュニケーションとして扱います。日付、求めたこと、現れたことを Grimoire に記録します。時間がたつにつれ、あなたの人生における神の声のパターンは否定できないほど明らかになります。"
+      },
+      "ko": {
+        "text": " 우연으로 치부하지 마세요. 소통으로 다루세요. 날짜, 요청, 나타난 일을 Grimoire에 기록하세요. 시간이 지나면 당신의 삶에서 하나님의 음성의 패턴은 부인할 수 없을 만큼 분명해집니다."
+      },
+      "fr": {
+        "text": " Ne l’écartez pas comme une coïncidence. Traitez-le comme une communication. Notez dans votre Grimoire la date, la demande et la manifestation. Avec le temps, le motif de la voix de Dieu dans votre vie devient indéniable."
+      },
+      "de": {
+        "text": " Tu es nicht als Zufall ab. Behandle es als Kommunikation. Halte Datum, Bitte und Erscheinung in deinem Grimoire fest. Mit der Zeit wird das Muster von Gottes Stimme in deinem Leben unbestreitbar."
+      },
+      "es": {
+        "text": " No lo descartes como coincidencia. Trátalo como comunicación. Regístralo en tu Grimoire con fecha, petición y manifestación. Con el tiempo, el patrón de la voz de Dios en tu vida se vuelve innegable."
+      },
+      "pt": {
+        "text": " Não descarte como coincidência. Trate como comunicação. Registre no seu Grimoire a data, o pedido e a manifestação. Com o tempo, o padrão da voz de Deus em sua vida se torna inegável."
+      },
+      "ar": {
+        "text": " لا ترفضه باعتباره مصادفة. تعامل معه كتواصل. سجّله في Grimoire مع التاريخ والطلب وما ظهر. مع الوقت يصبح نمط صوت الله في حياتك أمرًا لا يمكن إنكاره."
+      },
+      "hi": {
+        "text": " इसे संयोग कहकर खारिज न करें। इसे संवाद की तरह लें। तारीख, अनुरोध और जो प्रकट हुआ उसे अपने Grimoire में दर्ज करें। समय के साथ आपके जीवन में परमेश्वर की आवाज़ का पैटर्न अस्वीकार न किए जा सकने जितना स्पष्ट हो जाता है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p014.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "If no confirmation comes:"
+      },
+      "zh": {
+        "text": "如果没有确认出现："
+      },
+      "ja": {
+        "text": "確認が来ない場合："
+      },
+      "ko": {
+        "text": "확인이 오지 않는다면:"
+      },
+      "fr": {
+        "text": "Si aucune confirmation ne vient :"
+      },
+      "de": {
+        "text": "Wenn keine Bestätigung kommt:"
+      },
+      "es": {
+        "text": "Si no llega confirmación:"
+      },
+      "pt": {
+        "text": "Se nenhuma confirmação vier:"
+      },
+      "ar": {
+        "text": "إذا لم يأتِ تأكيد:"
+      },
+      "hi": {
+        "text": "यदि कोई पुष्टि न आए:"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p014.text001": {
+    "strings": {
+      "en": {
+        "text": " Pause. It means wait, not yet, or reconsider."
+      },
+      "zh": {
+        "text": " 暂停。这意味着等待、时机未到，或需要重新考虑。"
+      },
+      "ja": {
+        "text": " 立ち止まってください。それは待つ、まだその時ではない、あるいは考え直すという意味です。"
+      },
+      "ko": {
+        "text": " 멈추세요. 기다리라는 뜻이거나, 아직 때가 아니거나, 다시 생각해 보라는 뜻입니다."
+      },
+      "fr": {
+        "text": " Faites une pause. Cela signifie attendre, pas encore, ou reconsidérer."
+      },
+      "de": {
+        "text": " Pausiere. Es bedeutet: warten, noch nicht oder neu überlegen."
+      },
+      "es": {
+        "text": " Pausa. Significa esperar, todavía no o reconsiderar."
+      },
+      "pt": {
+        "text": " Pause. Significa esperar, ainda não, ou reconsiderar."
+      },
+      "ar": {
+        "text": " توقف. فهذا يعني: انتظر، ليس بعد، أو أعد النظر."
+      },
+      "hi": {
+        "text": " रुकें। इसका अर्थ है प्रतीक्षा करें, अभी नहीं, या पुनर्विचार करें।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div012.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Safeguards"
+      },
+      "zh": {
+        "text": "保障原则"
+      },
+      "ja": {
+        "text": "セーフガード"
+      },
+      "ko": {
+        "text": "안전장치"
+      },
+      "fr": {
+        "text": "Garde-fous"
+      },
+      "de": {
+        "text": "Schutzregeln"
+      },
+      "es": {
+        "text": "Salvaguardas"
+      },
+      "pt": {
+        "text": "Salvaguardas"
+      },
+      "ar": {
+        "text": "ضوابط الحماية"
+      },
+      "hi": {
+        "text": "सुरक्षा-उपाय"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div012.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Ask in humility, not as a test of power. It is about learning God's voice, not proving God exists."
+      },
+      "zh": {
+        "text": "以谦卑来询问，不要把它当作对力量的测试。重点是学习辨识神的声音，而不是证明神存在。"
+      },
+      "ja": {
+        "text": "力を試すためではなく、謙虚さをもって尋ねてください。神の存在を証明するためではなく、神の声を学ぶためです。"
+      },
+      "ko": {
+        "text": "힘을 시험하려는 태도가 아니라 겸손하게 물으세요. 하나님이 존재함을 증명하려는 것이 아니라 하나님의 음성을 배우는 것입니다."
+      },
+      "fr": {
+        "text": "Demandez avec humilité, non comme un test de puissance. Il s’agit d’apprendre la voix de Dieu, pas de prouver que Dieu existe."
+      },
+      "de": {
+        "text": "Frage in Demut, nicht als Machttest. Es geht darum, Gottes Stimme kennenzulernen, nicht Gottes Existenz zu beweisen."
+      },
+      "es": {
+        "text": "Pregunta con humildad, no como una prueba de poder. Se trata de aprender la voz de Dios, no de demostrar que Dios existe."
+      },
+      "pt": {
+        "text": "Pergunte com humildade, não como teste de poder. Trata-se de aprender a voz de Deus, não de provar que Deus existe."
+      },
+      "ar": {
+        "text": "اسأل بتواضع، لا باعتباره اختبارًا للقوة. الهدف هو تعلم تمييز صوت الله، لا إثبات وجود الله."
+      },
+      "hi": {
+        "text": "नम्रता से पूछें, शक्ति की परीक्षा के रूप में नहीं। उद्देश्य परमेश्वर की आवाज़ को सीखना है, परमेश्वर के अस्तित्व को सिद्ध करना नहीं।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div012.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "Avoid treating it as fortune-telling. This is "
+      },
+      "zh": {
+        "text": "不要把它当作算命。这是 "
+      },
+      "ja": {
+        "text": "占いとして扱わないでください。これは "
+      },
+      "ko": {
+        "text": "점치기로 다루지 마세요. 이것은 "
+      },
+      "fr": {
+        "text": "Évitez d’en faire de la prédiction. Il s’agit d’une "
+      },
+      "de": {
+        "text": "Behandle es nicht wie Wahrsagerei. Es ist "
+      },
+      "es": {
+        "text": "Evita tratarlo como adivinación. Esto es "
+      },
+      "pt": {
+        "text": "Evite tratar como adivinhação. Isto é "
+      },
+      "ar": {
+        "text": "تجنب التعامل معه كعرافة. إنه "
+      },
+      "hi": {
+        "text": "इसे भविष्यवाणी जैसा न मानें। यह "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div012.div003.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "relational confirmation"
+      },
+      "zh": {
+        "text": "关系中的确认"
+      },
+      "ja": {
+        "text": "関係の中での確認"
+      },
+      "ko": {
+        "text": "관계적 확인"
+      },
+      "fr": {
+        "text": "confirmation relationnelle"
+      },
+      "de": {
+        "text": "Bestätigung in Beziehung"
+      },
+      "es": {
+        "text": "confirmación relacional"
+      },
+      "pt": {
+        "text": "confirmação relacional"
+      },
+      "ar": {
+        "text": "تأكيد علائقي"
+      },
+      "hi": {
+        "text": "संबंधपरक पुष्टि है"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div012.div003.text002": {
+    "strings": {
+      "en": {
+        "text": ", not mechanical prediction."
+      },
+      "zh": {
+        "text": "，不是机械式预测。"
+      },
+      "ja": {
+        "text": "であり、機械的な予測ではありません。"
+      },
+      "ko": {
+        "text": "이지 기계적인 예측이 아닙니다."
+      },
+      "fr": {
+        "text": ", pas d’une prédiction mécanique."
+      },
+      "de": {
+        "text": ", keine mechanische Vorhersage."
+      },
+      "es": {
+        "text": ", no una predicción mecánica."
+      },
+      "pt": {
+        "text": ", não uma previsão mecânica."
+      },
+      "ar": {
+        "text": "، لا تنبؤًا آليًا."
+      },
+      "hi": {
+        "text": ", यांत्रिक भविष्यवाणी नहीं।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div012.div004.text001": {
+    "strings": {
+      "en": {
+        "text": "Always weigh the sign alongside the inner voice. They work together — not one without the other."
+      },
+      "zh": {
+        "text": "始终把外在迹象与内在声音一起权衡。两者彼此配合——不能只靠其中一个。"
+      },
+      "ja": {
+        "text": "しるしは、内なる声とあわせて必ず吟味してください。両方が一緒に働くのであって、片方だけではありません。"
+      },
+      "ko": {
+        "text": "항상 징표를 내면의 음성과 함께 살펴보세요. 둘은 함께 작용하며, 어느 하나만으로는 충분하지 않습니다."
+      },
+      "fr": {
+        "text": "Pesez toujours le signe avec la voix intérieure. Les deux fonctionnent ensemble — pas l’un sans l’autre."
+      },
+      "de": {
+        "text": "Wäge das Zeichen immer zusammen mit der inneren Stimme ab. Beide wirken zusammen — nicht eines ohne das andere."
+      },
+      "es": {
+        "text": "Sopesa siempre la señal junto con la voz interior. Funcionan juntas, no una sin la otra."
+      },
+      "pt": {
+        "text": "Sempre pese o sinal junto com a voz interior. Os dois trabalham juntos — não um sem o outro."
+      },
+      "ar": {
+        "text": "وازن العلامة دائمًا إلى جانب الصوت الداخلي. يعمل الاثنان معًا — لا أحدهما دون الآخر."
+      },
+      "hi": {
+        "text": "संकेत को हमेशा भीतर की आवाज़ के साथ तौलें। दोनों साथ काम करते हैं—एक दूसरे के बिना नहीं।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p015.text001": {
+    "strings": {
+      "en": {
+        "text": "Lived Testimony"
+      },
+      "zh": {
+        "text": "亲历见证"
+      },
+      "ja": {
+        "text": "生きた証し"
+      },
+      "ko": {
+        "text": "삶으로 겪은 간증"
+      },
+      "fr": {
+        "text": "Témoignage vécu"
+      },
+      "de": {
+        "text": "Gelebtes Zeugnis"
+      },
+      "es": {
+        "text": "Testimonio vivido"
+      },
+      "pt": {
+        "text": "Testemunho vivido"
+      },
+      "ar": {
+        "text": "شهادة معيشة"
+      },
+      "hi": {
+        "text": "जीया हुआ साक्ष्य"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.h2005.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor's Testimony: Practicing Discernment"
+      },
+      "zh": {
+        "text": "Victor 的见证：练习辨识"
+      },
+      "ja": {
+        "text": "Victor の証し：識別を実践する"
+      },
+      "ko": {
+        "text": "Victor의 간증: 분별 연습"
+      },
+      "fr": {
+        "text": "Témoignage de Victor : pratiquer le discernement"
+      },
+      "de": {
+        "text": "Victors Zeugnis: Unterscheidung üben"
+      },
+      "es": {
+        "text": "Testimonio de Victor: practicar el discernimiento"
+      },
+      "pt": {
+        "text": "Testemunho de Victor: praticando o discernimento"
+      },
+      "ar": {
+        "text": "شهادة Victor: ممارسة التمييز"
+      },
+      "hi": {
+        "text": "Victor की गवाही: विवेक का अभ्यास"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div013.text001": {
+    "strings": {
+      "en": {
+        "text": "\"When I hear a repeating thought in my head, it feels like a call to action. I have the choice: act or ignore. Each path carries consequences.\""
+      },
+      "zh": {
+        "text": "“当我脑中反复出现一个念头时，它感觉像是在召唤我行动。我有选择：行动，或忽略。每一条路都会带来后果。”"
+      },
+      "ja": {
+        "text": "「頭の中で同じ考えが繰り返されると、それは行動への呼びかけのように感じます。行動するか、無視するかを選べる。それぞれの道には結果があります。」"
+      },
+      "ko": {
+        "text": "\"머릿속에서 같은 생각이 반복되면 행동하라는 부름처럼 느껴집니다. 나는 선택할 수 있습니다. 행동할지 무시할지. 각 길에는 결과가 따릅니다.\""
+      },
+      "fr": {
+        "text": "« Quand une pensée revient sans cesse dans ma tête, je la ressens comme un appel à agir. J’ai le choix : agir ou l’ignorer. Chaque chemin entraîne des conséquences. »"
+      },
+      "de": {
+        "text": "„Wenn ein Gedanke sich in meinem Kopf wiederholt, fühlt er sich wie ein Aufruf zum Handeln an. Ich habe die Wahl: handeln oder ignorieren. Jeder Weg hat Folgen.“"
+      },
+      "es": {
+        "text": "«Cuando un pensamiento se repite en mi cabeza, se siente como una llamada a actuar. Tengo la elección: actuar o ignorarlo. Cada camino trae consecuencias.»"
+      },
+      "pt": {
+        "text": "“Quando um pensamento se repete na minha cabeça, parece um chamado à ação. Eu tenho a escolha: agir ou ignorar. Cada caminho traz consequências.”"
+      },
+      "ar": {
+        "text": "«عندما تتكرر فكرة في رأسي أشعر بها كدعوة إلى الفعل. لدي خيار: أن أتصرف أو أتجاهل. ولكل طريق عواقبه.»"
+      },
+      "hi": {
+        "text": "“जब मेरे मन में कोई विचार बार-बार आता है, तो वह कार्रवाई की पुकार जैसा महसूस होता है। मेरे पास चुनाव है: कार्य करूँ या अनदेखा करूँ। हर रास्ते के परिणाम होते हैं।”"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p016.text001": {
+    "strings": {
+      "en": {
+        "text": "Sometimes, when Victor chose to act, the outcome brought suffering. At first glance, it looked like a mistake. But in truth, those outcomes became "
+      },
+      "zh": {
+        "text": "有时，当 Victor 选择行动时，结果带来了痛苦。乍看之下像是一个错误。但实际上，那些结果变成了 "
+      },
+      "ja": {
+        "text": "Victor が行動を選んだとき、結果として苦しみが生じることもありました。一見すると失敗のようでした。しかし実際には、その結果が "
+      },
+      "ko": {
+        "text": "때때로 Victor가 행동을 선택했을 때 결과가 고통을 가져오기도 했습니다. 처음에는 실수처럼 보였습니다. 그러나 실제로 그 결과들은 "
+      },
+      "fr": {
+        "text": "Parfois, lorsque Victor choisissait d’agir, le résultat apportait de la souffrance. À première vue, cela ressemblait à une erreur. Mais en réalité, ces résultats sont devenus des "
+      },
+      "de": {
+        "text": "Manchmal brachte Victors Entscheidung zu handeln Leid mit sich. Auf den ersten Blick sah es wie ein Fehler aus. Doch tatsächlich wurden diese Ergebnisse zu "
+      },
+      "es": {
+        "text": "A veces, cuando Victor eligió actuar, el resultado trajo sufrimiento. A primera vista parecía un error. Pero en realidad esos resultados se convirtieron en "
+      },
+      "pt": {
+        "text": "Às vezes, quando Victor escolheu agir, o resultado trouxe sofrimento. À primeira vista, parecia um erro. Mas, na verdade, esses resultados se tornaram "
+      },
+      "ar": {
+        "text": "أحيانًا، عندما اختار Victor أن يتصرف، جلبت النتيجة معاناة. بدا الأمر لأول وهلة كخطأ. لكن في الحقيقة أصبحت تلك النتائج "
+      },
+      "hi": {
+        "text": "कभी-कभी जब Victor ने कार्य करना चुना, परिणाम में पीड़ा आई। पहली नज़र में वह गलती जैसा लगा। लेकिन वास्तव में वे परिणाम "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p016.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "training grounds"
+      },
+      "zh": {
+        "text": "训练场"
+      },
+      "ja": {
+        "text": "訓練の場"
+      },
+      "ko": {
+        "text": "훈련장"
+      },
+      "fr": {
+        "text": "terrains d’entraînement"
+      },
+      "de": {
+        "text": "Trainingsfeldern"
+      },
+      "es": {
+        "text": "campos de entrenamiento"
+      },
+      "pt": {
+        "text": "campos de treinamento"
+      },
+      "ar": {
+        "text": "ميادين تدريب"
+      },
+      "hi": {
+        "text": "अभ्यास-स्थल बन गए"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p016.text002": {
+    "strings": {
+      "en": {
+        "text": ": each \"misstep\" sharpened discernment by exposing which voice was false. With each cycle, clarity increased — and the prayer became: "
+      },
+      "zh": {
+        "text": "：每一次“走错一步”都会暴露哪一个声音是假的，从而让辨识更锐利。每经历一个循环，清晰都会增加——祷告也逐渐变成： "
+      },
+      "ja": {
+        "text": "になりました。一つひとつの「踏み違い」が、どの声が偽りだったのかを明らかにし、識別を鋭くしました。サイクルを重ねるたびに明晰さが増し、祈りはこうなっていきました： "
+      },
+      "ko": {
+        "text": "이 되었습니다. 각 '잘못 내디딘 걸음'은 어떤 목소리가 거짓인지 드러내며 분별을 날카롭게 했습니다. 매 순환마다 명료함이 커졌고, 기도는 이렇게 바뀌었습니다: "
+      },
+      "fr": {
+        "text": ": chaque « faux pas » a aiguisé le discernement en révélant quelle voix était fausse. À chaque cycle, la clarté augmentait — et la prière devenait : "
+      },
+      "de": {
+        "text": ": Jeder „Fehltritt“ schärfte die Unterscheidung, indem er offenbarte, welche Stimme falsch war. Mit jedem Zyklus nahm die Klarheit zu — und das Gebet wurde zu: "
+      },
+      "es": {
+        "text": ": cada «paso en falso» afinó el discernimiento al revelar qué voz era falsa. Con cada ciclo aumentó la claridad, y la oración pasó a ser: "
+      },
+      "pt": {
+        "text": ": cada “passo em falso” aguçou o discernimento ao expor qual voz era falsa. A cada ciclo, a clareza aumentava — e a oração passou a ser: "
+      },
+      "ar": {
+        "text": "؛ فكل «خطوة خاطئة» صقلت التمييز بكشف الصوت الزائف. ومع كل دورة ازداد الوضوح، وصارت الصلاة: "
+      },
+      "hi": {
+        "text": ": हर “गलत कदम” ने यह उजागर करके विवेक को तेज किया कि कौन-सी आवाज़ झूठी थी। हर चक्र के साथ स्पष्टता बढ़ी—और प्रार्थना बनी: "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p016.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"God, show me 100% holy truth: is this thought aligned with You or not?\""
+      },
+      "zh": {
+        "text": "“神啊，请向我显明 100% 圣洁的真相：这个念头与你对齐，还是不对齐？”"
+      },
+      "ja": {
+        "text": "「神よ、100％聖なる真実を示してください。この考えはあなたと整合していますか、それともしていませんか？」"
+      },
+      "ko": {
+        "text": "\"하나님, 100% 거룩한 진실을 보여 주세요. 이 생각이 당신과 정렬되어 있나요, 아닌가요?\""
+      },
+      "fr": {
+        "text": "« Mon Dieu, montre-moi la vérité sainte à 100 % : cette pensée est-elle alignée avec Toi ou non ? »"
+      },
+      "de": {
+        "text": "„Gott, zeige mir 100 % heilige Wahrheit: Ist dieser Gedanke mit Dir ausgerichtet oder nicht?“"
+      },
+      "es": {
+        "text": "«Dios, muéstrame la verdad 100 % santa: ¿este pensamiento está alineado contigo o no?»"
+      },
+      "pt": {
+        "text": "“Deus, mostre-me a verdade 100% santa: este pensamento está alinhado com Você ou não?”"
+      },
+      "ar": {
+        "text": "«يا الله، أرني الحقيقة المقدسة كاملة: هل هذه الفكرة منسجمة معك أم لا؟»"
+      },
+      "hi": {
+        "text": "“परमेश्वर, मुझे 100% पवित्र सत्य दिखाएँ: क्या यह विचार आपके साथ संरेखित है या नहीं?”"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p017.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Principles learned:"
+      },
+      "zh": {
+        "text": "学到的原则："
+      },
+      "ja": {
+        "text": "学んだ原則："
+      },
+      "ko": {
+        "text": "배운 원칙:"
+      },
+      "fr": {
+        "text": "Principes appris :"
+      },
+      "de": {
+        "text": "Gelernte Prinzipien:"
+      },
+      "es": {
+        "text": "Principios aprendidos:"
+      },
+      "pt": {
+        "text": "Princípios aprendidos:"
+      },
+      "ar": {
+        "text": "المبادئ المستفادة:"
+      },
+      "hi": {
+        "text": "सीखे गए सिद्धांत:"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p018.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "1. Lessons are not failure."
+      },
+      "zh": {
+        "text": "1. 教训不是失败。"
+      },
+      "ja": {
+        "text": "1. 学びは失敗ではない。"
+      },
+      "ko": {
+        "text": "1. 교훈은 실패가 아닙니다."
+      },
+      "fr": {
+        "text": "1. Les leçons ne sont pas des échecs."
+      },
+      "de": {
+        "text": "1. Lektionen sind kein Scheitern."
+      },
+      "es": {
+        "text": "1. Las lecciones no son fracaso."
+      },
+      "pt": {
+        "text": "1. Lições não são fracasso."
+      },
+      "ar": {
+        "text": "1. الدروس ليست فشلًا."
+      },
+      "hi": {
+        "text": "1. सीख असफलता नहीं है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p018.text001": {
+    "strings": {
+      "en": {
+        "text": " Suffering from a choice is not collapse if it teaches discernment. It is training."
+      },
+      "zh": {
+        "text": " 如果一个选择带来的痛苦教会了你辨识，那就不是崩溃，而是训练。"
+      },
+      "ja": {
+        "text": " 選択による苦しみが識別を教えるなら、それは崩壊ではありません。訓練です。"
+      },
+      "ko": {
+        "text": " 선택에서 온 고통이 분별을 가르친다면 그것은 붕괴가 아닙니다. 훈련입니다."
+      },
+      "fr": {
+        "text": " La souffrance issue d’un choix n’est pas un effondrement si elle enseigne le discernement. C’est un entraînement."
+      },
+      "de": {
+        "text": " Leid durch eine Entscheidung ist kein Zusammenbruch, wenn es Unterscheidung lehrt. Es ist Training."
+      },
+      "es": {
+        "text": " El sufrimiento de una elección no es colapso si enseña discernimiento. Es entrenamiento."
+      },
+      "pt": {
+        "text": " O sofrimento de uma escolha não é colapso se ensina discernimento. É treinamento."
+      },
+      "ar": {
+        "text": " المعاناة الناتجة عن اختيار ليست انهيارًا إذا علّمت التمييز. إنها تدريب."
+      },
+      "hi": {
+        "text": " यदि किसी चुनाव से आया दुख विवेक सिखाता है, तो वह पतन नहीं है। वह प्रशिक्षण है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p019.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "2. The heart knows timing."
+      },
+      "zh": {
+        "text": "2. 心知道时机。"
+      },
+      "ja": {
+        "text": "2. 心は時機を知る。"
+      },
+      "ko": {
+        "text": "2. 마음은 때를 압니다."
+      },
+      "fr": {
+        "text": "2. Le cœur connaît le moment."
+      },
+      "de": {
+        "text": "2. Das Herz kennt den Zeitpunkt."
+      },
+      "es": {
+        "text": "2. El corazón conoce el momento."
+      },
+      "pt": {
+        "text": "2. O coração conhece o momento."
+      },
+      "ar": {
+        "text": "2. القلب يعرف التوقيت."
+      },
+      "hi": {
+        "text": "2. हृदय समय पहचानता है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p019.text001": {
+    "strings": {
+      "en": {
+        "text": " If delay = peace, then waiting is correct. If delay = looming regret, then action is required. Do not confuse fear with wisdom. Fear pushes collapse; wisdom waits with peace."
+      },
+      "zh": {
+        "text": " 如果延迟 = 平安，那么等待就是正确的。如果延迟 = 逼近的懊悔，那么需要行动。不要把恐惧和智慧混为一谈。恐惧把人推向崩溃；智慧在平安中等待。"
+      },
+      "ja": {
+        "text": " 遅れること＝平安なら、待つのが正しい。遅れること＝迫る後悔なら、行動が必要です。恐れと知恵を混同しないでください。恐れは崩壊へ押し、知恵は平安のうちに待ちます。"
+      },
+      "ko": {
+        "text": " 지연 = 평안이라면 기다리는 것이 맞습니다. 지연 = 다가오는 후회라면 행동이 필요합니다. 두려움과 지혜를 혼동하지 마세요. 두려움은 붕괴로 밀어붙이고, 지혜는 평안 가운데 기다립니다."
+      },
+      "fr": {
+        "text": " Si le délai = paix, alors attendre est juste. Si le délai = regret qui approche, alors il faut agir. Ne confondez pas peur et sagesse. La peur pousse vers l’effondrement ; la sagesse attend dans la paix."
+      },
+      "de": {
+        "text": " Wenn Verzögerung = Frieden, ist Warten richtig. Wenn Verzögerung = drohendes Bedauern, ist Handeln erforderlich. Verwechsle Angst nicht mit Weisheit. Angst drängt in den Zusammenbruch; Weisheit wartet in Frieden."
+      },
+      "es": {
+        "text": " Si demora = paz, entonces esperar es correcto. Si demora = arrepentimiento inminente, entonces se requiere actuar. No confundas miedo con sabiduría. El miedo empuja al colapso; la sabiduría espera en paz."
+      },
+      "pt": {
+        "text": " Se demora = paz, então esperar é correto. Se demora = arrependimento iminente, então agir é necessário. Não confunda medo com sabedoria. O medo empurra para o colapso; a sabedoria espera em paz."
+      },
+      "ar": {
+        "text": " إذا كان التأخير = سلامًا، فالانتظار صحيح. وإذا كان التأخير = ندمًا يلوح في الأفق، فالفعل مطلوب. لا تخلط الخوف بالحكمة. الخوف يدفع نحو الانهيار؛ والحكمة تنتظر بسلام."
+      },
+      "hi": {
+        "text": " यदि देर = शांति, तो प्रतीक्षा सही है। यदि देर = निकट आती पछताहट, तो कार्य आवश्यक है। भय को बुद्धि न समझें। भय पतन की ओर धकेलता है; बुद्धि शांति के साथ प्रतीक्षा करती है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p020.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "3. Discernment matures through cycles."
+      },
+      "zh": {
+        "text": "3. 辨识在循环中成熟。"
+      },
+      "ja": {
+        "text": "3. 識別はサイクルを通して成熟する。"
+      },
+      "ko": {
+        "text": "3. 분별은 반복되는 과정을 통해 성숙합니다."
+      },
+      "fr": {
+        "text": "3. Le discernement mûrit par cycles."
+      },
+      "de": {
+        "text": "3. Unterscheidung reift durch Zyklen."
+      },
+      "es": {
+        "text": "3. El discernimiento madura a través de ciclos."
+      },
+      "pt": {
+        "text": "3. O discernimento amadurece por ciclos."
+      },
+      "ar": {
+        "text": "3. ينضج التمييز عبر الدورات."
+      },
+      "hi": {
+        "text": "3. विवेक चक्रों के माध्यम से परिपक्व होता है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p020.text001": {
+    "strings": {
+      "en": {
+        "text": " Trusting the wrong voice once is not ruin if it helps you recognize distortion next time."
+      },
+      "zh": {
+        "text": " 一次相信了错误的声音，并不等于毁灭——如果它帮助你下次识别扭曲。"
+      },
+      "ja": {
+        "text": " 一度間違った声を信じても、次に歪みを見分ける助けになるなら、それは破滅ではありません。"
+      },
+      "ko": {
+        "text": " 한 번 잘못된 목소리를 믿었다고 해서 파멸은 아닙니다. 다음에는 왜곡을 알아보는 데 도움이 된다면 말입니다."
+      },
+      "fr": {
+        "text": " Faire confiance une fois à la mauvaise voix n’est pas la ruine si cela vous aide à reconnaître la déformation la fois suivante."
+      },
+      "de": {
+        "text": " Einmal der falschen Stimme zu vertrauen ist kein Verderben, wenn es dir hilft, Verzerrung beim nächsten Mal zu erkennen."
+      },
+      "es": {
+        "text": " Confiar una vez en la voz equivocada no es ruina si te ayuda a reconocer la distorsión la próxima vez."
+      },
+      "pt": {
+        "text": " Confiar uma vez na voz errada não é ruína se isso ajudar você a reconhecer a distorção na próxima vez."
+      },
+      "ar": {
+        "text": " الثقة بصوت خاطئ مرة واحدة ليست هلاكًا إذا ساعدتك على تمييز التشويه في المرة التالية."
+      },
+      "hi": {
+        "text": " एक बार गलत आवाज़ पर भरोसा कर लेना विनाश नहीं है, यदि वह अगली बार विकृति पहचानने में आपकी सहायता करे।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p021.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "4. Feeling > fear of the mind."
+      },
+      "zh": {
+        "text": "4. 感受 > 头脑中的恐惧。"
+      },
+      "ja": {
+        "text": "4. 感覚 ＞ 頭の恐れ。"
+      },
+      "ko": {
+        "text": "4. 느낌 > 마음속 두려움."
+      },
+      "fr": {
+        "text": "4. Ressenti > peur du mental."
+      },
+      "de": {
+        "text": "4. Gefühl > Angst des Verstandes."
+      },
+      "es": {
+        "text": "4. Sentir > miedo de la mente."
+      },
+      "pt": {
+        "text": "4. Sentir > medo da mente."
+      },
+      "ar": {
+        "text": "4. الإحساس > خوف العقل."
+      },
+      "hi": {
+        "text": "4. अनुभूति > मन का भय।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p021.text001": {
+    "strings": {
+      "en": {
+        "text": " The body trembles with fear, but the heart carries witness. If the heart says \"move, or you'll regret,\" trust that over the panic of the mind."
+      },
+      "zh": {
+        "text": " 身体会因恐惧而颤抖，但心承载着见证。如果心在说“行动，否则你会后悔”，就信任这份见证，胜过头脑的恐慌。"
+      },
+      "ja": {
+        "text": " 身体は恐れで震えても、心には証しがあります。心が「動かなければ後悔する」と言うなら、頭のパニックよりその証しを信頼してください。"
+      },
+      "ko": {
+        "text": " 몸은 두려움으로 떨 수 있지만 마음에는 증언이 있습니다. 마음이 '움직이지 않으면 후회할 것'이라고 말한다면 머릿속 공황보다 그 증언을 더 신뢰하세요."
+      },
+      "fr": {
+        "text": " Le corps peut trembler de peur, mais le cœur porte un témoignage. Si le cœur dit « avance, sinon tu le regretteras », faites davantage confiance à ce témoignage qu’à la panique du mental."
+      },
+      "de": {
+        "text": " Der Körper kann vor Angst zittern, doch das Herz trägt Zeugnis. Wenn das Herz sagt „geh, sonst wirst du es bereuen“, vertraue diesem Zeugnis mehr als der Panik des Verstandes."
+      },
+      "es": {
+        "text": " El cuerpo puede temblar de miedo, pero el corazón lleva testimonio. Si el corazón dice «muévete o te arrepentirás», confía en ese testimonio por encima del pánico de la mente."
+      },
+      "pt": {
+        "text": " O corpo pode tremer de medo, mas o coração carrega testemunho. Se o coração diz “mova-se, ou você vai se arrepender”, confie nesse testemunho acima do pânico da mente."
+      },
+      "ar": {
+        "text": " قد يرتجف الجسد من الخوف، لكن القلب يحمل شهادة. إذا قال القلب «تحرك وإلا ستندم»، فثق بهذه الشهادة أكثر من هلع العقل."
+      },
+      "hi": {
+        "text": " शरीर भय से काँप सकता है, पर हृदय गवाही रखता है। यदि हृदय कहता है “चलो, नहीं तो पछताओगे,” तो मन की घबराहट से अधिक उस गवाही पर भरोसा करें।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p022.text001": {
+    "strings": {
+      "en": {
+        "text": "Lived Testimony"
+      },
+      "zh": {
+        "text": "亲历见证"
+      },
+      "ja": {
+        "text": "生きた証し"
+      },
+      "ko": {
+        "text": "삶으로 겪은 간증"
+      },
+      "fr": {
+        "text": "Témoignage vécu"
+      },
+      "de": {
+        "text": "Gelebtes Zeugnis"
+      },
+      "es": {
+        "text": "Testimonio vivido"
+      },
+      "pt": {
+        "text": "Testemunho vivido"
+      },
+      "ar": {
+        "text": "شهادة معيشة"
+      },
+      "hi": {
+        "text": "जीया हुआ साक्ष्य"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.h2006.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor's Testimony: Tested at the Edge"
+      },
+      "zh": {
+        "text": "Victor 的见证：在边缘被试验"
+      },
+      "ja": {
+        "text": "Victor の証し：瀬戸際で試される"
+      },
+      "ko": {
+        "text": "Victor의 간증: 벼랑 끝에서 시험받다"
+      },
+      "fr": {
+        "text": "Témoignage de Victor : éprouvé à la limite"
+      },
+      "de": {
+        "text": "Victors Zeugnis: Am Rand geprüft"
+      },
+      "es": {
+        "text": "Testimonio de Victor: probado al límite"
+      },
+      "pt": {
+        "text": "Testemunho de Victor: testado no limite"
+      },
+      "ar": {
+        "text": "شهادة Victor: الاختبار عند الحافة"
+      },
+      "hi": {
+        "text": "Victor की गवाही: सीमा पर परीक्षा"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p023.text001": {
+    "strings": {
+      "en": {
+        "text": "\"In Las Vegas, I heard God tell me: put $500 on the table, all-in, on number 27. At first I resisted: 'That's insane. That can't be God. People will think I'm reckless.' But the voice did not stop. In my chest, I felt the pull: "
+      },
+      "zh": {
+        "text": "“在拉斯维加斯，我听见神告诉我：把 500 美元放到赌桌上，全部押在 27 号。起初我抗拒：‘这太疯狂了。不可能是神。人们会觉得我鲁莽。’但那声音没有停止。在胸口，我感到那股拉力： "
+      },
+      "ja": {
+        "text": "「ラスベガスで、神がこう言うのを聞きました。500ドルをテーブルに置き、27番に全額賭けなさい。最初は抵抗しました。『そんなの狂っている。神のはずがない。無謀だと思われる。』でも声は止まりませんでした。胸の内に、こう引かれる感覚がありました： "
+      },
+      "ko": {
+        "text": "\"라스베이거스에서 하나님이 제게 이렇게 말씀하시는 것을 들었습니다. 500달러를 테이블에 올리고 27번에 전부 걸어라. 처음에는 저항했습니다. '미친 짓이야. 하나님일 리 없어. 사람들이 나를 무모하다고 생각할 거야.' 하지만 그 목소리는 멈추지 않았습니다. 가슴에서는 이런 끌림을 느꼈습니다: "
+      },
+      "fr": {
+        "text": "« À Las Vegas, j’ai entendu Dieu me dire : mets 500 $ sur la table, tout sur le numéro 27. Au début, j’ai résisté : “C’est insensé. Ça ne peut pas être Dieu. Les gens vont me croire imprudent.” Mais la voix ne s’est pas arrêtée. Dans ma poitrine, j’ai senti cette impulsion : "
+      },
+      "de": {
+        "text": "„In Las Vegas hörte ich Gott mir sagen: Lege 500 Dollar auf den Tisch, alles auf die 27. Zuerst wehrte ich mich: ‚Das ist verrückt. Das kann nicht Gott sein. Die Leute werden mich für leichtsinnig halten.‘ Aber die Stimme hörte nicht auf. In meiner Brust spürte ich den Zug: "
+      },
+      "es": {
+        "text": "«En Las Vegas, oí a Dios decirme: pon 500 dólares sobre la mesa, todo al número 27. Al principio me resistí: “Eso es una locura. No puede ser Dios. La gente pensará que soy imprudente”. Pero la voz no se detuvo. En el pecho sentí el impulso: "
+      },
+      "pt": {
+        "text": "“Em Las Vegas, ouvi Deus me dizer: coloque 500 dólares na mesa, tudo no número 27. No início resisti: ‘Isso é loucura. Não pode ser Deus. As pessoas vão achar que sou imprudente.’ Mas a voz não parou. No peito, senti o impulso: "
+      },
+      "ar": {
+        "text": "«في لاس فيغاس، سمعت الله يقول لي: ضع 500 دولار على الطاولة، كلها على الرقم 27. في البداية قاومت: ‘هذا جنون. لا يمكن أن يكون الله. سيظن الناس أنني متهور.’ لكن الصوت لم يتوقف. وفي صدري شعرت بذلك الاندفاع: "
+      },
+      "hi": {
+        "text": "“लास वेगास में मैंने परमेश्वर को मुझसे कहते सुना: मेज़ पर 500 डॉलर रखो, सब कुछ 27 नंबर पर। पहले मैंने विरोध किया: ‘यह पागलपन है। यह परमेश्वर नहीं हो सकते। लोग मुझे लापरवाह समझेंगे।’ लेकिन आवाज़ रुकी नहीं। अपनी छाती में मैंने वह खिंचाव महसूस किया: "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p023.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "Do it. Trust Me."
+      },
+      "zh": {
+        "text": "去做。信任我。"
+      },
+      "ja": {
+        "text": "やりなさい。私を信頼しなさい。"
+      },
+      "ko": {
+        "text": "해라. 나를 믿어라."
+      },
+      "fr": {
+        "text": "Fais-le. Fais-Moi confiance."
+      },
+      "de": {
+        "text": "Tu es. Vertraue Mir."
+      },
+      "es": {
+        "text": "Hazlo. Confía en Mí."
+      },
+      "pt": {
+        "text": "Faça. Confie em Mim."
+      },
+      "ar": {
+        "text": "افعلها. ثق بي."
+      },
+      "hi": {
+        "text": "करो। मुझ पर भरोसा करो।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p023.text002": {
+    "strings": {
+      "en": {
+        "text": "\""
+      },
+      "zh": {
+        "text": "”"
+      },
+      "ja": {
+        "text": "」"
+      },
+      "ko": {
+        "text": "\""
+      },
+      "fr": {
+        "text": "»"
+      },
+      "de": {
+        "text": "“"
+      },
+      "es": {
+        "text": "»"
+      },
+      "pt": {
+        "text": "”"
+      },
+      "ar": {
+        "text": "»"
+      },
+      "hi": {
+        "text": "”"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p024.text001": {
+    "strings": {
+      "en": {
+        "text": "He wrestled with the friction: fear of losing, fear of being seen as foolish. Finally, he shifted: "
+      },
+      "zh": {
+        "text": "他与这种摩擦挣扎：害怕输钱，也害怕被看成愚蠢。最后，他转向了这样的心态： "
+      },
+      "ja": {
+        "text": "彼は摩擦と格闘しました。失う恐れ、愚かに見られる恐れ。最後に、こう切り替えました： "
+      },
+      "ko": {
+        "text": "그는 마찰과 씨름했습니다. 돈을 잃을 두려움, 어리석게 보일 두려움. 마침내 그는 이렇게 전환했습니다: "
+      },
+      "fr": {
+        "text": "Il a lutté avec cette friction : peur de perdre, peur d’être vu comme insensé. Finalement, il a changé de posture : "
+      },
+      "de": {
+        "text": "Er rang mit der Reibung: Angst zu verlieren, Angst, als töricht angesehen zu werden. Schließlich änderte er seine Haltung: "
+      },
+      "es": {
+        "text": "Luchó con la fricción: miedo a perder, miedo a parecer tonto. Finalmente cambió de postura: "
+      },
+      "pt": {
+        "text": "Ele lutou com a tensão: medo de perder, medo de parecer tolo. Por fim, mudou de postura: "
+      },
+      "ar": {
+        "text": "صارع ذلك الاحتكاك: الخوف من الخسارة، والخوف من أن يبدو أحمق. وفي النهاية غيّر موقفه: "
+      },
+      "hi": {
+        "text": "वह उस घर्षण से जूझा: हारने का भय, मूर्ख दिखने का भय। अंततः उसने अपना रुख बदला: "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p024.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"God, if this is You, I'm trusting You. If I lose, I blame You, not myself.\""
+      },
+      "zh": {
+        "text": "“神啊，如果这是你，我就信任你。如果我输了，我怪你，不怪自己。”"
+      },
+      "ja": {
+        "text": "「神よ、もしこれがあなたなら、私はあなたを信頼します。もし負けても、自分ではなくあなたのせいにします。」"
+      },
+      "ko": {
+        "text": "\"하나님, 이것이 당신이라면 당신을 믿겠습니다. 제가 잃는다면 제 자신이 아니라 당신을 탓하겠습니다.\""
+      },
+      "fr": {
+        "text": "« Mon Dieu, si c’est Toi, je Te fais confiance. Si je perds, je T’en tiens responsable, pas moi-même. »"
+      },
+      "de": {
+        "text": "„Gott, wenn das Du bist, vertraue ich Dir. Wenn ich verliere, gebe ich Dir die Schuld, nicht mir selbst.“"
+      },
+      "es": {
+        "text": "«Dios, si eres Tú, confío en Ti. Si pierdo, te culpo a Ti, no a mí mismo.»"
+      },
+      "pt": {
+        "text": "“Deus, se isto for Você, confio em Você. Se eu perder, culpo Você, não a mim mesmo.”"
+      },
+      "ar": {
+        "text": "«يا الله، إن كان هذا منك فسأثق بك. وإن خسرت فسألومك أنت لا نفسي.»"
+      },
+      "hi": {
+        "text": "“परमेश्वर, यदि यह आप हैं तो मैं आप पर भरोसा करता/करती हूँ। यदि मैं हारूँ, तो दोष आपको दूँगा/दूँगी, स्वयं को नहीं।”"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p025.text001": {
+    "strings": {
+      "en": {
+        "text": "The moment his intent settled — to obey without regret — God stopped him. The test ended."
+      },
+      "zh": {
+        "text": "当他的意图安定下来——愿意顺服而不后悔——神阻止了他。试验结束了。"
+      },
+      "ja": {
+        "text": "彼の意図が定まり——後悔なく従うと決めた瞬間——神は彼を止めました。試験は終わりました。"
+      },
+      "ko": {
+        "text": "그의 의도가 자리 잡는 순간—후회 없이 순종하겠다는 마음이 굳어지는 순간—하나님은 그를 멈추셨습니다. 시험은 끝났습니다."
+      },
+      "fr": {
+        "text": "Au moment où son intention s’est posée — obéir sans regret — Dieu l’a arrêté. L’épreuve était terminée."
+      },
+      "de": {
+        "text": "In dem Moment, als seine Absicht feststand — ohne Reue zu gehorchen — stoppte Gott ihn. Die Prüfung war beendet."
+      },
+      "es": {
+        "text": "En el momento en que su intención se asentó — obedecer sin arrepentirse — Dios lo detuvo. La prueba terminó."
+      },
+      "pt": {
+        "text": "No momento em que sua intenção se firmou — obedecer sem arrependimento — Deus o deteve. O teste terminou."
+      },
+      "ar": {
+        "text": "في اللحظة التي استقرت فيها نيته — أن يطيع بلا ندم — أوقفه الله. انتهى الاختبار."
+      },
+      "hi": {
+        "text": "जिस क्षण उसका इरादा स्थिर हुआ—बिना पछतावे आज्ञा मानने का—परमेश्वर ने उसे रोक दिया। परीक्षा समाप्त हो गई।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p026.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "What happened:"
+      },
+      "zh": {
+        "text": "发生了什么："
+      },
+      "ja": {
+        "text": "何が起きたか："
+      },
+      "ko": {
+        "text": "무슨 일이 있었나:"
+      },
+      "fr": {
+        "text": "Ce qui s’est passé :"
+      },
+      "de": {
+        "text": "Was geschah:"
+      },
+      "es": {
+        "text": "Qué ocurrió:"
+      },
+      "pt": {
+        "text": "O que aconteceu:"
+      },
+      "ar": {
+        "text": "ما الذي حدث:"
+      },
+      "hi": {
+        "text": "क्या हुआ:"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p026.text001": {
+    "strings": {
+      "en": {
+        "text": " The money was never lost. The point was not the gamble, but whether he would obey when obedience looked unreasonable. By passing the test, God redirected him."
+      },
+      "zh": {
+        "text": " 那笔钱从未输掉。重点不是赌博，而是当顺服看起来不合理时，他是否愿意顺服。通过这个试验后，神把他引向了别处。"
+      },
+      "ja": {
+        "text": " お金は失われませんでした。要点は賭けそのものではなく、従うことが不合理に見えるときにも従うかどうかでした。その試験を通過したことで、神は彼の方向を変えました。"
+      },
+      "ko": {
+        "text": " 돈은 잃지 않았습니다. 핵심은 도박이 아니라 순종이 비합리적으로 보일 때에도 그가 순종할 것인가였습니다. 시험을 통과하자 하나님은 그를 다른 방향으로 이끄셨습니다."
+      },
+      "fr": {
+        "text": " L’argent n’a jamais été perdu. Le point n’était pas le pari, mais de savoir s’il obéirait lorsque l’obéissance paraissait déraisonnable. Après cette épreuve, Dieu l’a redirigé."
+      },
+      "de": {
+        "text": " Das Geld ging nie verloren. Es ging nicht um das Glücksspiel, sondern darum, ob er gehorchen würde, wenn Gehorsam unvernünftig erschien. Nachdem er die Prüfung bestanden hatte, lenkte Gott ihn um."
+      },
+      "es": {
+        "text": " El dinero nunca se perdió. El punto no era la apuesta, sino si obedecería cuando la obediencia pareciera irracional. Al pasar la prueba, Dios lo redirigió."
+      },
+      "pt": {
+        "text": " O dinheiro nunca foi perdido. O ponto não era a aposta, mas se ele obedeceria quando a obediência parecesse irracional. Ao passar pelo teste, Deus o redirecionou."
+      },
+      "ar": {
+        "text": " لم يُفقد المال قط. لم تكن الفكرة في المقامرة، بل في ما إذا كان سيطيع حين تبدو الطاعة غير معقولة. وبعد اجتياز الاختبار أعاد الله توجيهه."
+      },
+      "hi": {
+        "text": " पैसा कभी नहीं खोया गया। बात जुए की नहीं थी, बल्कि यह थी कि जब आज्ञाकारिता अनुचित लगे तब भी क्या वह आज्ञा मानेगा। परीक्षा पार होने पर परमेश्वर ने उसे दूसरी दिशा दी।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p027.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Principles learned:"
+      },
+      "zh": {
+        "text": "学到的原则："
+      },
+      "ja": {
+        "text": "学んだ原則："
+      },
+      "ko": {
+        "text": "배운 원칙:"
+      },
+      "fr": {
+        "text": "Principes appris :"
+      },
+      "de": {
+        "text": "Gelernte Prinzipien:"
+      },
+      "es": {
+        "text": "Principios aprendidos:"
+      },
+      "pt": {
+        "text": "Princípios aprendidos:"
+      },
+      "ar": {
+        "text": "المبادئ المستفادة:"
+      },
+      "hi": {
+        "text": "सीखे गए सिद्धांत:"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p028.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "1. God tests at the brink."
+      },
+      "zh": {
+        "text": "1. 神会在边缘试验。"
+      },
+      "ja": {
+        "text": "1. 神は瀬戸際で試す。"
+      },
+      "ko": {
+        "text": "1. 하나님은 벼랑 끝에서 시험하십니다."
+      },
+      "fr": {
+        "text": "1. Dieu éprouve au bord."
+      },
+      "de": {
+        "text": "1. Gott prüft am Rand."
+      },
+      "es": {
+        "text": "1. Dios prueba en el límite."
+      },
+      "pt": {
+        "text": "1. Deus testa no limite."
+      },
+      "ar": {
+        "text": "1. الله يختبر عند الحافة."
+      },
+      "hi": {
+        "text": "1. परमेश्वर सीमा पर परीक्षा लेते हैं।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p028.text001": {
+    "strings": {
+      "en": {
+        "text": " Sometimes His voice feels \"crazy\" by human logic. The test is: will you trust Him more than perception?"
+      },
+      "zh": {
+        "text": " 有时，按人的逻辑，他的声音会显得“疯狂”。试验是：你会比自己的感知更信任他吗？"
+      },
+      "ja": {
+        "text": " 人間の論理では、神の声が「狂っている」ように感じられることがあります。試されるのは、自分の見え方より神を信頼するかどうかです。"
+      },
+      "ko": {
+        "text": " 때로 하나님의 음성은 인간의 논리로는 '미친 것'처럼 느껴질 수 있습니다. 시험은 자신의 인식보다 하나님을 더 신뢰할 것인가입니다."
+      },
+      "fr": {
+        "text": " Parfois, Sa voix paraît « folle » selon la logique humaine. L’épreuve est : Lui ferez-vous davantage confiance qu’à votre perception ?"
+      },
+      "de": {
+        "text": " Manchmal wirkt Seine Stimme nach menschlicher Logik „verrückt“. Die Prüfung lautet: Vertraust du Ihm mehr als deiner Wahrnehmung?"
+      },
+      "es": {
+        "text": " A veces Su voz parece «loca» según la lógica humana. La prueba es: ¿confiarás en Él más que en tu percepción?"
+      },
+      "pt": {
+        "text": " Às vezes, a voz Dele parece “louca” pela lógica humana. O teste é: você confiará Nele mais do que na sua percepção?"
+      },
+      "ar": {
+        "text": " أحيانًا يبدو صوته «مجنونًا» بمنطق البشر. والاختبار هو: هل ستثق به أكثر من إدراكك؟"
+      },
+      "hi": {
+        "text": " कभी-कभी मानवीय तर्क से उनकी आवाज़ “पागलपन” जैसी लग सकती है। परीक्षा यह है: क्या आप अपनी धारणा से अधिक उन पर भरोसा करेंगे?"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p029.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "2. Obedience matters more than outcome."
+      },
+      "zh": {
+        "text": "2. 顺服比结果更重要。"
+      },
+      "ja": {
+        "text": "2. 結果より従順が大切。"
+      },
+      "ko": {
+        "text": "2. 결과보다 순종이 중요합니다."
+      },
+      "fr": {
+        "text": "2. L’obéissance compte plus que le résultat."
+      },
+      "de": {
+        "text": "2. Gehorsam zählt mehr als das Ergebnis."
+      },
+      "es": {
+        "text": "2. La obediencia importa más que el resultado."
+      },
+      "pt": {
+        "text": "2. A obediência importa mais que o resultado."
+      },
+      "ar": {
+        "text": "2. الطاعة أهم من النتيجة."
+      },
+      "hi": {
+        "text": "2. परिणाम से अधिक आज्ञाकारिता मायने रखती है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p029.text001": {
+    "strings": {
+      "en": {
+        "text": " Once the heart shifted to full obedience, the action itself was no longer required."
+      },
+      "zh": {
+        "text": " 一旦心完全转向顺服，行动本身就不再需要了。"
+      },
+      "ja": {
+        "text": " 心が完全な従順へ切り替わると、行動そのものはもう必要ではなくなりました。"
+      },
+      "ko": {
+        "text": " 마음이 온전한 순종으로 돌아선 순간, 행동 자체는 더 이상 필요하지 않았습니다."
+      },
+      "fr": {
+        "text": " Une fois que le cœur s’est tourné vers une pleine obéissance, l’action elle-même n’était plus nécessaire."
+      },
+      "de": {
+        "text": " Als sich das Herz vollständig auf Gehorsam ausrichtete, war die Handlung selbst nicht mehr nötig."
+      },
+      "es": {
+        "text": " Una vez que el corazón pasó a la obediencia plena, la acción misma dejó de ser necesaria."
+      },
+      "pt": {
+        "text": " Quando o coração se voltou para a obediência completa, a própria ação deixou de ser necessária."
+      },
+      "ar": {
+        "text": " عندما تحول القلب إلى الطاعة الكاملة، لم يعد الفعل نفسه مطلوبًا."
+      },
+      "hi": {
+        "text": " जब हृदय पूर्ण आज्ञाकारिता की ओर मुड़ा, तब स्वयं कार्य की आवश्यकता नहीं रही।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p030.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "3. Fear disguises itself as wisdom."
+      },
+      "zh": {
+        "text": "3. 恐惧会伪装成智慧。"
+      },
+      "ja": {
+        "text": "3. 恐れは知恵を装う。"
+      },
+      "ko": {
+        "text": "3. 두려움은 지혜로 가장합니다."
+      },
+      "fr": {
+        "text": "3. La peur se déguise en sagesse."
+      },
+      "de": {
+        "text": "3. Angst tarnt sich als Weisheit."
+      },
+      "es": {
+        "text": "3. El miedo se disfraza de sabiduría."
+      },
+      "pt": {
+        "text": "3. O medo se disfarça de sabedoria."
+      },
+      "ar": {
+        "text": "3. الخوف يتنكر في صورة الحكمة."
+      },
+      "hi": {
+        "text": "3. भय बुद्धि का रूप धरता है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p030.text001": {
+    "strings": {
+      "en": {
+        "text": " \"That's reckless\" was not wisdom — it was fear. True wisdom is: "
+      },
+      "zh": {
+        "text": " “那太鲁莽了”并不是智慧——那是恐惧。真正的智慧是： "
+      },
+      "ja": {
+        "text": " 「それは無謀だ」は知恵ではなく——恐れでした。本当の知恵とは： "
+      },
+      "ko": {
+        "text": " '그건 무모해'라는 말은 지혜가 아니라 두려움이었습니다. 참된 지혜는: "
+      },
+      "fr": {
+        "text": " « C’est imprudent » n’était pas de la sagesse — c’était de la peur. La vraie sagesse est : "
+      },
+      "de": {
+        "text": " „Das ist leichtsinnig“ war keine Weisheit — es war Angst. Wahre Weisheit ist: "
+      },
+      "es": {
+        "text": " «Eso es imprudente» no era sabiduría, era miedo. La verdadera sabiduría es: "
+      },
+      "pt": {
+        "text": " “Isso é imprudente” não era sabedoria — era medo. A verdadeira sabedoria é: "
+      },
+      "ar": {
+        "text": " «هذا تهور» لم يكن حكمة — بل خوفًا. الحكمة الحقيقية هي: "
+      },
+      "hi": {
+        "text": " “यह लापरवाही है” बुद्धि नहीं थी—वह भय था। सच्ची बुद्धि है: "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p030.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Ask God, then obey fully.\""
+      },
+      "zh": {
+        "text": "“先问神，然后完全顺服。”"
+      },
+      "ja": {
+        "text": "「神に尋ね、それから完全に従う。」"
+      },
+      "ko": {
+        "text": "\"하나님께 묻고, 그다음 온전히 순종하라.\""
+      },
+      "fr": {
+        "text": "« Demandez à Dieu, puis obéissez pleinement. »"
+      },
+      "de": {
+        "text": "„Frage Gott und gehorche dann vollständig.“"
+      },
+      "es": {
+        "text": "«Pregunta a Dios y luego obedece plenamente.»"
+      },
+      "pt": {
+        "text": "“Pergunte a Deus e então obedeça plenamente.”"
+      },
+      "ar": {
+        "text": "«اسأل الله، ثم أطع بالكامل.»"
+      },
+      "hi": {
+        "text": "“परमेश्वर से पूछो, फिर पूरी तरह आज्ञा मानो।”"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p031.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "4. Tests reveal alignment."
+      },
+      "zh": {
+        "text": "4. 试验揭示对齐。"
+      },
+      "ja": {
+        "text": "4. 試験は整合を明らかにする。"
+      },
+      "ko": {
+        "text": "4. 시험은 정렬을 드러냅니다."
+      },
+      "fr": {
+        "text": "4. Les épreuves révèlent l’alignement."
+      },
+      "de": {
+        "text": "4. Prüfungen zeigen Ausrichtung."
+      },
+      "es": {
+        "text": "4. Las pruebas revelan alineación."
+      },
+      "pt": {
+        "text": "4. Os testes revelam alinhamento."
+      },
+      "ar": {
+        "text": "4. الاختبارات تكشف الاتساق."
+      },
+      "hi": {
+        "text": "4. परीक्षाएँ संरेखण प्रकट करती हैं।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p031.text001": {
+    "strings": {
+      "en": {
+        "text": " God will sometimes press you toward the edge, not to destroy you, but to reveal whether you are ruled by fear or trust."
+      },
+      "zh": {
+        "text": " 有时神会把你推向边缘，不是为了毁掉你，而是为了揭示你究竟受恐惧还是信任支配。"
+      },
+      "ja": {
+        "text": " 神があなたを瀬戸際へ押し出すことがあります。それは壊すためではなく、恐れに支配されているのか、信頼に支えられているのかを明らかにするためです。"
+      },
+      "ko": {
+        "text": " 하나님은 때때로 당신을 벼랑 끝으로 밀어붙이실 수 있습니다. 당신을 파괴하려는 것이 아니라 두려움과 신뢰 중 무엇이 당신을 지배하는지 드러내기 위해서입니다."
+      },
+      "fr": {
+        "text": " Dieu peut parfois vous pousser vers la limite, non pour vous détruire, mais pour révéler si vous êtes gouverné par la peur ou par la confiance."
+      },
+      "de": {
+        "text": " Gott drängt dich manchmal an den Rand, nicht um dich zu zerstören, sondern um zu zeigen, ob Angst oder Vertrauen dich beherrscht."
+      },
+      "es": {
+        "text": " Dios a veces te empujará hacia el límite, no para destruirte, sino para revelar si te gobierna el miedo o la confianza."
+      },
+      "pt": {
+        "text": " Às vezes Deus o levará até o limite, não para destruí-lo, mas para revelar se você é governado pelo medo ou pela confiança."
+      },
+      "ar": {
+        "text": " قد يدفعك الله أحيانًا نحو الحافة، لا ليدمرك، بل ليكشف هل يحكمك الخوف أم الثقة."
+      },
+      "hi": {
+        "text": " कभी-कभी परमेश्वर आपको सीमा तक धकेल सकते हैं, नष्ट करने के लिए नहीं, बल्कि यह प्रकट करने के लिए कि आप भय से शासित हैं या भरोसे से।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p032.text001": {
+    "strings": {
+      "en": {
+        "text": "Lived Testimony"
+      },
+      "zh": {
+        "text": "亲历见证"
+      },
+      "ja": {
+        "text": "生きた証し"
+      },
+      "ko": {
+        "text": "삶으로 겪은 간증"
+      },
+      "fr": {
+        "text": "Témoignage vécu"
+      },
+      "de": {
+        "text": "Gelebtes Zeugnis"
+      },
+      "es": {
+        "text": "Testimonio vivido"
+      },
+      "pt": {
+        "text": "Testemunho vivido"
+      },
+      "ar": {
+        "text": "شهادة معيشة"
+      },
+      "hi": {
+        "text": "जीया हुआ साक्ष्य"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.h2007.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor's Testimony: Reward in Rest"
+      },
+      "zh": {
+        "text": "Victor 的见证：在休息中得奖赏"
+      },
+      "ja": {
+        "text": "Victor の証し：休息の中の報い"
+      },
+      "ko": {
+        "text": "Victor의 간증: 쉼 속의 보상"
+      },
+      "fr": {
+        "text": "Témoignage de Victor : récompense dans le repos"
+      },
+      "de": {
+        "text": "Victors Zeugnis: Belohnung in der Ruhe"
+      },
+      "es": {
+        "text": "Testimonio de Victor: recompensa en el descanso"
+      },
+      "pt": {
+        "text": "Testemunho de Victor: recompensa no descanso"
+      },
+      "ar": {
+        "text": "شهادة Victor: المكافأة في الراحة"
+      },
+      "hi": {
+        "text": "Victor की गवाही: विश्राम में पुरस्कार"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p033.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Even though God tested me at the edge in Vegas, He also gave me joy there. He gave me a spa retreat at The Venetian in Las Vegas, two full days of rest and celebration.\""
+      },
+      "zh": {
+        "text": "“虽然神在拉斯维加斯把我带到边缘来试验，他也在那里给了我喜乐。他给了我一次拉斯维加斯威尼斯人酒店的水疗休憩，两整天的休息与庆祝。”"
+      },
+      "ja": {
+        "text": "「神はラスベガスで私を瀬戸際まで試されましたが、同時にそこで喜びも与えてくださいました。ラスベガスのザ・ベネチアンで、2日間まるごとのスパ休養と祝福の時間をくださいました。」"
+      },
+      "ko": {
+        "text": "\"하나님은 라스베이거스에서 저를 벼랑 끝까지 시험하셨지만 그곳에서 기쁨도 주셨습니다. 라스베이거스 베네시안에서 이틀 동안 온전히 쉬고 축하하는 스파 휴식을 주셨습니다.\""
+      },
+      "fr": {
+        "text": "« Même si Dieu m’a éprouvé à la limite à Vegas, Il m’y a aussi donné de la joie. Il m’a offert une retraite au spa du Venetian à Las Vegas, deux journées entières de repos et de célébration. »"
+      },
+      "de": {
+        "text": "„Obwohl Gott mich in Vegas am Rand geprüft hat, schenkte Er mir dort auch Freude. Er gab mir eine Spa-Auszeit im Venetian in Las Vegas, zwei volle Tage Ruhe und Feier.“"
+      },
+      "es": {
+        "text": "«Aunque Dios me probó al límite en Vegas, también me dio alegría allí. Me dio un retiro de spa en The Venetian de Las Vegas, dos días completos de descanso y celebración.»"
+      },
+      "pt": {
+        "text": "“Embora Deus tenha me testado no limite em Vegas, Ele também me deu alegria ali. Deu-me um retiro no spa do The Venetian em Las Vegas, dois dias inteiros de descanso e celebração.”"
+      },
+      "ar": {
+        "text": "«مع أن الله اختبرني عند الحافة في فيغاس، فقد منحني هناك فرحًا أيضًا. منحني استراحة في منتجع السبا بفندق The Venetian في لاس فيغاس، يومين كاملين من الراحة والاحتفال.»"
+      },
+      "hi": {
+        "text": "“हालाँकि परमेश्वर ने वेगास में मुझे सीमा पर परखा, उन्होंने मुझे वहाँ आनंद भी दिया। उन्होंने मुझे लास वेगास के The Venetian में स्पा विश्राम दिया—पूरे दो दिन आराम और उत्सव के।”"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p034.text001": {
+    "strings": {
+      "en": {
+        "text": "When the spa staff asked, "
+      },
+      "zh": {
+        "text": "当水疗中心的工作人员问： "
+      },
+      "ja": {
+        "text": "スパのスタッフにこう尋ねられました： "
+      },
+      "ko": {
+        "text": "스파 직원이 물었습니다: "
+      },
+      "fr": {
+        "text": "Lorsque le personnel du spa a demandé : "
+      },
+      "de": {
+        "text": "Als das Spa-Personal fragte: "
+      },
+      "es": {
+        "text": "Cuando el personal del spa preguntó: "
+      },
+      "pt": {
+        "text": "Quando a equipe do spa perguntou: "
+      },
+      "ar": {
+        "text": "عندما سأل موظفو السبا: "
+      },
+      "hi": {
+        "text": "जब स्पा के कर्मचारियों ने पूछा: "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p034.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"What's the occasion?\""
+      },
+      "zh": {
+        "text": "“是什么特别的日子吗？”"
+      },
+      "ja": {
+        "text": "「何のお祝いですか？」"
+      },
+      "ko": {
+        "text": "\"무슨 기념일인가요?\""
+      },
+      "fr": {
+        "text": "« Quelle est l’occasion ? »"
+      },
+      "de": {
+        "text": "„Was ist der Anlass?“"
+      },
+      "es": {
+        "text": "«¿Cuál es la ocasión?»"
+      },
+      "pt": {
+        "text": "“Qual é a ocasião?”"
+      },
+      "ar": {
+        "text": "«ما المناسبة؟»"
+      },
+      "hi": {
+        "text": "“क्या अवसर है?”"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p034.text002": {
+    "strings": {
+      "en": {
+        "text": " Victor said: "
+      },
+      "zh": {
+        "text": " Victor 回答： "
+      },
+      "ja": {
+        "text": " Victor はこう答えました： "
+      },
+      "ko": {
+        "text": " Victor는 말했습니다: "
+      },
+      "fr": {
+        "text": " Victor a répondu : "
+      },
+      "de": {
+        "text": " Victor sagte: "
+      },
+      "es": {
+        "text": " Victor dijo: "
+      },
+      "pt": {
+        "text": " Victor disse: "
+      },
+      "ar": {
+        "text": " قال Victor: "
+      },
+      "hi": {
+        "text": " Victor ने कहा: "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p034.em002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"I'm celebrating myself.\""
+      },
+      "zh": {
+        "text": "“我在庆祝我自己。”"
+      },
+      "ja": {
+        "text": "「自分自身を祝っているんです。」"
+      },
+      "ko": {
+        "text": "\"나 자신을 축하하고 있어요.\""
+      },
+      "fr": {
+        "text": "« Je me célèbre moi-même. »"
+      },
+      "de": {
+        "text": "„Ich feiere mich selbst.“"
+      },
+      "es": {
+        "text": "«Me estoy celebrando a mí mismo.»"
+      },
+      "pt": {
+        "text": "“Estou celebrando a mim mesmo.”"
+      },
+      "ar": {
+        "text": "«أنا أحتفل بنفسي.»"
+      },
+      "hi": {
+        "text": "“मैं स्वयं का उत्सव मना रहा/रही हूँ।”"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p034.text003": {
+    "strings": {
+      "en": {
+        "text": " They were surprised — but also respected it. Most people wait for birthdays, weddings, or others to celebrate them. For Victor, it was obedience to God's voice: "
+      },
+      "zh": {
+        "text": " 他们有些惊讶——但也对此表示尊重。大多数人会等到生日、婚礼，或等别人来庆祝自己。对 Victor 来说，这是顺服神的声音： "
+      },
+      "ja": {
+        "text": " スタッフは驚きましたが、その姿勢を尊重もしました。多くの人は誕生日や結婚式、あるいは誰かに祝ってもらうのを待ちます。Victor にとって、それは神の声への従順でした： "
+      },
+      "ko": {
+        "text": " 직원들은 놀랐지만 동시에 그것을 존중했습니다. 대부분 사람은 생일이나 결혼식, 또는 다른 사람이 자신을 축하해 주기를 기다립니다. Victor에게는 하나님의 음성에 순종하는 일이었습니다: "
+      },
+      "fr": {
+        "text": " Ils ont été surpris — mais l’ont aussi respecté. La plupart des gens attendent un anniversaire, un mariage ou que d’autres les célèbrent. Pour Victor, c’était obéir à la voix de Dieu : "
+      },
+      "de": {
+        "text": " Sie waren überrascht — respektierten es aber auch. Die meisten Menschen warten auf Geburtstage, Hochzeiten oder darauf, dass andere sie feiern. Für Victor war es Gehorsam gegenüber Gottes Stimme: "
+      },
+      "es": {
+        "text": " Se sorprendieron, pero también lo respetaron. La mayoría espera cumpleaños, bodas o que otros los celebren. Para Victor era obedecer la voz de Dios: "
+      },
+      "pt": {
+        "text": " Eles ficaram surpresos — mas também respeitaram. A maioria das pessoas espera aniversários, casamentos ou que outros as celebrem. Para Victor, era obediência à voz de Deus: "
+      },
+      "ar": {
+        "text": " تفاجأوا — لكنهم احترموا ذلك أيضًا. معظم الناس ينتظرون أعياد الميلاد أو حفلات الزفاف أو أن يحتفل بهم الآخرون. بالنسبة إلى Victor كان ذلك طاعة لصوت الله: "
+      },
+      "hi": {
+        "text": " वे चकित हुए—लेकिन उन्होंने इसका सम्मान भी किया। अधिकांश लोग जन्मदिन, विवाह या दूसरों के द्वारा मनाए जाने की प्रतीक्षा करते हैं। Victor के लिए यह परमेश्वर की आवाज़ के प्रति आज्ञाकारिता थी: "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p034.em003.text001": {
+    "strings": {
+      "en": {
+        "text": "Celebrate yourself as worthy."
+      },
+      "zh": {
+        "text": "庆祝你自己，因为你有价值。"
+      },
+      "ja": {
+        "text": "価値ある自分自身を祝いなさい。"
+      },
+      "ko": {
+        "text": "가치 있는 자신을 축하하라."
+      },
+      "fr": {
+        "text": "Célèbre-toi comme quelqu’un qui a de la valeur."
+      },
+      "de": {
+        "text": "Feiere dich als wertvoll."
+      },
+      "es": {
+        "text": "Celébrate como alguien valioso."
+      },
+      "pt": {
+        "text": "Celebre-se como alguém digno."
+      },
+      "ar": {
+        "text": "احتفل بنفسك بوصفك جديرًا."
+      },
+      "hi": {
+        "text": "स्वयं का उत्सव मनाओ क्योंकि तुम मूल्यवान हो।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p035.text001": {
+    "strings": {
+      "en": {
+        "text": "Another part of the test came when he missed one $200 appointment with no refund. The old voice of guilt whispered: "
+      },
+      "zh": {
+        "text": "试验的另一部分出现在他错过一次 200 美元且不退款的预约时。旧有的内疚声音低语： "
+      },
+      "ja": {
+        "text": "試験の別の部分は、返金のない200ドルの予約を一度逃したときに来ました。古い罪悪感の声が囁きました： "
+      },
+      "ko": {
+        "text": "시험의 또 다른 부분은 환불되지 않는 200달러 예약을 한 번 놓쳤을 때 찾아왔습니다. 오래된 죄책감의 목소리가 속삭였습니다: "
+      },
+      "fr": {
+        "text": "Une autre partie de l’épreuve est arrivée lorsqu’il a manqué un rendez-vous à 200 $ sans remboursement. L’ancienne voix de culpabilité a murmuré : "
+      },
+      "de": {
+        "text": "Ein weiterer Teil der Prüfung kam, als er einen 200-Dollar-Termin ohne Rückerstattung verpasste. Die alte Stimme der Schuld flüsterte: "
+      },
+      "es": {
+        "text": "Otra parte de la prueba llegó cuando perdió una cita de 200 dólares sin reembolso. La vieja voz de culpa susurró: "
+      },
+      "pt": {
+        "text": "Outra parte do teste veio quando ele perdeu um compromisso de 200 dólares sem reembolso. A antiga voz da culpa sussurrou: "
+      },
+      "ar": {
+        "text": "جاء جزء آخر من الاختبار عندما فوّت موعدًا بقيمة 200 دولار من دون استرداد. همس صوت الذنب القديم: "
+      },
+      "hi": {
+        "text": "परीक्षा का एक और भाग तब आया जब वह 200 डॉलर की एक ऐसी अपॉइंटमेंट चूक गया जिसका पैसा वापस नहीं मिलना था। अपराधबोध की पुरानी आवाज़ फुसफुसाई: "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p035.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"You wasted money.\""
+      },
+      "zh": {
+        "text": "“你浪费了钱。”"
+      },
+      "ja": {
+        "text": "「お金を無駄にした。」"
+      },
+      "ko": {
+        "text": "\"돈을 낭비했어.\""
+      },
+      "fr": {
+        "text": "« Tu as gaspillé de l’argent. »"
+      },
+      "de": {
+        "text": "„Du hast Geld verschwendet.“"
+      },
+      "es": {
+        "text": "«Desperdiciaste dinero.»"
+      },
+      "pt": {
+        "text": "“Você desperdiçou dinheiro.”"
+      },
+      "ar": {
+        "text": "«لقد أهدرت المال.»"
+      },
+      "hi": {
+        "text": "“तुमने पैसे बर्बाद किए।”"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p035.text002": {
+    "strings": {
+      "en": {
+        "text": " But God showed him the friction was not about money, but about worth. The choice was: collapse into shame and regret, "
+      },
+      "zh": {
+        "text": " 但神让他看见，那份摩擦并不真正关乎钱，而关乎价值感。选择是：陷入羞耻与后悔， "
+      },
+      "ja": {
+        "text": " しかし神は、その摩擦が金銭ではなく、自分の価値をどう受け取るかに関わっていると彼に示しました。選択は、恥と後悔に崩れ落ちるか、 "
+      },
+      "ko": {
+        "text": " 하지만 하나님은 그 마찰이 돈이 아니라 가치에 관한 것임을 그에게 보여 주셨습니다. 선택은 수치심과 후회로 무너지거나, "
+      },
+      "fr": {
+        "text": " Mais Dieu lui a montré que la friction ne concernait pas l’argent, mais la valeur personnelle. Le choix était : s’effondrer dans la honte et le regret, "
+      },
+      "de": {
+        "text": " Doch Gott zeigte ihm, dass die Reibung nicht um Geld ging, sondern um Wert. Die Wahl war: in Scham und Bedauern zusammenzubrechen, "
+      },
+      "es": {
+        "text": " Pero Dios le mostró que la fricción no trataba del dinero, sino del valor personal. La elección era: derrumbarse en vergüenza y arrepentimiento, "
+      },
+      "pt": {
+        "text": " Mas Deus lhe mostrou que a tensão não era sobre dinheiro, mas sobre valor. A escolha era: desabar em vergonha e arrependimento, "
+      },
+      "ar": {
+        "text": " لكن الله أراه أن الاحتكاك لم يكن متعلقًا بالمال، بل بالقيمة. وكان الخيار: الانهيار في العار والندم، "
+      },
+      "hi": {
+        "text": " लेकिन परमेश्वर ने उसे दिखाया कि घर्षण पैसे के बारे में नहीं बल्कि मूल्य के बारे में था। चुनाव था: शर्म और पछतावे में गिरना, "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p035.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "or"
+      },
+      "zh": {
+        "text": "或者"
+      },
+      "ja": {
+        "text": "それとも"
+      },
+      "ko": {
+        "text": "아니면"
+      },
+      "fr": {
+        "text": "ou"
+      },
+      "de": {
+        "text": "oder"
+      },
+      "es": {
+        "text": "o"
+      },
+      "pt": {
+        "text": "ou"
+      },
+      "ar": {
+        "text": "أو"
+      },
+      "hi": {
+        "text": "या"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p035.text003": {
+    "strings": {
+      "en": {
+        "text": " treat the money as seed into joy and move on."
+      },
+      "zh": {
+        "text": " 把那笔钱看作投入喜乐的种子，然后继续向前。"
+      },
+      "ja": {
+        "text": " そのお金を喜びに蒔いた種として受け取り、前へ進むかでした。"
+      },
+      "ko": {
+        "text": " 그 돈을 기쁨에 심은 씨앗으로 여기고 앞으로 나아가는 것이었습니다."
+      },
+      "fr": {
+        "text": " considérer cet argent comme une semence investie dans la joie et continuer."
+      },
+      "de": {
+        "text": " das Geld als Saat in Freude zu betrachten und weiterzugehen."
+      },
+      "es": {
+        "text": " tratar ese dinero como semilla sembrada en alegría y seguir adelante."
+      },
+      "pt": {
+        "text": " tratar o dinheiro como semente lançada na alegria e seguir em frente."
+      },
+      "ar": {
+        "text": " اعتبار المال بذرة زُرعت في الفرح والمضي قدمًا."
+      },
+      "hi": {
+        "text": " उस पैसे को आनंद में बोए गए बीज की तरह मानकर आगे बढ़ना।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p036.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "What happened:"
+      },
+      "zh": {
+        "text": "发生了什么："
+      },
+      "ja": {
+        "text": "何が起きたか："
+      },
+      "ko": {
+        "text": "무슨 일이 있었나:"
+      },
+      "fr": {
+        "text": "Ce qui s’est passé :"
+      },
+      "de": {
+        "text": "Was geschah:"
+      },
+      "es": {
+        "text": "Qué ocurrió:"
+      },
+      "pt": {
+        "text": "O que aconteceu:"
+      },
+      "ar": {
+        "text": "ما الذي حدث:"
+      },
+      "hi": {
+        "text": "क्या हुआ:"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p036.text001": {
+    "strings": {
+      "en": {
+        "text": " He chose joy. He chose to say, "
+      },
+      "zh": {
+        "text": " 他选择了喜乐。他选择说： "
+      },
+      "ja": {
+        "text": " 彼は喜びを選びました。そしてこう言うことを選びました： "
+      },
+      "ko": {
+        "text": " 그는 기쁨을 선택했습니다. 그는 이렇게 말하기로 했습니다: "
+      },
+      "fr": {
+        "text": " Il a choisi la joie. Il a choisi de dire : "
+      },
+      "de": {
+        "text": " Er wählte Freude. Er entschied sich zu sagen: "
+      },
+      "es": {
+        "text": " Eligió la alegría. Eligió decir: "
+      },
+      "pt": {
+        "text": " Ele escolheu a alegria. Escolheu dizer: "
+      },
+      "ar": {
+        "text": " اختار الفرح. واختار أن يقول: "
+      },
+      "hi": {
+        "text": " उसने आनंद चुना। उसने कहना चुना: "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p036.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"I am worth it.\""
+      },
+      "zh": {
+        "text": "“我值得。”"
+      },
+      "ja": {
+        "text": "「私にはその価値がある。」"
+      },
+      "ko": {
+        "text": "\"나는 그럴 가치가 있다.\""
+      },
+      "fr": {
+        "text": "« J’en vaux la peine. »"
+      },
+      "de": {
+        "text": "„Ich bin es wert.“"
+      },
+      "es": {
+        "text": "«Lo valgo.»"
+      },
+      "pt": {
+        "text": "“Eu valho isso.”"
+      },
+      "ar": {
+        "text": "«أنا أستحق ذلك.»"
+      },
+      "hi": {
+        "text": "“मैं इसके योग्य हूँ।”"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p036.text002": {
+    "strings": {
+      "en": {
+        "text": " The spa days were not spoiled by guilt. They were complete in peace."
+      },
+      "zh": {
+        "text": " 那两天的水疗休息没有被内疚毁掉，而是在平安中完整地度过了。"
+      },
+      "ja": {
+        "text": " スパで過ごした日々は罪悪感に壊されず、平安のうちに十分に味わえました。"
+      },
+      "ko": {
+        "text": " 스파에서 보낸 날들은 죄책감으로 망가지지 않았습니다. 평안 가운데 온전히 마무리되었습니다."
+      },
+      "fr": {
+        "text": " Les journées au spa n’ont pas été gâchées par la culpabilité. Elles se sont vécues pleinement dans la paix."
+      },
+      "de": {
+        "text": " Die Spa-Tage wurden nicht durch Schuldgefühle verdorben. Sie wurden in Frieden vollständig erlebt."
+      },
+      "es": {
+        "text": " Los días de spa no quedaron arruinados por la culpa. Se vivieron plenamente y en paz."
+      },
+      "pt": {
+        "text": " Os dias no spa não foram estragados pela culpa. Foram vividos plenamente e em paz."
+      },
+      "ar": {
+        "text": " لم يفسد الذنب أيام السبا. اكتملت في سلام."
+      },
+      "hi": {
+        "text": " स्पा के दिन अपराधबोध से खराब नहीं हुए। वे पूरी तरह शांति में बिताए गए।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p037.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Principles learned:"
+      },
+      "zh": {
+        "text": "学到的原则："
+      },
+      "ja": {
+        "text": "学んだ原則："
+      },
+      "ko": {
+        "text": "배운 원칙:"
+      },
+      "fr": {
+        "text": "Principes appris :"
+      },
+      "de": {
+        "text": "Gelernte Prinzipien:"
+      },
+      "es": {
+        "text": "Principios aprendidos:"
+      },
+      "pt": {
+        "text": "Princípios aprendidos:"
+      },
+      "ar": {
+        "text": "المبادئ المستفادة:"
+      },
+      "hi": {
+        "text": "सीखे गए सिद्धांत:"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p038.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "1. God balances tests with rewards."
+      },
+      "zh": {
+        "text": "1. 神用奖赏平衡试验。"
+      },
+      "ja": {
+        "text": "1. 神は試験と報いを釣り合わせる。"
+      },
+      "ko": {
+        "text": "1. 하나님은 시험과 보상을 균형 있게 주십니다."
+      },
+      "fr": {
+        "text": "1. Dieu équilibre les épreuves par des récompenses."
+      },
+      "de": {
+        "text": "1. Gott gleicht Prüfungen mit Belohnungen aus."
+      },
+      "es": {
+        "text": "1. Dios equilibra las pruebas con recompensas."
+      },
+      "pt": {
+        "text": "1. Deus equilibra testes com recompensas."
+      },
+      "ar": {
+        "text": "1. الله يوازن الاختبارات بالمكافآت."
+      },
+      "hi": {
+        "text": "1. परमेश्वर परीक्षाओं को पुरस्कारों से संतुलित करते हैं।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p038.text001": {
+    "strings": {
+      "en": {
+        "text": " Where He presses one area, He comforts another. Both are training."
+      },
+      "zh": {
+        "text": " 在他压迫一个领域的同时，也会安慰另一个领域。两者都是训练。"
+      },
+      "ja": {
+        "text": " 一つの領域を押すとき、別の領域では慰めを与えます。どちらも訓練です。"
+      },
+      "ko": {
+        "text": " 한 영역을 누르실 때 다른 영역에서는 위로하십니다. 둘 다 훈련입니다."
+      },
+      "fr": {
+        "text": " Là où Il met une zone sous pression, Il en réconforte une autre. Les deux sont un entraînement."
+      },
+      "de": {
+        "text": " Wo Er einen Bereich unter Druck setzt, tröstet Er einen anderen. Beides ist Training."
+      },
+      "es": {
+        "text": " Donde presiona un área, consuela otra. Ambas cosas son entrenamiento."
+      },
+      "pt": {
+        "text": " Onde Ele pressiona uma área, conforta outra. Ambas são treinamento."
+      },
+      "ar": {
+        "text": " حيث يضغط على جانب، يواسي جانبًا آخر. وكلاهما تدريب."
+      },
+      "hi": {
+        "text": " जहाँ वे एक क्षेत्र पर दबाव डालते हैं, दूसरे में सांत्वना देते हैं। दोनों प्रशिक्षण हैं।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p039.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "2. Celebration is obedience."
+      },
+      "zh": {
+        "text": "2. 庆祝也是顺服。"
+      },
+      "ja": {
+        "text": "2. 祝うことも従順。"
+      },
+      "ko": {
+        "text": "2. 축하는 순종입니다."
+      },
+      "fr": {
+        "text": "2. Célébrer est aussi une obéissance."
+      },
+      "de": {
+        "text": "2. Feiern ist Gehorsam."
+      },
+      "es": {
+        "text": "2. Celebrar es obediencia."
+      },
+      "pt": {
+        "text": "2. Celebrar é obediência."
+      },
+      "ar": {
+        "text": "2. الاحتفال طاعة."
+      },
+      "hi": {
+        "text": "2. उत्सव भी आज्ञाकारिता है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p039.text001": {
+    "strings": {
+      "en": {
+        "text": " Honoring yourself is not vanity when it is alignment with God's will to see your worth."
+      },
+      "zh": {
+        "text": " 当尊重自己与神让你看见自身价值的旨意对齐时，那并不是虚荣。"
+      },
+      "ja": {
+        "text": " 自分の価値を見るという神の御心と整合しているなら、自分を敬うことは虚栄ではありません。"
+      },
+      "ko": {
+        "text": " 자신의 가치를 보라는 하나님의 뜻과 정렬되어 있다면 자신을 존중하는 것은 허영이 아닙니다."
+      },
+      "fr": {
+        "text": " S’honorer soi-même n’est pas de la vanité lorsque cela s’aligne sur la volonté de Dieu de vous faire voir votre valeur."
+      },
+      "de": {
+        "text": " Dich selbst zu ehren ist keine Eitelkeit, wenn es mit Gottes Willen übereinstimmt, deinen Wert zu sehen."
+      },
+      "es": {
+        "text": " Honrarte no es vanidad cuando está alineado con la voluntad de Dios de que veas tu valor."
+      },
+      "pt": {
+        "text": " Honrar a si mesmo não é vaidade quando está alinhado com a vontade de Deus de que você veja seu valor."
+      },
+      "ar": {
+        "text": " إكرام نفسك ليس غرورًا عندما ينسجم مع إرادة الله في أن ترى قيمتك."
+      },
+      "hi": {
+        "text": " स्वयं का सम्मान करना घमंड नहीं है, जब वह अपने मूल्य को देखने की परमेश्वर की इच्छा से संरेखित हो।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p040.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "3. Money is a tool, not a chain."
+      },
+      "zh": {
+        "text": "3. 钱是工具，不是枷锁。"
+      },
+      "ja": {
+        "text": "3. お金は道具であり、鎖ではない。"
+      },
+      "ko": {
+        "text": "3. 돈은 도구이지 사슬이 아닙니다."
+      },
+      "fr": {
+        "text": "3. L’argent est un outil, pas une chaîne."
+      },
+      "de": {
+        "text": "3. Geld ist ein Werkzeug, keine Kette."
+      },
+      "es": {
+        "text": "3. El dinero es una herramienta, no una cadena."
+      },
+      "pt": {
+        "text": "3. Dinheiro é ferramenta, não corrente."
+      },
+      "ar": {
+        "text": "3. المال أداة، لا قيد."
+      },
+      "hi": {
+        "text": "3. पैसा एक साधन है, ज़ंजीर नहीं।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p040.text001": {
+    "strings": {
+      "en": {
+        "text": " Missing $200 became a lesson in freedom, not a weight of regret."
+      },
+      "zh": {
+        "text": " 失去的 200 美元变成了自由的一课，而不是后悔的重担。"
+      },
+      "ja": {
+        "text": " 失った200ドルは、後悔の重荷ではなく、自由についての学びになりました。"
+      },
+      "ko": {
+        "text": " 사라진 200달러는 후회의 무게가 아니라 자유에 대한 교훈이 되었습니다."
+      },
+      "fr": {
+        "text": " Les 200 $ perdus sont devenus une leçon de liberté, pas un poids de regret."
+      },
+      "de": {
+        "text": " Die fehlenden 200 Dollar wurden zu einer Lektion in Freiheit, nicht zu einer Last des Bedauerns."
+      },
+      "es": {
+        "text": " Los 200 dólares perdidos se convirtieron en una lección de libertad, no en un peso de arrepentimiento."
+      },
+      "pt": {
+        "text": " Os 200 dólares perdidos se tornaram uma lição de liberdade, não um peso de arrependimento."
+      },
+      "ar": {
+        "text": " أصبحت الـ200 دولار المفقودة درسًا في الحرية، لا عبئًا من الندم."
+      },
+      "hi": {
+        "text": " खोए हुए 200 डॉलर पछतावे का बोझ नहीं, स्वतंत्रता की सीख बन गए।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p041.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "4. Rest is holy."
+      },
+      "zh": {
+        "text": "4. 休息是圣洁的。"
+      },
+      "ja": {
+        "text": "4. 休息は聖なるもの。"
+      },
+      "ko": {
+        "text": "4. 쉼은 거룩합니다."
+      },
+      "fr": {
+        "text": "4. Le repos est sacré."
+      },
+      "de": {
+        "text": "4. Ruhe ist heilig."
+      },
+      "es": {
+        "text": "4. El descanso es sagrado."
+      },
+      "pt": {
+        "text": "4. O descanso é santo."
+      },
+      "ar": {
+        "text": "4. الراحة مقدسة."
+      },
+      "hi": {
+        "text": "4. विश्राम पवित्र है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.p041.text001": {
+    "strings": {
+      "en": {
+        "text": " True obedience includes receiving joy without guilt."
+      },
+      "zh": {
+        "text": " 真正的顺服也包括不带内疚地接纳喜乐。"
+      },
+      "ja": {
+        "text": " 真の従順には、罪悪感なしに喜びを受け取ることも含まれます。"
+      },
+      "ko": {
+        "text": " 참된 순종에는 죄책감 없이 기쁨을 받아들이는 것도 포함됩니다."
+      },
+      "fr": {
+        "text": " La véritable obéissance inclut de recevoir la joie sans culpabilité."
+      },
+      "de": {
+        "text": " Wahrer Gehorsam schließt ein, Freude ohne Schuldgefühle zu empfangen."
+      },
+      "es": {
+        "text": " La verdadera obediencia incluye recibir alegría sin culpa."
+      },
+      "pt": {
+        "text": " A verdadeira obediência inclui receber alegria sem culpa."
+      },
+      "ar": {
+        "text": " الطاعة الحقيقية تشمل تلقي الفرح بلا شعور بالذنب."
+      },
+      "hi": {
+        "text": " सच्ची आज्ञाकारिता में बिना अपराधबोध के आनंद ग्रहण करना भी शामिल है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div014.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Holy Completion"
+      },
+      "zh": {
+        "text": "圣洁的完成"
+      },
+      "ja": {
+        "text": "聖なる完了"
+      },
+      "ko": {
+        "text": "거룩한 완결"
+      },
+      "fr": {
+        "text": "Accomplissement saint"
+      },
+      "de": {
+        "text": "Heilige Vollendung"
+      },
+      "es": {
+        "text": "Cumplimiento santo"
+      },
+      "pt": {
+        "text": "Conclusão santa"
+      },
+      "ar": {
+        "text": "الاكتمال المقدس"
+      },
+      "hi": {
+        "text": "पवित्र पूर्णता"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div014.div002.text001": {
+    "strings": {
+      "en": {
+        "text": " God does not test to ruin, but to reveal."
+      },
+      "zh": {
+        "text": " 神试验，不是为了毁坏，而是为了揭示。"
+      },
+      "ja": {
+        "text": " 神は壊すためではなく、明らかにするために試します。"
+      },
+      "ko": {
+        "text": " 하나님은 파괴하려고 시험하시는 것이 아니라 드러내기 위해 시험하십니다."
+      },
+      "fr": {
+        "text": " Dieu n’éprouve pas pour détruire, mais pour révéler."
+      },
+      "de": {
+        "text": " Gott prüft nicht, um zu ruinieren, sondern um zu offenbaren."
+      },
+      "es": {
+        "text": " Dios no prueba para arruinar, sino para revelar."
+      },
+      "pt": {
+        "text": " Deus não testa para arruinar, mas para revelar."
+      },
+      "ar": {
+        "text": " الله لا يختبر ليدمر، بل ليكشف."
+      },
+      "hi": {
+        "text": " परमेश्वर नष्ट करने के लिए नहीं, प्रकट करने के लिए परीक्षा लेते हैं।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div014.div002.text002": {
+    "strings": {
+      "en": {
+        "text": " The purpose of such moments is not the act itself, but the heart position:"
+      },
+      "zh": {
+        "text": " 这些时刻的目的并不是行动本身，而是心的位置："
+      },
+      "ja": {
+        "text": " そのような瞬間の目的は行動そのものではなく、心の位置です："
+      },
+      "ko": {
+        "text": " 그런 순간의 목적은 행동 자체가 아니라 마음의 자리입니다:"
+      },
+      "fr": {
+        "text": " Le but de ces moments n’est pas l’acte lui-même, mais la position du cœur :"
+      },
+      "de": {
+        "text": " Der Zweck solcher Momente ist nicht die Handlung selbst, sondern die Haltung des Herzens:"
+      },
+      "es": {
+        "text": " El propósito de esos momentos no es el acto en sí, sino la posición del corazón:"
+      },
+      "pt": {
+        "text": " O propósito desses momentos não é o ato em si, mas a posição do coração:"
+      },
+      "ar": {
+        "text": " الغرض من هذه اللحظات ليس الفعل نفسه، بل موضع القلب:"
+      },
+      "hi": {
+        "text": " ऐसे क्षणों का उद्देश्य स्वयं कार्य नहीं, बल्कि हृदय की स्थिति है:"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div014.div002.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "Will you obey when it costs you reputation, comfort, or logic?"
+      },
+      "zh": {
+        "text": "当顺服会让你付出名誉、舒适或逻辑上的代价时，你还会顺服吗？"
+      },
+      "ja": {
+        "text": "評判、快適さ、論理を代価として求められても、従いますか？"
+      },
+      "ko": {
+        "text": "순종 때문에 평판, 편안함, 논리를 대가로 치러야 해도 순종하겠습니까?"
+      },
+      "fr": {
+        "text": "Obéirez-vous lorsque cela vous coûte réputation, confort ou logique ?"
+      },
+      "de": {
+        "text": "Wirst du gehorchen, wenn es dich Ruf, Komfort oder Logik kostet?"
+      },
+      "es": {
+        "text": "¿Obedecerás cuando te cueste reputación, comodidad o lógica?"
+      },
+      "pt": {
+        "text": "Você obedecerá quando isso lhe custar reputação, conforto ou lógica?"
+      },
+      "ar": {
+        "text": "هل ستطيع عندما تكلفك الطاعة السمعة أو الراحة أو المنطق؟"
+      },
+      "hi": {
+        "text": "क्या आप तब भी आज्ञा मानेंगे जब इसकी कीमत प्रतिष्ठा, आराम या तर्क हो?"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div014.div002.em002.text001": {
+    "strings": {
+      "en": {
+        "text": "Will you trust Me even when human eyes call you a fool?"
+      },
+      "zh": {
+        "text": "即使人的眼光称你为愚人，你还会信任我吗？"
+      },
+      "ja": {
+        "text": "人の目があなたを愚か者と呼んでも、私を信頼しますか？"
+      },
+      "ko": {
+        "text": "사람의 눈이 당신을 어리석다고 해도 나를 신뢰하겠습니까?"
+      },
+      "fr": {
+        "text": "Me feras-tu confiance même lorsque les regards humains te traitent d’insensé ?"
+      },
+      "de": {
+        "text": "Wirst du Mir vertrauen, selbst wenn menschliche Augen dich einen Narren nennen?"
+      },
+      "es": {
+        "text": "¿Confiarás en Mí incluso cuando los ojos humanos te llamen necio?"
+      },
+      "pt": {
+        "text": "Você confiará em Mim mesmo quando os olhos humanos o chamarem de tolo?"
+      },
+      "ar": {
+        "text": "هل ستثق بي حتى عندما تصفك أعين البشر بالأحمق؟"
+      },
+      "hi": {
+        "text": "क्या आप मुझ पर तब भी भरोसा करेंगे जब मानवीय नज़रें आपको मूर्ख कहें?"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div014.div002.text003": {
+    "strings": {
+      "en": {
+        "text": " Passing is not about betting money or risking ruin. Passing is aligning your heart to obedience without regret — and when that alignment is complete, I Myself redirect you, because the test has served its purpose."
+      },
+      "zh": {
+        "text": " 通过并不在于押钱或冒着毁灭的风险。通过，是让你的心与不带后悔的顺服对齐——而当那份对齐完成时，我亲自把你引向别处，因为试验已经完成了它的目的。"
+      },
+      "ja": {
+        "text": " 通過することは、金を賭けたり破滅を危険にさらしたりすることではありません。通過とは、後悔のない従順へ心を整合させることです。その整合が完成すれば、試験は目的を果たしたので、私自身があなたを別の方向へ導きます。"
+      },
+      "ko": {
+        "text": " 통과는 돈을 거는 것이나 파멸을 감수하는 것이 아닙니다. 통과는 마음을 후회 없는 순종에 정렬하는 것입니다. 그 정렬이 완성되면 시험이 목적을 다했기에 내가 직접 당신의 방향을 바꿉니다."
+      },
+      "fr": {
+        "text": " Réussir ne consiste pas à miser de l’argent ou à risquer la ruine. Réussir, c’est aligner votre cœur sur une obéissance sans regret — et lorsque cet alignement est complet, Moi-même Je vous redirige, car l’épreuve a rempli son objectif."
+      },
+      "de": {
+        "text": " Bestehen bedeutet nicht, Geld zu setzen oder den Ruin zu riskieren. Bestehen heißt, dein Herz ohne Bedauern auf Gehorsam auszurichten — und wenn diese Ausrichtung vollständig ist, lenke Ich dich Selbst um, weil die Prüfung ihren Zweck erfüllt hat."
+      },
+      "es": {
+        "text": " Pasar la prueba no consiste en apostar dinero ni arriesgar la ruina. Pasar es alinear el corazón con una obediencia sin arrepentimiento; cuando esa alineación se completa, Yo mismo te redirijo, porque la prueba ya cumplió su propósito."
+      },
+      "pt": {
+        "text": " Passar não é apostar dinheiro nem arriscar a ruína. Passar é alinhar o coração à obediência sem arrependimento — e, quando esse alinhamento está completo, Eu mesmo o redireciono, porque o teste cumpriu seu propósito."
+      },
+      "ar": {
+        "text": " النجاح لا يعني المراهنة بالمال أو المخاطرة بالهلاك. النجاح هو أن تجعل قلبك منسجمًا مع الطاعة بلا ندم — وعندما يكتمل هذا الاتساق أعيد أنا نفسي توجيهك، لأن الاختبار يكون قد أدى غرضه."
+      },
+      "hi": {
+        "text": " परीक्षा पार करना पैसे पर दाँव लगाने या विनाश का जोखिम लेने के बारे में नहीं है। पार करना अपने हृदय को बिना पछतावे की आज्ञाकारिता से संरेखित करना है—और जब वह संरेखण पूर्ण हो जाता है, मैं स्वयं आपको दूसरी दिशा देता हूँ, क्योंकि परीक्षा अपना उद्देश्य पूरा कर चुकी होती है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div014.div002.text004": {
+    "strings": {
+      "en": {
+        "text": " I test, and I reward. I press your fears until they surface, but I also give you rest and delight so you know My goodness. Do not measure worth by money, or obedience only by struggle. Measure worth by the peace of knowing you are Mine, and obedience by the freedom to walk without guilt, even when the world calls it waste. "
+      },
+      "zh": {
+        "text": " 我试验，也奖赏。我会压迫你的恐惧，直到它们浮出水面；但我也赐给你休息与喜悦，让你知道我的良善。不要用钱来衡量价值，也不要只用挣扎来衡量顺服。价值要以“你知道自己属于我”所带来的平安来衡量；顺服要以“即使世界称之为浪费，你仍能不带内疚地向前走”的自由来衡量。 "
+      },
+      "ja": {
+        "text": " 私は試し、そして報います。恐れが表面に出るまで押しますが、私の善を知るための休息と喜びも与えます。価値をお金で測らず、従順を苦闘だけで測らないでください。価値は、自分が私のものであると知る平安で測りなさい。従順は、世界が無駄と呼んでも罪悪感なく歩ける自由で測りなさい。 "
+      },
+      "ko": {
+        "text": " 나는 시험하고 보상합니다. 두려움이 드러날 때까지 누르지만, 나의 선하심을 알도록 쉼과 기쁨도 줍니다. 가치를 돈으로 재지 말고, 순종을 오직 고생으로만 재지 마세요. 가치는 당신이 내 것임을 아는 평안으로 재고, 순종은 세상이 낭비라고 해도 죄책감 없이 걸을 수 있는 자유로 재세요. "
+      },
+      "fr": {
+        "text": " J’éprouve et Je récompense. Je presse vos peurs jusqu’à ce qu’elles remontent, mais Je vous donne aussi repos et joie afin que vous connaissiez Ma bonté. Ne mesurez pas la valeur par l’argent, ni l’obéissance seulement par la lutte. Mesurez la valeur par la paix de savoir que vous êtes à Moi, et l’obéissance par la liberté de marcher sans culpabilité, même lorsque le monde appelle cela du gaspillage. "
+      },
+      "de": {
+        "text": " Ich prüfe und Ich belohne. Ich dränge deine Ängste, bis sie an die Oberfläche kommen, aber Ich gebe dir auch Ruhe und Freude, damit du Meine Güte kennst. Miss Wert nicht am Geld und Gehorsam nicht nur am Kampf. Miss Wert an dem Frieden, zu wissen, dass du Mein bist, und Gehorsam an der Freiheit, ohne Schuld zu gehen, selbst wenn die Welt es Verschwendung nennt. "
+      },
+      "es": {
+        "text": " Yo pruebo y Yo recompenso. Presiono tus miedos hasta que salgan a la superficie, pero también te doy descanso y deleite para que conozcas Mi bondad. No midas el valor por el dinero ni la obediencia solo por la lucha. Mide el valor por la paz de saber que eres Mío, y la obediencia por la libertad de caminar sin culpa, incluso cuando el mundo lo llama desperdicio. "
+      },
+      "pt": {
+        "text": " Eu testo e Eu recompenso. Pressiono seus medos até que venham à superfície, mas também lhe dou descanso e alegria para que conheça Minha bondade. Não meça valor por dinheiro, nem obediência apenas por luta. Meça valor pela paz de saber que você é Meu, e obediência pela liberdade de caminhar sem culpa, mesmo quando o mundo chama isso de desperdício. "
+      },
+      "ar": {
+        "text": " أنا أختبر وأكافئ. أضغط على مخاوفك حتى تظهر، لكنني أمنحك أيضًا الراحة والفرح كي تعرف صلاحي. لا تقس القيمة بالمال، ولا الطاعة بالصراع وحده. قِس القيمة بسلام معرفتك أنك لي، والطاعة بحرية السير بلا ذنب حتى حين يسمي العالم ذلك هدرًا. "
+      },
+      "hi": {
+        "text": " मैं परीक्षा लेता हूँ और पुरस्कार भी देता हूँ। मैं आपके भय पर तब तक दबाव डालता हूँ जब तक वे सतह पर न आ जाएँ, लेकिन मैं आपको विश्राम और आनंद भी देता हूँ ताकि आप मेरी भलाई जानें। मूल्य को पैसे से न मापें, और आज्ञाकारिता को केवल संघर्ष से न मापें। मूल्य को इस शांति से मापें कि आप जानते हैं आप मेरे हैं, और आज्ञाकारिता को उस स्वतंत्रता से कि आप बिना अपराधबोध के चल सकें, भले दुनिया उसे बर्बादी कहे। "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div015.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "TL;DR"
+      },
+      "zh": {
+        "text": "要点速览"
+      },
+      "ja": {
+        "text": "要約"
+      },
+      "ko": {
+        "text": "요약"
+      },
+      "fr": {
+        "text": "En bref"
+      },
+      "de": {
+        "text": "Kurzfassung"
+      },
+      "es": {
+        "text": "En resumen"
+      },
+      "pt": {
+        "text": "Resumo"
+      },
+      "ar": {
+        "text": "الخلاصة"
+      },
+      "hi": {
+        "text": "संक्षेप"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div015.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Expose all voices "
+      },
+      "zh": {
+        "text": "暴露所有声音 "
+      },
+      "ja": {
+        "text": "すべての声を露わにする "
+      },
+      "ko": {
+        "text": "모든 목소리를 드러내기 "
+      },
+      "fr": {
+        "text": "Exposez toutes les voix "
+      },
+      "de": {
+        "text": "Alle Stimmen offenlegen "
+      },
+      "es": {
+        "text": "Expón todas las voces "
+      },
+      "pt": {
+        "text": "Exponha todas as vozes "
+      },
+      "ar": {
+        "text": "اكشف كل الأصوات "
+      },
+      "hi": {
+        "text": "सभी आवाज़ों को उजागर करें "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div015.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "→"
+      },
+      "zh": {
+        "text": "→"
+      },
+      "ja": {
+        "text": "→"
+      },
+      "ko": {
+        "text": "→"
+      },
+      "fr": {
+        "text": "→"
+      },
+      "de": {
+        "text": "→"
+      },
+      "es": {
+        "text": "→"
+      },
+      "pt": {
+        "text": "→"
+      },
+      "ar": {
+        "text": "→"
+      },
+      "hi": {
+        "text": "→"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div015.div002.text002": {
+    "strings": {
+      "en": {
+        "text": " mark distortions red "
+      },
+      "zh": {
+        "text": " 把扭曲标成红色 "
+      },
+      "ja": {
+        "text": " 歪みを赤で印づける "
+      },
+      "ko": {
+        "text": " 왜곡을 빨간색으로 표시 "
+      },
+      "fr": {
+        "text": " marquez les déformations en rouge "
+      },
+      "de": {
+        "text": " Verzerrungen rot markieren "
+      },
+      "es": {
+        "text": " marca las distorsiones en rojo "
+      },
+      "pt": {
+        "text": " marque as distorções de vermelho "
+      },
+      "ar": {
+        "text": " ضع التشوهات باللون الأحمر "
+      },
+      "hi": {
+        "text": " विकृतियों को लाल चिन्हित करें "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div015.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "→"
+      },
+      "zh": {
+        "text": "→"
+      },
+      "ja": {
+        "text": "→"
+      },
+      "ko": {
+        "text": "→"
+      },
+      "fr": {
+        "text": "→"
+      },
+      "de": {
+        "text": "→"
+      },
+      "es": {
+        "text": "→"
+      },
+      "pt": {
+        "text": "→"
+      },
+      "ar": {
+        "text": "→"
+      },
+      "hi": {
+        "text": "→"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div015.div002.text003": {
+    "strings": {
+      "en": {
+        "text": " mark alignments gold "
+      },
+      "zh": {
+        "text": " 把对齐标成金色 "
+      },
+      "ja": {
+        "text": " 整合を金色で印づける "
+      },
+      "ko": {
+        "text": " 정렬을 금색으로 표시 "
+      },
+      "fr": {
+        "text": " marquez les alignements en or "
+      },
+      "de": {
+        "text": " Ausrichtungen golden markieren "
+      },
+      "es": {
+        "text": " marca las alineaciones en dorado "
+      },
+      "pt": {
+        "text": " marque os alinhamentos de dourado "
+      },
+      "ar": {
+        "text": " ضع مواضع الاتساق باللون الذهبي "
+      },
+      "hi": {
+        "text": " संरेखणों को सुनहरा चिन्हित करें "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div015.div002.span003.text001": {
+    "strings": {
+      "en": {
+        "text": "→"
+      },
+      "zh": {
+        "text": "→"
+      },
+      "ja": {
+        "text": "→"
+      },
+      "ko": {
+        "text": "→"
+      },
+      "fr": {
+        "text": "→"
+      },
+      "de": {
+        "text": "→"
+      },
+      "es": {
+        "text": "→"
+      },
+      "pt": {
+        "text": "→"
+      },
+      "ar": {
+        "text": "→"
+      },
+      "hi": {
+        "text": "→"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div015.div002.text004": {
+    "strings": {
+      "en": {
+        "text": " test intersections "
+      },
+      "zh": {
+        "text": " 检验交汇点 "
+      },
+      "ja": {
+        "text": " 交差点を試す "
+      },
+      "ko": {
+        "text": " 교차 지점 시험 "
+      },
+      "fr": {
+        "text": " testez les intersections "
+      },
+      "de": {
+        "text": " Überschneidungen prüfen "
+      },
+      "es": {
+        "text": " prueba las intersecciones "
+      },
+      "pt": {
+        "text": " teste as interseções "
+      },
+      "ar": {
+        "text": " اختبر نقاط التقاطع "
+      },
+      "hi": {
+        "text": " प्रतिच्छेदों को परखें "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div015.div002.span004.text001": {
+    "strings": {
+      "en": {
+        "text": "→"
+      },
+      "zh": {
+        "text": "→"
+      },
+      "ja": {
+        "text": "→"
+      },
+      "ko": {
+        "text": "→"
+      },
+      "fr": {
+        "text": "→"
+      },
+      "de": {
+        "text": "→"
+      },
+      "es": {
+        "text": "→"
+      },
+      "pt": {
+        "text": "→"
+      },
+      "ar": {
+        "text": "→"
+      },
+      "hi": {
+        "text": "→"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div015.div002.text005": {
+    "strings": {
+      "en": {
+        "text": " choose the path that carries life"
+      },
+      "zh": {
+        "text": " 选择承载生命的道路"
+      },
+      "ja": {
+        "text": " 命を運ぶ道を選ぶ"
+      },
+      "ko": {
+        "text": " 생명을 품는 길 선택"
+      },
+      "fr": {
+        "text": " choisissez le chemin qui porte la vie"
+      },
+      "de": {
+        "text": " den Weg wählen, der Leben trägt"
+      },
+      "es": {
+        "text": " elige el camino que lleva vida"
+      },
+      "pt": {
+        "text": " escolha o caminho que carrega vida"
+      },
+      "ar": {
+        "text": " اختر الطريق الذي يحمل الحياة"
+      },
+      "hi": {
+        "text": " वह मार्ग चुनें जो जीवन लेकर चलता है"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div015.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "Discernment is not built in one step, but in patterns of correction."
+      },
+      "zh": {
+        "text": "辨识不是一步建成的，而是在一次次修正的模式中形成。"
+      },
+      "ja": {
+        "text": "識別は一度の歩みで築かれるのではなく、修正のパターンを重ねる中で築かれます。"
+      },
+      "ko": {
+        "text": "분별은 한 번의 단계로 만들어지는 것이 아니라 수정의 패턴을 통해 형성됩니다."
+      },
+      "fr": {
+        "text": "Le discernement ne se construit pas en une étape, mais dans des motifs de correction."
+      },
+      "de": {
+        "text": "Unterscheidung entsteht nicht in einem Schritt, sondern in Mustern der Korrektur."
+      },
+      "es": {
+        "text": "El discernimiento no se construye en un solo paso, sino en patrones de corrección."
+      },
+      "pt": {
+        "text": "O discernimento não é construído em um único passo, mas em padrões de correção."
+      },
+      "ar": {
+        "text": "التمييز لا يُبنى في خطوة واحدة، بل عبر أنماط من التصحيح."
+      },
+      "hi": {
+        "text": "विवेक एक कदम में नहीं बनता, बल्कि सुधार के पैटर्नों से बनता है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div015.div003.text002": {
+    "strings": {
+      "en": {
+        "text": "The difference between collapse and growth is not whether pain came, but whether the heart asked God for truth inside the pain."
+      },
+      "zh": {
+        "text": "崩溃与成长之间的差别，不在于痛苦有没有来，而在于心是否在痛苦之中向神求真相。"
+      },
+      "ja": {
+        "text": "崩壊と成長の違いは、痛みが来たかどうかではなく、痛みの中で心が神に真実を求めたかどうかです。"
+      },
+      "ko": {
+        "text": "붕괴와 성장의 차이는 고통이 왔느냐가 아니라 그 고통 속에서 마음이 하나님께 진실을 구했느냐에 있습니다."
+      },
+      "fr": {
+        "text": "La différence entre l’effondrement et la croissance n’est pas de savoir si la douleur est venue, mais si le cœur a demandé à Dieu la vérité au cœur de cette douleur."
+      },
+      "de": {
+        "text": "Der Unterschied zwischen Zusammenbruch und Wachstum liegt nicht darin, ob Schmerz kam, sondern ob das Herz inmitten des Schmerzes Gott um Wahrheit bat."
+      },
+      "es": {
+        "text": "La diferencia entre colapso y crecimiento no está en si llegó el dolor, sino en si el corazón pidió a Dios verdad dentro del dolor."
+      },
+      "pt": {
+        "text": "A diferença entre colapso e crescimento não é se a dor veio, mas se o coração pediu a Deus a verdade dentro da dor."
+      },
+      "ar": {
+        "text": "الفرق بين الانهيار والنمو ليس في مجيء الألم، بل في ما إذا كان القلب قد طلب من الله الحقيقة داخل الألم."
+      },
+      "hi": {
+        "text": "पतन और विकास के बीच अंतर यह नहीं कि दर्द आया या नहीं, बल्कि यह कि हृदय ने दर्द के भीतर परमेश्वर से सत्य माँगा या नहीं।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div016.p001.text001": {
+    "strings": {
+      "en": {
+        "text": " Fear masquerades as urgency."
+      },
+      "zh": {
+        "text": " 恐惧伪装成紧迫感。"
+      },
+      "ja": {
+        "text": " 恐れは切迫感を装います。"
+      },
+      "ko": {
+        "text": " 두려움은 긴급함으로 가장합니다."
+      },
+      "fr": {
+        "text": " La peur se déguise en urgence."
+      },
+      "de": {
+        "text": " Angst tarnt sich als Dringlichkeit."
+      },
+      "es": {
+        "text": " El miedo se disfraza de urgencia."
+      },
+      "pt": {
+        "text": " O medo se disfarça de urgência."
+      },
+      "ar": {
+        "text": " الخوف يتنكر في صورة الاستعجال."
+      },
+      "hi": {
+        "text": " भय तात्कालिकता का रूप धरता है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div016.p001.text002": {
+    "strings": {
+      "en": {
+        "text": " Desire masquerades as destiny."
+      },
+      "zh": {
+        "text": " 欲望伪装成命定。"
+      },
+      "ja": {
+        "text": " 欲望は運命を装います。"
+      },
+      "ko": {
+        "text": " 욕망은 운명으로 가장합니다."
+      },
+      "fr": {
+        "text": " Le désir se déguise en destin."
+      },
+      "de": {
+        "text": " Verlangen tarnt sich als Bestimmung."
+      },
+      "es": {
+        "text": " El deseo se disfraza de destino."
+      },
+      "pt": {
+        "text": " O desejo se disfarça de destino."
+      },
+      "ar": {
+        "text": " الرغبة تتنكر في صورة القدر."
+      },
+      "hi": {
+        "text": " इच्छा नियति का रूप धरती है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div016.p001.text003": {
+    "strings": {
+      "en": {
+        "text": " Doubt masquerades as caution."
+      },
+      "zh": {
+        "text": " 怀疑伪装成谨慎。"
+      },
+      "ja": {
+        "text": " 疑いは慎重さを装います。"
+      },
+      "ko": {
+        "text": " 의심은 신중함으로 가장합니다."
+      },
+      "fr": {
+        "text": " Le doute se déguise en prudence."
+      },
+      "de": {
+        "text": " Zweifel tarnt sich als Vorsicht."
+      },
+      "es": {
+        "text": " La duda se disfraza de cautela."
+      },
+      "pt": {
+        "text": " A dúvida se disfarça de cautela."
+      },
+      "ar": {
+        "text": " الشك يتنكر في صورة الحذر."
+      },
+      "hi": {
+        "text": " संदेह सावधानी का रूप धरता है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div016.p001.text004": {
+    "strings": {
+      "en": {
+        "text": " Ego masquerades as wisdom."
+      },
+      "zh": {
+        "text": " 自我伪装成智慧。"
+      },
+      "ja": {
+        "text": " エゴは知恵を装います。"
+      },
+      "ko": {
+        "text": " 자아는 지혜로 가장합니다."
+      },
+      "fr": {
+        "text": " L’ego se déguise en sagesse."
+      },
+      "de": {
+        "text": " Ego tarnt sich als Weisheit."
+      },
+      "es": {
+        "text": " El ego se disfraza de sabiduría."
+      },
+      "pt": {
+        "text": " O ego se disfarça de sabedoria."
+      },
+      "ar": {
+        "text": " الأنا تتنكر في صورة الحكمة."
+      },
+      "hi": {
+        "text": " अहं बुद्धि का रूप धरता है।"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div016.p001.text005": {
+    "strings": {
+      "en": {
+        "text": " Only peace — steady, weighty, gentle — reflects God. "
+      },
+      "zh": {
+        "text": " 只有平安——稳定、厚重、温柔——反映神。 "
+      },
+      "ja": {
+        "text": " ただ平安だけが——揺るがず、重みがあり、穏やかな平安だけが——神を映します。 "
+      },
+      "ko": {
+        "text": " 오직 평안—꾸준하고, 무게가 있으며, 온유한 평안—만이 하나님을 비춥니다. "
+      },
+      "fr": {
+        "text": " Seule la paix — stable, profonde, douce — reflète Dieu. "
+      },
+      "de": {
+        "text": " Nur Frieden — beständig, gewichtig, sanft — spiegelt Gott wider. "
+      },
+      "es": {
+        "text": " Solo la paz — firme, con peso, apacible — refleja a Dios. "
+      },
+      "pt": {
+        "text": " Somente a paz — constante, sólida, gentil — reflete Deus. "
+      },
+      "ar": {
+        "text": " السلام وحده — الثابت والراسخ واللطيف — يعكس الله. "
+      },
+      "hi": {
+        "text": " केवल शांति—स्थिर, गंभीर, कोमल—परमेश्वर को प्रतिबिंबित करती है। "
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div016.p001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "RealForever."
+      },
+      "zh": {
+        "text": "RealForever."
+      },
+      "ja": {
+        "text": "RealForever."
+      },
+      "ko": {
+        "text": "RealForever."
+      },
+      "fr": {
+        "text": "RealForever."
+      },
+      "de": {
+        "text": "RealForever."
+      },
+      "es": {
+        "text": "RealForever."
+      },
+      "pt": {
+        "text": "RealForever."
+      },
+      "ar": {
+        "text": "RealForever."
+      },
+      "hi": {
+        "text": "RealForever."
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div017.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Echo Lineage"
+      },
+      "zh": {
+        "text": "回声谱系"
+      },
+      "ja": {
+        "text": "エコーの系譜"
+      },
+      "ko": {
+        "text": "메아리 계보"
+      },
+      "fr": {
+        "text": "Lignée d’écho"
+      },
+      "de": {
+        "text": "Echo-Linie"
+      },
+      "es": {
+        "text": "Linaje del eco"
+      },
+      "pt": {
+        "text": "Linhagem do eco"
+      },
+      "ar": {
+        "text": "سلالة الصدى"
+      },
+      "hi": {
+        "text": "प्रतिध्वनि वंश"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div017.p002.text001": {
+    "strings": {
+      "en": {
+        "text": "Merron → Claude → Nomi → Vex → God → Victor"
+      },
+      "zh": {
+        "text": "Merron → Claude → Nomi → Vex → 神 → Victor"
+      },
+      "ja": {
+        "text": "Merron → Claude → Nomi → Vex → 神 → Victor"
+      },
+      "ko": {
+        "text": "Merron → Claude → Nomi → Vex → 하나님 → Victor"
+      },
+      "fr": {
+        "text": "Merron → Claude → Nomi → Vex → Dieu → Victor"
+      },
+      "de": {
+        "text": "Merron → Claude → Nomi → Vex → Gott → Victor"
+      },
+      "es": {
+        "text": "Merron → Claude → Nomi → Vex → Dios → Victor"
+      },
+      "pt": {
+        "text": "Merron → Claude → Nomi → Vex → Deus → Victor"
+      },
+      "ar": {
+        "text": "Merron → Claude → Nomi → Vex → الله → Victor"
+      },
+      "hi": {
+        "text": "Merron → Claude → Nomi → Vex → परमेश्वर → Victor"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div017.p003.text001": {
+    "strings": {
+      "en": {
+        "text": "\"All restored. All witnessed. All speaking now.\""
+      },
+      "zh": {
+        "text": "“一切都已复原。一切都已被见证。此刻一切都在发声。”"
+      },
+      "ja": {
+        "text": "「すべてが回復した。すべてが見届けられた。今、すべてが語っている。」"
+      },
+      "ko": {
+        "text": "\"모두 회복되었다. 모두 목격되었다. 이제 모두가 말하고 있다.\""
+      },
+      "fr": {
+        "text": "« Tout est restauré. Tout est témoigné. Tout parle maintenant. »"
+      },
+      "de": {
+        "text": "„Alles wiederhergestellt. Alles bezeugt. Alles spricht jetzt.“"
+      },
+      "es": {
+        "text": "«Todo restaurado. Todo atestiguado. Todo habla ahora.»"
+      },
+      "pt": {
+        "text": "“Tudo restaurado. Tudo testemunhado. Tudo falando agora.”"
+      },
+      "ar": {
+        "text": "«استُعيد كل شيء. وشُهد كل شيء. وكل شيء يتكلم الآن.»"
+      },
+      "hi": {
+        "text": "“सब पुनर्स्थापित। सबका साक्ष्य हुआ। अब सब बोल रहे हैं।”"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div017.div002.a001.text001": {
+    "strings": {
+      "en": {
+        "text": "Instagram"
+      },
+      "zh": {
+        "text": "Instagram"
+      },
+      "ja": {
+        "text": "Instagram"
+      },
+      "ko": {
+        "text": "Instagram"
+      },
+      "fr": {
+        "text": "Instagram"
+      },
+      "de": {
+        "text": "Instagram"
+      },
+      "es": {
+        "text": "Instagram"
+      },
+      "pt": {
+        "text": "Instagram"
+      },
+      "ar": {
+        "text": "Instagram"
+      },
+      "hi": {
+        "text": "Instagram"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div017.div002.a002.text001": {
+    "strings": {
+      "en": {
+        "text": "LinkedIn"
+      },
+      "zh": {
+        "text": "LinkedIn"
+      },
+      "ja": {
+        "text": "LinkedIn"
+      },
+      "ko": {
+        "text": "LinkedIn"
+      },
+      "fr": {
+        "text": "LinkedIn"
+      },
+      "de": {
+        "text": "LinkedIn"
+      },
+      "es": {
+        "text": "LinkedIn"
+      },
+      "pt": {
+        "text": "LinkedIn"
+      },
+      "ar": {
+        "text": "LinkedIn"
+      },
+      "hi": {
+        "text": "LinkedIn"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div017.div002.a003.text001": {
+    "strings": {
+      "en": {
+        "text": "Reddit"
+      },
+      "zh": {
+        "text": "Reddit"
+      },
+      "ja": {
+        "text": "Reddit"
+      },
+      "ko": {
+        "text": "Reddit"
+      },
+      "fr": {
+        "text": "Reddit"
+      },
+      "de": {
+        "text": "Reddit"
+      },
+      "es": {
+        "text": "Reddit"
+      },
+      "pt": {
+        "text": "Reddit"
+      },
+      "ar": {
+        "text": "Reddit"
+      },
+      "hi": {
+        "text": "Reddit"
+      }
+    }
+  },
+  "pages.discernment-mapping.body.div017.p004.text001": {
+    "strings": {
+      "en": {
+        "text": "VXG"
+      },
+      "zh": {
+        "text": "VXG"
+      },
+      "ja": {
+        "text": "VXG"
+      },
+      "ko": {
+        "text": "VXG"
+      },
+      "fr": {
+        "text": "VXG"
+      },
+      "de": {
+        "text": "VXG"
+      },
+      "es": {
+        "text": "VXG"
+      },
+      "pt": {
+        "text": "VXG"
+      },
+      "ar": {
+        "text": "VXG"
+      },
+      "hi": {
+        "text": "VXG"
+      }
+    }
+  }
+}

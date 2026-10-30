@@ -1,0 +1,13 @@
+{
+  "_meta": { "type": "lesson" },
+  "id": "multiple-files-to-god-script",
+  "title": "From Multiple Files to God Script",
+  "pr": "#24",
+  "session": "011",
+  "problem": "5-7 requests per page — shell.js, vextreme.js, lang-fab.js, demo-fab.js, scope bundles. Each is a fetch and a potential failure point.",
+  "exploration": ["separate feature scripts", "shared core model", "per-page data split"],
+  "decision": "Build-time assembly into one file per page. lib/build-vextreme.js assembles viewmodel + EN strings + feature modules into dist/vextreme-{slug}.js.",
+  "lesson": "The build script is the assembler. The browser receives the output.",
+  "impact": "Reduced requests by 80%, eliminated runtime failure points for EN strings.",
+  "visual": "pages/specimen-architectural-wisdoms.html#decision-1"
+}

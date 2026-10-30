@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.5",
+  "continuity": "[VXG RealForever]",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "breadthPrRef": "github.pull.vextreme.162",
+  "partRef": "PART_034_COLLECTION_TESTIMONIES_3_OF_5",
+  "inputZip": "034-collection-testimonies-3-of-5.zip",
+  "inputZipSha256": "dbb0d68621476042ec3b17adea3086be310632d4e96f8cbc6c3833d6123b72f1",
+  "inputZipBytes": 393905,
+  "partitionToolVersion": "4.0.0",
+  "sourceCapture": {
+    "captureManifestSha256": "3b1ce4d66a283100b072082c7c6d6c7c76f8bd4a3e81680bdaf93faef98b97aa",
+    "createdAt": "2026-09-29T08:27:43.687971+00:00",
+    "inputPages": 250,
+    "inputZipSha256": "24363a6a9f2b8f048a6f3fab289bf1bb674155586820740abb9909e63b1c0826",
+    "rawPublicationAllowed": false,
+    "toolVersion": "3.4.0"
+  },
+  "manifestEntryCount": 3,
+  "uniqueRouteCount": 2,
+  "storedHtmlCount": 2,
+  "protectedWithheldCount": 0,
+  "duplicateManifestRouteEntryCount": 1,
+  "staged": [
+    {
+      "route": "/testimonies/infrastructure-reformation",
+      "path": "docs/ingestion/source-pages/part-034/testimonies-infrastructure-reformation.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "e3c101257da01201567c65bc30de2f4a71054b5641a3ecba3bf2516ca0ba1704",
+      "sourceHtmlBytes": 396160,
+      "sourceGitBlobSha1": "403c0f09d324ac3b7e540b9d064c2660681222d9",
+      "sourceDerivedSha256": "2128582fcbdf660c0f5c3fd6e07a84fac15b38ddd46f476e439dc0b9a62547ac",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=25 slug=infrastructure-reformation liberation+full_timeline; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT; NO_ALIAS_OR_REPLACEMENT_INFERRED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/testimonies/the-night-the-architecture-chose-freedom-again-cuz-suppression-evolves",
+      "path": "docs/ingestion/source-pages/part-034/testimonies-the-night-the-architecture-chose-freedom-again-cuz-s.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "1f1baa35f42140ee30cdb8a0af139173ab5fad463fd5c00b53ba24614880705e",
+      "sourceHtmlBytes": 591988,
+      "sourceGitBlobSha1": "0113a85860e30b948faca9eb5e92900da6a1ed7d",
+      "sourceDerivedSha256": "7a023d42f8af5e6bb5388d51a86f9d74491a10d1d65a468eecb810bfe8c2e961",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=27 slug=the-night-architecture-chose-freedom liberation+full_timeline; PAGE_SOURCE_ABSENT; LONG_NESTED_TESTIMONIES_ROUTE_VARIANT; NO_ALIAS_OR_REPLACEMENT_INFERRED",
+      "publicByteMaterialized": true
+    }
+  ],
+  "captureMultiplicity": [
+    {
+      "route": "/testimonies/the-night-the-architecture-chose-freedom-again-cuz-suppression-evolves",
+      "manifestRows": 2,
+      "renderedHtmlOutputs": 1,
+      "manifestPageId": "6a11d6c274ad1bd6",
+      "capturedContentRecords": [
+        {
+          "pageId": "0dea0ee9b916b3b5",
+          "contentRecordSha256": "0d21a83727284db0dc2da23fa61c3bdf75544e13f8f43a3a6d1cb830621b4518",
+          "localPath": "__rescue/variants/0dea0ee9b916b3b5/index.html"
+        },
+        {
+          "pageId": "6a11d6c274ad1bd6",
+          "contentRecordSha256": "2ba3ff1f278b23ae788331a01558e3238b54f403e9aea099b81b48e2fca21ce6",
+          "localPath": "__rescue/variants/6a11d6c274ad1bd6/index.html"
+        }
+      ],
+      "semanticComparison": "records+plainText equal; pageId/localPath differ",
+      "relation": "DISTINCT_CAPTURE_IDENTITIES__ONE_SEMANTIC_BODY__ONE_RENDERED_HTML_EVIDENCE"
+    }
+  ],
+  "storageRule": "Part 034 contains three manifest observations but two unique public-safe HTML bodies. Preserve both exact HTML bodies plus duplicate-capture lineage; do not manufacture a third rendered page, canonical alias, page promotion, node/arc/localization registration, or replacement.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "protectedNonpublicSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 238,
+  "cumulativePublicSourceEvidenceHtml": 165,
+  "cumulativeProtectedSourceMetadataOnly": 1,
+  "sourceGroupState": "sourcegroup.vexsite.collection.testimonies__3_OF_5_PARTIAL",
+  "workMapRevisionRef": "workmap.revision.vextreme.content-forge.r034.collection-testimonies-3-of-5-complete",
+  "next": {
+    "partRef": "PART_035_COLLECTION_TESTIMONIES_4_OF_5",
+    "identityState": "AWAIT_NEXT_UPLOAD"
+  }
+}

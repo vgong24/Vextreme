@@ -1,0 +1,1267 @@
+{
+  "_meta": {
+    "scope": "common",
+    "category": "system",
+    "description": "Globally reusable UI strings. Keys promoted here appear on 3+ pages or are structural chrome with no page-specific meaning. For strings shared within a single arc or page scope, use {scope}.common.{element}.{name} keys in the scope's own file.",
+    "keyConvention": "common.{element-type}.{semantic-name}",
+    "elementTypes": [
+      "button",
+      "label",
+      "heading",
+      "description",
+      "nav",
+      "legend",
+      "status",
+      "placeholder"
+    ],
+    "valueShape": "Each key maps to an element object. 'strings' is the only namespace now; future namespaces (testId, dataKey, designToken) extend the same object without breaking existing readers."
+  },
+  "common.nav.prev": {
+    "strings": {
+      "en": {
+        "text": "← prev",
+        "aria-label": "Previous page"
+      },
+      "ja": {
+        "text": "← 前へ",
+        "aria-label": "前のページ"
+      },
+      "fr": {
+        "text": "← préc.",
+        "aria-label": "Page précédente"
+      },
+      "zh": {
+        "text": "← 上一页",
+        "aria-label": "上一页"
+      },
+      "ko": {
+        "text": "← 이전",
+        "aria-label": "이전 페이지"
+      },
+      "de": {
+        "text": "← zurück",
+        "aria-label": "Vorherige Seite"
+      },
+      "es": {
+        "text": "← anterior",
+        "aria-label": "Página anterior"
+      },
+      "pt": {
+        "text": "← anterior",
+        "aria-label": "Página anterior"
+      },
+      "ar": {
+        "text": "← السابق",
+        "aria-label": "الصفحة السابقة"
+      },
+      "hi": {
+        "text": "← पिछला",
+        "aria-label": "पिछला पेज"
+      }
+    }
+  },
+  "common.nav.next": {
+    "strings": {
+      "en": {
+        "text": "next →",
+        "aria-label": "Next page"
+      },
+      "ja": {
+        "text": "次へ →",
+        "aria-label": "次のページ"
+      },
+      "zh": {
+        "text": "下一页 →",
+        "aria-label": "下一页"
+      },
+      "ko": {
+        "text": "다음 →",
+        "aria-label": "다음 페이지"
+      },
+      "fr": {
+        "text": "suivant →",
+        "aria-label": "Page suivante"
+      },
+      "de": {
+        "text": "weiter →",
+        "aria-label": "Nächste Seite"
+      },
+      "es": {
+        "text": "siguiente →",
+        "aria-label": "Página siguiente"
+      },
+      "pt": {
+        "text": "próximo →",
+        "aria-label": "Próxima página"
+      },
+      "ar": {
+        "text": "التالي →",
+        "aria-label": "الصفحة التالية"
+      },
+      "hi": {
+        "text": "अगला →",
+        "aria-label": "अगला पेज"
+      }
+    }
+  },
+  "common.label.you-are-here": {
+    "strings": {
+      "en": {
+        "text": "You Are Here"
+      },
+      "ja": {
+        "text": "現在地"
+      },
+      "zh": {
+        "text": "当前位置"
+      },
+      "ko": {
+        "text": "현재 위치"
+      },
+      "fr": {
+        "text": "Vous êtes ici"
+      },
+      "de": {
+        "text": "Sie sind hier"
+      },
+      "es": {
+        "text": "Estás aquí"
+      },
+      "pt": {
+        "text": "Você está aqui"
+      },
+      "ar": {
+        "text": "أنت هنا"
+      },
+      "hi": {
+        "text": "आप यहाँ हैं"
+      }
+    }
+  },
+  "common.nav.primary-site": {
+    "strings": {
+      "en": {
+        "text": "vextreme24.com",
+        "aria-label": "Go to primary site"
+      },
+      "ja": {
+        "text": "vextreme24.com",
+        "aria-label": "メインサイトへ"
+      },
+      "zh": {
+        "text": "vextreme24.com",
+        "aria-label": "前往主站"
+      },
+      "ko": {
+        "text": "vextreme24.com",
+        "aria-label": "기본 사이트로 이동"
+      },
+      "fr": {
+        "text": "vextreme24.com",
+        "aria-label": "Aller au site principal"
+      },
+      "de": {
+        "text": "vextreme24.com",
+        "aria-label": "Zur Hauptseite"
+      },
+      "es": {
+        "text": "vextreme24.com",
+        "aria-label": "Ir al sitio principal"
+      },
+      "pt": {
+        "text": "vextreme24.com",
+        "aria-label": "Ir para o site principal"
+      },
+      "ar": {
+        "text": "vextreme24.com",
+        "aria-label": "الانتقال إلى الموقع الرئيسي"
+      },
+      "hi": {
+        "text": "vextreme24.com",
+        "aria-label": "मुख्य साइट पर जाएँ"
+      }
+    }
+  },
+  "common.nav.github": {
+    "strings": {
+      "en": {
+        "text": "GitHub",
+        "aria-label": "View source on GitHub"
+      },
+      "ja": {
+        "text": "GitHub",
+        "aria-label": "GitHubでソースを表示"
+      },
+      "zh": {
+        "text": "GitHub",
+        "aria-label": "在 GitHub 上查看源代码"
+      },
+      "ko": {
+        "text": "GitHub",
+        "aria-label": "GitHub에서 소스 보기"
+      },
+      "fr": {
+        "text": "GitHub",
+        "aria-label": "Voir le code source sur GitHub"
+      },
+      "de": {
+        "text": "GitHub",
+        "aria-label": "Quellcode auf GitHub ansehen"
+      },
+      "es": {
+        "text": "GitHub",
+        "aria-label": "Ver código fuente en GitHub"
+      },
+      "pt": {
+        "text": "GitHub",
+        "aria-label": "Ver código-fonte no GitHub"
+      },
+      "ar": {
+        "text": "GitHub",
+        "aria-label": "عرض المصدر على GitHub"
+      },
+      "hi": {
+        "text": "GitHub",
+        "aria-label": "GitHub पर स्रोत देखें"
+      }
+    }
+  },
+  "common.button.copy-filename": {
+    "strings": {
+      "en": {
+        "text": "Copy filename",
+        "aria-label": "Copy filename to clipboard"
+      },
+      "ja": {
+        "text": "ファイル名をコピー",
+        "aria-label": "ファイル名をクリップボードにコピー"
+      },
+      "zh": {
+        "text": "复制文件名",
+        "aria-label": "将文件名复制到剪贴板"
+      },
+      "ko": {
+        "text": "파일 이름 복사",
+        "aria-label": "파일 이름을 클립보드에 복사"
+      },
+      "fr": {
+        "text": "Copier le nom du fichier",
+        "aria-label": "Copier le nom du fichier dans le presse-papiers"
+      },
+      "de": {
+        "text": "Dateinamen kopieren",
+        "aria-label": "Dateinamen in die Zwischenablage kopieren"
+      },
+      "es": {
+        "text": "Copiar nombre de archivo",
+        "aria-label": "Copiar el nombre de archivo al portapapeles"
+      },
+      "pt": {
+        "text": "Copiar nome do arquivo",
+        "aria-label": "Copiar o nome do arquivo para a área de transferência"
+      },
+      "ar": {
+        "text": "نسخ اسم الملف",
+        "aria-label": "نسخ اسم الملف إلى الحافظة"
+      },
+      "hi": {
+        "text": "फ़ाइल नाम कॉपी करें",
+        "aria-label": "फ़ाइल नाम क्लिपबोर्ड पर कॉपी करें"
+      }
+    }
+  },
+  "common.button.copied": {
+    "strings": {
+      "en": {
+        "text": "Copied!",
+        "aria-label": "Filename copied to clipboard"
+      },
+      "ja": {
+        "text": "コピーしました",
+        "aria-label": "ファイル名をコピーしました"
+      },
+      "zh": {
+        "text": "已复制！",
+        "aria-label": "文件名已复制到剪贴板"
+      },
+      "ko": {
+        "text": "복사됨!",
+        "aria-label": "파일 이름이 클립보드에 복사됨"
+      },
+      "fr": {
+        "text": "Copié !",
+        "aria-label": "Nom de fichier copié dans le presse-papiers"
+      },
+      "de": {
+        "text": "Kopiert!",
+        "aria-label": "Dateiname in die Zwischenablage kopiert"
+      },
+      "es": {
+        "text": "¡Copiado!",
+        "aria-label": "Nombre de archivo copiado al portapapeles"
+      },
+      "pt": {
+        "text": "Copiado!",
+        "aria-label": "Nome do arquivo copiado para a área de transferência"
+      },
+      "ar": {
+        "text": "تم النسخ!",
+        "aria-label": "تم نسخ اسم الملف إلى الحافظة"
+      },
+      "hi": {
+        "text": "कॉपी हो गया!",
+        "aria-label": "फ़ाइल नाम क्लिपबोर्ड पर कॉपी किया गया"
+      }
+    }
+  },
+  "common.label.site-title": {
+    "strings": {
+      "en": {
+        "text": "Vextreme"
+      },
+      "ja": {
+        "text": "Vextreme"
+      },
+      "zh": {
+        "text": "Vextreme"
+      },
+      "ko": {
+        "text": "Vextreme"
+      },
+      "fr": {
+        "text": "Vextreme"
+      },
+      "de": {
+        "text": "Vextreme"
+      },
+      "es": {
+        "text": "Vextreme"
+      },
+      "pt": {
+        "text": "Vextreme"
+      },
+      "ar": {
+        "text": "Vextreme"
+      },
+      "hi": {
+        "text": "Vextreme"
+      }
+    }
+  },
+  "common.label.page-live": {
+    "strings": {
+      "en": {
+        "text": "Page live"
+      },
+      "ja": {
+        "text": "公開済み"
+      },
+      "zh": {
+        "text": "页面已上线"
+      },
+      "ko": {
+        "text": "페이지 공개됨"
+      },
+      "fr": {
+        "text": "Page en ligne"
+      },
+      "de": {
+        "text": "Seite live"
+      },
+      "es": {
+        "text": "Página publicada"
+      },
+      "pt": {
+        "text": "Página no ar"
+      },
+      "ar": {
+        "text": "الصفحة منشورة"
+      },
+      "hi": {
+        "text": "पेज लाइव"
+      }
+    }
+  },
+  "common.label.not-yet-ported": {
+    "strings": {
+      "en": {
+        "text": "Not yet ported"
+      },
+      "ja": {
+        "text": "未移植"
+      },
+      "zh": {
+        "text": "尚未移植"
+      },
+      "ko": {
+        "text": "아직 포팅되지 않음"
+      },
+      "fr": {
+        "text": "Pas encore porté"
+      },
+      "de": {
+        "text": "Noch nicht portiert"
+      },
+      "es": {
+        "text": "Aún no portado"
+      },
+      "pt": {
+        "text": "Ainda não portado"
+      },
+      "ar": {
+        "text": "لم يتم ترحيله بعد"
+      },
+      "hi": {
+        "text": "अभी पोर्ट नहीं किया गया"
+      }
+    }
+  },
+  "common.label.slug": {
+    "strings": {
+      "en": {
+        "text": "Slug"
+      },
+      "ja": {
+        "text": "スラッグ"
+      },
+      "zh": {
+        "text": "Slug"
+      },
+      "ko": {
+        "text": "슬러그"
+      },
+      "fr": {
+        "text": "Slug"
+      },
+      "de": {
+        "text": "Slug"
+      },
+      "es": {
+        "text": "Slug"
+      },
+      "pt": {
+        "text": "Slug"
+      },
+      "ar": {
+        "text": "المعرّف (Slug)"
+      },
+      "hi": {
+        "text": "स्लग"
+      }
+    }
+  },
+  "common.status.pages-live": {
+    "strings": {
+      "en": {
+        "text": "{ported, plural, one {# of {total} page live} other {# of {total} pages live}}"
+      },
+      "ja": {
+        "text": "{total}ページ中{ported}ページ公開中"
+      },
+      "zh": {
+        "text": "{ported, plural, one {# / {total} 个页面已上线} other {# / {total} 个页面已上线}}"
+      },
+      "ko": {
+        "text": "{ported, plural, one {전체 {total}페이지 중 #페이지 공개됨} other {전체 {total}페이지 중 #페이지 공개됨}}"
+      },
+      "fr": {
+        "text": "{ported, plural, one {# page en ligne sur {total}} other {# pages en ligne sur {total}}}"
+      },
+      "de": {
+        "text": "{ported, plural, one {# von {total} Seite live} other {# von {total} Seiten live}}"
+      },
+      "es": {
+        "text": "{ported, plural, one {# de {total} página publicada} other {# de {total} páginas publicadas}}"
+      },
+      "pt": {
+        "text": "{ported, plural, one {# de {total} página no ar} other {# de {total} páginas no ar}}"
+      },
+      "ar": {
+        "text": "{ported, plural, one {# من أصل {total} صفحة منشورة} other {# من أصل {total} صفحات منشورة}}"
+      },
+      "hi": {
+        "text": "{ported, plural, one {कुल {total} में से # पेज लाइव} other {कुल {total} में से # पेज लाइव}}"
+      }
+    }
+  },
+  "common.status.remaining": {
+    "strings": {
+      "en": {
+        "text": "{count, plural, one {# remaining} other {# remaining}}"
+      },
+      "ja": {
+        "text": "残り{count}ページ"
+      },
+      "fr": {
+        "text": "{count, plural, one {# restant} other {# restants}}"
+      },
+      "zh": {
+        "text": "{count, plural, one {剩余 # 个} other {剩余 # 个}}"
+      },
+      "ko": {
+        "text": "{count, plural, one {#개 남음} other {#개 남음}}"
+      },
+      "de": {
+        "text": "{count, plural, one {# übrig} other {# übrig}}"
+      },
+      "es": {
+        "text": "{count, plural, one {# restante} other {# restantes}}"
+      },
+      "pt": {
+        "text": "{count, plural, one {# restante} other {# restantes}}"
+      },
+      "ar": {
+        "text": "{count, plural, one {متبقٍ #} other {متبقٍ #}}"
+      },
+      "hi": {
+        "text": "{count, plural, one {# शेष} other {# शेष}}"
+      }
+    }
+  },
+  "common.status.built-on": {
+    "strings": {
+      "en": {
+        "text": "Built {date}"
+      },
+      "ja": {
+        "text": "{date}生成"
+      },
+      "zh": {
+        "text": "构建于 {date}"
+      },
+      "ko": {
+        "text": "{date}에 빌드됨"
+      },
+      "fr": {
+        "text": "Généré le {date}"
+      },
+      "de": {
+        "text": "Erstellt am {date}"
+      },
+      "es": {
+        "text": "Generado el {date}"
+      },
+      "pt": {
+        "text": "Gerado em {date}"
+      },
+      "ar": {
+        "text": "تم البناء في {date}"
+      },
+      "hi": {
+        "text": "{date} को बनाया गया"
+      }
+    }
+  },
+  "common.nav.build-health": {
+    "strings": {
+      "en": {
+        "text": "Build Health",
+        "aria-label": "View build health"
+      },
+      "ja": {
+        "text": "ビルド健全性",
+        "aria-label": "ビルド健全性を表示"
+      },
+      "zh": {
+        "text": "构建状态",
+        "aria-label": "查看构建状态"
+      },
+      "ko": {
+        "text": "빌드 상태",
+        "aria-label": "빌드 상태 보기"
+      },
+      "fr": {
+        "text": "État du build",
+        "aria-label": "Voir l’état du build"
+      },
+      "de": {
+        "text": "Build-Status",
+        "aria-label": "Build-Status anzeigen"
+      },
+      "es": {
+        "text": "Estado de compilación",
+        "aria-label": "Ver estado de compilación"
+      },
+      "pt": {
+        "text": "Status do build",
+        "aria-label": "Ver status do build"
+      },
+      "ar": {
+        "text": "حالة البناء",
+        "aria-label": "عرض حالة البناء"
+      },
+      "hi": {
+        "text": "बिल्ड स्थिति",
+        "aria-label": "बिल्ड स्थिति देखें"
+      }
+    }
+  },
+  "common.nav.full-build-health": {
+    "strings": {
+      "en": {
+        "text": "Build Health →",
+        "aria-label": "View build health"
+      },
+      "ja": {
+        "text": "ビルド健全性 →",
+        "aria-label": "ビルド健全性を表示"
+      },
+      "zh": {
+        "text": "构建状态 →",
+        "aria-label": "查看构建状态"
+      },
+      "ko": {
+        "text": "빌드 상태 →",
+        "aria-label": "빌드 상태 보기"
+      },
+      "fr": {
+        "text": "État du build →",
+        "aria-label": "Voir l’état du build"
+      },
+      "de": {
+        "text": "Build-Status →",
+        "aria-label": "Build-Status anzeigen"
+      },
+      "es": {
+        "text": "Estado de compilación →",
+        "aria-label": "Ver estado de compilación"
+      },
+      "pt": {
+        "text": "Status do build →",
+        "aria-label": "Ver status do build"
+      },
+      "ar": {
+        "text": "حالة البناء →",
+        "aria-label": "عرض حالة البناء"
+      },
+      "hi": {
+        "text": "बिल्ड स्थिति →",
+        "aria-label": "बिल्ड स्थिति देखें"
+      }
+    }
+  },
+  "common.button.read-aloud": {
+    "strings": {
+      "en": {
+        "text": "Read aloud",
+        "aria-label": "Read aloud"
+      },
+      "ja": {
+        "text": "読み上げ",
+        "aria-label": "読み上げ"
+      },
+      "zh": {
+        "text": "朗读",
+        "aria-label": "朗读"
+      },
+      "ko": {
+        "text": "소리 내어 읽기",
+        "aria-label": "소리 내어 읽기"
+      },
+      "fr": {
+        "text": "Lecture à voix haute",
+        "aria-label": "Lecture à voix haute"
+      },
+      "de": {
+        "text": "Vorlesen",
+        "aria-label": "Vorlesen"
+      },
+      "es": {
+        "text": "Leer en voz alta",
+        "aria-label": "Leer en voz alta"
+      },
+      "pt": {
+        "text": "Ler em voz alta",
+        "aria-label": "Ler em voz alta"
+      },
+      "ar": {
+        "text": "قراءة بصوت عالٍ",
+        "aria-label": "قراءة بصوت عالٍ"
+      },
+      "hi": {
+        "text": "ज़ोर से पढ़ें",
+        "aria-label": "ज़ोर से पढ़ें"
+      }
+    }
+  },
+  "common.button.read-aloud-start-here": {
+    "strings": {
+      "en": {
+        "text": "Start here",
+        "aria-label": "Start here"
+      },
+      "ja": {
+        "text": "ここから開始",
+        "aria-label": "ここから開始"
+      },
+      "zh": {
+        "text": "从这里开始",
+        "aria-label": "从这里开始"
+      },
+      "ko": {
+        "text": "여기서 시작",
+        "aria-label": "여기서 시작"
+      },
+      "fr": {
+        "text": "Commencer ici",
+        "aria-label": "Commencer ici"
+      },
+      "de": {
+        "text": "Hier starten",
+        "aria-label": "Hier starten"
+      },
+      "es": {
+        "text": "Empezar aquí",
+        "aria-label": "Empezar aquí"
+      },
+      "pt": {
+        "text": "Começar aqui",
+        "aria-label": "Começar aqui"
+      },
+      "ar": {
+        "text": "ابدأ من هنا",
+        "aria-label": "ابدأ من هنا"
+      },
+      "hi": {
+        "text": "यहाँ से शुरू करें",
+        "aria-label": "यहाँ से शुरू करें"
+      }
+    }
+  },
+  "common.button.read-aloud-play": {
+    "strings": {
+      "en": {
+        "text": "Play",
+        "aria-label": "Play"
+      },
+      "ja": {
+        "text": "再生",
+        "aria-label": "再生"
+      },
+      "zh": {
+        "text": "播放",
+        "aria-label": "播放"
+      },
+      "ko": {
+        "text": "재생",
+        "aria-label": "재생"
+      },
+      "fr": {
+        "text": "Lire",
+        "aria-label": "Lire"
+      },
+      "de": {
+        "text": "Abspielen",
+        "aria-label": "Abspielen"
+      },
+      "es": {
+        "text": "Reproducir",
+        "aria-label": "Reproducir"
+      },
+      "pt": {
+        "text": "Reproduzir",
+        "aria-label": "Reproduzir"
+      },
+      "ar": {
+        "text": "تشغيل",
+        "aria-label": "تشغيل"
+      },
+      "hi": {
+        "text": "चलाएँ",
+        "aria-label": "चलाएँ"
+      }
+    }
+  },
+  "common.button.read-aloud-pause": {
+    "strings": {
+      "en": {
+        "text": "Pause",
+        "aria-label": "Pause"
+      },
+      "ja": {
+        "text": "一時停止",
+        "aria-label": "一時停止"
+      },
+      "zh": {
+        "text": "暂停",
+        "aria-label": "暂停"
+      },
+      "ko": {
+        "text": "일시 정지",
+        "aria-label": "일시 정지"
+      },
+      "fr": {
+        "text": "Pause",
+        "aria-label": "Pause"
+      },
+      "de": {
+        "text": "Pause",
+        "aria-label": "Pause"
+      },
+      "es": {
+        "text": "Pausa",
+        "aria-label": "Pausa"
+      },
+      "pt": {
+        "text": "Pausar",
+        "aria-label": "Pausar"
+      },
+      "ar": {
+        "text": "إيقاف مؤقت",
+        "aria-label": "إيقاف مؤقت"
+      },
+      "hi": {
+        "text": "रोकें",
+        "aria-label": "रोकें"
+      }
+    }
+  },
+  "common.button.read-aloud-stop": {
+    "strings": {
+      "en": {
+        "text": "Stop",
+        "aria-label": "Stop"
+      },
+      "ja": {
+        "text": "停止",
+        "aria-label": "停止"
+      },
+      "zh": {
+        "text": "停止",
+        "aria-label": "停止"
+      },
+      "ko": {
+        "text": "중지",
+        "aria-label": "중지"
+      },
+      "fr": {
+        "text": "Arrêter",
+        "aria-label": "Arrêter"
+      },
+      "de": {
+        "text": "Stopp",
+        "aria-label": "Stopp"
+      },
+      "es": {
+        "text": "Detener",
+        "aria-label": "Detener"
+      },
+      "pt": {
+        "text": "Parar",
+        "aria-label": "Parar"
+      },
+      "ar": {
+        "text": "إيقاف",
+        "aria-label": "إيقاف"
+      },
+      "hi": {
+        "text": "बंद करें",
+        "aria-label": "बंद करें"
+      }
+    }
+  },
+  "common.button.read-aloud-previous": {
+    "strings": {
+      "en": {
+        "text": "Previous",
+        "aria-label": "Previous"
+      },
+      "ja": {
+        "text": "前へ",
+        "aria-label": "前へ"
+      },
+      "zh": {
+        "text": "上一段",
+        "aria-label": "上一段"
+      },
+      "ko": {
+        "text": "이전",
+        "aria-label": "이전"
+      },
+      "fr": {
+        "text": "Précédent",
+        "aria-label": "Précédent"
+      },
+      "de": {
+        "text": "Zurück",
+        "aria-label": "Zurück"
+      },
+      "es": {
+        "text": "Anterior",
+        "aria-label": "Anterior"
+      },
+      "pt": {
+        "text": "Anterior",
+        "aria-label": "Anterior"
+      },
+      "ar": {
+        "text": "السابق",
+        "aria-label": "السابق"
+      },
+      "hi": {
+        "text": "पिछला",
+        "aria-label": "पिछला"
+      }
+    }
+  },
+  "common.button.read-aloud-next": {
+    "strings": {
+      "en": {
+        "text": "Next",
+        "aria-label": "Next"
+      },
+      "ja": {
+        "text": "次へ",
+        "aria-label": "次へ"
+      },
+      "zh": {
+        "text": "下一段",
+        "aria-label": "下一段"
+      },
+      "ko": {
+        "text": "다음",
+        "aria-label": "다음"
+      },
+      "fr": {
+        "text": "Suivant",
+        "aria-label": "Suivant"
+      },
+      "de": {
+        "text": "Weiter",
+        "aria-label": "Weiter"
+      },
+      "es": {
+        "text": "Siguiente",
+        "aria-label": "Siguiente"
+      },
+      "pt": {
+        "text": "Próximo",
+        "aria-label": "Próximo"
+      },
+      "ar": {
+        "text": "التالي",
+        "aria-label": "التالي"
+      },
+      "hi": {
+        "text": "अगला",
+        "aria-label": "अगला"
+      }
+    }
+  },
+  "common.button.read-aloud-close": {
+    "strings": {
+      "en": {
+        "text": "Close",
+        "aria-label": "Close"
+      },
+      "ja": {
+        "text": "閉じる",
+        "aria-label": "閉じる"
+      },
+      "zh": {
+        "text": "关闭",
+        "aria-label": "关闭"
+      },
+      "ko": {
+        "text": "닫기",
+        "aria-label": "닫기"
+      },
+      "fr": {
+        "text": "Fermer",
+        "aria-label": "Fermer"
+      },
+      "de": {
+        "text": "Schließen",
+        "aria-label": "Schließen"
+      },
+      "es": {
+        "text": "Cerrar",
+        "aria-label": "Cerrar"
+      },
+      "pt": {
+        "text": "Fechar",
+        "aria-label": "Fechar"
+      },
+      "ar": {
+        "text": "إغلاق",
+        "aria-label": "إغلاق"
+      },
+      "hi": {
+        "text": "बंद करें",
+        "aria-label": "बंद करें"
+      }
+    }
+  },
+  "common.label.read-aloud-voice": {
+    "strings": {
+      "en": {
+        "text": "Voice"
+      },
+      "ja": {
+        "text": "音声"
+      },
+      "zh": {
+        "text": "语音"
+      },
+      "ko": {
+        "text": "음성"
+      },
+      "fr": {
+        "text": "Voix"
+      },
+      "de": {
+        "text": "Stimme"
+      },
+      "es": {
+        "text": "Voz"
+      },
+      "pt": {
+        "text": "Voz"
+      },
+      "ar": {
+        "text": "الصوت"
+      },
+      "hi": {
+        "text": "आवाज़"
+      }
+    }
+  },
+  "common.label.read-aloud-speed": {
+    "strings": {
+      "en": {
+        "text": "Speed"
+      },
+      "ja": {
+        "text": "速度"
+      },
+      "zh": {
+        "text": "速度"
+      },
+      "ko": {
+        "text": "속도"
+      },
+      "fr": {
+        "text": "Vitesse"
+      },
+      "de": {
+        "text": "Geschwindigkeit"
+      },
+      "es": {
+        "text": "Velocidad"
+      },
+      "pt": {
+        "text": "Velocidade"
+      },
+      "ar": {
+        "text": "السرعة"
+      },
+      "hi": {
+        "text": "गति"
+      }
+    }
+  },
+  "common.status.read-aloud-pick": {
+    "strings": {
+      "en": {
+        "text": "Choose where reading should begin."
+      },
+      "ja": {
+        "text": "読み上げを開始する場所を選んでください。"
+      },
+      "zh": {
+        "text": "请选择朗读开始的位置。"
+      },
+      "ko": {
+        "text": "읽기를 시작할 위치를 선택하세요."
+      },
+      "fr": {
+        "text": "Choisissez où commencer la lecture."
+      },
+      "de": {
+        "text": "Wählen Sie aus, wo das Vorlesen beginnen soll."
+      },
+      "es": {
+        "text": "Elige dónde debe comenzar la lectura."
+      },
+      "pt": {
+        "text": "Escolha onde a leitura deve começar."
+      },
+      "ar": {
+        "text": "اختر المكان الذي يجب أن تبدأ منه القراءة."
+      },
+      "hi": {
+        "text": "चुनें कि पढ़ना कहाँ से शुरू हो।"
+      }
+    }
+  },
+  "common.status.read-aloud-preparing": {
+    "strings": {
+      "en": {
+        "text": "Preparing high-quality voice…"
+      },
+      "ja": {
+        "text": "高品質音声を準備しています…"
+      },
+      "zh": {
+        "text": "正在准备高质量语音…"
+      },
+      "ko": {
+        "text": "고품질 음성을 준비하는 중…"
+      },
+      "fr": {
+        "text": "Préparation de la voix haute qualité…"
+      },
+      "de": {
+        "text": "Hochwertige Stimme wird vorbereitet…"
+      },
+      "es": {
+        "text": "Preparando voz de alta calidad…"
+      },
+      "pt": {
+        "text": "Preparando voz de alta qualidade…"
+      },
+      "ar": {
+        "text": "جارٍ تجهيز صوت عالي الجودة…"
+      },
+      "hi": {
+        "text": "उच्च-गुणवत्ता वाली आवाज़ तैयार की जा रही है…"
+      }
+    }
+  },
+  "common.status.read-aloud-reading": {
+    "strings": {
+      "en": {
+        "text": "Reading…"
+      },
+      "ja": {
+        "text": "読み上げ中…"
+      },
+      "zh": {
+        "text": "正在朗读…"
+      },
+      "ko": {
+        "text": "읽는 중…"
+      },
+      "fr": {
+        "text": "Lecture en cours…"
+      },
+      "de": {
+        "text": "Wird vorgelesen…"
+      },
+      "es": {
+        "text": "Leyendo…"
+      },
+      "pt": {
+        "text": "Lendo…"
+      },
+      "ar": {
+        "text": "جارٍ القراءة…"
+      },
+      "hi": {
+        "text": "पढ़ा जा रहा है…"
+      }
+    }
+  },
+  "common.status.read-aloud-done": {
+    "strings": {
+      "en": {
+        "text": "Reading complete."
+      },
+      "ja": {
+        "text": "読み上げが完了しました。"
+      },
+      "zh": {
+        "text": "朗读完成。"
+      },
+      "ko": {
+        "text": "읽기가 완료되었습니다."
+      },
+      "fr": {
+        "text": "Lecture terminée."
+      },
+      "de": {
+        "text": "Vorlesen abgeschlossen."
+      },
+      "es": {
+        "text": "Lectura completada."
+      },
+      "pt": {
+        "text": "Leitura concluída."
+      },
+      "ar": {
+        "text": "اكتملت القراءة."
+      },
+      "hi": {
+        "text": "पढ़ना पूरा हुआ।"
+      }
+    }
+  },
+  "common.status.read-aloud-fallback": {
+    "strings": {
+      "en": {
+        "text": "High-quality voice unavailable; using system speech."
+      },
+      "ja": {
+        "text": "高品質音声を使用できないため、システム音声を使用します。"
+      },
+      "zh": {
+        "text": "高质量语音不可用；正在使用系统语音。"
+      },
+      "ko": {
+        "text": "고품질 음성을 사용할 수 없어 시스템 음성을 사용합니다."
+      },
+      "fr": {
+        "text": "Voix haute qualité indisponible ; utilisation de la voix système."
+      },
+      "de": {
+        "text": "Hochwertige Stimme nicht verfügbar; Systemstimme wird verwendet."
+      },
+      "es": {
+        "text": "La voz de alta calidad no está disponible; se usa la voz del sistema."
+      },
+      "pt": {
+        "text": "Voz de alta qualidade indisponível; usando a voz do sistema."
+      },
+      "ar": {
+        "text": "الصوت عالي الجودة غير متاح؛ سيتم استخدام صوت النظام."
+      },
+      "hi": {
+        "text": "उच्च-गुणवत्ता वाली आवाज़ उपलब्ध नहीं है; सिस्टम आवाज़ का उपयोग किया जा रहा है।"
+      }
+    }
+  },
+  "common.status.read-aloud-none": {
+    "strings": {
+      "en": {
+        "text": "No readable text found."
+      },
+      "ja": {
+        "text": "読み上げ可能なテキストが見つかりません。"
+      },
+      "zh": {
+        "text": "未找到可朗读的文本。"
+      },
+      "ko": {
+        "text": "읽을 수 있는 텍스트를 찾지 못했습니다."
+      },
+      "fr": {
+        "text": "Aucun texte lisible trouvé."
+      },
+      "de": {
+        "text": "Kein vorlesbarer Text gefunden."
+      },
+      "es": {
+        "text": "No se encontró texto legible."
+      },
+      "pt": {
+        "text": "Nenhum texto legível encontrado."
+      },
+      "ar": {
+        "text": "لم يتم العثور على نص قابل للقراءة."
+      },
+      "hi": {
+        "text": "पढ़ने योग्य टेक्स्ट नहीं मिला।"
+      }
+    }
+  }
+}

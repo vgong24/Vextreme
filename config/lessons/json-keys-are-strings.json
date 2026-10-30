@@ -1,0 +1,13 @@
+{
+  "_meta": { "type": "lesson" },
+  "id": "json-keys-are-strings",
+  "title": "JSON Keys Are Strings — The Mitigation Is Validation",
+  "pr": "#24",
+  "session": "011",
+  "problem": "Named constants (Category.DEMO, Feature.LANG) work in JavaScript but not in JSON. Slug keys in index.json are raw strings — they can drift from nodes.json without a type error.",
+  "exploration": ["JSON schema validation", "build-time constant injection", "lint rules for JSON"],
+  "decision": "Accept that JSON is string-based. Mitigate drift with lib/check-key-alignment.js: a non-blocking CI check that compares slug and arc keys across nodes.json, arcs-v2.json, and index.json.",
+  "lesson": "JSON is string-based. Keys are strings. This is unavoidable. The mitigation is validation, not elimination.",
+  "impact": "Key drift caught on every PR via GitHub Actions comment. No false-blocking CI gate.",
+  "visual": "pages/specimen-architectural-wisdoms.html#decision-4"
+}

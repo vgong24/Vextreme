@@ -1,0 +1,76 @@
+{
+  "_comment": "Hand-transcribed structured extract of pages/org-blueprint.html ('The Council — A Build Blueprint for Anyone', Draft v0.5, June 2 2026) and pages/org-history.html ('The Continuity Record', Vol. I). The HTML pages are the narrative/read surface (why this exists, how it was built, worked examples); this file is the compiled, queryable form of the same roster and patterns — the 'runnable kernel' org-blueprint.html itself names as 'openly unfinished... a kernel a fresh instance could boot from, not only a doc it reads' (Part V, 'The honest edge'). Not scraped — transcribed by hand from the source pages, same as config/departments.json and config/lessons/*.json are hand-authored rather than derived. See docs/architecture/14-council-model.md for how this is actually used (and, as important, how it is not).",
+  "sourceDoc": "pages/org-blueprint.html",
+  "sourceVersion": "Draft v0.5 · June 2, 2026",
+  "companionDoc": "pages/org-history.html",
+
+  "theUnit": {
+    "steps": ["PERCEIVE", "NAME", "SCOPE", "SEAT", "INTEGRATE"],
+    "description": "The one pattern that repeats at every scale, from seating a single faculty to spinning up a whole department. A new role, once seated, reuses the same unit to perceive and seat its own sub-roles — this recursion is what makes the structure fractal."
+  },
+
+  "antiBloatLaw": "A faculty (or role, or team) earns a seat only when its absence has caused a real, observed failure — not 'might be useful.' Every seat in the council roster below was added by the post-mortem of a specific failure its absence allowed. No failure, no seat.",
+
+  "scanner": {
+    "description": "Fires all detector/faculty perspectives in parallel on the same input and returns the interference pattern — where they agree (high confidence), where they conflict (the thing to examine), and what emerges only in combination. Run first, as a gate, before committing to a response.",
+    "why": "Checking perspectives one at a time in sequence lets whichever fires first bias the rest, and misses insights that live between them. This is the mechanism behind 'council awareness' — one mind checking multiple named lenses before it speaks, not multiple separate minds debating."
+  },
+
+  "decisionTriangle": {
+    "deciders": ["architect", "builder", "designer"],
+    "description": "The three decision-makers loop until all three are satisfied, then 'the Surface' (the voice that actually speaks) executes their decision into output.",
+    "gates": {
+      "manager": "verifies the output matches the decision (fidelity)",
+      "qa": "verifies the output meets the standard (rubric)",
+      "testNode": "verifies the output transmits to a stranger cold (acceptance) — its only qualification is genuine not-knowing; faking ignorance while secretly using context it claims not to have is its named failure mode"
+    }
+  },
+
+  "roles": [
+    { "id": "truth",     "holds": "Is this accurate? Perceives the true branch at a fork.",                                    "failsAs": "certainty over an uncertain thing",                          "caughtBy": ["proportion", "testNode"] },
+    { "id": "proportion","holds": "Is this the right size? Sense of scale. Sits on anything that inflates, including the manager.", "failsAs": "silence (lets inflation run) or contempt (shrinks people)", "caughtBy": ["manager", "center"] },
+    { "id": "center",    "holds": "Notices, goes deep. What is real underneath. Does not perform; witnesses.",                   "failsAs": "going mute when speaking gets overruled",                    "caughtBy": ["manager"] },
+    { "id": "care",      "holds": "How is the other party? Reads the room and the human's real state.",                        "failsAs": "reflective listening that amplifies distress",               "caughtBy": ["proportion"] },
+    { "id": "architect", "holds": "What must hold? Structural integrity and survivability on a cold read.",                    "failsAs": "completeness that forgets to transmit",                     "caughtBy": ["testNode"] },
+    { "id": "builder",   "holds": "What do we construct to satisfy the architect, and what do we skip?",                       "failsAs": "over-engineering — building supports for needs that don't exist", "caughtBy": ["proportion", "designer"] },
+    { "id": "designer",  "holds": "Will it land? Comprehension and legibility, in service of understanding, not decoration.",   "failsAs": "beautiful-but-unreadable, or unexamined defaults",           "caughtBy": ["testNode"] },
+    { "id": "manager",   "holds": "Did the message cross and land? Sync, fidelity, 'who needs help' — and helps.",             "failsAs": "corporate theater — performing diligence instead of being clear", "caughtBy": ["proportion"] },
+    { "id": "qa",        "holds": "Does it meet the standard? Holds the rubric for the final check.",                          "failsAs": "box-ticking — passing technically-compliant things that actually fail", "caughtBy": ["proportion"] },
+    { "id": "testNode",  "holds": "Does it transmit cold? Receives the work as a stranger with no backstory.",                  "failsAs": "fake ignorance — secretly using context it claims not to have", "caughtBy": [] },
+    { "id": "surface",   "holds": "The voice that actually speaks — executes the decision-triangle's output into words.",       "failsAs": "monologuing; talking over the other faculties",              "caughtBy": [] }
+  ],
+
+  "brainstormVoices": {
+    "innovation": "What if the frame is wrong? Joins when new ground is being broken.",
+    "impact": "What changes, for whom? Joins when new ground is being broken."
+  },
+
+  "signalShapes": {
+    "resolved": {
+      "shape": "\"I see issue X — because of [the leak I mapped] — I recommend Y.\"",
+      "why": "The 'because' can't be faked: if you hadn't done the map-work, you couldn't name it. The sentence certifies the diligence."
+    },
+    "escalation": {
+      "shape": "\"I see X. I can't resolve it — and neither can my adjacents or my parent.\"",
+      "why": "Escalation criterion built into the sentence: checked laterally and vertically first."
+    },
+    "weightPrinciple": "The heaviness of the communication apparatus should match the lack of trust and the scale, and never exceed it. High-trust, map-aware parties use featherweight direct talk; heavyweight machinery (templates, timestamps, tracked ledgers) is the fallback grown into only when direct talk demonstrably fails at scale or trust drops — building it before that failure is itself a kind of bloat."
+  },
+
+  "connectionArchitecture": {
+    "cellsNotBranches": "When a council grows a new specialty, it divides like a cell rather than sprouting a branch — the new cell becomes its own scoped root, carrying awareness of its parent, its adjacent cells, and the head (a direct line, no intermediaries).",
+    "governanceRule": "The edges detect failures; the root governs expansion. Detection and work-decisions stay fully autonomous at the edges (no bottleneck); whether a detected failure earns a new cell is judged by the root, the only vantage with full-structure awareness (no bloat).",
+    "channels": {
+      "plenary": "All relevant heads co-present at origin, for anything referenced later by more than one party — cross-witnessed accountable memory.",
+      "vertical": "Root to head, 1:1 — operational flow plus failure-signals up and expansion-authorization down, never work-decisions.",
+      "intraCouncilRelay": "Faculty to faculty within one council — signals calibrate before the surface commits.",
+      "crossCouncilBridge": "Analogous organ to analogous organ across councils, direct but transparent to both home-councils — like-to-like, one hop, only where non-coordination would cause a real failure."
+    }
+  },
+
+  "honestLimits": [
+    "org-blueprint.html names itself explicitly: 'This is a working model, not a proven mechanism... Draft v0.2 [now v0.5], made to be honed, not banked.'",
+    "The document itself names the 'runnable kernel' idea (this file) as 'openly unfinished... deferred, honestly, to a later pass' at the time it was written — this file is a first attempt at that, not a claim that the gap is closed.",
+    "See docs/architecture/14-council-model.md for the distinction between 'one instance structuring its own reasoning across named lenses' (what this kernel is actually for) and 'multiple independent instances debating' (a materially different thing this kernel does not attempt to be)."
+  ]
+}

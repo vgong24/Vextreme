@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.1",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "partRef": "PART_015_INFO",
+  "inputZip": "015-info.zip",
+  "inputZipSha256": "8b277fcd1c9036e276edbc2136eda4a828d820a891babe892b4407cd998f173d",
+  "manifestEntryCount": 4,
+  "storedHtmlCount": 4,
+  "staged": [
+    {
+      "route": "/about-me",
+      "path": "docs/ingestion/source-pages/part-015/about-me.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "ef0f5b16029812d95c8051cfed652a4b8413c23954bde3cd1c12bf31b2d66c7c",
+      "sourceDerivedSha256": "328bf390e5e3625ddc50015acbbfcf8903055003abbd9ac85a20a3fcfbaf951b",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NONEMPTY_UNCURATED_CONTEXT_PAGE; CANONICAL_CLASS_DEFERRED"
+    },
+    {
+      "route": "/contact",
+      "path": "docs/ingestion/source-pages/part-015/contact.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "4231e9ca35bb86954646e546dbaa71e8000759aef6693e6023a45ff1c1558ea8",
+      "sourceDerivedSha256": "fceb509dc465fe576413eda3a79299ad8c790f8c94a95fda0aacc0e4af76396e",
+      "disposition": "WIP_UNSORTED_INTAKE",
+      "placementState": "NO_EXACT_DESTINATION_PAGE; OPERATIONAL_CONTEXT_ROUTE_CLASS_DEFERRED"
+    },
+    {
+      "route": "/terms-and-service",
+      "path": "docs/ingestion/source-pages/part-015/terms-and-service.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "081d1b37146a42d8561ceaeb4b758e963d89ae43534be3c7563469df8346f4d0",
+      "sourceDerivedSha256": "d03331f58cd677a25ae5c4a8024082b9eef318d373b46d71526609fd559fed99",
+      "disposition": "HOLD",
+      "placementState": "SOURCE_LEGAL_COPY_PRESERVED; CURRENT_PUBLIC_LEGAL_ADOPTION_REQUIRES_LATER_GOVERNED_REVIEW"
+    },
+    {
+      "route": "/question-answers",
+      "path": "docs/ingestion/source-pages/part-015/question-answers.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "0abc6da4d5c8e5eaaab1e1bfa59a402c3a4b4c40b73b71198d0de6f8ab27dfa3",
+      "sourceDerivedSha256": "2fd555aa83a72dc4c5be0a572d43834f3db0740489b42aae97b7da2158c934f7",
+      "disposition": "WIP_UNSORTED_INTAKE",
+      "placementState": "NO_EXACT_DESTINATION_PAGE; CROSS_HUB_CONTEXT_CLASS_DEFERRED"
+    }
+  ],
+  "storageRule": "All derived HTML is preserved as routed source evidence. Placement/projection remains a later effect; source evidence is not scanned as active pages or wip runtime.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 94
+}

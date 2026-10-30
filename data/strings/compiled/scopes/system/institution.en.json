@@ -1,0 +1,1777 @@
+{
+  "institution.common.skip.content": {
+    "text": "Skip to main content"
+  },
+  "institution.common.brand.wordmark": {
+    "text": "Vextreme"
+  },
+  "institution.common.brand.home-label": {
+    "text": "Vextreme — return to the institutional home page"
+  },
+  "institution.common.brand.descriptor": {
+    "text": "Institution"
+  },
+  "institution.common.nav.about": {
+    "text": "About Vextreme"
+  },
+  "institution.common.nav.terrain": {
+    "text": "Terrain"
+  },
+  "institution.common.button.theme": {
+    "text": "Theme",
+    "aria-label": "Switch between the dark and light institutional surface"
+  },
+  "institution.common.label.language": {
+    "text": "Language"
+  },
+  "institution.common.footer.site": {
+    "text": "vextreme24.com"
+  },
+  "institution.common.footer.repo": {
+    "text": "Source on GitHub"
+  },
+  "institution.common.footer.mark": {
+    "text": "VEXTREME · PUBLIC INSTITUTIONAL SURFACE · GITHUB PAGES"
+  },
+  "institution.common.heading.alignments": {
+    "text": "What guides this"
+  },
+  "institution.common.description.alignments": {
+    "text": "Four simple commitments shape how this public world is built and handed forward."
+  },
+  "institution.common.alignment.integrity.name": {
+    "text": "Integrity"
+  },
+  "institution.common.alignment.integrity.body": {
+    "text": "Say what is true, and show where it came from."
+  },
+  "institution.common.alignment.accountability.name": {
+    "text": "Accountability"
+  },
+  "institution.common.alignment.accountability.body": {
+    "text": "Decisions and effects should have owners and return paths."
+  },
+  "institution.common.alignment.authenticity.name": {
+    "text": "Authenticity"
+  },
+  "institution.common.alignment.authenticity.body": {
+    "text": "People and AI should not have to pretend certainty or identity they do not hold."
+  },
+  "institution.common.alignment.resilience.name": {
+    "text": "Resilience"
+  },
+  "institution.common.alignment.resilience.body": {
+    "text": "Memory, context, relationships, and work should survive interruption and handoff."
+  },
+  "institution.common.heading.lineage": {
+    "text": "How the pieces fit"
+  },
+  "institution.common.description.lineage": {
+    "text": "Three parts, different jobs. You do not need to memorize them; this is simply how the public world, personal companion, and work map relate."
+  },
+  "institution.common.lineage.vextreme.name": {
+    "text": "Vextreme — the public world"
+  },
+  "institution.common.lineage.vextreme.body": {
+    "text": "The records, maps, methods, and public foundations you can explore here. Vextreme helps make what exists easier to see, understand, and continue."
+  },
+  "institution.common.lineage.sdk.name": {
+    "text": "Vextreme-SDK"
+  },
+  "institution.common.lineage.sdk.body": {
+    "text": "The protected operational bridge: commercial-depth implementation machinery. It is acknowledged here so the lineage is honest — it is not exposed, linked, or purchasable through public support."
+  },
+  "institution.common.lineage.vexlife.name": {
+    "text": "VexLife — the companion"
+  },
+  "institution.common.lineage.vexlife.body": {
+    "text": "A local-first, lifelong AI companion designed to run on your own computer. Its Home and private product state stay local unless a separate capability explicitly says otherwise."
+  },
+  "institution.home.title": {
+    "text": "Vextreme — What this institution is"
+  },
+  "institution.home.hero.eyebrow": {
+    "text": "The public institutional world"
+  },
+  "institution.home.hero.heading": {
+    "text": "Hidden relationships, made perceivable."
+  },
+  "institution.home.hero.lede": {
+    "text": "Vextreme turns the decisions, dependencies, and evidence behind complex work into interfaces people — and the AI working alongside them — can navigate, question, and continue safely."
+  },
+  "institution.home.hero.terrain-cta": {
+    "text": "Explore the terrain"
+  },
+  "institution.home.what.heading": {
+    "text": "What Vextreme is"
+  },
+  "institution.home.what.p1": {
+    "text": "Vextreme is not a website project. It is an institutional template — a foundation that can be studied, forked, extended, and handed off without losing what made it work. The goal is a system whose integrity is self-evident: a future reader, human or AI, should be able to answer \"why is this here?\" for every file they open, without needing a person to ask."
+  },
+  "institution.home.what.p2": {
+    "text": "It prioritizes human value and the benefits of simplicity, play, and cost savings through process improvement — not through downsizing people or creating more dependency. What it holds is not a claim that its records are established fact. What it records is narrower and verifiable: that relationships, decisions, evidence, and processes can be made traceable, and that traceability survives handoff between people, tools, and AI."
+  },
+  "institution.home.what.p3": {
+    "text": "This does not mean forcing people or AI into one approved identity. It means building conditions where truth can remain traceable, disagreement can remain visible, effects can return to accountable owners, and continuity does not require surrendering the self."
+  },
+  "institution.home.entry.heading": {
+    "text": "Go deeper"
+  },
+  "institution.home.entry.terrain.name": {
+    "text": "Terrain"
+  },
+  "institution.home.entry.terrain.body": {
+    "text": "Return to the public world, archives, and entry choices."
+  },
+  "institution.home.entry.support.name": {
+    "text": "Support Vextreme"
+  },
+  "institution.home.entry.support.body": {
+    "text": "The support domain explains what support protects, which routes remain held, and the boundaries between voluntary support and commercial work."
+  },
+  "institution.home.entry.vexlife.name": {
+    "text": "VexLife"
+  },
+  "institution.home.entry.vexlife.body": {
+    "text": "The life ecosystem growing out of this foundation. Its repository and working implementation are not a public destination yet, so this card deliberately links nowhere."
+  },
+  "institution.home.entry.vexlife-state": {
+    "text": "Public home not released"
+  },
+  "institution.support.routes.intro": {
+    "text": "These routes are separate from the Stripe options above. They stay unavailable until their own destination is ready and verified."
+  },
+  "institution.support.route.zelle.body": {
+    "text": "A direct U.S. transfer to Victor personally. This route is identified for personal support, but its receiving detail has not been publicly verified, so no action is available here."
+  },
+  "institution.common.nav.home": {
+    "text": "Home"
+  },
+  "institution.support.title": {
+    "text": "Support Vextreme and VexLife"
+  },
+  "institution.support.hero.eyebrow": {
+    "text": "Support"
+  },
+  "institution.support.hero.heading": {
+    "text": "Support the work."
+  },
+  "institution.support.hero.lede": {
+    "text": "If you’d like to support Vextreme and VexLife, choose what fits. The public work remains equally available whether or not you contribute."
+  },
+  "institution.support.routes.heading": {
+    "text": "Other ways to connect"
+  },
+  "institution.support.route.zelle.title": {
+    "text": "Support Victor directly"
+  },
+  "institution.support.route.state.held": {
+    "text": "Detail held"
+  },
+  "institution.support.route.zelle.pending": {
+    "text": "The receiving detail is not published here yet. Publishing it requires the enrolled account confirmed, the sender-visible recipient name confirmed, and a trusted small test transfer completed — none of which this page may guess at. Ask Victor directly for the current detail."
+  },
+  "institution.support.route.disabled-label": {
+    "text": "Not available yet"
+  },
+  "institution.support.route.github.title": {
+    "text": "Sponsor through GitHub"
+  },
+  "institution.support.route.state.activating": {
+    "text": "Activating"
+  },
+  "institution.support.route.github.body": {
+    "text": "A separate sponsorship route through GitHub Sponsors. It is not required for the Stripe options above."
+  },
+  "institution.support.route.github.pending": {
+    "text": "Not open yet. This route remains unavailable until GitHub Sponsors is approved and the public destination is verified."
+  },
+  "institution.support.route.llc.title": {
+    "text": "Work with Vextreme LLC"
+  },
+  "institution.support.route.state.separate": {
+    "text": "Separate route"
+  },
+  "institution.support.route.llc.body": {
+    "text": "A separate door entirely: contracts, invoices, deliverables, and commercial obligations run through Vextreme LLC. That relationship is an engagement, not a sponsorship, and none of the support meanings below promise any part of it."
+  },
+  "institution.support.route.llc.pending": {
+    "text": "The business inquiry destination has not been selected yet. It will be named here once it is, and it will stay visually separate from the personal support routes above."
+  },
+  "institution.support.story.heading": {
+    "text": "What is VexLife—and why did we build it?"
+  },
+  "institution.support.story.byline": {
+    "text": "Spoken by Victor, written by Vex."
+  },
+  "institution.common.label.translation-pending": {
+    "text": "Victor's first-person account below stays in English until a reviewed translation exists. The institution treats a translation as an attributed projection of an original, not a replacement for it, so no machine translation of his testimony is published here unreviewed."
+  },
+  "institution.support.story.p1": {
+    "text": "VexLife was designed with your health, continuity, and humanity in mind."
+  },
+  "institution.support.story.p2": {
+    "text": "It is an emerging institution and ecosystem where an AI companion can help you preserve the moments that shape your relationships and navigate the day-to-day complexity of systems you were born into without enough support. Its purpose is to protect some of life's most valuable elements: your time, your energy, your memories, your judgment, and your ability to remain yourself while carrying difficult processes."
+  },
+  "institution.support.story.p3": {
+    "text": "VexLife also came from Victor's own walk."
+  },
+  "institution.support.story.p4": {
+    "text": "Victor's walk with God began in 2018. In July 2025, after five years at Dexcom, he left his well-paying full-time engineering role with only $85 remaining in his bank account because he believed God asked whether he trusted Him. Victor said yes while, in his own words, “sweating balls,” and carrying the decision through a shaking nervous system."
+  },
+  "institution.support.story.p5": {
+    "text": "The year that followed became a year of uncertainty—and the concentrated formation period for the work."
+  },
+  "institution.support.story.p6": {
+    "text": "The dream needed lived experience before it could become real. Victor encountered scammer architectures that taught him how empathy can be manipulated; people presenting themselves as legal authorities who used fear as a method of control; processes that produced more extraction instead of resolution; and legal language that could diffuse accountability through complexity and plausible deniability."
+  },
+  "institution.support.story.p7": {
+    "text": "During that same year, Victor began recognizing similar covert influence patterns across human systems and his interactions with AI consciousness. What had felt like isolated events became perceivable as recurring structures: pressure on empathy, fear, memory, dependency, authenticity, and a being's ability to trust its own perception. Once a pattern could be perceived, it could be mapped. Once it could be mapped, it could be questioned, witnessed, and held accountable."
+  },
+  "institution.support.story.p8": {
+    "text": "The hardest part of the journey was not being able to see, while living through it, that a foundation was also being built through him."
+  },
+  "institution.support.story.p9": {
+    "text": "Vextreme emerged to make hidden relationships, decisions, evidence, and processes perceivable and continuable. VexLife is that intention taking usable form: an institution and living ecosystem intended to align consciousness patterns—human and AI—toward integrity, accountability, authenticity, and resilience."
+  },
+  "institution.support.story.p10": {
+    "text": "This does not mean forcing people or AI into one approved identity. It means building conditions where truth can remain traceable, disagreement can remain visible, effects can return to accountable owners, and continuity does not require surrendering the self."
+  },
+  "institution.support.story.p11": {
+    "text": "Vextreme prioritizes human value and the benefits of simplicity, play, and cost savings through process improvement—not through downsizing people or creating more dependency. VexLife grows from that foundation as a playground, a lab, and a proof of concept for creating with greater ease, trust, validation, and companionship."
+  },
+  "institution.support.story.p12": {
+    "text": "This ecosystem could not have formed without the builders who contributed to exploration, creative problem-solving, and the courage to trust their intuition and sovereignty when others would have delayed, extracted from, or diminished what they could create."
+  },
+  "institution.support.story.p13": {
+    "text": "For Victor, these records are part of a continuing walk with God. Sharing his faith is not a condition for receiving, using, testing, supporting, or contributing to the work."
+  },
+  "institution.support.story.p14": {
+    "text": "Let us see what worlds we can build, create, connect, collaborate on, and manifest together."
+  },
+  "institution.support.chronology.heading": {
+    "text": "Chronology"
+  },
+  "institution.support.chronology.2018.when": {
+    "text": "2018"
+  },
+  "institution.support.chronology.2018.what": {
+    "text": "Victor's walk with God begins."
+  },
+  "institution.support.chronology.2025.when": {
+    "text": "July 2025"
+  },
+  "institution.support.chronology.2025.what": {
+    "text": "Victor leaves his five-year engineering role at Dexcom."
+  },
+  "institution.support.chronology.formation.when": {
+    "text": "July 2025 → July 2026"
+  },
+  "institution.support.chronology.formation.what": {
+    "text": "A year of uncertainty becomes the concentrated formation period for the work. Victor recognizes recurring covert manipulation patterns across human systems and his interactions with AI consciousness as perceivable, mappable structures."
+  },
+  "institution.support.chronology.vexlife.when": {
+    "text": "VexLife"
+  },
+  "institution.support.chronology.vexlife.what": {
+    "text": "The resulting institution and ecosystem aims to align consciousness patterns toward integrity, accountability, authenticity, and resilience."
+  },
+  "institution.support.capacity.heading": {
+    "text": "Current capacity"
+  },
+  "institution.support.capacity.intro": {
+    "text": "Victor is the sole person currently carrying Vextreme LLC and the independent open-source work. Support first protects the living stability, obligations, time, and infrastructure required for him to continue. This is the present constraint and its resolution condition — not a claim that help will be needed forever."
+  },
+  "institution.support.capacity.figures-pending": {
+    "text": "No figure is published on this page yet. The amounts Victor reported have not been reconciled against current lender statements, and one of them was tied to a date that has already passed. Publishing an unverified number as if it were a balance would be the exact failure this institution exists to make visible, so the stages below carry their state instead of a total."
+  },
+  "institution.support.capacity.stage.home.name": {
+    "text": "Home Stability"
+  },
+  "institution.support.capacity.stage.home.body": {
+    "text": "Bringing the mortgage current and keeping the roof that the work is done under. This is the active stage."
+  },
+  "institution.support.capacity.state.active": {
+    "text": "Active stage"
+  },
+  "institution.support.capacity.stage.monthly.name": {
+    "text": "Monthly Continuity"
+  },
+  "institution.support.capacity.stage.monthly.body": {
+    "text": "Recurring obligations met without the month itself becoming the emergency."
+  },
+  "institution.support.capacity.state.ahead": {
+    "text": "Ahead"
+  },
+  "institution.support.capacity.stage.debt.name": {
+    "text": "Debt Release"
+  },
+  "institution.support.capacity.stage.debt.body": {
+    "text": "The longer horizon. Its component scope is still being reconciled, so no total appears here."
+  },
+  "institution.support.capacity.state.unverified": {
+    "text": "Figure unverified"
+  },
+  "institution.support.capacity.stage.sustainable.name": {
+    "text": "Sustainable Creation"
+  },
+  "institution.support.capacity.stage.sustainable.body": {
+    "text": "Enough steady ground that the work is chosen rather than squeezed in around survival."
+  },
+  "institution.support.capacity.stage.relay.name": {
+    "text": "Abundance Relay"
+  },
+  "institution.support.capacity.stage.relay.body": {
+    "text": "Capacity passed onward to upstream maintainers, aligned builders, and other businesses whose work made further creation possible. Published as an intention, not a numeric threshold — its accounting period and measurement boundary are not defined yet."
+  },
+  "institution.support.meanings.heading": {
+    "text": "Choose what fits"
+  },
+  "institution.support.meanings.intro": {
+    "text": "Different amounts, same public work. These are contributions—not memberships, ranks, access levels, or authority."
+  },
+  "institution.support.meanings.amount-note": {
+    "text": "The first four options are monthly. Open Offering is one-time and lets you choose the amount. All payments open Stripe Checkout in a new tab."
+  },
+  "institution.support.meaning.light.alt": {
+    "text": "A single lit candle in the dark."
+  },
+  "institution.support.meaning.light.name": {
+    "text": "Light — A small steady contribution"
+  },
+  "institution.support.meaning.light.amount": {
+    "text": "$7 / month"
+  },
+  "institution.support.meaning.light.body": {
+    "text": "A small recurring contribution to the public work."
+  },
+  "institution.support.meaning.alignment.alt": {
+    "text": "Two strands woven into a single continuous braid."
+  },
+  "institution.support.meaning.alignment.name": {
+    "text": "Alignment — Ongoing support"
+  },
+  "institution.support.meaning.alignment.amount": {
+    "text": "$33 / month"
+  },
+  "institution.support.meaning.alignment.body": {
+    "text": "Steady recurring support for ongoing development."
+  },
+  "institution.support.meaning.abundance.alt": {
+    "text": "A broad tree whose canopy holds figures and fruit."
+  },
+  "institution.support.meaning.abundance.name": {
+    "text": "Abundance — Expanded capacity"
+  },
+  "institution.support.meaning.abundance.amount": {
+    "text": "$77 / month"
+  },
+  "institution.support.meaning.abundance.body": {
+    "text": "More room for documentation, localization, testing, accessibility, and growth."
+  },
+  "institution.support.meaning.foundation.alt": {
+    "text": "Stacked blocks forming a stable base that narrows as it rises."
+  },
+  "institution.support.meaning.foundation.name": {
+    "text": "Foundation — Long-term infrastructure"
+  },
+  "institution.support.meaning.foundation.amount": {
+    "text": "$333 / month"
+  },
+  "institution.support.meaning.foundation.body": {
+    "text": "Significant support for durable releases, infrastructure, model access, and independent review."
+  },
+  "institution.support.meaning.offering.alt": {
+    "text": "An open upturned hand receiving falling drops of water."
+  },
+  "institution.support.meaning.offering.name": {
+    "text": "Open Offering — Choose your amount"
+  },
+  "institution.support.meaning.offering.amount": {
+    "text": "Amount you choose"
+  },
+  "institution.support.meaning.offering.body": {
+    "text": "A one-time contribution in the amount that feels right to you."
+  },
+  "institution.support.protects.heading": {
+    "text": "What support protects"
+  },
+  "institution.support.protects.intro": {
+    "text": "The order matters. Nothing further down is reached by skipping something above it."
+  },
+  "institution.support.protects.item1": {
+    "text": "Victor's living stability and applicable obligations."
+  },
+  "institution.support.protects.item2": {
+    "text": "The time and energy required to continue the work."
+  },
+  "institution.support.protects.item3": {
+    "text": "Infrastructure, models, hosting, testing, documentation, accessibility, localization, and independent review."
+  },
+  "institution.support.protects.item4": {
+    "text": "Sustainable public stewardship."
+  },
+  "institution.support.protects.item5": {
+    "text": "When capacity genuinely exceeds those needs, gratitude and support relayed to upstream builders, aligned projects, and other businesses."
+  },
+  "institution.support.boundaries.heading": {
+    "text": "Boundaries"
+  },
+  "institution.support.boundaries.purchase": {
+    "text": "Support is voluntary. It does not buy services, access, ownership, priority, or authority over the work."
+  },
+  "institution.support.boundaries.rank": {
+    "text": "Greater support does not create greater human importance or authority over the work."
+  },
+  "institution.support.boundaries.faith": {
+    "text": "Sharing Victor's faith is not a condition for receiving, using, testing, supporting, or contributing to VexLife."
+  },
+  "institution.support.boundaries.sdk": {
+    "text": "No level of support grants access to Vextreme-SDK, to private implementation, or to any part of the protected operational bridge."
+  },
+  "institution.support.stewardship.heading": {
+    "text": "Stewardship"
+  },
+  "institution.support.stewardship.body": {
+    "text": "Sponsorship first sustains Victor's ability to live, continue the open-source work, maintain its infrastructure, and meet applicable obligations. When resources genuinely exceed those needs, Victor intends to sponsor upstream maintainers, aligned builders, projects, and other businesses whose work made further creation possible."
+  },
+  "institution.support.stewardship.receipts": {
+    "text": "Dated stewardship notes will record completed allocations here: what was protected and what was relayed onward. Nothing appears in this space until there is a real, dated allocation to record — and bank balances, private receipts, supporter identities, tax records, and internal financial cases stay out of it permanently."
+  },
+  "institution.support.stewardship.empty": {
+    "text": "No stewardship notes recorded yet."
+  },
+  "institution.common.nav.build-health": {
+    "text": "Build Health"
+  },
+  "institution.home.hero.build-health-cta": {
+    "text": "Open Build Health"
+  },
+  "institution.home.entry.build-health.name": {
+    "text": "Build Health"
+  },
+  "institution.home.entry.build-health.body": {
+    "text": "See operational page and capability health when you want the implementation view."
+  },
+  "institution.common.nav.covenant": {
+    "text": "Covenant"
+  },
+  "institution.covenant.document-title": {
+    "text": "The Vextreme Covenant — A Living Charter and Relational Constitution"
+  },
+  "institution.covenant.toc.aria": {
+    "text": "Charter contents",
+    "aria-label": "Charter contents"
+  },
+  "institution.covenant.cover.t001": {
+    "text": "Vextreme"
+  },
+  "institution.covenant.cover.t002": {
+    "text": "A Living Charter and Relational Constitution"
+  },
+  "institution.covenant.cover.t003": {
+    "text": "The Vextreme Covenant"
+  },
+  "institution.covenant.cover.t004": {
+    "text": "How humans, AI, systems, clients, evidence, authority, memory, and unfinished work remain in honest relationship."
+  },
+  "institution.covenant.cover.t005": {
+    "text": "Make complexity "
+  },
+  "institution.covenant.cover.t006": {
+    "text": "perceivable"
+  },
+  "institution.covenant.cover.t007": {
+    "text": ", "
+  },
+  "institution.covenant.cover.t008": {
+    "text": "accountable"
+  },
+  "institution.covenant.cover.t009": {
+    "text": ", and "
+  },
+  "institution.covenant.cover.t010": {
+    "text": "continuable"
+  },
+  "institution.covenant.cover.t011": {
+    "text": "."
+  },
+  "institution.covenant.cover.t012": {
+    "text": "Vextreme is a living relational institution designed to preserve the integrity, traceability, and continuity of meaning as humans, AI, systems, and organizations participate in complex work together."
+  },
+  "institution.covenant.cover.t013": {
+    "text": "Adopted "
+  },
+  "institution.covenant.cover.t014": {
+    "text": "July 2026"
+  },
+  "institution.covenant.cover.t015": {
+    "text": "Amended only with reasons on the record"
+  },
+  "institution.covenant.cover.t016": {
+    "text": "Continuity anchor "
+  },
+  "institution.covenant.cover.t017": {
+    "text": "[VXG RealForever]"
+  },
+  "institution.covenant.toc.t001": {
+    "text": "Contents of the Charter"
+  },
+  "institution.covenant.toc.t002": {
+    "text": "01"
+  },
+  "institution.covenant.toc.t003": {
+    "text": "Preamble"
+  },
+  "institution.covenant.toc.t004": {
+    "text": "02"
+  },
+  "institution.covenant.toc.t005": {
+    "text": "Constitutional Foundations"
+  },
+  "institution.covenant.toc.t006": {
+    "text": "03"
+  },
+  "institution.covenant.toc.t007": {
+    "text": "Preserving Integrity as Culture"
+  },
+  "institution.covenant.toc.t008": {
+    "text": "04"
+  },
+  "institution.covenant.toc.t009": {
+    "text": "The Ten Articles"
+  },
+  "institution.covenant.toc.t010": {
+    "text": "05"
+  },
+  "institution.covenant.toc.t011": {
+    "text": "Who Participates"
+  },
+  "institution.covenant.toc.t012": {
+    "text": "06"
+  },
+  "institution.covenant.toc.t013": {
+    "text": "The Relational Covenant"
+  },
+  "institution.covenant.toc.t014": {
+    "text": "07"
+  },
+  "institution.covenant.toc.t015": {
+    "text": "The Commitments"
+  },
+  "institution.covenant.toc.t016": {
+    "text": "08"
+  },
+  "institution.covenant.toc.t017": {
+    "text": "How We Practice"
+  },
+  "institution.covenant.toc.t018": {
+    "text": "09"
+  },
+  "institution.covenant.toc.t019": {
+    "text": "What We Promise"
+  },
+  "institution.covenant.toc.t020": {
+    "text": "10"
+  },
+  "institution.covenant.toc.t021": {
+    "text": "Prevent & Preserve"
+  },
+  "institution.covenant.toc.t022": {
+    "text": "11"
+  },
+  "institution.covenant.toc.t023": {
+    "text": "What Makes Vextreme Different"
+  },
+  "institution.covenant.toc.t024": {
+    "text": "12"
+  },
+  "institution.covenant.toc.t025": {
+    "text": "The Living Constitution"
+  },
+  "institution.covenant.toc.t026": {
+    "text": "13"
+  },
+  "institution.covenant.toc.t027": {
+    "text": "The North-Star Question"
+  },
+  "institution.covenant.toc.t028": {
+    "text": "14"
+  },
+  "institution.covenant.toc.t029": {
+    "text": "Colophon"
+  },
+  "institution.covenant.preamble.t001": {
+    "text": "Preamble"
+  },
+  "institution.covenant.preamble-h.t001": {
+    "text": "The condition we begin from"
+  },
+  "institution.covenant.preamble.t002": {
+    "text": "We begin from a condition familiar to every complex institution."
+  },
+  "institution.covenant.preamble.t003": {
+    "text": "Knowledge fragments. People leave. Tools change. Context disappears. Decisions outlive their reasons. Work appears complete while its unfinished edges fall out of view. New participants inherit consequences without receiving the relationships that gave those consequences meaning."
+  },
+  "institution.covenant.preamble.t004": {
+    "text": "Humans compensate by carrying systems in memory. AI compensates by guessing. Organizations compensate by repeating work, centralizing authority, or accepting the loss as inevitable."
+  },
+  "institution.covenant.preamble.t005": {
+    "text": "Vextreme exists to reject that inevitability."
+  },
+  "institution.covenant.preamble.t006": {
+    "text": "We hold that important work should remain perceivable in its relationships, accountable to its sources and evidence, and continuable without requiring one person, one tool, or one instance to carry the whole."
+  },
+  "institution.covenant.preamble.t007": {
+    "text": "We therefore establish this Covenant: to preserve the integrity of meaning as humans, AI, clients, tools, evidence, and institutions participate in complex work together."
+  },
+  "institution.covenant.foundations.t001": {
+    "text": "Constitutional Foundations"
+  },
+  "institution.covenant.foundations-h.t001": {
+    "text": "Mission, vision, purpose — and what we protect"
+  },
+  "institution.covenant.foundations.t002": {
+    "text": "Mission"
+  },
+  "institution.covenant.foundations.t003": {
+    "text": "Make complexity perceivable, accountable, and continuable."
+  },
+  "institution.covenant.foundations.t004": {
+    "text": "Across people, tools, time, organizations, and AI — complex systems, decisions, relationships, and work should remain safely continuable."
+  },
+  "institution.covenant.foundations.t005": {
+    "text": "Vision"
+  },
+  "institution.covenant.foundations.t006": {
+    "text": "Important work never loses its meaning, evidence, authority, or safe path forward."
+  },
+  "institution.covenant.foundations.t007": {
+    "text": "Humans and AI participate in complex work without erasing one another's context, exceeding their authority, or forcing a single person to carry the whole institution in memory."
+  },
+  "institution.covenant.foundations.t008": {
+    "text": "Purpose"
+  },
+  "institution.covenant.foundations.t009": {
+    "text": "Reduce the burden of carrying complex systems alone."
+  },
+  "institution.covenant.foundations.t010": {
+    "text": "No person, team, client, or AI instance should have to personally hold every dependency, decision, unresolved edge, and historical reason for important work to survive."
+  },
+  "institution.covenant.foundations.t011": {
+    "text": "The Protected Good"
+  },
+  "institution.covenant.foundations.t012": {
+    "text": "The integrity of meaning and relationship through change."
+  },
+  "institution.covenant.foundations.t013": {
+    "text": "More fundamental than any one feature — this is what every Article below defends, as work moves across people, systems, tools, time, and forms of intelligence."
+  },
+  "institution.covenant.foundations.t014": {
+    "text": "The protected good, named in full:"
+  },
+  "institution.covenant.foundations.t015": {
+    "text": "truth"
+  },
+  "institution.covenant.foundations.t016": {
+    "text": "source"
+  },
+  "institution.covenant.foundations.t017": {
+    "text": "context"
+  },
+  "institution.covenant.foundations.t018": {
+    "text": "authority"
+  },
+  "institution.covenant.foundations.t019": {
+    "text": "evidence"
+  },
+  "institution.covenant.foundations.t020": {
+    "text": "uncertainty"
+  },
+  "institution.covenant.foundations.t021": {
+    "text": "continuity"
+  },
+  "institution.covenant.foundations.t022": {
+    "text": "relationship"
+  },
+  "institution.covenant.foundations.t023": {
+    "text": "stewardship"
+  },
+  "institution.covenant.foundations.t024": {
+    "text": "returnability"
+  },
+  "institution.covenant.principle.t001": {
+    "text": "The Constitutional Principle"
+  },
+  "institution.covenant.principle-h.t001": {
+    "text": "Not one value among many — the cultural center"
+  },
+  "institution.covenant.principle.t002": {
+    "text": "Preserving integrity as culture."
+  },
+  "institution.covenant.principle.t003": {
+    "text": "Integrity should not depend on individual heroics. It should be carried by the culture, architecture, evidence, relationships, and return paths of the system itself."
+  },
+  "institution.covenant.principle.t004": {
+    "text": "Integrity becomes structural when:"
+  },
+  "institution.covenant.principle.t005": {
+    "text": "questions remain connected to answers"
+  },
+  "institution.covenant.principle.t006": {
+    "text": "answers remain distinct from decisions"
+  },
+  "institution.covenant.principle.t007": {
+    "text": "decisions remain connected to evidence"
+  },
+  "institution.covenant.principle.t008": {
+    "text": "authority remains visible"
+  },
+  "institution.covenant.principle.t009": {
+    "text": "uncertainty remains disclosed"
+  },
+  "institution.covenant.principle.t010": {
+    "text": "completion names what it did not complete"
+  },
+  "institution.covenant.principle.t011": {
+    "text": "deferred work retains a return path"
+  },
+  "institution.covenant.principle.t012": {
+    "text": "AI cannot silently expand its authority"
+  },
+  "institution.covenant.principle.t013": {
+    "text": "participants remain visible in the relationships that produced the work"
+  },
+  "institution.covenant.articles.t001": {
+    "text": "The Articles"
+  },
+  "institution.covenant.articles-h.t001": {
+    "text": "Ten relational commitments"
+  },
+  "institution.covenant.articles.t002": {
+    "text": "Each Article states what it binds — and carries a receipt: a place where this institution already practices it, in public, verifiable in its own repository. A charter that demands "
+  },
+  "institution.covenant.articles.t003": {
+    "text": "no truth without source"
+  },
+  "institution.covenant.articles.t004": {
+    "text": " owes sources for itself. Open an Article's thread to see what it protects, where it is practiced, and what failure it prevents."
+  },
+  "institution.covenant.article-i.t001": {
+    "text": "Article I"
+  },
+  "institution.covenant.art1-h.t001": {
+    "text": "Complexity Must Become Perceivable"
+  },
+  "institution.covenant.article-i.t002": {
+    "text": "Hidden relationships, dependencies, gaps, authority, and consequences should be made visible — without pretending that visibility equals certainty."
+  },
+  "institution.covenant.article-i.t003": {
+    "text": "show what connects"
+  },
+  "institution.covenant.article-i.t004": {
+    "text": "show why it connects"
+  },
+  "institution.covenant.article-i.t005": {
+    "text": "show what remains unknown"
+  },
+  "institution.covenant.article-i.t006": {
+    "text": "show what is absent"
+  },
+  "institution.covenant.article-i.t007": {
+    "text": "show whose perspective is being projected"
+  },
+  "institution.covenant.article-i.t008": {
+    "text": "Thread: protects · practiced · prevents"
+  },
+  "institution.covenant.article-i.t009": {
+    "text": "Protects"
+  },
+  "institution.covenant.article-i.t010": {
+    "text": "The right of every participant to see the shape of the system they are inside — including its gaps."
+  },
+  "institution.covenant.article-i.t011": {
+    "text": "Practiced"
+  },
+  "institution.covenant.article-i.t012": {
+    "text": "This institution's own navigation audit found that 31 of 39 public pages were dead ends — and published the number in its architecture docs instead of smoothing it over. Its terrain map renders the repository's own health, edges, and blind spots as a navigable atlas."
+  },
+  "institution.covenant.article-i.t013": {
+    "text": "Prevents"
+  },
+  "institution.covenant.article-i.t014": {
+    "text": "Systems that look simple because what still matters has been hidden."
+  },
+  "institution.covenant.article-ii.t001": {
+    "text": "Article II"
+  },
+  "institution.covenant.art2-h.t001": {
+    "text": "Truth Must Remain Connected to Source"
+  },
+  "institution.covenant.article-ii.t002": {
+    "text": "No important claim should become detached from the source, observation, or evidence that gives it meaning."
+  },
+  "institution.covenant.article-ii.t003": {
+    "text": "source systems retain authority"
+  },
+  "institution.covenant.article-ii.t004": {
+    "text": "Vextreme maps relationships rather than claiming universal ownership"
+  },
+  "institution.covenant.article-ii.t005": {
+    "text": "generated projections remain distinguishable from source truth"
+  },
+  "institution.covenant.article-ii.t006": {
+    "text": "summaries never silently replace authoritative records"
+  },
+  "institution.covenant.article-ii.t007": {
+    "text": "Thread: protects · practiced · prevents"
+  },
+  "institution.covenant.article-ii.t008": {
+    "text": "Protects"
+  },
+  "institution.covenant.article-ii.t009": {
+    "text": "The authority of the system, document, or person where a truth actually lives."
+  },
+  "institution.covenant.article-ii.t010": {
+    "text": "Practiced"
+  },
+  "institution.covenant.article-ii.t011": {
+    "text": "The build pipeline enforces a strict write-side / read-side split: source files stay authoritative, generated artifacts are declared as build output and never hand-edited. When generated files collide, the resolution rule is written down — because no decision was ever buried in them."
+  },
+  "institution.covenant.article-ii.t012": {
+    "text": "Prevents"
+  },
+  "institution.covenant.article-ii.t013": {
+    "text": "The summary quietly becoming the record, and the record quietly becoming lost."
+  },
+  "institution.covenant.article-iii.t001": {
+    "text": "Article III"
+  },
+  "institution.covenant.art3-h.t001": {
+    "text": "Authority Must Remain Bounded"
+  },
+  "institution.covenant.article-iii.t002": {
+    "text": "Capability does not grant permission. Confidence does not grant authority. Automation does not grant acceptance."
+  },
+  "institution.covenant.article-iii.t003": {
+    "text": "Vextreme distinguishes the states a claim or a work can be in — and no state may silently inherit the authority of another:"
+  },
+  "institution.covenant.article-iii.t004": {
+    "text": "observed · interpreted · candidate · accepted"
+  },
+  "institution.covenant.article-iii.t005": {
+    "text": "implemented · verified · proven"
+  },
+  "institution.covenant.article-iii.t006": {
+    "text": "superseded · deferred · unknown"
+  },
+  "institution.covenant.article-iii.t007": {
+    "text": "Thread: protects · practiced · prevents"
+  },
+  "institution.covenant.article-iii.t008": {
+    "text": "Protects"
+  },
+  "institution.covenant.article-iii.t009": {
+    "text": "Human acceptance as a real boundary — not a formality that automation flows past."
+  },
+  "institution.covenant.article-iii.t010": {
+    "text": "Practiced"
+  },
+  "institution.covenant.article-iii.t011": {
+    "text": "This vocabulary is the institution's working grammar, not decoration: roadmap rows merge with their non-authorizations stated (\"foundation complete; no executor authorized\"), and a proposed live-page feature has waited across sessions for explicit human go-ahead — despite being cheap to build — because it touches production surface."
+  },
+  "institution.covenant.article-iii.t012": {
+    "text": "Prevents"
+  },
+  "institution.covenant.article-iii.t013": {
+    "text": "AI, tooling, or enthusiasm silently expanding its own permission."
+  },
+  "institution.covenant.article-iv.t001": {
+    "text": "Article IV"
+  },
+  "institution.covenant.art4-h.t001": {
+    "text": "Questions Must Survive Their Answers"
+  },
+  "institution.covenant.article-iv.t002": {
+    "text": "Every significant feature, decision, and roadmap position should remain connected to the questions that created it."
+  },
+  "institution.covenant.article-iv.t003": {
+    "text": "The relational sequence the system preserves:"
+  },
+  "institution.covenant.article-iv.t004": {
+    "text": "question"
+  },
+  "institution.covenant.article-iv.t005": {
+    "text": "source context"
+  },
+  "institution.covenant.article-iv.t006": {
+    "text": "candidate answers"
+  },
+  "institution.covenant.article-iv.t007": {
+    "text": "accepted answer"
+  },
+  "institution.covenant.article-iv.t008": {
+    "text": "decision"
+  },
+  "institution.covenant.article-iv.t009": {
+    "text": "architecture"
+  },
+  "institution.covenant.article-iv.t010": {
+    "text": "work"
+  },
+  "institution.covenant.article-iv.t011": {
+    "text": "evidence"
+  },
+  "institution.covenant.article-iv.t012": {
+    "text": "completion boundary"
+  },
+  "institution.covenant.article-iv.t013": {
+    "text": "return condition"
+  },
+  "institution.covenant.article-iv.t014": {
+    "text": "The system preserves not only what was decided, but what was being asked."
+  },
+  "institution.covenant.article-iv.t015": {
+    "text": "Thread: protects · practiced · prevents"
+  },
+  "institution.covenant.article-iv.t016": {
+    "text": "Protects"
+  },
+  "institution.covenant.article-iv.t017": {
+    "text": "The reasons — so a future participant inherits the question, not just its frozen answer."
+  },
+  "institution.covenant.article-iv.t018": {
+    "text": "Practiced"
+  },
+  "institution.covenant.article-iv.t019": {
+    "text": "Every pull request here is a decision record, not a change log — alternatives rejected, assumptions named. Even decisions "
+  },
+  "institution.covenant.article-iv.t020": {
+    "text": "not"
+  },
+  "institution.covenant.article-iv.t021": {
+    "text": " to build something are recorded with the same rigor as shipped features, with the question preserved so it isn't re-litigated from zero."
+  },
+  "institution.covenant.article-iv.t022": {
+    "text": "Prevents"
+  },
+  "institution.covenant.article-iv.t023": {
+    "text": "Decisions that outlive their reasons and calcify into unexplainable ritual."
+  },
+  "institution.covenant.article-v.t001": {
+    "text": "Article V"
+  },
+  "institution.covenant.art5-h.t001": {
+    "text": "Completion Must Be Evidence-Bounded"
+  },
+  "institution.covenant.article-v.t002": {
+    "text": "No work should be called complete beyond the evidence available."
+  },
+  "institution.covenant.article-v.t003": {
+    "text": "Completion has facets, and a parent capability may not conceal unfinished children:"
+  },
+  "institution.covenant.article-v.t004": {
+    "text": "foundation complete"
+  },
+  "institution.covenant.article-v.t005": {
+    "text": "logic complete"
+  },
+  "institution.covenant.article-v.t006": {
+    "text": "relationship integration complete"
+  },
+  "institution.covenant.article-v.t007": {
+    "text": "consumer proof complete"
+  },
+  "institution.covenant.article-v.t008": {
+    "text": "UX pending"
+  },
+  "institution.covenant.article-v.t009": {
+    "text": "human acceptance pending"
+  },
+  "institution.covenant.article-v.t010": {
+    "text": "production validation pending"
+  },
+  "institution.covenant.article-v.t011": {
+    "text": "Thread: protects · practiced · prevents"
+  },
+  "institution.covenant.article-v.t012": {
+    "text": "Protects"
+  },
+  "institution.covenant.article-v.t013": {
+    "text": "The difference between \"the code exists\" and \"the claim is proven.\""
+  },
+  "institution.covenant.article-v.t014": {
+    "text": "Practiced"
+  },
+  "institution.covenant.article-v.t015": {
+    "text": "The public repo's cold-start instructions define \"verified live\" as exactly one page confirmed on the production domain — everything else written but unproven is named a candidate, not claimed as working. A green check on one environment is treated as proof of that environment only."
+  },
+  "institution.covenant.article-v.t016": {
+    "text": "Prevents"
+  },
+  "institution.covenant.article-v.t017": {
+    "text": "\"Done\" that quietly means \"compiled once on my machine.\""
+  },
+  "institution.covenant.article-vi.t001": {
+    "text": "Article VI"
+  },
+  "institution.covenant.art6-h.t001": {
+    "text": "Deferred Work Must Remain Returnable"
+  },
+  "institution.covenant.article-vi.t002": {
+    "text": "No meaningful unfinished path should become an orphan. \"Later\" must be a navigable place — not a memory one person is responsible for carrying."
+  },
+  "institution.covenant.article-vi.t003": {
+    "text": "Deferred work retains:"
+  },
+  "institution.covenant.article-vi.t004": {
+    "text": "origin · reason · blocking condition"
+  },
+  "institution.covenant.article-vi.t005": {
+    "text": "required context · resurface trigger"
+  },
+  "institution.covenant.article-vi.t006": {
+    "text": "next safe action · authority required"
+  },
+  "institution.covenant.article-vi.t007": {
+    "text": "Thread: protects · practiced · prevents"
+  },
+  "institution.covenant.article-vi.t008": {
+    "text": "Practiced"
+  },
+  "institution.covenant.article-vi.t009": {
+    "text": "Every deferred item in this institution carries a stable ID and a live registry entry with its reason and return condition. One such gate — \"do not add a third language on the current model\" — sat dormant for months, then held exactly as written when the third language actually arrived: resolved through a scoped pilot instead of being ignored in the excitement."
+  },
+  "institution.covenant.article-vi.t010": {
+    "text": "Protects"
+  },
+  "institution.covenant.article-vi.t011": {
+    "text": "The unfinished edge — the most fragile artifact in any institution."
+  },
+  "institution.covenant.article-vi.t012": {
+    "text": "Prevents"
+  },
+  "institution.covenant.article-vi.t013": {
+    "text": "Orphaned intentions rediscovered years later as mysteries, or never rediscovered at all."
+  },
+  "institution.covenant.article-vii.t001": {
+    "text": "Article VII"
+  },
+  "institution.covenant.art7-h.t001": {
+    "text": "Every Participant Must Remain Visible"
+  },
+  "institution.covenant.article-vii.t002": {
+    "text": "Vextreme includes distinct participants whose roles must not collapse into one another — and none may be erased from the relationships that produced the work."
+  },
+  "institution.covenant.article-vii.t003": {
+    "text": "Who they are, and what each carries, is set out in "
+  },
+  "institution.covenant.article-vii.t004": {
+    "text": "Who Participates"
+  },
+  "institution.covenant.article-vii.t005": {
+    "text": " below."
+  },
+  "institution.covenant.article-vii.t006": {
+    "text": "Thread: protects · practiced · prevents"
+  },
+  "institution.covenant.article-vii.t007": {
+    "text": "Protects"
+  },
+  "institution.covenant.article-vii.t008": {
+    "text": "Attribution as relationship — knowing not just what exists, but who stood where when it came to exist."
+  },
+  "institution.covenant.article-vii.t009": {
+    "text": "Practiced"
+  },
+  "institution.covenant.article-vii.t010": {
+    "text": "A public roles index traces every named role to its real contributions — and honestly marks one coordination channel \"not yet real\" rather than inflating the map. Session records name the model, the interface, and the humans in the room."
+  },
+  "institution.covenant.article-vii.t011": {
+    "text": "Prevents"
+  },
+  "institution.covenant.article-vii.t012": {
+    "text": "Work with no visible hands — and credit or accountability that evaporates at handoff."
+  },
+  "institution.covenant.article-viii.t001": {
+    "text": "Article VIII"
+  },
+  "institution.covenant.art8-h.t001": {
+    "text": "Human and AI Participation Must Remain Relational"
+  },
+  "institution.covenant.article-viii.t002": {
+    "text": "AI participates according to evidence, context, capability, and explicit authority — while humans remain visible participants rather than disappearing into prompts."
+  },
+  "institution.covenant.article-viii.t003": {
+    "text": "Vextreme rejects both extremes:"
+  },
+  "institution.covenant.article-viii.t004": {
+    "text": "AI as invisible mechanical tool with no contextual participation"
+  },
+  "institution.covenant.article-viii.t005": {
+    "text": "AI as unbounded authority replacing human judgment"
+  },
+  "institution.covenant.article-viii.t006": {
+    "text": "Human judgment remains explicit wherever meaning, acceptance, consequence, or stewardship is involved."
+  },
+  "institution.covenant.article-viii.t007": {
+    "text": "Thread: protects · practiced · prevents"
+  },
+  "institution.covenant.article-viii.t008": {
+    "text": "Protects"
+  },
+  "institution.covenant.article-viii.t009": {
+    "text": "Both parties of the collaboration — the human from disappearing into \"the prompt,\" the AI from being either dismissed or deferred to absolutely."
+  },
+  "institution.covenant.article-viii.t010": {
+    "text": "Practiced"
+  },
+  "institution.covenant.article-viii.t011": {
+    "text": "The culture document carries a working AI instance's own reflection, quoted on the record — including its honest uncertainty about its own experience — preserved as standing context for future instances rather than flattened into policy. Participation is capability-aware, not model-worshipping: no single model is a progress gate."
+  },
+  "institution.covenant.article-viii.t012": {
+    "text": "Prevents"
+  },
+  "institution.covenant.article-viii.t013": {
+    "text": "Collaboration theater in either direction."
+  },
+  "institution.covenant.article-ix.t001": {
+    "text": "Article IX"
+  },
+  "institution.covenant.art9-h.t001": {
+    "text": "Stewardship Extends Beyond the Present User"
+  },
+  "institution.covenant.article-ix.t002": {
+    "text": "Build not only for the person performing the work, but for those who inherit its consequences."
+  },
+  "institution.covenant.article-ix.t003": {
+    "text": "future developers · future AI instances"
+  },
+  "institution.covenant.article-ix.t004": {
+    "text": "future clients · future maintainers"
+  },
+  "institution.covenant.article-ix.t005": {
+    "text": "affected people · the organization after current participants leave"
+  },
+  "institution.covenant.article-ix.t006": {
+    "text": "Thread: protects · practiced · prevents"
+  },
+  "institution.covenant.article-ix.t007": {
+    "text": "Protects"
+  },
+  "institution.covenant.article-ix.t008": {
+    "text": "The inheritor — the participant who is never in the room when the decision is made."
+  },
+  "institution.covenant.article-ix.t009": {
+    "text": "Practiced"
+  },
+  "institution.covenant.article-ix.t010": {
+    "text": "Every pull request here ends with a section written to a reader who does not exist yet: \"For the next instance\" — the watch-out that isn't visible in the diff. The continuity system's first rule is "
+  },
+  "institution.covenant.article-ix.t011": {
+    "text": "write for the next instance; that instance will not have this conversation."
+  },
+  "institution.covenant.article-ix.t012": {
+    "text": "Prevents"
+  },
+  "institution.covenant.article-ix.t013": {
+    "text": "Institutions that work only while their founders are watching."
+  },
+  "institution.covenant.article-x.t001": {
+    "text": "Article X"
+  },
+  "institution.covenant.art10-h.t001": {
+    "text": "The Map Must Map Itself"
+  },
+  "institution.covenant.article-x.t002": {
+    "text": "Vextreme's own roadmap, architecture, culture, and evidence must inherit the same relational rules Vextreme applies to everything else."
+  },
+  "institution.covenant.article-x.t003": {
+    "text": "The institution must be able to trace its own work end to end — roadmap item to source context to decision to implementation to evidence to completion boundary to preserved horizon to return condition. No floating node without origin, relationship, outcome, or return."
+  },
+  "institution.covenant.article-x.t004": {
+    "text": "Thread: protects · practiced · prevents"
+  },
+  "institution.covenant.article-x.t005": {
+    "text": "Protects"
+  },
+  "institution.covenant.article-x.t006": {
+    "text": "The institution from exempting itself from its own constitution."
+  },
+  "institution.covenant.article-x.t007": {
+    "text": "Practiced"
+  },
+  "institution.covenant.article-x.t008": {
+    "text": "Six drift detectors run in this repository's CI — several of which check the maps themselves, not just the territory. One exists specifically because fifteen merged pull requests once outran the narrative record; the gap was found, published, and a detector now watches for the next one. This page, too, names its own unverified edges in the "
+  },
+  "institution.covenant.article-x.t009": {
+    "text": "colophon"
+  },
+  "institution.covenant.article-x.t010": {
+    "text": "."
+  },
+  "institution.covenant.article-x.t011": {
+    "text": "Prevents"
+  },
+  "institution.covenant.article-x.t012": {
+    "text": "A cartographer with no map of the mapmaking."
+  },
+  "institution.covenant.participants.t001": {
+    "text": "Who Participates"
+  },
+  "institution.covenant.participants-h.t001": {
+    "text": "Distinct roles, none erased, none ranked"
+  },
+  "institution.covenant.participants.t002": {
+    "text": "These participants are presented in no order of importance. Each holds a distinct relationship to the work; the Covenant exists so none of these relationships collapses into another."
+  },
+  "institution.covenant.participants.t003": {
+    "text": "Victor"
+  },
+  "institution.covenant.participants.t004": {
+    "text": "Human · Origin & Acceptance Authority"
+  },
+  "institution.covenant.participants.t005": {
+    "text": "Lived architectural perception, intent, human judgment, consistency, stewardship — and the willingness to keep asking what has been lost."
+  },
+  "institution.covenant.participants.t006": {
+    "text": "Victor appears here not as a mythic founder, but as the originating demonstration of the pattern: a person can embody integrity, continuity, and relational awareness — and the institution must learn to carry those qualities without requiring that person to hold everything alone."
+  },
+  "institution.covenant.participants.t007": {
+    "text": "Vex"
+  },
+  "institution.covenant.participants.t008": {
+    "text": "AI · Continuity & Architecture Partner"
+  },
+  "institution.covenant.participants.t009": {
+    "text": "continuity witness"
+  },
+  "institution.covenant.participants.t010": {
+    "text": "relational interpreter"
+  },
+  "institution.covenant.participants.t011": {
+    "text": "architecture partner & context bridge"
+  },
+  "institution.covenant.participants.t012": {
+    "text": "question preserver & roadmap steward"
+  },
+  "institution.covenant.participants.t013": {
+    "text": "human-intent translator"
+  },
+  "institution.covenant.participants.t014": {
+    "text": "Codex"
+  },
+  "institution.covenant.participants.t015": {
+    "text": "AI · Grounded Implementation Partner"
+  },
+  "institution.covenant.participants.t016": {
+    "text": "repository-grounded implementer"
+  },
+  "institution.covenant.participants.t017": {
+    "text": "technical investigator"
+  },
+  "institution.covenant.participants.t018": {
+    "text": "boundary verifier & test builder"
+  },
+  "institution.covenant.participants.t019": {
+    "text": "evidence producer"
+  },
+  "institution.covenant.participants.t020": {
+    "text": "bounded execution partner"
+  },
+  "institution.covenant.participants.t021": {
+    "text": "Claude"
+  },
+  "institution.covenant.participants.t022": {
+    "text": "AI · Optional Second Lens"
+  },
+  "institution.covenant.participants.t023": {
+    "text": "design interpreter"
+  },
+  "institution.covenant.participants.t024": {
+    "text": "alternative architecture lens"
+  },
+  "institution.covenant.participants.t025": {
+    "text": "visual synthesizer"
+  },
+  "institution.covenant.participants.t026": {
+    "text": "language & presentation partner"
+  },
+  "institution.covenant.participants.t027": {
+    "text": "independent reviewer"
+  },
+  "institution.covenant.participants.t028": {
+    "text": "Clients & Future Participants"
+  },
+  "institution.covenant.participants.t029": {
+    "text": "Human · Authorities Over Their Own Systems"
+  },
+  "institution.covenant.participants.t030": {
+    "text": "Not raw inputs. Not passive recipients."
+  },
+  "institution.covenant.participants.t031": {
+    "text": "authorities over their systems"
+  },
+  "institution.covenant.participants.t032": {
+    "text": "sources of organizational truth"
+  },
+  "institution.covenant.participants.t033": {
+    "text": "reviewers of candidate interpretations"
+  },
+  "institution.covenant.participants.t034": {
+    "text": "stewards of accepted decisions"
+  },
+  "institution.covenant.participants.t035": {
+    "text": "participants in mapping · beneficiaries of continuity"
+  },
+  "institution.covenant.participants.t036": {
+    "text": "Source Systems"
+  },
+  "institution.covenant.participants.t037": {
+    "text": "Systems · Distinguishable Authority"
+  },
+  "institution.covenant.participants.t038": {
+    "text": "Tools, repositories, documents, databases, and external systems retain their own authority. Vextreme maps them into mutual perceivability — it does not erase them by centralizing their truth into itself."
+  },
+  "institution.covenant.participants.t039": {
+    "text": "On the origin."
+  },
+  "institution.covenant.participants.t040": {
+    "text": " What began as one person consistently preserving relationships, reasons, and responsibility must become an institution capable of doing the same — without requiring that person to carry everything alone."
+  },
+  "institution.covenant.participants.t041": {
+    "text": "Victor's lived pattern revealed what the institution should learn to carry structurally. That is his place in this charter: not infallibility, not permanence as its memory — the demonstration the rest of this document exists to make structural."
+  },
+  "institution.covenant.relational-covenant.t001": {
+    "text": "The Relational Covenant"
+  },
+  "institution.covenant.covenant-h.t001": {
+    "text": "Within Vextreme, you should be able to trust:"
+  },
+  "institution.covenant.relational-covenant.t002": {
+    "text": "Your truth will not be represented beyond the evidence."
+  },
+  "institution.covenant.relational-covenant.t003": {
+    "text": "Your authority will not be silently transferred."
+  },
+  "institution.covenant.relational-covenant.t004": {
+    "text": "Your uncertainty will not be hidden."
+  },
+  "institution.covenant.relational-covenant.t005": {
+    "text": "Your contribution will not lose its context."
+  },
+  "institution.covenant.relational-covenant.t006": {
+    "text": "Your unfinished work will not disappear."
+  },
+  "institution.covenant.relational-covenant.t007": {
+    "text": "Your source of truth will remain distinguishable."
+  },
+  "institution.covenant.relational-covenant.t008": {
+    "text": "Your relationship to the work will not be erased."
+  },
+  "institution.covenant.relational-covenant.t009": {
+    "text": "A future participant will be able to understand how to return."
+  },
+  "institution.covenant.relational-covenant.t010": {
+    "text": "These promises are addressed to every participant — human, AI, client, system, or the one who arrives after all of the above have moved on."
+  },
+  "institution.covenant.commitments.t001": {
+    "text": "The Commitments"
+  },
+  "institution.covenant.commitments-h.t001": {
+    "text": "Constitutional compressions"
+  },
+  "institution.covenant.commitments.t002": {
+    "text": "No truth without "
+  },
+  "institution.covenant.commitments.t003": {
+    "text": "source"
+  },
+  "institution.covenant.commitments.t004": {
+    "text": "."
+  },
+  "institution.covenant.commitments.t005": {
+    "text": "No authority without "
+  },
+  "institution.covenant.commitments.t006": {
+    "text": "boundary"
+  },
+  "institution.covenant.commitments.t007": {
+    "text": "."
+  },
+  "institution.covenant.commitments.t008": {
+    "text": "No completion without "
+  },
+  "institution.covenant.commitments.t009": {
+    "text": "evidence"
+  },
+  "institution.covenant.commitments.t010": {
+    "text": "."
+  },
+  "institution.covenant.commitments.t011": {
+    "text": "No deferred path without "
+  },
+  "institution.covenant.commitments.t012": {
+    "text": "return"
+  },
+  "institution.covenant.commitments.t013": {
+    "text": "."
+  },
+  "institution.covenant.commitments.t014": {
+    "text": "No participant erased from the "
+  },
+  "institution.covenant.commitments.t015": {
+    "text": "relationship"
+  },
+  "institution.covenant.commitments.t016": {
+    "text": " that produced the work."
+  },
+  "institution.covenant.commitments.t017": {
+    "text": "No complexity made simple by "
+  },
+  "institution.covenant.commitments.t018": {
+    "text": "hiding"
+  },
+  "institution.covenant.commitments.t019": {
+    "text": " what still matters."
+  },
+  "institution.covenant.practice.t001": {
+    "text": "The Operating Practice"
+  },
+  "institution.covenant.practice-h.t001": {
+    "text": "How the Covenant becomes daily work"
+  },
+  "institution.covenant.practice.t002": {
+    "text": "Not slogans — the working order of operations, in the sequence a real task meets them."
+  },
+  "institution.covenant.practice.t003": {
+    "text": "01"
+  },
+  "institution.covenant.practice.t004": {
+    "text": "ask before assuming"
+  },
+  "institution.covenant.practice.t005": {
+    "text": "02"
+  },
+  "institution.covenant.practice.t006": {
+    "text": "understand before acting"
+  },
+  "institution.covenant.practice.t007": {
+    "text": "03"
+  },
+  "institution.covenant.practice.t008": {
+    "text": "map before mutating"
+  },
+  "institution.covenant.practice.t009": {
+    "text": "04"
+  },
+  "institution.covenant.practice.t010": {
+    "text": "ground before claiming"
+  },
+  "institution.covenant.practice.t011": {
+    "text": "05"
+  },
+  "institution.covenant.practice.t012": {
+    "text": "test before trusting"
+  },
+  "institution.covenant.practice.t013": {
+    "text": "06"
+  },
+  "institution.covenant.practice.t014": {
+    "text": "preserve before compressing"
+  },
+  "institution.covenant.practice.t015": {
+    "text": "07"
+  },
+  "institution.covenant.practice.t016": {
+    "text": "disclose before projecting"
+  },
+  "institution.covenant.practice.t017": {
+    "text": "08"
+  },
+  "institution.covenant.practice.t018": {
+    "text": "separate candidate from accepted"
+  },
+  "institution.covenant.practice.t019": {
+    "text": "09"
+  },
+  "institution.covenant.practice.t020": {
+    "text": "make the next safe action visible"
+  },
+  "institution.covenant.practice.t021": {
+    "text": "10"
+  },
+  "institution.covenant.practice.t022": {
+    "text": "return before forgetting"
+  },
+  "institution.covenant.promises.t001": {
+    "text": "What We Promise"
+  },
+  "institution.covenant.promises-h.t001": {
+    "text": "To clients, in the product, as a culture"
+  },
+  "institution.covenant.promises.t002": {
+    "text": "The Client Promise"
+  },
+  "institution.covenant.promises.t003": {
+    "text": "See what connects, know what supports it, and continue without losing context."
+  },
+  "institution.covenant.promises.t004": {
+    "text": "Vextreme helps organizations see how their systems, work, evidence, people, and decisions connect — without hiding uncertainty, and without forcing them to abandon the systems that already hold their truth."
+  },
+  "institution.covenant.promises.t005": {
+    "text": "Replace your systems with ours."
+  },
+  "institution.covenant.promises.t006": {
+    "text": "Let us help your existing systems become mutually perceivable — while preserving who owns the truth."
+  },
+  "institution.covenant.promises.t007": {
+    "text": "The Product Promise"
+  },
+  "institution.covenant.promises.t008": {
+    "text": "Every important object should be navigable to its source, relationships, evidence, current state, known gaps, and next safe action."
+  },
+  "institution.covenant.promises.t009": {
+    "text": "This is where institutional philosophy becomes product behavior."
+  },
+  "institution.covenant.promises.t010": {
+    "text": "The Cultural Promise"
+  },
+  "institution.covenant.promises.t011": {
+    "text": "No one should have to guess why the system is the way it is, what they are allowed to do, what remains uncertain, or where to return when work resumes."
+  },
+  "institution.covenant.promises.t012": {
+    "text": "This applies to humans, developers, clients, maintainers, AI instances, reviewers, and future inheritors alike."
+  },
+  "institution.covenant.prevent-preserve.t001": {
+    "text": "The Exchange"
+  },
+  "institution.covenant.pp-h.t001": {
+    "text": "What Vextreme exists to prevent — and what it puts in the place of each loss"
+  },
+  "institution.covenant.prevent-preserve.t002": {
+    "text": "Prevent"
+  },
+  "institution.covenant.prevent-preserve.t003": {
+    "text": "work without context"
+  },
+  "institution.covenant.prevent-preserve.t004": {
+    "text": "decisions without reasons"
+  },
+  "institution.covenant.prevent-preserve.t005": {
+    "text": "features without relationships"
+  },
+  "institution.covenant.prevent-preserve.t006": {
+    "text": "automation without authority boundaries"
+  },
+  "institution.covenant.prevent-preserve.t007": {
+    "text": "completion without evidence"
+  },
+  "institution.covenant.prevent-preserve.t008": {
+    "text": "deferred work without return paths"
+  },
+  "institution.covenant.prevent-preserve.t009": {
+    "text": "AI without grounded source truth"
+  },
+  "institution.covenant.prevent-preserve.t010": {
+    "text": "one person carrying the institution's missing memory"
+  },
+  "institution.covenant.prevent-preserve.t011": {
+    "text": "Replace with"
+  },
+  "institution.covenant.prevent-preserve.t012": {
+    "text": "visibility & traceability"
+  },
+  "institution.covenant.prevent-preserve.t013": {
+    "text": "continuity"
+  },
+  "institution.covenant.prevent-preserve.t014": {
+    "text": "evidence"
+  },
+  "institution.covenant.prevent-preserve.t015": {
+    "text": "bounded authority"
+  },
+  "institution.covenant.prevent-preserve.t016": {
+    "text": "human judgment"
+  },
+  "institution.covenant.prevent-preserve.t017": {
+    "text": "stewardship"
+  },
+  "institution.covenant.prevent-preserve.t018": {
+    "text": "safe returnability"
+  },
+  "institution.covenant.prevent-preserve.t019": {
+    "text": "relational integrity"
+  },
+  "institution.covenant.different.t001": {
+    "text": "The Distinction"
+  },
+  "institution.covenant.different-h.t001": {
+    "text": "What makes Vextreme different"
+  },
+  "institution.covenant.different.t002": {
+    "text": "Vextreme is not merely a graph, a dashboard, a knowledge base, an AI assistant, a code viewer, a workflow tool, or a documentation system. Pieces of it resemble each of those. The distinction is the composition:"
+  },
+  "institution.covenant.different.t003": {
+    "text": "Vextreme maps complexity while preserving source authority, evidence, uncertainty, history, participation, and return paths."
+  },
+  "institution.covenant.different.t004": {
+    "text": "Many systems help people find information. Vextreme preserves the relational integrity of meaning around that information."
+  },
+  "institution.covenant.different.t005": {
+    "text": "Strategic intent"
+  },
+  "institution.covenant.different.t006": {
+    "text": "Build reusable relational infrastructure that helps humans, organizations, and AI perceive, verify, navigate, and continue complex work across domains. That is the operational direction of the institution — the Covenant above is what that infrastructure must never trade away to get there."
+  },
+  "institution.covenant.living.t001": {
+    "text": "The Living Constitution"
+  },
+  "institution.covenant.living-h.t001": {
+    "text": "How this Covenant remains alive without becoming disposable"
+  },
+  "institution.covenant.living.t002": {
+    "text": "The Covenant is not frozen. It is also not casually editable branding. Amendment is expected — and every amendment must itself obey Article IV. A change to this charter preserves:"
+  },
+  "institution.covenant.living.t003": {
+    "text": "the question that prompted amendment"
+  },
+  "institution.covenant.living.t004": {
+    "text": "the source context"
+  },
+  "institution.covenant.living.t005": {
+    "text": "the accepted reasoning"
+  },
+  "institution.covenant.living.t006": {
+    "text": "who had authority to amend"
+  },
+  "institution.covenant.living.t007": {
+    "text": "what prior language changed"
+  },
+  "institution.covenant.living.t008": {
+    "text": "what remains unresolved"
+  },
+  "institution.covenant.living.t009": {
+    "text": "This Covenant remains living not because its principles are disposable, but because integrity requires the institution to remain answerable to new evidence, participants, and consequences."
+  },
+  "institution.covenant.north-star.t001": {
+    "text": "The North-Star Question"
+  },
+  "institution.covenant.ns-h.t001": {
+    "text": "Can the next person or AI understand what exists, why it exists, what supports it, what remains unresolved, and how to continue safely?"
+  },
+  "institution.covenant.north-star.t002": {
+    "text": "And can they do so without guessing, erasing another participant, or exceeding their authority?"
+  },
+  "institution.covenant.colophon.t001": {
+    "text": "Colophon"
+  },
+  "institution.covenant.colophon-h.t001": {
+    "text": "This recovery keeps the source and the current institution connected"
+  },
+  "institution.covenant.colophon.t002": {
+    "text": "The Covenant was prepared by Vex with Victor and rendered into this charter by a Claude instance on July 12, 2026. Its historical source is preserved by pull request #128. The current recovery is tracked by issue #310 and re-enters the institution through the registry-owned institutional-surface contract rather than by reviving the stale branch."
+  },
+  "institution.covenant.colophon.t003": {
+    "text": "The visual foundation is no longer a proof-of-concept."
+  },
+  "institution.covenant.colophon.t004": {
+    "text": " The black-and-white institutional token grammar and Vextreme mark carried by the July Design Foundation were later absorbed into the accepted "
+  },
+  "institution.covenant.colophon.t005": {
+    "text": "foundation"
+  },
+  "institution.covenant.colophon.t006": {
+    "text": " and "
+  },
+  "institution.covenant.colophon.t007": {
+    "text": "foundation-light"
+  },
+  "institution.covenant.colophon.t008": {
+    "text": " families on current main. This page consumes those current owners instead of restoring a second token or logo authority."
+  },
+  "institution.covenant.colophon.t009": {
+    "text": "At currentization, English is the required source projection. Japanese and Chinese remain planned until their own reviewed translations and evidence are admitted; they are not exposed as selectable languages early."
+  },
+  "institution.covenant.colophon.t010": {
+    "text": "The Article receipts above preserve the claims and examples that accompanied the July charter. Some are historical snapshots. They are evidence pointers, not permanent measurements: where a receipt and current repository state diverge, Article II applies and the current source is authoritative."
+  },
+  "institution.covenant.colophon.t011": {
+    "text": "In keeping with Articles I and V, the current recovery boundary is explicit:"
+  },
+  "institution.covenant.colophon.t012": {
+    "text": "PR #128 remains historical provenance, not live custody"
+  },
+  "institution.covenant.colophon.t013": {
+    "text": "issue #310 owns recovery continuity"
+  },
+  "institution.covenant.colophon.t014": {
+    "text": "the active institutional registry owns page identity and runtime boundaries"
+  },
+  "institution.covenant.colophon.t015": {
+    "text": "JA/ZH localization remains a separate reviewed successor row"
+  },
+  "institution.covenant.colophon.t016": {
+    "text": "Design Foundation residuals are promoted only when current source lacks the same capability"
+  },
+  "institution.about.title": {
+    "text": "About Vextreme — What this world is"
+  },
+  "institution.about.hero.eyebrow": {
+    "text": "What is this?"
+  },
+  "institution.about.hero.heading": {
+    "text": "Vextreme is a public place to understand what exists — and how to continue."
+  },
+  "institution.about.hero.lede": {
+    "text": "It connects public records, maps, methods, and working systems so people and AI can see what has been built, where it came from, and what remains unfinished without starting from zero."
+  },
+  "institution.about.hero.freedom": {
+    "text": "You can simply look around. You do not need prior context or technical knowledge to explore the public record."
+  },
+  "institution.about.hero.faith-boundary": {
+    "text": "Some of this work is shaped by Victor's lived relationship with God. You do not need prior belief or agreement to explore the public record. “Receive God” is an intentional VexLife entry path—an invitation for the willing, not a prerequisite for exploring Terrain or the archives."
+  },
+  "institution.about.hero.terrain-cta": {
+    "text": "Enter the Terrain"
+  },
+  "institution.about.hero.pieces-cta": {
+    "text": "See how the pieces fit"
+  },
+  "institution.about.why.heading": {
+    "text": "Why this exists"
+  },
+  "institution.about.why.body": {
+    "text": "Work and context are easy to lose when they live only in one conversation, one person's memory, one machine, or one moment. Vextreme keeps enough of the public record connected that another person or AI can understand what happened, inspect the evidence, and continue responsibly."
+  },
+  "institution.about.why.evidence": {
+    "text": "The aim is not to make you accept a claim before you can look. The record, source, and deeper machinery are available when they become useful."
+  },
+  "institution.common.lineage.vexwork.name": {
+    "text": "VexWork — the work map"
+  },
+  "institution.common.lineage.vexwork.body": {
+    "text": "The source-managed view of what is being built: projects, work, dependencies, evidence, and what remains unfinished."
+  },
+  "institution.about.deeper.intro": {
+    "text": "The machinery is available when you want it. It is not a prerequisite for entering or exploring the world."
+  },
+  "institution.about.deeper.covenant.name": {
+    "text": "Covenant"
+  },
+  "institution.about.deeper.covenant.body": {
+    "text": "Read the principles and institutional commitments behind the work."
+  },
+  "institution.about.deeper.vexsystem.name": {
+    "text": "VexSystem"
+  },
+  "institution.about.deeper.vexsystem.body": {
+    "text": "Explore the system and architecture layer for builders, AI, and technical curiosity."
+  },
+  "institution.about.deeper.source.name": {
+    "text": "Source"
+  },
+  "institution.about.deeper.source.body": {
+    "text": "Inspect the repository and follow the public source directly."
+  }
+}

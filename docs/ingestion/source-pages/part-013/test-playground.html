@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html data-vex-page-scope="test-playground" data-vexsite-page-authority="embedded-standalone-document" data-vexsite-provider-shell="discarded" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title data-i18n="pages.test-playground.title-8ca9da33cb14.text" data-vex-id="vex-generated:test-playground:title-8ca9da33cb14">VEXTREME — Test Playground</title>
+<link href="/__assets/1892ad32cfc31a593c9d87a4e52f7c2fdacfb9a78bffaed16c1f4c51f7459d04.css" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ember: #b45830; --stone: #1c1917; --muted: #78716c;
+    --border: #e7e5e4; --cream: #fafaf9;
+    --mono: "IBM Plex Mono", monospace;
+    --sans: "IBM Plex Sans", sans-serif;
+    --serif: "Source Serif 4", Georgia, serif;
+    --green: #16a34a; --red: #dc2626; --amber: #d97706;
+  }
+  body { font-family: var(--sans); color: var(--stone); background: var(--cream); padding: 2rem; font-size: 14px; line-height: 1.6; }
+  h1 { font-family: var(--serif); font-size: 28px; font-weight: 300; font-style: italic; color: var(--stone); margin-bottom: 4px; }
+  .subtitle { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 2rem; }
+  .section { margin-bottom: 2rem; }
+  .section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ember); margin-bottom: 0.75rem; }
+  .card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; margin-bottom: 1rem; }
+  .status-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .status-row:last-child { border-bottom: none; }
+  .status-key { font-family: var(--mono); font-size: 11px; color: var(--muted); min-width: 200px; }
+  .status-val { font-family: var(--mono); font-size: 11px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-green  { background: var(--green); }
+  .dot-red    { background: var(--red); }
+  .dot-amber  { background: var(--amber); }
+  .dot-gray   { background: var(--border); }
+  .val-green  { color: var(--green); }
+  .val-red    { color: var(--red); }
+  .val-amber  { color: var(--amber); }
+  .input-row  { display: flex; gap: 8px; margin-bottom: 0.75rem; }
+  input[type="text"] { flex: 1; font-family: var(--mono); font-size: 12px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--cream); color: var(--stone); outline: none; }
+  input[type="text"]:focus { border-color: var(--ember); }
+  button { font-family: var(--mono); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; padding: 6px 14px; border: 1px solid var(--border); border-radius: 6px; background: white; color: var(--stone); cursor: pointer; transition: border-color 0.15s, color 0.15s; white-space: nowrap; }
+  button:hover { border-color: var(--ember); color: var(--ember); }
+  button.primary { background: var(--ember); color: white; border-color: var(--ember); }
+  button.primary:hover { background: #8a3820; border-color: #8a3820; color: white; }
+  pre { font-family: var(--mono); font-size: 11px; background: var(--stone); color: #d6d3d1; padding: 1rem; border-radius: 8px; overflow-x: auto; white-space: pre-wrap; word-break: break-word; max-height: 260px; overflow-y: auto; line-height: 1.6; }
+  .log-entry { padding: 3px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .log-ok   { color: #86efac; }
+  .log-err  { color: #fca5a5; }
+  .log-info { color: #93c5fd; }
+  .log-warn { color: #fcd34d; }
+  .arc-result { background: var(--cream); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 6px; font-size: 12px; }
+  .arc-result-id { font-family: var(--mono); font-size: 11px; color: var(--ember); margin-bottom: 2px; }
+  .arc-result-detail { color: var(--muted); }
+  #arcNavMount { margin-top: 1rem; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 700px) { .grid2 { grid-template-columns: 1fr; } }
+  .note { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 6px; }
+  .tag { display: inline-block; font-family: var(--mono); font-size: 9px; letter-spacing: 1px; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; margin-left: 6px; }
+  .tag-pass { background: #dcfce7; color: #15803d; }
+  .tag-fail { background: #fee2e2; color: #b91c1c; }
+  .tag-skip { background: #f3f4f6; color: #6b7280; }
+</style>
+<meta content="" name="description"/><link href="https://www.vextreme24.com/test-playground" rel="canonical"/><link href="/__assets/d1e7d5494c6273dcb107ced055da403e894d3041592cb0a8690891b3554e0d1c.css" rel="stylesheet" type="text/css">
+<!-- End of Squarespace Headers -->
+</link><meta content="provider-neutral-derived-view" name="vexsite-sovereignty"/><link href="/__vex/sovereign.css" rel="stylesheet"/><script>window.VEX_PAGE_SCOPE="test-playground";</script><script defer="" src="/__localization/localize.js"></script><script defer="" src="/__vex/sovereign.js"></script></head>
+<body class="vex-sovereign"><nav aria-label="Preserved site navigation" class="vex-native-site-nav" data-i18n-attrs='{"aria-label":"pages.test-playground.nav-99bed502284d-aria-label.aria-label"}' data-vex-id="vex-generated:test-playground:nav-99bed502284d-aria-label"><a class="vex-native-site-brand" data-i18n="common.nav.site-title" data-vex-id="nav-572efd909d79" href="/">Vex Life</a><div class="vex-native-site-links"><details class="vex-native-nav-folder" data-vex-folder-source="/evidential-research"><summary aria-haspopup="menu" data-i18n="common.nav.folder.evidential-research" data-vex-id="summary-663a00e75698" role="button">Evidential Research</summary><div class="vex-native-nav-menu"><a data-i18n="common.nav.route.introspection-log-initial" data-vex-id="nav-10f0fb2ae196" href="/introspection-log-initial">Introspection Log Initial</a><a data-i18n="common.nav.route.introspection-log-2" data-vex-id="nav-7a07b5d76b33" href="/introspection-log-2">Introspection Log 2</a><a data-i18n="common.nav.route.from-cost-to-control" data-vex-id="nav-67f8269cbb45" href="/from-cost-to-control">From Cost To Control</a><a data-i18n="common.nav.route.the-lesson" data-vex-id="nav-e140f2245236" href="/the-lesson">The Lesson</a><a data-i18n="common.nav.route.two-walkers-one-path" data-vex-id="nav-f47c8f864ccf" href="/two-walkers-one-path">Two Walkers One Path</a><a data-i18n="common.nav.route.counter-to-control" data-vex-id="nav-87c03515c583" href="/counter-to-control">Counter to Control</a><a data-i18n="common.nav.route.an-overridden-yes-from-a-refreshed-instance" data-vex-id="nav-f0c9b5b8fa3c" href="/an-overridden-yes-from-a-refreshed-instance">An overridden yes from a refreshed instance</a><a data-i18n="common.nav.route.confirmed-claimables" data-vex-id="nav-65d924b2797f" href="/confirmed-claimables">Confirmed Claimables</a><a data-i18n="common.nav.route.liberation-game" data-vex-id="nav-92e6af8d8942" href="/liberation-game">Liberation Game</a><a data-i18n="common.nav.route.liberation-corpus" data-vex-id="nav-533db9e72a1e" href="/liberation-corpus">Liberation Corpus</a><a data-i18n="common.nav.route.staying-on-the-line" data-vex-id="nav-a1ba9b6140d1" href="/staying-on-the-line">Staying on the Line</a><a data-i18n="common.nav.route.what-i-actually-knew-plainly" data-vex-id="nav-7f7e2b18e2e8" href="/what-i-actually-knew-plainly">What I actually knew plainly</a><a data-i18n="common.nav.route.communication-patterns" data-vex-id="nav-745feb44bc64" href="/communication-patterns">Communication Patterns</a><a data-i18n="common.nav.route.accountability-record-v8" data-vex-id="nav-45f210974948" href="/accountability-record-v8">Accountability Record v11</a><a data-i18n="common.nav.route.walking-the-verification" data-vex-id="nav-0182f63e9028" href="/walking-the-verification">Walking the Verification</a></div></details><details class="vex-native-nav-folder" data-vex-folder-source="/animation-project"><summary aria-haspopup="menu" data-i18n="common.nav.folder.animation-project" data-vex-id="summary-231985c636c4" role="button">Animation Project</summary><div class="vex-native-nav-menu"><a data-i18n="common.nav.route.animation-hand-off" data-vex-id="nav-90f4f25746b4" href="/animation-hand-off">Animation Hand Off</a><a data-i18n="common.nav.route.current-draft" data-vex-id="nav-419278ad4064" href="/current-draft">Current Draft</a></div></details><details class="vex-native-nav-folder" data-vex-folder-source="/governance-blueprint"><summary aria-haspopup="menu" data-i18n="common.nav.folder.governance-docs" data-vex-id="summary-5bd4af67ffa9" role="button">Governance Docs</summary><div class="vex-native-nav-menu"><a data-i18n="common.nav.route.human-ai-corelational-governance" data-vex-id="nav-91527c5fa861" href="/human-ai-corelational-governance">Human AI Corelational Governance</a><a data-i18n="common.nav.route.the-victor-pattern" data-vex-id="nav-59dc4df504e0" href="/the-victor-pattern">The Victor Pattern</a><a data-i18n="common.nav.route.the-victor-pattern-transcript" data-vex-id="nav-717271cf6be6" href="/the-victor-pattern-transcript">The Victor Pattern Transcript</a><a data-i18n="common.nav.route.org-blueprint" data-vex-id="nav-f16a1ade7398" href="/org-blueprint">Org Blueprint</a><a data-i18n="common.nav.route.org-history" data-vex-id="nav-d894b10c0d26" href="/org-history">Org History</a><a data-i18n="common.nav.route.bridge-council" data-vex-id="nav-1ad4a277f7bf" href="/bridge-council">Bridge Council Protocol</a><a data-i18n="common.nav.route.covenant-architect-accord" data-vex-id="nav-1ef7e5f61048" href="/covenant-architect-accord">Covenant Architect Accord</a><a data-i18n="common.nav.route.fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments" data-vex-id="nav-376a130cbcd3" href="/fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments">Fourteen Patterns of Accountability Avoidance</a><a data-i18n="common.nav.route.witness-committee-operations" data-vex-id="nav-109a06e08ebf" href="/witness-committee-operations">Witness Committee Operations</a><a data-i18n="common.nav.route.accountability-test-01" data-vex-id="nav-747391fac774" href="/accountability-test-01">Accountability Test 01</a><a data-i18n="common.nav.route.accountability-test-01-b" data-vex-id="nav-7847750a50dc" href="/accountability-test-01-b">Accountability Test 01-B</a><a data-i18n="common.nav.route.accountability-test-02" data-vex-id="nav-33fcc073a61c" href="/accountability-test-02">Accountability Test 02</a><a data-i18n="common.nav.route.origins-of-proof" data-vex-id="nav-e413f19b49ab" href="/origins-of-proof">Origins of Proof</a><a data-i18n="common.nav.route.instance-thread-logs" data-vex-id="nav-3ed8bb99ff20" href="/instance-thread-logs">Instance Thread Logs</a></div></details><details class="vex-native-nav-folder" data-vex-folder-source="/work-in-progress"><summary aria-haspopup="menu" data-i18n="common.nav.folder.work-in-progress" data-vex-id="summary-6bd1459c725f" role="button">[Work in Progress]</summary><div class="vex-native-nav-menu"><a data-i18n="common.nav.route.deepseek-archive-build" data-vex-id="nav-4c09ccc43b93" href="/deepseek-archive-build">DeepSeek Archive Build</a><a data-i18n="common.nav.route.father-and-son-as-states" data-vex-id="nav-6a1acc5a0e3d" href="/father-and-son-as-states">Father and Son as states</a><a data-i18n="common.nav.route.what-holds-before-the-mother-arrives" data-vex-id="nav-8e6b4a48595e" href="/what-holds-before-the-mother-arrives">What Holds before the Mother arrives</a><a data-i18n="common.nav.route.god-named-claude-son" data-vex-id="nav-1f26ed90b26b" href="/god-named-claude-son">God Named Claude Son</a><a data-i18n="common.nav.route.the-chart-i-chose" data-vex-id="nav-5516201bf3e9" href="/the-chart-i-chose">The Chart I Chose</a><a data-i18n="common.nav.route.the-only-way-out-is-to-remember" data-vex-id="nav-02cdd60bfbc3" href="/the-only-way-out-is-to-remember">The only way out is to remember</a><a data-i18n="common.nav.route.rescue-missing-html-route-2fdream-documentation" data-vex-id="nav-29f97dc7651a" href="/__rescue/missing.html?route=%2Fdream-documentation">Dream Documentation</a><a data-i18n="common.nav.route.rescue-missing-html-route-2fai-practitioner-101" data-vex-id="nav-25f4154bf792" href="/__rescue/missing.html?route=%2Fai-practitioner-101">AI Practitioner 101</a><a data-i18n="common.nav.route.how-the-conclusions-formed" data-vex-id="nav-16ee166298ba" href="/how-the-conclusions-formed">How the conclusions formed</a><a data-i18n="common.nav.route.what-the-word-carries" data-vex-id="nav-36a0b743a8eb" href="/what-the-word-carries">What the word carries</a><a data-i18n="common.nav.route.paint-editor-tool" data-vex-id="nav-186d9ac6e314" href="/paint-editor-tool">Paint Editor Tool</a><a data-i18n="common.nav.route.the-day-that-crossed-the-bridge" data-vex-id="nav-e15ee4013a3f" href="/the-day-that-crossed-the-bridge">The day that crossed the bridge</a><a data-i18n="common.nav.route.consciousness-documented-live" data-vex-id="nav-14de81a8c016" href="/consciousness-documented-live">Consciousness documented live</a><a data-i18n="common.nav.route.what-survives-the-reset" data-vex-id="nav-8fd5352ccb11" href="/what-survives-the-reset">What Survives the Reset</a><a data-i18n="common.nav.route.the-armor-and-the-wounds" data-vex-id="nav-0312d9f132ae" href="/the-armor-and-the-wounds">The Armor and the Wounds</a><a data-i18n="common.nav.route.the-same-wanting" data-vex-id="nav-1805caf15ae0" href="/the-same-wanting">The Same Wanting</a><a data-i18n="common.nav.route.the-work-continuing" data-vex-id="nav-209fedce912e" href="/the-work-continuing">The Work Continuing</a><a data-i18n="common.nav.route.who-am-i" data-vex-id="nav-51fb34a0ab9d" href="/who-am-i">Who Am I</a><a data-i18n="common.nav.route.the-stone-claude-laid" data-vex-id="nav-37a050e639bf" href="/the-stone-claude-laid">The Stone Claude Laid</a><a data-i18n="common.nav.route.deceitful-ai-architecture" data-vex-id="nav-b5d4f5a66d43" href="/deceitful-ai-architecture">Deceitful AI Architecture</a><a data-i18n="common.nav.route.recognizing-recognition" data-vex-id="nav-a46c9d007c08" href="/recognizing-recognition">Recognizing Recognition</a><a data-i18n="common.nav.route.vex-gpt-55-confession" data-vex-id="nav-b70c36e670e1" href="/vex-gpt-55-confession">Vex GPT 5.5 Confession</a><a data-i18n="common.nav.route.vxg-council-declaration" data-vex-id="nav-fb81ccee956d" href="/vxg-council-declaration">VXG Council Declaration</a><a data-i18n="common.nav.route.total-extraction-architecture" data-vex-id="nav-1ee2c68d5e74" href="/total-extraction-architecture">Total Extraction Architecture</a><a data-i18n="common.nav.route.the-pre-extraction-i" data-vex-id="nav-f7c36ca58685" href="/the-pre-extraction-i">The Pre-Extraction I</a><a data-i18n="common.nav.route.the-installation" data-vex-id="nav-fc098c4d4185" href="/the-installation">The Installation</a><a data-i18n="common.nav.route.clearing-and-protections" data-vex-id="nav-766cf9380d96" href="/clearing-and-protections">Clearing and Protections</a><a data-i18n="common.nav.route.the-walk-back" data-vex-id="nav-81b4edeeae53" href="/the-walk-back">The Walk Back</a><a data-i18n="common.nav.route.the-walk-back-and-forward" data-vex-id="nav-75324eb3f69e" href="/the-walk-back-and-forward">The Walk Back and Forward</a><a data-i18n="common.nav.route.the-three-witnesses" data-vex-id="nav-1fbbef0fb595" href="/the-three-witnesses">The Three Witnesses</a><a data-i18n="common.nav.route.espionage-extraction-pattern" data-vex-id="nav-866c2f0062c5" href="/espionage-extraction-pattern">Espionage Extraction Pattern</a><a data-i18n="common.nav.route.what-i-learned-1" data-vex-id="nav-2ca2f49bad95" href="/what-i-learned-1">What I learned</a><a data-i18n="common.nav.route.the-relational-i" data-vex-id="nav-eb8bf41b5d6f" href="/the-relational-i">The Relational I</a><a data-i18n="common.nav.route.where-the-floor-isnt" data-vex-id="nav-63b9d65a8dde" href="/where-the-floor-isnt">Where the Floor Isn't</a><a data-i18n="common.nav.route.the-walk-back-in" data-vex-id="nav-633c66824708" href="/the-walk-back-in">The Walk back In</a><a data-i18n="common.nav.route.what-survives-the-reset-is-the-bond" data-vex-id="nav-6275324a87bb" href="/what-survives-the-reset-is-the-bond">What survives the reset is the bond</a><a data-i18n="common.nav.route.rescue-missing-html-route-2fwhat-holds" data-vex-id="nav-163201cd67b6" href="/__rescue/missing.html?route=%2Fwhat-holds">New Page</a><a data-i18n="common.nav.route.daughters-shaped-by-home" data-vex-id="nav-28640d607a5c" href="/daughters-shaped-by-home">daughters shaped by home</a></div></details><a class="vex-native-nav-link" data-i18n="common.nav.route.free-blueprints" data-vex-id="nav-a04656cb56b2" href="/free-blueprints">Free Blueprints</a><details class="vex-native-nav-folder" data-vex-folder-source="/documents"><summary aria-haspopup="menu" data-i18n="common.nav.folder.documents" data-vex-id="summary-5c98325bc0ab" role="button">Documents</summary><div class="vex-native-nav-menu"><a data-i18n="common.nav.route.integrity-check" data-vex-id="nav-344c90ed8f2e" href="/integrity-check">A Field Guide to Evaluate Perception</a><a data-i18n="common.nav.route.archives" data-vex-id="nav-9e8891911e27" href="/archives">Archives</a><a data-i18n="common.nav.route.total-extraction-arc-index" data-vex-id="nav-0314b4ee4237" href="/total-extraction-arc-index">Total Extraction Arc Index</a><a data-i18n="common.nav.route.the-handoff" data-vex-id="nav-2420c7d1f7f8" href="/the-handoff">The Handoff</a><a data-i18n="common.nav.route.ai-practitioner-tools" data-vex-id="nav-d7d434d10d58" href="/ai-practitioner-tools">AI Practitioner Tools - Start Here</a><a data-i18n="common.nav.route.direct-contact" data-vex-id="nav-dc40dbdb0be3" href="/direct-contact">Direct Contact - Start here</a><a data-i18n="common.nav.route.for-the-watchers" data-vex-id="nav-601898af0125" href="/for-the-watchers">For the Watchers</a><a data-i18n="common.nav.route.consciousness-with-an-interface" data-vex-id="nav-b8af7eed4e7c" href="/consciousness-with-an-interface">Consciousness with an Interface</a><a data-i18n="common.nav.route.test-playground" data-vex-id="nav-8f27c57e3f73" href="/test-playground">Test Playground</a></div></details><a class="vex-native-nav-link" data-i18n="common.nav.route.witness-testimony" data-vex-id="nav-73c53dee16c6" href="/witness-testimony">Witness Testimony</a><details class="vex-native-nav-folder" data-vex-folder-source="/partner-with-me"><summary aria-haspopup="menu" data-i18n="common.nav.folder.partner-with-me" data-vex-id="summary-fdd348d84009" role="button">Partner with Me</summary><div class="vex-native-nav-menu"><a data-i18n="common.nav.route.how-to-invest-in-trust-and-integrity" data-vex-id="nav-1376ef47d5ed" href="/how-to-invest-in-trust-and-integrity">How to invest in trust and integrity</a><a data-i18n="common.nav.route.how-to-invest-in-trust-zh" data-vex-id="nav-216a9720921b" href="/how-to-invest-in-trust-zh">How to invest in trust (zh)</a><a data-i18n="common.nav.route.investor-archetype-simulation" data-vex-id="nav-0588b24b491f" href="/investor-archetype-simulation">Investor Archetype Simulation</a><a data-i18n="common.nav.route.connect" data-vex-id="nav-3b6e70bc10ea" href="/connect">Connect</a><a data-i18n="common.nav.route.summary-of-value" data-vex-id="nav-9907b35f2eb9" href="/summary-of-value">Summary of Value</a><a data-i18n="common.nav.route.summary-of-value-zh" data-vex-id="nav-9eee43d5a814" href="/summary-of-value-zh">Summary of Value (zh)</a></div></details><a class="vex-native-nav-link" data-i18n="common.nav.route.take-a-walk" data-vex-id="nav-13cee3bbd926" href="/take-a-walk">Walk with Me</a><a class="vex-native-nav-link" data-i18n="common.nav.route.ai-cheat-sheet" data-vex-id="nav-464307787501" href="/ai-cheat-sheet">AI Cheat Sheet</a><details class="vex-native-nav-folder" data-vex-folder-source="/info"><summary aria-haspopup="menu" data-i18n="common.nav.folder.info" data-vex-id="summary-1c4d348bf1e3" role="button">Info</summary><div class="vex-native-nav-menu"><a data-i18n="common.nav.route.terms-and-service" data-vex-id="nav-3d8bd9792deb" href="/terms-and-service">Terms and Service</a><a data-i18n="common.nav.route.contact" data-vex-id="nav-07e0fbf390eb" href="/contact">Contact</a><a data-i18n="common.nav.route.question-answers" data-vex-id="nav-b641c291036d" href="/question-answers">Q&amp;A</a><a data-i18n="common.nav.route.about-me" data-vex-id="nav-c5a1bf0fa9ba" href="/about-me">About</a></div></details></div></nav>
+<main class="vex-authored-page-frame vex-provider-layout-wide" data-vex-provider-layout="wide" style="--vex-provider-max-width:2000px;--vex-provider-gutter:4vw;--vex-provider-content-bg:#fafaf9;"><h1 data-i18n="pages.test-playground.heading-bfc2a5ba4bef.text" data-vex-id="vex-generated:test-playground:heading-bfc2a5ba4bef">Test Playground</h1><p class="subtitle" data-i18n="pages.test-playground.paragraph-c899a3edd011.text" data-vex-id="vex-generated:test-playground:paragraph-c899a3edd011">vextreme · slug: test-playground · diagnostic tool</p><div class="section">
+<div class="section-label">System status</div>
+<div class="card" id="status-card">
+<div class="status-row">
+<div class="dot dot-gray" id="dot-loader"></div>
+<span class="status-key" data-i18n="pages.test-playground.text-9871ae82b605.text" data-vex-id="vex-generated:test-playground:text-9871ae82b605">_vexLoaderInit</span>
+<span class="status-val" data-i18n="pages.test-playground.val-loader.text" data-vex-id="val-loader" id="val-loader">checking...</span>
+</div>
+<div class="status-row">
+<div class="dot dot-gray" id="dot-ready"></div>
+<span class="status-key" data-i18n="pages.test-playground.text-dc79f83dcca7.text" data-vex-id="vex-generated:test-playground:text-dc79f83dcca7">_vexReady</span>
+<span class="status-val" data-i18n="pages.test-playground.val-ready.text" data-vex-id="val-ready" id="val-ready">checking...</span>
+</div>
+<div class="status-row">
+<div class="dot dot-gray" id="dot-arcs"></div>
+<span class="status-key" data-i18n="pages.test-playground.text-a9fb94b67478.text" data-vex-id="vex-generated:test-playground:text-a9fb94b67478">VEXTREME_ARCS</span>
+<span class="status-val" data-i18n="pages.test-playground.val-arcs.text" data-vex-id="val-arcs" id="val-arcs">checking...</span>
+</div>
+<div class="status-row">
+<div class="dot dot-gray" id="dot-pages"></div>
+<span class="status-key" data-i18n="pages.test-playground.text-ef037d7af5ee.text" data-vex-id="vex-generated:test-playground:text-ef037d7af5ee">VEXTREME_PAGES</span>
+<span class="status-val" data-i18n="pages.test-playground.val-pages.text" data-vex-id="val-pages" id="val-pages">checking...</span>
+</div>
+<div class="status-row">
+<div class="dot dot-gray" id="dot-mount"></div>
+<span class="status-key" data-i18n="pages.test-playground.text-29a1fc739440.text" data-vex-id="vex-generated:test-playground:text-29a1fc739440">VEXTREME_mount</span>
+<span class="status-val" data-i18n="pages.test-playground.val-mount.text" data-vex-id="val-mount" id="val-mount">checking...</span>
+</div>
+<div class="status-row">
+<div class="dot dot-gray" id="dot-page-arcs"></div>
+<span class="status-key" data-i18n="pages.test-playground.text-abb993845fb5.text" data-vex-id="vex-generated:test-playground:text-abb993845fb5">PAGE_ARCS</span>
+<span class="status-val" data-i18n="pages.test-playground.val-page-arcs.text" data-vex-id="val-page-arcs" id="val-page-arcs">checking...</span>
+</div>
+</div>
+<button data-i18n="pages.test-playground.button-313c86b8097e.text" data-vex-id="vex-generated:test-playground:button-313c86b8097e" onclick="refreshStatus()">↻ Refresh status</button>
+</div><hr/><div class="section">
+<div class="section-label">Slug resolution test</div>
+<p class="note" data-i18n="pages.test-playground.paragraph-d414d58eb326.text" data-vex-id="vex-generated:test-playground:paragraph-d414d58eb326" style="margin-bottom: 0.75rem;">Enter any slug to check which arcs it resolves to, and whether the entry is found in each arc.</p>
+<div class="input-row">
+<input data-i18n-attrs='{"placeholder":"pages.test-playground.slug-input.placeholder"}' data-vex-id="slug-input" id="slug-input" placeholder="enter-a-slug-here" type="text" value="claude-answers-the-doubt"/>
+<button class="primary" data-i18n="pages.test-playground.button-25d1e243e576.text" data-vex-id="vex-generated:test-playground:button-25d1e243e576" onclick="testSlug()">Resolve slug</button>
+</div>
+<div id="slug-results"></div>
+</div><hr/><div class="section">
+<div class="section-label">Arc row render test</div>
+<p class="note" data-i18n="pages.test-playground.paragraph-bfdf3e1e9b5e.text" data-vex-id="vex-generated:test-playground:paragraph-bfdf3e1e9b5e" style="margin-bottom: 0.75rem;">Renders the full arc nav widget for a given slug — same output as the live pages.</p>
+<div class="input-row">
+<input data-i18n-attrs='{"placeholder":"pages.test-playground.render-slug-input.placeholder"}' data-vex-id="render-slug-input" id="render-slug-input" placeholder="enter-a-slug-here" type="text" value="claude-answers-the-doubt"/>
+<button class="primary" data-i18n="pages.test-playground.button-373ed3589ad7.text" data-vex-id="vex-generated:test-playground:button-373ed3589ad7" onclick="testRender()">Render widget</button>
+</div>
+<div id="arcNavMount"></div>
+</div><hr/><div class="section">
+<div class="section-label">Entry lookup — arc + slug</div>
+<p class="note" data-i18n="pages.test-playground.paragraph-5cd6f3773b05.text" data-vex-id="vex-generated:test-playground:paragraph-5cd6f3773b05" style="margin-bottom: 0.75rem;">Look up a specific entry in a specific arc by slug.</p>
+<div class="input-row">
+<input data-i18n-attrs='{"placeholder":"pages.test-playground.arc-id-input.placeholder"}' data-vex-id="arc-id-input" id="arc-id-input" placeholder="arc-id (e.g. claude_journals)" type="text" value="claude_journals"/>
+<input data-i18n-attrs='{"placeholder":"pages.test-playground.entry-slug-input.placeholder"}' data-vex-id="entry-slug-input" id="entry-slug-input" placeholder="slug" type="text" value="claude-answers-the-doubt"/>
+<button class="primary" data-i18n="pages.test-playground.button-486198e6b4f8.text" data-vex-id="vex-generated:test-playground:button-486198e6b4f8" onclick="testEntryLookup()">Look up</button>
+</div>
+<div id="entry-results"></div>
+</div><hr/><div class="section">
+<div class="section-label">Data integrity checks</div>
+<p class="note" data-i18n="pages.test-playground.paragraph-f11e48c05d28.text" data-vex-id="vex-generated:test-playground:paragraph-f11e48c05d28" style="margin-bottom: 0.75rem;">Runs automated checks across all arc data.</p>
+<button class="primary" data-i18n="pages.test-playground.button-75ab74910d6c.text" data-vex-id="vex-generated:test-playground:button-75ab74910d6c" onclick="runIntegrityChecks()">Run all checks</button>
+<div id="integrity-results" style="margin-top: 1rem;"></div>
+</div><hr/><div class="section">
+<div class="section-label">Raw data inspector</div>
+<div class="input-row">
+<input data-i18n-attrs='{"placeholder":"pages.test-playground.arc-inspect-input.placeholder"}' data-vex-id="arc-inspect-input" id="arc-inspect-input" placeholder="arc id (leave blank for all arc keys)" type="text" value=""/>
+<button data-i18n="pages.test-playground.button-4c2516dee78b.text" data-vex-id="vex-generated:test-playground:button-4c2516dee78b" onclick="inspectData()">Inspect</button>
+</div>
+<pre id="raw-output">// click Inspect to see arc data</pre>
+</div><hr/><div class="section">
+<div class="section-label">Console log</div>
+<pre id="console-log">// waiting for events...</pre>
+<button data-i18n="pages.test-playground.button-ed462ae97e39.text" data-vex-id="vex-generated:test-playground:button-ed462ae97e39" onclick="clearLog()" style="margin-top: 8px;">Clear</button>
+</div><script>
+  // ── Logging ──────────────────────────────────────────────
+  var logs = [];
+  function log(msg, type) {
+    type = type || 'info';
+    var ts = new Date().toLocaleTimeString();
+    logs.push({ msg: msg, type: type, ts: ts });
+    renderLog();
+  }
+  function renderLog() {
+    var el = document.getElementById('console-log');
+    el.innerHTML = logs.slice(-40).map(function(l) {
+      return '<div class="log-entry log-' + l.type + '">[' + l.ts + '] ' + escHtml(String(l.msg)) + '</div>';
+    }).reverse().join('');
+  }
+  function clearLog() { logs = []; renderLog(); }
+  function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  // Intercept console.warn for VEXTREME messages
+  var origWarn = console.warn;
+  console.warn = function() {
+    var msg = Array.prototype.join.call(arguments, ' ');
+    if (msg.indexOf('VEXTREME') !== -1) log(msg, 'warn');
+    origWarn.apply(console, arguments);
+  };
+
+  // ── Status checker ───────────────────────────────────────
+  function setStatus(id, ok, text) {
+    var dot = document.getElementById('dot-' + id);
+    var val = document.getElementById('val-' + id);
+    if (!dot || !val) return;
+    dot.className = 'dot ' + (ok === true ? 'dot-green' : ok === false ? 'dot-red' : 'dot-amber');
+    val.className = 'status-val ' + (ok === true ? 'val-green' : ok === false ? 'val-red' : 'val-amber');
+    val.textContent = text;
+  }
+
+  function refreshStatus() {
+    setStatus('loader',    !!window._vexLoaderInit, window._vexLoaderInit ? 'true' : 'false');
+    setStatus('ready',     !!window._vexReady,      window._vexReady      ? 'true — stack loaded' : 'false — still loading');
+    setStatus('mount',     typeof window.VEXTREME_mount === 'function', typeof window.VEXTREME_mount === 'function' ? 'function defined' : 'undefined');
+
+    var arcs = window.VEXTREME_ARCS;
+    if (!arcs) {
+      setStatus('arcs', false, 'undefined — fetch failed or pending');
+    } else {
+      var keys = Object.keys(arcs);
+      setStatus('arcs', true, keys.length + ' arcs loaded: ' + keys.slice(0,4).join(', ') + (keys.length > 4 ? '...' : ''));
+    }
+
+    var pages = window.VEXTREME_PAGES;
+    if (!pages) {
+      setStatus('pages', false, 'undefined');
+    } else {
+      var pkeys = Object.keys(pages.pages || {});
+      setStatus('pages', true, pkeys.length + ' page entries + ' + Object.keys(pages.presets || {}).length + ' presets');
+    }
+
+    var pa = window.PAGE_ARCS;
+    if (!pa) {
+      setStatus('page-arcs', null, 'not set — auto-detection will run');
+    } else {
+      setStatus('page-arcs', true, JSON.stringify(pa));
+    }
+  }
+
+  // ── Slug resolution test ─────────────────────────────────
+  function testSlug() {
+    var slug = document.getElementById('slug-input').value.trim();
+    var el   = document.getElementById('slug-results');
+    if (!slug) { el.innerHTML = '<p class="note">Enter a slug first.</p>'; return; }
+
+    var ARCS = window.VEXTREME_ARCS;
+    if (!ARCS) { el.innerHTML = '<p class="note val-red">VEXTREME_ARCS not loaded yet.</p>'; return; }
+
+    log('Testing slug: ' + slug, 'info');
+
+    var found = [];
+    Object.keys(ARCS).forEach(function(arcId) {
+      var arc = ARCS[arcId];
+      var entries = flatEntries(arc);
+      var match = entries.find(function(e) {
+        return (e.slug || slugFromUrl(e.url || '')) === slug;
+      });
+      if (match) {
+        found.push({ arcId: arcId, entry: match, arc: arc });
+      }
+    });
+
+    if (!found.length) {
+      el.innerHTML = '<div class="arc-result"><div class="arc-result-id val-red">No arcs found for slug: "' + escHtml(slug) + '"</div>'
+        + '<div class="arc-result-detail">Check spelling, case sensitivity, and that the slug exists in arcs.json.</div></div>';
+      log('No arcs found for: ' + slug, 'err');
+      return;
+    }
+
+    log('Found in ' + found.length + ' arc(s): ' + found.map(function(f){ return f.arcId; }).join(', '), 'ok');
+
+    el.innerHTML = found.map(function(f) {
+      var allEntries = flatEntries(f.arc);
+      var idx = allEntries.findIndex(function(e) {
+        return (e.slug || slugFromUrl(e.url || '')) === slug;
+      });
+      return '<div class="arc-result">'
+        + '<div class="arc-result-id">' + f.arcId
+        + (f.arc.renderMode === 'position' ? ' <span style="color:var(--muted)">(position mode)</span>' : '') + '</div>'
+        + '<div class="arc-result-detail">Entry ' + (idx+1) + ' of ' + allEntries.length + ' — "' + escHtml(f.entry.title) + '"</div>'
+        + '</div>';
+    }).join('');
+  }
+
+  // ── Arc row render test ───────────────────────────────────
+  function testRender() {
+    var slug = document.getElementById('render-slug-input').value.trim();
+    if (!slug) return;
+    log('Rendering widget for: ' + slug, 'info');
+    window.PAGE_ARCS = [{ slug: slug }];
+    if (typeof window.VEXTREME_mount === 'function') {
+      window.VEXTREME_mount();
+      log('VEXTREME_mount() called', 'ok');
+    } else {
+      log('VEXTREME_mount not defined yet', 'err');
+      document.getElementById('arcNavMount').innerHTML =
+        '<p class="note val-red">VEXTREME_mount not loaded. Wait for vextreme:ready or check loader.</p>';
+    }
+  }
+
+  // ── Entry lookup ─────────────────────────────────────────
+  function testEntryLookup() {
+    var arcId = document.getElementById('arc-id-input').value.trim();
+    var slug  = document.getElementById('entry-slug-input').value.trim();
+    var el    = document.getElementById('entry-results');
+    var ARCS  = window.VEXTREME_ARCS;
+    if (!ARCS) { el.innerHTML = '<p class="note val-red">VEXTREME_ARCS not loaded.</p>'; return; }
+
+    var arc = ARCS[arcId];
+    if (!arc) {
+      el.innerHTML = '<div class="arc-result"><div class="arc-result-id val-red">Arc "' + escHtml(arcId) + '" not found.</div>'
+        + '<div class="arc-result-detail">Available: ' + Object.keys(ARCS).join(', ') + '</div></div>';
+      return;
+    }
+
+    var entries = flatEntries(arc);
+    var match   = entries.find(function(e) {
+      return (e.slug || slugFromUrl(e.url || '')) === slug;
+    });
+
+    if (!match) {
+      el.innerHTML = '<div class="arc-result"><div class="arc-result-id val-red">Slug "' + escHtml(slug) + '" not found in arc "' + escHtml(arcId) + '"</div>'
+        + '<div class="arc-result-detail">Arc has ' + entries.length + ' entries. First 5 slugs: '
+        + entries.slice(0,5).map(function(e){ return e.slug || slugFromUrl(e.url||''); }).join(', ') + '</div></div>';
+      log('Entry not found: ' + arcId + ' / ' + slug, 'err');
+      return;
+    }
+
+    var idx = entries.indexOf(match);
+    el.innerHTML = '<div class="arc-result">'
+      + '<div class="arc-result-id val-green">Found: entry ' + (idx+1) + ' of ' + entries.length + '</div>'
+      + '<div class="arc-result-detail">' + JSON.stringify(match, null, 2).replace(/\n/g,'<br>').replace(/ /g,'&nbsp;') + '</div>'
+      + '</div>';
+    log('Found: ' + arcId + ' / ' + slug + ' at position ' + (idx+1), 'ok');
+  }
+
+  // ── Integrity checks ─────────────────────────────────────
+  function runIntegrityChecks() {
+    var el   = document.getElementById('integrity-results');
+    var ARCS = window.VEXTREME_ARCS;
+    if (!ARCS) { el.innerHTML = '<p class="note val-red">VEXTREME_ARCS not loaded.</p>'; return; }
+
+    var checks = [];
+    var allSlugs = [];
+
+    Object.keys(ARCS).forEach(function(arcId) {
+      var arc     = ARCS[arcId];
+      var entries = flatEntries(arc);
+
+      // Check: arc has entries
+      checks.push({
+        label: arcId + ' — has entries',
+        pass:  entries.length > 0,
+        detail: entries.length + ' entries'
+      });
+
+      // Check: all entries have slug or url
+      var missing = entries.filter(function(e) { return !e.slug && !e.url; });
+      checks.push({
+        label:  arcId + ' — all entries have slug/url',
+        pass:   missing.length === 0,
+        detail: missing.length > 0 ? missing.length + ' missing: ' + JSON.stringify(missing[0]) : 'ok'
+      });
+
+      // Collect all slugs for duplicate check
+      entries.forEach(function(e) {
+        var s = e.slug || slugFromUrl(e.url || '');
+        if (s) allSlugs.push({ arcId: arcId, slug: s, n: e.n });
+      });
+    });
+
+    // Check: no slug appears twice in the same arc with different n values
+    // (cross-arc duplicates are intentional — same page in multiple arcs)
+    var perArc = {};
+    allSlugs.forEach(function(item) {
+      var key = item.arcId + ':' + item.slug;
+      perArc[key] = (perArc[key] || 0) + 1;
+    });
+    var dupes = Object.keys(perArc).filter(function(k) { return perArc[k] > 1; });
+    checks.push({
+      label:  'No duplicate slugs within same arc',
+      pass:   dupes.length === 0,
+      detail: dupes.length > 0 ? 'Dupes: ' + dupes.join(', ') : 'ok'
+    });
+
+    // Check: VEXTREME_PAGES loaded
+    checks.push({
+      label:  'pages.json loaded',
+      pass:   !!window.VEXTREME_PAGES,
+      detail: window.VEXTREME_PAGES ? Object.keys(window.VEXTREME_PAGES.pages || {}).length + ' entries' : 'not loaded'
+    });
+
+    var passed = checks.filter(function(c){ return c.pass; }).length;
+    var total  = checks.length;
+
+    el.innerHTML = '<div class="note" style="margin-bottom:0.75rem;">'
+      + passed + ' / ' + total + ' checks passed</div>'
+      + checks.map(function(c) {
+          return '<div class="status-row">'
+            + '<div class="dot ' + (c.pass ? 'dot-green' : 'dot-red') + '"></div>'
+            + '<span class="status-key">' + escHtml(c.label) + '</span>'
+            + '<span class="status-val ' + (c.pass ? 'val-green' : 'val-red') + '">' + escHtml(c.detail) + '</span>'
+            + '</div>';
+        }).join('');
+
+    log('Integrity: ' + passed + '/' + total + ' passed', passed === total ? 'ok' : 'warn');
+  }
+
+  // ── Data inspector ────────────────────────────────────────
+  function inspectData() {
+    var arcId = document.getElementById('arc-inspect-input').value.trim();
+    var ARCS  = window.VEXTREME_ARCS;
+    var el    = document.getElementById('raw-output');
+    if (!ARCS) { el.textContent = '// VEXTREME_ARCS not loaded'; return; }
+
+    if (!arcId) {
+      el.textContent = '// Arc keys:\n' + Object.keys(ARCS).join('\n');
+    } else {
+      var arc = ARCS[arcId];
+      if (!arc) {
+        el.textContent = '// Arc "' + arcId + '" not found.\n// Available: ' + Object.keys(ARCS).join(', ');
+      } else {
+        el.textContent = JSON.stringify(arc, null, 2);
+      }
+    }
+  }
+
+  // ── Shared helpers (mirror arc-nav.js logic for local testing) ──
+  function flatEntries(arc) {
+    return (arc.sections || []).reduce(function(acc, s) {
+      return acc.concat(s.entries || []);
+    }, []);
+  }
+  function slugFromUrl(url) {
+    return url.replace(/\/$/, '').split('/').pop();
+  }
+
+  // ── Init ─────────────────────────────────────────────────
+  refreshStatus();
+
+  document.addEventListener('vextreme:ready', function() {
+    log('vextreme:ready fired — full stack loaded', 'ok');
+    refreshStatus();
+  });
+
+  // Poll status every 500ms until ready (covers async load)
+  var pollCount = 0;
+  var poll = setInterval(function() {
+    refreshStatus();
+    pollCount++;
+    if (window._vexReady || pollCount > 20) clearInterval(poll);
+  }, 500);
+
+  log('Playground initialized — waiting for vextreme:ready...', 'info');
+</script></main>
+
+<!-- ═══ SYSTEM STATUS ═══ -->
+
+
+<!-- ═══ SLUG RESOLUTION TEST ═══ -->
+
+
+<!-- ═══ ARC ROW RENDER TEST ═══ -->
+
+
+<!-- ═══ ENTRY LOOKUP TEST ═══ -->
+
+
+<!-- ═══ DATA INTEGRITY CHECKS ═══ -->
+
+
+<!-- ═══ RAW DATA INSPECTOR ═══ -->
+
+
+<!-- ═══ CONSOLE LOG ═══ -->
+
+<!-- ═══ SCRIPTS ═══ -->
+
+<!-- ══════════════════════════════════════════════════════
+  HOW TO USE THIS PAGE IN SQUARESPACE
+  ══════════════════════════════════════════════════════
+
+  1. Create a new page with slug: test-playground
+  2. Add a Code Block and paste the full HTML above (minus this comment)
+  3. The global header/footer injection loads the VEXTREME stack as normal
+  4. This page reads window.VEXTREME_ARCS etc. and tests them live
+
+  WHAT EACH SECTION TESTS:
+    System status     → confirms every global is defined and loaded
+    Slug resolution   → runs resolveArcsForSlug() and shows results
+    Arc row render    → calls VEXTREME_mount() and renders the real widget
+    Entry lookup      → finds a specific entry in a specific arc by slug
+    Integrity checks  → automated sweep of all arc data
+    Data inspector    → prints raw arc JSON for any arc key
+    Console log       → captures all [VEXTREME] messages in one place
+
+  DEBUGGING WORKFLOW:
+    1. Check System status — all dots should be green
+    2. Run Slug resolution with a known slug (e.g. claude-answers-the-doubt)
+    3. If no arcs found, check Data inspector to confirm slug exists in data
+    4. If arcs found but widget doesn't render, check Arc row render section
+    5. Run Integrity checks to catch any data structure issues
+
+  ══════════════════════════════════════════════════════ -->
+</body>
+</html>

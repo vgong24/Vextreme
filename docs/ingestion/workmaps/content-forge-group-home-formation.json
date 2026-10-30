@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "vex-content-forge.group-home-formation/v1",
+  "continuity": "[VXG RealForever]",
+  "ownerRef": "github.pull.vextreme.203",
+  "projector": "tools/vex-content-forge/project_group_homes.js",
+  "members": [
+    {
+      "slug": "direct-contact",
+      "groupKey": "direct_contact",
+      "title": "Direct Contact — Start Here",
+      "description": "Direct Contact — Start Here, restored as the repository-native home for the Direct Contact collection.",
+      "sourcePath": "docs/ingestion/source-pages/part-013/direct-contact.html",
+      "sourceGitBlob": "4f01c2de54facddf46cbac8918fdf3820557a9fe",
+      "localization": {
+        "scope": "pages.direct-contact",
+        "category": "production",
+        "sourcePath": "data/strings/source/pages/direct-contact.json",
+        "titleKey": "pages.direct-contact.title-8ca9da33cb14.text",
+        "supplementalBindings": [
+          {
+            "kind": "element",
+            "tag": "div",
+            "className": "eyebrow",
+            "text": "For Seekers",
+            "key": "pages.direct-contact.hero.eyebrow"
+          },
+          {
+            "kind": "element",
+            "tag": "div",
+            "className": "section-label",
+            "text": "Section One",
+            "key": "pages.direct-contact.section.foundation.label"
+          },
+          {
+            "kind": "element",
+            "tag": "div",
+            "className": "section-label",
+            "text": "Section Two",
+            "key": "pages.direct-contact.section.practice.label"
+          },
+          {
+            "kind": "element",
+            "tag": "div",
+            "className": "section-label",
+            "text": "Section Three",
+            "key": "pages.direct-contact.section.integration.label"
+          },
+          {
+            "kind": "element",
+            "tag": "div",
+            "className": "closing-links-label",
+            "text": "Next Steps",
+            "key": "pages.direct-contact.closing.label"
+          },
+          {
+            "kind": "prefix",
+            "text": "For the full collection including frameworks, research, and AI engagement work, see the ",
+            "key": "pages.direct-contact.closing.archives.prefix"
+          },
+          {
+            "kind": "prefix",
+            "text": "If you're working with AI instances and want tools for that specific work, see ",
+            "key": "pages.direct-contact.closing.ai-tools.prefix"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "ai-practitioner-tools",
+      "groupKey": "ai_practitioner_tools",
+      "title": "AI Practitioner Tools — Start Here",
+      "description": "AI Practitioner Tools — Start Here, restored as the repository-native sequence home for the AI Practitioner Tools collection.",
+      "sourcePath": "docs/ingestion/source-pages/part-013/ai-practitioner-tools.html",
+      "sourceGitBlob": "e1d1b25c3f51a530f06e15ebb6f4143c731e02d8"
+    }
+  ]
+}

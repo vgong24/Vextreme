@@ -1,0 +1,321 @@
+{
+  "common.nav.prev": {
+    "text": "← السابق",
+    "aria-label": "الصفحة السابقة"
+  },
+  "common.nav.next": {
+    "text": "التالي →",
+    "aria-label": "الصفحة التالية"
+  },
+  "common.label.you-are-here": {
+    "text": "أنت هنا"
+  },
+  "common.nav.primary-site": {
+    "text": "vextreme24.com",
+    "aria-label": "الانتقال إلى الموقع الرئيسي"
+  },
+  "common.nav.github": {
+    "text": "GitHub",
+    "aria-label": "عرض المصدر على GitHub"
+  },
+  "common.button.copy-filename": {
+    "text": "نسخ اسم الملف",
+    "aria-label": "نسخ اسم الملف إلى الحافظة"
+  },
+  "common.button.copied": {
+    "text": "تم النسخ!",
+    "aria-label": "تم نسخ اسم الملف إلى الحافظة"
+  },
+  "common.label.site-title": {
+    "text": "Vextreme"
+  },
+  "common.label.page-live": {
+    "text": "الصفحة منشورة"
+  },
+  "common.label.not-yet-ported": {
+    "text": "لم يتم ترحيله بعد"
+  },
+  "common.label.slug": {
+    "text": "المعرّف (Slug)"
+  },
+  "common.status.pages-live": {
+    "text": "{ported, plural, one {# من أصل {total} صفحة منشورة} other {# من أصل {total} صفحات منشورة}}"
+  },
+  "common.status.remaining": {
+    "text": "{count, plural, one {متبقٍ #} other {متبقٍ #}}"
+  },
+  "common.status.built-on": {
+    "text": "تم البناء في {date}"
+  },
+  "common.nav.build-health": {
+    "text": "حالة البناء",
+    "aria-label": "عرض حالة البناء"
+  },
+  "common.nav.full-build-health": {
+    "text": "حالة البناء →",
+    "aria-label": "عرض حالة البناء"
+  },
+  "common.button.read-aloud": {
+    "text": "قراءة بصوت عالٍ",
+    "aria-label": "قراءة بصوت عالٍ"
+  },
+  "common.button.read-aloud-start-here": {
+    "text": "ابدأ من هنا",
+    "aria-label": "ابدأ من هنا"
+  },
+  "common.button.read-aloud-play": {
+    "text": "تشغيل",
+    "aria-label": "تشغيل"
+  },
+  "common.button.read-aloud-pause": {
+    "text": "إيقاف مؤقت",
+    "aria-label": "إيقاف مؤقت"
+  },
+  "common.button.read-aloud-stop": {
+    "text": "إيقاف",
+    "aria-label": "إيقاف"
+  },
+  "common.button.read-aloud-previous": {
+    "text": "السابق",
+    "aria-label": "السابق"
+  },
+  "common.button.read-aloud-next": {
+    "text": "التالي",
+    "aria-label": "التالي"
+  },
+  "common.button.read-aloud-close": {
+    "text": "إغلاق",
+    "aria-label": "إغلاق"
+  },
+  "common.label.read-aloud-voice": {
+    "text": "الصوت"
+  },
+  "common.label.read-aloud-speed": {
+    "text": "السرعة"
+  },
+  "common.status.read-aloud-pick": {
+    "text": "اختر المكان الذي يجب أن تبدأ منه القراءة."
+  },
+  "common.status.read-aloud-preparing": {
+    "text": "جارٍ تجهيز صوت عالي الجودة…"
+  },
+  "common.status.read-aloud-reading": {
+    "text": "جارٍ القراءة…"
+  },
+  "common.status.read-aloud-done": {
+    "text": "اكتملت القراءة."
+  },
+  "common.status.read-aloud-fallback": {
+    "text": "الصوت عالي الجودة غير متاح؛ سيتم استخدام صوت النظام."
+  },
+  "common.status.read-aloud-none": {
+    "text": "لم يتم العثور على نص قابل للقراءة."
+  },
+  "pages.victor-methodology-presentation.header.eyebrow": {
+    "text": "ملف هندسي · 2021–2026 · DOC-ID: VG-DOSSIER-v2.1"
+  },
+  "pages.victor-methodology-presentation.header.thesis": {
+    "text": "العثور على كل موضع يُجبر فيه الناس على الافتراض — واستبدال كل افتراض بخريطة تجعل ذلك الافتراض آمنًا."
+  },
+  "pages.victor-methodology-presentation.header.id-line": {
+    "text": "مهندس برمجيات أول II · Dexcom (أجهزة طبية، 5 سنوات) · Lean Six Sigma Green Belt · مهندس معماري لأنظمة التعاون مع الذكاء الاصطناعي"
+  },
+  "pages.victor-methodology-presentation.header.stamp-big": {
+    "text": "×6"
+  },
+  "pages.victor-methodology-presentation.header.stamp-small": {
+    "text": "مُثبت"
+  },
+  "pages.victor-methodology-presentation.section-proofs.heading": {
+    "text": "منهج واحد، ستة براهين"
+  },
+  "pages.victor-methodology-presentation.section-proofs.intro": {
+    "text": "على مدى خمس سنوات في شركة أجهزة طبية — حيث تحمل جودة البرمجيات وزنًا تنظيميًا ووزنًا متعلقًا بسلامة المرضى — طُبقت الحركة الهندسية نفسها على ست مشكلات مختلفة وبمقاييس متزايدة. في كل مرة، استُبدل العمل اليدوي المنفذ «على السطح» بخريطة مصانة تربط الطبقات ببعضها بنيويًا، بحيث لا تستطيع الأنظمة أن تنحرف عن بعضها بصمت."
+  },
+  "pages.victor-methodology-presentation.proof-organization-knowledge-map.year": {
+    "text": "السنوات 1–5 · حيّ"
+  },
+  "pages.victor-methodology-presentation.proof-organization-knowledge-map.title": {
+    "text": "رسم خريطة للمنظمة نفسها — الخريطة الحية"
+  },
+  "pages.victor-methodology-presentation.proof-organization-knowledge-map.body": {
+    "text": "وصلتُ ولم تكن هناك خريطة: لا قنوات تربط مطوري Android، ولا منتديات، ولا دليل يوضح أين يوجد أي شيء. فبنيت البنية التحتية البشرية أولًا — منتدى Android كل أسبوعين للمشاركة المفتوحة وجلسات غداء وتعلّم حول الأخطاء والابتكار؛ وConfluence يرسم خريطة المنظمة (المستودعات، والوثائق، ولوحات المعلومات بما فيها أدوات اختبار VnV)؛ ووصولًا مباشرًا للمطورين إلى أدوات الاختبار كي يستطيع المهندسون تصحيح الأخطاء فورًا بدل استهلاك وقت شخص آخر؛ ثم لاحقًا أدلة ترحيل XML→Jetpack Compose ومبدأ UI يقوم على «وراثة الأساس» فألغى إعادة التنفيذ غير المتسقة. لم يكن أثرًا لمرة واحدة: بل صفحة حية أُضيف إليها وصينت طوال السنوات الخمس — من الإدخالات المبكرة مثل خريطة المنظمة إلى الإدخالات المتأخرة مثل أدلة Compose، مصدر واحد ظل محدثًا باستمرار. وبُني التواصل انطلاقًا من احتياجات الجمهور — بما في ذلك لوحة «ثلاثية الأبعاد» لهرمية fragment/navgraph، تُظهر كل طبقة مسؤوليتها وصلاتها كنمط يمكن مسحه بصريًا بسرعة."
+  },
+  "pages.victor-methodology-presentation.proof-organization-knowledge-map.result": {
+    "text": "أصل المنهج واختبار تحمله في آن واحد: خريطة للناس والمعرفة، بقيت حية ومصانة خمس سنوات."
+  },
+  "pages.victor-methodology-presentation.proof-bulk-data-logging.year": {
+    "text": "السنة 1"
+  },
+  "pages.victor-methodology-presentation.proof-bulk-data-logging.title": {
+    "text": "تحليلات لا يمكن أن تنحرف — BulkDataLogging"
+  },
+  "pages.victor-methodology-presentation.proof-bulk-data-logging.body": {
+    "text": "استبدلتُ كود التحليلات المكتوب يدويًا في كل شاشة بخريطة مركزية واحدة (ScreenName / ScreenMapper / ButtonName / MetaData) تغطي أحداث العرض والنقر والمدة والإدخال. احذف عنصر UI فتختفي معه خانة التسجيل الخاصة به — التحليلات وواجهة المستخدم مرتبطتان بنيويًا."
+  },
+  "pages.victor-methodology-presentation.proof-bulk-data-logging.result": {
+    "text": "تسجيل أحداث بمستوى طبي وبسلامة بنيوية على مستوى المنظمة كلها."
+  },
+  "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.year": {
+    "text": "السنة 2"
+  },
+  "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.title": {
+    "text": "ترجمات يمكن تتبعها في الاتجاهين"
+  },
+  "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body": {
+    "text": "وسّعتُ مبدأ الخرائط إلى التوطين: كل سلسلة نصية قابلة للتتبع من الكود إلى كل لغة ثم العودة، عبر Android وiOS والتصميم — فيُجاب عن سؤال «أين يُستخدم هذا النص؟» بنيويًا بدل الاعتماد على الذاكرة الشفوية للفريق."
+  },
+  "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.result": {
+    "text": "أساس لتحول التوطين أدناه."
+  },
+  "pages.victor-methodology-presentation.proof-compound-safety-bug-map.year": {
+    "text": "منتصف المرحلة"
+  },
+  "pages.victor-methodology-presentation.proof-compound-safety-bug-map.title": {
+    "text": "الخلل المركب الذي لم يستطع أحد إعادة إنتاجه"
+  },
+  "pages.victor-methodology-presentation.proof-compound-safety-bug-map.body": {
+    "text": "كان فقدان تنبيه انخفاض الغلوكوز — وهو أمر حرج لسلامة المريض — ناتجًا عن عيبين متفاعلين عبر أنظمة ثلاثة فرق، وكان أحدهما يمحو دليل الآخر. تطلب الحل أولًا بناء الخريطة المفقودة بين الأنظمة يدويًا، وإضافة أدوات رصد داخل الكود على مستوى SDK، واستخراج خطوات إعادة الإنتاج خلال نافذة يوم واحد قبل أن يغادر الشاهد الوحيد في إجازة. السبب الجذري: بناء فهارس قاعدة البيانات من دون @Transaction تحيط بالعملية — غياب غير مرئي."
+  },
+  "pages.victor-methodology-presentation.proof-compound-safety-bug-map.result": {
+    "text": "أتاحت خريطة التضاريس للمعماريين الكبار رؤية علاقات بين الأنظمة لم يرها أحد من قبل. أُطلق الإصلاح، وتحول الدرس إلى معرفة مؤسسية."
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.year": {
+    "text": "السنوات 3–4"
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.title": {
+    "text": "التوطين: 6 أشهر → أسبوعان"
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.body": {
+    "text": "من خلال عمل Lean Six Sigma برعاية Dexcom، وحّدتُ هياكل السلاسل النصية المجزأة بين Android وiOS وأعدتُ تصميم خط الترجمة — ثم أخرجت أداة المورّد المدفوعة من الحلقة بالكامل باستخدام مصدر حقيقة واحد يعيد توليد جميع الوثائق بصورة قابلة للتكرار ومتطابقة بايتًا ببايت، لأن كل شرط رُسم على الخريطة بدل أن يُفترض."
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.metric": {
+    "text": "6 أشهر → أسبوعان"
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.metric-label": {
+    "text": "زمن دورة Lean — قيمة نظرية بالملايين"
+  },
+  "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.year": {
+    "text": "السنوات 3–4"
+  },
+  "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.title": {
+    "text": "مفتاح الربط التنظيمي — UIElementKey"
+  },
+  "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.body": {
+    "text": "كان لدى الهندسة وتصميم UX واختبارات الجودة معرّفات لا تحمل معنى إلا داخل الصومعة الخاصة بكل منها. هوية مركبة واحدة — UIElementKey(platform, project, language, stringId, vnvTestId, uxDesignId) — جعلت كل تخصص يشير إلى عنصر UI نفسه. ارسم الخريطة أولًا ثم وائم: لم يُجبر أي فريق على التغيير مسبقًا. عندما أصبح المفتاح حيًا، انعكس خط العمل: التصميم يصدر المفاتيح من المنبع، والمنصات تتوافق عبر بروتوكول، والتحقق ينطلق من افتراض مضمون. قابلية تتبع عابرة للتخصصات — بمستوى تدقيق في صناعة خاضعة للتنظيم."
+  },
+  "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.result": {
+    "text": "اختفت المطابقة كمرحلة مستقلة. تعمل الفرق بالتوازي فوق عمود فقري مشترك."
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.year": {
+    "text": "السنة 5"
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.title": {
+    "text": "PenSDK: تطبيق المنهج على الزمن نفسه"
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.body": {
+    "text": "لمنتج قلم إنسولين يكون فيه ترتيب الأحداث متعلقًا بالسلامة: تمر تغييرات الحالة عبر SourceOfTruthRelay واحد يشتق الحقيقة ويبثها، بحيث لا يستطيع القراء المتزامنون بنيويًا حمل حقائق متناقضة. أصبحت Coroutines مهام من الدرجة الأولى ومربوطة بمعرّفات، مع مفاتيح إيقاف محددة النطاق — ما جعل دورة تحديث معقدة لـ SDK الشريك قابلة للإدارة بدقة جراحية. ويتكامل بصورة أصلية مع Jetpack Compose."
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.result-tag": {
+    "text": "إرث"
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.result": {
+    "text": "طوّرتُ الفريق عمدًا داخل هذه الممارسات — وقبل مغادرتي كانوا يحلون المشكلات باستقلالية مع بقاء الثقافة سليمة. عاشت الممارسات أطول من الممارس."
+  },
+  "pages.victor-methodology-presentation.section-throughline.band": {
+    "text": "لا يمكن للتحليلات أن تنحرف عن UI. لا يمكن للترجمات أن تنفصل عن الشاشات. لا يمكن للتوطين أن يتشظى بين المنصات. لا يمكن للقراء المتزامنين أن يناقض بعضهم بعضًا. والآن: لا يمكن لمثيلات الذكاء الاصطناعي إعادة إدخال أخطاء صُححت بالفعل."
+  },
+  "pages.victor-methodology-presentation.section-ai-maintainable-systems.heading": {
+    "text": "التطبيق السادس: أنظمة قابلة للصيانة بالذكاء الاصطناعي"
+  },
+  "pages.victor-methodology-presentation.section-ai-maintainable-systems.p1": {
+    "text": "كل منظمة تتبنى أدوات برمجة بالذكاء الاصطناعي تصطدم بالجدار نفسه: العمل الذي يولده الذكاء الاصطناعي يتدهور، لأن لا شيء يحفظ المعرفة المؤسسية بين الجلسات. يبدأ مثيل جديد من الذكاء الاصطناعي من الصفر ويعيد إدخال افتراضات صُححت قبل أشهر — المرض نفسه الموجود في كل صور التجزؤ أعلاه، ولكن على أوسع نطاق حتى الآن: السياق نفسه."
+  },
+  "pages.victor-methodology-presentation.section-ai-maintainable-systems.p2": {
+    "text": "يطبق العرض العام العامل المنهج المثبت خمس مرات على هذه المشكلة: مستودع تقوم فيه CI بصيانة فهارسها ذاتيًا؛ وطلبات السحب تعمل كسجلات قرار (الافتراضات، والآثار المتسلسلة، وملاحظات للقارئ التالي — إنسانًا كان أو ذكاءً اصطناعيًا)؛ وحدود التوسع موثقة مع مسارات ترحيل قبل الوصول إليها؛ وأي جلسة ذكاء اصطناعي جديدة تُنشئ السياق الكامل بأمر واحد. ثقافة التصعيد التي بُنيت مع الفريق البشري — توجيه المشكلات الصعبة مبكرًا وكتابة الحلول مرة أخرى في المعرفة المشتركة — جرى تحويلها إلى بنية معمارية."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.heading": {
+    "text": "ما الذي يتغير مع التبني"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.intro": {
+    "text": "بالنسبة إلى المنظمة، هذه البنية ليست أسلوب توثيق — إنها تنقل مصدر الموثوقية من يقظة الأفراد والذاكرة الشفوية إلى بنية تتحقق من نفسها."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.engineering-label": {
+    "text": "الهندسة:"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.engineering": {
+    "text": "لم يعد الانحراف مشكلة انضباط. عندما تُحل التحليلات والسلاسل النصية والاختبارات والتصميم عبر هوية واحدة، يصبح الاختلاف مستحيلًا بنيويًا بدل أن يُراقب يدويًا — وتنتقل مراجعة التغيير من تذكّر الأثر إلى قراءة تقرير أثر محسوب."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.localization-label": {
+    "text": "التوطين والمنتج:"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.localization": {
+    "text": "اللغة الجديدة تصبح صفوفًا جديدة لا صفحات مكررة. يترجم المورّدون معنى واحدًا مرة واحدة، ويطبقه الرسم البياني في كل موضع مرتبط به؛ وتُتحقق قواعد الجمع والعناصر النائبة والتخطيط تلقائيًا لكل locale."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.quality-label": {
+    "text": "الجودة والامتثال:"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.quality": {
+    "text": "ينتج كل تغيير تقرير أثره قبل أن يدخل، وتكون قابلية التتبع من الاختبار إلى نية التصميم ثم إلى الترجمة بمستوى تدقيق بحكم البناء. في الصناعات المنظمة، هذا هو الفرق بين إثبات الامتثال وإعادة بنائه بعد وقوعه."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.ai-label": {
+    "text": "تبني الذكاء الاصطناعي:"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.ai": {
+    "text": "تتوقف الوكلاء عن إعادة اشتقاق السياق. الرسم البياني هو الذاكرة؛ والذكاء الاصطناعي هو الجسر إليها — إدخال وكيل جديد يكلف استعلامًا، لا قراءة مستودع، والأخطاء المصححة تبقى مصححة عبر الجلسات والأدوات والمورّدين."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.leadership-label": {
+    "text": "القيادة:"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.leadership": {
+    "text": "سابقة التوطين أعلاه — من ستة أشهر إلى أسبوعين — توضح ما تفعله هذه الفئة من التغيير بزمن الدورة. تنطبق الآليات نفسها حيثما كانت الفرق اليوم تطابق عملها بالاجتماعات بدل الخرائط."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.closing-note": {
+    "text": "هذه الوثيقة نفسها هي أول أثر يُدار وفق المعيار الذي تصفه: معرّفات سجلاتها تتبع معيار تسمية concept-ID، وتُحفظ المعرّفات القديمة كأسماء بديلة، ويُعاد توليد المحتوى الإنجليزي والصيني من مصدر ثنائي اللغة واحد. إثبات المفهوم هو هذه الصفحة."
+  },
+  "pages.victor-methodology-presentation.section-audience-fit.heading": {
+    "text": "أين يناسب هذا"
+  },
+  "pages.victor-methodology-presentation.fit-platform-devex.title": {
+    "text": "المنصة وتجربة المطور"
+  },
+  "pages.victor-methodology-presentation.fit-platform-devex.body": {
+    "text": "بناء الخرائط وخطوط العمل التي تتيح للفرق الكبيرة التحرك بالتوازي من دون انحراف."
+  },
+  "pages.victor-methodology-presentation.fit-ai-tooling-companies.title": {
+    "text": "شركات أدوات الذكاء الاصطناعي"
+  },
+  "pages.victor-methodology-presentation.fit-ai-tooling-companies.body": {
+    "text": "ملف شريك تصميم: واجه ووثق أنماط الفشل التي وُجدت هذه المنتجات لحلها."
+  },
+  "pages.victor-methodology-presentation.fit-regulated-industries.title": {
+    "text": "صناعات منظمة تتبنى الذكاء الاصطناعي"
+  },
+  "pages.victor-methodology-presentation.fit-regulated-industries.body": {
+    "text": "خلفية في الأجهزة الطبية مع ممارسات سجلات قرار بمستوى تدقيق — تقاطع نادر."
+  },
+  "pages.victor-methodology-presentation.fit-process-transformation.title": {
+    "text": "تحول العمليات"
+  },
+  "pages.victor-methodology-presentation.fit-process-transformation.body": {
+    "text": "مثبت بـ Lean Six Sigma: خفض مقاس للدورة من 6 أشهر إلى أسبوعين مع تبنٍ عبر الفرق."
+  },
+  "pages.victor-methodology-presentation.note-self-demonstration.lead": {
+    "text": "هذا الدوسييه يمارس منهجه الخاص."
+  },
+  "pages.victor-methodology-presentation.note-self-demonstration.body": {
+    "text": "يحمل كل سجل أعلاه معرّفًا ثابتًا (proof-bulk-data-logging، proof-cross-domain-ui-identity…) مسمى بحسب المفاهيم وفق Registry Documentation Standard الخاص بالمستودع، مع حفظ المعرّفات القديمة كأسماء بديلة، كي يتمكن أي قارئ — إنسانًا كان أو ذكاءً اصطناعيًا، بالإنجليزية أو الصينية — من الإشارة إلى سجل محدد أو اقتباسه أو السؤال عنه من دون غموض. الهوية أولًا؛ النقاش ثانيًا."
+  },
+  "pages.victor-methodology-presentation.footer.line": {
+    "text": "Victor Gong · Dossier v2.1 · أُنشئ في 4 يوليو 2026 · DOC-ID: VG-DOSSIER-v2.1"
+  },
+  "pages.victor-methodology-presentation.footer.reference-note": {
+    "text": "المراجع وجولة المستودع متاحتان عند الطلب"
+  },
+  "pages.victor-methodology-presentation.footer.stamp-word": {
+    "text": "في"
+  },
+  "pages.victor-methodology-presentation.footer.stamp-label": {
+    "text": "السجل"
+  }
+}

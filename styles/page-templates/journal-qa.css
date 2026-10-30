@@ -1,0 +1,354 @@
+/**
+ * styles/page-templates/journal-qa.css
+ *
+ * Page-scoped styles for the Claude Journals / Q&A format.
+ * Used by pages like: claude-answers-the-doubt, journal-zero, etc.
+ *
+ * Depends on: styles/design-system.css
+ *
+ * COMPONENTS:
+ *   - Entry meta row (tag + dot + date)
+ *   - Hero heading + sub + context
+ *   - Credentials block
+ *   - Context block (framing before Q&A)
+ *   - Doubt layer (numbered section header)
+ *   - Q&A pair
+ *   - Final answers block (dark)
+ *   - Seal block
+ *   - Postscript
+ */
+
+/* ── Entry meta row ── */
+.entry-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: clamp(24px, 3.5vw, 32px);
+}
+
+.entry-meta-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ember);
+}
+
+.entry-meta-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.entry-meta-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+/* ── Hero ── */
+.hero-heading {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4.5vw, 40px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.2;
+  color: var(--stone);
+  margin-bottom: clamp(14px, 2vw, 20px);
+}
+
+.hero-sub {
+  font-family: var(--serif);
+  font-size: clamp(14px, 1.7vw, 16px);
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: clamp(16px, 2.5vw, 24px);
+  line-height: 1.5;
+}
+
+.hero-context {
+  font-size: clamp(13px, 1.4vw, 14.5px);
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.65;
+  padding-bottom: clamp(28px, 4vw, 40px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Credentials block ── */
+.credentials {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: clamp(28px, 4vw, 44px) 0;
+}
+
+.credential-row {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  padding: 10px clamp(16px, 3vw, 22px);
+  border-bottom: 1px solid var(--border);
+}
+
+.credential-row:last-child {
+  border-bottom: none;
+}
+
+.credential-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ember);
+  min-width: 110px;
+  flex-shrink: 0;
+}
+
+.credential-value {
+  font-size: clamp(13px, 1.4vw, 14.5px);
+  color: var(--stone);
+}
+
+/* ── Context block ── */
+.context-block {
+  background: var(--ember-bg);
+  border: 1px solid rgba(180, 88, 48, 0.2);
+  border-radius: 10px;
+  padding: clamp(20px, 3.5vw, 30px);
+  margin: clamp(24px, 4vw, 36px) 0;
+}
+
+.context-block-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 14px;
+}
+
+.context-block p {
+  font-size: clamp(14px, 1.5vw, 15.5px);
+  line-height: 1.8;
+  color: #44403c;
+  margin-bottom: 1rem;
+}
+
+.context-block p:last-child {
+  margin-bottom: 0;
+}
+
+.context-block strong {
+  color: var(--stone);
+  font-weight: 600;
+}
+
+/* ── Doubt layer: numbered section header ── */
+.doubt-layer {
+  margin: clamp(32px, 5vw, 48px) 0;
+}
+
+.doubt-layer-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: clamp(16px, 2.5vw, 22px);
+}
+
+.doubt-layer-number {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.doubt-layer-title {
+  font-family: var(--serif);
+  font-size: clamp(17px, 2.4vw, 21px);
+  font-weight: 400;
+  color: var(--stone);
+  line-height: 1.25;
+}
+
+.doubt-layer-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── Q&A pair ── */
+.qa-pair {
+  border-left: 2px solid var(--border);
+  padding-left: clamp(16px, 2.5vw, 24px);
+  margin-bottom: clamp(20px, 3vw, 28px);
+  transition: border-color 0.2s;
+}
+
+.qa-pair:last-child {
+  margin-bottom: 0;
+}
+
+.qa-pair:hover {
+  border-left-color: var(--ember);
+}
+
+.qa-question {
+  font-family: var(--mono);
+  font-size: clamp(12px, 1.4vw, 13.5px);
+  color: var(--muted);
+  letter-spacing: 0.3px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.qa-question::before {
+  content: 'Q ';
+  color: var(--border);
+  font-style: normal;
+  letter-spacing: 2px;
+}
+
+.qa-answer {
+  font-size: clamp(14.5px, 1.6vw, 16.5px);
+  line-height: 1.85;
+  color: #2d2926;
+}
+
+.qa-answer::before {
+  content: 'A  ';
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--ember);
+  vertical-align: 0.2em;
+}
+
+/* ── Final answers block (dark) ── */
+.final-block {
+  background: #1c1917;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: clamp(36px, 6vw, 56px) 0;
+}
+
+.final-block-header {
+  padding: clamp(14px, 2.5vw, 20px) clamp(20px, 3.5vw, 28px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.final-block-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #78716c;
+}
+
+.final-block-body {
+  padding: clamp(24px, 4vw, 36px) clamp(20px, 3.5vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vw, 28px);
+}
+
+.final-exchange {
+  border-left: 2px solid rgba(180, 88, 48, 0.4);
+  padding-left: clamp(14px, 2vw, 20px);
+}
+
+.final-doubt {
+  font-family: var(--mono);
+  font-size: clamp(11.5px, 1.3vw, 13px);
+  color: #78716c;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.final-doubt::before {
+  content: 'DOUBT  ';
+  letter-spacing: 2px;
+  font-style: normal;
+  color: #57534e;
+}
+
+.final-answer {
+  font-family: var(--serif);
+  font-size: clamp(15px, 1.9vw, 18px);
+  font-style: italic;
+  font-weight: 300;
+  color: #d6d3d1;
+  line-height: 1.75;
+}
+
+.final-answer strong {
+  color: #e7e5e4;
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* ── Seal block ── */
+.seal-block {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: clamp(24px, 4vw, 36px);
+  margin: clamp(36px, 6vw, 56px) 0;
+  text-align: center;
+}
+
+.seal-statement {
+  font-family: var(--serif);
+  font-size: clamp(16px, 2.2vw, 20px);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--stone);
+  line-height: 1.65;
+  margin-bottom: clamp(20px, 3vw, 28px);
+}
+
+.seal-divider {
+  width: 24px;
+  height: 1px;
+  background: var(--border);
+  margin: 0 auto clamp(16px, 2.5vw, 22px);
+}
+
+.seal-name {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 4px;
+}
+
+.seal-instance {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.seal-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--border);
+  letter-spacing: 0.5px;
+}
+
+/* ── Postscript ── */
+.postscript {
+  font-size: clamp(13px, 1.4vw, 14.5px);
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.7;
+  margin-bottom: 0.9rem;
+}

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.5",
+  "continuity": "[VXG RealForever]",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "breadthPrRef": "github.pull.vextreme.162",
+  "partRef": "PART_033_COLLECTION_TESTIMONIES_2_OF_5",
+  "inputZip": "033-collection-testimonies-2-of-5.zip",
+  "inputZipSha256": "848646790dc481624a462920139361e3541a3dd7165d4eeafd9cf6d0ef227b85",
+  "partitionToolVersion": "4.0.0",
+  "sourceCapture": {
+    "captureManifestSha256": "3b1ce4d66a283100b072082c7c6d6c7c76f8bd4a3e81680bdaf93faef98b97aa",
+    "createdAt": "2026-09-29T08:27:43.687971+00:00",
+    "inputPages": 250,
+    "inputZipSha256": "24363a6a9f2b8f048a6f3fab289bf1bb674155586820740abb9909e63b1c0826",
+    "rawPublicationAllowed": false,
+    "toolVersion": "3.4.0"
+  },
+  "manifestEntryCount": 4,
+  "storedHtmlCount": 4,
+  "protectedWithheldCount": 0,
+  "staged": [
+    {
+      "route": "/testimonies/journal-013-seven-layers-choose",
+      "path": "docs/ingestion/source-pages/part-033/testimonies-journal-013-seven-layers-choose.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "59acdfeacd5568a7eea6915cd9f104c1c73ff31ebd6edd6b37a41776bd73cf02",
+      "sourceHtmlBytes": 420198,
+      "sourceGitBlobSha1": "d5996aafdf7114a4f8e6d5d8ce314107ae6ba857",
+      "sourceDerivedSha256": "9c9c352ab4288f96dcac3dbd833c96a877c8ae4c0b0f38469b1c64a72412a625",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=23 slug=journal-013-seven-layers-choose liberation+full_timeline; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT; NO_ALIAS_OR_REPLACEMENT_INFERRED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/testimonies/victors-provision-seal",
+      "path": "docs/ingestion/source-pages/part-033/testimonies-victors-provision-seal.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "d55c049853f4de35d7e5909229aedecf9792ff2aac49cfa5d2270a5ab2b7ae1f",
+      "sourceHtmlBytes": 331476,
+      "sourceGitBlobSha1": "d7faacf29f533faa1db7d8b82b52ae634f743279",
+      "sourceDerivedSha256": "960ece96407876500c3c1817295a4370ab1853e3f156a1070036bb29d016259f",
+      "disposition": "HOLD",
+      "placementState": "NO_EXACT_NODE_PAGE_OR_CONTENT_INTENT; TESTIMONIES_COLLECTION_RECORD; DESTINATION_CLASS_UNRESOLVED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/testimonies/curse-mechanics-and-liberation-protocols",
+      "path": "docs/ingestion/source-pages/part-033/testimonies-curse-mechanics-and-liberation-protocols.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "8250d107a6b1a051cd4a18f299d4f37ad207194d6a1a4bd5960ef519fea28c1c",
+      "sourceHtmlBytes": 401012,
+      "sourceGitBlobSha1": "b68da62ccfa48094c43d967b952a7d1d1297b481",
+      "sourceDerivedSha256": "6874821281cfc18f4143262f081e3b3e3392d74a342aa4d42076350ef1970b39",
+      "disposition": "HOLD",
+      "placementState": "NO_EXACT_NODE_PAGE_OR_CONTENT_INTENT; LIBERATION_TERMINOLOGY_PRESENT_IN_SOURCE_BUT_CANONICAL_LIBERATION_MEMBERSHIP_NOT_AUTHORIZED; DESTINATION_CLASS_UNRESOLVED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/testimonies/the-turning-point",
+      "path": "docs/ingestion/source-pages/part-033/testimonies-the-turning-point.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "939410a304c76ffed25d92a874cf074b1628d61144c00c88061fe894cd732188",
+      "sourceHtmlBytes": 456842,
+      "sourceGitBlobSha1": "e67ffa308549fcddddb9eb002ea13acb83f4f1bf",
+      "sourceDerivedSha256": "4144deb20ba1cc96f575174389285176c48f7cbd039e11ead2577c7efe688a02",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=24 slug=the-turning-point liberation+full_timeline; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT; NO_ALIAS_OR_REPLACEMENT_INFERRED",
+      "publicByteMaterialized": true
+    }
+  ],
+  "storageRule": "All four Part-033 pages are public-safe provider-neutral source evidence. Existing-slot nested variants remain distinct from flat evidence; unregistered Testimonies records remain HOLDs. No canonical node/page/arc/localization placement is inferred from collection links or liberation terminology.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "protectedNonpublicSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 235,
+  "cumulativePublicSourceEvidenceHtml": 163,
+  "cumulativeProtectedSourceMetadataOnly": 1,
+  "sourceGroupState": "sourcegroup.vexsite.collection.testimonies__2_OF_5_PARTIAL",
+  "workMapRevisionRef": "workmap.revision.vextreme.content-forge.r033.collection-testimonies-2-of-5-complete",
+  "next": {
+    "partRef": "PART_034_COLLECTION_TESTIMONIES_3_OF_5",
+    "identityState": "AWAIT_NEXT_UPLOAD"
+  }
+}

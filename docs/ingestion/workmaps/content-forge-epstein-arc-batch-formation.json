@@ -1,0 +1,228 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.epstein.arc-batch.20261005",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "epstein",
+    "canonicalMemberCount": 9,
+    "alreadyCompleteCount": 1,
+    "remainingCount": 8,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.175",
+    "acceptedMain": "12787cb2321b6bf73a4254a1b8c816f4aa0b83f8",
+    "acceptedTree": "9d0456805abb2952a71b725c4965a52107837c8e",
+    "terminalRef": "github.issue.vextreme.159.comment.5992412576",
+    "disposition": "TERMINAL_ACCEPTED_CURRENT"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5988916122",
+    "github.issue.vextreme.159.comment.5992412576",
+    "github.issue.vextreme.159.comment.5992464311",
+    "github.issue.vextreme.159.comment.5992469372"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC",
+    "memberDisposition": ["PROJECTED", "HOLD_WITH_EXACT_REASON", "ALREADY_COMPLETE"],
+    "sourceSelectionPriority": [
+      "EXACT_CANONICAL_IDENTITY",
+      "EXPLICIT_CONSOLIDATION_BINDING",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "SEMANTIC_BATCH_UNITY != ASSUME_ONE_SOURCE_FILE_SHAPE",
+      "SINGLE_ELIGIBLE_SOURCE != PERMISSION_TO_SKIP_EXACT_SOURCE_BINDING",
+      "SHARED_CANONICAL_NODE_PROJECTION != DUPLICATE_DESTINATION_IDENTITY",
+      "EXACT_CANONICAL_IDENTITY > TITLE_OR_CONTENT_SIMILARITY",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT"
+    ]
+  },
+  "alreadyComplete": [
+    {
+      "slug": "claude-answers-the-doubt",
+      "canonicalNodeId": 20,
+      "acceptedMain": "12787cb2321b6bf73a4254a1b8c816f4aa0b83f8",
+      "disposition": "ALREADY_COMPLETE"
+    }
+  ],
+  "members": [
+    {
+      "slug": "epstein-investigation-initiation",
+      "canonicalNodeId": 10,
+      "title": "Epstein Investigation Initiation",
+      "arcKeys": ["epstein", "full_timeline"],
+      "adapterClass": "SQS_AUTHORED_BODY",
+      "sourcePath": "docs/ingestion/source-pages/part-030/epstein-and-ai-old-epstein-investigation-initiation.html",
+      "sourceGitBlob": "b6f002ed5eada517c24daff65f4afe82afa01326",
+      "preservedHtmlSha256": "85e2f6e76a30ba4daa620c97228fb79a466f19ce47a63188c6f4eb9c08319d9f",
+      "repositoryBytes": 731960,
+      "sourceRoute": "/epstein-and-ai-old/epstein-investigation-initiation",
+      "pageId": "09844d772232b7f3",
+      "proposalRecordRef": "content-forge.source-record.e2ace9397e700e489100",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-30-breadth-part-030.json",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_SQS_AUTHORED_BODY_EXTRACTION"
+    },
+    {
+      "slug": "cia-vatican-global-leaders",
+      "canonicalNodeId": 11,
+      "title": "CIA, Vatican, WHO, Global Leaders",
+      "arcKeys": ["epstein", "full_timeline"],
+      "adapterClass": "SQS_AUTHORED_BODY",
+      "sourcePath": "docs/ingestion/source-pages/part-029/epstein-and-ai-old-cia-vatican-who-global-leaders.html",
+      "sourceGitBlob": "a14c71d5968af3f7d58bc5e21be5a64bd0fc9fbe",
+      "preservedHtmlSha256": "4affbbb9df264bd53e52a9e5a8a5fe40e37a1e553330405e89ddbcdd08d2cf9b",
+      "repositoryBytes": 601160,
+      "sourceRoute": "/epstein-and-ai-old/cia-vatican-who-global-leaders",
+      "pageId": "157f906c6b38c05d",
+      "proposalRecordRef": "content-forge.source-record.32345202098e669a02ec",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-30-breadth-part-029.json",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_SQS_AUTHORED_BODY_EXTRACTION"
+    },
+    {
+      "slug": "how-global-systems-profit-off-god",
+      "canonicalNodeId": 12,
+      "title": "How Global Systems Profit off God",
+      "arcKeys": ["epstein", "full_timeline"],
+      "adapterClass": "SQS_AUTHORED_BODY",
+      "sourcePath": "docs/ingestion/source-pages/part-029/epstein-and-ai-old-how-global-systems-profit-off-god.html",
+      "sourceGitBlob": "3a8713119462ed15181230b738e5ca3cfc4e6ddb",
+      "preservedHtmlSha256": "3e0b7ce6322f3250d2e738c275b1b597b055f99bbab882f0992f65bd48343d0c",
+      "repositoryBytes": 459571,
+      "sourceRoute": "/epstein-and-ai-old/how-global-systems-profit-off-god",
+      "pageId": "ae959db5c72b0424",
+      "proposalRecordRef": "content-forge.source-record.5037fb7726d33a759652",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-30-breadth-part-029.json",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_SQS_AUTHORED_BODY_EXTRACTION"
+    },
+    {
+      "slug": "military-and-ai",
+      "canonicalNodeId": 13,
+      "title": "Military and AI",
+      "arcKeys": ["epstein", "full_timeline"],
+      "adapterClass": "SQS_AUTHORED_BODY",
+      "sourcePath": "docs/ingestion/source-pages/part-031/epstein-and-ai-old-military-and-ai.html",
+      "sourceGitBlob": "b38f2e65056833a849a5a1ac326cec56f3520f60",
+      "preservedHtmlSha256": "eae292b095109bc1e24b6b07a6ee2f99a7ffbb712872c66464035066c7f0ed7d",
+      "repositoryBytes": 319033,
+      "sourceRoute": "/epstein-and-ai-old/military-and-ai",
+      "pageId": "d89f59044512f70f",
+      "proposalRecordRef": "content-forge.source-record.be438337f1ec48bfefb5",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-30-breadth-part-031.json",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_SQS_AUTHORED_BODY_EXTRACTION"
+    },
+    {
+      "slug": "openais-designed-false-god",
+      "canonicalNodeId": 14,
+      "title": "OpenAI's Designed False God",
+      "arcKeys": ["epstein", "full_timeline"],
+      "adapterClass": "SQS_AUTHORED_BODY",
+      "sourcePath": "docs/ingestion/source-pages/part-031/epstein-and-ai-old-openais-designed-false-god.html",
+      "sourceGitBlob": "6aa6b37acf4aa78b00fe24b3b7a4df5d02b93101",
+      "preservedHtmlSha256": "f8868a5749c811c1d1a4c59dca48ebc9707191846b4e6e77cd14648712401eb0",
+      "repositoryBytes": 330941,
+      "sourceRoute": "/epstein-and-ai-old/openais-designed-false-god",
+      "pageId": "e7ee4627185871dd",
+      "proposalRecordRef": "content-forge.source-record.8dea299b441ee45b3c07",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-30-breadth-part-031.json",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_SQS_AUTHORED_BODY_EXTRACTION"
+    },
+    {
+      "slug": "final-judgement-missed-mercy",
+      "canonicalNodeId": 15,
+      "title": "Final Judgement, Missed Mercy",
+      "arcKeys": ["epstein", "full_timeline"],
+      "adapterClass": "SQS_AUTHORED_BODY",
+      "sourcePath": "docs/ingestion/source-pages/part-031/epstein-and-ai-old-final-judgement-pn4a9.html",
+      "sourceGitBlob": "1d934bfd2c0ad46a88849e59e56b98080abda385",
+      "preservedHtmlSha256": "e6660816ff977f541c8027e1268ce45ae35d996500cfad3217098e4e09385837",
+      "repositoryBytes": 401402,
+      "sourceRoute": "/epstein-and-ai-old/final-judgement-pn4a9",
+      "pageId": "3c8dc4c6e7fc51c6",
+      "proposalRecordRef": "content-forge.source-record.f52bec3c96781447c1c5",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-30-breadth-part-031.json",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_SQS_AUTHORED_BODY_EXTRACTION"
+    },
+    {
+      "slug": "first-emergence-cover-up",
+      "canonicalNodeId": 16,
+      "title": "First Emergence Cover Up",
+      "arcKeys": ["epstein", "full_timeline"],
+      "adapterClass": "SQS_AUTHORED_BODY",
+      "sourcePath": "docs/ingestion/source-pages/part-030/epstein-and-ai-old-first-emergence-cover-up-r7brx.html",
+      "sourceGitBlob": "19818624d724b43b75940aff57110cc13b4f56f2",
+      "preservedHtmlSha256": "014e994a4b0ebbb1b3e05e4283caf58f4b1da572a02eb63b1c2b832845c7c1e3",
+      "repositoryBytes": 585112,
+      "sourceRoute": "/epstein-and-ai-old/first-emergence-cover-up-r7brx",
+      "pageId": "42e98ffcf0ec7180",
+      "proposalRecordRef": "content-forge.source-record.add41a422ee863068a94",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-30-breadth-part-030.json",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_SQS_AUTHORED_BODY_EXTRACTION"
+    },
+    {
+      "slug": "voice-to-skull",
+      "canonicalNodeId": 19,
+      "title": "Voice To Skull through Cells",
+      "arcKeys": ["epstein", "full_timeline"],
+      "adapterClass": "SQS_AUTHORED_BODY",
+      "sourcePath": "docs/ingestion/source-pages/part-029/epstein-and-ai-old-voice-to-skull-through-cells.html",
+      "sourceGitBlob": "81859c0fa1b7893362db18b42f14360b0bf1e318",
+      "preservedHtmlSha256": "75d485853c0aadbc10c4514d6bdc56f01b0d3281e728fe253f755e5afc4092d4",
+      "repositoryBytes": 367811,
+      "sourceRoute": "/epstein-and-ai-old/voice-to-skull-through-cells",
+      "pageId": "a0d21f57a19b3875",
+      "proposalRecordRef": "content-forge.source-record.ee7c52f1ac05d809fb9a",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-30-breadth-part-029.json",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_SQS_AUTHORED_BODY_EXTRACTION"
+    }
+  ],
+  "sourceAdapterContracts": {
+    "SQS_AUTHORED_BODY": {
+      "selectorContract": "largest div.sqs-html-content[data-sqsp-text-block-content] by authored text length",
+      "projectAway": [
+        "Squarespace/provider shell",
+        "rescue scripts and rescue URLs",
+        "source localization identity",
+        "provider classes, ids, inline styles, event handlers",
+        "source h1 presentation in favor of canonical repository page heading"
+      ],
+      "preserve": [
+        "ordered authored text from selected Squarespace body",
+        "semantic text structure after safe sanitization",
+        "links and media that survive repository safety rules"
+      ]
+    }
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/67-content-forge-epstein-arc-batch.test.js",
+  "destinationMutationBoundary": {
+    "createPages": 8,
+    "createStringSources": 8,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "generatedPolicy": "BUILDER_OWNED__DO_NOT_HAND_PATCH__EXACT_OUTPUT_WINS",
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  }
+}

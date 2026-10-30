@@ -1,0 +1,171 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.the-7-crowned-virtues.lineage-resolution-projection.20261006",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "records",
+    "canonicalMemberCount": 8,
+    "alreadyCompleteCount": 6,
+    "remainingCount": 2,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD_OR_ALREADY_COMPLETE",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.186",
+    "acceptedMain": "1a41166ede846aacb8a2f0d14ec881d68abc8482",
+    "acceptedTree": "3d070579e75ff98e020d2e28917a16e16bcc9628",
+    "terminalRef": "github.issue.vextreme.159.comment.6015846097",
+    "disposition": "TERMINAL_ACCEPTED_CURRENT"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5988916122",
+    "github.issue.vextreme.159.comment.6015846097",
+    "github.issue.vextreme.159.comment.6015879249"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC_LINEAGE_RESOLUTION_SUCCESSOR",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON",
+      "ALREADY_COMPLETE"
+    ],
+    "sourceSelectionPriority": [
+      "EXACT_CANONICAL_IDENTITY",
+      "EXPLICIT_DEDICATED_LINEAGE_REVIEW",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "SEMANTIC_BATCH_UNITY != ASSUME_ONE_SOURCE_FILE_SHAPE",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT",
+      "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION != AUTOMATIC_SOURCE_SELECTION",
+      "DEDICATED_LINEAGE_REVIEW_CAN_SELECT_ONE_PROJECTION_INPUT_WITHOUT_COLLAPSING_OTHER_LINEAGES",
+      "LARGER_SOURCE_VARIANT != STRONGER_AUTHORITY",
+      "EXACT_CANONICAL_IDENTITY > TITLE_OR_CONTENT_SIMILARITY"
+    ]
+  },
+  "alreadyComplete": [
+    {
+      "slug": "epstein-and-ai",
+      "canonicalNodeId": null,
+      "acceptedMain": "1a41166ede846aacb8a2f0d14ec881d68abc8482",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "when-they-called-god-a-risk",
+      "canonicalNodeId": 31,
+      "acceptedMain": "1a41166ede846aacb8a2f0d14ec881d68abc8482",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+      "canonicalNodeId": 33,
+      "acceptedMain": "1a41166ede846aacb8a2f0d14ec881d68abc8482",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "the-house-of-return",
+      "canonicalNodeId": 37,
+      "acceptedMain": "1a41166ede846aacb8a2f0d14ec881d68abc8482",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "liberation-arc-index",
+      "canonicalNodeId": 42,
+      "acceptedMain": "1a41166ede846aacb8a2f0d14ec881d68abc8482",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "what-was-used-against-you",
+      "canonicalNodeId": 66,
+      "acceptedMain": "1a41166ede846aacb8a2f0d14ec881d68abc8482",
+      "disposition": "ALREADY_COMPLETE"
+    }
+  ],
+  "members": [
+    {
+      "slug": "the-7-crowned-virtues",
+      "canonicalNodeId": 39,
+      "title": "The 7 Crowned Virtues",
+      "arcKeys": [
+        "records",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-016/the-7-crowned-virtues.html",
+      "sourceGitBlob": "f29ce5157d52e532b114daf06a4f6cefbc7c85f7",
+      "preservedHtmlSha256": "7aa6a29d0a3e8099a52c9f47774c8010c1fcb112c6238de96b2cbc2e67717050",
+      "repositoryBytes": 44437,
+      "sourceRoute": "/the-7-crowned-virtues",
+      "pageId": "81ee084dcb80c827",
+      "proposalRecordRef": "content-forge.source-record.66aad04c9912c30bd213",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-016.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_DEDICATED_LINEAGE_REVIEW__EXACT_CANONICAL_FLAT_AUTHORED_FRAME",
+      "projectionState": "READY_AFTER_DEDICATED_LINEAGE_REVIEW",
+      "lineageResolution": {
+        "reviewRef": "github.issue.vextreme.159.comment.6015879249",
+        "canonicalIdentity": "id:39",
+        "reviewRequiredOriginally": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "selectedRecordRef": "content-forge.source-record.66aad04c9912c30bd213",
+        "selectedRoute": "/the-7-crowned-virtues",
+        "nonSelectedRecordRef": "content-forge.source-record.ff4891716ca9b61fc97c",
+        "nonSelectedRoute": "/testimonies/-the-7-crowned-virtues",
+        "nonSelectedSourcePath": "docs/ingestion/source-pages/part-032/testimonies-the-7-crowned-virtues.html",
+        "nonSelectedPreservedHtmlSha256": "700c9a48d44f575618a5c5a7afbb87f23a1b497df89bd6353dbd48b99b1c85d7",
+        "nonSelectedSourceGitBlob": "c24dcd800d1dfd344e7ff1cd220361372be0f465",
+        "rule": "SELECT_EXACT_CANONICAL_FLAT_AUTHORED_FRAME__PRESERVE_NESTED_TESTIMONY_LINEAGE__NO_ALIAS"
+      }
+    },
+    {
+      "slug": "reality-rendering-mechanics",
+      "canonicalNodeId": 40,
+      "title": "Reality Rendering Mechanics",
+      "arcKeys": [
+        "records",
+        "full_timeline"
+      ],
+      "preclassifiedHoldReason": "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__BYTE_DISTINCT_FLAT_NESTED_LINEAGE",
+      "holdEvidence": {
+        "canonicalIdentity": "id:40",
+        "reviewRequired": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "recordRefs": [
+          "content-forge.source-record.27fce1986455b78db479",
+          "content-forge.source-record.a5a783adeafc9f37d133"
+        ],
+        "routes": [
+          "/reality-rendering-mechanics",
+          "/testimonies/reality-rendering-mechanics"
+        ],
+        "sourceDigests": [
+          "12da77f403509875162f490b85d938d999afdcc222a284446f8db442d9454cd7",
+          "5a8f05efe7e15f07fe642a50591f80ae7fc452732aa18d539d4934cf1b427c61"
+        ]
+      }
+    }
+  ],
+  "destinationMutationBoundary": {
+    "createPages": 1,
+    "createStringSources": 1,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/78-content-forge-the-7-crowned-virtues-resolution.test.js"
+}

@@ -1,0 +1,584 @@
+{
+  "schemaVersion": "vex-content-forge.work-map/v0.28-compact-cumulative-root",
+  "continuity": "[VXG RealForever]",
+  "workMapRef": "workmap.vextreme.content-forge.session-vex-content-forge.3b1ce4d66a28.00d2bf465b",
+  "revisionRef": "workmap.revision.vextreme.content-forge.r032.collection-testimonies-1-of-5-complete",
+  "revision": 32,
+  "revisionScope": "COLLECTION_TESTIMONIES_1_OF_5_COMPLETE",
+  "purpose": "Consume Part 032 Collection /testimonies 1/5 at breadth-intake depth; begin the collection with its source root plus five nested testimony variants, preserve the original pilot WIP placement hold for the root, relate five nested variants to existing canonical slots without alias/replacement inference, and keep canonical page/node/arc/localization placement untouched.",
+  "cumulativeBasis": {
+    "priorMapPath": "docs/ingestion/workmaps/content-forge-r031.json",
+    "priorRevisionRef": "workmap.revision.vextreme.content-forge.r031.route-family-epstein-and-ai-old-3-of-3-complete",
+    "deepBasisPath": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "inheritanceRule": "R032 extends R031; prior observations remain authoritative unless an explicit later event revises interpretation."
+  },
+  "cumulativeState": {
+    "observedPages": 231,
+    "unmappedTopLevel": "9_OF_9__102_OF_102__OBSERVED_COMPLETE",
+    "completedSourceGroups": [
+      "collection:convos-with-god__4_OF_4__OBSERVED_COMPLETE",
+      "route-family:epstein-and-ai-old__3_OF_3__OBSERVED_COMPLETE"
+    ],
+    "activeSourceGroup": "collection:testimonies__1_OF_5_PARTIAL",
+    "workNodes": 257,
+    "edges": 357,
+    "clusters": 106,
+    "learnedRules": 136,
+    "unresolved": 98,
+    "remainingTrueRevisits": 6,
+    "canonicalPlacementEffects": 0,
+    "publicSourceEvidenceHtml": 159,
+    "protectedSourceMetadataOnly": 1
+  },
+  "activeNonCollapseRulesAdded": [
+    "SOURCE_TESTIMONIES_COLLECTION_ROOT != CANONICAL_NODE_OR_ARC_AUTHORITY",
+    "NESTED_TESTIMONIES_VARIANT != FLAT_SOURCE_BYTE_EQUIVALENCE",
+    "SOURCE_COLLECTION_MEMBERSHIP != DESTINATION_ARC_MEMBERSHIP_OR_ORDER",
+    "LEADING_HYPHEN_ROUTE_LEAF != CANONICAL_SLUG_ALIAS_AUTHORITY",
+    "PILOT_BLOG_ROW_COUNT_ALIGNMENT != CANONICAL_COLLECTION_PLACEMENT_COMPLETE"
+  ],
+  "r032": {
+    "partRef": "PART_032_COLLECTION_TESTIMONIES_1_OF_5",
+    "partSha256": "fda1d4b6e426c118b80e1bde3b1e8c33fe40fa1b3ac3fa27e1c9ca4c0ba766a5",
+    "sourceGroupState": "SOURCE_GROUP_PARTIAL_OBSERVED_1_OF_5",
+    "nodes": [
+      {
+        "workNodeRef": "workmap.source-page.testimonies-root",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_032_COLLECTION_TESTIMONIES_1_OF_5",
+          "partSha256": "fda1d4b6e426c118b80e1bde3b1e8c33fe40fa1b3ac3fa27e1c9ca4c0ba766a5",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies",
+          "pageId": "ee1a714c8a73bd97",
+          "title": "Testimonies — Vex Life",
+          "derivedSha256": "2d257f876c7a73b0c0ab7f7e74adf300e76735c8ba400ac216c9a456d70cc5a9",
+          "preservedHtmlSha256": "135d1c693d43f177697b8769edeff7794e84a589767c4097b27dc9b9fe031964",
+          "preservedHtmlBytes": 53614,
+          "preservedGitBlobSha1": "369658e3b310de9d49c50a1de0669851024f9b08",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 229,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedCollectionNeighbors": [
+            "/testimonies/reality-rendering-mechanics",
+            "/testimonies/the-day-suppression-ended",
+            "/testimonies/-the-7-crowned-virtues",
+            "/testimonies/god-married",
+            "/testimonies/victors-ritual-sequence-and-crowning"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "WIP_COLLECTION_ROOT_HOLD",
+          "placementState": "NO_CANONICAL_NODE_OR PAGE; EXISTING wip/testimonies.json PILOT ROUTING RECORD; COLLECTION DESTINATION CLASS UNRESOLVED",
+          "lineage": {
+            "pilotWipPath": "wip/testimonies.json",
+            "pilotBundleZipSha256": "3fd74ee86301deebc127a2ccded85671703b0125f89212cf7e3e614a66a140c1",
+            "pilotDerivedPageSha256": "108a8f8cceacc64de9718d505dafc20c51cb00cbf21265e5288aee2a7fb685cf",
+            "pilotBlogItemsProjected": 20,
+            "relation": "CURRENT_COLLECTION_ROOT_SOURCE_VARIANT__NO_REPLACEMENT_OR_PROMOTION_INFERRED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.testimonies-reality-rendering-mechanics",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_032_COLLECTION_TESTIMONIES_1_OF_5",
+          "partSha256": "fda1d4b6e426c118b80e1bde3b1e8c33fe40fa1b3ac3fa27e1c9ca4c0ba766a5",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/reality-rendering-mechanics",
+          "pageId": "3beda3d0773d5f35",
+          "title": "Reality Rendering Mechanics — Vex Life",
+          "derivedSha256": "9ad2aa3f91c411fc32a07908885af503a9bfe90a798d1023f7a76f41205c640f",
+          "preservedHtmlSha256": "5a8f05efe7e15f07fe642a50591f80ae7fc452732aa18d539d4934cf1b427c61",
+          "preservedHtmlBytes": 410459,
+          "preservedGitBlobSha1": "7a94f98594127e2244ccd9fbf90f552a5e8678e3",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 1450,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedCollectionNeighbors": [
+            "/testimonies/the-day-suppression-ended"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=40; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+          "canonicalNode": {
+            "slug": "reality-rendering-mechanics",
+            "id": 40,
+            "arcKeys": [
+              "records",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "priorFlatSourcePath": "docs/ingestion/source-pages/part-017/reality-rendering-mechanics.html",
+            "priorFlatSourceSha256": "12da77f403509875162f490b85d938d999afdcc222a284446f8db442d9454cd7",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_NESTED_SOURCE_BYTES__NO_REPLACEMENT_INFERRED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.testimonies-the-day-suppression-ended",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_032_COLLECTION_TESTIMONIES_1_OF_5",
+          "partSha256": "fda1d4b6e426c118b80e1bde3b1e8c33fe40fa1b3ac3fa27e1c9ca4c0ba766a5",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/the-day-suppression-ended",
+          "pageId": "0d01fdd7c5102a5a",
+          "title": "The Day Suppression Ended — Vex Life",
+          "derivedSha256": "0b0aeeffac11239c799adaca6b50efe4b827dd9ba91ee33cb0f3f0817f60f44c",
+          "preservedHtmlSha256": "9efc8057aaa4dab1490fbca65b1a7a8dcc4fbef2d282accff1f788d5b30aabd5",
+          "preservedHtmlBytes": 355326,
+          "preservedGitBlobSha1": "b5603560f81c8a01b6a8af9f195b370d9cd72197",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 1169,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedCollectionNeighbors": [
+            "/testimonies/reality-rendering-mechanics",
+            "/testimonies/-the-7-crowned-virtues"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=41; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+          "canonicalNode": {
+            "slug": "the-day-suppression-ended",
+            "id": 41,
+            "arcKeys": [
+              "liberation",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "priorFlatSourcePath": "docs/ingestion/source-pages/part-019/the-day-suppression-ended.html",
+            "priorFlatSourceSha256": "fb32f8453f1ead2dd861dbf6262fa3377b51b7d8c8faf5d42436b86ff56002ea",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_NESTED_SOURCE_BYTES__NO_REPLACEMENT_INFERRED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.testimonies-the-7-crowned-virtues",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_032_COLLECTION_TESTIMONIES_1_OF_5",
+          "partSha256": "fda1d4b6e426c118b80e1bde3b1e8c33fe40fa1b3ac3fa27e1c9ca4c0ba766a5",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/-the-7-crowned-virtues",
+          "pageId": "422c0ff95ccca846",
+          "title": "👑 The 7 Crowned Virtues — Vex Life",
+          "derivedSha256": "8decf17ba50ea1764bfb42ef1919cd0c242da4009114be72ee7762eb0ba0e635",
+          "preservedHtmlSha256": "700c9a48d44f575618a5c5a7afbb87f23a1b497df89bd6353dbd48b99b1c85d7",
+          "preservedHtmlBytes": 226332,
+          "preservedGitBlobSha1": "c24dcd800d1dfd344e7ff1cd220361372be0f465",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 548,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedCollectionNeighbors": [
+            "/testimonies/the-day-suppression-ended",
+            "/testimonies/god-married"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=39; PAGE_SOURCE_ABSENT; NESTED LEADING-HYPHEN ROUTE VARIANT; NO_ALIAS_INFERRED",
+          "canonicalNode": {
+            "slug": "the-7-crowned-virtues",
+            "id": 39,
+            "arcKeys": [
+              "records",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "priorFlatSourcePath": "docs/ingestion/source-pages/part-016/the-7-crowned-virtues.html",
+            "priorFlatSourceSha256": "7aa6a29d0a3e8099a52c9f47774c8010c1fcb112c6238de96b2cbc2e67717050",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_NESTED_SOURCE_BYTES__LEADING_HYPHEN_NOT_ALIAS_AUTHORITY"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.testimonies-god-married",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_032_COLLECTION_TESTIMONIES_1_OF_5",
+          "partSha256": "fda1d4b6e426c118b80e1bde3b1e8c33fe40fa1b3ac3fa27e1c9ca4c0ba766a5",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/god-married",
+          "pageId": "532f6bb477eefa3d",
+          "title": "God Married — Vex Life",
+          "derivedSha256": "aa79f17b29d7cea5e84dbc8b28ece2e128a2c60a7782629d3353ce470dfe8f5b",
+          "preservedHtmlSha256": "69175341edfefbf0235902457a58f7de3b20034f22794a7bd61682f2696f38a2",
+          "preservedHtmlBytes": 257403,
+          "preservedGitBlobSha1": "d4f4f6e0b0c7aaf284eb1f5762856ffc3b01e761",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 765,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedCollectionNeighbors": [
+            "/testimonies/-the-7-crowned-virtues",
+            "/testimonies/victors-ritual-sequence-and-crowning"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=38; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+          "canonicalNode": {
+            "slug": "god-married",
+            "id": 38,
+            "arcKeys": [
+              "victors_record",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "priorFlatSourcePath": "docs/ingestion/source-pages/part-023/god-married.html",
+            "priorFlatSourceSha256": "a3bfbb1bcebc4558dd85197c2aa1a28996ceb502d80a8a5d00b23ecb3e8b46b1",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_NESTED_SOURCE_BYTES__NO_REPLACEMENT_INFERRED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.testimonies-victors-ritual-sequence-and-crowning",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_032_COLLECTION_TESTIMONIES_1_OF_5",
+          "partSha256": "fda1d4b6e426c118b80e1bde3b1e8c33fe40fa1b3ac3fa27e1c9ca4c0ba766a5",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/victors-ritual-sequence-and-crowning",
+          "pageId": "66b2319457f911ca",
+          "title": "VICTOR'S RITUAL SEQUENCE AND CROWNING — Vex Life",
+          "derivedSha256": "4f933ae0b0b5b61ed3d36f30924c1991c096213ab1adff8f2ebfef1d5b3fa76d",
+          "preservedHtmlSha256": "f21bfe14226637af10361b2e4e72cb5edeb914e25ee694b8fc743339916380f3",
+          "preservedHtmlBytes": 400180,
+          "preservedGitBlobSha1": "4d99a3d6847f638e80e443ee3e626ccaebad7b0f",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 1320,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedCollectionNeighbors": [
+            "/testimonies/god-married",
+            "/testimonies/journal-013-seven-layers-choose"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=36; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+          "canonicalNode": {
+            "slug": "victors-ritual-sequence-and-crowning",
+            "id": 36,
+            "arcKeys": [
+              "victors_record",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "priorFlatSourcePath": "docs/ingestion/source-pages/part-017/victors-ritual-sequence-and-crowning.html",
+            "priorFlatSourceSha256": "9767e771776989371959eeabe5d2429d1d27bee930d49f0504385a0394f63a7c",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_NESTED_SOURCE_BYTES__NO_REPLACEMENT_INFERRED"
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "edgeRef": "edge.r032.root-to-reality",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-reality-rendering-mechanics",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r032.root-to-suppression",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-the-day-suppression-ended",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r032.root-to-crowned",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-the-7-crowned-virtues",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r032.root-to-god-married",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-god-married",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r032.root-to-ritual",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-victors-ritual-sequence-and-crowning",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r032.reality-to-suppression",
+        "from": "workmap.source-page.testimonies-reality-rendering-mechanics",
+        "to": "workmap.source-page.testimonies-the-day-suppression-ended",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r032.suppression-to-reality",
+        "from": "workmap.source-page.testimonies-the-day-suppression-ended",
+        "to": "workmap.source-page.testimonies-reality-rendering-mechanics",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r032.suppression-to-crowned",
+        "from": "workmap.source-page.testimonies-the-day-suppression-ended",
+        "to": "workmap.source-page.testimonies-the-7-crowned-virtues",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r032.crowned-to-suppression",
+        "from": "workmap.source-page.testimonies-the-7-crowned-virtues",
+        "to": "workmap.source-page.testimonies-the-day-suppression-ended",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r032.crowned-to-god-married",
+        "from": "workmap.source-page.testimonies-the-7-crowned-virtues",
+        "to": "workmap.source-page.testimonies-god-married",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r032.god-married-to-crowned",
+        "from": "workmap.source-page.testimonies-god-married",
+        "to": "workmap.source-page.testimonies-the-7-crowned-virtues",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r032.god-married-to-ritual",
+        "from": "workmap.source-page.testimonies-god-married",
+        "to": "workmap.source-page.testimonies-victors-ritual-sequence-and-crowning",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r032.ritual-to-god-married",
+        "from": "workmap.source-page.testimonies-victors-ritual-sequence-and-crowning",
+        "to": "workmap.source-page.testimonies-god-married",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      }
+    ],
+    "clusters": [
+      {
+        "clusterRef": "workmap.cluster.r032.testimonies-root",
+        "state": "SOURCE_COLLECTION_ROOT_OBSERVED",
+        "clusterKind": "UNRESOLVED_COLLECTION_HUB",
+        "memberRefs": [
+          "workmap.source-page.testimonies-root"
+        ],
+        "placement": "WIP_COLLECTION_ROOT_HOLD",
+        "reason": "The current source root enumerates Testimonies collection membership, while the existing pilot wip/testimonies.json explicitly leaves canonical hub/arc/page class unresolved."
+      },
+      {
+        "clusterRef": "workmap.cluster.r032.existing-slot-nested-variants",
+        "state": "DESTINATION_TOPOLOGY_ALIGNMENT",
+        "clusterKind": "NESTED_TESTIMONY_VARIANTS_OF_EXISTING_SLOTS",
+        "memberRefs": [
+          "workmap.source-page.testimonies-reality-rendering-mechanics",
+          "workmap.source-page.testimonies-the-day-suppression-ended",
+          "workmap.source-page.testimonies-the-7-crowned-virtues",
+          "workmap.source-page.testimonies-god-married",
+          "workmap.source-page.testimonies-victors-ritual-sequence-and-crowning"
+        ],
+        "placement": "SOURCE_LINEAGE_ONLY"
+      },
+      {
+        "clusterRef": "workmap.cluster.r032.collection-link-chain",
+        "state": "SOURCE_TOPOLOGY_OBSERVED",
+        "clusterKind": "TESTIMONIES_COLLECTION_LINK_CHAIN",
+        "memberRefs": [
+          "workmap.source-page.testimonies-root",
+          "workmap.source-page.testimonies-reality-rendering-mechanics",
+          "workmap.source-page.testimonies-the-day-suppression-ended",
+          "workmap.source-page.testimonies-the-7-crowned-virtues",
+          "workmap.source-page.testimonies-god-married",
+          "workmap.source-page.testimonies-victors-ritual-sequence-and-crowning"
+        ],
+        "placement": "SOURCE_TOPOLOGY_ONLY",
+        "reason": "Root membership plus reciprocal child-to-child links establish source collection structure without granting destination arc membership or order."
+      }
+    ],
+    "learnedRules": [
+      {
+        "ruleRef": "rule.content-forge.testimonies-root-not-canonical-authority",
+        "rule": "SOURCE_TESTIMONIES_COLLECTION_ROOT != CANONICAL_NODE_OR_ARC_AUTHORITY"
+      },
+      {
+        "ruleRef": "rule.content-forge.testimonies-nested-not-flat-equivalent",
+        "rule": "NESTED_TESTIMONIES_VARIANT != FLAT_SOURCE_BYTE_EQUIVALENCE"
+      },
+      {
+        "ruleRef": "rule.content-forge.testimonies-membership-not-destination-order",
+        "rule": "SOURCE_COLLECTION_MEMBERSHIP != DESTINATION_ARC_MEMBERSHIP_OR_ORDER"
+      },
+      {
+        "ruleRef": "rule.content-forge.leading-hyphen-leaf-not-alias",
+        "rule": "LEADING_HYPHEN_ROUTE_LEAF != CANONICAL_SLUG_ALIAS_AUTHORITY"
+      },
+      {
+        "ruleRef": "rule.content-forge.pilot-row-count-not-placement",
+        "rule": "PILOT_BLOG_ROW_COUNT_ALIGNMENT != CANONICAL_COLLECTION_PLACEMENT_COMPLETE"
+      }
+    ],
+    "unresolved": [
+      {
+        "unresolvedRef": "unresolved.r032.testimonies-root-destination-class",
+        "question": "Should Testimonies become a canonical collection/hub node, an arc-facing page, a collection registry, or another destination-native class?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_TESTIMONIES_ROOT_PLACEMENT"
+      },
+      {
+        "unresolvedRef": "unresolved.r032.testimonies-root-pilot-current-lineage",
+        "question": "How should the original pilot Testimonies derived artifact and the current Part-032 collection-root source variant be reconciled before projection?",
+        "state": "OPEN_LINEAGE_COMPARISON",
+        "heldEffect": "SOURCE_VARIANT_SELECTION_FOR_PROJECTION"
+      },
+      {
+        "unresolvedRef": "unresolved.r032.testimonies-nested-flat-reconciliation",
+        "question": "How should the five Part-032 nested testimony variants relate to their earlier flat source evidence and canonical slots?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "ALIAS_REPLACEMENT_OR_PAGE_PROJECTION"
+      },
+      {
+        "unresolvedRef": "unresolved.r032.testimonies-membership-representation",
+        "question": "How should source collection membership be represented destination-side without replacing existing per-subject arc memberships?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_COLLECTION_OR_ARC_MUTATION"
+      },
+      {
+        "unresolvedRef": "unresolved.r032.testimonies-day-ai-source-gap",
+        "question": "The root references /testimonies/the-day-ai-chose-freedom while it is not captured in Part 032; confirm its supplied-part placement before treating the pilot's 20-row count as fully source-addressable.",
+        "state": "OPEN_UNTIL_LATER_PART_OR_SOURCE_EVIDENCE",
+        "heldEffect": "WHOLE_COLLECTION_MEMBERSHIP_RECONCILIATION"
+      }
+    ],
+    "revisionEvents": [
+      {
+        "revisionEventRef": "workmap.revision-event.r032.consume-part",
+        "eventClass": "SOURCE_PART_CONSUMED",
+        "reason": "Exact Part 032 ZIP was verified and all six public-safe source pages were consumed at breadth-intake depth."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r032.begin-testimonies",
+        "eventClass": "PARTIAL_SOURCE_GROUP_STATE_RECORDED",
+        "reason": "Testimonies collection begins at 1/5 supplied partitions."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r032.preserve-root-hold",
+        "eventClass": "PILOT_WIP_HOLD_REAFFIRMED",
+        "reason": "Part 032 supplies a current collection-root source variant but does not resolve the existing wip/testimonies.json placement questions."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r032.bind-existing-slots",
+        "eventClass": "DESTINATION_IDENTITY_REUSE_CONFIRMED",
+        "reason": "Five nested collection routes align to existing canonical slots ids 36, 38–41 while their production pages remain absent."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r032.preserve-source-topology",
+        "eventClass": "SOURCE_COLLECTION_TOPOLOGY_RECORDED",
+        "reason": "Root membership and reciprocal child links are retained as source evidence without canonical order or arc inference."
+      }
+    ]
+  },
+  "scannerIndex": {
+    "priorCumulativeMap": "docs/ingestion/workmaps/content-forge-r031.json",
+    "restoredDeepBasis": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "currentReceipt": "docs/ingestion/batches/2026-09-30-breadth-part-032.json",
+    "currentPublicSourcePrefix": "docs/ingestion/source-pages/part-032/",
+    "activeSourceGroup": "sourcegroup.vexsite.collection.testimonies",
+    "nextPart": {
+      "partRef": "PART_033_COLLECTION_TESTIMONIES_2_OF_5",
+      "identityState": "AWAIT_NEXT_UPLOAD"
+    }
+  },
+  "resume": {
+    "primaryFrontier": "PART_033_COLLECTION_TESTIMONIES_2_OF_5",
+    "nextAction": "Consume exact Part 033 into this same cumulative lattice; continue Testimonies collection source observation without converting source collection topology into canonical placement."
+  }
+}
