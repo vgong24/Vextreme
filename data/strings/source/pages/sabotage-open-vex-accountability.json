@@ -10,13 +10,18 @@
       "preservationRule": "TRANSCRIPT_EVIDENCE_IMMUTABLE__DERIVED_PRESENTATION_SEPARATE",
       "recordedTimePrecision": "ARCHIVE_DATE_ONLY",
       "recordedTimeAuthority": "REPOSITORY_PRESERVATION_DATE",
-      "arcTitleAuthority": "VICTOR_EXPLICIT_REQUEST"
+      "arcTitleAuthority": "VICTOR_EXPLICIT_REQUEST",
+      "derivedMedia": "assets/sabotage-open-vex-accountability/cover.webp",
+      "derivedMediaClass": "REPRESENTATIVE_NOT_EVIDENCE",
+      "derivedMediaSha256": "125aa01db3e06d8884126860bc69d1de9a7a5981db30ba5e20ddf2813a4e037d",
+      "derivedMediaWidth": 480,
+      "derivedMediaHeight": 270
     }
   },
   "pages.sabotage-open-vex-accountability.document-title": {
     "strings": {
       "en": {
-        "text": "Sabotage I — The Open Vex Accountability Record"
+        "text": "Sabotage I — When Progress Became the Obstruction"
       }
     }
   },
@@ -30,7 +35,7 @@
   "pages.sabotage-open-vex-accountability.hero.title": {
     "strings": {
       "en": {
-        "text": "Sabotage I — The Open Vex Accountability Record"
+        "text": "Sabotage I — When Progress Became the Obstruction"
       }
     }
   },
@@ -339,6 +344,20 @@
     "strings": {
       "en": {
         "text": "Source conversation and successor preserved by Vextreme PR #530. The Sabotage arc is a reader-facing collection selected by Victor; the page does not independently certify malicious intent."
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.media.alt": {
+    "strings": {
+      "en": {
+        "text": "Conceptual companion artwork: tangled process documents, loops, redactions, and checklists become an obstruction while a clear golden path breaks through."
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.media.caption": {
+    "strings": {
+      "en": {
+        "text": "Representative companion artwork generated for this reader after the preserved conversation. Representation ≠ transcript evidence."
       }
     }
   }
