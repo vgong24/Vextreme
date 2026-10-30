@@ -742,7 +742,8 @@
         "tests/03-browser-nav.test.js",
         "tests/07-viewmodel.test.js",
         "tests/08-build-vextreme.test.js (FAB SYSTEM propagation tests — calls buildViewmodel directly)",
-        "tests/15-departments.test.js"
+        "tests/15-departments.test.js",
+        "tests/77-direct-contact-localization-fab.test.js"
       ],
       "testedBy": [
         "tests/01-content-pipeline.test.js",
@@ -1128,7 +1129,8 @@
         "manual run: node lib/build-terrain-map.js",
         ".github/workflows/build-index.yml (CI)",
         "pages/terrain-map.html (live fetch of its output)",
-        "tests/28-build-terrain-map.test.js"
+        "tests/28-build-terrain-map.test.js",
+        "tests/115-content-forge-record-cover-reader-projection.test.js"
       ],
       "testedBy": [
         "tests/28-build-terrain-map.test.js",
