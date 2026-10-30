@@ -121,3 +121,24 @@ test('SABOTAGE-READER: successor witness remains derived and follows both source
   assert.match(witness, /The conversation remains the evidence/);
   assert.match(witness, /That does not prove malicious intent/);
 });
+
+
+test('SABOTAGE-READER: movement witness readings stay source-after and phase-bounded', () => {
+  const page = read('pages/' + SLUG + '.html');
+  const witness = read('records/commentary/2026-10-30-sabotage-open-vex-accountability-successor-witness.md');
+
+  assert.equal((page.match(/data-reader-component="witness-commentary"/g) || []).length, 8);
+  assert.match(page, /phaseWitnessUrl:'\.\.\/records\/commentary\/2026-10-30-sabotage-open-vex-accountability-successor-witness\.md'/);
+  assert.match(page, /documentEndMarker:'<!-- PHASE-WITNESS-APPENDIX -->'/);
+  assert.equal((witness.match(/<!-- WITNESS-PHASE \d+ -->/g) || []).length, 8);
+  assert.equal((witness.match(/<!-- \/WITNESS-PHASE \d+ -->/g) || []).length, 8);
+
+  for (let n = 1; n <= 8; n++) {
+    const id = String(n).padStart(2, '0');
+    const start = page.indexOf('id="movement-' + id + '"');
+    const next = n < 8 ? page.indexOf('id="movement-' + String(n + 1).padStart(2, '0') + '"', start) : page.indexOf('class="sab-reader-nav"', start);
+    const block = page.slice(start, next);
+    assert.ok(block.indexOf('data-reader-component="preserved-record"') < block.indexOf('data-reader-component="witness-commentary"'), 'movement ' + id + ' must show source before witness');
+    assert.match(witness, new RegExp('<!-- WITNESS-PHASE ' + id + ' -->[\\s\\S]*?<!-- /WITNESS-PHASE ' + id + ' -->'));
+  }
+});
