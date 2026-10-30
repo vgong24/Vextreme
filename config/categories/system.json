@@ -1,8 +1,0 @@
-{
-  "_meta": { "type": "category" },
-  "id": "system",
-  "directory": "system",
-  "default": false,
-  "description": "Infrastructure strings (common). Always loaded alongside page-specific scopes. Never user-facing content.",
-  "navVisibility": "none"
-}

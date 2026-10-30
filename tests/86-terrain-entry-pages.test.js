@@ -150,7 +150,7 @@ test('TERRAIN ENTRY: Take a Walk Global Core source is complete and exactly boun
 test('TERRAIN ENTRY: Global Core entry pages mount the shared Spiral Language FAB from the canonical tier', () => {
   const { LANGUAGE_TIERS } = require('../lib/translation-program');
   const requiredLocales = ['en', ...LANGUAGE_TIERS['global-core']];
-  const expectedRuntimeLocales = JSON.stringify(requiredLocales);
+  const index = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'index.json'), 'utf8'));
   const expectedOverride = 'window.VEXTREME_OVERRIDE = {nav:false,bodyWrap:false,arcNav:false,fab:true,fabWidgets:{readAloud:true,lang:true,theme:false,map:false}};';
 
   for (const entry of CASES) {
@@ -160,7 +160,10 @@ test('TERRAIN ENTRY: Global Core entry pages mount the shared Spiral Language FA
 
     assert.ok(html.includes('window.VEX_STRING_SCOPES = ' + JSON.stringify([scope]) + ';'), entry.slug + ': page scope runtime binding missing');
     assert.ok(html.includes('window.VEX_STRING_CATEGORY = "production";'), entry.slug + ': production string category missing');
-    assert.ok(html.includes('window.VEX_SUPPORTED_LANGS = ' + expectedRuntimeLocales + ';'), entry.slug + ': runtime locale projection drifted from Global Core tier');
+    assert.doesNotMatch(html, /window\.VEX_SUPPORTED_LANGS\s*=/, entry.slug + ': page HTML must not own supported language data');
+    const coverage = index.pageLanguageMap && index.pageLanguageMap[entry.slug];
+    assert.ok(coverage, entry.slug + ': canonical pageLanguageMap coverage missing');
+    assert.deepEqual([...(coverage.completeLangs || [])].sort(), [...requiredLocales].sort(), entry.slug + ': canonical completeLangs drifted from Global Core tier');
     assert.ok(html.includes(expectedOverride), entry.slug + ': bounded Spiral FAB shell override missing');
     assert.ok(html.includes('<script src="../lib/shell.js"></script>'), entry.slug + ': shared shell bootstrap missing');
     assert.equal(html.includes('<script src="../widgets/fab-read-aloud.js"></script>'), false, entry.slug + ': standalone Read Aloud must be replaced by the shared Spiral composition');
