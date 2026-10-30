@@ -597,13 +597,49 @@ test('TERRAIN-VIEW: passive resize never re-enters semantic rendering while the 
   assert.match(source, /window\.addEventListener\('resize', handleTerrainResize\);/);
 });
 
-test('TERRAIN-VIEW: embedded reader navigation replaces iframe history instead of adding a blank Back stop', () => {
+test('TERRAIN-VIEW: browser Back to a plain Terrain presentation retires the embedded reader at the parent history owner', () => {
   const source = pageSource();
+
   assert.match(source, /function replaceEvolutionReaderDocument\(url\)/);
   assert.match(source, /evolutionReaderFrame\.contentWindow\.location\.replace\(target\);/);
   assert.match(source, /replaceEvolutionReaderDocument\(node\.liveUrl\);/);
   assert.match(source, /replaceEvolutionReaderDocument\('about:blank'\);/);
   assert.doesNotMatch(source, /evolutionReaderFrame\.src\s*=/);
+
+  const restore = source.match(/function restoreEvolutionPresentationFromHistory\(state\) \{[\s\S]*?\n  \}/);
+  assert.ok(restore, 'parent presentation-history restore owner must remain extractable');
+  assert.match(restore[0], /if \(!kind\) \{[\s\S]*if \(activeEntrySlug\) \{[\s\S]*closeEntryReader\(\{ history:false, writeUrl:false \}\);[\s\S]*if \(activeReaderId \|\| activeGroupHomeKey\) \{[\s\S]*closeEvolutionReader\(\{ history:false, writeUrl:false \}\);[\s\S]*return;/,
+    'plain parent history must retire whichever embedded Terrain surface is still active without another traversal');
+
+  const entryRoute = source.match(/function handleEntryReaderRouteClick\(event\) \{[\s\S]*?\n  \}/);
+  assert.ok(entryRoute, 'ordered entry route handler must remain extractable');
+  assert.match(entryRoute[0], /if \(!slug \|\| entryDocument\(slug\)\) return;/,
+    'registered entry-to-entry links must preserve native iframe browser history');
+  assert.doesNotMatch(source, /function continueParentHistoryPastBlankReader\(/,
+    'iframe load wiring must not create an automatic extra parent history traversal');
+});
+
+test('TERRAIN-VIEW: reader Previous/Next create browser history while preserving the existing return owner', () => {
+  const source = pageSource();
+
+  const start = source.indexOf('function openReaderNeighbor(offset)');
+  const end = source.indexOf('function updateReaderChrome(node)', start);
+  assert.ok(start >= 0 && end > start, 'reader sibling-navigation owner must remain extractable');
+  const sibling = source.slice(start, end);
+  assert.match(sibling, /var target = readerNeighbor\(offset\);/);
+  assert.match(sibling, /historyMode:'push'/,
+    'a sibling page transition must append presentation history so browser Back can restore the prior page');
+  assert.match(sibling, /returnKind:activeReaderReturnKind/);
+  assert.match(sibling, /returnEntrySlug:activeReaderReturnEntrySlug/);
+  assert.match(sibling, /returnReaderId:activeReaderReturnReaderId/,
+    'sibling history must not collapse the reader relationship back to a generic collection return');
+
+  assert.match(source, /readerPrev'\)\.addEventListener\('click', function \(\) \{[\s\S]*?openReaderNeighbor\(-1\);/);
+  assert.match(source, /readerNext'\)\.addEventListener\('click', function \(\) \{[\s\S]*?openReaderNeighbor\(1\);/);
+  assert.equal(source.includes("openEvolutionReader(previous.id, { historyMode:'replace' })"), false,
+    'Previous must not erase the page the visitor just left');
+  assert.equal(source.includes("openEvolutionReader(next.id, { historyMode:'replace' })"), false,
+    'Next must not erase the page the visitor just left');
 });
 
 test('TERRAIN-VIEW: embedded same-origin Terrain links return to the parent collection instead of nesting Terrain', () => {
