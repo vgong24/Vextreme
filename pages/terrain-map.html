@@ -1143,11 +1143,14 @@
   }
 
   function resetTerrainLanguageSurfaceContext() {
+    // Terrain's own pageLanguageMap entry is the language-capability owner.
+    // The parent FAB already loaded that base set; after a child reader proxy,
+    // restore it at Terrain's current locale instead of forcing EN-only chrome.
     publishLanguageSurfaceContext({
-      langs: ['en'],
-      lang: 'en',
+      restoreBase: true,
+      lang: activeLanguage,
       proxySurface: false,
-      applyFallback: true
+      applyFallback: false
     });
   }
 

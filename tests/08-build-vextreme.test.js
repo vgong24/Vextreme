@@ -154,6 +154,12 @@ test('LANGUAGE SURFACE: child reports exact mounted locale capability for an exp
     'child capability notification must carry the exact mounted language list');
   assert.match(widgetSrc, /setSupportedLangs: setSupportedLangs/,
     'FAB controller must be able to replace its wheel without remounting');
+  assert.match(widgetSrc, /var baseLangs = sortLangs\(\(initialLangs \|\| \[\]\)\.slice\(\)\)/,
+    'the FAB must retain the canonical page-aware language set it mounted with');
+  assert.match(widgetSrc, /restoreBaseSupportedLangs: restoreBaseSupportedLangs/,
+    'an embedding surface must be able to restore the original page-aware language set');
+  assert.match(widgetSrc, /context\.restoreBase === true[\s\S]*fabController\.restoreBaseSupportedLangs\(preferred/,
+    'surface reset must restore the canonical base list instead of requiring a duplicated locale registry');
   assert.match(widgetSrc, /supportsLanguage: function \(lang\) \{ return langs\.indexOf\(lang\) >= 0; \}/,
     'cross-context synchronization must query the controller\'s live language set after proxy changes');
   assert.match(widgetSrc, /fabController\.supportsLanguage\(event\.newValue\)/,

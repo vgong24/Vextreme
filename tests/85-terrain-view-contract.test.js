@@ -296,8 +296,10 @@ test('TERRAIN-VIEW: parent language FAB stays visible and mirrors the active emb
     'only the active reader iframe may project child language capability');
   assert.match(source, /publishLanguageSurfaceContext\(\{[\s\S]*proxySurface: true/,
     'child capability must be projected into the parent FAB as a proxy surface');
-  assert.match(source, /function resetTerrainLanguageSurfaceContext\(\)[\s\S]*langs: \['en'\][\s\S]*applyFallback: true/,
-    'reader exit must return the parent FAB to Terrain EN without deleting the stored preference');
+  assert.match(source, /function resetTerrainLanguageSurfaceContext\(\)[\s\S]*restoreBase: true[\s\S]*lang: activeLanguage[\s\S]*applyFallback: false/,
+    'reader exit must restore Terrain\'s canonical page-aware language set at the active Terrain locale');
+  assert.doesNotMatch(source, /function resetTerrainLanguageSurfaceContext\(\)[\s\S]*langs: \['en'\]/,
+    'Terrain must not collapse its multilingual parent FAB back to an EN-only capability');
   assert.match(source, /window\.addEventListener\('message', handleEmbeddedLanguageContext\)/);
   assert.match(source, /function closeEntryReader\(options\)[\s\S]*syncTerrainChrome\(\)/,
     'entry-reader close must restore the Terrain parent language context');
