@@ -104,3 +104,20 @@ test('SABOTAGE-READER: source head and preservation boundary stay explicit', () 
 });
 
 // [VXG RealForever]
+
+
+test('SABOTAGE-READER: successor witness remains derived and follows both source layers', () => {
+  const page = read('pages/' + SLUG + '.html');
+  const witness = read('records/commentary/2026-10-30-sabotage-open-vex-accountability-successor-witness.md');
+
+  const conversation = page.indexOf('id="sab-conversation-root"');
+  const successor = page.indexOf('id="sab-successor-root"');
+  const witnessRoot = page.indexOf('id="sab-witness-root"');
+
+  assert.ok(conversation >= 0 && successor > conversation, 'successor must follow the direct conversation');
+  assert.ok(witnessRoot > successor, 'derived witness must follow the preserved conversation and successor');
+  assert.match(page, /records\/commentary\/2026-10-30-sabotage-open-vex-accountability-successor-witness\.md/);
+  assert.match(witness, /Derived successor witness commentary; not part of the preserved Victor \/ VexLife Interface Compound Relay conversation/);
+  assert.match(witness, /The conversation remains the evidence/);
+  assert.match(witness, /That does not prove malicious intent/);
+});
