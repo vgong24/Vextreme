@@ -4,6 +4,10 @@
 
 **Repository:** `vgong24/Vextreme`
 
+## One-file reading copy
+
+If you want the entire supplied sequence in one Markdown file, use [`transcript-full-end-to-end.md`](./transcript-full-end-to-end.md). It contains all eight direct exchanges in chronological order followed by the standalone successor document. The numbered files below remain the provenance partitions.
+
 ## Chronology
 
 This archive now preserves the full causal sequence rather than only the final successor memo.
