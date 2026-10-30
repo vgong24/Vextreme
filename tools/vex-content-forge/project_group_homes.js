@@ -127,7 +127,6 @@ function projectGroupHome(root, member, allOutputSlugs = []) {
     ? '<script>\n'
       + 'window.VEX_STRING_SCOPES = ' + JSON.stringify([localization.config.scope]) + ';\n'
       + 'window.VEX_STRING_CATEGORY = ' + JSON.stringify(localization.config.category) + ';\n'
-      + 'window.VEX_SUPPORTED_LANGS = ' + JSON.stringify(localization.completeLangs) + ';\n'
       + 'window.VEXTREME_OVERRIDE = {nav:false,bodyWrap:false,arcNav:false,fab:true};\n'
       + '</script>\n<script src="../lib/shell.js"></script>'
     : '<script src="../widgets/fab-read-aloud.js"></script>';

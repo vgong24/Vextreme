@@ -236,7 +236,7 @@ test('DIRECT CONTACT LOCALIZATION: Restoration Protocol binds every canonical id
   assert.equal(sourceKeys.length, 59);
   assert.ok(html.includes('window.VEX_STRING_SCOPES = ["pages.restoration-protocol"];'));
   assert.ok(html.includes('window.VEX_STRING_CATEGORY = "production";'));
-  assert.ok(html.includes('window.VEX_SUPPORTED_LANGS = ["en","zh","ja","ko","fr","de","es","pt","ar","hi"];'));
+  assert.doesNotMatch(html, /window\.VEX_SUPPORTED_LANGS\s*=/, 'Restoration Protocol must derive supported locales from data/index.json.pageLanguageMap');
   assert.ok(html.includes('<script src="../lib/shell.js"></script>'));
   assert.doesNotMatch(html, /cdn\.jsdelivr\.net\/gh\/vgong24\/vextreme@main\/lib\/shell\.js/);
 });
@@ -264,7 +264,7 @@ test('TERRAIN GROUP HOME: Direct Contact and AI Practitioner Tools are determini
       assert.match(committed, /data-i18n="pages\.direct-contact\.hero\.eyebrow"/);
       assert.ok(committed.includes('window.VEX_STRING_SCOPES = ["pages.direct-contact"];'));
       assert.ok(committed.includes('window.VEX_STRING_CATEGORY = "production";'));
-      assert.ok(committed.includes('window.VEX_SUPPORTED_LANGS = ["en","zh","ja","ko","fr","de","es","pt","ar","hi"];'));
+      assert.doesNotMatch(committed, /window\.VEX_SUPPORTED_LANGS\s*=/, 'Direct Contact must derive supported locales from data/index.json.pageLanguageMap');
       assert.ok(committed.includes('window.VEXTREME_OVERRIDE = {nav:false,bodyWrap:false,arcNav:false,fab:true};'));
       assert.ok(committed.includes('<script src="../lib/shell.js"></script>'));
       assert.doesNotMatch(committed, /widgets\/fab-read-aloud\.js/);
