@@ -608,12 +608,7 @@
   }
 
   function buildFAB(initialLangs, currentLang) {
-    // Keep the page-aware language set that loadSupportedLangs() resolved from
-    // the canonical index/build contract. Embedding surfaces may temporarily
-    // proxy a child's narrower capability, but they must be able to return to
-    // this base set without inventing or duplicating a locale registry.
-    var baseLangs = sortLangs((initialLangs || []).slice());
-    var langs = baseLangs.slice();
+    var langs = sortLangs((initialLangs || []).slice());
     var proxySurface = false;
 
     var container = document.createElement('div');
@@ -714,9 +709,9 @@
       wheel.classList.remove('open');
       syncUrlLang(currentLang);
 
-      // Some parent surfaces own their DOM translation separately from this
-      // widget. applyFallback remains opt-in for surfaces that need the FAB to
-      // restore their page-local DOM after a temporary proxy capability.
+      // Returning from a proxied child to a page-local EN-only surface must
+      // restore the parent's own DOM without erasing the persisted preference
+      // or publishing a fake global language transition.
       if (changed && options.applyFallback === true && proxySurface === false) {
         applyLang(currentLang, {
           persist: false,
@@ -725,14 +720,6 @@
           source: 'surface-context'
         });
       }
-    }
-
-    function restoreBaseSupportedLangs(preferredLang, options) {
-      options = options || {};
-      setSupportedLangs(baseLangs, preferredLang, {
-        proxySurface: false,
-        applyFallback: options.applyFallback === true
-      });
     }
 
     wheel.appendChild(mask);
@@ -754,7 +741,6 @@
       element: container,
       selectLanguage: selectLanguage,
       setSupportedLangs: setSupportedLangs,
-      restoreBaseSupportedLangs: restoreBaseSupportedLangs,
       supportsLanguage: function (lang) { return langs.indexOf(lang) >= 0; }
     };
   }
@@ -819,25 +805,12 @@
       // The child capability is still owned by the child FAB; the parent only
       // changes its wheel after an explicit same-document surface event.
       function applyLanguageSurfaceContext(context) {
-        if (!context) return;
+        if (!context || !Array.isArray(context.langs) || !context.langs.length) return;
         var preferred = context.lang;
         if (typeof preferred !== 'string' || !preferred) {
           try { preferred = localStorage.getItem(LS_LANG) || LANG_DEFAULT; }
           catch (e) { preferred = LANG_DEFAULT; }
         }
-
-        // A parent such as Terrain can temporarily mirror an embedded child's
-        // completed-language capability. On exit it restores the page-aware
-        // base set that this FAB already resolved from the canonical index,
-        // rather than publishing another hard-coded language registry.
-        if (context.restoreBase === true) {
-          fabController.restoreBaseSupportedLangs(preferred, {
-            applyFallback: context.applyFallback === true
-          });
-          return;
-        }
-
-        if (!Array.isArray(context.langs) || !context.langs.length) return;
         fabController.setSupportedLangs(context.langs, preferred, {
           proxySurface: context.proxySurface === true,
           applyFallback: context.applyFallback === true

@@ -296,10 +296,27 @@ test('TERRAIN-VIEW: parent language FAB stays visible and mirrors the active emb
     'only the active reader iframe may project child language capability');
   assert.match(source, /publishLanguageSurfaceContext\(\{[\s\S]*proxySurface: true/,
     'child capability must be projected into the parent FAB as a proxy surface');
-  assert.match(source, /function resetTerrainLanguageSurfaceContext\(\)[\s\S]*restoreBase: true[\s\S]*lang: activeLanguage[\s\S]*applyFallback: false/,
-    'reader exit must restore Terrain\'s canonical page-aware language set at the active Terrain locale');
-  assert.doesNotMatch(source, /function resetTerrainLanguageSurfaceContext\(\)[\s\S]*langs: \['en'\]/,
-    'Terrain must not collapse its multilingual parent FAB back to an EN-only capability');
+  assert.match(source, /var INDEX_URL = new URL\('data\/index\.json', DEPLOYMENT_ROOT\)\.href/);
+  assert.match(source, /function loadTerrainBaseLanguages\(\)[\s\S]*pageLanguageMap\['terrain-map'\][\s\S]*completeLangs/,
+    'Terrain must consume its parent language capability from the canonical pageLanguageMap');
+
+  const resetMatch = source.match(/function resetTerrainLanguageSurfaceContext\(\) \{([\s\S]*?)\n  \}/);
+  assert.ok(resetMatch, 'Terrain parent language reset must remain extractable');
+  assert.match(resetMatch[0], /langs: terrainBaseLanguages\.slice\(\)/,
+    'reader exit must restore Terrain\'s canonical page-aware language list');
+  assert.match(resetMatch[0], /lang: activeLanguage/,
+    'reader exit must restore the durable Terrain preference rather than forcing EN');
+  assert.doesNotMatch(resetMatch[0], /langs: \['en'\]|lang: 'en'/,
+    'Terrain parent reset must not collapse a multilingual surface to EN-only');
+
+  const childContextMatch = source.match(/function handleEmbeddedLanguageContext\(event\) \{([\s\S]*?)\n  \}/);
+  assert.ok(childContextMatch, 'embedded child language context must remain extractable');
+  assert.match(childContextMatch[0], /var langs = data\.langs\.filter/,
+    'the parent wheel must be bounded by the active child\'s reported selectable languages');
+  assert.match(childContextMatch[0], /langs: langs/,
+    'the parent must project exactly the child capability rather than Terrain\'s broader list');
+  assert.match(childContextMatch[0], /data\.lang[^\n]*langs\.indexOf\(data\.lang\)[^\n]*\? data\.lang : langs\[0\]/,
+    'an unsupported incoming preference must fall back to a language the child can actually render');
   assert.match(source, /window\.addEventListener\('message', handleEmbeddedLanguageContext\)/);
   assert.match(source, /function closeEntryReader\(options\)[\s\S]*syncTerrainChrome\(\)/,
     'entry-reader close must restore the Terrain parent language context');
