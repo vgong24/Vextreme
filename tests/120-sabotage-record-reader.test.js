@@ -89,11 +89,13 @@ test('SABOTAGE-READER: source head and preservation boundary stay explicit', () 
   assert.match(page, new RegExp(SOURCE_HEAD));
   assert.match(page, /Preservation PR #530/);
   assert.match(page, /does not independently certify malicious intent/);
-  assert.match(page, /assets\/sabotage-open-vex-accountability\/cover\.webp\?v=125aa01db3e0/);
+  assert.match(page, /https:\/\/vgong24\.github\.io\/Vextreme-Assets\/__assets\/125aa01db3e06d8884126860bc69d1de9a7a5981db30ba5e20ddf2813a4e037d\.webp/);
   assert.match(page, /data-media-class="representative"/);
   assert.match(page, /Representation ≠ transcript evidence/);
-  assert.equal(strings._meta.sourceProvenance.derivedMedia, 'assets/sabotage-open-vex-accountability/cover.webp');
+  assert.equal(strings._meta.sourceProvenance.derivedMedia, 'Vextreme-Assets/__assets/125aa01db3e06d8884126860bc69d1de9a7a5981db30ba5e20ddf2813a4e037d.webp');
   assert.equal(strings._meta.sourceProvenance.derivedMediaClass, 'REPRESENTATIVE_NOT_EVIDENCE');
+  assert.equal(strings._meta.sourceProvenance.derivedMediaCustody, 'vgong24/Vextreme-Assets');
+  assert.equal(strings._meta.sourceProvenance.derivedMediaOrigin, 'https://vgong24.github.io/Vextreme-Assets/__assets/125aa01db3e06d8884126860bc69d1de9a7a5981db30ba5e20ddf2813a4e037d.webp');
   assert.equal(strings._meta.sourceProvenance.derivedMediaSha256, '125aa01db3e06d8884126860bc69d1de9a7a5981db30ba5e20ddf2813a4e037d');
   assert.match(page, new RegExp('dist/vextreme-' + SLUG + '\\.js'));
   assert.match(page, /id="arcNavMount"/);
