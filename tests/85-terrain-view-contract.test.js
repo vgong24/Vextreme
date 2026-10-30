@@ -1088,8 +1088,8 @@ test('TERRAIN-VIEW: embedded entry paths preserve Receive God -> group home -> r
     'same-origin entry messages must route group-home choices through Terrain instead of parent reloads');
   assert.match(source, /openEvolutionGroupHome\(stage, \{[\s\S]*returnKind:'entry'[\s\S]*returnEntrySlug:entrySlug[\s\S]*\}\);[\s\S]*commitSemanticState[\s\S]*syncPresentationUrl\('replace', 'group-home'/,
     'entry -> group-home must preserve the prior entry state while committing the real group semantic level');
-  assert.match(source, /returnEntry \? '← ' \+ returnEntry\.label : '← Collection'/,
-    'group-home Back should name Receive God when that is the actual entry origin');
+  assert.match(source, /var collectionLabel = terrainText\('terrain\.reader\.collection', 'Collection'\);[\s\S]*returnEntry \? '← ' \+ returnEntry\.label : '← ' \+ collectionLabel/,
+    'group-home Back should preserve the Receive God entry owner while localizing the generic Collection fallback');
 
   assert.match(source, /var fromGroupHome = !!activeGroupHomeKey;[\s\S]*openEvolutionReader\(node\.id, \{ returnKind:'group-home' \}\)/,
     'opening a record from a group home must push reader history instead of replacing the group-home state');
