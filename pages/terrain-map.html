@@ -1401,7 +1401,7 @@
     loadTerrainStrings(initialArrivalLanguage).then(function (bundle) {
       if (initialArrivalLanguage !== activeLanguage) return;
       terrainStrings = bundle;
-      renderEvolutionAArrival();
+      if (!evolutionLayer.querySelector('[data-terrain-entry="arrival"]')) renderEvolutionAArrival();
       applyTerrainStaticStrings();
     });
     loadTerrainBaseLanguages().then(function (langs) {
