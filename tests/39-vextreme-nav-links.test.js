@@ -37,7 +37,7 @@ test('injectNav: redundant arrival destinations stay out of shared chrome', () =
 test('injectNav: family coordinates and page-tools rail remain persistent chrome', () => {
   const source = readNavSource();
   assert.match(source, /class="vex-family-mark" aria-hidden="true"/);
-  assert.match(source, /class="vex-family-world vex-nav-title vex-family-current"[^>]*aria-current="page">Vextreme<\/a>/);
+  assert.match(source, /class="vex-family-world vex-nav-title vex-family-current" href="\/Vextreme\/pages\/terrain-map\.html" aria-current="page">Vextreme<\/a>/);
   assert.match(source, /class="vex-family-world vex-nav-product" href="https:\/\/vgong24\.github\.io\/VexLife\/">VexLife<\/a>/);
   assert.match(source, /class="vex-family-world vex-nav-product" href="https:\/\/vexgpt\.github\.io\/VexWork\/">VexWork<\/a>/);
   assert.match(source, /class="vex-nav-actions" id="vex-nav-actions" aria-label="Page tools"/);
