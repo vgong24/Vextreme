@@ -364,6 +364,28 @@
     return voices[0] || null;
   }
 
+  function constrainedMobileNeuralRuntime() {
+    var nav = window.navigator || {};
+    if (nav.userAgentData && nav.userAgentData.mobile === true) return true;
+
+    var ua = String(nav.userAgent || '');
+    if (/(Android|iPhone|iPad|iPod|Mobile)/i.test(ua)) return true;
+
+    // iPadOS may identify itself as Macintosh while exposing a multi-touch
+    // surface. Treat that as the same constrained browser class rather than
+    // loading an 82M neural model through the WASM fallback.
+    if (/Macintosh/i.test(ua) && Number(nav.maxTouchPoints || 0) > 1) return true;
+
+    try {
+      var coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+      var screen = window.screen || {};
+      var shortestSide = Math.min(Number(screen.width) || Infinity, Number(screen.height) || Infinity);
+      if (coarse && shortestSide <= 1024) return true;
+    } catch (e) {}
+
+    return false;
+  }
+
   function kokoroWorkerMain() {
     var KOKORO_MODULE_URL = 'https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/+esm';
     var KOKORO_MODEL_ID = 'onnx-community/Kokoro-82M-v1.0-ONNX';
@@ -550,6 +572,14 @@
     }
 
     function capability() {
+      // Mobile Read Aloud remains fully available through the existing
+      // browser/OS speech provider. Do not instantiate or borrow the Kokoro
+      // Worker on constrained phone/tablet browsers: lived use shows that
+      // WASM-heavy inference can degrade responsiveness and audio quality.
+      if (constrainedMobileNeuralRuntime()) {
+        return { available: false, execution: 'mobile-system-speech' };
+      }
+
       var parentRuntime = parentNeuralRuntime();
       if (parentRuntime && typeof parentRuntime.capability === 'function') {
         try {
