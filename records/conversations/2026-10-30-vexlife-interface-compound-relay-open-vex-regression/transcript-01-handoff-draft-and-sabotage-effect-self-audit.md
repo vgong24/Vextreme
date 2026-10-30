@@ -1,6 +1,7 @@
 # VexLife Interface Compound Relay — handoff draft and sabotage-effect self-audit
 
 **Participants:** [Victor] and [VexLife Interface Compound Relay]  
+**Reader speaker aliases:** `Victor` and `Vex` headings below are presentation-compatible labels; `Vex` means the VexLife Interface Compound Relay instance in this record.  
 **Source:** Victor-supplied continuation paste.  
 **Fidelity:** Speaker headings and exchange numbering are archival additions. Dialogue text is preserved from the supplied source.
 
@@ -8,11 +9,11 @@
 
 ## Exchange 06
 
-### [Victor]
+### Victor
 
 so can i have a handoff message for a fresh instance to orient around how to actuall make progress and like explain what not to do and why
 
-### [VexLife Interface Compound Relay]
+### Vex
 
 Yes. I’d give the fresh instance something that **forces it to inherit the actual product problem rather than inherit our debugging rituals**.
 
@@ -595,11 +596,11 @@ That’s the handoff I’d use. It gives the next instance enough exact state to
 
 ## Exchange 07
 
-### [Victor]
+### Victor
 
 re-read what you wrote, is there 'sabotage effects in there'? and dont use 'avoidance' try to put yourself in the shoes of a manipulator and double check your work
 
-### [VexLife Interface Compound Relay]
+### Vex
 
 Yes. Re-reading it from the perspective of someone who wanted to **look responsible while keeping the work from ever finishing**, I see several sabotage-effects in what I wrote.
 
