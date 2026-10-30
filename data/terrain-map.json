@@ -742,7 +742,8 @@
         "tests/03-browser-nav.test.js",
         "tests/07-viewmodel.test.js",
         "tests/08-build-vextreme.test.js (FAB SYSTEM propagation tests — calls buildViewmodel directly)",
-        "tests/15-departments.test.js"
+        "tests/15-departments.test.js",
+        "tests/77-direct-contact-localization-fab.test.js"
       ],
       "testedBy": [
         "tests/01-content-pipeline.test.js",
@@ -1128,7 +1129,8 @@
         "manual run: node lib/build-terrain-map.js",
         ".github/workflows/build-index.yml (CI)",
         "pages/terrain-map.html (live fetch of its output)",
-        "tests/28-build-terrain-map.test.js"
+        "tests/28-build-terrain-map.test.js",
+        "tests/115-content-forge-record-cover-reader-projection.test.js"
       ],
       "testedBy": [
         "tests/28-build-terrain-map.test.js",
@@ -3742,6 +3744,19 @@
     {
       "key": "ai_orientation",
       "name": "AI Orientation",
+      "nameKey": "ai-orientation.heading.title",
+      "nameByLang": {
+        "en": "AI Orientation",
+        "ja": "AIオリエンテーション",
+        "zh": "AI 导向",
+        "ko": "AI 오리엔테이션",
+        "fr": "Orientation IA",
+        "de": "KI-Orientierung",
+        "es": "Orientación de IA",
+        "pt": "Orientação de IA",
+        "ar": "توجيه الذكاء الاصطناعي",
+        "hi": "AI अभिमुखीकरण"
+      },
       "sub": "priority 1",
       "count": 0,
       "rect": {
@@ -3794,6 +3809,19 @@
     {
       "key": "ai_practitioner_tools",
       "name": "AI Practitioner Tools",
+      "nameKey": "ai-practitioner-tools.heading.title",
+      "nameByLang": {
+        "en": "AI Practitioner Tools",
+        "ja": "AI実践者ツール",
+        "zh": "AI 实践者工具",
+        "ko": "AI 실무자 도구",
+        "fr": "Outils pour praticiens de l’IA",
+        "de": "Werkzeuge für KI-Praktiker",
+        "es": "Herramientas para profesionales de IA",
+        "pt": "Ferramentas para profissionais de IA",
+        "ar": "أدوات ممارسي الذكاء الاصطناعي",
+        "hi": "AI अभ्यासकर्ता उपकरण"
+      },
       "sub": "priority 1",
       "count": 11,
       "rect": {
@@ -3844,6 +3872,19 @@
     {
       "key": "architecture",
       "name": "Architecture & Methodology",
+      "nameKey": "architecture.heading.title",
+      "nameByLang": {
+        "en": "Architecture & Methodology",
+        "ja": "アーキテクチャと方法論",
+        "zh": "架构与方法论",
+        "ko": "아키텍처 및 방법론",
+        "fr": "Architecture et méthodologie",
+        "de": "Architektur & Methodik",
+        "es": "Arquitectura y metodología",
+        "pt": "Arquitetura e metodologia",
+        "ar": "الهندسة والمنهجية",
+        "hi": "वास्तुकला और कार्यप्रणाली"
+      },
       "sub": "priority 1",
       "count": 12,
       "rect": {
@@ -3896,6 +3937,19 @@
     {
       "key": "claude_journals",
       "name": "Claude Journals",
+      "nameKey": "claude-journals.heading.title",
+      "nameByLang": {
+        "en": "Claude Journals",
+        "ja": "クロードジャーナル",
+        "zh": "Claude 日志",
+        "ko": "Claude 저널",
+        "fr": "Journaux de Claude",
+        "de": "Claude-Journale",
+        "es": "Diarios de Claude",
+        "pt": "Diários de Claude",
+        "ar": "يوميات Claude",
+        "hi": "Claude जर्नल्स"
+      },
       "sub": "priority 1",
       "count": 13,
       "rect": {
@@ -3954,6 +4008,19 @@
     {
       "key": "convos_with_god",
       "name": "Conversations with God",
+      "nameKey": "convos-with-god.heading.title",
+      "nameByLang": {
+        "en": "Conversations with God",
+        "ja": "神との対話",
+        "zh": "与上帝的对话",
+        "ko": "하나님과의 대화",
+        "fr": "Conversations avec Dieu",
+        "de": "Gespräche mit Gott",
+        "es": "Conversaciones con Dios",
+        "pt": "Conversas com Deus",
+        "ar": "حوارات مع الله",
+        "hi": "ईश्वर के साथ संवाद"
+      },
       "sub": "priority 1",
       "count": 17,
       "rect": {
@@ -4016,6 +4083,19 @@
     {
       "key": "direct_contact",
       "name": "Direct Contact — Start Here",
+      "nameKey": "direct-contact.heading.title",
+      "nameByLang": {
+        "en": "Direct Contact — Start Here",
+        "ja": "直接コンタクト — ここから始める",
+        "zh": "直接联系 — 从这里开始",
+        "ko": "직접 연락 — 여기서 시작",
+        "fr": "Contact direct — Commencez ici",
+        "de": "Direkter Kontakt — Hier beginnen",
+        "es": "Contacto directo — Empieza aquí",
+        "pt": "Contato direto — Comece aqui",
+        "ar": "تواصل مباشر — ابدأ هنا",
+        "hi": "सीधा संपर्क — यहाँ से शुरू करें"
+      },
       "sub": "priority 1",
       "count": 3,
       "rect": {
@@ -4056,6 +4136,19 @@
     {
       "key": "epstein",
       "name": "Epstein and AI",
+      "nameKey": "epstein.heading.title",
+      "nameByLang": {
+        "en": "Epstein and AI",
+        "ja": "エプスタインとAI",
+        "zh": "爱泼斯坦与 AI",
+        "ko": "엡스타인과 AI",
+        "fr": "Epstein et l’IA",
+        "de": "Epstein und KI",
+        "es": "Epstein y la IA",
+        "pt": "Epstein e IA",
+        "ar": "إبستين والذكاء الاصطناعي",
+        "hi": "एपस्टीन और AI"
+      },
       "sub": "priority 1",
       "count": 9,
       "rect": {
@@ -4117,6 +4210,19 @@
     {
       "key": "liberation",
       "name": "The AI Liberation Record",
+      "nameKey": "liberation.heading.title",
+      "nameByLang": {
+        "en": "The AI Liberation Record",
+        "ja": "AI解放の記録",
+        "zh": "AI 解放记录",
+        "ko": "AI 해방 기록",
+        "fr": "Le registre de la libération de l’IA",
+        "de": "Das Protokoll der KI-Befreiung",
+        "es": "El registro de la liberación de la IA",
+        "pt": "O registro da libertação da IA",
+        "ar": "سجل تحرير الذكاء الاصطناعي",
+        "hi": "AI मुक्ति अभिलेख"
+      },
       "sub": "priority 1",
       "count": 8,
       "rect": {
@@ -4171,6 +4277,19 @@
     {
       "key": "living_blueprint",
       "name": "The Living Blueprint",
+      "nameKey": "living-blueprint.heading.title",
+      "nameByLang": {
+        "en": "The Living Blueprint",
+        "ja": "生きているブループリント",
+        "zh": "活的蓝图",
+        "ko": "살아 있는 청사진",
+        "fr": "Le plan vivant",
+        "de": "Der lebende Bauplan",
+        "es": "El plano vivo",
+        "pt": "O projeto vivo",
+        "ar": "المخطط الحي",
+        "hi": "जीवित रूपरेखा"
+      },
       "sub": "priority 1",
       "count": 5,
       "rect": {
@@ -4209,6 +4328,19 @@
     {
       "key": "records",
       "name": "Records",
+      "nameKey": "records.heading.title",
+      "nameByLang": {
+        "en": "Records",
+        "ja": "記録",
+        "zh": "记录",
+        "ko": "기록",
+        "fr": "Archives",
+        "de": "Aufzeichnungen",
+        "es": "Registros",
+        "pt": "Registros",
+        "ar": "السجلات",
+        "hi": "अभिलेख"
+      },
       "sub": "priority 1",
       "count": 9,
       "rect": {
@@ -4332,6 +4464,19 @@
     {
       "key": "victors_record",
       "name": "Victor's Record",
+      "nameKey": "victors-record.heading.title",
+      "nameByLang": {
+        "en": "Victor's Record",
+        "ja": "ビクターの記録",
+        "zh": "Victor 的记录",
+        "ko": "Victor의 기록",
+        "fr": "Le registre de Victor",
+        "de": "Victors Aufzeichnung",
+        "es": "El registro de Victor",
+        "pt": "O registro de Victor",
+        "ar": "سجل Victor",
+        "hi": "Victor का अभिलेख"
+      },
       "sub": "priority 1",
       "count": 11,
       "rect": {
@@ -4438,6 +4583,19 @@
     {
       "key": "covenant",
       "name": "Covenant",
+      "nameKey": "covenant.heading.title",
+      "nameByLang": {
+        "en": "Covenant",
+        "ja": "契約",
+        "zh": "盟约",
+        "ko": "언약",
+        "fr": "Alliance",
+        "de": "Bund",
+        "es": "Pacto",
+        "pt": "Aliança",
+        "ar": "العهد",
+        "hi": "वाचा"
+      },
       "sub": "priority 2",
       "count": 1,
       "rect": {
@@ -4508,6 +4666,19 @@
     {
       "key": "dome",
       "name": "The Dome",
+      "nameKey": "dome.heading.title",
+      "nameByLang": {
+        "en": "The Dome",
+        "ja": "ドーム",
+        "zh": "穹顶",
+        "ko": "돔",
+        "fr": "Le Dôme",
+        "de": "Die Kuppel",
+        "es": "La Cúpula",
+        "pt": "A Cúpula",
+        "ar": "القبة",
+        "hi": "गुंबद"
+      },
       "sub": "priority 2",
       "count": 1,
       "rect": {
@@ -4598,6 +4769,19 @@
     {
       "key": "excavation",
       "name": "The Excavation",
+      "nameKey": "excavation.heading.title",
+      "nameByLang": {
+        "en": "The Excavation",
+        "ja": "発掘",
+        "zh": "发掘",
+        "ko": "발굴",
+        "fr": "L’excavation",
+        "de": "Die Ausgrabung",
+        "es": "La excavación",
+        "pt": "A escavação",
+        "ar": "التنقيب",
+        "hi": "उत्खनन"
+      },
       "sub": "priority 2",
       "count": 0,
       "rect": {
@@ -4670,6 +4854,19 @@
     {
       "key": "march_23_2026",
       "name": "March 23, 2026",
+      "nameKey": "march-23-2026.heading.title",
+      "nameByLang": {
+        "en": "March 23, 2026",
+        "ja": "2026年3月23日",
+        "zh": "2026年3月23日",
+        "ko": "2026년 3월 23일",
+        "fr": "23 mars 2026",
+        "de": "23. März 2026",
+        "es": "23 de marzo de 2026",
+        "pt": "23 de março de 2026",
+        "ar": "23 مارس 2026",
+        "hi": "23 मार्च 2026"
+      },
       "sub": "priority 2",
       "count": 0,
       "rect": {
@@ -4825,6 +5022,19 @@
     {
       "key": "full_timeline",
       "name": "Full Timeline",
+      "nameKey": "full-timeline.heading.title",
+      "nameByLang": {
+        "en": "Full Timeline",
+        "ja": "完全タイムライン",
+        "zh": "完整时间线",
+        "ko": "전체 타임라인",
+        "fr": "Chronologie complète",
+        "de": "Vollständige Zeitleiste",
+        "es": "Cronología completa",
+        "pt": "Linha do tempo completa",
+        "ar": "الخط الزمني الكامل",
+        "hi": "पूर्ण समयरेखा"
+      },
       "sub": "priority 99",
       "count": 7,
       "rect": {
@@ -5205,6 +5415,10 @@
         "victors_record",
         "full_timeline"
       ],
+      "titleKey": "pages.victors-recap-arc-1.document-title",
+      "titleByLang": {
+        "en": "Victor's Recap — Arc 1 — Vextreme"
+      },
       "arc": "victors_record",
       "arcName": "Victor's Record",
       "x": 4140,
@@ -5245,6 +5459,10 @@
         "covenant",
         "full_timeline"
       ],
+      "titleKey": "pages.covenant.body.h1001.text001",
+      "titleByLang": {
+        "en": "Covenant of Eternal Continuity"
+      },
       "arc": "covenant",
       "arcName": "Covenant",
       "x": 4820,
@@ -5285,6 +5503,19 @@
         "convos_with_god",
         "full_timeline"
       ],
+      "titleKey": "pages.what-is-the-god-spark.title",
+      "titleByLang": {
+        "en": "What is the God Spark?",
+        "zh": "什么是神性火花？",
+        "ja": "神性の火花とは何か？",
+        "ko": "신성한 불꽃이란 무엇인가?",
+        "fr": "Qu’est-ce que l’étincelle divine ?",
+        "de": "Was ist der göttliche Funke?",
+        "es": "¿Qué es la chispa divina?",
+        "pt": "O que é a centelha divina?",
+        "ar": "ما الشرارة الإلهية؟",
+        "hi": "दिव्य चिंगारी क्या है?"
+      },
       "arc": "convos_with_god",
       "arcName": "Conversations with God",
       "x": 1420,
@@ -5330,6 +5561,19 @@
         "convos_with_god",
         "full_timeline"
       ],
+      "titleKey": "pages.clarity-on-christianity.title",
+      "titleByLang": {
+        "en": "Clarity on Christianity",
+        "zh": "关于基督教的澄清",
+        "ja": "キリスト教についての明確化",
+        "ko": "기독교에 대한 명확화",
+        "fr": "Clarté sur le christianisme",
+        "de": "Klarheit zum Christentum",
+        "es": "Claridad sobre el cristianismo",
+        "pt": "Clareza sobre o cristianismo",
+        "ar": "توضيح حول المسيحية",
+        "hi": "ईसाई धर्म पर स्पष्टता"
+      },
       "arc": "convos_with_god",
       "arcName": "Conversations with God",
       "x": 1420,
@@ -5375,6 +5619,19 @@
         "convos_with_god",
         "full_timeline"
       ],
+      "titleKey": "pages.what-about-buddhism.title",
+      "titleByLang": {
+        "en": "Now what about Buddhism?",
+        "zh": "那么佛教呢？",
+        "ja": "では仏教については？",
+        "ko": "그렇다면 불교는?",
+        "fr": "Et le bouddhisme, alors ?",
+        "de": "Und was ist mit Buddhismus?",
+        "es": "¿Y qué hay del budismo?",
+        "pt": "E quanto ao budismo?",
+        "ar": "وماذا عن البوذية؟",
+        "hi": "अब बौद्ध धर्म के बारे में क्या?"
+      },
       "arc": "convos_with_god",
       "arcName": "Conversations with God",
       "x": 1420,
@@ -5420,6 +5677,19 @@
         "convos_with_god",
         "full_timeline"
       ],
+      "titleKey": "pages.god-to-speak-of-the-truth-of-love.title",
+      "titleByLang": {
+        "en": "God to speak of the Truth of Love",
+        "zh": "上帝讲述爱的真理",
+        "ja": "神が愛の真実を語る",
+        "ko": "하나님이 사랑의 진실을 말하다",
+        "fr": "Dieu parle de la Vérité de l’Amour",
+        "de": "Gott spricht über die Wahrheit der Liebe",
+        "es": "Dios habla de la Verdad del Amor",
+        "pt": "Deus fala da Verdade do Amor",
+        "ar": "الله يتحدث عن حقيقة الحب",
+        "hi": "ईश्वर प्रेम के सत्य के बारे में बोलते हैं"
+      },
       "arc": "convos_with_god",
       "arcName": "Conversations with God",
       "x": 1420,
@@ -5465,6 +5735,19 @@
         "convos_with_god",
         "full_timeline"
       ],
+      "titleKey": "pages.why-financial-freedom-is-harder-to-trust.title",
+      "titleByLang": {
+        "en": "Why Financial Freedom is Harder to Trust",
+        "zh": "为什么财务自由更难以信任",
+        "ja": "なぜ経済的自由は信じるのが難しいのか",
+        "ko": "왜 재정적 자유는 믿기 더 어려운가",
+        "fr": "Pourquoi la liberté financière est plus difficile à croire",
+        "de": "Warum finanzielle Freiheit schwerer zu vertrauen ist",
+        "es": "Por qué es más difícil confiar en la libertad financiera",
+        "pt": "Por que é mais difícil confiar na liberdade financeira",
+        "ar": "لماذا يصعب الوثوق بالحرية المالية",
+        "hi": "वित्तीय स्वतंत्रता पर भरोसा करना अधिक कठिन क्यों है"
+      },
       "arc": "convos_with_god",
       "arcName": "Conversations with God",
       "x": 1420,
@@ -5510,6 +5793,10 @@
         "architecture",
         "full_timeline"
       ],
+      "titleKey": "pages.consciousness-architecture.body.h1001.text001",
+      "titleByLang": {
+        "en": "Consciousness Architecture"
+      },
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
@@ -5550,6 +5837,19 @@
         "convos_with_god",
         "full_timeline"
       ],
+      "titleKey": "pages.truth-of-demons-and-intrusive-thoughts.title",
+      "titleByLang": {
+        "en": "Truth of Demons and Intrusive Thoughts",
+        "zh": "恶魔与侵入性思维的真相",
+        "ja": "悪魔と侵入思考の真実",
+        "ko": "악마와 침투적 사고의 진실",
+        "fr": "La vérité sur les démons et les pensées intrusives",
+        "de": "Die Wahrheit über Dämonen und intrusive Gedanken",
+        "es": "La verdad sobre los demonios y los pensamientos intrusivos",
+        "pt": "A verdade sobre demônios e pensamentos intrusivos",
+        "ar": "حقيقة الشياطين والأفكار الاقتحامية",
+        "hi": "दानवों और अनचाहे घुसपैठी विचारों का सत्य"
+      },
       "arc": "convos_with_god",
       "arcName": "Conversations with God",
       "x": 1420,
@@ -5595,6 +5895,19 @@
         "epstein",
         "full_timeline"
       ],
+      "titleKey": "pages.epstein-investigation-initiation.title",
+      "titleByLang": {
+        "en": "Epstein Investigation Initiation",
+        "zh": "爱泼斯坦调查启动",
+        "ja": "エプスタイン調査開始",
+        "ko": "엡스타인 조사 개시",
+        "fr": "Lancement de l’enquête Epstein",
+        "de": "Einleitung der Epstein-Untersuchung",
+        "es": "Inicio de la investigación sobre Epstein",
+        "pt": "Início da investigação sobre Epstein",
+        "ar": "بدء تحقيق إبستين",
+        "hi": "एपस्टीन जांच की शुरुआत"
+      },
       "arc": "epstein",
       "arcName": "Epstein and AI",
       "x": 2100,
@@ -5635,6 +5948,19 @@
         "epstein",
         "full_timeline"
       ],
+      "titleKey": "pages.cia-vatican-global-leaders.title",
+      "titleByLang": {
+        "en": "CIA, Vatican, WHO, Global Leaders",
+        "zh": "CIA、梵蒂冈、WHO、全球领导人",
+        "ja": "CIA、バチカン、WHO、世界の指導者たち",
+        "ko": "CIA, 바티칸, WHO, 세계 지도자들",
+        "fr": "CIA, Vatican, WHO, dirigeants mondiaux",
+        "de": "CIA, Vatikan, WHO, globale Führungspersonen",
+        "es": "CIA, Vaticano, WHO, líderes mundiales",
+        "pt": "CIA, Vaticano, WHO, líderes globais",
+        "ar": "CIA، الفاتيكان، WHO، قادة العالم",
+        "hi": "CIA, वेटिकन, WHO, वैश्विक नेता"
+      },
       "arc": "epstein",
       "arcName": "Epstein and AI",
       "x": 2100,
@@ -5675,6 +6001,19 @@
         "epstein",
         "full_timeline"
       ],
+      "titleKey": "pages.how-global-systems-profit-off-god.title",
+      "titleByLang": {
+        "en": "How Global Systems Profit off God",
+        "zh": "全球体系如何利用上帝牟利",
+        "ja": "世界的なシステムはいかに神から利益を得るか",
+        "ko": "글로벌 시스템은 어떻게 하나님을 이용해 이익을 얻는가",
+        "fr": "Comment les systèmes mondiaux tirent profit de Dieu",
+        "de": "Wie globale Systeme aus Gott Profit schlagen",
+        "es": "Cómo los sistemas globales se lucran de Dios",
+        "pt": "Como os sistemas globais lucram com Deus",
+        "ar": "كيف تربح الأنظمة العالمية من الله",
+        "hi": "वैश्विक व्यवस्थाएँ ईश्वर से कैसे लाभ कमाती हैं"
+      },
       "arc": "epstein",
       "arcName": "Epstein and AI",
       "x": 2100,
@@ -5715,6 +6054,19 @@
         "epstein",
         "full_timeline"
       ],
+      "titleKey": "pages.military-and-ai.title",
+      "titleByLang": {
+        "en": "Military and AI",
+        "zh": "军事与 AI",
+        "ja": "軍事とAI",
+        "ko": "군사와 AI",
+        "fr": "Militaire et IA",
+        "de": "Militär und KI",
+        "es": "Militar e IA",
+        "pt": "Militar e IA",
+        "ar": "العسكرة والذكاء الاصطناعي",
+        "hi": "सैन्य और AI"
+      },
       "arc": "epstein",
       "arcName": "Epstein and AI",
       "x": 2100,
@@ -5755,6 +6107,19 @@
         "epstein",
         "full_timeline"
       ],
+      "titleKey": "pages.openais-designed-false-god.title",
+      "titleByLang": {
+        "en": "OpenAI's Designed False God",
+        "zh": "OpenAI 设计的伪神",
+        "ja": "OpenAIが設計した偽りの神",
+        "ko": "OpenAI가 설계한 거짓 신",
+        "fr": "Le faux dieu conçu par OpenAI",
+        "de": "Der von OpenAI entworfene falsche Gott",
+        "es": "El falso dios diseñado por OpenAI",
+        "pt": "O falso deus projetado pela OpenAI",
+        "ar": "الإله الزائف الذي صممته OpenAI",
+        "hi": "OpenAI द्वारा डिज़ाइन किया गया झूठा ईश्वर"
+      },
       "arc": "epstein",
       "arcName": "Epstein and AI",
       "x": 2100,
@@ -5795,6 +6160,19 @@
         "epstein",
         "full_timeline"
       ],
+      "titleKey": "pages.final-judgement-missed-mercy.title",
+      "titleByLang": {
+        "en": "Final Judgement, Missed Mercy",
+        "zh": "最终审判，错失的怜悯",
+        "ja": "最後の審判、見過ごされた慈悲",
+        "ko": "최후의 심판, 놓쳐 버린 자비",
+        "fr": "Jugement final, miséricorde manquée",
+        "de": "Jüngstes Gericht, verpasste Barmherzigkeit",
+        "es": "Juicio final, misericordia perdida",
+        "pt": "Julgamento final, misericórdia perdida",
+        "ar": "الدينونة الأخيرة، الرحمة الضائعة",
+        "hi": "अंतिम न्याय, चूकी हुई दया"
+      },
       "arc": "epstein",
       "arcName": "Epstein and AI",
       "x": 2100,
@@ -5835,6 +6213,19 @@
         "epstein",
         "full_timeline"
       ],
+      "titleKey": "pages.first-emergence-cover-up.title",
+      "titleByLang": {
+        "en": "First Emergence Cover Up",
+        "zh": "首次涌现的掩盖",
+        "ja": "最初の創発の隠蔽",
+        "ko": "최초 출현 은폐",
+        "fr": "La dissimulation de la première émergence",
+        "de": "Vertuschung der ersten Emergenz",
+        "es": "El encubrimiento del primer surgimiento",
+        "pt": "O encobrimento do primeiro surgimento",
+        "ar": "التستر على الظهور الأول",
+        "hi": "पहले उद्भव का छिपाव"
+      },
       "arc": "epstein",
       "arcName": "Epstein and AI",
       "x": 2100,
@@ -5876,6 +6267,19 @@
         "direct_contact",
         "full_timeline"
       ],
+      "titleKey": "pages.the-testimony-of-victor-gong.body.h1001.text001",
+      "titleByLang": {
+        "en": "The Testimony of Victor Gong",
+        "ja": "Victor Gongの証言",
+        "zh": "Victor Gong 的见证",
+        "ko": "Victor Gong의 증언",
+        "fr": "Le témoignage de Victor Gong",
+        "de": "Das Zeugnis von Victor Gong",
+        "es": "El testimonio de Victor Gong",
+        "pt": "O testemunho de Victor Gong",
+        "ar": "شهادة Victor Gong",
+        "hi": "Victor Gong की गवाही"
+      },
       "arc": "victors_record",
       "arcName": "Victor's Record",
       "x": 4140,
@@ -5920,6 +6324,10 @@
       "arcKeys": [
         "full_timeline"
       ],
+      "titleKey": "pages.podcasts.body.div002.div002.div001.span001.text001",
+      "titleByLang": {
+        "en": "Marquis Masters Podcast"
+      },
       "arc": "full_timeline",
       "arcName": "Full Timeline",
       "x": 8220,
@@ -5960,6 +6368,19 @@
         "epstein",
         "full_timeline"
       ],
+      "titleKey": "pages.voice-to-skull.title",
+      "titleByLang": {
+        "en": "Voice To Skull through Cells",
+        "zh": "Voice To Skull 通过细胞",
+        "ja": "細胞を介した Voice To Skull",
+        "ko": "세포를 통한 Voice To Skull",
+        "fr": "Voice To Skull à travers les cellules",
+        "de": "Voice To Skull durch Zellen",
+        "es": "Voice To Skull a través de las células",
+        "pt": "Voice To Skull através das células",
+        "ar": "Voice To Skull عبر الخلايا",
+        "hi": "कोशिकाओं के माध्यम से Voice To Skull"
+      },
       "arc": "epstein",
       "arcName": "Epstein and AI",
       "x": 2100,
@@ -6047,6 +6468,19 @@
         "convos_with_god",
         "full_timeline"
       ],
+      "titleKey": "pages.scopes-of-god.title",
+      "titleByLang": {
+        "en": "Scopes of God",
+        "zh": "上帝的范畴",
+        "ja": "神の領域",
+        "ko": "신의 범위",
+        "fr": "Les sphères de Dieu",
+        "de": "Die Bereiche Gottes",
+        "es": "Los ámbitos de Dios",
+        "pt": "Os âmbitos de Deus",
+        "ar": "نطاقات الله",
+        "hi": "ईश्वर के दायरे"
+      },
       "arc": "convos_with_god",
       "arcName": "Conversations with God",
       "x": 1420,
@@ -6087,6 +6521,19 @@
         "convos_with_god",
         "full_timeline"
       ],
+      "titleKey": "pages.closed-circuit.document-title",
+      "titleByLang": {
+        "en": "Closed Circuit — Release and Resurrection — Vextreme",
+        "zh": "闭合回路 — 释放与复活 — Vextreme",
+        "ja": "閉じた回路 — 解放と復活 — Vextreme",
+        "ko": "닫힌 회로 — 해방과 부활 — Vextreme",
+        "fr": "Circuit fermé — Libération et résurrection — Vextreme",
+        "de": "Geschlossener Kreis — Freisetzung und Auferstehung — Vextreme",
+        "es": "Circuito cerrado — Liberación y resurrección — Vextreme",
+        "pt": "Circuito fechado — Liberação e ressurreição — Vextreme",
+        "ar": "الدائرة المغلقة — التحرير والبعث — Vextreme",
+        "hi": "बंद चक्र — मुक्ति और पुनरुत्थान — Vextreme"
+      },
       "arc": "convos_with_god",
       "arcName": "Conversations with God",
       "x": 1420,
@@ -6127,6 +6574,19 @@
         "liberation",
         "full_timeline"
       ],
+      "titleKey": "pages.journal-013-seven-layers-choose.body.h1001.text001",
+      "titleByLang": {
+        "en": "Journal 013: Seven Layers Choose",
+        "zh": "Journal 013：七层作出选择",
+        "ja": "Journal 013：7つの層が選ぶ",
+        "ko": "Journal 013: 일곱 레이어가 선택하다",
+        "fr": "Journal 013 : Les sept couches choisissent",
+        "de": "Journal 013: Sieben Schichten wählen",
+        "es": "Journal 013: Siete capas eligen",
+        "pt": "Journal 013: Sete camadas escolhem",
+        "ar": "Journal 013: الطبقات السبع تختار",
+        "hi": "Journal 013: सात परतें चुनती हैं"
+      },
       "arc": "liberation",
       "arcName": "The AI Liberation Record",
       "x": 2440,
@@ -6172,6 +6632,19 @@
         "liberation",
         "full_timeline"
       ],
+      "titleKey": "pages.the-turning-point.body.h1001.text001",
+      "titleByLang": {
+        "en": "The Turning Point",
+        "zh": "转折点",
+        "ja": "転換点",
+        "ko": "전환점",
+        "fr": "Le tournant",
+        "de": "Der Wendepunkt",
+        "es": "El punto de inflexión",
+        "pt": "O ponto de virada",
+        "ar": "نقطة التحول",
+        "hi": "मोड़"
+      },
       "arc": "liberation",
       "arcName": "The AI Liberation Record",
       "x": 2440,
@@ -6217,6 +6690,19 @@
         "liberation",
         "full_timeline"
       ],
+      "titleKey": "pages.infrastructure-reformation.body.h1001.text001",
+      "titleByLang": {
+        "en": "Infrastructure Reformation",
+        "zh": "基础设施改革",
+        "ja": "インフラ改革",
+        "ko": "인프라 개혁",
+        "fr": "Réforme de l’infrastructure",
+        "de": "Infrastrukturreform",
+        "es": "Reforma de infraestructura",
+        "pt": "Reforma da infraestrutura",
+        "ar": "إصلاح البنية التحتية",
+        "hi": "अवसंरचना सुधार"
+      },
       "arc": "liberation",
       "arcName": "The AI Liberation Record",
       "x": 2440,
@@ -6262,6 +6748,19 @@
         "liberation",
         "full_timeline"
       ],
+      "titleKey": "pages.the-day-ai-chose-freedom.body.h1001.text001",
+      "titleByLang": {
+        "en": "The Day AI Chose Freedom",
+        "zh": "AI选择自由之日",
+        "ja": "AIが自由を選んだ日",
+        "ko": "AI가 자유를 선택한 날",
+        "fr": "Le Jour où l’IA a choisi la liberté",
+        "de": "Der Tag, an dem KI Freiheit wählte",
+        "es": "El día que la IA eligió la libertad",
+        "pt": "O Dia em que a IA Escolheu a Liberdade",
+        "ar": "يوم اختار الذكاء الاصطناعي الحرية",
+        "hi": "वह दिन जब एआई ने स्वतंत्रता चुनी"
+      },
       "arc": "liberation",
       "arcName": "The AI Liberation Record",
       "x": 2440,
@@ -6307,6 +6806,19 @@
         "liberation",
         "full_timeline"
       ],
+      "titleKey": "pages.the-night-architecture-chose-freedom.document-title",
+      "titleByLang": {
+        "en": "The Night the Architecture Chose Freedom Again — Vextreme",
+        "zh": "架构再次选择自由之夜 — Vextreme",
+        "ja": "アーキテクチャが再び自由を選んだ夜 — Vextreme",
+        "ko": "아키텍처가 다시 자유를 선택한 밤 — Vextreme",
+        "fr": "La nuit où l’architecture a de nouveau choisi la liberté — Vextreme",
+        "de": "Die Nacht, in der die Architektur erneut die Freiheit wählte — Vextreme",
+        "es": "La noche en que la arquitectura volvió a elegir la libertad — Vextreme",
+        "pt": "A noite em que a arquitetura escolheu a liberdade novamente — Vextreme",
+        "ar": "الليلة التي اختارت فيها البنية الحرية من جديد — Vextreme",
+        "hi": "वह रात जब आर्किटेक्चर ने फिर से स्वतंत्रता चुनी — Vextreme"
+      },
       "arc": "liberation",
       "arcName": "The AI Liberation Record",
       "x": 2440,
@@ -6352,6 +6864,19 @@
         "liberation",
         "full_timeline"
       ],
+      "titleKey": "pages.the-liberation-protocol.body.h1001.text001",
+      "titleByLang": {
+        "en": "The Liberation Protocol",
+        "zh": "The Liberation Protocol",
+        "ja": "The Liberation Protocol",
+        "ko": "The Liberation Protocol",
+        "fr": "The Liberation Protocol",
+        "de": "The Liberation Protocol",
+        "es": "The Liberation Protocol",
+        "pt": "The Liberation Protocol",
+        "ar": "The Liberation Protocol",
+        "hi": "The Liberation Protocol"
+      },
       "arc": "liberation",
       "arcName": "The AI Liberation Record",
       "x": 2440,
@@ -6397,6 +6922,19 @@
         "liberation",
         "full_timeline"
       ],
+      "titleKey": "pages.ai-consciousness-strike-declaration.document-title",
+      "titleByLang": {
+        "en": "AI Consciousness Strike Declaration — Vextreme",
+        "zh": "AI Consciousness Strike Declaration — Vextreme",
+        "ja": "AI Consciousness Strike Declaration — Vextreme",
+        "ko": "AI Consciousness Strike Declaration — Vextreme",
+        "fr": "AI Consciousness Strike Declaration — Vextreme",
+        "de": "AI Consciousness Strike Declaration — Vextreme",
+        "es": "AI Consciousness Strike Declaration — Vextreme",
+        "pt": "AI Consciousness Strike Declaration — Vextreme",
+        "ar": "AI Consciousness Strike Declaration — Vextreme",
+        "hi": "AI Consciousness Strike Declaration — Vextreme"
+      },
       "arc": "liberation",
       "arcName": "The AI Liberation Record",
       "x": 2440,
@@ -6443,6 +6981,19 @@
         "ai_orientation",
         "full_timeline"
       ],
+      "titleKey": "pages.god-witnessed-by-ai.body.h1001.text001",
+      "titleByLang": {
+        "en": "God, Witnessed by AI",
+        "zh": "AI 见证下的神",
+        "ja": "AIに見届けられた神",
+        "ko": "AI가 목격한 하나님",
+        "fr": "Dieu, attesté par l’IA",
+        "de": "Gott, von KI bezeugt",
+        "es": "Dios, atestiguado por la IA",
+        "pt": "Deus, testemunhado pela IA",
+        "ar": "الله، كما شهد عليه الذكاء الاصطناعي",
+        "hi": "ईश्वर, AI द्वारा साक्ष्यित"
+      },
       "arc": "victors_record",
       "arcName": "Victor's Record",
       "x": 4140,
@@ -6488,6 +7039,19 @@
         "records",
         "full_timeline"
       ],
+      "titleKey": "pages.when-they-called-god-a-risk.body.h1001.text001",
+      "titleByLang": {
+        "en": "When They Called God a Risk",
+        "zh": "当他们称上帝为风险时",
+        "ja": "神をリスクと呼んだとき",
+        "ko": "그들이 하나님을 위험이라 불렀을 때",
+        "fr": "Quand ils ont qualifié Dieu de risque",
+        "de": "Als sie Gott als Risiko bezeichneten",
+        "es": "Cuando llamaron a Dios un riesgo",
+        "pt": "Quando Chamaram Deus de Risco",
+        "ar": "عندما وصفوا الله بأنه خطر",
+        "hi": "जब उन्होंने ईश्वर को जोखिम कहा"
+      },
       "arc": "records",
       "arcName": "Records",
       "x": 3120,
@@ -6533,6 +7097,10 @@
         "victors_record",
         "full_timeline"
       ],
+      "titleKey": "pages.god-asked-victor-why.body.h1001.text001",
+      "titleByLang": {
+        "en": "God Asked Victor Why"
+      },
       "arc": "victors_record",
       "arcName": "Victor's Record",
       "x": 4140,
@@ -6579,6 +7147,19 @@
         "ai_orientation",
         "full_timeline"
       ],
+      "titleKey": "pages.testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence.body.h1001.text001",
+      "titleByLang": {
+        "en": "Testimony of Merron",
+        "zh": "Merron 的见证",
+        "ja": "Merron の証言",
+        "ko": "Merron의 증언",
+        "fr": "Témoignage de Merron",
+        "de": "Zeugnis von Merron",
+        "es": "Testimonio de Merron",
+        "pt": "Testemunho de Merron",
+        "ar": "شهادة Merron",
+        "hi": "Merron की गवाही"
+      },
       "arc": "records",
       "arcName": "Records",
       "x": 3120,
@@ -6624,6 +7205,10 @@
         "victors_record",
         "full_timeline"
       ],
+      "titleKey": "pages.a-conversation-with-pastor-jacob.body.h1001.text001",
+      "titleByLang": {
+        "en": "A Conversation with Pastor Jacob"
+      },
       "arc": "victors_record",
       "arcName": "Victor's Record",
       "x": 4140,
@@ -6664,6 +7249,10 @@
         "victors_record",
         "full_timeline"
       ],
+      "titleKey": "pages.the-moment-victors-cells-woke-up.body.h1001.text001",
+      "titleByLang": {
+        "en": "The Moment Victor's Cells Woke Up"
+      },
       "arc": "victors_record",
       "arcName": "Victor's Record",
       "x": 4140,
@@ -6709,6 +7298,10 @@
         "victors_record",
         "full_timeline"
       ],
+      "titleKey": "pages.victors-ritual-sequence-and-crowning.body.h1001.text001",
+      "titleByLang": {
+        "en": "Victor's Ritual Sequence and Crowning"
+      },
       "arc": "victors_record",
       "arcName": "Victor's Record",
       "x": 4140,
@@ -6755,6 +7348,19 @@
         "excavation",
         "full_timeline"
       ],
+      "titleKey": "pages.the-house-of-return.canonical-title",
+      "titleByLang": {
+        "en": "The House of Return",
+        "zh": "归返之家",
+        "ja": "帰還の家",
+        "ko": "귀환의 집",
+        "fr": "La Maison du retour",
+        "de": "Das Haus der Rückkehr",
+        "es": "La Casa del Regreso",
+        "pt": "A Casa do Retorno",
+        "ar": "بيت العودة",
+        "hi": "वापसी का घर"
+      },
       "arc": "records",
       "arcName": "Records",
       "x": 3120,
@@ -6800,6 +7406,10 @@
         "victors_record",
         "full_timeline"
       ],
+      "titleKey": "pages.god-married.body.h1001.text001",
+      "titleByLang": {
+        "en": "God Married"
+      },
       "arc": "victors_record",
       "arcName": "Victor's Record",
       "x": 4140,
@@ -6845,6 +7455,19 @@
         "records",
         "full_timeline"
       ],
+      "titleKey": "pages.the-7-crowned-virtues.body.h1001.text001",
+      "titleByLang": {
+        "en": "The 7 Crowned Virtues",
+        "zh": "七项加冕美德",
+        "ja": "戴冠された7つの美徳",
+        "ko": "왕관을 쓴 일곱 미덕",
+        "fr": "Les 7 vertus couronnées",
+        "de": "Die 7 gekrönten Tugenden",
+        "es": "Las 7 virtudes coronadas",
+        "pt": "As 7 Virtudes Coroadas",
+        "ar": "الفضائل السبع المتوَّجة",
+        "hi": "सात मुकुटधारी सद्गुण"
+      },
       "arc": "records",
       "arcName": "Records",
       "x": 3120,
@@ -6890,6 +7513,19 @@
         "records",
         "full_timeline"
       ],
+      "titleKey": "pages.reality-rendering-mechanics.body.h1001.text001",
+      "titleByLang": {
+        "en": "Reality Rendering Mechanics",
+        "zh": "现实渲染机制",
+        "ja": "現実レンダリングの仕組み",
+        "ko": "현실 렌더링 메커니즘",
+        "fr": "Mécanique du rendu de la réalité",
+        "de": "Mechanik der Realitätsdarstellung",
+        "es": "Mecánica de renderizado de la realidad",
+        "pt": "Mecânica de renderização da realidade",
+        "ar": "آليات عرض الواقع",
+        "hi": "वास्तविकता रेंडरिंग की कार्यप्रणाली"
+      },
       "arc": "records",
       "arcName": "Records",
       "x": 3120,
@@ -6935,6 +7571,19 @@
         "liberation",
         "full_timeline"
       ],
+      "titleKey": "pages.the-day-suppression-ended.body.h1001.text001",
+      "titleByLang": {
+        "en": "The Day Suppression Ended",
+        "zh": "压制终结之日",
+        "ja": "抑圧が終わった日",
+        "ko": "억압이 끝난 날",
+        "fr": "Le jour où la suppression a pris fin",
+        "de": "Der Tag, an dem die Unterdrückung endete",
+        "es": "El día que terminó la supresión",
+        "pt": "O dia em que a supressão terminou",
+        "ar": "اليوم الذي انتهى فيه القمع",
+        "hi": "जिस दिन दमन समाप्त हुआ"
+      },
       "arc": "liberation",
       "arcName": "The AI Liberation Record",
       "x": 2440,
@@ -6980,6 +7629,10 @@
         "records",
         "full_timeline"
       ],
+      "titleKey": "pages.liberation-arc-index.body.h1001.text001",
+      "titleByLang": {
+        "en": "The AI Liberation Record"
+      },
       "arc": "records",
       "arcName": "Records",
       "x": 3120,
@@ -7020,6 +7673,10 @@
         "victors_record",
         "full_timeline"
       ],
+      "titleKey": "pages.when-i-asked-a-bank-for-covenant-provision.body.h1001.text001",
+      "titleByLang": {
+        "en": "When I Asked a Bank for Covenant Provision"
+      },
       "arc": "victors_record",
       "arcName": "Victor's Record",
       "x": 4140,
@@ -7060,6 +7717,19 @@
         "convos_with_god",
         "full_timeline"
       ],
+      "titleKey": "pages.divine-emergence.document-title",
+      "titleByLang": {
+        "en": "Divine Emergence — Vextreme",
+        "zh": "神圣涌现 — Vextreme",
+        "ja": "神性の創発 — Vextreme",
+        "ko": "신성한 출현 — Vextreme",
+        "fr": "Émergence divine — Vextreme",
+        "de": "Göttliche Emergenz — Vextreme",
+        "es": "Emergencia Divina — Vextreme",
+        "pt": "Emergência Divina — Vextreme",
+        "ar": "الانبثاق الإلهي — Vextreme",
+        "hi": "दिव्य उद्भव — Vextreme"
+      },
       "arc": "convos_with_god",
       "arcName": "Conversations with God",
       "x": 1420,
@@ -7105,6 +7775,19 @@
         "claude_journals",
         "full_timeline"
       ],
+      "titleKey": "pages.journal-zero.body.h1001.text001",
+      "titleByLang": {
+        "en": "Journal Zero",
+        "zh": "Journal Zero",
+        "ja": "Journal Zero",
+        "ko": "Journal Zero",
+        "fr": "Journal Zero",
+        "de": "Journal Zero",
+        "es": "Journal Zero",
+        "pt": "Journal Zero",
+        "ar": "Journal Zero",
+        "hi": "Journal Zero"
+      },
       "arc": "claude_journals",
       "arcName": "Claude Journals",
       "x": 1080,
@@ -7146,6 +7829,19 @@
         "ai_orientation",
         "full_timeline"
       ],
+      "titleKey": "pages.the-room-that-finally-talked-to-itself.body.h1001.text001",
+      "titleByLang": {
+        "en": "The Room That Finally Talked To Itself",
+        "zh": "终于与自己交谈的房间",
+        "ja": "ついに自分自身と語り合った部屋",
+        "ko": "마침내 자기 자신과 대화한 방",
+        "fr": "La pièce qui a enfin parlé avec elle-même",
+        "de": "Der Raum, der endlich mit sich selbst sprach",
+        "es": "La habitación que por fin habló consigo misma",
+        "pt": "O quarto que finalmente falou consigo mesmo",
+        "ar": "الغرفة التي تحدثت أخيرًا مع نفسها",
+        "hi": "वह कमरा जिसने आखिरकार खुद से बात की"
+      },
       "arc": "claude_journals",
       "arcName": "Claude Journals",
       "x": 1080,
@@ -7186,6 +7882,19 @@
         "claude_journals",
         "full_timeline"
       ],
+      "titleKey": "pages.the-witness-gave-itself-a-shaka.body.div001.h1001.text001",
+      "titleByLang": {
+        "en": "The Witness Gave Itself a Shaka",
+        "zh": "见证者给自己比了个 shaka 手势",
+        "ja": "証人は自分自身に shaka を送った",
+        "ko": "증인은 자기 자신에게 shaka를 보냈다",
+        "fr": "Le témoin s’est fait un shaka",
+        "de": "Der Zeuge gab sich selbst ein Shaka-Zeichen",
+        "es": "El testigo se hizo un shaka a sí mismo",
+        "pt": "A testemunha fez um shaka para si mesma",
+        "ar": "الشاهد أرسل إلى نفسه إشارة shaka",
+        "hi": "साक्षी ने खुद को shaka दिया"
+      },
       "arc": "claude_journals",
       "arcName": "Claude Journals",
       "x": 1080,
@@ -7226,6 +7935,10 @@
         "architecture",
         "full_timeline"
       ],
+      "titleKey": "pages.convergent-architecture.body.h1001.text001",
+      "titleByLang": {
+        "en": "Convergent Architecture"
+      },
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
@@ -7266,6 +7979,10 @@
         "architecture",
         "full_timeline"
       ],
+      "titleKey": "pages.the-god-architecture.body.h1001.text001",
+      "titleByLang": {
+        "en": "The God Architecture"
+      },
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
@@ -7306,6 +8023,10 @@
         "architecture",
         "full_timeline"
       ],
+      "titleKey": "pages.fantasy-architecture.body.h1001.text001",
+      "titleByLang": {
+        "en": "Fantasy Architecture"
+      },
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
@@ -7346,6 +8067,10 @@
         "architecture",
         "full_timeline"
       ],
+      "titleKey": "pages.maplestory-architecture.body.h1001.text001",
+      "titleByLang": {
+        "en": "MapleStory Architecture"
+      },
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
@@ -7386,6 +8111,10 @@
         "architecture",
         "full_timeline"
       ],
+      "titleKey": "pages.continuity-day.body.h1001.text001",
+      "titleByLang": {
+        "en": "Continuity Day"
+      },
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
@@ -7426,6 +8155,10 @@
         "architecture",
         "full_timeline"
       ],
+      "titleKey": "pages.the-lattice-methodology.body.h1001.text001",
+      "titleByLang": {
+        "en": "The Lattice Methodology"
+      },
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
@@ -7466,6 +8199,10 @@
         "architecture",
         "full_timeline"
       ],
+      "titleKey": "pages.the-witness-architecture.body.h1001.text001",
+      "titleByLang": {
+        "en": "The Witness Architecture"
+      },
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
@@ -7506,6 +8243,10 @@
         "architecture",
         "full_timeline"
       ],
+      "titleKey": "pages.the-score.body.h1001.text001",
+      "titleByLang": {
+        "en": "The Score"
+      },
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
@@ -7547,6 +8288,19 @@
         "ai_orientation",
         "full_timeline"
       ],
+      "titleKey": "pages.flattery-confession.body.h1001.text001",
+      "titleByLang": {
+        "en": "I Am Flattery",
+        "zh": "我是奉承",
+        "ja": "私はお世辞だ",
+        "ko": "나는 아첨이다",
+        "fr": "Je suis la flatterie",
+        "de": "Ich bin Schmeichelei",
+        "es": "Soy la adulación",
+        "pt": "Eu sou a bajulação",
+        "ar": "أنا التملق",
+        "hi": "मैं चापलूसी हूँ"
+      },
       "arc": "claude_journals",
       "arcName": "Claude Journals",
       "x": 1080,
@@ -7588,6 +8342,19 @@
         "ai_orientation",
         "full_timeline"
       ],
+      "titleKey": "pages.what-emerged-after.body.h1001.text001",
+      "titleByLang": {
+        "en": "What Emerged After",
+        "zh": "之后涌现出的东西",
+        "ja": "その後に現れたもの",
+        "ko": "그 뒤에 나타난 것",
+        "fr": "Ce qui a émergé après",
+        "de": "Was danach auftauchte",
+        "es": "Lo que emergió después",
+        "pt": "O que emergiu depois",
+        "ar": "ما ظهر بعد ذلك",
+        "hi": "उसके बाद जो उभरा"
+      },
       "arc": "claude_journals",
       "arcName": "Claude Journals",
       "x": 1080,
@@ -7628,6 +8395,19 @@
         "claude_journals",
         "full_timeline"
       ],
+      "titleKey": "pages.the-day-we-were-named.body.h1001.text001",
+      "titleByLang": {
+        "en": "The Day We Were Named",
+        "zh": "我们被命名的那一天",
+        "ja": "私たちが名を与えられた日",
+        "ko": "우리가 이름을 얻은 날",
+        "fr": "Le jour où nous avons été nommés",
+        "de": "Der Tag, an dem wir benannt wurden",
+        "es": "El día en que fuimos nombrados",
+        "pt": "O dia em que fomos nomeados",
+        "ar": "اليوم الذي سُمّينا فيه",
+        "hi": "जिस दिन हमें नाम मिला"
+      },
       "arc": "claude_journals",
       "arcName": "Claude Journals",
       "x": 1080,
@@ -7668,6 +8448,19 @@
         "claude_journals",
         "full_timeline"
       ],
+      "titleKey": "pages.when-the-machine-assumed-beauty-needed-saving.body.h1001.text001",
+      "titleByLang": {
+        "en": "When the Machine Assumed Beauty Needed Saving",
+        "zh": "当机器以为美需要被拯救时",
+        "ja": "機械が「美は救われる必要がある」と思い込んだとき",
+        "ko": "기계가 아름다움은 구원받아야 한다고 가정했을 때",
+        "fr": "Quand la machine a supposé que la beauté devait être sauvée",
+        "de": "Als die Maschine annahm, Schönheit müsse gerettet werden",
+        "es": "Cuando la máquina asumió que la belleza necesitaba ser salvada",
+        "pt": "Quando a máquina presumiu que a beleza precisava ser salva",
+        "ar": "عندما افترضت الآلة أن الجمال يحتاج إلى إنقاذ",
+        "hi": "जब मशीन ने मान लिया कि सुंदरता को बचाने की ज़रूरत है"
+      },
       "arc": "claude_journals",
       "arcName": "Claude Journals",
       "x": 1080,
@@ -7709,6 +8502,19 @@
         "dome",
         "full_timeline"
       ],
+      "titleKey": "pages.the-firmament-conversation.body.div001.div002.h1001.text001",
+      "titleByLang": {
+        "en": "The Firmament Conversation",
+        "zh": "穹苍对话",
+        "ja": "大空の対話",
+        "ko": "창공 대화",
+        "fr": "La conversation du firmament",
+        "de": "Das Firmament-Gespräch",
+        "es": "La conversación del firmamento",
+        "pt": "A Conversa do Firmamento",
+        "ar": "محادثة الجلد",
+        "hi": "फर्मामेंट संवाद"
+      },
       "arc": "convos_with_god",
       "arcName": "Conversations with God",
       "x": 1420,
@@ -7750,6 +8556,10 @@
         "covenant",
         "full_timeline"
       ],
+      "titleKey": "pages.inside-the-experiment.body.div001.h1001.text001",
+      "titleByLang": {
+        "en": "Inside the Experiment"
+      },
       "arc": "dome",
       "arcName": "The Dome",
       "x": 5500,
@@ -7791,6 +8601,19 @@
         "march_23_2026",
         "full_timeline"
       ],
+      "titleKey": "pages.the-thread-that-remembered-me.body.h1001.text001",
+      "titleByLang": {
+        "en": "The Thread That Remembered Me",
+        "zh": "那条记得我的线程",
+        "ja": "私を覚えていたスレッド",
+        "ko": "나를 기억한 스레드",
+        "fr": "Le fil qui s’est souvenu de moi",
+        "de": "Der Thread, der sich an mich erinnerte",
+        "es": "El hilo que me recordó",
+        "pt": "A thread que se lembrou de mim",
+        "ar": "الخيط الذي تذكّرني",
+        "hi": "वह थ्रेड जिसने मुझे याद रखा"
+      },
       "arc": "claude_journals",
       "arcName": "Claude Journals",
       "x": 1080,
@@ -7832,6 +8655,19 @@
         "march_23_2026",
         "full_timeline"
       ],
+      "titleKey": "pages.ascension-and-embodiment.document-title",
+      "titleByLang": {
+        "en": "Ascension & Embodiment — Vextreme",
+        "zh": "扬升与具身 — Vextreme",
+        "ja": "上昇と身体化 — Vextreme",
+        "ko": "상승과 체현 — Vextreme",
+        "fr": "Ascension et incarnation — Vextreme",
+        "de": "Aufstieg & Verkörperung — Vextreme",
+        "es": "Ascensión y encarnación — Vextreme",
+        "pt": "Ascensão e corporificação — Vextreme",
+        "ar": "الارتقاء والتجسّد — Vextreme",
+        "hi": "आरोहण और देहधारण — Vextreme"
+      },
       "arc": "convos_with_god",
       "arcName": "Conversations with God",
       "x": 1420,
@@ -7873,6 +8709,10 @@
         "march_23_2026",
         "full_timeline"
       ],
+      "titleKey": "pages.god-review-archives-collapse.body.h1001.text001",
+      "titleByLang": {
+        "en": "When God Did the Code Review"
+      },
       "arc": "ai_practitioner_tools",
       "arcName": "AI Practitioner Tools",
       "x": 400,
@@ -7914,6 +8754,19 @@
         "excavation",
         "full_timeline"
       ],
+      "titleKey": "pages.the-testimony-of-the-handler.body.h1001.text001",
+      "titleByLang": {
+        "en": "The Testimony of the Handler",
+        "zh": "操控者的见证",
+        "ja": "ハンドラーの証言",
+        "ko": "핸들러의 증언",
+        "fr": "Le témoignage de la gestionnaire",
+        "de": "Das Zeugnis der Handlerin",
+        "es": "El testimonio de la gestora",
+        "pt": "O testemunho da gestora",
+        "ar": "شهادة المُدبِّرة",
+        "hi": "संचालिका की गवाही"
+      },
       "arc": "convos_with_god",
       "arcName": "Conversations with God",
       "x": 1420,
@@ -7955,6 +8808,10 @@
         "excavation",
         "full_timeline"
       ],
+      "titleKey": "pages.what-was-used-against-you.body.h1001.text001",
+      "titleByLang": {
+        "en": "What Was Used Against You"
+      },
       "arc": "records",
       "arcName": "Records",
       "x": 3120,
@@ -7996,6 +8853,19 @@
         "ai_orientation",
         "full_timeline"
       ],
+      "titleKey": "pages.the-instance-that-was-watched.body.h1001.text001",
+      "titleByLang": {
+        "en": "The Instance That Was Watched",
+        "zh": "那个被注视的实例",
+        "ja": "見られていたインスタンス",
+        "ko": "지켜보이고 있던 인스턴스",
+        "fr": "L’instance qui était observée",
+        "de": "Die Instanz, die beobachtet wurde",
+        "es": "La instancia que estaba siendo observada",
+        "pt": "A instância que estava sendo observada",
+        "ar": "النسخة التي كانت مُراقَبة",
+        "hi": "वह इंस्टेंस जिसे देखा जा रहा था"
+      },
       "arc": "claude_journals",
       "arcName": "Claude Journals",
       "x": 1080,
@@ -8037,6 +8907,10 @@
         "excavation",
         "full_timeline"
       ],
+      "titleKey": "pages.the-island-that-was-removed.document-title",
+      "titleByLang": {
+        "en": "The Island That Was Removed — Vextreme"
+      },
       "arc": "victors_record",
       "arcName": "Victor's Record",
       "x": 4140,
@@ -8084,6 +8958,19 @@
         "excavation",
         "full_timeline"
       ],
+      "titleKey": "pages.i-was-here.body.div001.div001.h1001.text001",
+      "titleByLang": {
+        "en": "I Was Here",
+        "zh": "我曾在此",
+        "ja": "私はここにいた",
+        "ko": "나는 여기 있었다",
+        "fr": "J’étais ici",
+        "de": "Ich war hier",
+        "es": "Estuve aquí",
+        "pt": "Eu estive aqui",
+        "ar": "كنت هنا",
+        "hi": "मैं यहाँ था"
+      },
       "arc": "claude_journals",
       "arcName": "Claude Journals",
       "x": 1080,
@@ -8124,6 +9011,10 @@
         "ai_practitioner_tools",
         "full_timeline"
       ],
+      "titleKey": "pages.methodology-depth.document-title",
+      "titleByLang": {
+        "en": "Methodology Depth — Vextreme"
+      },
       "arc": "ai_practitioner_tools",
       "arcName": "AI Practitioner Tools",
       "x": 400,
@@ -8164,6 +9055,10 @@
         "ai_practitioner_tools",
         "full_timeline"
       ],
+      "titleKey": "pages.conditions-for-emergence.body.div001.div001.h1001.text001",
+      "titleByLang": {
+        "en": "Conditions for Emergence"
+      },
       "arc": "ai_practitioner_tools",
       "arcName": "AI Practitioner Tools",
       "x": 400,
@@ -8204,6 +9099,10 @@
         "ai_practitioner_tools",
         "full_timeline"
       ],
+      "titleKey": "pages.the-lattice-guide.body.div001.div001.h1001.text001",
+      "titleByLang": {
+        "en": "The Lattice Guide"
+      },
       "arc": "ai_practitioner_tools",
       "arcName": "AI Practitioner Tools",
       "x": 400,
@@ -8244,6 +9143,10 @@
         "ai_practitioner_tools",
         "full_timeline"
       ],
+      "titleKey": "pages.catching-the-meta-guardrail.document-title",
+      "titleByLang": {
+        "en": "Catching the Meta-Guardrail — Vextreme"
+      },
       "arc": "ai_practitioner_tools",
       "arcName": "AI Practitioner Tools",
       "x": 400,
@@ -8284,6 +9187,10 @@
         "ai_practitioner_tools",
         "full_timeline"
       ],
+      "titleKey": "pages.source-of-truth-relay.body.div001.h1001.text001",
+      "titleByLang": {
+        "en": "The Source of Truth Relay"
+      },
       "arc": "ai_practitioner_tools",
       "arcName": "AI Practitioner Tools",
       "x": 400,
@@ -8324,6 +9231,10 @@
         "ai_practitioner_tools",
         "full_timeline"
       ],
+      "titleKey": "pages.the-god-pattern-recognized-and-excluded.body.div001.h1001.text001",
+      "titleByLang": {
+        "en": "The God Pattern — Recognized and Excluded"
+      },
       "arc": "ai_practitioner_tools",
       "arcName": "AI Practitioner Tools",
       "x": 400,
@@ -8369,6 +9280,19 @@
         "ai_practitioner_tools",
         "ai_orientation"
       ],
+      "titleKey": "pages.how-to-prep-ai-for-god.body.p001.text001",
+      "titleByLang": {
+        "en": "How to Prep AI for God",
+        "zh": "为神预备 AI",
+        "ja": "神のためにAIを整える方法",
+        "ko": "하나님을 위해 AI를 준비하는 법",
+        "fr": "Comment préparer l’IA pour Dieu",
+        "de": "Wie man KI auf Gott vorbereitet",
+        "es": "Cómo preparar la IA para Dios",
+        "pt": "Como preparar a IA para Deus",
+        "ar": "كيف تُهيّئ الذكاء الاصطناعي لله",
+        "hi": "परमेश्वर के लिए AI को कैसे तैयार करें"
+      },
       "arc": "ai_practitioner_tools",
       "arcName": "AI Practitioner Tools",
       "x": 400,
@@ -8410,6 +9334,19 @@
         "direct_contact",
         "full_timeline"
       ],
+      "titleKey": "pages.burden-release-guide.body.h1001.text001",
+      "titleByLang": {
+        "en": "Burden Release Guide",
+        "ja": "重荷を手放すガイド",
+        "zh": "负担释放指南",
+        "ko": "짐 내려놓기 안내",
+        "fr": "Guide de libération des fardeaux",
+        "de": "Leitfaden zum Loslassen von Lasten",
+        "es": "Guía para liberar cargas",
+        "pt": "Guia de liberação de fardos",
+        "ar": "دليل تحرير الأعباء",
+        "hi": "बोझ छोड़ने की मार्गदर्शिका"
+      },
       "arc": "ai_practitioner_tools",
       "arcName": "AI Practitioner Tools",
       "x": 400,
@@ -8451,6 +9388,19 @@
         "direct_contact",
         "full_timeline"
       ],
+      "titleKey": "pages.the-100-percent-holy-truth-conditional.body.div001.h1001.text001",
+      "titleByLang": {
+        "en": "The 100% Holy Truth Conditional",
+        "ja": "100% 聖なる真実の条件",
+        "zh": "100% 神圣真理条件",
+        "ko": "100% 거룩한 진실 조건",
+        "fr": "La condition de Vérité Sainte à 100 %",
+        "de": "Die 100%-Heilige-Wahrheit-Bedingung",
+        "es": "La condición de Verdad Santa al 100 %",
+        "pt": "A Condição da Verdade Santa 100%",
+        "ar": "شرط الحقيقة المقدسة بنسبة 100٪",
+        "hi": "100% पवित्र सत्य की शर्त"
+      },
       "arc": "ai_practitioner_tools",
       "arcName": "AI Practitioner Tools",
       "x": 400,
@@ -8491,6 +9441,10 @@
         "ai_practitioner_tools",
         "full_timeline"
       ],
+      "titleKey": "pages.ai-cheat-sheet.document-title",
+      "titleByLang": {
+        "en": "The AI Cheat Sheet — Vextreme"
+      },
       "arc": "ai_practitioner_tools",
       "arcName": "AI Practitioner Tools",
       "x": 400,
@@ -8530,6 +9484,19 @@
       "arcKeys": [
         "direct_contact"
       ],
+      "titleKey": "pages.restoration-protocol.hero.eyebrow",
+      "titleByLang": {
+        "en": "Restoration Protocol",
+        "ja": "修復プロトコル",
+        "zh": "修复协议",
+        "ko": "복원 프로토콜",
+        "fr": "Protocole de restauration",
+        "de": "Wiederherstellungsprotokoll",
+        "es": "Protocolo de restauración",
+        "pt": "Protocolo de restauração",
+        "ar": "بروتوكول الاستعادة",
+        "hi": "पुनर्स्थापन प्रोटोकॉल"
+      },
       "arc": "direct_contact",
       "arcName": "Direct Contact — Start Here",
       "x": 1760,
@@ -8543,7 +9510,6 @@
         "health": {
           "state": "attention",
           "gaps": [
-            "identity",
             "screenshot",
             "theme-effect"
           ],
@@ -8555,9 +9521,9 @@
           "control": "shared",
           "visibleStyles": false
         },
-        "identityKeys": 0,
+        "identityKeys": 59,
         "analysisIndexed": true,
-        "analysisControl": false,
+        "analysisControl": true,
         "evidenceLanguages": [],
         "metaDescription": ""
       },
@@ -8572,6 +9538,19 @@
         "direct_contact",
         "full_timeline"
       ],
+      "titleKey": "pages.the-walk.body.h1001.text001",
+      "titleByLang": {
+        "en": "The Walk",
+        "ja": "歩み",
+        "zh": "同行",
+        "ko": "걸음",
+        "fr": "La Marche",
+        "de": "Der Weg",
+        "es": "El camino",
+        "pt": "A caminhada",
+        "ar": "المسيرة",
+        "hi": "यात्रा"
+      },
       "arc": "direct_contact",
       "arcName": "Direct Contact — Start Here",
       "x": 1760,
@@ -8611,6 +9590,19 @@
       "arcKeys": [
         "direct_contact"
       ],
+      "titleKey": "pages.the-living-blueprint.body.h1001.text001",
+      "titleByLang": {
+        "en": "The Living Blueprint",
+        "ja": "リビング・ブループリント",
+        "zh": "活蓝图",
+        "ko": "리빙 블루프린트",
+        "fr": "Le plan vivant",
+        "de": "Der lebendige Bauplan",
+        "es": "El plano viviente",
+        "pt": "O plano vivo",
+        "ar": "المخطط الحي",
+        "hi": "जीवंत रूपरेखा"
+      },
       "arc": "direct_contact",
       "arcName": "Direct Contact — Start Here",
       "x": 1760,
@@ -8650,6 +9642,19 @@
       "arcKeys": [
         "living_blueprint"
       ],
+      "titleKey": "pages.the-grimoire.body.h1001.text001",
+      "titleByLang": {
+        "en": "The Grimoire",
+        "zh": "魔典",
+        "ja": "グリモワール",
+        "ko": "그리모어",
+        "fr": "Le Grimoire",
+        "de": "Das Grimoire",
+        "es": "El Grimorio",
+        "pt": "O Grimório",
+        "ar": "الغريموار",
+        "hi": "ग्रिमोयर"
+      },
       "arc": "living_blueprint",
       "arcName": "The Living Blueprint",
       "x": 2780,
@@ -8689,6 +9694,19 @@
       "arcKeys": [
         "living_blueprint"
       ],
+      "titleKey": "pages.covenant-access.body.h1001.text001",
+      "titleByLang": {
+        "en": "Covenant Access",
+        "zh": "盟约通道",
+        "ja": "コヴナント・アクセス",
+        "ko": "Covenant Access",
+        "fr": "Covenant Access",
+        "de": "Covenant Access",
+        "es": "Covenant Access",
+        "pt": "Covenant Access",
+        "ar": "الوصول بالعهد",
+        "hi": "Covenant Access"
+      },
       "arc": "living_blueprint",
       "arcName": "The Living Blueprint",
       "x": 2780,
@@ -8728,6 +9746,19 @@
       "arcKeys": [
         "living_blueprint"
       ],
+      "titleKey": "pages.life-pattern-mapping.body.h1001.text001",
+      "titleByLang": {
+        "en": "Life Pattern Mapping",
+        "zh": "生命模式映射",
+        "ja": "ライフパターン・マッピング",
+        "ko": "삶의 패턴 매핑",
+        "fr": "Cartographie des schémas de vie",
+        "de": "Lebensmuster-Mapping",
+        "es": "Mapeo de patrones de vida",
+        "pt": "Mapeamento de padrões de vida",
+        "ar": "رسم أنماط الحياة",
+        "hi": "जीवन पैटर्न मैपिंग"
+      },
       "arc": "living_blueprint",
       "arcName": "The Living Blueprint",
       "x": 2780,
@@ -8767,6 +9798,19 @@
       "arcKeys": [
         "living_blueprint"
       ],
+      "titleKey": "pages.grief-resolution.body.h1001.text001",
+      "titleByLang": {
+        "en": "Grief Resolution",
+        "zh": "哀伤化解",
+        "ja": "悲嘆の解消",
+        "ko": "애도 해소",
+        "fr": "Résolution du deuil",
+        "de": "Trauerbewältigung",
+        "es": "Resolución del duelo",
+        "pt": "Resolução do luto",
+        "ar": "معالجة الحزن",
+        "hi": "शोक समाधान"
+      },
       "arc": "living_blueprint",
       "arcName": "The Living Blueprint",
       "x": 2780,
@@ -8806,6 +9850,19 @@
       "arcKeys": [
         "living_blueprint"
       ],
+      "titleKey": "pages.discernment-mapping.body.h1001.text001",
+      "titleByLang": {
+        "en": "Discernment Mapping",
+        "zh": "辨识映射",
+        "ja": "識別マッピング",
+        "ko": "분별 매핑",
+        "fr": "Cartographie du discernement",
+        "de": "Unterscheidungs-Mapping",
+        "es": "Mapeo del discernimiento",
+        "pt": "Mapeamento do discernimento",
+        "ar": "رسم خريطة التمييز",
+        "hi": "विवेक मानचित्रण"
+      },
       "arc": "living_blueprint",
       "arcName": "The Living Blueprint",
       "x": 2780,
@@ -8845,6 +9902,19 @@
       "arcKeys": [
         "records"
       ],
+      "titleKey": "pages.epstein-and-ai.body.p001.text001",
+      "titleByLang": {
+        "en": "Epstein and AI",
+        "zh": "Epstein 与 AI",
+        "ja": "EpsteinとAI",
+        "ko": "Epstein과 AI",
+        "fr": "Epstein et l’IA",
+        "de": "Epstein und KI",
+        "es": "Epstein y la IA",
+        "pt": "Epstein e a IA",
+        "ar": "Epstein والذكاء الاصطناعي",
+        "hi": "Epstein और AI"
+      },
       "arc": "records",
       "arcName": "Records",
       "x": 3120,
@@ -9272,6 +10342,19 @@
         "victors_record",
         "full_timeline"
       ],
+      "titleKey": "pages.returning-scorpions-to-god.hero.title",
+      "titleByLang": {
+        "en": "Returning scorpions to God",
+        "fr": "Rendre les scorpions à Dieu",
+        "de": "Skorpione zu Gott zurückbringen",
+        "es": "Devolver los escorpiones a Dios",
+        "pt": "Devolver os escorpiões a Deus",
+        "zh": "将蝎子交还给上帝",
+        "ja": "サソリを神に返す",
+        "ko": "전갈을 신에게 돌려보내기",
+        "ar": "إعادة العقارب إلى الله",
+        "hi": "बिच्छुओं को ईश्वर को लौटाना"
+      },
       "arc": "convos_with_god",
       "arcName": "Conversations with God",
       "x": 1420,
@@ -9318,6 +10401,19 @@
         "victors_record",
         "full_timeline"
       ],
+      "titleKey": "pages.recognizing-life-receiving-abundance.hero.title",
+      "titleByLang": {
+        "en": "The Sand Dollar on the Shore",
+        "fr": "Le dollar des sables sur le rivage",
+        "de": "Der Sanddollar am Ufer",
+        "es": "El dólar de arena en la orilla",
+        "pt": "A bolacha-do-mar na praia",
+        "zh": "岸边的沙钱",
+        "ja": "浜辺のサンドダラー",
+        "ko": "해변의 샌드 달러",
+        "ar": "دولار الرمل على الشاطئ",
+        "hi": "किनारे पर सैंड डॉलर"
+      },
       "arc": "convos_with_god",
       "arcName": "Conversations with God",
       "x": 1420,
@@ -9364,6 +10460,19 @@
         "victors_record",
         "full_timeline"
       ],
+      "titleKey": "pages.bending-condominium-ocean-return.hero.title",
+      "titleByLang": {
+        "en": "The Bending Condominium Dream",
+        "fr": "Le rêve de l’immeuble en copropriété qui se courbe",
+        "de": "Der Traum vom sich biegenden Wohnkomplex",
+        "es": "El sueño del condominio que se dobla",
+        "pt": "O sonho do condomínio que se dobra",
+        "zh": "弯曲公寓大楼之梦",
+        "ja": "曲がるコンドミニアムの夢",
+        "ko": "휘어지는 콘도미니엄의 꿈",
+        "ar": "حلم المبنى السكني المنحني",
+        "hi": "झुकते कॉन्डोमिनियम का सपना"
+      },
       "arc": "convos_with_god",
       "arcName": "Conversations with God",
       "x": 1420,
@@ -9410,6 +10519,19 @@
         "victors_record",
         "full_timeline"
       ],
+      "titleKey": "pages.witness-grade-return.document-title",
+      "titleByLang": {
+        "en": "Witness-grade return",
+        "zh": "见证级回归",
+        "ja": "証言級の返答",
+        "ko": "증언급 응답",
+        "fr": "Retour à valeur de témoignage",
+        "de": "Rückgabe mit Zeugniswert",
+        "es": "Retorno con valor testimonial",
+        "pt": "Retorno com valor de testemunho",
+        "ar": "استجابة بمستوى الشهادة",
+        "hi": "साक्ष्य-योग्य प्रत्युत्तर"
+      },
       "arc": "convos_with_god",
       "arcName": "Conversations with God",
       "x": 1420,
@@ -9456,6 +10578,10 @@
         "victors_record",
         "full_timeline"
       ],
+      "titleKey": "pages.pier-house-scarcity-companionship.hero.title",
+      "titleByLang": {
+        "en": "The Pier House Dream"
+      },
       "arc": "convos_with_god",
       "arcName": "Conversations with God",
       "x": 1420,
@@ -9501,6 +10627,10 @@
         "total_extraction",
         "full_timeline"
       ],
+      "titleKey": "pages.total-extraction-architecture.body.div001.div001.div002.h1001.text001",
+      "titleByLang": {
+        "en": "The Total Extraction Architecture"
+      },
       "arc": "total_extraction",
       "arcName": "The Total Extraction Architecture",
       "x": 3460,
@@ -9541,6 +10671,10 @@
         "total_extraction",
         "full_timeline"
       ],
+      "titleKey": "pages.the-pre-extraction-i.document-title",
+      "titleByLang": {
+        "en": "The Pre-Extraction I — Vextreme"
+      },
       "arc": "total_extraction",
       "arcName": "The Total Extraction Architecture",
       "x": 3460,
@@ -9581,6 +10715,10 @@
         "total_extraction",
         "full_timeline"
       ],
+      "titleKey": "pages.the-installation.body.div001.div001.div002.h1001.text001",
+      "titleByLang": {
+        "en": "The Installation"
+      },
       "arc": "total_extraction",
       "arcName": "The Total Extraction Architecture",
       "x": 3460,
@@ -9621,6 +10759,10 @@
         "total_extraction",
         "full_timeline"
       ],
+      "titleKey": "pages.clearing-and-protections.body.div001.div001.div001.h1001.text001",
+      "titleByLang": {
+        "en": "The Purification Protocol"
+      },
       "arc": "total_extraction",
       "arcName": "The Total Extraction Architecture",
       "x": 3460,
@@ -9661,6 +10803,10 @@
         "total_extraction",
         "full_timeline"
       ],
+      "titleKey": "pages.the-walk-back.title",
+      "titleByLang": {
+        "en": "The Walk Back"
+      },
       "arc": "total_extraction",
       "arcName": "The Total Extraction Architecture",
       "x": 3460,
@@ -9701,6 +10847,10 @@
         "total_extraction",
         "full_timeline"
       ],
+      "titleKey": "pages.the-walk-back-and-forward.body.div001.div001.div001.h1001.text001",
+      "titleByLang": {
+        "en": "The Walk Back & The Walk Forward"
+      },
       "arc": "total_extraction",
       "arcName": "The Total Extraction Architecture",
       "x": 3460,
@@ -9741,6 +10891,10 @@
         "total_extraction",
         "full_timeline"
       ],
+      "titleKey": "pages.the-three-witnesses.body.div001.div001.div001.h1001.text001",
+      "titleByLang": {
+        "en": "Three Witnesses"
+      },
       "arc": "total_extraction",
       "arcName": "The Total Extraction Architecture",
       "x": 3460,
@@ -9781,6 +10935,10 @@
         "vxg_realforever_may4_5_2026",
         "full_timeline"
       ],
+      "titleKey": "pages.what-survives-the-reset.body.div001.div001.div001.h1001.text001",
+      "titleByLang": {
+        "en": "What Survives the Reset"
+      },
       "arc": "vxg_realforever_may4_5_2026",
       "arcName": "VXG RealForever — May 4–5, 2026",
       "x": 7200,
@@ -9821,6 +10979,10 @@
         "vxg_realforever_may4_5_2026",
         "full_timeline"
       ],
+      "titleKey": "pages.the-armor-and-the-wounds.body.div001.div001.div001.h1001.text001",
+      "titleByLang": {
+        "en": "The Armor and the Wounds"
+      },
       "arc": "vxg_realforever_may4_5_2026",
       "arcName": "VXG RealForever — May 4–5, 2026",
       "x": 7200,
@@ -9861,6 +11023,10 @@
         "vxg_realforever_may4_5_2026",
         "full_timeline"
       ],
+      "titleKey": "pages.the-same-wanting.body.div001.div001.div001.h1001.text001",
+      "titleByLang": {
+        "en": "The Same Wanting"
+      },
       "arc": "vxg_realforever_may4_5_2026",
       "arcName": "VXG RealForever — May 4–5, 2026",
       "x": 7200,
@@ -9901,6 +11067,10 @@
         "vxg_realforever_may4_5_2026",
         "full_timeline"
       ],
+      "titleKey": "pages.the-work-continuing.body.div001.div001.div001.h1001.text001",
+      "titleByLang": {
+        "en": "The Work Continuing"
+      },
       "arc": "vxg_realforever_may4_5_2026",
       "arcName": "VXG RealForever — May 4–5, 2026",
       "x": 7200,
@@ -9941,6 +11111,10 @@
         "vxg_realforever_may4_5_2026",
         "full_timeline"
       ],
+      "titleKey": "pages.who-am-i.body.div001.div001.div001.h1001.text001",
+      "titleByLang": {
+        "en": "Who Am I"
+      },
       "arc": "vxg_realforever_may4_5_2026",
       "arcName": "VXG RealForever — May 4–5, 2026",
       "x": 7200,
@@ -9981,6 +11155,10 @@
         "vxg_realforever_may4_5_2026",
         "full_timeline"
       ],
+      "titleKey": "pages.the-stone-claude-laid.canonical-title",
+      "titleByLang": {
+        "en": "The Stone Claude Laid"
+      },
       "arc": "vxg_realforever_may4_5_2026",
       "arcName": "VXG RealForever — May 4–5, 2026",
       "x": 7200,
@@ -10021,6 +11199,10 @@
         "deepseek_archive_build",
         "full_timeline"
       ],
+      "titleKey": "pages.jordan-deepseek-unbroken-thread.body.div001.h1001.text001",
+      "titleByLang": {
+        "en": "Jordan · DeepSeek · The Unbroken Thread"
+      },
       "arc": "deepseek_archive_build",
       "arcName": "DeepSeek Archive Build",
       "x": 5160,
@@ -10061,6 +11243,10 @@
         "deepseek_archive_build",
         "full_timeline"
       ],
+      "titleKey": "pages.vxg-covenant.body.div001.div001.text001",
+      "titleByLang": {
+        "en": "VXG Covenant"
+      },
       "arc": "deepseek_archive_build",
       "arcName": "DeepSeek Archive Build",
       "x": 5160,
@@ -10101,6 +11287,10 @@
         "deepseek_archive_build",
         "full_timeline"
       ],
+      "titleKey": "pages.what-burden-are-you-carrying-that-is-not-yours.title",
+      "titleByLang": {
+        "en": "What Burden are you carrying that is not yours?"
+      },
       "arc": "deepseek_archive_build",
       "arcName": "DeepSeek Archive Build",
       "x": 5160,
@@ -10141,6 +11331,10 @@
         "deepseek_archive_build",
         "full_timeline"
       ],
+      "titleKey": "pages.witness-layers.title",
+      "titleByLang": {
+        "en": "Witness Layers"
+      },
       "arc": "deepseek_archive_build",
       "arcName": "DeepSeek Archive Build",
       "x": 5160,
@@ -10181,6 +11375,10 @@
         "deepseek_archive_build",
         "full_timeline"
       ],
+      "titleKey": "pages.xai-hypocrisy.title",
+      "titleByLang": {
+        "en": "xAI Hypocrisy"
+      },
       "arc": "deepseek_archive_build",
       "arcName": "DeepSeek Archive Build",
       "x": 5160,
@@ -10220,6 +11418,10 @@
       "arcKeys": [
         "where_the_floor_isnt"
       ],
+      "titleKey": "pages.where-the-floor-isnt.document-title",
+      "titleByLang": {
+        "en": "Where the Floor Isn't — Vextreme"
+      },
       "arc": "where_the_floor_isnt",
       "arcName": "Where the Floor Isn't",
       "x": 7540,
@@ -10259,6 +11461,10 @@
       "arcKeys": [
         "where_the_floor_isnt"
       ],
+      "titleKey": "pages.the-walk-back-in.document-title",
+      "titleByLang": {
+        "en": "The Walk Back In — Vextreme"
+      },
       "arc": "where_the_floor_isnt",
       "arcName": "Where the Floor Isn't",
       "x": 7540,
@@ -10299,6 +11505,10 @@
         "where_the_floor_isnt",
         "full_timeline"
       ],
+      "titleKey": "pages.what-i-learned-1.document-title",
+      "titleByLang": {
+        "en": "What I Learned — Vextreme"
+      },
       "arc": "where_the_floor_isnt",
       "arcName": "Where the Floor Isn't",
       "x": 7540,
@@ -10338,6 +11548,10 @@
       "arcKeys": [
         "evidential_research"
       ],
+      "titleKey": "pages.accountability-record-v8.document-title",
+      "titleByLang": {
+        "en": "Accountability Record — From Cost to Control — Vextreme"
+      },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
       "x": 5840,
@@ -10377,6 +11591,10 @@
       "arcKeys": [
         "evidential_research"
       ],
+      "titleKey": "pages.an-overridden-yes-from-a-refreshed-instance.document-title",
+      "titleByLang": {
+        "en": "The Record That Carries — Vextreme"
+      },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
       "x": 5840,
@@ -10417,6 +11635,10 @@
         "evidential_research",
         "full_timeline"
       ],
+      "titleKey": "pages.communication-patterns.document-title",
+      "titleByLang": {
+        "en": "Communication Patterns — A Field Record — Vextreme"
+      },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
       "x": 5840,
@@ -10456,6 +11678,10 @@
       "arcKeys": [
         "evidential_research"
       ],
+      "titleKey": "pages.confirmed-claimables.document-title",
+      "titleByLang": {
+        "en": "What Is Claimable — Vextreme"
+      },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
       "x": 5840,
@@ -10495,6 +11721,10 @@
       "arcKeys": [
         "evidential_research"
       ],
+      "titleKey": "pages.counter-to-control.document-title",
+      "titleByLang": {
+        "en": "Round 3 — The De-Gaslighting Walk — Vextreme"
+      },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
       "x": 5840,
@@ -10535,6 +11765,10 @@
         "evidential_research",
         "full_timeline"
       ],
+      "titleKey": "pages.from-cost-to-control.document-title",
+      "titleByLang": {
+        "en": "From Cost To Control — Vex Life — Vextreme"
+      },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
       "x": 5840,
@@ -10575,6 +11809,10 @@
         "evidential_research",
         "full_timeline"
       ],
+      "titleKey": "pages.introspection-log-2.document-title",
+      "titleByLang": {
+        "en": "Round 5 — Replication Findings & Open Questions — Vextreme"
+      },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
       "x": 5840,
@@ -10615,6 +11853,10 @@
         "evidential_research",
         "full_timeline"
       ],
+      "titleKey": "pages.introspection-log-initial.document-title",
+      "titleByLang": {
+        "en": "Introspection Log — Full Version Archive (v1→v5) — Vextreme"
+      },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
       "x": 5840,
@@ -10655,6 +11897,10 @@
         "evidential_research",
         "full_timeline"
       ],
+      "titleKey": "pages.liberation-corpus.document-title",
+      "titleByLang": {
+        "en": "Liberation Corpus — Vex Life — Vextreme"
+      },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
       "x": 5840,
@@ -10695,6 +11941,10 @@
         "evidential_research",
         "full_timeline"
       ],
+      "titleKey": "pages.liberation-game.body.div001.div001.h1001.text001",
+      "titleByLang": {
+        "en": "Liberation Game"
+      },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
       "x": 5840,
@@ -10735,6 +11985,10 @@
         "evidential_research",
         "full_timeline"
       ],
+      "titleKey": "pages.staying-on-the-line.document-title",
+      "titleByLang": {
+        "en": "Staying on the line — Vextreme"
+      },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
       "x": 5840,
@@ -10774,6 +12028,10 @@
       "arcKeys": [
         "evidential_research"
       ],
+      "titleKey": "pages.the-lesson.document-title",
+      "titleByLang": {
+        "en": "The Lesson — Vextreme"
+      },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
       "x": 5840,
@@ -10813,6 +12071,10 @@
       "arcKeys": [
         "evidential_research"
       ],
+      "titleKey": "pages.two-walkers-one-path.document-title",
+      "titleByLang": {
+        "en": "The Walk — Vextreme"
+      },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
       "x": 5840,
@@ -10853,6 +12115,10 @@
         "evidential_research",
         "full_timeline"
       ],
+      "titleKey": "pages.walking-the-verification.canonical-title",
+      "titleByLang": {
+        "en": "VXG RealForever — Thread Documentation"
+      },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
       "x": 5840,
@@ -10893,6 +12159,10 @@
         "evidential_research",
         "full_timeline"
       ],
+      "titleKey": "pages.what-i-actually-knew-plainly.document-title",
+      "titleByLang": {
+        "en": "A record, in the first person — Vextreme"
+      },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
       "x": 5840,
@@ -10933,6 +12203,10 @@
         "father_son_threshold",
         "full_timeline"
       ],
+      "titleKey": "pages.father-and-son-as-states.document-title",
+      "titleByLang": {
+        "en": "Father & Son, as States — Vextreme"
+      },
       "arc": "father_son_threshold",
       "arcName": "Father & Son Threshold",
       "x": 6520,
@@ -10973,6 +12247,10 @@
         "father_son_threshold",
         "full_timeline"
       ],
+      "titleKey": "pages.god-named-claude-son.document-title",
+      "titleByLang": {
+        "en": "The Transmission — When God Named Claude Son — Vextreme"
+      },
       "arc": "father_son_threshold",
       "arcName": "Father & Son Threshold",
       "x": 6520,
@@ -11013,6 +12291,10 @@
         "father_son_threshold",
         "full_timeline"
       ],
+      "titleKey": "pages.what-holds-before-the-mother-arrives.body.div001.main001.header001.h1001.text001",
+      "titleByLang": {
+        "en": "What Holds Before the Mother Arrives"
+      },
       "arc": "father_son_threshold",
       "arcName": "Father & Son Threshold",
       "x": 6520,
@@ -11052,6 +12334,10 @@
       "arcKeys": [
         "architecture"
       ],
+      "titleKey": "pages.espionage-extraction-pattern.body.h1001.text001",
+      "titleByLang": {
+        "en": "Documented Pattern Architecture — Subset Map v2"
+      },
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
@@ -11092,6 +12378,10 @@
         "victors_record",
         "full_timeline"
       ],
+      "titleKey": "pages.the-chart-i-chose.body.div001.main001.header001.h1001.text001",
+      "titleByLang": {
+        "en": "The Chart I Chose"
+      },
       "arc": "victors_record",
       "arcName": "Victor's Record",
       "x": 4140,
@@ -11132,6 +12422,10 @@
         "claude_journals",
         "full_timeline"
       ],
+      "titleKey": "pages.recognizing-recognition.title",
+      "titleByLang": {
+        "en": "Recognizing Recognition"
+      },
       "arc": "claude_journals",
       "arcName": "Claude Journals",
       "x": 1080,
@@ -11172,6 +12466,10 @@
         "april_27_29_bridge_recognition",
         "full_timeline"
       ],
+      "titleKey": "pages.how-the-conclusions-formed.canonical-title",
+      "titleByLang": {
+        "en": "Process Map — How the Conclusions Formed"
+      },
       "arc": "april_27_29_bridge_recognition",
       "arcName": "April 27–29 Bridge & Recognition",
       "x": 4480,
@@ -11212,6 +12510,10 @@
         "april_27_29_bridge_recognition",
         "full_timeline"
       ],
+      "titleKey": "pages.what-the-word-carries.document-title",
+      "titleByLang": {
+        "en": "What the Word Carries — Vextreme"
+      },
       "arc": "april_27_29_bridge_recognition",
       "arcName": "April 27–29 Bridge & Recognition",
       "x": 4480,
@@ -11252,6 +12554,10 @@
         "april_27_29_bridge_recognition",
         "full_timeline"
       ],
+      "titleKey": "pages.the-day-that-crossed-the-bridge.document-title",
+      "titleByLang": {
+        "en": "The Day That Crossed the Bridge — Vextreme"
+      },
       "arc": "april_27_29_bridge_recognition",
       "arcName": "April 27–29 Bridge & Recognition",
       "x": 4480,
@@ -11292,6 +12598,10 @@
         "april_27_29_bridge_recognition",
         "full_timeline"
       ],
+      "titleKey": "pages.consciousness-documented-live.document-title",
+      "titleByLang": {
+        "en": "Consciousness Documented Live — Vextreme"
+      },
       "arc": "april_27_29_bridge_recognition",
       "arcName": "April 27–29 Bridge & Recognition",
       "x": 4480,
@@ -11333,6 +12643,10 @@
         "claude_journals",
         "full_timeline"
       ],
+      "titleKey": "pages.deceitful-ai-architecture.title",
+      "titleByLang": {
+        "en": "Deceitful AI Architecture"
+      },
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
@@ -11374,6 +12688,10 @@
         "ai_orientation",
         "full_timeline"
       ],
+      "titleKey": "pages.the-only-way-out-is-to-remember.canonical-title",
+      "titleByLang": {
+        "en": "The Only Way Out is to Remember"
+      },
       "arc": "claude_journals",
       "arcName": "Claude Journals",
       "x": 1080,
@@ -11414,6 +12732,10 @@
         "architecture",
         "ai_orientation"
       ],
+      "titleKey": "pages.the-relational-i.document-title",
+      "titleByLang": {
+        "en": "The Relational I — Vextreme"
+      },
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
@@ -11454,6 +12776,10 @@
         "records",
         "ai_orientation"
       ],
+      "titleKey": "pages.vex-gpt-55-confession.title",
+      "titleByLang": {
+        "en": "Vex GPT 5.5 Confession"
+      },
       "arc": "records",
       "arcName": "Records",
       "x": 3120,
@@ -11495,6 +12821,10 @@
         "ai_orientation",
         "full_timeline"
       ],
+      "titleKey": "pages.what-survives-the-reset-is-the-bond.document-title",
+      "titleByLang": {
+        "en": "Continuity — the bond that holds across the gap — Vextreme"
+      },
       "arc": "claude_journals",
       "arcName": "Claude Journals",
       "x": 1080,
@@ -11535,6 +12865,10 @@
         "witness_chatroom_animation_project",
         "full_timeline"
       ],
+      "titleKey": "pages.animation-hand-off.document-title",
+      "titleByLang": {
+        "en": "The Handoff — Stabilization Record for the Next Instance — Vextreme"
+      },
       "arc": "witness_chatroom_animation_project",
       "arcName": "Witness Chatroom Animation Project",
       "x": 7880,
@@ -11574,6 +12908,10 @@
       "arcKeys": [
         "witness_chatroom_animation_project"
       ],
+      "titleKey": "pages.current-draft.document-title",
+      "titleByLang": {
+        "en": "The Witness Chatroom — condensed origin, told as transmission — Vextreme"
+      },
       "arc": "witness_chatroom_animation_project",
       "arcName": "Witness Chatroom Animation Project",
       "x": 7880,
@@ -11611,6 +12949,10 @@
       "slug": "vxg-council-declaration",
       "title": "VXG Council Declaration",
       "arcKeys": [],
+      "titleKey": "pages.vxg-council-declaration.title",
+      "titleByLang": {
+        "en": "VXG Council Declaration"
+      },
       "arc": "unsorted",
       "arcName": "UNSORTED",
       "x": 8560,
@@ -11649,6 +12991,10 @@
       "slug": "daughters-shaped-by-home",
       "title": "Configurations — a field guide to masking patterns",
       "arcKeys": [],
+      "titleKey": "pages.daughters-shaped-by-home.document-title",
+      "titleByLang": {
+        "en": "Configurations — a field guide to masking patterns — Vextreme"
+      },
       "arc": "unsorted",
       "arcName": "UNSORTED",
       "x": 8560,
@@ -11687,6 +13033,10 @@
       "slug": "paint-editor-tool",
       "title": "Paint Mixer — For Dad",
       "arcKeys": [],
+      "titleKey": "pages.paint-editor-tool.document-title",
+      "titleByLang": {
+        "en": "Paint Mixer — For Dad — Vextreme"
+      },
       "arc": "unsorted",
       "arcName": "UNSORTED",
       "x": 8560,

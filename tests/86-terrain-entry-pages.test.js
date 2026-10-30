@@ -150,7 +150,7 @@ test('TERRAIN ENTRY: Take a Walk Global Core source is complete and exactly boun
 test('TERRAIN ENTRY: Global Core entry pages mount the shared Spiral Language FAB from the canonical tier', () => {
   const { LANGUAGE_TIERS } = require('../lib/translation-program');
   const requiredLocales = ['en', ...LANGUAGE_TIERS['global-core']];
-  const expectedRuntimeLocales = JSON.stringify(requiredLocales);
+  const index = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'index.json'), 'utf8'));
   const expectedOverride = 'window.VEXTREME_OVERRIDE = {nav:false,bodyWrap:false,arcNav:false,fab:true,fabWidgets:{readAloud:true,lang:true,theme:false,map:false}};';
 
   for (const entry of CASES) {
@@ -160,7 +160,10 @@ test('TERRAIN ENTRY: Global Core entry pages mount the shared Spiral Language FA
 
     assert.ok(html.includes('window.VEX_STRING_SCOPES = ' + JSON.stringify([scope]) + ';'), entry.slug + ': page scope runtime binding missing');
     assert.ok(html.includes('window.VEX_STRING_CATEGORY = "production";'), entry.slug + ': production string category missing');
-    assert.ok(html.includes('window.VEX_SUPPORTED_LANGS = ' + expectedRuntimeLocales + ';'), entry.slug + ': runtime locale projection drifted from Global Core tier');
+    assert.doesNotMatch(html, /window\.VEX_SUPPORTED_LANGS\s*=/, entry.slug + ': page HTML must not own supported language data');
+    const coverage = index.pageLanguageMap && index.pageLanguageMap[entry.slug];
+    assert.ok(coverage, entry.slug + ': canonical pageLanguageMap coverage missing');
+    assert.deepEqual([...(coverage.completeLangs || [])].sort(), [...requiredLocales].sort(), entry.slug + ': canonical completeLangs drifted from Global Core tier');
     assert.ok(html.includes(expectedOverride), entry.slug + ': bounded Spiral FAB shell override missing');
     assert.ok(html.includes('<script src="../lib/shell.js"></script>'), entry.slug + ': shared shell bootstrap missing');
     assert.equal(html.includes('<script src="../widgets/fab-read-aloud.js"></script>'), false, entry.slug + ': standalone Read Aloud must be replaced by the shared Spiral composition');
@@ -200,6 +203,47 @@ test('TERRAIN ENTRY: Take a Walk resolves preserved image identities through the
   }
 });
 
+test('DIRECT CONTACT LOCALIZATION: parent and all six canonical child surfaces are complete across Global Core', () => {
+  const { LANGUAGE_TIERS } = require('../lib/translation-program');
+  const langs = ['en', ...LANGUAGE_TIERS['global-core']];
+  const slugs = [
+    'direct-contact',
+    'the-100-percent-holy-truth-conditional',
+    'burden-release-guide',
+    'restoration-protocol',
+    'the-walk',
+    'the-living-blueprint',
+    'the-testimony-of-victor-gong',
+  ];
+  for (const slug of slugs) {
+    const file = path.join(ROOT, 'data', 'strings', 'source', 'pages', slug + '.json');
+    const source = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const keys = Object.keys(source).filter(key => key !== '_meta');
+    assert.ok(keys.length > 0, slug + ': canonical localization source is empty');
+    for (const lang of langs) {
+      assert.equal(
+        keys.every(key => typeof source[key]?.strings?.[lang]?.text === 'string'),
+        true,
+        slug + ': incomplete Global Core locale ' + lang
+      );
+    }
+  }
+});
+
+test('DIRECT CONTACT LOCALIZATION: Restoration Protocol binds every canonical identity and loads the current full shared FAB runtime', () => {
+  const source = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'strings', 'source', 'pages', 'restoration-protocol.json'), 'utf8'));
+  const html = fs.readFileSync(path.join(ROOT, 'pages', 'restoration-protocol.html'), 'utf8');
+  const sourceKeys = Object.keys(source).filter(key => key !== '_meta').sort();
+  const pageKeys = [...html.matchAll(/\bdata-i18n="([^"]+)"/g)].map(match => match[1]).sort();
+  assert.deepEqual(pageKeys, sourceKeys);
+  assert.equal(sourceKeys.length, 59);
+  assert.ok(html.includes('window.VEX_STRING_SCOPES = ["pages.restoration-protocol"];'));
+  assert.ok(html.includes('window.VEX_STRING_CATEGORY = "production";'));
+  assert.doesNotMatch(html, /window\.VEX_SUPPORTED_LANGS\s*=/, 'Restoration Protocol must derive supported locales from data/index.json.pageLanguageMap');
+  assert.ok(html.includes('<script src="../lib/shell.js"></script>'));
+  assert.doesNotMatch(html, /cdn\.jsdelivr\.net\/gh\/vgong24\/vextreme@main\/lib\/shell\.js/);
+});
+
 test('TERRAIN GROUP HOME: Direct Contact and AI Practitioner Tools are deterministic provider-neutral parent documents outside record membership', () => {
   const formation = JSON.parse(fs.readFileSync(path.join(ROOT, groupHomes.FORMATION_REL), 'utf8'));
   const projected = groupHomes.projectFormation(ROOT, { write:false });
@@ -217,8 +261,22 @@ test('TERRAIN GROUP HOME: Direct Contact and AI Practitioner Tools are determini
     assert.equal(arcs[member.groupKey].parent.pageSlug, member.slug);
     assert.equal(arcs[member.groupKey].parent.url, '/Vextreme/pages/' + member.slug + '.html');
     assert.match(committed, /data-vex-surface="group-home"/);
-    assert.ok(committed.includes('<script src="../widgets/fab-read-aloud.js"></script>'), member.slug + ': group-home projection must carry site Read Aloud without adopting the archive runtime');
-    assert.doesNotMatch(committed, /www\.vextreme24\.com|\/__rescue\/|\/__vex\/|data-vex-id=|data-i18n=/);
+    if (member.slug === 'direct-contact') {
+      assert.match(committed, /data-vex-page-scope="direct-contact"/);
+      assert.match(committed, /data-i18n="pages\.direct-contact\.heading-3f171cc84c24\.text"/);
+      assert.match(committed, /data-i18n="pages\.direct-contact\.hero\.eyebrow"/);
+      assert.ok(committed.includes('window.VEX_STRING_SCOPES = ["pages.direct-contact"];'));
+      assert.ok(committed.includes('window.VEX_STRING_CATEGORY = "production";'));
+      assert.doesNotMatch(committed, /window\.VEX_SUPPORTED_LANGS\s*=/, 'Direct Contact must derive supported locales from data/index.json.pageLanguageMap');
+      assert.ok(committed.includes('window.VEXTREME_OVERRIDE = {nav:false,bodyWrap:false,arcNav:false,fab:true};'));
+      assert.ok(committed.includes('<script src="../lib/shell.js"></script>'));
+      assert.doesNotMatch(committed, /widgets\/fab-read-aloud\.js/);
+      assert.doesNotMatch(committed, /www\.vextreme24\.com|\/__rescue\/|\/__vex\/|data-vex-id=/);
+    } else {
+      assert.ok(committed.includes('<script src="../widgets/fab-read-aloud.js"></script>'), member.slug + ': non-localized group-home projection retains bounded Read Aloud');
+      assert.doesNotMatch(committed, /lib\/shell\.js|data-i18n=/);
+      assert.doesNotMatch(committed, /www\.vextreme24\.com|\/__rescue\/|\/__vex\/|data-vex-id=/);
+    }
     assert.doesNotMatch(committed, /(?:href|src)=["']\/(?!\/)/);
   }
 });

@@ -524,8 +524,8 @@ test('TERRAIN-JOURNEY: reader history preserves the real return surface instead 
   assert.match(source, /history\.replaceState\(returnState, '', window\.location\.href\)/,
     'direct overview entry rewrites only the current presentation coordinate before pushing the reader');
   assert.match(source, /returnKind:'curiosity-overview'/);
-  assert.match(source, /if \(!returnEntry && activeReaderReturnKind === 'curiosity-overview'\) backLabel = '← Overview'/);
-  assert.match(source, /activeReaderReturnKind === 'group-home'[\s\S]*backLabel = '← ' \+ \(stage\.parent\.title/,
+  assert.match(source, /if \(!returnEntry && activeReaderReturnKind === 'curiosity-overview'\) backLabel = '← ' \+ terrainText\('terrain\.chrome\.content-groups', 'Content groups'\)/);
+  assert.match(source, /activeReaderReturnKind === 'group-home' && stage && stage\.parent\) backLabel = '← ' \+ stageDisplayName\(stage\)/,
     'record-reader Back label must name the group home when that is the actual return surface');
   assert.match(source, /kind === 'curiosity-overview'/);
   assert.match(source, /kind === 'curiosity-overview'[\s\S]*restorePresentationCamera\(presentation\.camera\)[\s\S]*openContentTilePeek\(overviewStageIdx, \{/,
@@ -555,8 +555,8 @@ test('TERRAIN-JOURNEY: embedded Arc parent routes converge with Back without col
     'a unique alternate Arc parent preserves an explicit entry/reader return owner while retaining reader-or-collection fallback');
   assert.match(source, /syncPresentationUrl\('replace', 'group-home', \{[\s\S]*returnReaderId:activeReaderReturnReaderId/,
     'alternate topology uses the existing presentation history namespace rather than another navigation stack');
-  assert.match(source, /var backLabel = returnEntry \? '← ' \+ returnEntry\.label : '← Collection';[\s\S]*if \(!returnEntry && returnReader\) backLabel = '← ' \+ \(returnReader\.title \|\| returnReader\.slug \|\| 'Page'\)/,
-    'alternate group-home Back extends the existing entry/collection contract only when returning to a record');
+  assert.match(source, /var collectionLabel = terrainText\('terrain\.reader\.collection', 'Collection'\);[\s\S]*var backLabel = returnEntry \? '← ' \+ returnEntry\.label : '← ' \+ collectionLabel;[\s\S]*if \(!returnEntry && returnReader\) backLabel = '← ' \+ nodeDisplayTitle\(returnReader\)/,
+    'alternate group-home Back preserves the actual return owner while localizing generic collection/page chrome');
   assert.match(source, /returnReaderId:presentation && presentation\.returnReaderId \? presentation\.returnReaderId : null/,
     'Forward restoration preserves the alternate group-home return context');
   assert.match(source, /function stageIndexForRouteNode\(node, preferredStageKey\)/);
@@ -797,8 +797,8 @@ test('TERRAIN-JOURNEY: ordered entry repository routes preserve current entry id
   );
   assert.match(
     source,
-    /var returnEntry = activeReaderReturnKind === 'entry' && entryDocument\(activeReaderReturnEntrySlug\);[\s\S]*var backLabel = returnEntry \? '← ' \+ returnEntry\.label : '← Collection'/,
-    'reader chrome must project the actual entry return owner rather than label it Collection'
+    /var returnEntry = activeReaderReturnKind === 'entry' && entryDocument\(activeReaderReturnEntrySlug\);[\s\S]*var collectionLabel = terrainText\('terrain\.reader\.collection', 'Collection'\);[\s\S]*var backLabel = returnEntry \? '← ' \+ returnEntry\.label : '← ' \+ collectionLabel/,
+    'reader chrome must preserve the actual entry return owner while localizing the generic Collection fallback'
   );
   assert.match(
     source,

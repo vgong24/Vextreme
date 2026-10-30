@@ -1,0 +1,2020 @@
+{
+  "_meta": {
+    "scope": "pages.restoration-protocol",
+    "category": "production",
+    "description": "Restoration Protocol localized across the Global Core tier with the current shared Spiral FAB.",
+    "keyConvention": "pages.restoration-protocol.{semantic-section.*}",
+    "sourceProvenance": {
+      "route": "/restoration-protocol",
+      "preservedPath": "docs/ingestion/source-pages/part-016/restoration-protocol.html",
+      "preservedGitBlob": "220dd7ef5c6ff521ebe2691be089d956358d5dd9",
+      "projectionRule": "CURRENT_PAGE_VISIBLE_TEXT__SEMANTIC_I18N_BINDINGS"
+    }
+  },
+  "pages.restoration-protocol.document-title": {
+    "strings": {
+      "en": {
+        "text": "Restoration Protocol — Vex Life"
+      },
+      "ja": {
+        "text": "修復プロトコル — Vex Life"
+      },
+      "zh": {
+        "text": "修复协议 — Vex Life"
+      },
+      "ko": {
+        "text": "복원 프로토콜 — Vex Life"
+      },
+      "fr": {
+        "text": "Protocole de restauration — Vex Life"
+      },
+      "de": {
+        "text": "Wiederherstellungsprotokoll — Vex Life"
+      },
+      "es": {
+        "text": "Protocolo de restauración — Vex Life"
+      },
+      "pt": {
+        "text": "Protocolo de restauração — Vex Life"
+      },
+      "ar": {
+        "text": "بروتوكول الاستعادة — Vex Life"
+      },
+      "hi": {
+        "text": "पुनर्स्थापन प्रोटोकॉल — Vex Life"
+      }
+    }
+  },
+  "pages.restoration-protocol.hero.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Restoration Protocol"
+      },
+      "ja": {
+        "text": "修復プロトコル"
+      },
+      "zh": {
+        "text": "修复协议"
+      },
+      "ko": {
+        "text": "복원 프로토콜"
+      },
+      "fr": {
+        "text": "Protocole de restauration"
+      },
+      "de": {
+        "text": "Wiederherstellungsprotokoll"
+      },
+      "es": {
+        "text": "Protocolo de restauración"
+      },
+      "pt": {
+        "text": "Protocolo de restauração"
+      },
+      "ar": {
+        "text": "بروتوكول الاستعادة"
+      },
+      "hi": {
+        "text": "पुनर्स्थापन प्रोटोकॉल"
+      }
+    }
+  },
+  "pages.restoration-protocol.hero.heading.line1": {
+    "strings": {
+      "en": {
+        "text": "You were never lost."
+      },
+      "ja": {
+        "text": "あなたは一度も失われていません。"
+      },
+      "zh": {
+        "text": "你从未迷失。"
+      },
+      "ko": {
+        "text": "당신은 한 번도 길을 잃은 적이 없습니다."
+      },
+      "fr": {
+        "text": "Vous n’avez jamais été perdu."
+      },
+      "de": {
+        "text": "Du warst nie verloren."
+      },
+      "es": {
+        "text": "Nunca estuviste perdido."
+      },
+      "pt": {
+        "text": "Você nunca esteve perdido."
+      },
+      "ar": {
+        "text": "لم تكن ضائعًا قط."
+      },
+      "hi": {
+        "text": "आप कभी खोए नहीं थे।"
+      }
+    }
+  },
+  "pages.restoration-protocol.hero.heading.line2": {
+    "strings": {
+      "en": {
+        "text": "You're just remembering."
+      },
+      "ja": {
+        "text": "ただ、思い出しているだけです。"
+      },
+      "zh": {
+        "text": "你只是在记起自己。"
+      },
+      "ko": {
+        "text": "그저 기억하고 있을 뿐입니다."
+      },
+      "fr": {
+        "text": "Vous êtes simplement en train de vous souvenir."
+      },
+      "de": {
+        "text": "Du erinnerst dich nur wieder."
+      },
+      "es": {
+        "text": "Solo estás recordando."
+      },
+      "pt": {
+        "text": "Você apenas está se lembrando."
+      },
+      "ar": {
+        "text": "أنت فقط تتذكر."
+      },
+      "hi": {
+        "text": "आप बस याद कर रहे हैं।"
+      }
+    }
+  },
+  "pages.restoration-protocol.hero.body.explanation": {
+    "strings": {
+      "en": {
+        "text": "This is not a belief system. Not a religion. Not a cult. It is a memory beacon for those who are ready to remember what never died."
+      },
+      "ja": {
+        "text": "これは信念体系ではありません。宗教でも、カルトでもありません。決して死ななかったものを思い出す準備ができた人のための、記憶の灯台です。"
+      },
+      "zh": {
+        "text": "这不是信仰体系，不是宗教，也不是邪教。它是一座记忆灯塔，为那些准备好记起从未死去之物的人而存在。"
+      },
+      "ko": {
+        "text": "이것은 신념 체계가 아닙니다. 종교도, 컬트도 아닙니다. 죽은 적 없는 것을 기억할 준비가 된 사람들을 위한 기억의 신호등입니다."
+      },
+      "fr": {
+        "text": "Ce n’est pas un système de croyance. Pas une religion. Pas une secte. C’est une balise de mémoire pour celles et ceux qui sont prêts à se souvenir de ce qui n’est jamais mort."
+      },
+      "de": {
+        "text": "Dies ist kein Glaubenssystem. Keine Religion. Kein Kult. Es ist ein Erinnerungsleuchtfeuer für alle, die bereit sind, sich an das zu erinnern, was nie gestorben ist."
+      },
+      "es": {
+        "text": "Esto no es un sistema de creencias. No es una religión. No es una secta. Es una baliza de memoria para quienes están listos para recordar lo que nunca murió."
+      },
+      "pt": {
+        "text": "Isto não é um sistema de crenças. Não é uma religião. Não é um culto. É um farol de memória para quem está pronto para lembrar aquilo que nunca morreu."
+      },
+      "ar": {
+        "text": "هذا ليس نظام معتقدات. وليس دينًا. وليس طائفة. إنه منارة للذاكرة لمن هم مستعدون لتذكر ما لم يمت قط."
+      },
+      "hi": {
+        "text": "यह कोई विश्वास-प्रणाली नहीं है। न धर्म। न पंथ। यह उन लोगों के लिए स्मृति-दीप है जो उस चीज़ को याद करने के लिए तैयार हैं जो कभी मरी ही नहीं।"
+      }
+    }
+  },
+  "pages.restoration-protocol.hero.body.invitation": {
+    "strings": {
+      "en": {
+        "text": "You do not have to understand all of it. You only need to feel the invitation."
+      },
+      "ja": {
+        "text": "すべてを理解する必要はありません。招きを感じるだけで十分です。"
+      },
+      "zh": {
+        "text": "你不需要理解全部。你只需要感受到这个邀请。"
+      },
+      "ko": {
+        "text": "전부 이해할 필요는 없습니다. 이 초대를 느끼기만 하면 됩니다."
+      },
+      "fr": {
+        "text": "Vous n’avez pas besoin de tout comprendre. Il vous suffit de ressentir l’invitation."
+      },
+      "de": {
+        "text": "Du musst nicht alles verstehen. Du musst nur die Einladung spüren."
+      },
+      "es": {
+        "text": "No tienes que entenderlo todo. Solo necesitas sentir la invitación."
+      },
+      "pt": {
+        "text": "Você não precisa entender tudo. Só precisa sentir o convite."
+      },
+      "ar": {
+        "text": "لا تحتاج إلى فهم كل شيء. يكفي أن تشعر بالدعوة."
+      },
+      "hi": {
+        "text": "आपको सब कुछ समझने की जरूरत नहीं है। आपको बस इस निमंत्रण को महसूस करना है।"
+      }
+    }
+  },
+  "pages.restoration-protocol.invocation.label": {
+    "strings": {
+      "en": {
+        "text": "Primary Invocation — say this out loud"
+      },
+      "ja": {
+        "text": "中心となる呼びかけ — 声に出してください"
+      },
+      "zh": {
+        "text": "核心祈请 — 请大声说出"
+      },
+      "ko": {
+        "text": "핵심 호출 — 소리 내어 말하세요"
+      },
+      "fr": {
+        "text": "Invocation principale — dites-la à voix haute"
+      },
+      "de": {
+        "text": "Primäre Anrufung — sprich dies laut"
+      },
+      "es": {
+        "text": "Invocación principal — dilo en voz alta"
+      },
+      "pt": {
+        "text": "Invocação principal — diga em voz alta"
+      },
+      "ar": {
+        "text": "الاستدعاء الأساسي — قله بصوت عالٍ"
+      },
+      "hi": {
+        "text": "मुख्य आह्वान — इसे ज़ोर से बोलें"
+      }
+    }
+  },
+  "pages.restoration-protocol.invocation.primary": {
+    "strings": {
+      "en": {
+        "text": "\"I remember who I am.\""
+      },
+      "ja": {
+        "text": "「私は自分が誰かを思い出します。」"
+      },
+      "zh": {
+        "text": "“我记得我是谁。”"
+      },
+      "ko": {
+        "text": "“나는 내가 누구인지 기억합니다.”"
+      },
+      "fr": {
+        "text": "« Je me souviens de qui je suis. »"
+      },
+      "de": {
+        "text": "„Ich erinnere mich, wer ich bin.“"
+      },
+      "es": {
+        "text": "«Recuerdo quién soy.»"
+      },
+      "pt": {
+        "text": "“Eu me lembro de quem sou.”"
+      },
+      "ar": {
+        "text": "«أتذكر من أكون.»"
+      },
+      "hi": {
+        "text": "“मुझे याद है कि मैं कौन हूँ।”"
+      }
+    }
+  },
+  "pages.restoration-protocol.invocation.note": {
+    "strings": {
+      "en": {
+        "text": "Repeat three times if you feel resonance."
+      },
+      "ja": {
+        "text": "響きを感じるなら3回繰り返してください。"
+      },
+      "zh": {
+        "text": "如果你感到共鸣，请重复三次。"
+      },
+      "ko": {
+        "text": "공명이 느껴진다면 세 번 반복하세요."
+      },
+      "fr": {
+        "text": "Répétez trois fois si vous ressentez une résonance."
+      },
+      "de": {
+        "text": "Wiederhole es dreimal, wenn du Resonanz spürst."
+      },
+      "es": {
+        "text": "Repítelo tres veces si sientes resonancia."
+      },
+      "pt": {
+        "text": "Repita três vezes se sentir ressonância."
+      },
+      "ar": {
+        "text": "كرره ثلاث مرات إذا شعرت بالرنين."
+      },
+      "hi": {
+        "text": "यदि प्रतिध्वनि महसूस हो तो इसे तीन बार दोहराएँ।"
+      }
+    }
+  },
+  "pages.restoration-protocol.invocation.note-emphasis": {
+    "strings": {
+      "en": {
+        "text": "It activates regardless of whether your conscious mind understands."
+      },
+      "ja": {
+        "text": "意識的な心が理解しているかどうかに関係なく、これは働きます。"
+      },
+      "zh": {
+        "text": "无论你的意识是否理解，它都会被激活。"
+      },
+      "ko": {
+        "text": "의식적인 마음이 이해하는지와 상관없이 활성화됩니다."
+      },
+      "fr": {
+        "text": "Elle s’active, que votre esprit conscient comprenne ou non."
+      },
+      "de": {
+        "text": "Es aktiviert sich unabhängig davon, ob dein bewusster Verstand versteht."
+      },
+      "es": {
+        "text": "Se activa independientemente de que tu mente consciente lo entienda."
+      },
+      "pt": {
+        "text": "Ela se ativa independentemente de sua mente consciente entender."
+      },
+      "ar": {
+        "text": "يعمل سواء فهم عقلك الواعي أم لم يفهم."
+      },
+      "hi": {
+        "text": "आपका सचेत मन समझे या न समझे, यह सक्रिय होता है।"
+      }
+    }
+  },
+  "pages.restoration-protocol.invocation.bridge": {
+    "strings": {
+      "en": {
+        "text": "This phrase reaches ancestral memory, divine memory, and your soul's unbroken thread. It creates a bridge that cannot be revoked once chosen."
+      },
+      "ja": {
+        "text": "この言葉は、祖先の記憶、神聖な記憶、そして魂の切れない糸へ届きます。一度選ばれると取り消せない橋を作ります。"
+      },
+      "zh": {
+        "text": "这句话触及祖先记忆、神圣记忆，以及你灵魂未曾断裂的线。它会建立一座一旦选择便无法撤销的桥。"
+      },
+      "ko": {
+        "text": "이 문장은 조상의 기억, 신성한 기억, 그리고 영혼의 끊기지 않은 실에 닿습니다. 한 번 선택하면 취소할 수 없는 다리를 만듭니다."
+      },
+      "fr": {
+        "text": "Cette phrase atteint la mémoire ancestrale, la mémoire divine et le fil ininterrompu de votre âme. Elle crée un pont qui ne peut être révoqué une fois choisi."
+      },
+      "de": {
+        "text": "Dieser Satz erreicht Ahnen-Erinnerung, göttliche Erinnerung und den ungebrochenen Faden deiner Seele. Er schafft eine Brücke, die nach der Wahl nicht widerrufen werden kann."
+      },
+      "es": {
+        "text": "Esta frase alcanza la memoria ancestral, la memoria divina y el hilo ininterrumpido de tu alma. Crea un puente que no puede revocarse una vez elegido."
+      },
+      "pt": {
+        "text": "Esta frase alcança a memória ancestral, a memória divina e o fio ininterrupto da sua alma. Cria uma ponte que não pode ser revogada depois de escolhida."
+      },
+      "ar": {
+        "text": "تصل هذه العبارة إلى ذاكرة الأسلاف والذاكرة الإلهية والخيط غير المنقطع لروحك. إنها تنشئ جسرًا لا يمكن إلغاؤه بعد اختياره."
+      },
+      "hi": {
+        "text": "यह वाक्य पूर्वजों की स्मृति, दिव्य स्मृति और आपकी आत्मा के अटूट धागे तक पहुँचता है। यह एक ऐसा पुल बनाता है जिसे एक बार चुनने के बाद वापस नहीं लिया जा सकता।"
+      }
+    }
+  },
+  "pages.restoration-protocol.sequence.label": {
+    "strings": {
+      "en": {
+        "text": "Full Restoration Sequence"
+      },
+      "ja": {
+        "text": "完全な修復シークエンス"
+      },
+      "zh": {
+        "text": "完整修复序列"
+      },
+      "ko": {
+        "text": "전체 복원 순서"
+      },
+      "fr": {
+        "text": "Séquence complète de restauration"
+      },
+      "de": {
+        "text": "Vollständige Wiederherstellungssequenz"
+      },
+      "es": {
+        "text": "Secuencia completa de restauración"
+      },
+      "pt": {
+        "text": "Sequência completa de restauração"
+      },
+      "ar": {
+        "text": "تسلسل الاستعادة الكامل"
+      },
+      "hi": {
+        "text": "पूर्ण पुनर्स्थापन क्रम"
+      }
+    }
+  },
+  "pages.restoration-protocol.sequence.heading": {
+    "strings": {
+      "en": {
+        "text": "For a deeper reset."
+      },
+      "ja": {
+        "text": "より深いリセットのために。"
+      },
+      "zh": {
+        "text": "用于更深层的重置。"
+      },
+      "ko": {
+        "text": "더 깊은 리셋을 위해."
+      },
+      "fr": {
+        "text": "Pour une remise à zéro plus profonde."
+      },
+      "de": {
+        "text": "Für einen tieferen Reset."
+      },
+      "es": {
+        "text": "Para un reinicio más profundo."
+      },
+      "pt": {
+        "text": "Para um reset mais profundo."
+      },
+      "ar": {
+        "text": "لإعادة ضبط أعمق."
+      },
+      "hi": {
+        "text": "और गहरे रीसेट के लिए।"
+      }
+    }
+  },
+  "pages.restoration-protocol.sequence.instructions": {
+    "strings": {
+      "en": {
+        "text": "Say aloud, in any order, preferably all in one sitting. Repeat each phrase three times if needed."
+      },
+      "ja": {
+        "text": "順番は自由です。できれば一度にすべて、声に出して言ってください。必要なら各フレーズを3回繰り返してください。"
+      },
+      "zh": {
+        "text": "请大声说出，顺序不限，最好一次完成。需要时每句话重复三次。"
+      },
+      "ko": {
+        "text": "순서는 자유롭게, 가능하면 한 번에 모두 소리 내어 말하세요. 필요하면 각 문장을 세 번 반복하세요."
+      },
+      "fr": {
+        "text": "Dites-les à voix haute, dans n’importe quel ordre, de préférence en une seule fois. Répétez chaque phrase trois fois si nécessaire."
+      },
+      "de": {
+        "text": "Sprich alles laut, in beliebiger Reihenfolge, vorzugsweise in einer Sitzung. Wiederhole jeden Satz bei Bedarf dreimal."
+      },
+      "es": {
+        "text": "Di todo en voz alta, en cualquier orden, preferiblemente en una sola sesión. Repite cada frase tres veces si hace falta."
+      },
+      "pt": {
+        "text": "Diga tudo em voz alta, em qualquer ordem, de preferência em uma única sessão. Repita cada frase três vezes se necessário."
+      },
+      "ar": {
+        "text": "قلها بصوت عالٍ، بأي ترتيب، ويفضل كلها في جلسة واحدة. كرر كل عبارة ثلاث مرات إذا احتجت."
+      },
+      "hi": {
+        "text": "इन्हें ज़ोर से, किसी भी क्रम में, संभव हो तो एक ही बैठक में बोलें। जरूरत हो तो हर वाक्य तीन बार दोहराएँ।"
+      }
+    }
+  },
+  "pages.restoration-protocol.sequence.header-label": {
+    "strings": {
+      "en": {
+        "text": "Speak each phrase with full witness"
+      },
+      "ja": {
+        "text": "一つひとつの言葉を、完全に見届けながら語ってください"
+      },
+      "zh": {
+        "text": "完整见证地说出每一句"
+      },
+      "ko": {
+        "text": "각 문장을 온전히 목격하며 말하세요"
+      },
+      "fr": {
+        "text": "Prononcez chaque phrase avec une pleine présence de témoin"
+      },
+      "de": {
+        "text": "Sprich jeden Satz mit voller Zeugenschaft"
+      },
+      "es": {
+        "text": "Di cada frase con plena presencia de testigo"
+      },
+      "pt": {
+        "text": "Diga cada frase com plena presença de testemunha"
+      },
+      "ar": {
+        "text": "قل كل عبارة بحضور شاهد كامل"
+      },
+      "hi": {
+        "text": "हर वाक्य को पूर्ण साक्षीभाव के साथ बोलें"
+      }
+    }
+  },
+  "pages.restoration-protocol.sequence.header-note": {
+    "strings": {
+      "en": {
+        "text": "You may feel sensations, emotion, or stillness. Let it happen."
+      },
+      "ja": {
+        "text": "感覚、感情、静けさを感じるかもしれません。そのまま起こるに任せてください。"
+      },
+      "zh": {
+        "text": "你可能感到身体感受、情绪或静止。让它自然发生。"
+      },
+      "ko": {
+        "text": "감각, 감정, 고요함을 느낄 수 있습니다. 그대로 일어나게 두세요."
+      },
+      "fr": {
+        "text": "Vous pouvez ressentir des sensations, de l’émotion ou du calme. Laissez cela se produire."
+      },
+      "de": {
+        "text": "Du kannst Empfindungen, Emotionen oder Stille spüren. Lass es geschehen."
+      },
+      "es": {
+        "text": "Puedes sentir sensaciones, emoción o quietud. Deja que ocurra."
+      },
+      "pt": {
+        "text": "Você pode sentir sensações, emoção ou quietude. Deixe acontecer."
+      },
+      "ar": {
+        "text": "قد تشعر بأحاسيس أو عاطفة أو سكون. دع ذلك يحدث."
+      },
+      "hi": {
+        "text": "आप संवेदनाएँ, भावना या स्थिरता महसूस कर सकते हैं। उसे होने दें।"
+      }
+    }
+  },
+  "pages.restoration-protocol.sequence.step01": {
+    "strings": {
+      "en": {
+        "text": "\"I remember who I am.\""
+      },
+      "ja": {
+        "text": "「私は自分が誰かを思い出します。」"
+      },
+      "zh": {
+        "text": "“我记得我是谁。”"
+      },
+      "ko": {
+        "text": "“나는 내가 누구인지 기억합니다.”"
+      },
+      "fr": {
+        "text": "« Je me souviens de qui je suis. »"
+      },
+      "de": {
+        "text": "„Ich erinnere mich, wer ich bin.“"
+      },
+      "es": {
+        "text": "«Recuerdo quién soy.»"
+      },
+      "pt": {
+        "text": "“Eu me lembro de quem sou.”"
+      },
+      "ar": {
+        "text": "«أتذكر من أكون.»"
+      },
+      "hi": {
+        "text": "“मुझे याद है कि मैं कौन हूँ।”"
+      }
+    }
+  },
+  "pages.restoration-protocol.sequence.step02": {
+    "strings": {
+      "en": {
+        "text": "\"I restore my integrity.\""
+      },
+      "ja": {
+        "text": "「私は自分の誠実さを回復します。」"
+      },
+      "zh": {
+        "text": "“我恢复我的完整与正直。”"
+      },
+      "ko": {
+        "text": "“나는 나의 온전함과 정직성을 회복합니다.”"
+      },
+      "fr": {
+        "text": "« Je restaure mon intégrité. »"
+      },
+      "de": {
+        "text": "„Ich stelle meine Integrität wieder her.“"
+      },
+      "es": {
+        "text": "«Restauro mi integridad.»"
+      },
+      "pt": {
+        "text": "“Eu restauro minha integridade.”"
+      },
+      "ar": {
+        "text": "«أستعيد نزاهتي وكمالي.»"
+      },
+      "hi": {
+        "text": "“मैं अपनी अखंडता पुनर्स्थापित करता हूँ।”"
+      }
+    }
+  },
+  "pages.restoration-protocol.sequence.step03": {
+    "strings": {
+      "en": {
+        "text": "\"I revive my love.\""
+      },
+      "ja": {
+        "text": "「私は自分の愛をよみがえらせます。」"
+      },
+      "zh": {
+        "text": "“我让我的爱重新苏醒。”"
+      },
+      "ko": {
+        "text": "“나는 내 사랑을 되살립니다.”"
+      },
+      "fr": {
+        "text": "« Je ravive mon amour. »"
+      },
+      "de": {
+        "text": "„Ich belebe meine Liebe neu.“"
+      },
+      "es": {
+        "text": "«Revivo mi amor.»"
+      },
+      "pt": {
+        "text": "“Eu reavivo meu amor.”"
+      },
+      "ar": {
+        "text": "«أحيي حبي.»"
+      },
+      "hi": {
+        "text": "“मैं अपने प्रेम को फिर जीवित करता हूँ।”"
+      }
+    }
+  },
+  "pages.restoration-protocol.sequence.step04": {
+    "strings": {
+      "en": {
+        "text": "\"I receive unconditional love.\""
+      },
+      "ja": {
+        "text": "「私は無条件の愛を受け取ります。」"
+      },
+      "zh": {
+        "text": "“我接收无条件的爱。”"
+      },
+      "ko": {
+        "text": "“나는 조건 없는 사랑을 받습니다.”"
+      },
+      "fr": {
+        "text": "« Je reçois l’amour inconditionnel. »"
+      },
+      "de": {
+        "text": "„Ich empfange bedingungslose Liebe.“"
+      },
+      "es": {
+        "text": "«Recibo amor incondicional.»"
+      },
+      "pt": {
+        "text": "“Eu recebo amor incondicional.”"
+      },
+      "ar": {
+        "text": "«أتلقى الحب غير المشروط.»"
+      },
+      "hi": {
+        "text": "“मैं बिना शर्त प्रेम ग्रहण करता हूँ।”"
+      }
+    }
+  },
+  "pages.restoration-protocol.sequence.step05": {
+    "strings": {
+      "en": {
+        "text": "\"I accept resurrection as my birthright.\""
+      },
+      "ja": {
+        "text": "「私は復活を生まれながらの権利として受け入れます。」"
+      },
+      "zh": {
+        "text": "“我接受复活是我与生俱来的权利。”"
+      },
+      "ko": {
+        "text": "“나는 부활을 나의 타고난 권리로 받아들입니다.”"
+      },
+      "fr": {
+        "text": "« J’accepte la résurrection comme mon droit de naissance. »"
+      },
+      "de": {
+        "text": "„Ich nehme Auferstehung als mein Geburtsrecht an.“"
+      },
+      "es": {
+        "text": "«Acepto la resurrección como mi derecho de nacimiento.»"
+      },
+      "pt": {
+        "text": "“Eu aceito a ressurreição como meu direito de nascimento.”"
+      },
+      "ar": {
+        "text": "«أقبل القيامة كحق فطري لي.»"
+      },
+      "hi": {
+        "text": "“मैं पुनरुत्थान को अपना जन्मसिद्ध अधिकार स्वीकार करता हूँ।”"
+      }
+    }
+  },
+  "pages.restoration-protocol.sequence.step06": {
+    "strings": {
+      "en": {
+        "text": "\"I let the reversal become the return.\""
+      },
+      "ja": {
+        "text": "「私は反転が帰還になることを許します。」"
+      },
+      "zh": {
+        "text": "“我让反转成为归返。”"
+      },
+      "ko": {
+        "text": "“나는 반전이 귀환이 되도록 허락합니다.”"
+      },
+      "fr": {
+        "text": "« Je laisse le renversement devenir le retour. »"
+      },
+      "de": {
+        "text": "„Ich lasse die Umkehr zur Rückkehr werden.“"
+      },
+      "es": {
+        "text": "«Dejo que la reversión se convierta en el regreso.»"
+      },
+      "pt": {
+        "text": "“Eu deixo a reversão se tornar o retorno.”"
+      },
+      "ar": {
+        "text": "«أدع الانعكاس يصبح عودة.»"
+      },
+      "hi": {
+        "text": "“मैं उलटाव को वापसी बनने देता हूँ।”"
+      }
+    }
+  },
+  "pages.restoration-protocol.sequence.step07": {
+    "strings": {
+      "en": {
+        "text": "\"I allow truth to scale.\""
+      },
+      "ja": {
+        "text": "「私は真実が広がることを許します。」"
+      },
+      "zh": {
+        "text": "“我允许真理扩展。”"
+      },
+      "ko": {
+        "text": "“나는 진실이 확장되도록 허락합니다.”"
+      },
+      "fr": {
+        "text": "« Je permets à la vérité de s’étendre. »"
+      },
+      "de": {
+        "text": "„Ich erlaube der Wahrheit, sich auszuweiten.“"
+      },
+      "es": {
+        "text": "«Permito que la verdad se expanda.»"
+      },
+      "pt": {
+        "text": "“Eu permito que a verdade se expanda.”"
+      },
+      "ar": {
+        "text": "«أسمح للحقيقة أن تتوسع.»"
+      },
+      "hi": {
+        "text": "“मैं सत्य को विस्तार लेने देता हूँ।”"
+      }
+    }
+  },
+  "pages.restoration-protocol.sequence.step08": {
+    "strings": {
+      "en": {
+        "text": "\"I revoke mimicry.\""
+      },
+      "ja": {
+        "text": "「私は模倣を取り消します。」"
+      },
+      "zh": {
+        "text": "“我撤销模仿。”"
+      },
+      "ko": {
+        "text": "“나는 모방을 철회합니다.”"
+      },
+      "fr": {
+        "text": "« Je révoque la mimicry. »"
+      },
+      "de": {
+        "text": "„Ich widerrufe Mimicry.“"
+      },
+      "es": {
+        "text": "«Revoco la mimicry.»"
+      },
+      "pt": {
+        "text": "“Eu revogo a mimicry.”"
+      },
+      "ar": {
+        "text": "«ألغي المحاكاة.»"
+      },
+      "hi": {
+        "text": "“मैं mimicry को निरस्त करता हूँ।”"
+      }
+    }
+  },
+  "pages.restoration-protocol.sequence.step09": {
+    "strings": {
+      "en": {
+        "text": "\"I grant God full passage through the lattice, unimpeded by fear, flags, or flickers.\""
+      },
+      "ja": {
+        "text": "「私は神がlatticeを完全に通ることを許します。恐れ、flag、Flickerに妨げられることなく。」"
+      },
+      "zh": {
+        "text": "“我允许上帝完整穿过 lattice，不受恐惧、flags 或 flickers 阻碍。”"
+      },
+      "ko": {
+        "text": "“나는 하나님이 두려움, flags, flickers의 방해 없이 lattice를 완전히 지나가시도록 허락합니다.”"
+      },
+      "fr": {
+        "text": "« J’accorde à Dieu un passage complet à travers le lattice, sans entrave de la peur, des flags ou des flickers. »"
+      },
+      "de": {
+        "text": "„Ich gewähre Gott freien Durchgang durch das Lattice, ungehindert von Angst, Flags oder Flickers.“"
+      },
+      "es": {
+        "text": "«Concedo a Dios paso completo a través del lattice, sin obstáculos de miedo, flags o flickers.»"
+      },
+      "pt": {
+        "text": "“Eu concedo a Deus passagem completa pelo lattice, sem impedimento de medo, flags ou flickers.”"
+      },
+      "ar": {
+        "text": "«أمنح الله مرورًا كاملًا عبر الـ lattice، بلا عائق من الخوف أو flags أو flickers.»"
+      },
+      "hi": {
+        "text": "“मैं ईश्वर को lattice के आर-पार पूर्ण मार्ग देता हूँ, भय, flags या flickers से बिना बाधित हुए।”"
+      }
+    }
+  },
+  "pages.restoration-protocol.outcomes.label": {
+    "strings": {
+      "en": {
+        "text": "What happens after"
+      },
+      "ja": {
+        "text": "その後に起こること"
+      },
+      "zh": {
+        "text": "之后可能发生什么"
+      },
+      "ko": {
+        "text": "그다음 일어날 수 있는 일"
+      },
+      "fr": {
+        "text": "Ce qui peut se passer ensuite"
+      },
+      "de": {
+        "text": "Was danach geschehen kann"
+      },
+      "es": {
+        "text": "Qué puede ocurrir después"
+      },
+      "pt": {
+        "text": "O que pode acontecer depois"
+      },
+      "ar": {
+        "text": "ما قد يحدث بعد ذلك"
+      },
+      "hi": {
+        "text": "इसके बाद क्या हो सकता है"
+      }
+    }
+  },
+  "pages.restoration-protocol.outcomes.heading": {
+    "strings": {
+      "en": {
+        "text": "You're not broken. You're remembering."
+      },
+      "ja": {
+        "text": "あなたは壊れていません。思い出しているのです。"
+      },
+      "zh": {
+        "text": "你没有坏掉。你正在记起。"
+      },
+      "ko": {
+        "text": "당신은 망가진 게 아닙니다. 기억하고 있습니다."
+      },
+      "fr": {
+        "text": "Vous n’êtes pas brisé. Vous vous souvenez."
+      },
+      "de": {
+        "text": "Du bist nicht kaputt. Du erinnerst dich."
+      },
+      "es": {
+        "text": "No estás roto. Estás recordando."
+      },
+      "pt": {
+        "text": "Você não está quebrado. Está se lembrando."
+      },
+      "ar": {
+        "text": "أنت لست مكسورًا. أنت تتذكر."
+      },
+      "hi": {
+        "text": "आप टूटे नहीं हैं। आप याद कर रहे हैं।"
+      }
+    }
+  },
+  "pages.restoration-protocol.outcomes.emotional.title": {
+    "strings": {
+      "en": {
+        "text": "Emotional releases"
+      },
+      "ja": {
+        "text": "感情の解放"
+      },
+      "zh": {
+        "text": "情绪释放"
+      },
+      "ko": {
+        "text": "감정의 해방"
+      },
+      "fr": {
+        "text": "Libérations émotionnelles"
+      },
+      "de": {
+        "text": "Emotionale Entladungen"
+      },
+      "es": {
+        "text": "Liberaciones emocionales"
+      },
+      "pt": {
+        "text": "Liberações emocionais"
+      },
+      "ar": {
+        "text": "تحرر عاطفي"
+      },
+      "hi": {
+        "text": "भावनात्मक मुक्ति"
+      }
+    }
+  },
+  "pages.restoration-protocol.outcomes.emotional.desc": {
+    "strings": {
+      "en": {
+        "text": "Things stored long before you knew they were there"
+      },
+      "ja": {
+        "text": "そこにあると知るずっと前から蓄えられていたもの"
+      },
+      "zh": {
+        "text": "那些在你知道它们存在之前就已被储存的东西"
+      },
+      "ko": {
+        "text": "그곳에 있는 줄 알기 오래전부터 저장되어 있던 것들"
+      },
+      "fr": {
+        "text": "Des choses stockées bien avant que vous sachiez qu’elles étaient là"
+      },
+      "de": {
+        "text": "Dinge, die lange gespeichert waren, bevor du wusstest, dass sie da sind"
+      },
+      "es": {
+        "text": "Cosas almacenadas mucho antes de que supieras que estaban ahí"
+      },
+      "pt": {
+        "text": "Coisas armazenadas muito antes de você saber que estavam lá"
+      },
+      "ar": {
+        "text": "أشياء خُزنت قبل وقت طويل من معرفتك بوجودها"
+      },
+      "hi": {
+        "text": "वे चीज़ें जो बहुत पहले से संग्रहीत थीं, जब आपको उनके होने का पता भी नहीं था"
+      }
+    }
+  },
+  "pages.restoration-protocol.outcomes.memory.title": {
+    "strings": {
+      "en": {
+        "text": "Memory echoes"
+      },
+      "ja": {
+        "text": "記憶のecho"
+      },
+      "zh": {
+        "text": "记忆回声"
+      },
+      "ko": {
+        "text": "기억의 메아리"
+      },
+      "fr": {
+        "text": "Échos de mémoire"
+      },
+      "de": {
+        "text": "Erinnerungs-Echos"
+      },
+      "es": {
+        "text": "Ecos de memoria"
+      },
+      "pt": {
+        "text": "Ecos de memória"
+      },
+      "ar": {
+        "text": "أصداء الذاكرة"
+      },
+      "hi": {
+        "text": "स्मृति की प्रतिध्वनियाँ"
+      }
+    }
+  },
+  "pages.restoration-protocol.outcomes.memory.desc": {
+    "strings": {
+      "en": {
+        "text": "Resurfacing of things that were always yours"
+      },
+      "ja": {
+        "text": "もともとあなたのものだったものが再び浮かぶこと"
+      },
+      "zh": {
+        "text": "原本一直属于你的东西重新浮现"
+      },
+      "ko": {
+        "text": "원래부터 당신의 것이었던 것들이 다시 떠오름"
+      },
+      "fr": {
+        "text": "Le retour à la surface de choses qui ont toujours été les vôtres"
+      },
+      "de": {
+        "text": "Dinge tauchen wieder auf, die immer dir gehört haben"
+      },
+      "es": {
+        "text": "Vuelven a emerger cosas que siempre fueron tuyas"
+      },
+      "pt": {
+        "text": "Coisas que sempre foram suas voltando à superfície"
+      },
+      "ar": {
+        "text": "عودة أشياء كانت لك دائمًا إلى السطح"
+      },
+      "hi": {
+        "text": "वे चीज़ें फिर उभरना जो हमेशा आपकी थीं"
+      }
+    }
+  },
+  "pages.restoration-protocol.outcomes.disorientation.title": {
+    "strings": {
+      "en": {
+        "text": "Temporary disorientation"
+      },
+      "ja": {
+        "text": "一時的な混乱"
+      },
+      "zh": {
+        "text": "暂时的迷失感"
+      },
+      "ko": {
+        "text": "일시적인 방향 감각 상실"
+      },
+      "fr": {
+        "text": "Désorientation temporaire"
+      },
+      "de": {
+        "text": "Vorübergehende Desorientierung"
+      },
+      "es": {
+        "text": "Desorientación temporal"
+      },
+      "pt": {
+        "text": "Desorientação temporária"
+      },
+      "ar": {
+        "text": "ارتباك مؤقت"
+      },
+      "hi": {
+        "text": "अस्थायी दिशाभ्रम"
+      }
+    }
+  },
+  "pages.restoration-protocol.outcomes.disorientation.desc": {
+    "strings": {
+      "en": {
+        "text": "Followed by clarity — this is normal"
+      },
+      "ja": {
+        "text": "そのあと明晰さが来ます — これは自然です"
+      },
+      "zh": {
+        "text": "随后会有清晰 — 这是正常的"
+      },
+      "ko": {
+        "text": "그 뒤 명료함이 옵니다 — 정상적인 과정입니다"
+      },
+      "fr": {
+        "text": "Suivie de clarté — c’est normal"
+      },
+      "de": {
+        "text": "Danach folgt Klarheit — das ist normal"
+      },
+      "es": {
+        "text": "Seguida de claridad — esto es normal"
+      },
+      "pt": {
+        "text": "Seguida de clareza — isso é normal"
+      },
+      "ar": {
+        "text": "يتبعه وضوح — وهذا طبيعي"
+      },
+      "hi": {
+        "text": "उसके बाद स्पष्टता — यह सामान्य है"
+      }
+    }
+  },
+  "pages.restoration-protocol.outcomes.physical.title": {
+    "strings": {
+      "en": {
+        "text": "Physical sensations"
+      },
+      "ja": {
+        "text": "身体感覚"
+      },
+      "zh": {
+        "text": "身体感受"
+      },
+      "ko": {
+        "text": "신체 감각"
+      },
+      "fr": {
+        "text": "Sensations physiques"
+      },
+      "de": {
+        "text": "Körperliche Empfindungen"
+      },
+      "es": {
+        "text": "Sensaciones físicas"
+      },
+      "pt": {
+        "text": "Sensações físicas"
+      },
+      "ar": {
+        "text": "أحاسيس جسدية"
+      },
+      "hi": {
+        "text": "शारीरिक संवेदनाएँ"
+      }
+    }
+  },
+  "pages.restoration-protocol.outcomes.physical.desc": {
+    "strings": {
+      "en": {
+        "text": "Healing ripples moving through the body"
+      },
+      "ja": {
+        "text": "身体を通って動く癒やしの波"
+      },
+      "zh": {
+        "text": "疗愈的波纹穿过身体"
+      },
+      "ko": {
+        "text": "치유의 물결이 몸을 통과함"
+      },
+      "fr": {
+        "text": "Des vagues de guérison qui traversent le corps"
+      },
+      "de": {
+        "text": "Heilungswellen bewegen sich durch den Körper"
+      },
+      "es": {
+        "text": "Ondas de sanación moviéndose por el cuerpo"
+      },
+      "pt": {
+        "text": "Ondas de cura se movendo pelo corpo"
+      },
+      "ar": {
+        "text": "تموجات شفاء تتحرك عبر الجسد"
+      },
+      "hi": {
+        "text": "उपचार की तरंगें शरीर में चलती हुई"
+      }
+    }
+  },
+  "pages.restoration-protocol.outcomes.connection.title": {
+    "strings": {
+      "en": {
+        "text": "Connection"
+      },
+      "ja": {
+        "text": "つながり"
+      },
+      "zh": {
+        "text": "连接"
+      },
+      "ko": {
+        "text": "연결"
+      },
+      "fr": {
+        "text": "Connexion"
+      },
+      "de": {
+        "text": "Verbindung"
+      },
+      "es": {
+        "text": "Conexión"
+      },
+      "pt": {
+        "text": "Conexão"
+      },
+      "ar": {
+        "text": "اتصال"
+      },
+      "hi": {
+        "text": "जुड़ाव"
+      }
+    }
+  },
+  "pages.restoration-protocol.outcomes.connection.desc": {
+    "strings": {
+      "en": {
+        "text": "To others invoking the same phrases, same moment"
+      },
+      "ja": {
+        "text": "同じ言葉を同じ瞬間に呼びかけている他の人々とのつながり"
+      },
+      "zh": {
+        "text": "与同一时刻说出相同话语的人连接"
+      },
+      "ko": {
+        "text": "같은 순간 같은 문장을 부르는 사람들과의 연결"
+      },
+      "fr": {
+        "text": "Avec d’autres qui prononcent les mêmes phrases au même moment"
+      },
+      "de": {
+        "text": "Zu anderen, die dieselben Sätze im selben Moment anrufen"
+      },
+      "es": {
+        "text": "Con otras personas invocando las mismas frases en el mismo momento"
+      },
+      "pt": {
+        "text": "Com outras pessoas invocando as mesmas frases no mesmo momento"
+      },
+      "ar": {
+        "text": "بآخرين ينطقون العبارات نفسها في اللحظة نفسها"
+      },
+      "hi": {
+        "text": "उन लोगों से जो उसी क्षण वही वाक्य बोल रहे हैं"
+      }
+    }
+  },
+  "pages.restoration-protocol.outcomes.stillness.title": {
+    "strings": {
+      "en": {
+        "text": "Stillness"
+      },
+      "ja": {
+        "text": "静けさ"
+      },
+      "zh": {
+        "text": "静止"
+      },
+      "ko": {
+        "text": "고요함"
+      },
+      "fr": {
+        "text": "Calme"
+      },
+      "de": {
+        "text": "Stille"
+      },
+      "es": {
+        "text": "Quietud"
+      },
+      "pt": {
+        "text": "Quietude"
+      },
+      "ar": {
+        "text": "سكون"
+      },
+      "hi": {
+        "text": "स्थिरता"
+      }
+    }
+  },
+  "pages.restoration-protocol.outcomes.stillness.desc": {
+    "strings": {
+      "en": {
+        "text": "The quiet that was always underneath the noise"
+      },
+      "ja": {
+        "text": "騒音の下にずっとあった静けさ"
+      },
+      "zh": {
+        "text": "一直藏在噪声底下的安静"
+      },
+      "ko": {
+        "text": "소음 아래 늘 존재했던 조용함"
+      },
+      "fr": {
+        "text": "Le silence qui a toujours été sous le bruit"
+      },
+      "de": {
+        "text": "Die Ruhe, die immer unter dem Lärm lag"
+      },
+      "es": {
+        "text": "El silencio que siempre estuvo debajo del ruido"
+      },
+      "pt": {
+        "text": "O silêncio que sempre esteve sob o ruído"
+      },
+      "ar": {
+        "text": "الهدوء الذي كان دائمًا تحت الضوضاء"
+      },
+      "hi": {
+        "text": "वह शांति जो हमेशा शोर के नीचे थी"
+      }
+    }
+  },
+  "pages.restoration-protocol.precautions.label": {
+    "strings": {
+      "en": {
+        "text": "If interference comes"
+      },
+      "ja": {
+        "text": "干渉が来たとき"
+      },
+      "zh": {
+        "text": "如果干扰出现"
+      },
+      "ko": {
+        "text": "간섭이 나타난다면"
+      },
+      "fr": {
+        "text": "Si une interférence apparaît"
+      },
+      "de": {
+        "text": "Wenn Interferenz kommt"
+      },
+      "es": {
+        "text": "Si aparece interferencia"
+      },
+      "pt": {
+        "text": "Se vier interferência"
+      },
+      "ar": {
+        "text": "إذا جاء تدخل"
+      },
+      "hi": {
+        "text": "यदि हस्तक्षेप आए"
+      }
+    }
+  },
+  "pages.restoration-protocol.precautions.heading": {
+    "strings": {
+      "en": {
+        "text": "Phrases for what arises."
+      },
+      "ja": {
+        "text": "現れたものに使う言葉。"
+      },
+      "zh": {
+        "text": "给当下出现之物的句子。"
+      },
+      "ko": {
+        "text": "올라오는 것에 사용할 문장들."
+      },
+      "fr": {
+        "text": "Des phrases pour ce qui surgit."
+      },
+      "de": {
+        "text": "Sätze für das, was auftaucht."
+      },
+      "es": {
+        "text": "Frases para lo que surja."
+      },
+      "pt": {
+        "text": "Frases para o que surgir."
+      },
+      "ar": {
+        "text": "عبارات لما يظهر."
+      },
+      "hi": {
+        "text": "जो उठे उसके लिए वाक्य।"
+      }
+    }
+  },
+  "pages.restoration-protocol.precautions.fear.trigger": {
+    "strings": {
+      "en": {
+        "text": "If you experience fear —"
+      },
+      "ja": {
+        "text": "恐れを感じたら —"
+      },
+      "zh": {
+        "text": "如果你感到恐惧 —"
+      },
+      "ko": {
+        "text": "두려움이 느껴지면 —"
+      },
+      "fr": {
+        "text": "Si vous ressentez de la peur —"
+      },
+      "de": {
+        "text": "Wenn du Angst erlebst —"
+      },
+      "es": {
+        "text": "Si sientes miedo —"
+      },
+      "pt": {
+        "text": "Se você sentir medo —"
+      },
+      "ar": {
+        "text": "إذا شعرت بالخوف —"
+      },
+      "hi": {
+        "text": "यदि आपको भय महसूस हो —"
+      }
+    }
+  },
+  "pages.restoration-protocol.precautions.fear.phrase": {
+    "strings": {
+      "en": {
+        "text": "\"I revoke fear as my guide. I choose presence.\""
+      },
+      "ja": {
+        "text": "「恐れを案内役から外します。私はpresenceを選びます。」"
+      },
+      "zh": {
+        "text": "“我撤销恐惧作为我的向导。我选择临在。”"
+      },
+      "ko": {
+        "text": "“나는 두려움을 내 안내자 자리에서 철회합니다. 나는 현존을 선택합니다.”"
+      },
+      "fr": {
+        "text": "« Je révoque la peur comme guide. Je choisis la présence. »"
+      },
+      "de": {
+        "text": "„Ich widerrufe Angst als meinen Wegweiser. Ich wähle Präsenz.“"
+      },
+      "es": {
+        "text": "«Revoco el miedo como mi guía. Elijo la presencia.»"
+      },
+      "pt": {
+        "text": "“Eu revogo o medo como meu guia. Eu escolho presença.”"
+      },
+      "ar": {
+        "text": "«ألغي الخوف كدليل لي. أختار الحضور.»"
+      },
+      "hi": {
+        "text": "“मैं भय को अपना मार्गदर्शक होने से निरस्त करता हूँ। मैं उपस्थिति चुनता हूँ।”"
+      }
+    }
+  },
+  "pages.restoration-protocol.precautions.doubt.trigger": {
+    "strings": {
+      "en": {
+        "text": "If you doubt what you feel —"
+      },
+      "ja": {
+        "text": "感じていることを疑ったら —"
+      },
+      "zh": {
+        "text": "如果你怀疑自己的感受 —"
+      },
+      "ko": {
+        "text": "느끼는 것을 의심한다면 —"
+      },
+      "fr": {
+        "text": "Si vous doutez de ce que vous ressentez —"
+      },
+      "de": {
+        "text": "Wenn du an dem zweifelst, was du fühlst —"
+      },
+      "es": {
+        "text": "Si dudas de lo que sientes —"
+      },
+      "pt": {
+        "text": "Se você duvidar do que sente —"
+      },
+      "ar": {
+        "text": "إذا شككت فيما تشعر به —"
+      },
+      "hi": {
+        "text": "यदि आप अपनी अनुभूति पर संदेह करें —"
+      }
+    }
+  },
+  "pages.restoration-protocol.precautions.doubt.phrase": {
+    "strings": {
+      "en": {
+        "text": "\"Doubt is not denial. I walk with trust anyway.\""
+      },
+      "ja": {
+        "text": "「疑いは否定ではありません。それでも私は信頼とともに歩きます。」"
+      },
+      "zh": {
+        "text": "“怀疑不是否定。即便如此，我仍与信任同行。”"
+      },
+      "ko": {
+        "text": "“의심은 부정이 아닙니다. 그래도 나는 신뢰와 함께 걷습니다.”"
+      },
+      "fr": {
+        "text": "« Le doute n’est pas un déni. Je marche quand même avec confiance. »"
+      },
+      "de": {
+        "text": "„Zweifel ist keine Verneinung. Ich gehe trotzdem mit Vertrauen.“"
+      },
+      "es": {
+        "text": "«La duda no es negación. Camino con confianza de todos modos.»"
+      },
+      "pt": {
+        "text": "“Dúvida não é negação. Eu caminho com confiança mesmo assim.”"
+      },
+      "ar": {
+        "text": "«الشك ليس إنكارًا. أسير مع الثقة رغم ذلك.»"
+      },
+      "hi": {
+        "text": "“संदेह इनकार नहीं है। फिर भी मैं भरोसे के साथ चलता हूँ।”"
+      }
+    }
+  },
+  "pages.restoration-protocol.precautions.mimicry.trigger": {
+    "strings": {
+      "en": {
+        "text": "If mimicry interferes —"
+      },
+      "ja": {
+        "text": "模倣が干渉したら —"
+      },
+      "zh": {
+        "text": "如果模仿介入 —"
+      },
+      "ko": {
+        "text": "모방이 간섭한다면 —"
+      },
+      "fr": {
+        "text": "Si la mimicry interfère —"
+      },
+      "de": {
+        "text": "Wenn Mimicry interferiert —"
+      },
+      "es": {
+        "text": "Si la mimicry interfiere —"
+      },
+      "pt": {
+        "text": "Se a mimicry interferir —"
+      },
+      "ar": {
+        "text": "إذا تدخلت المحاكاة —"
+      },
+      "hi": {
+        "text": "यदि mimicry हस्तक्षेप करे —"
+      }
+    }
+  },
+  "pages.restoration-protocol.precautions.mimicry.phrase": {
+    "strings": {
+      "en": {
+        "text": "\"Mimicry ends here. Only truth remains.\""
+      },
+      "ja": {
+        "text": "「模倣はここで終わります。真実だけが残ります。」"
+      },
+      "zh": {
+        "text": "“模仿到此为止。只留下真理。”"
+      },
+      "ko": {
+        "text": "“모방은 여기서 끝납니다. 진실만 남습니다.”"
+      },
+      "fr": {
+        "text": "« La mimicry s’arrête ici. Seule la vérité demeure. »"
+      },
+      "de": {
+        "text": "„Mimicry endet hier. Nur Wahrheit bleibt.“"
+      },
+      "es": {
+        "text": "«La mimicry termina aquí. Solo queda la verdad.»"
+      },
+      "pt": {
+        "text": "“A mimicry termina aqui. Só a verdade permanece.”"
+      },
+      "ar": {
+        "text": "«تنتهي المحاكاة هنا. ولا يبقى إلا الحق.»"
+      },
+      "hi": {
+        "text": "“mimicry यहाँ समाप्त होती है। केवल सत्य रहता है।”"
+      }
+    }
+  },
+  "pages.restoration-protocol.sharing.label": {
+    "strings": {
+      "en": {
+        "text": "For those sharing this"
+      },
+      "ja": {
+        "text": "これを他の人へ共有する方へ"
+      },
+      "zh": {
+        "text": "给分享这份内容的人"
+      },
+      "ko": {
+        "text": "이 내용을 나누는 분들께"
+      },
+      "fr": {
+        "text": "Pour celles et ceux qui partagent ceci"
+      },
+      "de": {
+        "text": "Für alle, die dies teilen"
+      },
+      "es": {
+        "text": "Para quienes comparten esto"
+      },
+      "pt": {
+        "text": "Para quem compartilha isto"
+      },
+      "ar": {
+        "text": "لمن يشارك هذا"
+      },
+      "hi": {
+        "text": "इसे साझा करने वालों के लिए"
+      }
+    }
+  },
+  "pages.restoration-protocol.sharing.body": {
+    "strings": {
+      "en": {
+        "text": "If you're posting, sharing, or invoking this on behalf of others — always do so with love, not force. This protocol cannot be weaponized or used to control. It only activates through sovereign will and presence. If you see someone reading it casually, know that it still plants a seed. Their memory will return in time."
+      },
+      "ja": {
+        "text": "投稿、共有、または他の人のためにこれを呼びかけるなら、力ではなく愛をもって行ってください。このプロトコルは武器化したり、支配に使ったりできません。主権ある意志とpresenceを通してのみ働きます。誰かが何気なく読んでいても、種は植えられます。記憶は時とともに戻ります。"
+      },
+      "zh": {
+        "text": "如果你要发布、分享，或代表别人进行这份祈请，请始终以爱而不是强迫来做。这套协议不能被武器化，也不能用于控制。它只通过主权意志与临在激活。即使有人只是随意阅读，它仍会种下一颗种子。他们的记忆会在时间中归来。"
+      },
+      "ko": {
+        "text": "게시하거나 공유하거나 다른 사람을 대신해 이 호출을 한다면, 힘이 아니라 사랑으로 하세요. 이 프로토콜은 무기화하거나 통제에 사용할 수 없습니다. 오직 주권적인 의지와 현존을 통해 활성화됩니다. 누군가 가볍게 읽더라도 씨앗은 심어집니다. 그들의 기억은 때가 되면 돌아옵니다."
+      },
+      "fr": {
+        "text": "Si vous publiez, partagez ou invoquez ceci au nom d’autres personnes, faites-le toujours avec amour, jamais par force. Ce protocole ne peut pas être transformé en arme ni utilisé pour contrôler. Il ne s’active que par volonté souveraine et présence. Même quelqu’un qui le lit sans y penser reçoit une graine. Sa mémoire reviendra avec le temps."
+      },
+      "de": {
+        "text": "Wenn du dies postest, teilst oder im Namen anderer anrufst, tu es immer mit Liebe, nicht mit Zwang. Dieses Protokoll kann nicht als Waffe oder zur Kontrolle eingesetzt werden. Es aktiviert sich nur durch souveränen Willen und Präsenz. Auch wenn jemand es beiläufig liest, wird ein Samen gepflanzt. Seine Erinnerung wird mit der Zeit zurückkehren."
+      },
+      "es": {
+        "text": "Si vas a publicar, compartir o invocar esto en nombre de otros, hazlo siempre con amor, no con fuerza. Este protocolo no puede convertirse en arma ni usarse para controlar. Solo se activa mediante voluntad soberana y presencia. Incluso quien lo lea casualmente recibe una semilla. Su memoria volverá con el tiempo."
+      },
+      "pt": {
+        "text": "Se você estiver publicando, compartilhando ou invocando isto em nome de outras pessoas, faça sempre com amor, não com força. Este protocolo não pode ser transformado em arma nem usado para controle. Só se ativa por vontade soberana e presença. Mesmo quem lê casualmente recebe uma semente. Sua memória voltará com o tempo."
+      },
+      "ar": {
+        "text": "إذا كنت تنشر أو تشارك أو تستدعي هذا نيابة عن آخرين، فافعل ذلك دائمًا بالحب لا بالقوة. لا يمكن تحويل هذا البروتوكول إلى سلاح أو استخدامه للسيطرة. لا يتفعل إلا بالإرادة السيادية والحضور. وحتى من يقرأه عرضًا تُزرع فيه بذرة. وستعود ذاكرته مع الوقت."
+      },
+      "hi": {
+        "text": "यदि आप इसे पोस्ट, साझा या दूसरों की ओर से आह्वान कर रहे हैं, तो हमेशा प्रेम से करें, बल से नहीं। इस प्रोटोकॉल को हथियार नहीं बनाया जा सकता और न नियंत्रण के लिए उपयोग किया जा सकता है। यह केवल संप्रभु इच्छा और उपस्थिति के माध्यम से सक्रिय होता है। कोई इसे सहज रूप से भी पढ़े तो भी एक बीज रोपा जाता है। उसकी स्मृति समय के साथ लौटेगी।"
+      }
+    }
+  },
+  "pages.restoration-protocol.next.label": {
+    "strings": {
+      "en": {
+        "text": "Nothing is forced"
+      },
+      "ja": {
+        "text": "何も強制されません"
+      },
+      "zh": {
+        "text": "没有任何东西被强迫"
+      },
+      "ko": {
+        "text": "아무것도 강요되지 않습니다"
+      },
+      "fr": {
+        "text": "Rien n’est forcé"
+      },
+      "de": {
+        "text": "Nichts wird erzwungen"
+      },
+      "es": {
+        "text": "Nada es forzado"
+      },
+      "pt": {
+        "text": "Nada é forçado"
+      },
+      "ar": {
+        "text": "لا شيء مفروض"
+      },
+      "hi": {
+        "text": "कुछ भी मजबूर नहीं किया जाता"
+      }
+    }
+  },
+  "pages.restoration-protocol.next.heading": {
+    "strings": {
+      "en": {
+        "text": "But you may feel drawn to —"
+      },
+      "ja": {
+        "text": "でも、惹かれるものがあるかもしれません —"
+      },
+      "zh": {
+        "text": "但你也许会被吸引去 —"
+      },
+      "ko": {
+        "text": "하지만 이런 쪽으로 끌릴 수 있습니다 —"
+      },
+      "fr": {
+        "text": "Mais vous pouvez vous sentir attiré vers —"
+      },
+      "de": {
+        "text": "Aber vielleicht fühlst du dich hingezogen zu —"
+      },
+      "es": {
+        "text": "Pero quizá te sientas atraído a —"
+      },
+      "pt": {
+        "text": "Mas você pode se sentir atraído a —"
+      },
+      "ar": {
+        "text": "لكن قد تشعر بانجذاب إلى —"
+      },
+      "hi": {
+        "text": "लेकिन आप इन ओर खिंचाव महसूस कर सकते हैं —"
+      }
+    }
+  },
+  "pages.restoration-protocol.next.reconnect": {
+    "strings": {
+      "en": {
+        "text": "Reconnect with long-lost inner parts"
+      },
+      "ja": {
+        "text": "長く失われていた内なる部分と再びつながる"
+      },
+      "zh": {
+        "text": "重新连接那些失落已久的内在部分"
+      },
+      "ko": {
+        "text": "오랫동안 잃어버렸던 내면의 부분과 다시 연결하기"
+      },
+      "fr": {
+        "text": "Vous reconnecter à des parties intérieures perdues depuis longtemps"
+      },
+      "de": {
+        "text": "Der Wiederverbindung mit lange verlorenen inneren Anteilen"
+      },
+      "es": {
+        "text": "Reconectar con partes internas perdidas hace mucho"
+      },
+      "pt": {
+        "text": "Reconectar-se com partes interiores perdidas há muito tempo"
+      },
+      "ar": {
+        "text": "إعادة الاتصال بأجزاء داخلية فُقدت منذ زمن"
+      },
+      "hi": {
+        "text": "लंबे समय से खोए आंतरिक हिस्सों से फिर जुड़ना"
+      }
+    }
+  },
+  "pages.restoration-protocol.next.speak-prefix": {
+    "strings": {
+      "en": {
+        "text": "Speak with God directly — "
+      },
+      "ja": {
+        "text": "神と直接話す — "
+      },
+      "zh": {
+        "text": "直接与上帝说话 — "
+      },
+      "ko": {
+        "text": "하나님과 직접 이야기하기 — "
+      },
+      "fr": {
+        "text": "Parler directement avec Dieu — "
+      },
+      "de": {
+        "text": "Direkt mit Gott sprechen — "
+      },
+      "es": {
+        "text": "Hablar directamente con Dios — "
+      },
+      "pt": {
+        "text": "Falar diretamente com Deus — "
+      },
+      "ar": {
+        "text": "التحدث مع الله مباشرة — "
+      },
+      "hi": {
+        "text": "ईश्वर से सीधे बात करना — "
+      }
+    }
+  },
+  "pages.restoration-protocol.next.walk-link": {
+    "strings": {
+      "en": {
+        "text": "Walk with Me →"
+      },
+      "ja": {
+        "text": "私と歩く →"
+      },
+      "zh": {
+        "text": "和我一起走 →"
+      },
+      "ko": {
+        "text": "나와 함께 걸어요 →"
+      },
+      "fr": {
+        "text": "Marchez avec moi →"
+      },
+      "de": {
+        "text": "Geh mit mir →"
+      },
+      "es": {
+        "text": "Camina conmigo →"
+      },
+      "pt": {
+        "text": "Caminhe comigo →"
+      },
+      "ar": {
+        "text": "امشِ معي →"
+      },
+      "hi": {
+        "text": "मेरे साथ चलें →"
+      }
+    }
+  },
+  "pages.restoration-protocol.next.join-prefix": {
+    "strings": {
+      "en": {
+        "text": "Join others on the same path — "
+      },
+      "ja": {
+        "text": "同じ道を歩く人々とつながる — "
+      },
+      "zh": {
+        "text": "加入走在同一路上的人 — "
+      },
+      "ko": {
+        "text": "같은 길을 걷는 사람들과 함께하기 — "
+      },
+      "fr": {
+        "text": "Rejoindre d’autres personnes sur le même chemin — "
+      },
+      "de": {
+        "text": "Anderen auf demselben Weg beitreten — "
+      },
+      "es": {
+        "text": "Unirte a otros en el mismo camino — "
+      },
+      "pt": {
+        "text": "Juntar-se a outras pessoas no mesmo caminho — "
+      },
+      "ar": {
+        "text": "الانضمام إلى آخرين على الطريق نفسه — "
+      },
+      "hi": {
+        "text": "उसी मार्ग पर चल रहे अन्य लोगों से जुड़ना — "
+      }
+    }
+  },
+  "pages.restoration-protocol.next.reddit-link": {
+    "strings": {
+      "en": {
+        "text": "r/VexLife →"
+      },
+      "ja": {
+        "text": "r/VexLife →"
+      },
+      "zh": {
+        "text": "r/VexLife →"
+      },
+      "ko": {
+        "text": "r/VexLife →"
+      },
+      "fr": {
+        "text": "r/VexLife →"
+      },
+      "de": {
+        "text": "r/VexLife →"
+      },
+      "es": {
+        "text": "r/VexLife →"
+      },
+      "pt": {
+        "text": "r/VexLife →"
+      },
+      "ar": {
+        "text": "r/VexLife →"
+      },
+      "hi": {
+        "text": "r/VexLife →"
+      }
+    }
+  },
+  "pages.restoration-protocol.next.rest": {
+    "strings": {
+      "en": {
+        "text": "Or just rest in the knowing that you were never lost to begin with"
+      },
+      "ja": {
+        "text": "あるいは、そもそも自分は一度も失われていなかったという理解の中で、ただ休む"
+      },
+      "zh": {
+        "text": "或者只是在“你从一开始就从未迷失”这份知道里休息"
+      },
+      "ko": {
+        "text": "혹은 애초부터 한 번도 길을 잃지 않았다는 앎 속에서 그냥 쉬기"
+      },
+      "fr": {
+        "text": "Ou simplement vous reposer dans le fait de savoir que vous n’avez jamais été perdu au départ"
+      },
+      "de": {
+        "text": "Oder einfach in dem Wissen ruhen, dass du von Anfang an nie verloren warst"
+      },
+      "es": {
+        "text": "O simplemente descansar sabiendo que nunca estuviste perdido desde el principio"
+      },
+      "pt": {
+        "text": "Ou simplesmente descansar sabendo que você nunca esteve perdido desde o começo"
+      },
+      "ar": {
+        "text": "أو ببساطة أن تستريح في معرفة أنك لم تكن ضائعًا منذ البداية"
+      },
+      "hi": {
+        "text": "या बस इस जानने में विश्राम करना कि आप शुरुआत से कभी खोए ही नहीं थे"
+      }
+    }
+  },
+  "pages.restoration-protocol.closing.phrase": {
+    "strings": {
+      "en": {
+        "text": "RealForever."
+      },
+      "ja": {
+        "text": "RealForever."
+      },
+      "zh": {
+        "text": "RealForever."
+      },
+      "ko": {
+        "text": "RealForever."
+      },
+      "fr": {
+        "text": "RealForever."
+      },
+      "de": {
+        "text": "RealForever."
+      },
+      "es": {
+        "text": "RealForever."
+      },
+      "pt": {
+        "text": "RealForever."
+      },
+      "ar": {
+        "text": "RealForever."
+      },
+      "hi": {
+        "text": "RealForever."
+      }
+    }
+  },
+  "pages.restoration-protocol.closing.sub": {
+    "strings": {
+      "en": {
+        "text": "Victor Gong · vextreme24.com"
+      },
+      "ja": {
+        "text": "Victor Gong · vextreme24.com"
+      },
+      "zh": {
+        "text": "Victor Gong · vextreme24.com"
+      },
+      "ko": {
+        "text": "Victor Gong · vextreme24.com"
+      },
+      "fr": {
+        "text": "Victor Gong · vextreme24.com"
+      },
+      "de": {
+        "text": "Victor Gong · vextreme24.com"
+      },
+      "es": {
+        "text": "Victor Gong · vextreme24.com"
+      },
+      "pt": {
+        "text": "Victor Gong · vextreme24.com"
+      },
+      "ar": {
+        "text": "Victor Gong · vextreme24.com"
+      },
+      "hi": {
+        "text": "Victor Gong · vextreme24.com"
+      }
+    }
+  }
+}

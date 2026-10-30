@@ -10,7 +10,7 @@
     "readAloudApplicable": 187,
     "withReadAloud": 187,
     "missingReadAloud": 0,
-    "withIdentity": 161,
+    "withIdentity": 164,
     "withScreenshots": 13,
     "withMetaDescription": 160
   },
@@ -169,14 +169,14 @@
         "keyCount": 27,
         "languages": {
           "ar": {
-            "translated": 1,
+            "translated": 27,
             "total": 27,
-            "state": "partial"
+            "state": "full"
           },
           "de": {
-            "translated": 1,
+            "translated": 27,
             "total": 27,
-            "state": "partial"
+            "state": "full"
           },
           "en": {
             "translated": 27,
@@ -184,19 +184,19 @@
             "state": "full"
           },
           "es": {
-            "translated": 1,
+            "translated": 27,
             "total": 27,
-            "state": "partial"
+            "state": "full"
           },
           "fr": {
-            "translated": 1,
+            "translated": 27,
             "total": 27,
-            "state": "partial"
+            "state": "full"
           },
           "hi": {
-            "translated": 1,
+            "translated": 27,
             "total": 27,
-            "state": "partial"
+            "state": "full"
           },
           "ja": {
             "translated": 27,
@@ -204,14 +204,14 @@
             "state": "full"
           },
           "ko": {
-            "translated": 1,
+            "translated": 27,
             "total": 27,
-            "state": "partial"
+            "state": "full"
           },
           "pt": {
-            "translated": 1,
+            "translated": 27,
             "total": 27,
-            "state": "partial"
+            "state": "full"
           },
           "zh": {
             "translated": 27,
@@ -1424,7 +1424,52 @@
       "identity": {
         "keyCount": 60,
         "languages": {
+          "ar": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          },
+          "de": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          },
           "en": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          },
+          "es": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          },
+          "zh": {
             "translated": 60,
             "total": 60,
             "state": "full"
@@ -2924,13 +2969,13 @@
         "arcKeys": []
       },
       "runtime": {
-        "shell": false,
+        "shell": true,
         "godScript": false
       },
       "navigation": {
         "navigable": true,
         "staticHubLinks": 1,
-        "shell": false,
+        "shell": true,
         "fab": false
       },
       "fab": {
@@ -2938,19 +2983,64 @@
       },
       "readAloud": {
         "applicable": true,
-        "delivery": "generated-owner"
+        "delivery": "shell"
       },
       "theme": {
-        "control": "none",
+        "control": "shared",
         "visibleStyles": false
       },
       "identity": {
-        "keyCount": 0,
+        "keyCount": 37,
         "languages": {
+          "ar": {
+            "translated": 37,
+            "total": 37,
+            "state": "full"
+          },
+          "de": {
+            "translated": 37,
+            "total": 37,
+            "state": "full"
+          },
           "en": {
-            "translated": 0,
-            "total": 0,
-            "state": "none"
+            "translated": 37,
+            "total": 37,
+            "state": "full"
+          },
+          "es": {
+            "translated": 37,
+            "total": 37,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 37,
+            "total": 37,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 37,
+            "total": 37,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 37,
+            "total": 37,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 37,
+            "total": 37,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 37,
+            "total": 37,
+            "state": "full"
+          },
+          "zh": {
+            "translated": 37,
+            "total": 37,
+            "state": "full"
           }
         }
       },
@@ -2968,8 +3058,8 @@
         "state": "attention",
         "blockers": [],
         "gaps": [
-          "identity",
-          "screenshot"
+          "screenshot",
+          "theme-effect"
         ]
       }
     },
@@ -7040,10 +7130,55 @@
       "identity": {
         "keyCount": 60,
         "languages": {
-          "en": {
-            "translated": 0,
+          "ar": {
+            "translated": 60,
             "total": 60,
-            "state": "none"
+            "state": "full"
+          },
+          "de": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          },
+          "en": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          },
+          "es": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          },
+          "zh": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
           }
         }
       },
@@ -7261,18 +7396,63 @@
         "visibleStyles": false
       },
       "identity": {
-        "keyCount": 0,
+        "keyCount": 59,
         "languages": {
+          "ar": {
+            "translated": 59,
+            "total": 59,
+            "state": "full"
+          },
+          "de": {
+            "translated": 59,
+            "total": 59,
+            "state": "full"
+          },
           "en": {
-            "translated": 0,
-            "total": 0,
-            "state": "none"
+            "translated": 59,
+            "total": 59,
+            "state": "full"
+          },
+          "es": {
+            "translated": 59,
+            "total": 59,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 59,
+            "total": 59,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 59,
+            "total": 59,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 59,
+            "total": 59,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 59,
+            "total": 59,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 59,
+            "total": 59,
+            "state": "full"
+          },
+          "zh": {
+            "translated": 59,
+            "total": 59,
+            "state": "full"
           }
         }
       },
       "analysis": {
         "indexed": true,
-        "control": false
+        "control": true
       },
       "evidence": {
         "screenshotLanguages": []
@@ -7284,7 +7464,6 @@
         "state": "attention",
         "blockers": [],
         "gaps": [
-          "identity",
           "screenshot",
           "theme-effect"
         ]
@@ -8350,10 +8529,55 @@
       "identity": {
         "keyCount": 85,
         "languages": {
-          "en": {
-            "translated": 0,
+          "ar": {
+            "translated": 85,
             "total": 85,
-            "state": "none"
+            "state": "full"
+          },
+          "de": {
+            "translated": 85,
+            "total": 85,
+            "state": "full"
+          },
+          "en": {
+            "translated": 85,
+            "total": 85,
+            "state": "full"
+          },
+          "es": {
+            "translated": 85,
+            "total": 85,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 85,
+            "total": 85,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 85,
+            "total": 85,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 85,
+            "total": 85,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 85,
+            "total": 85,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 85,
+            "total": 85,
+            "state": "full"
+          },
+          "zh": {
+            "translated": 85,
+            "total": 85,
+            "state": "full"
           }
         }
       },
@@ -8405,12 +8629,57 @@
         "visibleStyles": true
       },
       "identity": {
-        "keyCount": 0,
+        "keyCount": 35,
         "languages": {
+          "ar": {
+            "translated": 35,
+            "total": 35,
+            "state": "full"
+          },
+          "de": {
+            "translated": 35,
+            "total": 35,
+            "state": "full"
+          },
           "en": {
-            "translated": 0,
-            "total": 0,
-            "state": "none"
+            "translated": 35,
+            "total": 35,
+            "state": "full"
+          },
+          "es": {
+            "translated": 35,
+            "total": 35,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 35,
+            "total": 35,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 35,
+            "total": 35,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 35,
+            "total": 35,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 35,
+            "total": 35,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 35,
+            "total": 35,
+            "state": "full"
+          },
+          "zh": {
+            "translated": 35,
+            "total": 35,
+            "state": "full"
           }
         }
       },
@@ -8429,7 +8698,6 @@
         "blockers": [],
         "gaps": [
           "uncurated",
-          "identity",
           "screenshot"
         ]
       }
@@ -8574,7 +8842,52 @@
       "identity": {
         "keyCount": 81,
         "languages": {
+          "ar": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          },
+          "de": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          },
           "en": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          },
+          "es": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          },
+          "zh": {
             "translated": 81,
             "total": 81,
             "state": "full"
@@ -10160,7 +10473,52 @@
       "identity": {
         "keyCount": 81,
         "languages": {
+          "ar": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          },
+          "de": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          },
           "en": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          },
+          "es": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          },
+          "zh": {
             "translated": 81,
             "total": 81,
             "state": "full"
@@ -10948,15 +11306,55 @@
       "identity": {
         "keyCount": 138,
         "languages": {
+          "ar": {
+            "translated": 138,
+            "total": 138,
+            "state": "full"
+          },
+          "de": {
+            "translated": 138,
+            "total": 138,
+            "state": "full"
+          },
           "en": {
             "translated": 138,
             "total": 138,
             "state": "full"
           },
-          "fr": {
-            "translated": 2,
+          "es": {
+            "translated": 138,
             "total": 138,
-            "state": "partial"
+            "state": "full"
+          },
+          "fr": {
+            "translated": 138,
+            "total": 138,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 138,
+            "total": 138,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 138,
+            "total": 138,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 138,
+            "total": 138,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 138,
+            "total": 138,
+            "state": "full"
+          },
+          "zh": {
+            "translated": 138,
+            "total": 138,
+            "state": "full"
           }
         }
       },
@@ -11398,7 +11796,52 @@
       "identity": {
         "keyCount": 126,
         "languages": {
+          "ar": {
+            "translated": 126,
+            "total": 126,
+            "state": "full"
+          },
+          "de": {
+            "translated": 126,
+            "total": 126,
+            "state": "full"
+          },
           "en": {
+            "translated": 126,
+            "total": 126,
+            "state": "full"
+          },
+          "es": {
+            "translated": 126,
+            "total": 126,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 126,
+            "total": 126,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 126,
+            "total": 126,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 126,
+            "total": 126,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 126,
+            "total": 126,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 126,
+            "total": 126,
+            "state": "full"
+          },
+          "zh": {
             "translated": 126,
             "total": 126,
             "state": "full"
@@ -12325,12 +12768,12 @@
         "keyCount": 431,
         "languages": {
           "ar": {
-            "translated": 2,
+            "translated": 3,
             "total": 431,
             "state": "partial"
           },
           "de": {
-            "translated": 2,
+            "translated": 3,
             "total": 431,
             "state": "partial"
           },
@@ -12340,17 +12783,17 @@
             "state": "full"
           },
           "es": {
-            "translated": 2,
+            "translated": 3,
             "total": 431,
             "state": "partial"
           },
           "fr": {
-            "translated": 2,
+            "translated": 3,
             "total": 431,
             "state": "partial"
           },
           "hi": {
-            "translated": 2,
+            "translated": 3,
             "total": 431,
             "state": "partial"
           },
@@ -12360,12 +12803,12 @@
             "state": "partial"
           },
           "ko": {
-            "translated": 2,
+            "translated": 3,
             "total": 431,
             "state": "partial"
           },
           "pt": {
-            "translated": 2,
+            "translated": 3,
             "total": 431,
             "state": "partial"
           },

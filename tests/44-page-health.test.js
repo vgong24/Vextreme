@@ -182,16 +182,16 @@ test('PAGE-HEALTH: Terrain group-home surfaces do not inherit ordinary record pl
   const slug = 'direct-contact';
   const result = buildPageHealth({
     pageSlugs:[slug],
-    htmlBySlug:{[slug]:'<html data-vex-surface="group-home"><p>Collection introduction.</p><a href="the-walk.html">Walk</a><script src="../widgets/fab-read-aloud.js"></script></html>'},
+    htmlBySlug:{[slug]:'<html data-vex-surface="group-home"><p data-i18n="pages.direct-contact.intro">Collection introduction.</p><a href="the-walk.html">Walk</a><script src="../lib/shell.js"></script></html>'},
     distBySlug:{[slug]:''}, wiredBySlug:{},
-    navRows:[{slug,navigable:true,staticHubLinks:1,hasShellJs:false,hasFabNav:false}],
+    navRows:[{slug,navigable:true,staticHubLinks:1,hasShellJs:true,hasFabNav:true}],
     nodes:[], manifest:{}, analysisPages:{}, screenshotFiles:[]
   });
   const page=result.pages[slug];
   assert.deepEqual(page.surface,{kind:'group-home',state:'active'});
   assert.equal(page.placement.state,'group-home');
   assert.equal(page.fab.delivery,'not-applicable');
-  assert.deepEqual(page.readAloud,{applicable:true,delivery:'page-owned'});
+  assert.deepEqual(page.readAloud,{applicable:true,delivery:'shell'});
   assert.equal(page.health.blockers.length,0);
   assert.equal(page.health.gaps.includes('uncurated'),false);
   assert.equal(page.health.gaps.includes('fab'),false);
@@ -381,9 +381,10 @@ test('PAGE-HEALTH: generated Read Aloud ownership predicts the generic page-owne
 test('PAGE-HEALTH: generated Read Aloud ownership is source-derived before output regeneration', () => {
   const { generatedReadAloudOwners } = require('../lib/build-page-health');
   const owners = generatedReadAloudOwners(ROOT);
-  for (const slug of ['build-health','ecosystem-hub','roles-index','vextreme-demo','ai-practitioner-tools','direct-contact']) {
+  for (const slug of ['build-health','ecosystem-hub','roles-index','vextreme-demo','ai-practitioner-tools']) {
     assert.equal(owners[slug], 'generated-owner', slug + ' must be covered by its rightful generator/projector source');
   }
+  assert.equal(owners['direct-contact'], undefined, 'Direct Contact Read Aloud is now owned by the shared shell runtime');
 });
 
 test('PAGE-HEALTH integration: every applicable public readable surface has Read Aloud delivery', () => {
