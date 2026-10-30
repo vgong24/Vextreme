@@ -537,8 +537,8 @@ test('TERRAIN-VIEW: default arrival is quiet, localized, and defers archive/map 
 
   const bootstrap = source.match(/if \(!initialRoute\.explicit\) \{([\s\S]*?)\n  \} else \{/);
   assert.ok(bootstrap, 'default versus explicit route bootstrap must remain explicit');
-  assert.match(bootstrap[0], /loadTerrainStrings\(activeLanguage\)[\s\S]*renderEvolutionAArrival\(\)/,
-    'plain Home must load its small active-locale bundle before rendering the arrival');
+  assert.match(bootstrap[0], /var initialArrivalLanguage = activeLanguage;[\s\S]*loadTerrainStrings\(initialArrivalLanguage\)[\s\S]*initialArrivalLanguage !== activeLanguage[\s\S]*renderEvolutionAArrival\(\)/,
+    'plain Home must snapshot the active locale, reject a stale response, then render the localized arrival');
   assert.match(bootstrap[0], /loadTerrainBaseLanguages\(\)/,
     'plain Home must still resolve the canonical page-language capability');
   assert.doesNotMatch(bootstrap[0], /fetch\(TERRAIN_URL|ensureTerrainEngine\(\)/,
@@ -1074,8 +1074,15 @@ test('TERRAIN-VIEW: embedded readers and screenshot previews follow the shared e
     'embedded/standalone reader destinations must carry the effective locale explicitly');
   assert.match(source, /replaceEvolutionReaderDocument\(url\)[\s\S]*languageAwareUrl\(url, activeLanguage\)/,
     'embedded reader loads must use the language-aware URL');
-  assert.match(source, /window\.addEventListener\(LANG_CHANGE_EVENT[\s\S]*activeLanguage = lang[\s\S]*refreshLocalizedPreviewImages\(\)/,
-    'Terrain must react live when the parent FAB language changes');
+  assert.match(source, /window\.addEventListener\(LANG_CHANGE_EVENT, handleTerrainLanguageChange\)/,
+    'Terrain must register its selected-language listener independently of map-engine boot');
+  const languageHandler = source.match(/function handleTerrainLanguageChange\(event\) \{([\s\S]*?)\n  \}/);
+  assert.ok(languageHandler, 'Terrain language-change behavior must remain owned by the named handler');
+  assert.match(languageHandler[0], /activeLanguage = lang/);
+  assert.match(languageHandler[0], /if \(!DATA\)/,
+    'the language handler must support the lightweight Home state before map data exists');
+  assert.match(languageHandler[0], /refreshLocalizedPreviewImages\(\)/,
+    'once map data exists, live locale changes must refresh localized preview evidence');
   assert.match(source, /data-preview-node-id=/,
     'curiosity previews need stable node identity so an already-rendered shelf can swap locale evidence');
   assert.doesNotMatch(source, /languages\.indexOf\('en'\) !== -1 \? 'en' : languages\[0\]/,
