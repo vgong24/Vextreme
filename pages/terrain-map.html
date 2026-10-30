@@ -1676,6 +1676,21 @@
     var kind = presentation ? presentation.kind : null;
     if (currentWorld !== 'content' || (currentProfile !== 'evolution-v1' && currentProfile !== 'evolution-v2')) return;
 
+    // Browser Back already restored the parent Terrain semantic snapshot before
+    // this presentation hook runs. When that restored state is the plain parent
+    // presentation, retire any still-active embedded reader locally without
+    // creating another history traversal or rewriting the restored URL.
+    if (!kind) {
+      if (activeEntrySlug) {
+        closeEntryReader({ history:false, writeUrl:false });
+        return;
+      }
+      if (activeReaderId || activeGroupHomeKey) {
+        closeEvolutionReader({ history:false, writeUrl:false });
+      }
+      return;
+    }
+
     if (kind === 'curiosity-overview') {
       var overviewStageIdx = STAGES.findIndex(function (stage) { return String(stage.key) === String(presentation.stageKey); });
       if (overviewStageIdx < 0) return;

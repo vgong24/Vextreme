@@ -597,13 +597,26 @@ test('TERRAIN-VIEW: passive resize never re-enters semantic rendering while the 
   assert.match(source, /window\.addEventListener\('resize', handleTerrainResize\);/);
 });
 
-test('TERRAIN-VIEW: embedded reader navigation replaces iframe history instead of adding a blank Back stop', () => {
+test('TERRAIN-VIEW: browser Back to a plain Terrain presentation retires the embedded reader at the parent history owner', () => {
   const source = pageSource();
+
   assert.match(source, /function replaceEvolutionReaderDocument\(url\)/);
   assert.match(source, /evolutionReaderFrame\.contentWindow\.location\.replace\(target\);/);
   assert.match(source, /replaceEvolutionReaderDocument\(node\.liveUrl\);/);
   assert.match(source, /replaceEvolutionReaderDocument\('about:blank'\);/);
   assert.doesNotMatch(source, /evolutionReaderFrame\.src\s*=/);
+
+  const restore = source.match(/function restoreEvolutionPresentationFromHistory\(state\) \{[\s\S]*?\n  \}/);
+  assert.ok(restore, 'parent presentation-history restore owner must remain extractable');
+  assert.match(restore[0], /if \(!kind\) \{[\s\S]*if \(activeEntrySlug\) \{[\s\S]*closeEntryReader\(\{ history:false, writeUrl:false \}\);[\s\S]*if \(activeReaderId \|\| activeGroupHomeKey\) \{[\s\S]*closeEvolutionReader\(\{ history:false, writeUrl:false \}\);[\s\S]*return;/,
+    'plain parent history must retire whichever embedded Terrain surface is still active without another traversal');
+
+  const entryRoute = source.match(/function handleEntryReaderRouteClick\(event\) \{[\s\S]*?\n  \}/);
+  assert.ok(entryRoute, 'ordered entry route handler must remain extractable');
+  assert.match(entryRoute[0], /if \(!slug \|\| entryDocument\(slug\)\) return;/,
+    'registered entry-to-entry links must preserve native iframe browser history');
+  assert.doesNotMatch(source, /function continueParentHistoryPastBlankReader\(/,
+    'iframe load wiring must not create an automatic extra parent history traversal');
 });
 
 test('TERRAIN-VIEW: embedded same-origin Terrain links return to the parent collection instead of nesting Terrain', () => {
