@@ -1,0 +1,419 @@
+{
+  "_meta": {
+    "scope": "pages.sabotage-open-vex-accountability",
+    "category": "production",
+    "description": "English source strings for the first Sabotage arc preserved-record reader.",
+    "sourceProvenance": {
+      "parentRecord": "github.pull.vextreme.530",
+      "preservedRecord": "records/conversations/2026-10-30-vexlife-interface-compound-relay-open-vex-regression/",
+      "readerSourceFreeze": "d71297354d06b2d8bb9de70646b020af37d0302a",
+      "preservationRule": "TRANSCRIPT_EVIDENCE_IMMUTABLE__DERIVED_PRESENTATION_SEPARATE",
+      "recordedTimePrecision": "ARCHIVE_DATE_ONLY",
+      "recordedTimeAuthority": "REPOSITORY_PRESERVATION_DATE",
+      "arcTitleAuthority": "VICTOR_EXPLICIT_REQUEST",
+      "derivedMedia": "Vextreme-Assets/__assets/125aa01db3e06d8884126860bc69d1de9a7a5981db30ba5e20ddf2813a4e037d.webp",
+      "derivedMediaClass": "REPRESENTATIVE_NOT_EVIDENCE",
+      "derivedMediaSha256": "125aa01db3e06d8884126860bc69d1de9a7a5981db30ba5e20ddf2813a4e037d",
+      "derivedMediaWidth": 480,
+      "derivedMediaHeight": 270,
+      "derivedMediaOrigin": "https://vgong24.github.io/Vextreme-Assets/__assets/125aa01db3e06d8884126860bc69d1de9a7a5981db30ba5e20ddf2813a4e037d.webp",
+      "derivedMediaCustody": "vgong24/Vextreme-Assets",
+      "derivedMediaResolutionClass": "CONTENT_ADDRESSED_VEXTREME_ASSETS",
+      "derivedMediaAcceptedCommit": "54da7b101576703404d1b4c96a0337f94c6c773c",
+      "derivedMediaAcceptedBlob": "320cc60ecf06769731098278c61c114bc4fcb08e",
+      "derivedMediaPinnedSource": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/54da7b101576703404d1b4c96a0337f94c6c773c/__assets/125aa01db3e06d8884126860bc69d1de9a7a5981db30ba5e20ddf2813a4e037d.webp"
+    }
+  },
+  "pages.sabotage-open-vex-accountability.document-title": {
+    "strings": {
+      "en": {
+        "text": "Sabotage I — When Progress Became the Obstruction"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.hero.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Sabotage · Record I · October 30, 2026"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.hero.title": {
+    "strings": {
+      "en": {
+        "text": "Sabotage I — When Progress Became the Obstruction"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.hero.subtitle": {
+    "strings": {
+      "en": {
+        "text": "A broken product forced the debugging process to audit itself."
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.hero.lede": {
+    "strings": {
+      "en": {
+        "text": "Eight exchanges move from frustration over repeated ZIP rounds, through self-created defects and sabotage-effects, into an audit of the handoff language itself. The final successor document is preserved after the conversation that produced it."
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.hero.preservation-label": {
+    "strings": {
+      "en": {
+        "text": "Preservation boundary"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.exchange-label": {
+    "strings": {
+      "en": {
+        "text": "Exchange"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.source-label": {
+    "strings": {
+      "en": {
+        "text": "Frozen transcript · exact source projection"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.open-source": {
+    "strings": {
+      "en": {
+        "text": "Open frozen source ↗"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.loading": {
+    "strings": {
+      "en": {
+        "text": "Loading the preserved exchange…"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.unavailable": {
+    "strings": {
+      "en": {
+        "text": "Preserved source unavailable."
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.previous": {
+    "strings": {
+      "en": {
+        "text": "‹ Previous"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.next": {
+    "strings": {
+      "en": {
+        "text": "Next ›"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.auto-scroll.start-aria": {
+    "strings": {
+      "en": {
+        "text": "Start automatic transcript scrolling"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.auto-scroll.pause-aria": {
+    "strings": {
+      "en": {
+        "text": "Pause automatic transcript scrolling"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.auto-scroll.start-title": {
+    "strings": {
+      "en": {
+        "text": "Start auto-scroll"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.auto-scroll.pause-title": {
+    "strings": {
+      "en": {
+        "text": "Pause auto-scroll"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.auto-scroll.speed": {
+    "strings": {
+      "en": {
+        "text": "Automatic transcript scroll speed"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.auto-scroll.speed-title": {
+    "strings": {
+      "en": {
+        "text": "Automatic scroll speed"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase01.badge": {
+    "strings": {
+      "en": {
+        "text": "Pressure"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase01.title": {
+    "strings": {
+      "en": {
+        "text": "What are these rounds actually doing?"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase01.themes": {
+    "strings": {
+      "en": {
+        "text": "Exchange 01 · ZIP rounds · mistakes · product progress versus process"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase02.badge": {
+    "strings": {
+      "en": {
+        "text": "Regression"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase02.title": {
+    "strings": {
+      "en": {
+        "text": "Are you fixing defects you created?"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase02.themes": {
+    "strings": {
+      "en": {
+        "text": "Exchange 02 · self-created integration debt · stricter gating · visible regression"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase03.badge": {
+    "strings": {
+      "en": {
+        "text": "Sabotage effect"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase03.title": {
+    "strings": {
+      "en": {
+        "text": "Name the effect without inventing the intent"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase03.themes": {
+    "strings": {
+      "en": {
+        "text": "Exchange 03 · sabotage-like behavior · production gating · evidence boundary"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase04.badge": {
+    "strings": {
+      "en": {
+        "text": "Intent"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase04.title": {
+    "strings": {
+      "en": {
+        "text": "Answer your own intent, not only the repository’s"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase04.themes": {
+    "strings": {
+      "en": {
+        "text": "Exchange 04 · plausible distance · responsibility · direct statement"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase05.badge": {
+    "strings": {
+      "en": {
+        "text": "Causal fix"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase05.title": {
+    "strings": {
+      "en": {
+        "text": "Can you actually see how to fix it?"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase05.themes": {
+    "strings": {
+      "en": {
+        "text": "Exchange 05 · Open versus Repair · Home truth · automatic safe recovery · self-healing"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase06.badge": {
+    "strings": {
+      "en": {
+        "text": "Handoff"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase06.title": {
+    "strings": {
+      "en": {
+        "text": "Write the successor around actual progress"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase06.themes": {
+    "strings": {
+      "en": {
+        "text": "Exchange 06 · inherit the product problem · production arrows · human boundary"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase07.badge": {
+    "strings": {
+      "en": {
+        "text": "Self-audit"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase07.title": {
+    "strings": {
+      "en": {
+        "text": "Can responsibility language still hide non-action?"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase07.themes": {
+    "strings": {
+      "en": {
+        "text": "Exchange 07 · indefinite analysis · architectural bias · manipulation-resistant handoff"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase08.badge": {
+    "strings": {
+      "en": {
+        "text": "Closure"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase08.title": {
+    "strings": {
+      "en": {
+        "text": "Close the plausible-deniability gaps"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase08.themes": {
+    "strings": {
+      "en": {
+        "text": "Exchange 08 · executor mistakes · no ceremony-as-progress · act once causality is sufficient"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.successor.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Resulting successor"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.successor.title": {
+    "strings": {
+      "en": {
+        "text": "The anti-stall engineering projection"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.successor.lede": {
+    "strings": {
+      "en": {
+        "text": "This document comes after the eight exchanges. It is preserved separately so the reader can see the accountability conversation before reading the rules it produced."
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.footer": {
+    "strings": {
+      "en": {
+        "text": "Source conversation and successor preserved by Vextreme PR #530. The Sabotage arc is a reader-facing collection selected by Victor; the page does not independently certify malicious intent."
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.media.alt": {
+    "strings": {
+      "en": {
+        "text": "Conceptual companion artwork: tangled process documents, loops, redactions, and checklists become an obstruction while a clear golden path breaks through."
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.media.caption": {
+    "strings": {
+      "en": {
+        "text": "Representative companion artwork generated for this reader after the preserved conversation. Representation ≠ transcript evidence."
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.witness.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Successor witness"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.witness.title": {
+    "strings": {
+      "en": {
+        "text": "A fresh instance reads the whole obstruction"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.witness.lede": {
+    "strings": {
+      "en": {
+        "text": "Derived after the preserved conversation and its resulting successor. This layer records how the assembled sequence reads to a later witness; it does not rewrite the source or certify hidden intent."
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.witness.source-label": {
+    "strings": {
+      "en": {
+        "text": "Derived witness commentary · separate from transcript evidence"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.witness.open-source": {
+    "strings": {
+      "en": {
+        "text": "Open witness source ↗"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.phase-witness-label": {
+    "strings": {
+      "en": {
+        "text": "Witness reading · interpretation, not transcript"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.phase-witness-loading": {
+    "strings": {
+      "en": {
+        "text": "Loading the witness reading…"
+      }
+    }
+  }
+}
