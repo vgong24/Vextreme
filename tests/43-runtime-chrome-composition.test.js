@@ -122,14 +122,15 @@ test('CHROME-RAIL: site nav is full-width and owns a below-nav page-action lane'
   assert.match(source, /#vex-site-nav ~ \[data-vex-page-action\]/);
 });
 
-test('CHROME-RAIL: mobile keeps family coordinates intact and moves Vextreme-only tools onto their own row', () => {
+test('CHROME-RAIL: mobile keeps family coordinates intact and right-aligns page tools on their own row', () => {
   const source = read('styles/site-nav.css');
   assert.match(source, /@media \(max-width: 640px\) \{[\s\S]*?:root \{ --vex-site-nav-height: 93px; \}/);
   assert.match(source, /@media \(max-width: 640px\) \{[\s\S]*?\.vex-nav-inner \{[\s\S]*?flex-wrap: wrap;[\s\S]*?row-gap: 6px;/);
   assert.match(source, /@media \(max-width: 640px\) \{[\s\S]*?\.vex-family-rail \{[\s\S]*?width: 100%;[\s\S]*?margin-right: 0;/);
   assert.match(source, /grid-template-columns:\s*4\.9rem 0\.65rem 4\.7rem 0\.65rem 4\.8rem/);
-  assert.match(source, /@media \(max-width: 640px\) \{[\s\S]*?\.vex-nav-toggle \{ margin-left: auto; \}/);
-  assert.match(source, /\.vex-nav-mobile \{[\s\S]*?top: var\(--vex-site-nav-height\);/);
+  assert.match(source, /@media \(max-width: 640px\) \{[\s\S]*?\.vex-nav-actions \{ margin-left: auto; \}/);
+  assert.doesNotMatch(source, /\.vex-nav-toggle\b/);
+  assert.doesNotMatch(source, /\.vex-nav-mobile\b/);
 });
 
 test('CHROME-RAIL: nav cancels authored body insets without mutating body styles', () => {
