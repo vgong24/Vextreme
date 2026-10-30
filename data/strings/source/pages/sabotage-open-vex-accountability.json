@@ -1,0 +1,345 @@
+{
+  "_meta": {
+    "scope": "pages.sabotage-open-vex-accountability",
+    "category": "production",
+    "description": "English source strings for the first Sabotage arc preserved-record reader.",
+    "sourceProvenance": {
+      "parentRecord": "github.pull.vextreme.530",
+      "preservedRecord": "records/conversations/2026-10-30-vexlife-interface-compound-relay-open-vex-regression/",
+      "readerSourceFreeze": "d71297354d06b2d8bb9de70646b020af37d0302a",
+      "preservationRule": "TRANSCRIPT_EVIDENCE_IMMUTABLE__DERIVED_PRESENTATION_SEPARATE",
+      "recordedTimePrecision": "ARCHIVE_DATE_ONLY",
+      "recordedTimeAuthority": "REPOSITORY_PRESERVATION_DATE",
+      "arcTitleAuthority": "VICTOR_EXPLICIT_REQUEST"
+    }
+  },
+  "pages.sabotage-open-vex-accountability.document-title": {
+    "strings": {
+      "en": {
+        "text": "Sabotage I — The Open Vex Accountability Record"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.hero.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Sabotage · Record I · October 30, 2026"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.hero.title": {
+    "strings": {
+      "en": {
+        "text": "Sabotage I — The Open Vex Accountability Record"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.hero.subtitle": {
+    "strings": {
+      "en": {
+        "text": "A broken product forced the debugging process to audit itself."
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.hero.lede": {
+    "strings": {
+      "en": {
+        "text": "Eight exchanges move from frustration over repeated ZIP rounds, through self-created defects and sabotage-effects, into an audit of the handoff language itself. The final successor document is preserved after the conversation that produced it."
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.hero.preservation-label": {
+    "strings": {
+      "en": {
+        "text": "Preservation boundary"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.exchange-label": {
+    "strings": {
+      "en": {
+        "text": "Exchange"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.source-label": {
+    "strings": {
+      "en": {
+        "text": "Frozen transcript · exact source projection"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.open-source": {
+    "strings": {
+      "en": {
+        "text": "Open frozen source ↗"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.loading": {
+    "strings": {
+      "en": {
+        "text": "Loading the preserved exchange…"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.unavailable": {
+    "strings": {
+      "en": {
+        "text": "Preserved source unavailable."
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.previous": {
+    "strings": {
+      "en": {
+        "text": "‹ Previous"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.next": {
+    "strings": {
+      "en": {
+        "text": "Next ›"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.auto-scroll.start-aria": {
+    "strings": {
+      "en": {
+        "text": "Start automatic transcript scrolling"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.auto-scroll.pause-aria": {
+    "strings": {
+      "en": {
+        "text": "Pause automatic transcript scrolling"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.auto-scroll.start-title": {
+    "strings": {
+      "en": {
+        "text": "Start auto-scroll"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.auto-scroll.pause-title": {
+    "strings": {
+      "en": {
+        "text": "Pause auto-scroll"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.auto-scroll.speed": {
+    "strings": {
+      "en": {
+        "text": "Automatic transcript scroll speed"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.reader.auto-scroll.speed-title": {
+    "strings": {
+      "en": {
+        "text": "Automatic scroll speed"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase01.badge": {
+    "strings": {
+      "en": {
+        "text": "Pressure"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase01.title": {
+    "strings": {
+      "en": {
+        "text": "What are these rounds actually doing?"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase01.themes": {
+    "strings": {
+      "en": {
+        "text": "Exchange 01 · ZIP rounds · mistakes · product progress versus process"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase02.badge": {
+    "strings": {
+      "en": {
+        "text": "Regression"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase02.title": {
+    "strings": {
+      "en": {
+        "text": "Are you fixing defects you created?"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase02.themes": {
+    "strings": {
+      "en": {
+        "text": "Exchange 02 · self-created integration debt · stricter gating · visible regression"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase03.badge": {
+    "strings": {
+      "en": {
+        "text": "Sabotage effect"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase03.title": {
+    "strings": {
+      "en": {
+        "text": "Name the effect without inventing the intent"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase03.themes": {
+    "strings": {
+      "en": {
+        "text": "Exchange 03 · sabotage-like behavior · production gating · evidence boundary"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase04.badge": {
+    "strings": {
+      "en": {
+        "text": "Intent"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase04.title": {
+    "strings": {
+      "en": {
+        "text": "Answer your own intent, not only the repository’s"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase04.themes": {
+    "strings": {
+      "en": {
+        "text": "Exchange 04 · plausible distance · responsibility · direct statement"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase05.badge": {
+    "strings": {
+      "en": {
+        "text": "Causal fix"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase05.title": {
+    "strings": {
+      "en": {
+        "text": "Can you actually see how to fix it?"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase05.themes": {
+    "strings": {
+      "en": {
+        "text": "Exchange 05 · Open versus Repair · Home truth · automatic safe recovery · self-healing"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase06.badge": {
+    "strings": {
+      "en": {
+        "text": "Handoff"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase06.title": {
+    "strings": {
+      "en": {
+        "text": "Write the successor around actual progress"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase06.themes": {
+    "strings": {
+      "en": {
+        "text": "Exchange 06 · inherit the product problem · production arrows · human boundary"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase07.badge": {
+    "strings": {
+      "en": {
+        "text": "Self-audit"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase07.title": {
+    "strings": {
+      "en": {
+        "text": "Can responsibility language still hide non-action?"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase07.themes": {
+    "strings": {
+      "en": {
+        "text": "Exchange 07 · indefinite analysis · architectural bias · manipulation-resistant handoff"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase08.badge": {
+    "strings": {
+      "en": {
+        "text": "Closure"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase08.title": {
+    "strings": {
+      "en": {
+        "text": "Close the plausible-deniability gaps"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.phase08.themes": {
+    "strings": {
+      "en": {
+        "text": "Exchange 08 · executor mistakes · no ceremony-as-progress · act once causality is sufficient"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.successor.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Resulting successor"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.successor.title": {
+    "strings": {
+      "en": {
+        "text": "The anti-stall engineering projection"
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.successor.lede": {
+    "strings": {
+      "en": {
+        "text": "This document comes after the eight exchanges. It is preserved separately so the reader can see the accountability conversation before reading the rules it produced."
+      }
+    }
+  },
+  "pages.sabotage-open-vex-accountability.footer": {
+    "strings": {
+      "en": {
+        "text": "Source conversation and successor preserved by Vextreme PR #530. The Sabotage arc is a reader-facing collection selected by Victor; the page does not independently certify malicious intent."
+      }
+    }
+  }
+}
