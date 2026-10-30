@@ -406,7 +406,9 @@ test('TERRAIN-VIEW: ordered entry same-origin page links are either entry-owned 
   const source = pageSource();
   assert.match(source, /function handleEntryReaderRouteClick\(event\)/);
   assert.match(source, /if \(!anchor \|\| anchor\.hasAttribute\('data-terrain-action'\)\) return;/);
-  assert.match(source, /if \(!slug \|\| entryDocument\(slug\)\) return;/);
+  assert.match(source, /if \(!slug\) return;/);
+  assert.match(source, /if \(entryDocument\(slug\)\) \{[\s\S]*event\.preventDefault\(\);[\s\S]*openEntryReader\(slug, \{ historyMode:'replace' \}\);[\s\S]*return;/,
+    'registered entry-to-entry links must remain one replace-based Terrain reader presentation');
   assert.match(source, /openRepositoryRouteInTerrain\(slug, \{[\s\S]*returnKind:'entry',[\s\S]*returnEntrySlug:originEntrySlug,[\s\S]*historyMode:'push'/);
   assert.match(source, /function openGroupHomeRouteInTerrain\(slug, options\)[\s\S]*returnKind:options\.returnKind \|\| \(originReaderId \? 'reader' : 'collection'\)[\s\S]*returnEntrySlug:options\.returnEntrySlug/);
   assert.match(source, /entryReturnPush = activeReaderReturnKind === 'entry' && options\.historyMode === 'push'[\s\S]*commitSemanticState\([\s\S]*syncPresentationUrl\('replace', 'reader'/);
@@ -597,13 +599,33 @@ test('TERRAIN-VIEW: passive resize never re-enters semantic rendering while the 
   assert.match(source, /window\.addEventListener\('resize', handleTerrainResize\);/);
 });
 
-test('TERRAIN-VIEW: embedded reader navigation replaces iframe history instead of adding a blank Back stop', () => {
+test('TERRAIN-VIEW: embedded reader navigation cannot strand browser Back on child about:blank history', () => {
   const source = pageSource();
+
   assert.match(source, /function replaceEvolutionReaderDocument\(url\)/);
   assert.match(source, /evolutionReaderFrame\.contentWindow\.location\.replace\(target\);/);
   assert.match(source, /replaceEvolutionReaderDocument\(node\.liveUrl\);/);
   assert.match(source, /replaceEvolutionReaderDocument\('about:blank'\);/);
   assert.doesNotMatch(source, /evolutionReaderFrame\.src\s*=/);
+
+  const entryRoute = source.match(/function handleEntryReaderRouteClick\(event\) \{[\s\S]*?\n  \}/);
+  assert.ok(entryRoute, 'ordered entry route handler must remain extractable');
+  assert.match(entryRoute[0], /if \(entryDocument\(slug\)\) \{[\s\S]*event\.preventDefault\(\);[\s\S]*openEntryReader\(slug, \{ historyMode:'replace' \}\);[\s\S]*return;/,
+    'entry-to-entry navigation must stay inside the replace-based Terrain reader owner instead of adding iframe history');
+
+  const blankRecovery = source.match(/function continueParentHistoryPastBlankReader\(doc\) \{[\s\S]*?\n  \}/);
+  assert.ok(blankRecovery, 'blank child-history recovery must remain extractable');
+  assert.match(blankRecovery[0], /!activeEntrySlug && !activeReaderId && !activeGroupHomeKey/,
+    'blank recovery must only act while Terrain still owns an active embedded surface');
+  assert.match(blankRecovery[0], /doc\.location\.href !== 'about:blank'/,
+    'only the meaningless blank child-history stop may be consumed automatically');
+  assert.match(blankRecovery[0], /window\.history\.back\(\);/,
+    'blank child traversal must continue into the existing parent presentation-history owner');
+
+  const wire = source.match(/function wireEvolutionReaderDocument\(\) \{[\s\S]*?\n  \}/);
+  assert.ok(wire, 'reader load wiring must remain extractable');
+  assert.match(wire[0], /if \(continueParentHistoryPastBlankReader\(doc\)\) return;/,
+    'blank-history recovery must run before entry or record document wiring');
 });
 
 test('TERRAIN-VIEW: embedded same-origin Terrain links return to the parent collection instead of nesting Terrain', () => {

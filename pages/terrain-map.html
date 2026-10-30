@@ -2163,7 +2163,15 @@
     if (!anchor || anchor.hasAttribute('data-terrain-action')) return;
     var href = anchor.getAttribute('href') || '';
     var slug = repositorySlugFromHref(href);
-    if (!slug || entryDocument(slug)) return;
+    if (!slug) return;
+    if (entryDocument(slug)) {
+      // Ordered entry documents remain one Terrain-owned reader presentation.
+      // Replace the iframe document and current entry presentation instead of
+      // letting ordinary anchor navigation add a child browser-history stop.
+      event.preventDefault();
+      openEntryReader(slug, { historyMode:'replace' });
+      return;
+    }
     var originEntrySlug = activeEntrySlug;
     if (!originEntrySlug) return;
     if (!openRepositoryRouteInTerrain(slug, {
@@ -2409,10 +2417,24 @@
     }
   }
 
+  function continueParentHistoryPastBlankReader(doc) {
+    if (!activeEntrySlug && !activeReaderId && !activeGroupHomeKey) return false;
+    if (!doc || !doc.location || doc.location.href !== 'about:blank') return false;
+
+    // Browser Back/Forward is a flattened history across the parent and iframe.
+    // If a stale child-history entry still reaches about:blank while Terrain
+    // owns an active embedded surface, consume only that meaningless child stop
+    // and let the existing parent presentation-history owner restore the real
+    // arrival / collection / nested return coordinate.
+    window.history.back();
+    return true;
+  }
+
   function wireEvolutionReaderDocument() {
     try {
       var doc = evolutionReaderFrame.contentDocument;
       if (!doc) return;
+      if (continueParentHistoryPastBlankReader(doc)) return;
       if (activeEntrySlug) {
         syncEntryReaderFromDocument();
         doc.addEventListener('click', handleEntryReaderRouteClick);

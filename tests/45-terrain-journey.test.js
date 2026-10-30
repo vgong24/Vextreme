@@ -826,10 +826,12 @@ test('TERRAIN-JOURNEY: ordered entry repository routes preserve current entry id
   assert.ok(handlerStart > 0 && handlerEnd > handlerStart, 'entry route handler must remain extractable');
   const handlerSource = source.slice(handlerStart, handlerEnd);
 
+  const replacedEntries = [];
   const routed = [];
   const handler = new Function(
     'repositorySlugFromHref',
     'entryDocument',
+    'openEntryReader',
     'openRepositoryRouteInTerrain',
     [
       "var activeEntrySlug = 'receive-god';",
@@ -842,6 +844,9 @@ test('TERRAIN-JOURNEY: ordered entry repository routes preserve current entry id
       return match ? match[1] : null;
     },
     (slug) => slug === 'receive-god' || slug === 'take-a-walk' ? { slug } : null,
+    (slug, options) => {
+      replacedEntries.push({ slug, options });
+    },
     (slug, options) => {
       routed.push({ slug, options });
       return true;
@@ -865,12 +870,18 @@ test('TERRAIN-JOURNEY: ordered entry repository routes preserve current entry id
 
   const nextEntry = eventFor('take-a-walk.html', false);
   handler(nextEntry.event);
-  assert.equal(nextEntry.prevented(), false, 'registered entry-to-entry navigation remains native inside the ordered entry reader');
+  assert.equal(nextEntry.prevented(), true,
+    'registered entry-to-entry navigation stays inside the Terrain reader owner rather than adding child browser history');
+  assert.deepEqual(replacedEntries, [{
+    slug:'take-a-walk',
+    options:{ historyMode:'replace' }
+  }]);
   assert.equal(routed.length, 0);
 
   const ownedEntryAction = eventFor('terrain-map.html?view=content', true);
   handler(ownedEntryAction.event);
   assert.equal(ownedEntryAction.prevented(), false, 'entry-owned Terrain actions remain with their existing postMessage owner');
+  assert.equal(replacedEntries.length, 1);
   assert.equal(routed.length, 0);
 
   const repositoryPage = eventFor('restoration-protocol.html', false);
