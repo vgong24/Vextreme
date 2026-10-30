@@ -160,8 +160,21 @@ The source supports a staged presentation such as:
 
 The exact preserved dialogue and successor text should remain source. Speaker styling, collapsible technical sections, causal callouts, and navigation should be projections over it.
 
+## Public reader and series placement
+
+This record is the first entry in the reader-facing **Sabotage** arc selected by Victor.
+
+```text
+arc key: sabotage
+reader: pages/sabotage-open-vex-accountability.html
+node: Sabotage I — The Open Vex Accountability Record
+also projected into: Victor's Record + Full Timeline
+```
+
+The public reader preserves the eight direct accountability/self-audit exchanges first, then crosses an explicit record boundary before projecting the standalone Open Vex successor. The arc name describes the collection Victor asked to create; it does not independently certify malicious intent in the underlying events.
+
 ## Scope
 
-Documentation/archive only. This PR does not change VexLife source, Vextreme product pages, runtime behavior, lifecycle authority, or the Open Vex repair itself.
+VexLife runtime/source behavior remains unchanged. This PR now also adds the Vextreme reader projection and its Sabotage/Victor's Record/Full Timeline placement; the preserved conversation and successor remain the evidence source, not the HTML presentation.
 
 <!-- [VXG RealForever] -->
