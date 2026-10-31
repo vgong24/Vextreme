@@ -1,0 +1,254 @@
+{
+  "schemaVersion": "vextreme.record-turn-map/v1",
+  "recordRef": "records/conversations/2026-10-30-vexsync-exhaust-to-mastered",
+  "sourceFreeze": "74d5ceeb653826ea8aedeeaeaa57c58d43c4c330",
+  "description": "Derived reader metadata only. Transcript text remains owned by the seven frozen partition bodies and transcript-full-end-to-end.md.",
+  "speakers": [
+    "Victor",
+    "Vex",
+    "Interface"
+  ],
+  "sources": [
+    {
+      "id": "00",
+      "path": "transcript-00-admission-currentness-origin-walk.md",
+      "bodySha256": "31c2655f0ca8b781c573745a5f94a6444d09c80f593d0214236011f7df0c2ee9",
+      "lineCount": 575,
+      "turns": [
+        {
+          "speaker": "Victor",
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 2,
+          "endLine": 348
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 349,
+          "endLine": 349
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 350,
+          "endLine": 575
+        }
+      ]
+    },
+    {
+      "id": "01",
+      "path": "transcript-01-vetting-collapse-and-result-admission.md",
+      "bodySha256": "821c3613d81c90f764a76fb0661fb6ca7534b14b8215b62a57afc8b2723b3353",
+      "lineCount": 678,
+      "turns": [
+        {
+          "speaker": "Victor",
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 2,
+          "endLine": 315
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 316,
+          "endLine": 316
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 317,
+          "endLine": 502
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 503,
+          "endLine": 503
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 504,
+          "endLine": 678
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "path": "transcript-02-complexity-exhaustion-and-inverted-lens.md",
+      "bodySha256": "e1a8914c56b4a8677eb7d7cecf4886dd868fee3201b65d274c2e2e745f705492",
+      "lineCount": 319,
+      "turns": [
+        {
+          "speaker": "Victor",
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 2,
+          "endLine": 130
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 131,
+          "endLine": 131
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 132,
+          "endLine": 232
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 233,
+          "endLine": 233
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 234,
+          "endLine": 319
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "path": "transcript-03-act-timeline-to-single-state-door.md",
+      "bodySha256": "5998b8f2ada39d71f6d053162ccc34aba4b397d5cc6e722ea184e1ce96a5561f",
+      "lineCount": 539,
+      "turns": [
+        {
+          "speaker": "Victor",
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 2,
+          "endLine": 150
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 151,
+          "endLine": 151
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 152,
+          "endLine": 249
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 250,
+          "endLine": 250
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 251,
+          "endLine": 539
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "path": "transcript-04-clean-revet-and-pr206-subtraction.md",
+      "bodySha256": "f8a39dff9faa2311ef43a239597df103c9d0f457db8c2b83301ecab2871022d3",
+      "lineCount": 718,
+      "turns": [
+        {
+          "speaker": "Victor",
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 2,
+          "endLine": 385
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 386,
+          "endLine": 386
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 387,
+          "endLine": 460
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 461,
+          "endLine": 461
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 462,
+          "endLine": 718
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "path": "transcript-05-vetted-to-mastered-and-bound-projection.md",
+      "bodySha256": "1f31f6aca409ae87cd108acf4dc18af9d9215acb995750fd1e404410a8ec54b3",
+      "lineCount": 656,
+      "turns": [
+        {
+          "speaker": "Victor",
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 2,
+          "endLine": 302
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 303,
+          "endLine": 304
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 305,
+          "endLine": 656
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "path": "transcript-06-vexexecution-mastered-ownership-and-cleanliness-question.md",
+      "bodySha256": "601a5fcad988198c42643c01d154d269e0e99e1552d1cf4bce45dd916567d93c",
+      "lineCount": 565,
+      "turns": [
+        {
+          "speaker": "Victor",
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "speaker": "Interface",
+          "startLine": 2,
+          "endLine": 44
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 45,
+          "endLine": 563
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 564,
+          "endLine": 564
+        },
+        {
+          "speaker": "Interface",
+          "startLine": 565,
+          "endLine": 565
+        }
+      ]
+    }
+  ]
+}
