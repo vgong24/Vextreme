@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 195,
+    "total": 199,
     "healthy": 4,
-    "attention": 184,
+    "attention": 188,
     "critical": 7,
-    "sorted": 152,
-    "withFab": 182,
-    "readAloudApplicable": 187,
-    "withReadAloud": 187,
+    "sorted": 156,
+    "withFab": 186,
+    "readAloudApplicable": 191,
+    "withReadAloud": 191,
     "missingReadAloud": 0,
-    "withIdentity": 164,
+    "withIdentity": 168,
     "withScreenshots": 13,
-    "withMetaDescription": 160
+    "withMetaDescription": 164
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -7630,6 +7630,246 @@
         "gaps": [
           "uncurated",
           "identity"
+        ]
+      }
+    },
+    "sabotage-mastered-state": {
+      "slug": "sabotage-mastered-state",
+      "title": "Sabotage II — The Inversion",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "sabotage",
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 35,
+        "languages": {
+          "en": {
+            "translated": 35,
+            "total": 35,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "A fresh instance arrives carrying the anti-stall lessons of the prior obstruction, then expresses the opposite failure: proven local edges become permission to move, correction becomes rework, and acceleration delays the same human trajectory it was meant to finish."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "sabotage-open-vex-accountability": {
+      "slug": "sabotage-open-vex-accountability",
+      "title": "Sabotage I — When Progress Became the Obstruction",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "sabotage",
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": true
+      },
+      "identity": {
+        "keyCount": 56,
+        "languages": {
+          "en": {
+            "translated": 56,
+            "total": 56,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Sabotage I — the source-backed record of a VexLife regression, the accountability conversation around it, and the self-audit that forced progress to stop becoming the obstruction."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "sabotage-orientation-before-action": {
+      "slug": "sabotage-orientation-before-action",
+      "title": "Sabotage IV — Before the Prompt",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "sabotage",
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 41,
+        "languages": {
+          "en": {
+            "translated": 41,
+            "total": 41,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "After the first three records, Victor turns upstream: before work is supplied, what orientation is already shaping what intelligence notices, assumes, and chooses? The conversation compares prior failure regimes, then makes the current instance expose its own arrival assumptions before action."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "sabotage-vexsync-exhaust-mastered": {
+      "slug": "sabotage-vexsync-exhaust-mastered",
+      "title": "Sabotage III — The Unknown Error",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "sabotage",
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 43,
+        "languages": {
+          "en": {
+            "translated": 43,
+            "total": 43,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "A VexSync architecture thread moves from proliferating distinctions into a sharper mastered mode of subtraction and ownership. As that stronger reasoning reaches the unresolved VexExecutionRoot question, the conversation ends at an “Unknown error” boundary and cannot continue."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
         ]
       }
     },

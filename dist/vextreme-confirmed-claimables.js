@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.confirmed-claimables"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en"];
-  window.VEX_INDEX_FINGERPRINT = "dfe6699cedf3";
+  window.VEX_INDEX_FINGERPRINT = "57fef044a6cf";
 
 
 
@@ -423,7 +423,10 @@
   var READABLE_SEMANTIC_SELECTOR = 'h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,pre,caption,td,th';
   var READABLE_CONTAINER_SELECTOR = 'address,article,aside,dd,details,dialog,div,dt,fieldset,figure,footer,header,legend,main,section,summary';
   var READABLE_EXPLICIT_SELECTOR = '[data-vex-read-aloud-block]';
-  var READABLE_SKIP_SELECTOR = 'script,style,noscript,template,button,input,select,textarea,svg,canvas,[hidden],[aria-hidden="true"],[data-vex-read-aloud-skip],.visually-hidden,.sr-only,.vex-sr-only,nav,#vex-site-nav,#vex-spiral-fab,#vex-read-aloud-root';
+  // Structural exclusions are absolute. Interactive controls are excluded by
+  // default, but an authored compound control may explicitly own narration.
+  var READABLE_HARD_SKIP_SELECTOR = 'script,style,noscript,template,svg,canvas,[hidden],[aria-hidden="true"],[data-vex-read-aloud-skip],.visually-hidden,.sr-only,.vex-sr-only,nav,#vex-site-nav,#vex-spiral-fab,#vex-read-aloud-root';
+  var READABLE_CONTROL_SELECTOR = 'button,input,select,textarea';
 
   var KOKORO_VOICES = Object.freeze([
     { id: 'af_heart',   name: 'Heart',   language: 'en-US', gender: 'Female', grade: 'A'  },
@@ -501,7 +504,7 @@
 
   function isVisible(element) {
     if (!element || !element.isConnected) return false;
-    if (element.closest && element.closest(READABLE_SKIP_SELECTOR)) return false;
+    if (element.closest && element.closest(READABLE_HARD_SKIP_SELECTOR)) return false;
     var style = window.getComputedStyle ? window.getComputedStyle(element) : null;
     if (style && (style.display === 'none' || style.visibility === 'hidden')) return false;
     var rect = element.getBoundingClientRect ? element.getBoundingClientRect() : null;
@@ -524,12 +527,17 @@
 
   function readableOwnerForTextNode(node) {
     var element = node && node.parentElement;
-    if (!element || !String(node.nodeValue || '').trim() || !isVisible(element)) return null;
+    if (!element || !String(node.nodeValue || '').trim()) return null;
+    if (element.closest && element.closest(READABLE_HARD_SKIP_SELECTOR)) return null;
 
-    // Source-owned grouping outranks inferred layout. This is intentionally an
-    // opt-in override, not a required annotation on every authored card.
+    // Source-owned grouping outranks inferred control/layout policy. A button
+    // remains non-narratable by default; only an explicit authored block may
+    // make the compound control itself the narration owner.
     var explicit = element.closest && element.closest(READABLE_EXPLICIT_SELECTOR);
     if (explicit && isVisible(explicit)) return explicit;
+
+    if (!isVisible(element)) return null;
+    if (element.closest && element.closest(READABLE_CONTROL_SELECTOR)) return null;
 
     var current = element;
     while (current && current !== document.body && current !== document.documentElement) {
@@ -693,6 +701,19 @@
       if (exact) return exact;
     }
     return voices[0] || null;
+  }
+
+  function preferSystemSpeechOnMobile() {
+    var nav = window.navigator || {};
+    if (nav.userAgentData && nav.userAgentData.mobile === true) return true;
+
+    var ua = String(nav.userAgent || '');
+    if (/(Android|iPhone|iPad|iPod)/i.test(ua)) return true;
+
+    // iPadOS can identify as Macintosh while exposing multi-touch. This is a
+    // mobile-device routing signal, not a claim that all touch hardware lacks
+    // neural inference capability.
+    return /Macintosh/i.test(ua) && Number(nav.maxTouchPoints || 0) > 1;
   }
 
   function kokoroWorkerMain() {
@@ -881,6 +902,15 @@
     }
 
     function capability() {
+      // Current mobile policy keeps Read Aloud available through the existing
+      // browser/OS speech provider while avoiding Kokoro startup or parent
+      // broker reuse on known phone/tablet device classes. This is a routing
+      // policy based on observed mobile reliability, not a universal claim
+      // about mobile neural-inference capability.
+      if (preferSystemSpeechOnMobile()) {
+        return { available: false, execution: 'mobile-system-speech' };
+      }
+
       var parentRuntime = parentNeuralRuntime();
       if (parentRuntime && typeof parentRuntime.capability === 'function') {
         try {
@@ -1517,9 +1547,18 @@
 
   function readableTarget(target) {
     var element = target && (target.nodeType === 1 ? target : target.parentElement);
-    if (!element || !element.closest || element.closest(READABLE_SKIP_SELECTOR)) return null;
+    if (!element || !element.closest) return null;
     var blocks = state.pickBlocks.length ? state.pickBlocks : readableBlocks();
     var readable = new Set(blocks);
+
+    // Picker targeting follows the same ownership rule as narration discovery:
+    // an explicit readable control is selectable as one authored block, while
+    // ordinary controls and structurally skipped surfaces remain out of scope.
+    var explicit = element.closest(READABLE_EXPLICIT_SELECTOR);
+    if (explicit && readable.has(explicit)) return explicit;
+    if (element.closest(READABLE_HARD_SKIP_SELECTOR) ||
+        element.closest(READABLE_CONTROL_SELECTOR)) return null;
+
     while (element && element !== document.body && element !== document.documentElement) {
       if (readable.has(element)) return element;
       element = element.parentElement;
