@@ -80,7 +80,7 @@ test('SABOTAGE-II: reader is one continuous source-first conversation with compa
   const page = read('pages/sabotage-mastered-state.html');
 
   assert.match(page, /class="sar-page sar-page--continuous"/);
-  assert.equal((page.match(/class="sar-tab/g) || []).length, 7);
+  assert.equal((page.match(/<a class="sar-tab/g) || []).length, 6);
   assert.equal((page.match(/data-sar-tab="movement-/g) || []).length, 6);
   assert.doesNotMatch(page, /class="sar-provenance"/);
   assert.doesNotMatch(page, /class="sar-index"/);
