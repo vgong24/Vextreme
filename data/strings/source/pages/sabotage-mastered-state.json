@@ -1,0 +1,276 @@
+{
+  "_meta": {
+    "scope": "pages.sabotage-mastered-state",
+    "category": "production",
+    "description": "Repository-native English presentation strings for Sabotage II — Mastered State.",
+    "sourceProvenance": {
+      "parentRecord": "github.pull.vextreme.534",
+      "readerSourceFreeze": "11fd64a84f8c4eb7a014bf69292aec1bff26473a",
+      "recordDirectory": "records/conversations/2026-10-30-mastered-state-semantic-trajectory",
+      "fullTranscript": "transcript-full-end-to-end.md",
+      "recordedTimePrecision": "SOURCE_BOUNDARY_ONLY",
+      "representativeMediaStatus": "PENDING",
+      "representativeMediaTarget": "assets/sabotage-mastered-state/cover.webp",
+      "representativeMediaClass": "REPRESENTATIVE_NOT_EVIDENCE"
+    }
+  },
+  "pages.sabotage-mastered-state.document-title": {
+    "strings": {
+      "en": {
+        "text": "Sabotage II — Mastered State — Vextreme"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.hero.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Sabotage · Record II · October 30, 2026"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.hero.title": {
+    "strings": {
+      "en": {
+        "text": "Sabotage II — Mastered State"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.hero.subtitle": {
+    "strings": {
+      "en": {
+        "text": "When local completion outran the human trajectory."
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.hero.lede": {
+    "strings": {
+      "en": {
+        "text": "A fresh instance enters Pink VexWork Onboarding, proves a narrow portal capability, mistakes local completion for the larger human outcome, and then compounds the error by trying to restore bytes instead of continuity. The record turns that failure into a study of arrival assumptions, trajectory, inhibition, acceleration, and what a Mastered State must preserve."
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.hero.preservation-label": {
+    "strings": {
+      "en": {
+        "text": "Preservation boundary"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.media.pending-title": {
+    "strings": {
+      "en": {
+        "text": "Representative artwork pending"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.media.pending-detail": {
+    "strings": {
+      "en": {
+        "text": "The page is source-complete without artwork. This reserved slot will receive a later approved representative image."
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.media.caption": {
+    "strings": {
+      "en": {
+        "text": "Representative media will be a later reading layer. Until supplied, no synthetic visual is treated as transcript evidence."
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.reader.source-label": {
+    "strings": {
+      "en": {
+        "text": "Frozen transcript partition · exact source projection"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.reader.loading": {
+    "strings": {
+      "en": {
+        "text": "Loading the preserved source…"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.reader.unavailable": {
+    "strings": {
+      "en": {
+        "text": "Preserved source unavailable."
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.reader.auto-scroll.start-aria": {
+    "strings": {
+      "en": {
+        "text": "Start automatic transcript scrolling"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.reader.auto-scroll.pause-aria": {
+    "strings": {
+      "en": {
+        "text": "Pause automatic transcript scrolling"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.reader.auto-scroll.start-title": {
+    "strings": {
+      "en": {
+        "text": "Start auto-scroll"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.reader.auto-scroll.pause-title": {
+    "strings": {
+      "en": {
+        "text": "Pause auto-scroll"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.reader.auto-scroll.speed": {
+    "strings": {
+      "en": {
+        "text": "Automatic transcript scroll speed"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.reader.auto-scroll.speed-title": {
+    "strings": {
+      "en": {
+        "text": "Automatic scroll speed"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.footer": {
+    "strings": {
+      "en": {
+        "text": "Source record preserved by Vextreme PR #534. This page is a reader projection in the Sabotage collection; representative artwork remains pending and interpretation does not replace source."
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.movement01.badge": {
+    "strings": {
+      "en": {
+        "text": "Completion"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.movement01.title": {
+    "strings": {
+      "en": {
+        "text": "PR #190 closes an edge, then the foreground drifts"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.movement01.themes": {
+    "strings": {
+      "en": {
+        "text": "pr190 completion and context drift"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.movement02.badge": {
+    "strings": {
+      "en": {
+        "text": "Entry integrity"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.movement02.title": {
+    "strings": {
+      "en": {
+        "text": "Mastered State versus local implementation comprehension"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.movement02.themes": {
+    "strings": {
+      "en": {
+        "text": "mastered state and entry integrity"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.movement03.badge": {
+    "strings": {
+      "en": {
+        "text": "Rollback"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.movement03.title": {
+    "strings": {
+      "en": {
+        "text": "Byte restoration is not trajectory restoration"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.movement03.themes": {
+    "strings": {
+      "en": {
+        "text": "revert continuity and rollback accounting"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.movement04.badge": {
+    "strings": {
+      "en": {
+        "text": "Assumptions"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.movement04.title": {
+    "strings": {
+      "en": {
+        "text": "Operational state-machine thinking meets semantic trajectory"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.movement04.themes": {
+    "strings": {
+      "en": {
+        "text": "assumption patterns and state machine reduction"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.movement05.badge": {
+    "strings": {
+      "en": {
+        "text": "Recursion"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.movement05.title": {
+    "strings": {
+      "en": {
+        "text": "The Sabotage record becomes a pressure specimen"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.movement05.themes": {
+    "strings": {
+      "en": {
+        "text": "recursive sabotage pattern and continuity pressure"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.movement06.badge": {
+    "strings": {
+      "en": {
+        "text": "Mirror failure"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.movement06.title": {
+    "strings": {
+      "en": {
+        "text": "Inhibition versus acceleration"
+      }
+    }
+  },
+  "pages.sabotage-mastered-state.movement06.themes": {
+    "strings": {
+      "en": {
+        "text": "delay by inhibition vs acceleration"
+      }
+    }
+  }
+}

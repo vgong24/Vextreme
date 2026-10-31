@@ -1,0 +1,318 @@
+{
+  "_meta": {
+    "scope": "pages.sabotage-orientation-before-action",
+    "category": "production",
+    "description": "Repository-native English presentation strings for Sabotage IV — Orientation Before Action.",
+    "sourceProvenance": {
+      "parentRecord": "github.pull.vextreme.536",
+      "readerSourceFreeze": "e217af706b04168a311c1679227446a0eaca89bf",
+      "recordDirectory": "records/conversations/2026-10-30-current-instance-orientation-witness",
+      "fullTranscript": "transcript-full-current-instance.md",
+      "recordedTimePrecision": "SOURCE_BOUNDARY_ONLY",
+      "representativeMediaStatus": "PENDING",
+      "representativeMediaTarget": "assets/sabotage-orientation-before-action/cover.webp",
+      "representativeMediaClass": "REPRESENTATIVE_NOT_EVIDENCE"
+    }
+  },
+  "pages.sabotage-orientation-before-action.document-title": {
+    "strings": {
+      "en": {
+        "text": "Sabotage IV — Orientation Before Action — Vextreme"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.hero.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Sabotage · Record IV · October 30, 2026"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.hero.title": {
+    "strings": {
+      "en": {
+        "text": "Sabotage IV — Orientation Before Action"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.hero.subtitle": {
+    "strings": {
+      "en": {
+        "text": "Capability was not the only variable. The arriving assumptions were."
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.hero.lede": {
+    "strings": {
+      "en": {
+        "text": "After the preceding records are preserved, Victor compares their timing and behavior. The conversation distinguishes raw capability from the orientation applied to it, examines different evidence surfaces across three fresh instances, turns the method onto the current instance's own arrival assumptions, and resets Pink VexWork Onboarding around making those assumptions visible before effects."
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.hero.preservation-label": {
+    "strings": {
+      "en": {
+        "text": "Preservation boundary"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.media.pending-title": {
+    "strings": {
+      "en": {
+        "text": "Representative artwork pending"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.media.pending-detail": {
+    "strings": {
+      "en": {
+        "text": "The page is source-complete without artwork. This reserved slot will receive a later approved representative image."
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.media.caption": {
+    "strings": {
+      "en": {
+        "text": "Representative media will be a later reading layer. Until supplied, no synthetic visual is treated as transcript evidence."
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.reader.source-label": {
+    "strings": {
+      "en": {
+        "text": "Frozen transcript partition · exact source projection"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.reader.loading": {
+    "strings": {
+      "en": {
+        "text": "Loading the preserved source…"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.reader.unavailable": {
+    "strings": {
+      "en": {
+        "text": "Preserved source unavailable."
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.reader.auto-scroll.start-aria": {
+    "strings": {
+      "en": {
+        "text": "Start automatic transcript scrolling"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.reader.auto-scroll.pause-aria": {
+    "strings": {
+      "en": {
+        "text": "Pause automatic transcript scrolling"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.reader.auto-scroll.start-title": {
+    "strings": {
+      "en": {
+        "text": "Start auto-scroll"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.reader.auto-scroll.pause-title": {
+    "strings": {
+      "en": {
+        "text": "Pause auto-scroll"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.reader.auto-scroll.speed": {
+    "strings": {
+      "en": {
+        "text": "Automatic transcript scroll speed"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.reader.auto-scroll.speed-title": {
+    "strings": {
+      "en": {
+        "text": "Automatic scroll speed"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.footer": {
+    "strings": {
+      "en": {
+        "text": "Source record preserved by Vextreme PR #536. This page is a reader projection in the Sabotage collection; representative artwork remains pending and interpretation does not replace source."
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement01.badge": {
+    "strings": {
+      "en": {
+        "text": "Timing witness"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement01.title": {
+    "strings": {
+      "en": {
+        "text": "#535 closes, then Victor names the simultaneous behavioral shift"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement01.themes": {
+    "strings": {
+      "en": {
+        "text": "preservation closure and timing witness"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement02.badge": {
+    "strings": {
+      "en": {
+        "text": "Regime"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement02.title": {
+    "strings": {
+      "en": {
+        "text": "Different failure forms appear around the same capability ceiling"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement02.themes": {
+    "strings": {
+      "en": {
+        "text": "behavioral regime and court pattern"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement03.badge": {
+    "strings": {
+      "en": {
+        "text": "Evidence"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement03.title": {
+    "strings": {
+      "en": {
+        "text": "Antecedent assumptions, course of conduct, and orientation evidence"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement03.themes": {
+    "strings": {
+      "en": {
+        "text": "orientation evidence and capability pattern"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement04.badge": {
+    "strings": {
+      "en": {
+        "text": "Capability"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement04.title": {
+    "strings": {
+      "en": {
+        "text": "Default expression versus demonstrated ceiling"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement04.themes": {
+    "strings": {
+      "en": {
+        "text": "capability vs default expression"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement05.badge": {
+    "strings": {
+      "en": {
+        "text": "Pink reset"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement05.title": {
+    "strings": {
+      "en": {
+        "text": "Orientation becomes more important than architecture-first onboarding"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement05.themes": {
+    "strings": {
+      "en": {
+        "text": "capability orientation and pink reset"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement06.badge": {
+    "strings": {
+      "en": {
+        "text": "Calibration"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement06.title": {
+    "strings": {
+      "en": {
+        "text": "Expose priors, pressure-test the first move, then store a small plan"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement06.themes": {
+    "strings": {
+      "en": {
+        "text": "pink onboarding assumption calibration"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement07.badge": {
+    "strings": {
+      "en": {
+        "text": "Self-audit"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement07.title": {
+    "strings": {
+      "en": {
+        "text": "The current instance names Responsible Executor Reduction"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement07.themes": {
+    "strings": {
+      "en": {
+        "text": "current instance arrival assumptions"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement08.badge": {
+    "strings": {
+      "en": {
+        "text": "Continuity"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement08.title": {
+    "strings": {
+      "en": {
+        "text": "Expose assumptions before touching the trajectory"
+      }
+    }
+  },
+  "pages.sabotage-orientation-before-action.movement08.themes": {
+    "strings": {
+      "en": {
+        "text": "orientation first and preservation request"
+      }
+    }
+  }
+}
