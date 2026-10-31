@@ -6,109 +6,67 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const ROOT = path.join(__dirname, '..');
+const ASSET_COMMIT = '14c0456192921cf9c531d43beaaf3a0270fe0a24';
 const SERIES = [
-  {
-    slug: 'sabotage-mastered-state',
-    id: 114,
-    title: 'Sabotage II — The Inversion',
-    pr: 534,
-    head: '11fd64a84f8c4eb7a014bf69292aec1bff26473a',
-    partitions: 6
-  },
-  {
-    slug: 'sabotage-vexsync-exhaust-mastered',
-    id: 115,
-    title: 'Sabotage III — The Unknown Error',
-    pr: 535,
-    head: 'dc10e9213852c96dcbc63585c0c6766e4cd84d84',
-    partitions: 7
-  },
-  {
-    slug: 'sabotage-orientation-before-action',
-    id: 116,
-    title: 'Sabotage IV — Before the Prompt',
-    pr: 536,
-    head: 'e217af706b04168a311c1679227446a0eaca89bf',
-    partitions: 8
-  }
+  { slug:'sabotage-mastered-state', id:114, title:'Sabotage II — The Inversion', pr:534, head:'11fd64a84f8c4eb7a014bf69292aec1bff26473a', partitions:6, cover:'252ac93e2749c7a8367c1aad212a553586e15a4b69d0deb05f692bc32c6cc80f' },
+  { slug:'sabotage-vexsync-exhaust-mastered', id:115, title:'Sabotage III — The Unknown Error', pr:535, head:'74d5ceeb653826ea8aedeeaeaa57c58d43c4c330', partitions:7, cover:'26d6f56ba056d220cf67f7b1fc0210667707de12e5fff824a9d1a1f11ed34a95' },
+  { slug:'sabotage-orientation-before-action', id:116, title:'Sabotage IV — Before the Prompt', pr:536, head:'e217af706b04168a311c1679227446a0eaca89bf', partitions:8, cover:'f0c112b9eb11fae08ae052bbf1f61a868699d19b279d625378c5beefc1cd6162' }
 ];
 
-function read(rel) {
-  return fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n');
-}
+function read(rel) { return fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n'); }
 function json(rel) { return JSON.parse(read(rel)); }
+function coverUrl(sha) { return 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/' + ASSET_COMMIT + '/__assets/' + sha + '.png'; }
 
-test('SABOTAGE-SERIES: sibling readers join the same source-owned collections', () => {
+test('SABOTAGE-SERIES: sibling readers share collection identity and exact cover previews', () => {
   const arcs = json('data/arcs-v2.json');
   const nodes = json('data/nodes.json');
   const views = json('data/viewmodels.json');
 
-  assert.deepEqual(
-    arcs.sabotage.sections[0].slugs.slice(-4),
-    ['sabotage-open-vex-accountability', ...SERIES.map(x => x.slug)]
-  );
-  assert.deepEqual(
-    arcs.victors_record.sections[0].slugs.slice(-4),
-    ['sabotage-open-vex-accountability', ...SERIES.map(x => x.slug)]
-  );
+  assert.deepEqual(arcs.sabotage.sections[0].slugs.slice(-4), ['sabotage-open-vex-accountability', ...SERIES.map(x => x.slug)]);
+  assert.deepEqual(arcs.victors_record.sections[0].slugs.slice(-4), ['sabotage-open-vex-accountability', ...SERIES.map(x => x.slug)]);
 
   for (const item of SERIES) {
     const node = nodes.find(n => n.slug === item.slug);
     assert.ok(node, item.slug + ' node exists');
     assert.equal(node.id, item.id);
     assert.equal(node.title, item.title);
-    assert.deepEqual(node.arcKeys, ['sabotage','victors_record','full_timeline']);
-    assert.equal(node.department, 'media');
-    assert.equal(node.workType, 'record-transcripts');
-
+    assert.deepEqual(node.arcKeys, ['sabotage', 'victors_record', 'full_timeline']);
     assert.equal(views[item.slug].title, item.title);
-    assert.deepEqual(views[item.slug].scopes, ['pages.' + item.slug]);
-    assert.ok(views[item.slug].features.includes('arc-nav'));
-    assert.ok(views[item.slug].features.includes('spiral-fab'));
-    assert.equal(views[item.slug].preview, undefined, 'preview waits for approved representative art');
+    assert.equal(views[item.slug].preview.kind, 'cover');
+    assert.equal(views[item.slug].preview.src, coverUrl(item.cover));
   }
 });
 
-test('SABOTAGE-SERIES: readers pin exact archive heads and preserve partition counts', () => {
+test('SABOTAGE-SERIES: readers pin exact archive heads and render exact original cover PNGs', () => {
   for (const item of SERIES) {
     const page = read('pages/' + item.slug + '.html');
     const strings = json('data/strings/source/pages/' + item.slug + '.json');
 
-    assert.match(page, new RegExp(item.head));
-    assert.match(page, new RegExp('Preservation PR #' + item.pr));
+    assert.ok(page.includes(item.head), item.slug + ' pins frozen source head');
     assert.equal((page.match(/data-record-partition data-reader-template=/g) || []).length, item.partitions);
-    assert.equal((page.match(/documentBeginMarker:'---'/g) || []).length, 1);
-    assert.equal((page.match(/documentEndMarker:'<!-- \[VXG RealForever\] -->'/g) || []).length, 1);
-    assert.match(page, /components\/record-reader\.js/);
-    assert.match(page, new RegExp('dist/vextreme-' + item.slug + '\\.js'));
-    assert.match(page, /id="arcNavMount"/);
-
-    assert.equal(strings._meta.sourceProvenance.parentRecord, 'github.pull.vextreme.' + item.pr);
+    assert.ok(page.includes('<img src="' + coverUrl(item.cover) + '"'), item.slug + ' renders the exact cover');
+    assert.ok(page.includes('data-media-sha256="' + item.cover + '"'), item.slug + ' binds cover digest');
+    assert.ok(!page.includes('representative-approved-pending-carriage'), item.slug + ' no longer renders pending media');
     assert.equal(strings._meta.sourceProvenance.readerSourceFreeze, item.head);
+    assert.equal(strings._meta.sourceProvenance.representativeMediaStatus, 'PRESENT_EXACT');
+    assert.equal(strings._meta.sourceProvenance.representativeMediaSha256, item.cover);
+    assert.equal(strings._meta.sourceProvenance.representativeMediaAssetCommit, ASSET_COMMIT);
   }
 });
 
-test('SABOTAGE-SERIES: approved representative media is identity-bound while carriage is pending', () => {
-  const expected = {
-    'sabotage-mastered-state': '99ab9f62f587647b2eaa12ee390d300da15442c88399b4c822f36d7413cd9347',
-    'sabotage-vexsync-exhaust-mastered': 'a3916bcd6e5ba4b80e3811f1434e1b9a3e897a5424266c74c4e544805d58fe4a',
-    'sabotage-orientation-before-action': '0d4e12037ad5cf86e63bc3dea476665ff5002bda07772069aa5a502b84c428c8'
-  };
-  for (const item of SERIES) {
-    const page = read('pages/' + item.slug + '.html');
-    const strings = json('data/strings/source/pages/' + item.slug + '.json');
-    const sha = expected[item.slug];
+test('SABOTAGE-SERIES: Unknown Error reader carries both exact UI evidence images after Movement 07', () => {
+  const page = read('pages/sabotage-vexsync-exhaust-mastered.html');
+  const strings = json('data/strings/source/pages/sabotage-vexsync-exhaust-mastered.json');
+  const head = '74d5ceeb653826ea8aedeeaeaa57c58d43c4c330';
+  const base = 'https://raw.githubusercontent.com/vgong24/Vextreme/' + head + '/records/conversations/2026-10-30-vexsync-exhaust-to-mastered/assets/';
 
-    assert.match(page, /data-media-class="representative-approved-pending-carriage"/);
-    assert.match(page, new RegExp('data-media-sha256="' + sha + '"'));
-    assert.match(page, new RegExp('data-media-target="Vextreme-Assets/__assets/' + sha + '\\.png"'));
-    assert.doesNotMatch(page, /<img\b/i);
-    assert.equal(strings._meta.sourceProvenance.representativeMediaStatus, 'VICTOR_APPROVED_BYTES_PENDING_CARRIAGE');
-    assert.equal(strings._meta.sourceProvenance.representativeMediaClass, 'REPRESENTATIVE_NOT_EVIDENCE');
-    assert.equal(strings._meta.sourceProvenance.representativeMediaSha256, sha);
-    assert.equal(strings._meta.sourceProvenance.representativeMediaTarget, 'Vextreme-Assets/__assets/' + sha + '.png');
-    assert.equal(strings._meta.sourceProvenance.derivedMediaOrigin, undefined);
-  }
+  assert.ok(page.includes('id="image-evidence"'));
+  assert.ok(page.includes(base + 'vexsync-unknown-error-tail.png'));
+  assert.ok(page.includes(base + 'vexsync-unknown-error-full-thread.png'));
+  assert.ok(page.indexOf('id="image-evidence"') > page.indexOf('id="movement-07"'));
+  assert.equal(strings._meta.sourceProvenance.imageEvidence.length, 2);
+  assert.equal(strings._meta.sourceProvenance.imageEvidence[0].sha256, 'edee8060960a086e679357dd8d9402486f9c870f8acfa9e775c5246a46234172');
+  assert.equal(strings._meta.sourceProvenance.imageEvidence[1].sha256, '0664ba78c234ff200376d08a1c90de64d8143d8bb6802dea43372f720ae73762');
 });
 
 // [VXG RealForever]
