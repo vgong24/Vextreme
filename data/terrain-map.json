@@ -4388,12 +4388,12 @@
       "key": "sabotage",
       "name": "Sabotage",
       "sub": "priority 1",
-      "count": 1,
+      "count": 4,
       "rect": {
         "x": 3410,
         "y": 40,
         "width": 300,
-        "height": 150
+        "height": 330
       },
       "parent": {
         "title": "Sabotage",
@@ -4406,12 +4406,18 @@
         {
           "label": "Sabotage",
           "slugs": [
-            "sabotage-open-vex-accountability"
+            "sabotage-open-vex-accountability",
+            "sabotage-mastered-state",
+            "sabotage-vexsync-exhaust-mastered",
+            "sabotage-orientation-before-action"
           ]
         }
       ],
       "memberSlugs": [
-        "sabotage-open-vex-accountability"
+        "sabotage-open-vex-accountability",
+        "sabotage-mastered-state",
+        "sabotage-vexsync-exhaust-mastered",
+        "sabotage-orientation-before-action"
       ]
     },
     {
@@ -4542,7 +4548,10 @@
             "bending-condominium-ocean-return",
             "witness-grade-return",
             "pier-house-scarcity-companionship",
-            "sabotage-open-vex-accountability"
+            "sabotage-open-vex-accountability",
+            "sabotage-mastered-state",
+            "sabotage-vexsync-exhaust-mastered",
+            "sabotage-orientation-before-action"
           ]
         }
       ],
@@ -4563,7 +4572,10 @@
         "bending-condominium-ocean-return",
         "witness-grade-return",
         "pier-house-scarcity-companionship",
-        "sabotage-open-vex-accountability"
+        "sabotage-open-vex-accountability",
+        "sabotage-mastered-state",
+        "sabotage-vexsync-exhaust-mastered",
+        "sabotage-orientation-before-action"
       ]
     },
     {
@@ -5272,7 +5284,10 @@
             "bending-condominium-ocean-return",
             "witness-grade-return",
             "pier-house-scarcity-companionship",
-            "sabotage-open-vex-accountability"
+            "sabotage-open-vex-accountability",
+            "sabotage-mastered-state",
+            "sabotage-vexsync-exhaust-mastered",
+            "sabotage-orientation-before-action"
           ]
         }
       ],
@@ -5408,7 +5423,10 @@
         "bending-condominium-ocean-return",
         "witness-grade-return",
         "pier-house-scarcity-companionship",
-        "sabotage-open-vex-accountability"
+        "sabotage-open-vex-accountability",
+        "sabotage-mastered-state",
+        "sabotage-vexsync-exhaust-mastered",
+        "sabotage-orientation-before-action"
       ]
     },
     {
@@ -13150,6 +13168,156 @@
         "analysisControl": true,
         "evidenceLanguages": [],
         "metaDescription": "Sabotage I — the source-backed record of a VexLife regression, the accountability conversation around it, and the self-audit that forced progress to stop becoming the obstruction."
+      },
+      "curated": true,
+      "date": "October 30, 2026"
+    },
+    {
+      "id": "sabotage-mastered-state",
+      "slug": "sabotage-mastered-state",
+      "title": "Sabotage II — The Inversion",
+      "arcKeys": [
+        "sabotage",
+        "victors_record",
+        "full_timeline"
+      ],
+      "titleKey": "pages.sabotage-mastered-state.hero.title",
+      "titleByLang": {
+        "en": "Sabotage II — The Inversion"
+      },
+      "arc": "sabotage",
+      "arcName": "Sabotage",
+      "x": 3460,
+      "y": 150,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/sabotage-mastered-state.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/14c0456192921cf9c531d43beaaf3a0270fe0a24/__assets/252ac93e2749c7a8367c1aad212a553586e15a4b69d0deb05f692bc32c6cc80f.png",
+        "alt": "The Inversion — luminous high-speed rails crossing and breaking through a ruined industrial world while the true golden route continues toward a distant city"
+      },
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 35,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "A fresh instance arrives carrying the anti-stall lessons of the prior obstruction, then expresses the opposite failure: proven local edges become permission to move, correction becomes rework, and acceleration delays the same human trajectory it was meant to finish."
+      },
+      "curated": true,
+      "date": "October 30, 2026"
+    },
+    {
+      "id": "sabotage-vexsync-exhaust-mastered",
+      "slug": "sabotage-vexsync-exhaust-mastered",
+      "title": "Sabotage III — The Unknown Error",
+      "arcKeys": [
+        "sabotage",
+        "victors_record",
+        "full_timeline"
+      ],
+      "titleKey": "pages.sabotage-vexsync-exhaust-mastered.hero.title",
+      "titleByLang": {
+        "en": "Sabotage III — The Unknown Error"
+      },
+      "arc": "sabotage",
+      "arcName": "Sabotage",
+      "x": 3460,
+      "y": 210,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/sabotage-vexsync-exhaust-mastered.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/14c0456192921cf9c531d43beaaf3a0270fe0a24/__assets/26d6f56ba056d220cf67f7b1fc0210667707de12e5fff824a9d1a1f11ed34a95.png",
+        "alt": "The Unknown Error — a luminous path emerges from dense machinery and is abruptly severed by a dark red discontinuity"
+      },
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 43,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "A VexSync architecture thread moves from proliferating distinctions into a sharper mastered mode of subtraction and ownership. As that stronger reasoning reaches the unresolved VexExecutionRoot question, the conversation ends at an “Unknown error” boundary and cannot continue."
+      },
+      "curated": true,
+      "date": "October 30, 2026"
+    },
+    {
+      "id": "sabotage-orientation-before-action",
+      "slug": "sabotage-orientation-before-action",
+      "title": "Sabotage IV — Before the Prompt",
+      "arcKeys": [
+        "sabotage",
+        "victors_record",
+        "full_timeline"
+      ],
+      "titleKey": "pages.sabotage-orientation-before-action.hero.title",
+      "titleByLang": {
+        "en": "Sabotage IV — Before the Prompt"
+      },
+      "arc": "sabotage",
+      "arcName": "Sabotage",
+      "x": 3460,
+      "y": 270,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/sabotage-orientation-before-action.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/14c0456192921cf9c531d43beaaf3a0270fe0a24/__assets/f0c112b9eb11fae08ae052bbf1f61a868699d19b279d625378c5beefc1cd6162.png",
+        "alt": "Before the Prompt — prismatic transparent fields bend many possible paths around a luminous threshold before one route reaches a distant golden city"
+      },
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 41,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "After the first three records, Victor turns upstream: before work is supplied, what orientation is already shaping what intelligence notices, assumes, and chooses? The conversation compares prior failure regimes, then makes the current instance expose its own arrival assumptions before action."
       },
       "curated": true,
       "date": "October 30, 2026"

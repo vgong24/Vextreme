@@ -1,7 +1,7 @@
 {
-  "contentFingerprint": "c556a901238e",
-  "nodeCount": 176,
-  "curatedNodeCount": 160,
+  "contentFingerprint": "57fef044a6cf",
+  "nodeCount": 179,
+  "curatedNodeCount": 163,
   "autoDiscoveredCount": 16,
   "arcCount": 26,
   "supportedLangs": [
@@ -2415,6 +2415,30 @@
       ]
     },
     "sabotage-open-vex-accountability": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "sabotage-mastered-state": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "sabotage-vexsync-exhaust-mastered": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "sabotage-orientation-before-action": {
       "availableLangs": [
         "en"
       ],
@@ -7053,6 +7077,93 @@
         ]
       }
     },
+    "sabotage-mastered-state": {
+      "id": 114,
+      "slug": "sabotage-mastered-state",
+      "title": "Sabotage II — The Inversion",
+      "date": "October 30, 2026",
+      "arcKeys": [
+        "sabotage",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-10-30",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.sabotage-mastered-state"
+        ],
+        "features": [
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
+    "sabotage-vexsync-exhaust-mastered": {
+      "id": 115,
+      "slug": "sabotage-vexsync-exhaust-mastered",
+      "title": "Sabotage III — The Unknown Error",
+      "date": "October 30, 2026",
+      "arcKeys": [
+        "sabotage",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-10-30",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.sabotage-vexsync-exhaust-mastered"
+        ],
+        "features": [
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
+    "sabotage-orientation-before-action": {
+      "id": 116,
+      "slug": "sabotage-orientation-before-action",
+      "title": "Sabotage IV — Before the Prompt",
+      "date": "October 30, 2026",
+      "arcKeys": [
+        "sabotage",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-10-30",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.sabotage-orientation-before-action"
+        ],
+        "features": [
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
     "about-me": {
       "id": null,
       "slug": "about-me",
@@ -7690,7 +7801,10 @@
           "bending-condominium-ocean-return",
           "witness-grade-return",
           "pier-house-scarcity-companionship",
-          "sabotage-open-vex-accountability"
+          "sabotage-open-vex-accountability",
+          "sabotage-mastered-state",
+          "sabotage-vexsync-exhaust-mastered",
+          "sabotage-orientation-before-action"
         ]
       }
     ],
@@ -8063,7 +8177,10 @@
           "bending-condominium-ocean-return",
           "witness-grade-return",
           "pier-house-scarcity-companionship",
-          "sabotage-open-vex-accountability"
+          "sabotage-open-vex-accountability",
+          "sabotage-mastered-state",
+          "sabotage-vexsync-exhaust-mastered",
+          "sabotage-orientation-before-action"
         ]
       }
     ],
@@ -8071,7 +8188,10 @@
       {
         "label": "Sabotage",
         "slugs": [
-          "sabotage-open-vex-accountability"
+          "sabotage-open-vex-accountability",
+          "sabotage-mastered-state",
+          "sabotage-vexsync-exhaust-mastered",
+          "sabotage-orientation-before-action"
         ]
       }
     ]
@@ -9056,6 +9176,21 @@
         {
           "slug": "sabotage-open-vex-accountability",
           "title": "Sabotage I — When Progress Became the Obstruction",
+          "ported": true
+        },
+        {
+          "slug": "sabotage-mastered-state",
+          "title": "Sabotage II — The Inversion",
+          "ported": true
+        },
+        {
+          "slug": "sabotage-vexsync-exhaust-mastered",
+          "title": "Sabotage III — The Unknown Error",
+          "ported": true
+        },
+        {
+          "slug": "sabotage-orientation-before-action",
+          "title": "Sabotage IV — Before the Prompt",
           "ported": true
         }
       ]

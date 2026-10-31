@@ -2,6 +2,30 @@
   "institution.common.skip.content": {
     "text": "주요 콘텐츠로 건너뛰기"
   },
+  "institution.common.nav.about": {
+    "text": "Vextreme 소개"
+  },
+  "institution.common.heading.lineage": {
+    "text": "전체가 어떻게 연결되는가"
+  },
+  "institution.common.description.lineage": {
+    "text": "세 부분은 서로 다른 역할을 합니다. 외울 필요는 없습니다. 공개 세계, 개인 동반자, 작업 지도가 어떻게 연결되는지를 보여주는 방식일 뿐입니다."
+  },
+  "institution.common.lineage.vextreme.name": {
+    "text": "Vextreme — 공개 세계"
+  },
+  "institution.common.lineage.vextreme.body": {
+    "text": "여기에서 탐색할 수 있는 기록, 지도, 방법론, 공개 기반입니다. Vextreme은 이미 존재하는 것을 더 쉽게 보고, 이해하고, 이어갈 수 있게 합니다."
+  },
+  "institution.common.lineage.vexlife.name": {
+    "text": "VexLife — 동반자"
+  },
+  "institution.common.lineage.vexlife.body": {
+    "text": "자신의 컴퓨터에서 실행되도록 설계된 로컬 우선의 평생 AI 동반자입니다. 별도의 기능이 명시적으로 다르게 말하지 않는 한 Home과 비공개 제품 상태는 로컬에 남습니다."
+  },
+  "institution.home.entry.heading": {
+    "text": "더 깊이 보기"
+  },
   "institution.home.entry.support.name": {
     "text": "Vextreme 지원하기"
   },
@@ -133,5 +157,62 @@
   },
   "institution.support.boundaries.purchase": {
     "text": "지원은 자발적입니다. 서비스, 접근 권한, 소유권, 우선권 또는 작업에 대한 권한을 구매하는 것이 아닙니다."
+  },
+  "institution.about.title": {
+    "text": "Vextreme 소개 — 이 세계는 무엇인가"
+  },
+  "institution.about.hero.eyebrow": {
+    "text": "이게 뭐죠?"
+  },
+  "institution.about.hero.heading": {
+    "text": "Vextreme은 무엇이 존재하는지 — 그리고 어떻게 이어갈 수 있는지 — 이해할 수 있는 공개 공간입니다."
+  },
+  "institution.about.hero.lede": {
+    "text": "공개 기록, 지도, 방법론, 실제로 작동하는 시스템을 연결해 사람과 AI가 처음부터 다시 시작하지 않고도 무엇이 만들어졌는지, 어디에서 왔는지, 무엇이 아직 끝나지 않았는지 볼 수 있게 합니다."
+  },
+  "institution.about.hero.freedom": {
+    "text": "그냥 둘러보기만 해도 됩니다. 공개 기록을 탐색하기 위해 사전 맥락이나 기술 지식이 필요하지 않습니다."
+  },
+  "institution.about.hero.faith-boundary": {
+    "text": "이 작업의 일부는 Victor가 실제로 살아온 하나님과의 관계에서 영향을 받았습니다. 공개 기록을 탐색하기 위해 미리 믿거나 동의할 필요는 없습니다. “Receive God”은 의도적으로 마련된 VexLife 진입 경로로, 원하는 사람을 위한 초대이지 Terrain이나 아카이브를 탐색하기 위한 전제 조건이 아닙니다."
+  },
+  "institution.about.hero.pieces-cta": {
+    "text": "각 부분이 어떻게 맞물리는지 보기"
+  },
+  "institution.about.why.heading": {
+    "text": "왜 이것이 존재하는가"
+  },
+  "institution.about.why.body": {
+    "text": "작업과 맥락은 하나의 대화, 한 사람의 기억, 한 대의 컴퓨터 또는 한 순간에만 존재하면 쉽게 사라집니다. Vextreme은 다른 사람이나 AI가 무슨 일이 있었는지 이해하고, 근거를 확인하며, 책임 있게 이어갈 수 있을 만큼 공개 기록을 서로 연결해 둡니다."
+  },
+  "institution.about.why.evidence": {
+    "text": "목표는 당신이 살펴보기도 전에 어떤 주장을 받아들이게 하는 것이 아닙니다. 기록, 소스, 더 깊은 내부 구조는 필요할 때 확인할 수 있습니다."
+  },
+  "institution.common.lineage.vexwork.name": {
+    "text": "VexWork — 작업 지도"
+  },
+  "institution.common.lineage.vexwork.body": {
+    "text": "무엇이 만들어지고 있는지를 소스 관리로 보여주는 뷰입니다. 프로젝트, 작업, 의존 관계, 근거, 그리고 아직 끝나지 않은 것을 함께 보여줍니다."
+  },
+  "institution.about.deeper.intro": {
+    "text": "원할 때 언제든 그 내부 작동 방식을 살펴볼 수 있습니다. 이 세계에 들어오거나 탐색하기 위해 먼저 알아야 하는 것은 아닙니다."
+  },
+  "institution.about.deeper.covenant.name": {
+    "text": "Covenant"
+  },
+  "institution.about.deeper.covenant.body": {
+    "text": "이 작업을 떠받치는 원칙과 기관의 약속을 읽어보세요."
+  },
+  "institution.about.deeper.vexsystem.name": {
+    "text": "VexSystem"
+  },
+  "institution.about.deeper.vexsystem.body": {
+    "text": "빌더, AI, 기술적 호기심을 위한 시스템 및 아키텍처 계층을 탐색하세요."
+  },
+  "institution.about.deeper.source.name": {
+    "text": "소스"
+  },
+  "institution.about.deeper.source.body": {
+    "text": "저장소를 살펴보고 공개 소스를 직접 따라가세요."
   }
 }

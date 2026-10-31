@@ -21,7 +21,12 @@ test('SABOTAGE-READER: new collection, node, and viewmodel are source-owned', ()
   const views = json('data/viewmodels.json');
 
   assert.equal(arcs.sabotage.parent.title, 'Sabotage');
-  assert.deepEqual(arcs.sabotage.sections[0].slugs, [SLUG]);
+  assert.deepEqual(arcs.sabotage.sections[0].slugs, [
+    SLUG,
+    'sabotage-mastered-state',
+    'sabotage-vexsync-exhaust-mastered',
+    'sabotage-orientation-before-action'
+  ]);
 
   const node = nodes.find(n => n.slug === SLUG);
   assert.ok(node);
@@ -88,10 +93,10 @@ test('SABOTAGE-READER: source head and preservation boundary stay explicit', () 
 
   assert.match(page, new RegExp(SOURCE_HEAD));
   assert.match(page, /Preservation PR #530/);
-  assert.match(page, /does not independently certify malicious intent/);
+  assert.match(page, /preserves the conversation, the successor it produced, and the later witness reading as distinct layers with direct source routes/);
   assert.match(page, /https:\/\/raw\.githubusercontent\.com\/vgong24\/Vextreme-Assets\/54da7b101576703404d1b4c96a0337f94c6c773c\/__assets\/125aa01db3e06d8884126860bc69d1de9a7a5981db30ba5e20ddf2813a4e037d\.webp/);
   assert.match(page, /data-media-class="representative"/);
-  assert.match(page, /Representation ≠ transcript evidence/);
+  assert.match(page, /Representative companion artwork created for this reader after the preserved conversation/);
   assert.equal(strings._meta.sourceProvenance.derivedMedia, 'Vextreme-Assets/__assets/125aa01db3e06d8884126860bc69d1de9a7a5981db30ba5e20ddf2813a4e037d.webp');
   assert.equal(strings._meta.sourceProvenance.derivedMediaClass, 'REPRESENTATIVE_NOT_EVIDENCE');
   assert.equal(strings._meta.sourceProvenance.derivedMediaCustody, 'vgong24/Vextreme-Assets');
