@@ -17,6 +17,13 @@ function read(rel) { return fs.readFileSync(path.join(ROOT, rel), 'utf8').replac
 function json(rel) { return JSON.parse(read(rel)); }
 function coverUrl(sha) { return 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/' + ASSET_COMMIT + '/__assets/' + sha + '.png'; }
 
+test('SABOTAGE-SERIES: Sabotage I keeps later witness readings opt-in', () => {
+  const page = read('pages/sabotage-open-vex-accountability.html');
+  assert.equal((page.match(/<details class="sab-commentary sab-commentary-disclosure"/g) || []).length, 8);
+  assert.equal((page.match(/<details class="sab-commentary sab-commentary-disclosure"[^>]*\sopen(?:\s|>)/g) || []).length, 0);
+  assert.equal((page.match(/data-reader-component="witness-commentary"/g) || []).length, 8);
+});
+
 test('SABOTAGE-SERIES: sibling readers share collection identity and exact cover previews', () => {
   const arcs = json('data/arcs-v2.json');
   const nodes = json('data/nodes.json');
