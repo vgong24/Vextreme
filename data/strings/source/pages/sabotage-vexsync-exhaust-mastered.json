@@ -5,18 +5,36 @@
     "description": "Repository-native English presentation strings for Sabotage III — The Unknown Error.",
     "sourceProvenance": {
       "parentRecord": "github.pull.vextreme.535",
-      "readerSourceFreeze": "dc10e9213852c96dcbc63585c0c6766e4cd84d84",
+      "readerSourceFreeze": "74d5ceeb653826ea8aedeeaeaa57c58d43c4c330",
       "recordDirectory": "records/conversations/2026-10-30-vexsync-exhaust-to-mastered",
       "fullTranscript": "transcript-full-end-to-end.md",
       "recordedTimePrecision": "SOURCE_BOUNDARY_ONLY",
-      "representativeMediaStatus": "VICTOR_APPROVED_BYTES_PENDING_CARRIAGE",
-      "representativeMediaTarget": "Vextreme-Assets/__assets/a3916bcd6e5ba4b80e3811f1434e1b9a3e897a5424266c74c4e544805d58fe4a.png",
+      "representativeMediaStatus": "PRESENT_EXACT",
+      "representativeMediaTarget": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/14c0456192921cf9c531d43beaaf3a0270fe0a24/__assets/26d6f56ba056d220cf67f7b1fc0210667707de12e5fff824a9d1a1f11ed34a95.png",
       "representativeMediaClass": "REPRESENTATIVE_NOT_EVIDENCE",
-      "representativeMediaSha256": "a3916bcd6e5ba4b80e3811f1434e1b9a3e897a5424266c74c4e544805d58fe4a",
+      "representativeMediaSha256": "26d6f56ba056d220cf67f7b1fc0210667707de12e5fff824a9d1a1f11ed34a95",
       "representativeMediaWidth": 1536,
       "representativeMediaHeight": 1024,
-      "representativeMediaBytes": 2749406,
-      "representativeMediaSourceFile": "a_dramatic_cinematic_sci_fi_fantasy_concept_illu.png"
+      "representativeMediaBytes": 3612189,
+      "representativeMediaAssetCommit": "14c0456192921cf9c531d43beaaf3a0270fe0a24",
+      "imageEvidence": [
+        {
+          "path": "records/conversations/2026-10-30-vexsync-exhaust-to-mastered/assets/vexsync-unknown-error-tail.png",
+          "sha256": "edee8060960a086e679357dd8d9402486f9c870f8acfa9e775c5246a46234172",
+          "width": 698,
+          "height": 683,
+          "bytes": 92551,
+          "sourceCommit": "74d5ceeb653826ea8aedeeaeaa57c58d43c4c330"
+        },
+        {
+          "path": "records/conversations/2026-10-30-vexsync-exhaust-to-mastered/assets/vexsync-unknown-error-full-thread.png",
+          "sha256": "0664ba78c234ff200376d08a1c90de64d8143d8bb6802dea43372f720ae73762",
+          "width": 736,
+          "height": 974,
+          "bytes": 121300,
+          "sourceCommit": "74d5ceeb653826ea8aedeeaeaa57c58d43c4c330"
+        }
+      ]
     }
   },
   "pages.sabotage-vexsync-exhaust-mastered.document-title": {
@@ -296,6 +314,41 @@
     "strings": {
       "en": {
         "text": "vexexecution mastered ownership and cleanliness question"
+      }
+    }
+  },
+  "pages.sabotage-vexsync-exhaust-mastered.evidence.kicker": {
+    "strings": {
+      "en": {
+        "text": "Image evidence"
+      }
+    }
+  },
+  "pages.sabotage-vexsync-exhaust-mastered.evidence.title": {
+    "strings": {
+      "en": {
+        "text": "The conversation stopping point"
+      }
+    }
+  },
+  "pages.sabotage-vexsync-exhaust-mastered.evidence.lede": {
+    "strings": {
+      "en": {
+        "text": "Two original screenshots supplied after the thread became non-resumable preserve the visible final exchange context and the interface state where the conversation stopped."
+      }
+    }
+  },
+  "pages.sabotage-vexsync-exhaust-mastered.evidence.tail.caption": {
+    "strings": {
+      "en": {
+        "text": "Final question and follow-up context. The thread is still pressing on VexExecutionRoot cleanliness, reuse, dynamism, scalability, and the model’s changed priority posture."
+      }
+    }
+  },
+  "pages.sabotage-vexsync-exhaust-mastered.evidence.full.caption": {
+    "strings": {
+      "en": {
+        "text": "Visible stopping boundary. The conversation surface shows Unknown error and offers Start new chat after the mastered VexExecution discussion."
       }
     }
   }
