@@ -4,7 +4,7 @@
 
 **Supplied:** October 31, 2026
 
-**Boundary:** This file was supplied later to restore the reader context that preceded the preserved current-instance witness partitions. It is not part of the frozen October 30 transcript bytes and does not alter `transcript-full-current-instance.md`.
+**Boundary:** This file was supplied later to restore the reader context that preceded the preserved current-instance witness partitions. Here, `<batches sent>` marks the interface handoff where Victor sent the additional witness/context batches he had introduced as occurring alongside, and in relation to, the already-existing Sabotage thread. It does not mean those batches were the Sabotage transcript itself. This file is not part of the frozen October 30 transcript bytes and does not alter `transcript-full-current-instance.md`.
 
 ---
 
