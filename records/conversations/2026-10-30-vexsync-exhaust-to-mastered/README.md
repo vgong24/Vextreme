@@ -74,6 +74,30 @@ The thread ends without a synthesized answer: Victor asks why `VexExecutionRoot`
 
 The digests identify the exact uploaded source files observed during preservation. They do not certify claims contained inside them.
 
+
+## Image evidence — conversation stopping point
+
+Victor later supplied two original PNG screenshots from the VexSync conversation surface showing the final exchange context and the visible `Unknown error` stopping point.
+
+![Final VexExecution question and follow-up context](assets/vexsync-unknown-error-tail.png)
+
+- **File:** `assets/vexsync-unknown-error-tail.png`
+- **Original dimensions:** 698 × 683
+- **Original bytes:** 92551
+- **SHA-256:** `edee8060960a086e679357dd8d9402486f9c870f8acfa9e775c5246a46234172`
+- **Role:** closer witness of the final question/follow-up context at the stopping boundary.
+
+![Visible Unknown error at the end of the conversation](assets/vexsync-unknown-error-full-thread.png)
+
+- **File:** `assets/vexsync-unknown-error-full-thread.png`
+- **Original dimensions:** 736 × 974
+- **Original bytes:** 121300
+- **SHA-256:** `0664ba78c234ff200376d08a1c90de64d8143d8bb6802dea43372f720ae73762`
+- **Role:** full conversation-surface witness showing the visible `Unknown error` and non-resumable thread state.
+
+Both files are preserved as the supplied PNG bytes without resizing, recompression, or re-encoding.
+
+
 ## What this archive does not promote
 
 This archive does **not** by itself create:
