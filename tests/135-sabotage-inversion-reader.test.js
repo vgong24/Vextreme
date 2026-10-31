@@ -83,6 +83,9 @@ test('SABOTAGE-II: reader uses one bounded selected phase with safe-view navigat
   assert.equal((page.match(/<button class="sar-track-btn/g) || []).length, 6);
   assert.equal((page.match(/class="sar-movement sar-phase"/g) || []).length, 6);
   assert.equal((page.match(/class="sar-movement sar-phase"[^>]* hidden/g) || []).length, 5);
+  assert.equal((page.match(/data-record-reader-root/g) || []).length, 1);
+  assert.equal((page.match(/data-reader-component="phase-stack"/g) || []).length, 1);
+  assert.doesNotMatch(page, /data-record-partition/);
   assert.match(page, /id="sar-reader-position">01 \/ 06/);
   assert.match(page, /id="sar-prev"[^>]*disabled/);
   assert.match(page, /id="sar-next"/);
@@ -92,12 +95,13 @@ test('SABOTAGE-II: reader uses one bounded selected phase with safe-view navigat
   for (let i = 0; i < 6; i++) {
     const movement = String(i + 1).padStart(2, '0');
     const sourceId = String(i).padStart(2, '0');
-    assert.match(page, new RegExp('id="movement-' + movement + '"[^>]*data-reader-component="phase"'));
-    assert.match(page, new RegExp('id="sar-root-' + movement + '"[^>]*data-turn-map-source="' + sourceId + '"'));
+    assert.match(page, new RegExp('id="movement-' + movement + '"[^>]*data-reader-component="phase"[^>]*data-turn-map-source="' + sourceId + '"[^>]*data-document-url="'));
+    assert.match(page, new RegExp('id="sar-root-' + movement + '"[^>]*data-reader-component="preserved-record"'));
   }
 
   assert.match(page, /turnMapUrl:'\.\.\/records\/conversations\/2026-10-30-mastered-state-semantic-trajectory\/reader-turn-map\.json'/);
-  assert.match(page, /turnMapSourceId:root\.dataset\.turnMapSource/);
+  assert.match(page, /rootSelector:'#sar-reader'/);
+  assert.doesNotMatch(page, /document\.querySelectorAll\('\[data-record-partition\]'\)/);
   assert.match(page, /\.sar-source-window\{max-height:min\(70vh,760px\);overflow:auto/);
 });
 
@@ -106,7 +110,9 @@ test('SABOTAGE-II: shared reader supports optional line-bound speaker projection
   const css = read('styles/sabotage-series-record.css');
 
   assert.match(reader, /var turnMapUrl=config\.turnMapUrl\|\|null/);
-  assert.match(reader, /function renderTurnMappedDocument\(body,map\)/);
+  assert.match(reader, /function renderTurnMappedDocument\(body,map,sourceId\)/);
+  assert.match(reader, /function loadPhaseDocument\(section\)/);
+  assert.match(reader, /section\.dataset\.documentUrl/);
   assert.match(reader, /data-reader-component="speaker-turn"/);
   assert.match(reader, /data-reader-component="interface-meta"/);
   assert.match(reader, /values\[1\]\?renderTurnMappedDocument\(body,values\[1\]\):renderDocument\(body\)/);

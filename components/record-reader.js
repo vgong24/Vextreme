@@ -181,17 +181,18 @@ function mount(config){
     }
     return turnMapPromise;
   }
-  function renderTurnMappedDocument(body,map){
+  function renderTurnMappedDocument(body,map,sourceId){
     if(!map)return renderDocument(body);
+    sourceId=sourceId===undefined||sourceId===null?turnMapSourceId:sourceId;
     var sources=Array.isArray(map.sources)?map.sources:[];
-    var source=sources.find(function(item){return String(item.id)===String(turnMapSourceId);});
-    if(!source)throw new Error('TURN_MAP_SOURCE_MISSING:'+String(turnMapSourceId));
+    var source=sources.find(function(item){return String(item.id)===String(sourceId);});
+    if(!source)throw new Error('TURN_MAP_SOURCE_MISSING:'+String(sourceId));
     var lines=body.split(/\r?\n/);
-    if(lines.length!==source.lineCount)throw new Error('TURN_MAP_LINE_COUNT_MISMATCH:'+String(turnMapSourceId));
+    if(lines.length!==source.lineCount)throw new Error('TURN_MAP_LINE_COUNT_MISMATCH:'+String(sourceId));
     var turns=Array.isArray(source.turns)?source.turns:[],cursor=1,out=[];
     turns.forEach(function(turn){
       var start=parseInt(turn.startLine,10),end=parseInt(turn.endLine,10),speaker=turn.speaker;
-      if(start!==cursor||end<start||end>lines.length)throw new Error('TURN_MAP_RANGE_INVALID:'+String(turnMapSourceId)+':'+String(start)+'-'+String(end));
+      if(start!==cursor||end<start||end>lines.length)throw new Error('TURN_MAP_RANGE_INVALID:'+String(sourceId)+':'+String(start)+'-'+String(end));
       var turnLines=lines.slice(start-1,end);
       cursor=end+1;
       if(speaker==='Victor'&&turnLines[0]&&turnLines[0].trim()==='## Victor')turnLines=turnLines.slice(1);
@@ -206,7 +207,7 @@ function mount(config){
       var speakerClass=speaker.toLowerCase();
       out.push('<section class="'+cls('turn')+' '+cls('turn--'+speakerClass)+'" data-reader-component="speaker-turn" data-speaker="'+speakerClass+'"><div class="'+cls('turn-speaker')+'">'+esc(speaker)+'</div>'+renderBlocks(turnLines)+'</section>');
     });
-    if(cursor!==lines.length+1)throw new Error('TURN_MAP_COVERAGE_INCOMPLETE:'+String(turnMapSourceId));
+    if(cursor!==lines.length+1)throw new Error('TURN_MAP_COVERAGE_INCOMPLETE:'+String(sourceId));
     return out.join('');
   }
   function loadDocument(){
@@ -312,8 +313,39 @@ function mount(config){
       viewport.addEventListener(type,function(){if(section._vexRecordAuto.running)pauseTranscriptAutoScroll(section);},{passive:type!=='keydown'});
     });
   }
+  function loadPhaseDocument(section){
+    var url=section.dataset.documentUrl||null;
+    if(!url)return false;
+    var target=section.querySelector('[data-reader-component="document-body"]');
+    var documentSection=target?target.closest('[data-reader-component="document"]'):null;
+    if(!target||!documentSection){
+      section.dataset.loaded='error';
+      return true;
+    }
+    installTranscriptControls(documentSection);
+    if(section.dataset.loaded==='true')return true;
+    Promise.all([
+      fetch(url).then(function(r){if(!r.ok)throw new Error(String(r.status));return r.text();}),
+      turnMapSource()
+    ]).then(function(values){
+      var body=boundedDocumentBody(values[0]);
+      var sourceId=section.dataset.turnMapSource||turnMapSourceId;
+      target.innerHTML=values[1]?renderTurnMappedDocument(body,values[1],sourceId):renderDocument(body);
+      target.dataset.loaded='true';
+      section.dataset.loaded='true';
+      var loading=documentSection.querySelector(selectClass('transcript-loading'));
+      if(loading)loading.remove();
+      root.dispatchEvent(new CustomEvent('vextreme:recorddocumentloaded',{detail:{target:target}}));
+    }).catch(function(){
+      target.textContent=templateText('sourceUnavailable')||'Source projection unavailable.';
+      section.dataset.loaded='error';
+    });
+    return true;
+  }
+
   function loadSet(section){
     if(section.dataset.derived==='true'){loadWitness(section);return;}
+    if(loadPhaseDocument(section))return;
     installTranscriptControls(section);
     loadPhaseWitness(section);
     if(section.dataset.loaded==='true')return;
@@ -396,6 +428,7 @@ function mount(config){
   return {
     show:show,
     loadSet:loadSet,
+    loadPhaseDocument:loadPhaseDocument,
     pauseAll:function(){sets.forEach(function(section){pauseTranscriptAutoScroll(section);});}
   };
 }

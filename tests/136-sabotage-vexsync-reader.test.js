@@ -80,12 +80,16 @@ test('SABOTAGE-III: reader exposes seven transcript phases plus one evidence pha
   assert.equal((page.match(/<button class="sar-track-btn/g) || []).length, 8);
   assert.equal((page.match(/class="sar-movement sar-phase"/g) || []).length, 7);
   assert.equal((page.match(/data-turn-map-source="/g) || []).length, 7);
-  assert.match(page, /id="movement-08"[^>]*data-derived="true"[^>]*hidden/);
+  assert.equal((page.match(/data-record-reader-root/g) || []).length, 1);
+  assert.equal((page.match(/data-reader-component="phase-stack"/g) || []).length, 1);
+  assert.doesNotMatch(page, /data-record-partition/);
+  assert.match(page, /id="movement-08"[^>]*data-phase-kind="evidence"[^>]*hidden/);
   assert.match(page, /id="image-evidence"/);
   assert.ok(page.indexOf('id="image-evidence"') > page.indexOf('id="movement-08"'));
   assert.match(page, /id="sar-reader-position">01 \/ 08/);
   assert.match(page, /turnMapUrl:'\.\.\/records\/conversations\/2026-10-30-vexsync-exhaust-to-mastered\/reader-turn-map\.json'/);
-  assert.match(page, /turnMapSourceId:root\.dataset\.turnMapSource/);
+  assert.match(page, /rootSelector:'#sar-reader'/);
+  assert.doesNotMatch(page, /document\.querySelectorAll\('\[data-record-partition\]'\)/);
 });
 
 test('SABOTAGE-III: supplied Unknown error screenshots remain exact evidence, not presentation art', () => {

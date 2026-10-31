@@ -91,11 +91,16 @@ test('SABOTAGE-IV: reader begins with Victor context then keeps all eight frozen
   assert.equal((page.match(/<button class="sar-track-btn/g) || []).length, 8);
   assert.equal((page.match(/class="sar-movement sar-phase"/g) || []).length, 8);
   assert.equal((page.match(/data-turn-map-source="/g) || []).length, 8);
+  assert.equal((page.match(/data-record-reader-root/g) || []).length, 1);
+  assert.equal((page.match(/data-reader-component="phase-stack"/g) || []).length, 1);
+  assert.doesNotMatch(page, /data-record-partition/);
   assert.ok(page.indexOf(promptNeedle) >= 0 && page.indexOf(promptNeedle) < page.indexOf(sourceNeedle), 'Victor setup must precede frozen Assistant-first partition');
   assert.match(page, /&lt;batches sent&gt;/);
   assert.match(page, /reader-context-prelude\.md/);
   assert.match(page, /id="sar-reader-position">01 \/ 08/);
   assert.match(page, /turnMapUrl:'\.\.\/records\/conversations\/2026-10-30-current-instance-orientation-witness\/reader-turn-map\.json'/);
+  assert.match(page, /rootSelector:'#sar-reader'/);
+  assert.doesNotMatch(page, /document\.querySelectorAll\('\[data-record-partition\]'\)/);
   assert.match(page, /\.sar-source-window\{max-height:min\(70vh,760px\);overflow:auto/);
 });
 
