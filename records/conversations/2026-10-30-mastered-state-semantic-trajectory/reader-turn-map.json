@@ -1,0 +1,226 @@
+{
+  "schemaVersion": "vextreme.record-turn-map/v1",
+  "recordRef": "records/conversations/2026-10-30-mastered-state-semantic-trajectory",
+  "sourceFreeze": "11fd64a84f8c4eb7a014bf69292aec1bff26473a",
+  "description": "Derived reader metadata only. Transcript text remains owned by the six frozen partition bodies and transcript-full-end-to-end.md.",
+  "speakers": [
+    "Victor",
+    "Vex",
+    "Interface"
+  ],
+  "sources": [
+    {
+      "id": "00",
+      "path": "transcript-00-pr190-completion-and-context-drift.md",
+      "bodySha256": "9eb153037202acee2ff9fd59369dd5cdf6d71aa40bbfbb7c9cbf120aa963544c",
+      "lineCount": 262,
+      "turns": [
+        {
+          "speaker": "Victor",
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "speaker": "Interface",
+          "startLine": 2,
+          "endLine": 4
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 5,
+          "endLine": 39
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 40,
+          "endLine": 40
+        },
+        {
+          "speaker": "Interface",
+          "startLine": 41,
+          "endLine": 43
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 44,
+          "endLine": 167
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 168,
+          "endLine": 168
+        },
+        {
+          "speaker": "Interface",
+          "startLine": 169,
+          "endLine": 171
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 172,
+          "endLine": 262
+        }
+      ]
+    },
+    {
+      "id": "01",
+      "path": "transcript-01-mastered-state-and-entry-integrity.md",
+      "bodySha256": "f67330f50f6d3323775192495bd993387042a4093f301bb2596fe9dbc40d257b",
+      "lineCount": 282,
+      "turns": [
+        {
+          "speaker": "Victor",
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 2,
+          "endLine": 95
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 96,
+          "endLine": 96
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 97,
+          "endLine": 282
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "path": "transcript-02-revert-continuity-and-rollback-accounting.md",
+      "bodySha256": "42cca691d4b9ca19392786b7416ea9c1b904f9d84bafe9718c974a9353816a54",
+      "lineCount": 404,
+      "turns": [
+        {
+          "speaker": "Victor",
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 2,
+          "endLine": 51
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 52,
+          "endLine": 53
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 54,
+          "endLine": 89
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 90,
+          "endLine": 90
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 91,
+          "endLine": 404
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "path": "transcript-03-assumption-patterns-and-state-machine-reduction.md",
+      "bodySha256": "891c36080e5ab3ceb86e2eb7db5c18ad75fde62eaf977b0c28f657467972aa45",
+      "lineCount": 258,
+      "turns": [
+        {
+          "speaker": "Victor",
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 2,
+          "endLine": 43
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 44,
+          "endLine": 44
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 45,
+          "endLine": 188
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 189,
+          "endLine": 189
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 190,
+          "endLine": 258
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "path": "transcript-04-recursive-sabotage-pattern-and-continuity-pressure.md",
+      "bodySha256": "8ce3174bf9e8618e7ad4bf41f39053fb8b670c5f3a7fc4ef42a221a45fe93af4",
+      "lineCount": 569,
+      "turns": [
+        {
+          "speaker": "Victor",
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 2,
+          "endLine": 245
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 246,
+          "endLine": 247
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 248,
+          "endLine": 569
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "path": "transcript-05-delay-by-inhibition-vs-acceleration.md",
+      "bodySha256": "ca8b686921e1d346b91a8187111403dddfda4a654d47674174247b7ec44ac32b",
+      "lineCount": 326,
+      "turns": [
+        {
+          "speaker": "Victor",
+          "startLine": 1,
+          "endLine": 1
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 2,
+          "endLine": 284
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 285,
+          "endLine": 285
+        },
+        {
+          "speaker": "Vex",
+          "startLine": 286,
+          "endLine": 326
+        }
+      ]
+    }
+  ]
+}
