@@ -42,8 +42,8 @@ test('SABOTAGE-IV: frozen partitions retain explicit role headings and full read
     assert.equal(lines.length, lineCount, filename + ' bounded body line count remains fixed');
     assert.equal(lines[0], '## Assistant', filename + ' still begins with preserved Assistant heading');
     assert.equal(lines[victorLine - 1], '## Victor', filename + ' still preserves Victor heading');
-    const at = full.indexOf(read(path.join(RECORD, filename)));
-    assert.ok(at >= 0, filename + ' remains represented in the full reading copy');
+    const at = full.indexOf(body);
+    assert.ok(at >= 0, filename + ' bounded body remains represented in the full reading copy');
     assert.ok(at > previous, filename + ' remains in chronological order');
     previous = at;
   }
