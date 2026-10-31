@@ -16,6 +16,8 @@ function mount(config){
   var documentSectionSelector=config.documentSectionSelector||null;
   var documentBeginMarker=config.documentBeginMarker||null;
   var documentEndMarker=config.documentEndMarker||null;
+  var turnMapUrl=config.turnMapUrl||null;
+  var turnMapSourceId=config.turnMapSourceId||null;
   var prefix=config.classPrefix||'rr';
   var controlIds=config.controlIds||{};
   var phaseSelector=config.phaseSelector||'[data-reader-component="phase"]';
@@ -37,6 +39,7 @@ function mount(config){
   var recordCount=sets.filter(function(section){return section.dataset.derived!=='true';}).length;
   var current=0;
   var phaseWitnessSourcePromise=null;
+  var turnMapPromise=null;
   var transcriptAutoRate=1;
   var transcriptAutoBasePx=24;
 
@@ -171,15 +174,51 @@ function mount(config){
     }
     return body.trim();
   }
+  function turnMapSource(){
+    if(!turnMapUrl)return Promise.resolve(null);
+    if(!turnMapPromise){
+      turnMapPromise=fetch(turnMapUrl).then(function(r){if(!r.ok)throw new Error(String(r.status));return r.json();});
+    }
+    return turnMapPromise;
+  }
+  function renderTurnMappedDocument(body,map){
+    if(!map)return renderDocument(body);
+    var sources=Array.isArray(map.sources)?map.sources:[];
+    var source=sources.find(function(item){return String(item.id)===String(turnMapSourceId);});
+    if(!source)throw new Error('TURN_MAP_SOURCE_MISSING:'+String(turnMapSourceId));
+    var lines=body.split(/\r?\n/);
+    if(lines.length!==source.lineCount)throw new Error('TURN_MAP_LINE_COUNT_MISMATCH:'+String(turnMapSourceId));
+    var turns=Array.isArray(source.turns)?source.turns:[],cursor=1,out=[];
+    turns.forEach(function(turn){
+      var start=parseInt(turn.startLine,10),end=parseInt(turn.endLine,10),speaker=turn.speaker;
+      if(start!==cursor||end<start||end>lines.length)throw new Error('TURN_MAP_RANGE_INVALID:'+String(turnMapSourceId)+':'+String(start)+'-'+String(end));
+      var turnLines=lines.slice(start-1,end);
+      cursor=end+1;
+      if(speaker==='Interface'){
+        if(turnLines.some(function(line){return line.trim();})){
+          out.push('<div class="'+cls('turn-meta')+'" data-reader-component="interface-meta">'+renderBlocks(turnLines)+'</div>');
+        }
+        return;
+      }
+      if(speaker!=='Victor'&&speaker!=='Vex')throw new Error('TURN_MAP_SPEAKER_INVALID:'+String(speaker));
+      var speakerClass=speaker.toLowerCase();
+      out.push('<section class="'+cls('turn')+' '+cls('turn--'+speakerClass)+'" data-reader-component="speaker-turn" data-speaker="'+speakerClass+'"><div class="'+cls('turn-speaker')+'">'+esc(speaker)+'</div>'+renderBlocks(turnLines)+'</section>');
+    });
+    if(cursor!==lines.length+1)throw new Error('TURN_MAP_COVERAGE_INCOMPLETE:'+String(turnMapSourceId));
+    return out.join('');
+  }
   function loadDocument(){
     if(!documentUrl||!documentTargetSelector)return Promise.reject(new Error('DOCUMENT_SOURCE_UNAVAILABLE'));
     var target=root.querySelector(documentTargetSelector)||document.querySelector(documentTargetSelector);
     if(!target)return Promise.reject(new Error('DOCUMENT_TARGET_MISSING'));
     var section=documentSectionSelector?(root.querySelector(documentSectionSelector)||document.querySelector(documentSectionSelector)):target.closest('[data-reader-component="document"]');
     if(section)installTranscriptControls(section);
-    return fetch(documentUrl).then(function(r){if(!r.ok)throw new Error(String(r.status));return r.text();}).then(function(raw){
-      var body=boundedDocumentBody(raw);
-      target.innerHTML=renderDocument(body);
+    return Promise.all([
+      fetch(documentUrl).then(function(r){if(!r.ok)throw new Error(String(r.status));return r.text();}),
+      turnMapSource()
+    ]).then(function(values){
+      var body=boundedDocumentBody(values[0]);
+      target.innerHTML=values[1]?renderTurnMappedDocument(body,values[1]):renderDocument(body);
       target.dataset.loaded='true';
       if(section){
         var loading=section.querySelector(selectClass('transcript-loading'));
