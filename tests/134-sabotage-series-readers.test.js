@@ -76,7 +76,7 @@ test('SABOTAGE-SERIES: readers pin exact archive heads and preserve partition co
 
     assert.match(page, new RegExp(item.head));
     assert.match(page, new RegExp('Preservation PR #' + item.pr));
-    assert.equal((page.match(/data-record-partition/g) || []).length, item.partitions);
+    assert.equal((page.match(/data-record-partition data-reader-template=/g) || []).length, item.partitions);
     assert.equal((page.match(/documentBeginMarker:'---'/g) || []).length, 1);
     assert.equal((page.match(/documentEndMarker:'<!-- \[VXG RealForever\] -->'/g) || []).length, 1);
     assert.match(page, /components\/record-reader\.js/);
