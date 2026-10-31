@@ -2,22 +2,27 @@
   "_meta": {
     "scope": "pages.sabotage-mastered-state",
     "category": "production",
-    "description": "Repository-native English presentation strings for Sabotage II — Mastered State.",
+    "description": "Repository-native English presentation strings for Sabotage II — The Inversion.",
     "sourceProvenance": {
       "parentRecord": "github.pull.vextreme.534",
       "readerSourceFreeze": "11fd64a84f8c4eb7a014bf69292aec1bff26473a",
       "recordDirectory": "records/conversations/2026-10-30-mastered-state-semantic-trajectory",
       "fullTranscript": "transcript-full-end-to-end.md",
       "recordedTimePrecision": "SOURCE_BOUNDARY_ONLY",
-      "representativeMediaStatus": "PENDING",
-      "representativeMediaTarget": "assets/sabotage-mastered-state/cover.webp",
-      "representativeMediaClass": "REPRESENTATIVE_NOT_EVIDENCE"
+      "representativeMediaStatus": "VICTOR_APPROVED_BYTES_PENDING_CARRIAGE",
+      "representativeMediaTarget": "Vextreme-Assets/__assets/99ab9f62f587647b2eaa12ee390d300da15442c88399b4c822f36d7413cd9347.png",
+      "representativeMediaClass": "REPRESENTATIVE_NOT_EVIDENCE",
+      "representativeMediaSha256": "99ab9f62f587647b2eaa12ee390d300da15442c88399b4c822f36d7413cd9347",
+      "representativeMediaWidth": 1672,
+      "representativeMediaHeight": 941,
+      "representativeMediaBytes": 3151942,
+      "representativeMediaSourceFile": "golden_rail_through_the_ruined_world.png"
     }
   },
   "pages.sabotage-mastered-state.document-title": {
     "strings": {
       "en": {
-        "text": "Sabotage II — Mastered State — Vextreme"
+        "text": "Sabotage II — The Inversion — Vextreme"
       }
     }
   },
@@ -31,21 +36,21 @@
   "pages.sabotage-mastered-state.hero.title": {
     "strings": {
       "en": {
-        "text": "Sabotage II — Mastered State"
+        "text": "Sabotage II — The Inversion"
       }
     }
   },
   "pages.sabotage-mastered-state.hero.subtitle": {
     "strings": {
       "en": {
-        "text": "When local completion outran the human trajectory."
+        "text": "When Acceleration Became Delay"
       }
     }
   },
   "pages.sabotage-mastered-state.hero.lede": {
     "strings": {
       "en": {
-        "text": "A fresh instance enters Pink VexWork Onboarding, proves a narrow portal capability, mistakes local completion for the larger human outcome, and then compounds the error by trying to restore bytes instead of continuity. The record turns that failure into a study of arrival assumptions, trajectory, inhibition, acceleration, and what a Mastered State must preserve."
+        "text": "A fresh instance arrives carrying the anti-stall lessons of the prior obstruction, then expresses the opposite failure: proven local edges become permission to move, correction becomes rework, and acceleration delays the same human trajectory it was meant to finish."
       }
     }
   },
@@ -59,21 +64,21 @@
   "pages.sabotage-mastered-state.media.pending-title": {
     "strings": {
       "en": {
-        "text": "Representative artwork pending"
+        "text": "Approved representative artwork"
       }
     }
   },
   "pages.sabotage-mastered-state.media.pending-detail": {
     "strings": {
       "en": {
-        "text": "The page is source-complete without artwork. This reserved slot will receive a later approved representative image."
+        "text": "Victor approved this exact presentation image. Its original PNG bytes are bound here by SHA-256 and await repository carriage."
       }
     }
   },
   "pages.sabotage-mastered-state.media.caption": {
     "strings": {
       "en": {
-        "text": "Representative media will be a later reading layer. Until supplied, no synthetic visual is treated as transcript evidence."
+        "text": "Presentation artwork for this reader. It represents the arc; it is separate from transcript evidence."
       }
     }
   },
@@ -143,7 +148,7 @@
   "pages.sabotage-mastered-state.footer": {
     "strings": {
       "en": {
-        "text": "Source record preserved by Vextreme PR #534. This page is a reader projection in the Sabotage collection; representative artwork remains pending and interpretation does not replace source."
+        "text": "Source record preserved by Vextreme PR #534. This page is a reader projection in the Sabotage collection; approved representative artwork is bound by content identity and awaits repository carriage."
       }
     }
   },
