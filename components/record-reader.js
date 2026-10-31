@@ -317,12 +317,11 @@ function mount(config){
     var url=section.dataset.documentUrl||null;
     if(!url)return false;
     var target=section.querySelector('[data-reader-component="document-body"]');
-    var documentSection=target?target.closest('[data-reader-component="document"]'):null;
-    if(!target||!documentSection){
+    if(!target){
       section.dataset.loaded='error';
       return true;
     }
-    installTranscriptControls(documentSection);
+    installTranscriptControls(section);
     if(section.dataset.loaded==='true')return true;
     Promise.all([
       fetch(url).then(function(r){if(!r.ok)throw new Error(String(r.status));return r.text();}),
@@ -333,7 +332,7 @@ function mount(config){
       target.innerHTML=values[1]?renderTurnMappedDocument(body,values[1],sourceId):renderDocument(body);
       target.dataset.loaded='true';
       section.dataset.loaded='true';
-      var loading=documentSection.querySelector(selectClass('transcript-loading'));
+      var loading=section.querySelector(selectClass('transcript-loading'));
       if(loading)loading.remove();
       root.dispatchEvent(new CustomEvent('vextreme:recorddocumentloaded',{detail:{target:target}}));
     }).catch(function(){

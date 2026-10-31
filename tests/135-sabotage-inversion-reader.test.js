@@ -113,6 +113,7 @@ test('SABOTAGE-II: shared reader supports optional line-bound speaker projection
   assert.match(reader, /function renderTurnMappedDocument\(body,map,sourceId\)/);
   assert.match(reader, /function loadPhaseDocument\(section\)/);
   assert.match(reader, /section\.dataset\.documentUrl/);
+  assert.match(reader, /loadPhaseDocument[\s\S]*installTranscriptControls\(section\)/);
   assert.match(reader, /data-reader-component="speaker-turn"/);
   assert.match(reader, /data-reader-component="interface-meta"/);
   assert.match(reader, /values\[1\]\?renderTurnMappedDocument\(body,values\[1\]\):renderDocument\(body\)/);
