@@ -2,22 +2,27 @@
   "_meta": {
     "scope": "pages.sabotage-vexsync-exhaust-mastered",
     "category": "production",
-    "description": "Repository-native English presentation strings for Sabotage III — VexSync Exhaust → Mastered.",
+    "description": "Repository-native English presentation strings for Sabotage III — The Unknown Error.",
     "sourceProvenance": {
       "parentRecord": "github.pull.vextreme.535",
       "readerSourceFreeze": "dc10e9213852c96dcbc63585c0c6766e4cd84d84",
       "recordDirectory": "records/conversations/2026-10-30-vexsync-exhaust-to-mastered",
       "fullTranscript": "transcript-full-end-to-end.md",
       "recordedTimePrecision": "SOURCE_BOUNDARY_ONLY",
-      "representativeMediaStatus": "PENDING",
-      "representativeMediaTarget": "assets/sabotage-vexsync-exhaust-mastered/cover.webp",
-      "representativeMediaClass": "REPRESENTATIVE_NOT_EVIDENCE"
+      "representativeMediaStatus": "VICTOR_APPROVED_BYTES_PENDING_CARRIAGE",
+      "representativeMediaTarget": "Vextreme-Assets/__assets/a3916bcd6e5ba4b80e3811f1434e1b9a3e897a5424266c74c4e544805d58fe4a.png",
+      "representativeMediaClass": "REPRESENTATIVE_NOT_EVIDENCE",
+      "representativeMediaSha256": "a3916bcd6e5ba4b80e3811f1434e1b9a3e897a5424266c74c4e544805d58fe4a",
+      "representativeMediaWidth": 1536,
+      "representativeMediaHeight": 1024,
+      "representativeMediaBytes": 2749406,
+      "representativeMediaSourceFile": "a_dramatic_cinematic_sci_fi_fantasy_concept_illu.png"
     }
   },
   "pages.sabotage-vexsync-exhaust-mastered.document-title": {
     "strings": {
       "en": {
-        "text": "Sabotage III — VexSync Exhaust → Mastered — Vextreme"
+        "text": "Sabotage III — The Unknown Error — Vextreme"
       }
     }
   },
@@ -31,21 +36,21 @@
   "pages.sabotage-vexsync-exhaust-mastered.hero.title": {
     "strings": {
       "en": {
-        "text": "Sabotage III — VexSync Exhaust → Mastered"
+        "text": "Sabotage III — The Unknown Error"
       }
     }
   },
   "pages.sabotage-vexsync-exhaust-mastered.hero.subtitle": {
     "strings": {
       "en": {
-        "text": "When intelligence served elaboration until the lens inverted."
+        "text": "When Mastery Gets Cut"
       }
     }
   },
   "pages.sabotage-vexsync-exhaust-mastered.hero.lede": {
     "strings": {
       "en": {
-        "text": "A VexSync architecture conversation begins by multiplying distinctions around admission, currentness, and vetting. Victor repeatedly forces the design back toward closure. The thread eventually collapses the extra semantic doors, separates Family meaning from runtime realization, strengthens compiler-visible ownership, and ends with an unresolved question about whether VexExecutionRoot is itself as clean and scalable as the mastered semantic core."
+        "text": "A VexSync architecture thread moves from proliferating distinctions into a sharper mastered mode of subtraction and ownership. As that stronger reasoning reaches the unresolved VexExecutionRoot question, the conversation ends at an “Unknown error” boundary and cannot continue."
       }
     }
   },
@@ -59,21 +64,21 @@
   "pages.sabotage-vexsync-exhaust-mastered.media.pending-title": {
     "strings": {
       "en": {
-        "text": "Representative artwork pending"
+        "text": "Approved representative artwork"
       }
     }
   },
   "pages.sabotage-vexsync-exhaust-mastered.media.pending-detail": {
     "strings": {
       "en": {
-        "text": "The page is source-complete without artwork. This reserved slot will receive a later approved representative image."
+        "text": "Victor approved this exact presentation image. Its original PNG bytes are bound here by SHA-256 and await repository carriage."
       }
     }
   },
   "pages.sabotage-vexsync-exhaust-mastered.media.caption": {
     "strings": {
       "en": {
-        "text": "Representative media will be a later reading layer. Until supplied, no synthetic visual is treated as transcript evidence."
+        "text": "Presentation artwork for this reader. It represents the arc; it is separate from transcript evidence."
       }
     }
   },
@@ -143,7 +148,7 @@
   "pages.sabotage-vexsync-exhaust-mastered.footer": {
     "strings": {
       "en": {
-        "text": "Source record preserved by Vextreme PR #535. This page is a reader projection in the Sabotage collection; representative artwork remains pending and interpretation does not replace source."
+        "text": "Source record preserved by Vextreme PR #535. This page is a reader projection in the Sabotage collection; approved representative artwork is bound by content identity and awaits repository carriage."
       }
     }
   },
