@@ -118,14 +118,19 @@ test('SABOTAGE-READER: source head and preservation boundary stay explicit', () 
   assert.match(page, new RegExp(SOURCE_HEAD));
   assert.match(page, /Preservation PR #530/);
   assert.match(page, /preserves the conversation, the successor it produced, and the later witness reading as distinct layers with direct source routes/);
-  assert.match(page, /https:\/\/raw\.githubusercontent\.com\/vgong24\/Vextreme-Assets\/54da7b101576703404d1b4c96a0337f94c6c773c\/__assets\/125aa01db3e06d8884126860bc69d1de9a7a5981db30ba5e20ddf2813a4e037d\.webp/);
+  assert.match(page, /https:\/\/raw\.githubusercontent\.com\/vgong24\/Vextreme-Assets\/16117405135ed875d5cd04f41c5c1581d3855c40\/__assets\/4e1f883c8aed461ee0744d493c22857f4346a8e342860e071e3dec74d8094167\\.png/);
   assert.match(page, /data-media-class="representative"/);
+  assert.match(page, /width="1672" height="941"/);
   assert.match(page, /Representative companion artwork created for this reader after the preserved conversation/);
-  assert.equal(strings._meta.sourceProvenance.derivedMedia, 'Vextreme-Assets/__assets/125aa01db3e06d8884126860bc69d1de9a7a5981db30ba5e20ddf2813a4e037d.webp');
+  assert.equal(strings._meta.sourceProvenance.derivedMedia, 'Vextreme-Assets/__assets/4e1f883c8aed461ee0744d493c22857f4346a8e342860e071e3dec74d8094167.png');
   assert.equal(strings._meta.sourceProvenance.derivedMediaClass, 'REPRESENTATIVE_NOT_EVIDENCE');
   assert.equal(strings._meta.sourceProvenance.derivedMediaCustody, 'vgong24/Vextreme-Assets');
-  assert.equal(strings._meta.sourceProvenance.derivedMediaOrigin, 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/54da7b101576703404d1b4c96a0337f94c6c773c/__assets/125aa01db3e06d8884126860bc69d1de9a7a5981db30ba5e20ddf2813a4e037d.webp');
-  assert.equal(strings._meta.sourceProvenance.derivedMediaSha256, '125aa01db3e06d8884126860bc69d1de9a7a5981db30ba5e20ddf2813a4e037d');
+  assert.equal(strings._meta.sourceProvenance.derivedMediaOrigin, 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/16117405135ed875d5cd04f41c5c1581d3855c40/__assets/4e1f883c8aed461ee0744d493c22857f4346a8e342860e071e3dec74d8094167.png');
+  assert.equal(strings._meta.sourceProvenance.derivedMediaSha256, '4e1f883c8aed461ee0744d493c22857f4346a8e342860e071e3dec74d8094167');
+  assert.equal(strings._meta.sourceProvenance.derivedMediaWidth, 1672);
+  assert.equal(strings._meta.sourceProvenance.derivedMediaHeight, 941);
+  assert.equal(strings._meta.sourceProvenance.derivedMediaAcceptedCommit, '16117405135ed875d5cd04f41c5c1581d3855c40');
+  assert.equal(strings._meta.sourceProvenance.derivedMediaAcceptedBlob, '2fa3df9c854a46dda7985df64f12b75812547e91');
   assert.match(page, new RegExp('dist/vextreme-' + SLUG + '\\.js'));
   assert.match(page, /id="arcNavMount"/);
 
