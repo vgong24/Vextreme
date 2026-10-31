@@ -70,6 +70,30 @@ test('SABOTAGE-READER: eight direct exchanges precede the standalone successor',
   assert.match(page, /documentEndMarker:'<!-- ARCHIVE-SOURCE-END -->'/);
 });
 
+
+test('SABOTAGE-READER: the safe navigation model owns all source and derived reading depth', () => {
+  const page = read('pages/' + SLUG + '.html');
+  const rootStart = page.indexOf('id="sab-conversation-root"');
+  const nav = page.indexOf('class="sab-reader-nav"', rootStart);
+  const footer = page.indexOf('class="sab-footer"', rootStart);
+  const successor = page.indexOf('id="movement-09"', rootStart);
+  const witness = page.indexOf('id="movement-10"', rootStart);
+
+  assert.equal((page.match(/<button class="sab-track-btn/g) || []).length, 10);
+  assert.match(page, /data-go="9"[\s\S]*Resulting successor/);
+  assert.match(page, /data-go="10"[\s\S]*Successor witness/);
+
+  assert.ok(rootStart >= 0 && successor > rootStart, 'successor is inside the reader trajectory');
+  assert.ok(witness > successor, 'later witness follows the successor inside the reader trajectory');
+  assert.ok(nav > witness, 'Prev/Next follows every addressable reading phase');
+  assert.ok(footer > nav, 'only footer/arc chrome remains after reader navigation');
+
+  assert.match(page, /id="movement-09"[^>]*data-reader-component="phase"[^>]*data-derived="true"/);
+  assert.match(page, /id="movement-10"[^>]*data-reader-component="phase"[^>]*data-derived="true"/);
+  assert.match(page, /\.sab-track\{position:sticky/);
+  assert.match(page, /\.sab-source-window\{max-height:min\(68vh,720px\);overflow:auto/);
+});
+
 test('SABOTAGE-READER: transcript projection uses shared Victor/Vex speaker semantics without altering dialogue', () => {
   const files = [
     'transcript-00-accountability-frustration-to-coherent-fix.md',
