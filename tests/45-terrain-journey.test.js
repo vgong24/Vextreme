@@ -505,8 +505,18 @@ test('TERRAIN-JOURNEY: reader history preserves the real return surface instead 
   assert.match(source, /syncPresentationUrl\(options\.historyMode \|\| 'push', 'reader', \{[\s\S]*returnKind:activeReaderReturnKind/);
   assert.match(source, /syncPresentationUrl\(options\.historyMode \|\| 'push', 'group-home', \{[\s\S]*returnKind:activeReaderReturnKind,[\s\S]*returnEntrySlug:activeReaderReturnEntrySlug,[\s\S]*returnReaderId:activeReaderReturnReaderId/,
     'group-home history must preserve the actual surface it should return to');
-  assert.match(source, /openEvolutionReader\(previous\.id, \{ historyMode:'replace' \}\)/);
-  assert.match(source, /openEvolutionReader\(next\.id, \{ historyMode:'replace' \}\)/);
+  const siblingStart = source.indexOf('function openReaderNeighbor(offset)');
+  const siblingEnd = source.indexOf('function updateReaderChrome(node)', siblingStart);
+  assert.ok(siblingStart >= 0 && siblingEnd > siblingStart, 'reader sibling-navigation owner must remain extractable');
+  const sibling = source.slice(siblingStart, siblingEnd);
+  assert.match(sibling, /historyMode:'push'/,
+    'reader sibling traversal must append browser history so Back restores the page just left');
+  assert.match(sibling, /returnKind:activeReaderReturnKind/);
+  assert.match(sibling, /returnEntrySlug:activeReaderReturnEntrySlug/);
+  assert.match(sibling, /returnReaderId:activeReaderReturnReaderId/,
+    'reader sibling traversal must preserve the actual return owner');
+  assert.match(source, /readerPrev'\)\.addEventListener\('click', function \(\) \{[\s\S]*?openReaderNeighbor\(-1\);/);
+  assert.match(source, /readerNext'\)\.addEventListener\('click', function \(\) \{[\s\S]*?openReaderNeighbor\(1\);/);
   assert.match(source, /syncPresentationUrl\(options\.historyMode === 'push' \? 'push' : 'replace', 'reader', \{[\s\S]*returnKind:activeReaderReturnKind,[\s\S]*returnEntrySlug:activeReaderReturnEntrySlug,[\s\S]*returnReaderId:activeReaderReturnReaderId/,
     'direct embedded record routes must keep their complete real return relationship when replacing or pushing the current presentation coordinate');
   assert.match(source, /presentationHistoryKind\(history\.state\) === 'reader'/);
