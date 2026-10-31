@@ -194,6 +194,8 @@ function mount(config){
       if(start!==cursor||end<start||end>lines.length)throw new Error('TURN_MAP_RANGE_INVALID:'+String(turnMapSourceId)+':'+String(start)+'-'+String(end));
       var turnLines=lines.slice(start-1,end);
       cursor=end+1;
+      if(speaker==='Victor'&&turnLines[0]&&turnLines[0].trim()==='## Victor')turnLines=turnLines.slice(1);
+      if(speaker==='Vex'&&turnLines[0]&&['## Assistant','## Vex'].includes(turnLines[0].trim()))turnLines=turnLines.slice(1);
       if(speaker==='Interface'){
         if(turnLines.some(function(line){return line.trim();})){
           out.push('<div class="'+cls('turn-meta')+'" data-reader-component="interface-meta">'+renderBlocks(turnLines)+'</div>');

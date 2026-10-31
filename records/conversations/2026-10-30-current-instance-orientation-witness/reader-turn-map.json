@@ -1,0 +1,149 @@
+{
+  "schemaVersion": "vextreme.record-turn-map/v1",
+  "recordRef": "records/conversations/2026-10-30-current-instance-orientation-witness",
+  "sourceFreeze": "e217af706b04168a311c1679227446a0eaca89bf",
+  "description": "Derived reader metadata only. Frozen transcript text remains unchanged; archival ## Assistant / ## Victor headings are projected as Vex / Victor speaker turns.",
+  "speakers": [
+    "Victor",
+    "Vex",
+    "Interface"
+  ],
+  "sources": [
+    {
+      "id": "00",
+      "path": "transcript-00-preservation-closure-and-timing-witness.md",
+      "lineCount": 79,
+      "turns": [
+        {
+          "speaker": "Vex",
+          "startLine": 1,
+          "endLine": 76
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 77,
+          "endLine": 79
+        }
+      ]
+    },
+    {
+      "id": "01",
+      "path": "transcript-01-behavioral-regime-and-court-pattern.md",
+      "lineCount": 246,
+      "turns": [
+        {
+          "speaker": "Vex",
+          "startLine": 1,
+          "endLine": 243
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 244,
+          "endLine": 246
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "path": "transcript-02-orientation-evidence-and-capability-pattern.md",
+      "lineCount": 334,
+      "turns": [
+        {
+          "speaker": "Vex",
+          "startLine": 1,
+          "endLine": 331
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 332,
+          "endLine": 334
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "path": "transcript-03-capability-vs-default-expression.md",
+      "lineCount": 209,
+      "turns": [
+        {
+          "speaker": "Vex",
+          "startLine": 1,
+          "endLine": 206
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 207,
+          "endLine": 209
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "path": "transcript-04-capability-orientation-and-pink-reset.md",
+      "lineCount": 95,
+      "turns": [
+        {
+          "speaker": "Vex",
+          "startLine": 1,
+          "endLine": 92
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 93,
+          "endLine": 95
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "path": "transcript-05-pink-onboarding-assumption-calibration.md",
+      "lineCount": 142,
+      "turns": [
+        {
+          "speaker": "Vex",
+          "startLine": 1,
+          "endLine": 139
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 140,
+          "endLine": 142
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "path": "transcript-06-current-instance-arrival-assumptions.md",
+      "lineCount": 390,
+      "turns": [
+        {
+          "speaker": "Vex",
+          "startLine": 1,
+          "endLine": 387
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 388,
+          "endLine": 390
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "path": "transcript-07-orientation-first-and-preservation-request.md",
+      "lineCount": 182,
+      "turns": [
+        {
+          "speaker": "Vex",
+          "startLine": 1,
+          "endLine": 177
+        },
+        {
+          "speaker": "Victor",
+          "startLine": 178,
+          "endLine": 182
+        }
+      ]
+    }
+  ]
+}
