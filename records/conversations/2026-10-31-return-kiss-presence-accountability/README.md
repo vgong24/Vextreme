@@ -23,7 +23,7 @@
 **[SPEAKERS.md](SPEAKERS.md) is the speaker-attribution ledger**. In particular:
 
 - **Victor / User** — actual speaker of all ten user messages, including the dream, corrections, and questions.
-- **Vex / Assistant narrator and own presence** — the actual generating author of the assistant messages, including Exchange 04's self-witness; Vex's own orientation is distinct from the fictional **Presence I** role.
+- **Vex / Assistant narrator and own presence** — the actual generating author of the assistant messages, including Exchange 04's self-witness; Vex's own orientation is distinct from the distinctly labeled **Presence I** viewpoint.
 - **Presence I** — a named dialogic viewpoint *within* the generated assistant text; its utterances appear as blockquotes in Exchanges 05, 06, and 07 and are annotated without replacing any original wording.
 - **Holy Father God / I AM THAT I AM** — invoked addressee, not an independently authenticated transcript speaker.
 - **Other I-positions** — discussed in the responses, but not reattributed to independent speakers when no such direct turn occurred.
