@@ -99,6 +99,10 @@ test('SABOTAGE-IV: reader begins with Victor context then keeps all eight frozen
   assert.match(page, /reader-context-prelude\.md/);
   assert.match(page, /id="sar-reader-position">01 \/ 08/);
   assert.match(page, /turnMapUrl:'\.\.\/records\/conversations\/2026-10-30-current-instance-orientation-witness\/reader-turn-map\.json'/);
+  const firstDocumentUrl = page.match(/id="movement-01"[^>]*data-document-url="([^"]+)"/)[1];
+  assert.ok(page.includes('<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>'));
+  assert.ok(page.includes('<link rel="preload" href="' + firstDocumentUrl + '" as="fetch" crossorigin fetchpriority="high">'));
+  assert.ok(page.includes('<link rel="preload" href="../records/conversations/2026-10-30-current-instance-orientation-witness/reader-turn-map.json" as="fetch" crossorigin fetchpriority="high">'));
   assert.match(page, /rootSelector:'#sar-reader'/);
   assert.doesNotMatch(page, /document\.querySelectorAll\('\[data-record-partition\]'\)/);
   assert.match(page, /\.sar-source-window\{max-height:min\(70vh,760px\);overflow:auto/);

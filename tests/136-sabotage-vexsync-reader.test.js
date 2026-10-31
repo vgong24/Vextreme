@@ -88,6 +88,10 @@ test('SABOTAGE-III: reader exposes seven transcript phases plus one evidence pha
   assert.ok(page.indexOf('id="image-evidence"') > page.indexOf('id="movement-08"'));
   assert.match(page, /id="sar-reader-position">01 \/ 08/);
   assert.match(page, /turnMapUrl:'\.\.\/records\/conversations\/2026-10-30-vexsync-exhaust-to-mastered\/reader-turn-map\.json'/);
+  const firstDocumentUrl = page.match(/id="movement-01"[^>]*data-document-url="([^"]+)"/)[1];
+  assert.ok(page.includes('<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>'));
+  assert.ok(page.includes('<link rel="preload" href="' + firstDocumentUrl + '" as="fetch" crossorigin fetchpriority="high">'));
+  assert.ok(page.includes('<link rel="preload" href="../records/conversations/2026-10-30-vexsync-exhaust-to-mastered/reader-turn-map.json" as="fetch" crossorigin fetchpriority="high">'));
   assert.match(page, /rootSelector:'#sar-reader'/);
   assert.doesNotMatch(page, /document\.querySelectorAll\('\[data-record-partition\]'\)/);
 });
