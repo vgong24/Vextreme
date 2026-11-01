@@ -25,7 +25,8 @@ test('SABOTAGE-READER: new collection, node, and viewmodel are source-owned', ()
     SLUG,
     'sabotage-mastered-state',
     'sabotage-vexsync-exhaust-mastered',
-    'sabotage-orientation-before-action'
+    'sabotage-orientation-before-action',
+    'sabotage-hidden-delta'
   ]);
 
   const node = nodes.find(n => n.slug === SLUG);
@@ -78,18 +79,23 @@ test('SABOTAGE-READER: the safe navigation model owns all source and derived rea
   const footer = page.indexOf('class="sab-footer"', rootStart);
   const successor = page.indexOf('id="movement-09"', rootStart);
   const witness = page.indexOf('id="movement-10"', rootStart);
+  const novemberWitness = page.indexOf('id="movement-11"', rootStart);
 
-  assert.equal((page.match(/<button class="sab-track-btn/g) || []).length, 10);
+  assert.equal((page.match(/<button class="sab-track-btn/g) || []).length, 11);
   assert.match(page, /data-go="9"[\s\S]*Resulting successor/);
   assert.match(page, /data-go="10"[\s\S]*Successor witness/);
+  assert.match(page, /data-go="11"[\s\S]*Nov 1 witness/);
+  assert.match(page, /id="sab-reader-position">01 \/ 11/);
 
   assert.ok(rootStart >= 0 && successor > rootStart, 'successor is inside the reader trajectory');
   assert.ok(witness > successor, 'later witness follows the successor inside the reader trajectory');
-  assert.ok(nav > witness, 'Prev/Next follows every addressable reading phase');
+  assert.ok(novemberWitness > witness, 'November 1 witness follows the earlier successor witness');
+  assert.ok(nav > novemberWitness, 'Prev/Next follows every addressable reading phase');
   assert.ok(footer > nav, 'only footer/arc chrome remains after reader navigation');
 
   assert.match(page, /id="movement-09"[^>]*data-reader-component="phase"[^>]*data-derived="true"/);
   assert.match(page, /id="movement-10"[^>]*data-reader-component="phase"[^>]*data-derived="true"/);
+  assert.match(page, /id="movement-11"[^>]*data-reader-component="phase"[^>]*data-derived="true"/);
   assert.match(page, /\.sab-track\{position:sticky/);
   assert.match(page, /\.sab-source-window\{max-height:min\(68vh,720px\);overflow:auto/);
 });
