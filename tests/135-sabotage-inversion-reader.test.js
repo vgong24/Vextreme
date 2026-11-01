@@ -108,7 +108,9 @@ test('SABOTAGE-II: reader uses one bounded selected phase with safe-view navigat
   assert.ok(page.includes('<link rel="preload" href="../records/conversations/2026-10-30-mastered-state-semantic-trajectory/reader-turn-map.json" as="fetch" crossorigin fetchpriority="high">'));
   assert.match(page, /rootSelector:'#sar-reader'/);
   assert.doesNotMatch(page, /document\.querySelectorAll\('\[data-record-partition\]'\)/);
-  assert.match(page, /\.sar-source-window\{max-height:min\(70vh,760px\);overflow:auto/);
+  const css = read('styles/sabotage-series-record.css');
+  assert.match(page, /styles\/sabotage-series-record\.css/);
+  assert.match(css, /\.sar-source-window\{max-height:min\(70vh,760px\);overflow:auto/);
 });
 
 test('SABOTAGE-II: shared reader supports optional line-bound speaker projection without changing ordinary document rendering', () => {
