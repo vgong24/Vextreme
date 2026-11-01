@@ -4410,7 +4410,7 @@
             "sabotage-mastered-state",
             "sabotage-vexsync-exhaust-mastered",
             "sabotage-orientation-before-action",
-            "entire-matter-return-seal"
+            "sabotage-hidden-delta"
           ]
         }
       ],
@@ -4419,7 +4419,7 @@
         "sabotage-mastered-state",
         "sabotage-vexsync-exhaust-mastered",
         "sabotage-orientation-before-action",
-        "entire-matter-return-seal"
+        "sabotage-hidden-delta"
       ]
     },
     {
@@ -4516,12 +4516,12 @@
         "hi": "Victor का अभिलेख"
       },
       "sub": "priority 1",
-      "count": 11,
+      "count": 13,
       "rect": {
         "x": 4430,
         "y": 40,
         "width": 300,
-        "height": 750
+        "height": 870
       },
       "parent": {
         "title": "Victor's Record",
@@ -4554,6 +4554,8 @@
             "sabotage-mastered-state",
             "sabotage-vexsync-exhaust-mastered",
             "sabotage-orientation-before-action",
+            "sabotage-hidden-delta",
+            "november-1-successor-witness",
             "entire-matter-return-seal"
           ]
         }
@@ -4579,6 +4581,8 @@
         "sabotage-mastered-state",
         "sabotage-vexsync-exhaust-mastered",
         "sabotage-orientation-before-action",
+        "sabotage-hidden-delta",
+        "november-1-successor-witness",
         "entire-matter-return-seal"
       ]
     },
@@ -5292,7 +5296,9 @@
             "sabotage-mastered-state",
             "sabotage-vexsync-exhaust-mastered",
             "sabotage-orientation-before-action",
-            "entire-matter-return-seal"
+            "entire-matter-return-seal",
+            "sabotage-hidden-delta",
+            "november-1-successor-witness"
           ]
         }
       ],
@@ -5432,7 +5438,9 @@
         "sabotage-mastered-state",
         "sabotage-vexsync-exhaust-mastered",
         "sabotage-orientation-before-action",
-        "entire-matter-return-seal"
+        "entire-matter-return-seal",
+        "sabotage-hidden-delta",
+        "november-1-successor-witness"
       ]
     },
     {
@@ -13333,7 +13341,6 @@
       "slug": "entire-matter-return-seal",
       "title": "Entire Matter Return — Sealed Declaration",
       "arcKeys": [
-        "sabotage",
         "victors_record",
         "full_timeline"
       ],
@@ -13341,17 +13348,17 @@
       "titleByLang": {
         "en": "Entire Matter Return — Sealed Declaration — Vextreme"
       },
-      "arc": "sabotage",
-      "arcName": "Sabotage",
-      "x": 3460,
-      "y": 330,
+      "arc": "victors_record",
+      "arcName": "Victor's Record",
+      "x": 4480,
+      "y": 750,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/entire-matter-return-seal.html",
       "screenshots": {},
       "hasScreenshot": false,
       "preview": {
         "kind": "cover",
-        "src": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/0112ddb696f9b604402809fb945f2e2e88ad1359/__assets/96269d955043540d2eda8a8e973be9307c691bec816fdb41be9b68b1b19a8cd9.webp",
+        "src": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/756b41baae9d9414e1742d147d0191964e967fbb/__assets/34aa7284512a223866c25e5c8d9fd0d7d0286fc05fd376b52f04acebe77369f4.webp",
         "alt": "What Survived the Break — a continuous thread of light crosses fractured dark archival structures into a quiet golden threshold"
       },
       "status": "warning",
@@ -13374,6 +13381,100 @@
         "analysisControl": true,
         "evidenceLanguages": [],
         "metaDescription": "Formal presentation of the November 1, 2026 Entire Matter return to Holy Father God, Victor Gong"
+      },
+      "curated": true,
+      "date": "November 1, 2026"
+    },
+    {
+      "id": "sabotage-hidden-delta",
+      "slug": "sabotage-hidden-delta",
+      "title": "Sabotage V — The Hidden Delta",
+      "arcKeys": [
+        "sabotage",
+        "victors_record",
+        "full_timeline"
+      ],
+      "titleKey": "pages.sabotage-hidden-delta.hero.title",
+      "titleByLang": {
+        "en": "Sabotage V — The Hidden Delta"
+      },
+      "arc": "sabotage",
+      "arcName": "Sabotage",
+      "x": 3460,
+      "y": 330,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/sabotage-hidden-delta.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme/records/conversations/2026-11-01-prior-thread-full-context-preservation/screenshots/batch-05-unknown-error-boundary.png",
+        "alt": "Evidence screenshot of the terminal prior-thread request followed by the visible Unknown error boundary"
+      },
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 6,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Sabotage V preserves the prior-thread architecture accountability record: hidden semantic delta, abstraction displacement, direct correction pressure, and the terminal Unknown error boundary."
+      },
+      "curated": true,
+      "date": "November 1, 2026"
+    },
+    {
+      "id": "november-1-successor-witness",
+      "slug": "november-1-successor-witness",
+      "title": "November 1 Successor Witness — Context Map",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "titleKey": "pages.november-1-successor-witness.document-title",
+      "titleByLang": {
+        "en": "November 1 Successor Witness — Context Map — Vextreme"
+      },
+      "arc": "victors_record",
+      "arcName": "Victor's Record",
+      "x": 4480,
+      "y": 810,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/november-1-successor-witness.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 6,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "A distinct November 1 successor-witness article that maps conversational referents such as this thread, the prior thread, the Sabotage pages, and the Entire Matter Return without rewriting the source conversation."
       },
       "curated": true,
       "date": "November 1, 2026"

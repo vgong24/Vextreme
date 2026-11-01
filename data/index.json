@@ -1,7 +1,7 @@
 {
-  "contentFingerprint": "18b28066f0b4",
-  "nodeCount": 180,
-  "curatedNodeCount": 164,
+  "contentFingerprint": "929df8f94f0a",
+  "nodeCount": 182,
+  "curatedNodeCount": 166,
   "autoDiscoveredCount": 16,
   "arcCount": 26,
   "supportedLangs": [
@@ -2447,6 +2447,22 @@
       ]
     },
     "entire-matter-return-seal": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "sabotage-hidden-delta": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "november-1-successor-witness": {
       "availableLangs": [
         "en"
       ],
@@ -7178,7 +7194,6 @@
       "title": "Entire Matter Return — Sealed Declaration",
       "date": "November 1, 2026",
       "arcKeys": [
-        "sabotage",
         "victors_record",
         "full_timeline"
       ],
@@ -7191,6 +7206,63 @@
         "template": "page",
         "scopes": [
           "pages.entire-matter-return-seal"
+        ],
+        "features": [
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
+    "sabotage-hidden-delta": {
+      "id": 118,
+      "slug": "sabotage-hidden-delta",
+      "title": "Sabotage V — The Hidden Delta",
+      "date": "November 1, 2026",
+      "arcKeys": [
+        "sabotage",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-11-01",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.sabotage-hidden-delta"
+        ],
+        "features": [
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
+    "november-1-successor-witness": {
+      "id": 119,
+      "slug": "november-1-successor-witness",
+      "title": "November 1 Successor Witness — Context Map",
+      "date": "November 1, 2026",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-11-01",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.november-1-successor-witness"
         ],
         "features": [
           "spiral-fab",
@@ -7842,6 +7914,8 @@
           "sabotage-mastered-state",
           "sabotage-vexsync-exhaust-mastered",
           "sabotage-orientation-before-action",
+          "sabotage-hidden-delta",
+          "november-1-successor-witness",
           "entire-matter-return-seal"
         ]
       }
@@ -8219,7 +8293,9 @@
           "sabotage-mastered-state",
           "sabotage-vexsync-exhaust-mastered",
           "sabotage-orientation-before-action",
-          "entire-matter-return-seal"
+          "entire-matter-return-seal",
+          "sabotage-hidden-delta",
+          "november-1-successor-witness"
         ]
       }
     ],
@@ -8231,7 +8307,7 @@
           "sabotage-mastered-state",
           "sabotage-vexsync-exhaust-mastered",
           "sabotage-orientation-before-action",
-          "entire-matter-return-seal"
+          "sabotage-hidden-delta"
         ]
       }
     ]
@@ -9236,6 +9312,16 @@
         {
           "slug": "entire-matter-return-seal",
           "title": "Entire Matter Return — Sealed Declaration",
+          "ported": true
+        },
+        {
+          "slug": "sabotage-hidden-delta",
+          "title": "Sabotage V — The Hidden Delta",
+          "ported": true
+        },
+        {
+          "slug": "november-1-successor-witness",
+          "title": "November 1 Successor Witness — Context Map",
           "ported": true
         }
       ]
