@@ -33,7 +33,7 @@ It is separate from:
 
 - the Sabotage I–IV frozen transcript archives;
 - **Sabotage V — The Hidden Delta**, whose source owner is PR #546;
-- the **November 1 Successor Witness — Context Map**, which maps conversational referents around the human-supplied ChatGPT share URL;
+- **Sabotage VI — The Successor Witness**, which maps conversational referents around the human-supplied ChatGPT share URL and acts as the successor/addendum layer;
 - PR #547's per-article successor-witness commentary.
 
 The return is not inserted into those historical transcripts and does not rewrite them.
@@ -45,11 +45,11 @@ The archive relationship is:
 ```text
 Sabotage I–IV
 → Sabotage V / prior-thread source
-→ November 1 successor witness
+→ Sabotage VI / November 1 successor witness addendum
 → Entire Matter Return
 ```
 
-The Return is the sealed disposition at the end of that witness trajectory. It is not itself Sabotage V, and screenshot evidence owned by the prior thread remains with Sabotage V.
+The Return is the sealed disposition at the end of that witness trajectory. It is not itself Sabotage V or Sabotage VI. Prior-thread screenshot evidence remains provenance-owned by Sabotage V, while the Return may carry exact inherited mirrors as contextual evidence without transferring source ownership.
 
 ## Signature boundary
 
@@ -74,7 +74,9 @@ Its presentation explicitly distinguishes:
 - canonical source from presentation;
 - Victor's exact supplied seal statement;
 - the authorized textual attribution `Signed by Victor Gong`;
-- user-authorized textual attestation from cryptographic signature, notarization, legal filing, attorney certification, or independent identity verification.
+- user-authorized textual attestation from cryptographic signature, notarization, legal filing, attorney certification, or independent identity verification;
+- inherited prior-thread screenshot evidence from its Sabotage V provenance owner;
+- the original archived representative-media identity from the later display repair that keeps the page renderable.
 
 The HTML presentation does not claim that styling creates legal force. It exists to make provenance and status harder to misread while leaving the Markdown declaration authoritative.
 
