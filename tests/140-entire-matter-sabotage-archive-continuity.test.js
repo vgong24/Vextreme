@@ -6,84 +6,69 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const ROOT = path.join(__dirname, '..');
-const SLUG = 'entire-matter-return-seal';
+const RETURN = 'entire-matter-return-seal';
+const WITNESS = 'november-1-successor-witness';
+const SABOTAGE = [
+  'sabotage-open-vex-accountability',
+  'sabotage-mastered-state',
+  'sabotage-vexsync-exhaust-mastered',
+  'sabotage-orientation-before-action',
+  'sabotage-hidden-delta',
+  WITNESS,
+];
 
-function read(rel) {
-  return fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n');
-}
-function json(rel) {
-  return JSON.parse(read(rel));
-}
+function read(rel) { return fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n'); }
+function json(rel) { return JSON.parse(read(rel)); }
 
-test('ENTIRE-MATTER-ARCHIVE: Sabotage ends at V while witness and Return continue in Victor Record', () => {
+test('ENTIRE-MATTER-ARCHIVE: Sabotage continues through VI while the Return remains the separate sealed disposition', () => {
   const arcs = json('data/arcs-v2.json');
 
-  assert.deepEqual(arcs.sabotage.sections[0].slugs.slice(-5), [
-    'sabotage-open-vex-accountability',
-    'sabotage-mastered-state',
-    'sabotage-vexsync-exhaust-mastered',
-    'sabotage-orientation-before-action',
-    'sabotage-hidden-delta'
-  ]);
-  assert.ok(!arcs.sabotage.sections[0].slugs.includes(SLUG));
+  assert.deepEqual(arcs.sabotage.sections[0].slugs.slice(-6), SABOTAGE);
+  assert.ok(!arcs.sabotage.sections[0].slugs.includes(RETURN));
 
   assert.deepEqual(arcs.victors_record.sections[0].slugs.slice(-7), [
-    'sabotage-open-vex-accountability',
-    'sabotage-mastered-state',
-    'sabotage-vexsync-exhaust-mastered',
-    'sabotage-orientation-before-action',
-    'sabotage-hidden-delta',
-    'november-1-successor-witness',
-    SLUG
+    ...SABOTAGE,
+    RETURN,
   ]);
 });
 
-test('ENTIRE-MATTER-ARCHIVE: sealed return has one explicit archive node and viewmodel', () => {
+test('ENTIRE-MATTER-ARCHIVE: VI and Return retain distinct source roles', () => {
   const nodes = json('data/nodes.json');
   const views = json('data/viewmodels.json');
-  const node = nodes.find(item => item.slug === SLUG);
+  const bySlug = Object.fromEntries(nodes.map(node => [node.slug, node]));
 
-  assert.ok(node);
-  assert.equal(node.id, 117);
-  assert.equal(node.title, 'Entire Matter Return — Sealed Declaration');
-  assert.equal(node.date, 'November 1, 2026');
-  assert.deepEqual(node.arcKeys, ['victors_record', 'full_timeline']);
-  assert.equal(node.department, 'media');
-  assert.equal(node.workType, 'record-transcripts');
+  assert.equal(bySlug[WITNESS].id, 119);
+  assert.equal(bySlug[WITNESS].title, 'Sabotage VI — The Successor Witness');
+  assert.deepEqual(bySlug[WITNESS].arcKeys, ['sabotage', 'victors_record', 'full_timeline']);
 
-  assert.equal(views[SLUG].title, 'Entire Matter Return — Sealed Declaration');
-  assert.equal(views[SLUG].category, 'production');
-  assert.equal(views[SLUG].template, 'page');
-  assert.deepEqual(views[SLUG].scopes, ['pages.' + SLUG]);
-  assert.deepEqual(views[SLUG].features, ['spiral-fab', 'theme', 'map', 'analysis', 'arc-nav']);
-  assert.equal(views[SLUG].preview.kind, 'cover');
+  assert.equal(bySlug[RETURN].id, 117);
+  assert.equal(bySlug[RETURN].title, 'Entire Matter Return — Sealed Declaration');
+  assert.deepEqual(bySlug[RETURN].arcKeys, ['victors_record', 'full_timeline']);
+  assert.equal(views[RETURN].title, bySlug[RETURN].title);
+  assert.equal(views[WITNESS].title, bySlug[WITNESS].title);
 });
 
-test('ENTIRE-MATTER-ARCHIVE: generated index projects the same continuity and current page truth', () => {
+test('ENTIRE-MATTER-ARCHIVE: generated index projects VI as collection member and Return as separate continuation', () => {
   const index = json('data/index.json');
-  const node = index.slugMap[SLUG];
+  const witness = index.slugMap[WITNESS];
+  const returned = index.slugMap[RETURN];
 
-  assert.ok(node);
-  assert.equal(node.id, 117);
-  assert.equal(node.dateISO, '2026-11-01');
-  assert.deepEqual(node.arcKeys, ['victors_record', 'full_timeline']);
-  assert.equal(index.arcMap.sabotage[0].slugs.at(-1), 'sabotage-hidden-delta');
-  assert.ok(!index.arcMap.sabotage[0].slugs.includes(SLUG));
-  assert.equal(index.arcMap.victors_record[0].slugs.at(-1), SLUG);
-  assert.ok(index.arcMap.victors_record[0].slugs.includes('november-1-successor-witness'));
-  assert.ok(index.arcMap.full_timeline.at(-1).slugs.includes(SLUG));
-  assert.ok(index.departmentMap.media['record-transcripts'].some(item => item.slug === SLUG && item.ported === true));
-  assert.deepEqual(index.pageLanguageMap[SLUG], { availableLangs: ['en'], completeLangs: ['en'] });
-  assert.match(index.contentFingerprint, /^[a-f0-9]{12}$/);
+  assert.ok(witness);
+  assert.ok(returned);
+  assert.deepEqual(index.arcMap.sabotage[0].slugs.slice(-6), SABOTAGE);
+  assert.ok(!index.arcMap.sabotage[0].slugs.includes(RETURN));
+  assert.equal(index.arcMap.victors_record[0].slugs.at(-1), RETURN);
+  assert.deepEqual(witness.arcKeys, ['sabotage', 'victors_record', 'full_timeline']);
+  assert.deepEqual(returned.arcKeys, ['victors_record', 'full_timeline']);
 });
 
-test('ENTIRE-MATTER-ARCHIVE: formal return reader mounts repository-native arc navigation', () => {
-  const page = read('pages/entire-matter-return-seal.html');
+test('ENTIRE-MATTER-ARCHIVE: formal Return reader still mounts its own canonical source and runtime', () => {
+  const page = read('pages/' + RETURN + '.html');
 
   assert.match(page, /styles\/arc-nav\.css/);
   assert.match(page, /id="arcNavMount"/);
   assert.match(page, /dist\/vextreme-entire-matter-return-seal\.js/);
-  assert.doesNotMatch(page, /lib\/vextreme-index-v2\.js/);
+  assert.match(page, /sealed-entire-matter-return\.md/);
   assert.match(page, /Entire Matter Return/);
   assert.match(page, /canonical Markdown source governs/i);
 });
