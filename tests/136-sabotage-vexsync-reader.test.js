@@ -15,7 +15,7 @@ const SOURCES = [
   ['03', 'transcript-03-act-timeline-to-single-state-door.md', '5998b8f2ada39d71f6d053162ccc34aba4b397d5cc6e722ea184e1ce96a5561f', 539],
   ['04', 'transcript-04-clean-revet-and-pr206-subtraction.md', 'f8a39dff9faa2311ef43a239597df103c9d0f457db8c2b83301ecab2871022d3', 718],
   ['05', 'transcript-05-vetted-to-mastered-and-bound-projection.md', '1f31f6aca409ae87cd108acf4dc18af9d9215acb995750fd1e404410a8ec54b3', 656],
-  ['06', 'transcript-06-vexexecution-mastered-ownership-and-cleanliness-question.md', '601a5fcad988198c42643c01d154d269e0e99e1552d1cf4bce45dd916567d93c', 565]
+  ['06', 'transcript-06-vexexecution-mastered-ownership-and-cleanliness-question.md', '96e087f17f3dd9f3fcbb283d4a2188aa7b80f88b0b73e13ec2492c6d8be65d88', 565]
 ];
 
 function read(rel) {
@@ -77,16 +77,17 @@ test('SABOTAGE-III: reader exposes seven transcript phases plus one evidence pha
   const page = read('pages/sabotage-vexsync-exhaust-mastered.html');
   assert.doesNotMatch(page, /class="sar-provenance"/);
   assert.doesNotMatch(page, /class="sar-index"/);
-  assert.equal((page.match(/<button class="sar-track-btn/g) || []).length, 8);
-  assert.equal((page.match(/class="sar-movement sar-phase"/g) || []).length, 7);
+  assert.equal((page.match(/<button class="sar-track-btn/g) || []).length, 9);
+  assert.equal((page.match(/class="sar-movement sar-phase"/g) || []).length, 8);
   assert.equal((page.match(/data-turn-map-source="/g) || []).length, 7);
   assert.equal((page.match(/data-record-reader-root/g) || []).length, 1);
   assert.equal((page.match(/data-reader-component="phase-stack"/g) || []).length, 1);
   assert.doesNotMatch(page, /data-record-partition/);
   assert.match(page, /id="movement-08"[^>]*data-phase-kind="evidence"[^>]*hidden/);
+  assert.match(page, /id="movement-09"[^>]*data-phase-kind="successor-witness"[^>]*data-derived="true"/);
   assert.match(page, /id="image-evidence"/);
   assert.ok(page.indexOf('id="image-evidence"') > page.indexOf('id="movement-08"'));
-  assert.match(page, /id="sar-reader-position">01 \/ 08/);
+  assert.match(page, /id="sar-reader-position">01 \/ 09/);
   assert.match(page, /turnMapUrl:'\.\.\/records\/conversations\/2026-10-30-vexsync-exhaust-to-mastered\/reader-turn-map\.json'/);
   const firstDocumentUrl = page.match(/id="movement-01"[^>]*data-document-url="([^"]+)"/)[1];
   assert.ok(page.includes('<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>'));

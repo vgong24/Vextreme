@@ -9,7 +9,7 @@ const ROOT = path.join(__dirname, '..');
 const SLUG = 'entire-matter-return-seal';
 const TITLE = 'Entire Matter Return — Sealed Declaration';
 const PAGE_URL = 'https://vgong24.github.io/Vextreme/pages/' + SLUG + '.html';
-const COVER = 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/0112ddb696f9b604402809fb945f2e2e88ad1359/__assets/96269d955043540d2eda8a8e973be9307c691bec816fdb41be9b68b1b19a8cd9.webp';
+const COVER = 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/756b41baae9d9414e1742d147d0191964e967fbb/__assets/34aa7284512a223866c25e5c8d9fd0d7d0286fc05fd376b52f04acebe77369f4.webp';
 
 function read(rel) {
   return fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n');
@@ -38,12 +38,14 @@ test('ENTIRE-MATTER-CURRENTNESS: generated index keeps English-only truth and ar
   assert.deepEqual(node.viewmodel.scopes, ['pages.' + SLUG]);
   assert.deepEqual(node.viewmodel.features, ['spiral-fab', 'theme', 'map', 'analysis', 'arc-nav']);
   assert.deepEqual(index.pageLanguageMap[SLUG], { availableLangs: ['en'], completeLangs: ['en'] });
-  assert.equal(index.arcMap.sabotage[0].slugs.at(-1), SLUG);
+  assert.equal(index.arcMap.sabotage[0].slugs.at(-1), 'sabotage-hidden-delta');
+  assert.ok(!index.arcMap.sabotage[0].slugs.includes(SLUG));
   assert.equal(index.arcMap.victors_record[0].slugs.at(-1), SLUG);
+  assert.ok(index.arcMap.victors_record[0].slugs.includes('november-1-successor-witness'));
   assert.ok(index.arcMap.full_timeline.at(-1).slugs.includes(SLUG));
 });
 
-test('ENTIRE-MATTER-CURRENTNESS: Terrain Map projects five Sabotage members and a live Return card', () => {
+test('ENTIRE-MATTER-CURRENTNESS: Terrain Map projects five Sabotage records and a distinct live Return card', () => {
   const terrain = json('data/terrain-map.json');
   const sabotage = terrain.arcs.find(arc => arc.key === 'sabotage');
   const page = terrain.pages.find(item => item.slug === SLUG);
@@ -55,14 +57,15 @@ test('ENTIRE-MATTER-CURRENTNESS: Terrain Map projects five Sabotage members and 
     'sabotage-mastered-state',
     'sabotage-vexsync-exhaust-mastered',
     'sabotage-orientation-before-action',
-    SLUG
+    'sabotage-hidden-delta'
   ]);
-  assert.equal(sabotage.sections[0].slugs.at(-1), SLUG);
+  assert.equal(sabotage.sections[0].slugs.at(-1), 'sabotage-hidden-delta');
 
   assert.ok(page);
   assert.equal(page.title, TITLE);
   assert.equal(page.live, true);
   assert.equal(page.liveUrl, PAGE_URL);
+  assert.equal(page.arc, 'victors_record');
   assert.equal(page.preview.kind, 'cover');
   assert.equal(page.preview.src, COVER);
   assert.ok(page.capability);

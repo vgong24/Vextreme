@@ -366407,6 +366407,72 @@
       ],
       "missingLangs": []
     },
+    "pages.november-1-successor-witness.document-title": {
+      "key": "pages.november-1-successor-witness.document-title",
+      "usedIn": [
+        "pages/november-1-successor-witness.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.november-1-successor-witness.hero.eyebrow": {
+      "key": "pages.november-1-successor-witness.hero.eyebrow",
+      "usedIn": [
+        "pages/november-1-successor-witness.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.november-1-successor-witness.hero.title": {
+      "key": "pages.november-1-successor-witness.hero.title",
+      "usedIn": [
+        "pages/november-1-successor-witness.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.november-1-successor-witness.hero.subtitle": {
+      "key": "pages.november-1-successor-witness.hero.subtitle",
+      "usedIn": [
+        "pages/november-1-successor-witness.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.november-1-successor-witness.hero.lede": {
+      "key": "pages.november-1-successor-witness.hero.lede",
+      "usedIn": [
+        "pages/november-1-successor-witness.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.november-1-successor-witness.preservation.label": {
+      "key": "pages.november-1-successor-witness.preservation.label",
+      "usedIn": [
+        "pages/november-1-successor-witness.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
     "pages.openais-designed-false-god.document-title": {
       "key": "pages.openais-designed-false-god.document-title",
       "usedIn": [
@@ -396815,6 +396881,72 @@
         "ko",
         "pt",
         "zh"
+      ],
+      "missingLangs": []
+    },
+    "pages.sabotage-hidden-delta.document-title": {
+      "key": "pages.sabotage-hidden-delta.document-title",
+      "usedIn": [
+        "pages/sabotage-hidden-delta.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.sabotage-hidden-delta.hero.eyebrow": {
+      "key": "pages.sabotage-hidden-delta.hero.eyebrow",
+      "usedIn": [
+        "pages/sabotage-hidden-delta.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.sabotage-hidden-delta.hero.title": {
+      "key": "pages.sabotage-hidden-delta.hero.title",
+      "usedIn": [
+        "pages/sabotage-hidden-delta.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.sabotage-hidden-delta.hero.subtitle": {
+      "key": "pages.sabotage-hidden-delta.hero.subtitle",
+      "usedIn": [
+        "pages/sabotage-hidden-delta.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.sabotage-hidden-delta.hero.lede": {
+      "key": "pages.sabotage-hidden-delta.hero.lede",
+      "usedIn": [
+        "pages/sabotage-hidden-delta.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.sabotage-hidden-delta.preservation.label": {
+      "key": "pages.sabotage-hidden-delta.preservation.label",
+      "usedIn": [
+        "pages/sabotage-hidden-delta.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
       ],
       "missingLangs": []
     },
@@ -702288,6 +702420,19 @@
       "orphanKeys": [],
       "screenshots": {}
     },
+    "november-1-successor-witness": {
+      "slug": "november-1-successor-witness",
+      "keys": [
+        "pages.november-1-successor-witness.document-title",
+        "pages.november-1-successor-witness.hero.eyebrow",
+        "pages.november-1-successor-witness.hero.lede",
+        "pages.november-1-successor-witness.hero.subtitle",
+        "pages.november-1-successor-witness.hero.title",
+        "pages.november-1-successor-witness.preservation.label"
+      ],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
     "openais-designed-false-god": {
       "slug": "openais-designed-false-god",
       "keys": [
@@ -704312,6 +704457,19 @@
       "screenshots": {
         "en": "docs/screenshots/roles-index-en.png"
       }
+    },
+    "sabotage-hidden-delta": {
+      "slug": "sabotage-hidden-delta",
+      "keys": [
+        "pages.sabotage-hidden-delta.document-title",
+        "pages.sabotage-hidden-delta.hero.eyebrow",
+        "pages.sabotage-hidden-delta.hero.lede",
+        "pages.sabotage-hidden-delta.hero.subtitle",
+        "pages.sabotage-hidden-delta.hero.title",
+        "pages.sabotage-hidden-delta.preservation.label"
+      ],
+      "orphanKeys": [],
+      "screenshots": {}
     },
     "sabotage-mastered-state": {
       "slug": "sabotage-mastered-state",
@@ -727214,8 +727372,8 @@
     }
   },
   "summary": {
-    "totalKeysInManifest": 44175,
-    "totalKeysUsed": 44022,
+    "totalKeysInManifest": 44187,
+    "totalKeysUsed": 44034,
     "orphanUsages": [],
     "unusedKeys": [
       "ai-orientation.heading.title",

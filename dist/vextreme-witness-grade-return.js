@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.witness-grade-return"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en","ar","de","es","fr","hi","ja","ko","pt","zh"];
-  window.VEX_INDEX_FINGERPRINT = "18b28066f0b4";
+  window.VEX_INDEX_FINGERPRINT = "929df8f94f0a";
 
 
 

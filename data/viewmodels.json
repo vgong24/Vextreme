@@ -2572,8 +2572,43 @@
     ],
     "preview": {
       "kind": "cover",
-      "src": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/0112ddb696f9b604402809fb945f2e2e88ad1359/__assets/96269d955043540d2eda8a8e973be9307c691bec816fdb41be9b68b1b19a8cd9.webp",
+      "src": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/756b41baae9d9414e1742d147d0191964e967fbb/__assets/34aa7284512a223866c25e5c8d9fd0d7d0286fc05fd376b52f04acebe77369f4.webp",
       "alt": "What Survived the Break — a continuous thread of light crosses fractured dark archival structures into a quiet golden threshold"
     }
+  },
+  "sabotage-hidden-delta": {
+    "title": "Sabotage V — The Hidden Delta",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.sabotage-hidden-delta"
+    ],
+    "features": [
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ],
+    "preview": {
+      "kind": "cover",
+      "src": "https://vgong24.github.io/Vextreme/records/conversations/2026-11-01-prior-thread-full-context-preservation/screenshots/batch-05-unknown-error-boundary.png",
+      "alt": "Evidence screenshot of the terminal prior-thread request followed by the visible Unknown error boundary"
+    }
+  },
+  "november-1-successor-witness": {
+    "title": "November 1 Successor Witness — Context Map",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.november-1-successor-witness"
+    ],
+    "features": [
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
   }
 }

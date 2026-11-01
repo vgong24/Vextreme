@@ -80,13 +80,13 @@ test('SABOTAGE-II: reader uses one bounded selected phase with safe-view navigat
   const page = read('pages/sabotage-mastered-state.html');
 
   assert.doesNotMatch(page, /sar-page--continuous/);
-  assert.equal((page.match(/<button class="sar-track-btn/g) || []).length, 6);
-  assert.equal((page.match(/class="sar-movement sar-phase"/g) || []).length, 6);
-  assert.equal((page.match(/class="sar-movement sar-phase"[^>]* hidden/g) || []).length, 5);
+  assert.equal((page.match(/<button class="sar-track-btn/g) || []).length, 7);
+  assert.equal((page.match(/class="sar-movement sar-phase"/g) || []).length, 7);
+  assert.equal((page.match(/class="sar-movement sar-phase"[^>]* hidden/g) || []).length, 6);
   assert.equal((page.match(/data-record-reader-root/g) || []).length, 1);
   assert.equal((page.match(/data-reader-component="phase-stack"/g) || []).length, 1);
   assert.doesNotMatch(page, /data-record-partition/);
-  assert.match(page, /id="sar-reader-position">01 \/ 06/);
+  assert.match(page, /id="sar-reader-position">01 \/ 07/);
   assert.match(page, /id="sar-prev"[^>]*disabled/);
   assert.match(page, /id="sar-next"/);
   assert.doesNotMatch(page, /class="sar-provenance"/);
@@ -99,6 +99,8 @@ test('SABOTAGE-II: reader uses one bounded selected phase with safe-view navigat
     assert.match(page, new RegExp('id="sar-root-' + movement + '"[^>]*data-reader-component="preserved-record"'));
   }
 
+  assert.match(page, /id="movement-07"[^>]*data-phase-kind="successor-witness"[^>]*data-derived="true"/);
+  assert.equal((page.match(/data-turn-map-source="/g) || []).length, 6);
   assert.match(page, /turnMapUrl:'\.\.\/records\/conversations\/2026-10-30-mastered-state-semantic-trajectory\/reader-turn-map\.json'/);
   const firstDocumentUrl = page.match(/id="movement-01"[^>]*data-document-url="([^"]+)"/)[1];
   assert.ok(page.includes('<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>'));
@@ -106,7 +108,9 @@ test('SABOTAGE-II: reader uses one bounded selected phase with safe-view navigat
   assert.ok(page.includes('<link rel="preload" href="../records/conversations/2026-10-30-mastered-state-semantic-trajectory/reader-turn-map.json" as="fetch" crossorigin fetchpriority="high">'));
   assert.match(page, /rootSelector:'#sar-reader'/);
   assert.doesNotMatch(page, /document\.querySelectorAll\('\[data-record-partition\]'\)/);
-  assert.match(page, /\.sar-source-window\{max-height:min\(70vh,760px\);overflow:auto/);
+  const css = read('styles/sabotage-series-record.css');
+  assert.match(page, /styles\/sabotage-series-record\.css/);
+  assert.match(css, /\.sar-source-window\{max-height:min\(70vh,760px\);overflow:auto/);
 });
 
 test('SABOTAGE-II: shared reader supports optional line-bound speaker projection without changing ordinary document rendering', () => {
