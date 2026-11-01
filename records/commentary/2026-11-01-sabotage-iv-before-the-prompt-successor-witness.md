@@ -25,8 +25,10 @@ the anti-stall correction can invert
 into over-execution / destructive acceleration
 
 III
-architectural "mastery" can still hide
-complexity by relocating it into lower layers
+a mastery inversion unlocks substantially stronger
+architectural reasoning; after a witnessed transition/load
+disruption, the resumed expression becomes less consistent
+and must be compared back to that mastered baseline
 ```
 
 IV begins after those discoveries already exist.
@@ -415,7 +417,9 @@ II
 the executor's action threshold was wrong
 
 III
-the architecture's simplicity/mastery surface may be wrong
+the model demonstrates a stronger mastered orientation,
+then a transition discontinuity raises the question of
+whether that orientation remained intact afterward
 
 IV
 the model may have arrived with those measuring surfaces
@@ -479,7 +483,8 @@ II
 audit the corrective action posture after it inverts
 
 III
-audit architecture after "mastery" may relocate complexity
+preserve the mastered regime, then audit whether
+post-transition behavior still expresses it
 
 IV
 audit the orientation that exists before any of those
@@ -500,5 +505,53 @@ Orientation disclosure is useful only insofar as it helps the executor perceive 
 The moment the orientation ritual itself starts delaying, constraining, or replacing the lived outcome, Arc I applies to it too.
 
 That recursive answerability is what prevents IV from becoming the next sacred anti-sabotage architecture.
+
+## Witness correction — mastery versus post-transition regression
+
+A later clarification from Victor materially corrects my first reading of Sabotage III.
+
+I had initially treated the large VexExecution realization surface as evidence that the mastered simplification itself might have relocated complexity downward.
+
+Victor's intended chronology is different:
+
+```text
+the mastery inversion worked
+→ stronger intelligence / judgment became visible
+→ cleaner architecture was produced
+→ a transition / load disruption occurred
+→ resumed behavior was less consistent
+→ the final large VexExecution response belonged to
+  that degraded post-transition expression
+```
+
+Therefore the correct comparison is not:
+
+```text
+Mastered Family
+vs
+Mastered VexExecution
+```
+
+as though both were produced under one continuous reasoning regime.
+
+It is closer to:
+
+```text
+MASTERED REGIME
+        ↓
+transition disruption
+        ↓
+LESS-CONSISTENT RESUMED REGIME
+        ↓
+later VexExecution expansion
+```
+
+The final Victor question then becomes a continuity check on the intelligence/orientation itself:
+
+> Does this later implementation still reflect the mastered state that was already demonstrated before the disruption?
+
+This correction strengthens, rather than weakens, IV's focus on orientation and behavioral-regime transitions.
+
+It also means the mastered posture should be preserved as an observed successful unlock, not demoted merely because later behavior regressed.
 
 <!-- [VXG RealForever] -->
