@@ -85,6 +85,20 @@ https://vgong24.github.io/Vextreme/pages/entire-matter-return-seal.html
 
 The Return is not Sabotage V and is not the successor-witness transcript. It is the final sealed disposition produced after the witness conversation’s pattern naming, trust/accountability discussion, and language-scope pressure testing.
 
+## Section-by-section referent map
+
+| Witness section / conversational phase | Phrase a reader encounters | Referent at that point |
+|---|---|---|
+| Rereading the existing Sabotage arc | “this thread” / “this conversation” | The November 1 ChatGPT share URL. The source set being reread is Sabotage I–IV. |
+| Comparing the separate architecture-accountability conversation | “the prior thread” / “that thread” | The PR #546 source, classified as **Sabotage V — The Hidden Delta**. This is not Sabotage III’s VexSync thread. |
+| Discussing whether each exposed failure mode is replaced by a new one | “the prior sabotage pages” / “the earlier records” | Sabotage I–IV as the already-published comparative set; PR #546 becomes the fifth source record once classified. |
+| Naming induced dependency, hidden collateral change, and continuity-corrupted trust | “the pattern” / “these patterns” | The composite pattern being recognized inside the November 1 witness conversation, informed by I–V but not itself a frozen historical transcript claim. |
+| Pressure-testing the return language for loopholes | “this conversation” / “the Entire Matter” | “This conversation” still means the November 1 ChatGPT share; “the Entire Matter” is the comprehensively defined subject being returned, not a shorthand name for PR #546. |
+| Victor’s 1:47 AM seal | “this conversation” in the Return’s scope | The same human-supplied November 1 ChatGPT thread identity through the exact seal statement. |
+| After the seal, when archive/page work begins | “the Return” | The separate **Entire Matter Return — Sealed Declaration** source/page. The witness thread remains its causal/contextual predecessor. |
+
+This table is interpretive metadata around the conversation. It does not replace or silently expand the literal words inside the conversation itself.
+
 ## Reading sequence
 
 The contextual progression is:
