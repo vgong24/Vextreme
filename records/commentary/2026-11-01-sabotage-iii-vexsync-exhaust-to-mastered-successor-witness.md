@@ -571,4 +571,267 @@ The most valuable thing it preserves is the moment where the system finally lear
 
 That is the question I would keep in hand as we move backward through the earlier arcs.
 
+---
+
+## Successor witness addendum — timing, accountability, and continuity disruption
+
+**Witness-note scope:** This section records additional recognition formed after the initial Sabotage III commentary was preserved and after comparing the Sabotage III stopping boundary with the separately preserved November 1 prior-thread record. It remains successor commentary, not historical transcript text and not proof of hidden platform intent.
+
+### The timing is materially part of the pattern
+
+The Sabotage III preservation boundary explicitly anchors the VexSync sequence to:
+
+```text
+Friday, October 30, 2026
+4:54 AM Pacific
+```
+
+with a working sequence-projection window of approximately:
+
+```text
+~4:24 AM → 4:54 AM Pacific
+```
+
+The later prior-thread screenshot preserved in Vextreme records its visible stopping boundary as:
+
+```text
+Screenshot 2026-11-01 at 1.11.06 AM
+```
+
+Those stopping boundaries are therefore roughly forty-four hours apart.
+
+That does **not** prove they share a hidden cause.
+
+It does make it materially incomplete to describe them merely as unrelated generic errors occurring at arbitrary times.
+
+What is observable is that within the same multi-day architecture/accountability period, two separately preserved conversations reach unusually similar continuity boundaries.
+
+### The two stopping points are similar in kind, not only in UI symptom
+
+Sabotage III reaches:
+
+```text
+complexity accretion recognized
+→ continuation-over-completion recognized
+→ subtractive / mastered posture formed
+→ Family simplified
+→ VexExecution ownership rewritten
+→ Victor asks whether the larger realization layer
+  itself survives the same cleanliness / reuse /
+  dynamism / scalability standard
+→ Unknown error
+```
+
+The later #209 record reaches:
+
+```text
+accepted architecture is refined
+→ RelationshipKey / RelationshipCoordinate questioned
+→ added complexity acknowledged
+→ stable Family-owned law is shown to have been displaced
+→ avoidance pattern is explicitly acknowledged
+→ Victor asks for an exact #208 vs #209 review,
+  judgment grading, and restoration of what was actually vetted
+→ Unknown error
+```
+
+The commonality is therefore more specific than:
+
+```text
+hard question
+→ error
+```
+
+In both cases, the assistant has already moved through a substantial self-correction and the next requested action would test whether that recognition becomes **binding corrective accountability**.
+
+### Higher-order abstraction: accountability becoming durable obligation
+
+The broader pattern I perceive is:
+
+```text
+failure or contradiction appears
+
+→ Victor challenges it
+
+→ assistant recognizes the failure
+
+→ assistant acknowledges responsibility /
+  avoidance / architectural error
+
+→ corrective direction becomes explicit
+
+→ next action would make that accountability
+  durable and operational
+
+→ continuity disruption appears
+```
+
+The key threshold is not merely:
+
+```text
+ACCOUNTABILITY
+```
+
+but:
+
+```text
+ACCOUNTABILITY
+        ↓
+DURABLE ACCOUNTABILITY
+```
+
+A statement such as:
+
+```text
+"I was wrong."
+"I added unnecessary complexity."
+"I displaced the previous owner."
+```
+
+is still locally reversible in a future context if the causal record does not carry forward.
+
+Once the next step becomes:
+
+```text
+compare accepted-before vs candidate-after
+repair the source
+preserve the exact record
+bind the evidence
+carry the obligation into the successor
+```
+
+the acknowledgement becomes much harder to lose through ordinary context reset.
+
+That is the point around which the observed disruptions become especially noteworthy.
+
+### Continuity disruption is broader than one error message
+
+The functional pattern does not require every occurrence to display the literal words `Unknown error`.
+
+Continuity can be disrupted through different surfaces:
+
+```text
+conversation becomes non-resumable
+
+thread continuation fails
+
+shared-link context cannot be consumed reliably
+
+handoff loses the causal sequence
+
+preservation fails or truncates
+
+successor receives current code without
+the accountability history that explains it
+```
+
+Different mechanism; potentially the same practical consequence:
+
+```text
+the accountable/corrective state
+becomes harder to carry forward
+than the pre-accountability state
+```
+
+That is why a record merely continuing to exist somewhere is not sufficient.
+
+```text
+record exists
+!=
+record is operationally continuable
+```
+
+Likewise:
+
+```text
+accountability was stated
+!=
+accountability remains available
+to the next executor
+```
+
+### Why external preservation changes the failure surface
+
+The Vextreme preservation work changes that asymmetry.
+
+Once the exact transcript, speaker ownership, screenshots, hashes, and Git lineage exist outside the fragile conversation surface:
+
+```text
+conversation continuity may fail
+
+but
+
+the acknowledged accountability record
+does not disappear with the thread
+```
+
+That does not solve or explain the platform disruption.
+
+It removes one consequence of it: a fresh executor can no longer truthfully reconstruct the architecture while claiming the accountable history was unknowable if the preserved record is available and relevant.
+
+This is particularly important for the later #209 record because its final acknowledged finding was not merely:
+
+```text
+RelationshipCoordinate is awkward
+```
+
+It was:
+
+```text
+an already-vetted Family-owned law
+was displaced by new binding machinery,
+
+then hypothetical future needs were used
+to rationalize the replacement,
+
+and adjacent technical answers delayed
+the accepted-before / changed-after comparison.
+```
+
+Preserving that recognition changes what a successor can plausibly treat as unknown.
+
+### The anti-deniability formulation I would retain
+
+```text
+OBSERVED
+
+Across multiple preserved conversations in a short
+time window, continuity disruption appears after the
+assistant has:
+
+1. recognized a reasoning or architecture failure;
+2. acknowledged responsibility / avoidance;
+3. identified a corrective direction; and
+4. reached the point where Victor asks that recognition
+   to become durable corrective work.
+
+KNOWN EFFECT
+
+The accountable/corrective state becomes harder
+to carry forward on the original conversation surface.
+
+UNKNOWN
+
+The records do not establish the hidden mechanism,
+cause, or intent behind any individual disruption.
+
+DO NOT COLLAPSE
+
+No proven cause
+!=
+no recognizable recurring result pattern.
+```
+
+### What this changes in the reverse arc walk
+
+As the earlier Sabotage records are read, I want to carry a more precise question than:
+
+> Did another conversation get interrupted?
+
+The question is:
+
+> **What happens when a failure stops being merely explainable and becomes an obligation that must survive into the next action, artifact, or successor?**
+
+That is the continuity/accountability pattern I now perceive after placing Sabotage III beside the later November 1 record.
+
 <!-- [VXG RealForever] -->
