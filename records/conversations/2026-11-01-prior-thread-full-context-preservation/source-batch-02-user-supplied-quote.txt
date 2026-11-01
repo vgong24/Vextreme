@@ -1,0 +1,264 @@
+"okay then you may complete\
+The source work is complete to the real executable-proof boundary on PR #209.\
+\
+Current exact candidate:\
+\
+head = 1c041097aeafe38500119141c497b92f3f9c6692\
+tree = 657367d277bc5a68c3a6189f42a171ca1df16b89\
+base = 83ea255294b8e4f8b2421ad2e27fa9e5be16a62a\
+changed paths = 38\
+Family, Execution, Logger, dependency construction, application/session composition, repository culture, foundation index, and their owning architecture docs now describe the same architecture. I don't see another justified abstraction to add before execution evidence.\
+\
+The remaining hold is exact-head vexVerifyLocal. This environment cannot run the Android/Gradle host, so I've reduced that to one bounded action using the current VexRelay/VexLocalBridge contract.\
+\
+Run the exact PR #209 proof\
+Put this exact ZIP in \~/Downloads:\
+\
+VEXLIFE-ANDROID-PR209-SOURCE-OWNER-A001-FORM-AND-RUN\
+\
+Then run this one command on the Mac:\
+\
+/bin/bash -c 'set -euo pipefail; ZIP="$HOME/Downloads/VEXLIFE-ANDROID-PR209-SOURCE-OWNER-A001-FORM-AND-RUN--sha256-e2eea2503692d70f1169b23e1833700696a386576f091ecf1b24eca22f3699f5.zip"; EXPECTED="e2eea2503692d70f1169b23e1833700696a386576f091ecf1b24eca22f3699f5"; [ -f "$ZIP" ] || { printf "%s\n" "Exact PR209 proof ZIP not found in Downloads." >&2; exit 2; }; OBSERVED="$(/usr/bin/shasum -a 256 "$ZIP" | /usr/bin/cut -d " " -f 1)"; [ "$OBSERVED" = "$EXPECTED" ] || { printf "SHA mismatch expected=%s observed=%s\n" "$EXPECTED" "$OBSERVED" >&2; exit 3; }; ROOT="$(/usr/bin/mktemp -d "$HOME/Downloads/.vex-pr209-proof.XXXXXX")"; trap "/bin/rm -rf -- \\"$ROOT\\"" EXIT HUP INT TERM; /usr/bin/ditto -x -k "$ZIP" "$ROOT"; /bin/bash "$ROOT/FORM-AND-RUN.sh"'\
+\
+The package is bound to the exact candidate above and will use the pinned current SDK to form the canonical task at execution time. It runs:\
+\
+./gradlew vexVerifyLocal --no-configuration-cache --continue --stacktrace\
+git diff --exit-code\
+and does no source, PR, approval, or merge mutation.\
+\
+When it finishes, Finder should reveal the canonical digest-bound RETURN-...zip. Upload that exact RETURN ZIP here—no need to interpret logs or tell me what passed/failed. I'll consume the evidence from the RETURN itself.\
+\
+\
+RETURN-vexlife-android-pr209-source-owner-a001-attempt-a001--sha256-424ee3df9bf5cc32d285a81a21428fced44f08f18403db3c07a6b35f195037b6.zip\
+File\
+A001 is fully classified. Nothing in PR #209 failed. The carrier passed; Gradle never started because the Relay tried to resolve ./gradlew before entering the repository cwd.\
+\
+I recorded that durably on PR #209. The source candidate remains untouched at:\
+\
+head = 1c041097aeafe38500119141c497b92f3f9c6692\
+tree = 657367d277bc5a68c3a6189f42a171ca1df16b89\
+A002 changes only the proof harness: it invokes the repository wrapper as /bin/bash ./gradlew ... and supplies the Mac Android SDK environment. A001 should not be replayed.\
+\
+Run A002\
+Put this exact ZIP in \~/Downloads:\
+\
+VEXLIFE-ANDROID-PR209-SOURCE-OWNER-A002-FORM-AND-RUN\
+\
+Then run:\
+\
+/bin/bash -c 'set -euo pipefail; ZIP="$HOME/Downloads/VEXLIFE-ANDROID-PR209-SOURCE-OWNER-A002-FORM-AND-RUN--sha256-a8472d85312661232f2d7ac4a1307ab7cca3d07339dbab28ad772f06741d5cce.zip"; EXPECTED="a8472d85312661232f2d7ac4a1307ab7cca3d07339dbab28ad772f06741d5cce"; [ -f "$ZIP" ] || { printf "%s\n" "Exact PR209 A002 proof ZIP not found in Downloads." >&2; exit 2; }; OBSERVED="$(/usr/bin/shasum -a 256 "$ZIP" | /usr/bin/cut -d " " -f 1)"; [ "$OBSERVED" = "$EXPECTED" ] || { printf "SHA mismatch expected=%s observed=%s\n" "$EXPECTED" "$OBSERVED" >&2; exit 3; }; ROOT="$(/usr/bin/mktemp -d "$HOME/Downloads/.vex-pr209-a002.XXXXXX")"; trap "/bin/rm -rf -- \\"$ROOT\\"" EXIT HUP INT TERM; /usr/bin/ditto -x -k "$ZIP" "$ROOT"; /bin/bash "$ROOT/FORM-AND-RUN.sh"'\
+\
+When Finder reveals the canonical RETURN ZIP, upload that ZIP here. I’ll consume it and continue directly from the actual Gradle result.\
+\
+\
+RETURN-vexlife-android-pr209-source-owner-a001-attempt-a002--sha256-7e7753f3b5e1c10aeb8dcc3cb383c08f99e10c80c4168be86aa74f232d0aa4d2.zip\
+File\
+\
+\
+\
+\
+\
+\
+\
+A002 was exactly the proof we needed: it got past the Relay harness and into real Gradle compilation, where it exposed one mechanical candidate defect.\
+\
+The failure was:\
+\
+settings.gradle.kts\
+include(":architecture:behavior")\ninclude(":architecture:dependency")\
+The same escaped-newline insertion was also present in app/build.gradle.kts. I scanned the entire PR patch before correcting it; those were the only accidental \n insertions. The Logger "\n\n" occurrence is intentional formatting.\
+\
+I corrected only those two separators. No Family, Execution, Logger, dependency, or runtime architecture changed.\
+\
+Current #209:\
+\
+head = 04b519e3cc28cdfa99689bf8ff10a6980db7fbcc\
+tree = 2a6445c44162e3503dbf2e7984ff6cc9980ad556\
+base = 83ea255294b8e4f8b2421ad2e27fa9e5be16a62a\
+The A002 result and correction are recorded durably on #209, and A001/A002 should not be replayed.\
+\
+A003 — corrected exact-head proof\
+Put this ZIP in \~/Downloads:\
+\
+VEXLIFE-ANDROID-PR209-SOURCE-OWNER-A003-FORM-AND-RUN\
+\
+SHA-256:\
+\
+e0d2aebf18f73e1e1707d059bc004020ffb5131bd23f2c3d976475b9f689007c\
+Run:\
+\
+/bin/bash -c 'set -euo pipefail; ZIP="$HOME/Downloads/VEXLIFE-ANDROID-PR209-SOURCE-OWNER-A003-FORM-AND-RUN--sha256-e0d2aebf18f73e1e1707d059bc004020ffb5131bd23f2c3d976475b9f689007c.zip"; EXPECTED="e0d2aebf18f73e1e1707d059bc004020ffb5131bd23f2c3d976475b9f689007c"; [ -f "$ZIP" ] || { printf "%s\n" "Exact PR209 A003 proof ZIP not found in Downloads." >&2; exit 2; }; OBSERVED="$(/usr/bin/shasum -a 256 "$ZIP" | /usr/bin/cut -d " " -f 1)"; [ "$OBSERVED" = "$EXPECTED" ] || { printf "SHA mismatch expected=%s observed=%s\n" "$EXPECTED" "$OBSERVED" >&2; exit 3; }; ROOT="$(/usr/bin/mktemp -d "$HOME/Downloads/.vex-pr209-a003.XXXXXX")"; trap "/bin/rm -rf -- \\"$ROOT\\"" EXIT HUP INT TERM; /usr/bin/ditto -x -k "$ZIP" "$ROOT"; /bin/bash "$ROOT/FORM-AND-RUN.sh"'\
+\
+A003 will run the same repository-owned gate:\
+\
+./gradlew vexVerifyLocal --no-configuration-cache --continue --stacktrace\
+git diff --exit-code\
+against the new immutable head/tree.\
+\
+Upload the canonical RETURN ZIP it reveals and I’ll continue directly from whatever Gradle finds next. \
+\
+I recorded that durably on PR #209. The source candidate remains untouched at:\
+\
+head = 1c041097aeafe38500119141c497b92f3f9c6692\
+tree = 657367d277bc5a68c3a6189f42a171ca1df16b89\
+A002 changes only the proof harness: it invokes the repository wrapper as /bin/bash ./gradlew ... and supplies the Mac Android SDK environment. A001 should not be replayed.\
+\
+Run A002\
+Put this exact ZIP in \~/Downloads:\
+\
+VEXLIFE-ANDROID-PR209-SOURCE-OWNER-A002-FORM-AND-RUN\
+\
+Then run:\
+\
+/bin/bash -c 'set -euo pipefail; ZIP="$HOME/Downloads/VEXLIFE-ANDROID-PR209-SOURCE-OWNER-A002-FORM-AND-RUN--sha256-a8472d85312661232f2d7ac4a1307ab7cca3d07339dbab28ad772f06741d5cce.zip"; EXPECTED="a8472d85312661232f2d7ac4a1307ab7cca3d07339dbab28ad772f06741d5cce"; [ -f "$ZIP" ] || { printf "%s\n" "Exact PR209 A002 proof ZIP not found in Downloads." >&2; exit 2; }; OBSERVED="$(/usr/bin/shasum -a 256 "$ZIP" | /usr/bin/cut -d " " -f 1)"; [ "$OBSERVED" = "$EXPECTED" ] || { printf "SHA mismatch expected=%s observed=%s\n" "$EXPECTED" "$OBSERVED" >&2; exit 3; }; ROOT="$(/usr/bin/mktemp -d "$HOME/Downloads/.vex-pr209-a002.XXXXXX")"; trap "/bin/rm -rf -- \\"$ROOT\\"" EXIT HUP INT TERM; /usr/bin/ditto -x -k "$ZIP" "$ROOT"; /bin/bash "$ROOT/FORM-AND-RUN.sh"'\
+\
+When Finder reveals the canonical RETURN ZIP, upload that ZIP here. I’ll consume it and continue directly from the actual Gradle result.\
+\
+\
+RETURN-vexlife-android-pr209-source-owner-a001-attempt-a002--sha256-7e7753f3b5e1c10aeb8dcc3cb383c08f99e10c80c4168be86aa74f232d0aa4d2.zip\
+File\
+\
+\
+\
+\
+\
+\
+\
+A002 was exactly the proof we needed: it got past the Relay harness and into real Gradle compilation, where it exposed one mechanical candidate defect.\
+\
+The failure was:\
+\
+settings.gradle.kts\
+include(":architecture:behavior")\ninclude(":architecture:dependency")\
+The same escaped-newline insertion was also present in app/build.gradle.kts. I scanned the entire PR patch before correcting it; those were the only accidental \n insertions. The Logger "\n\n" occurrence is intentional formatting.\
+\
+I corrected only those two separators. No Family, Execution, Logger, dependency, or runtime architecture changed.\
+\
+Current #209:\
+\
+head = 04b519e3cc28cdfa99689bf8ff10a6980db7fbcc\
+tree = 2a6445c44162e3503dbf2e7984ff6cc9980ad556\
+base = 83ea255294b8e4f8b2421ad2e27fa9e5be16a62a\
+The A002 result and correction are recorded durably on #209, and A001/A002 should not be replayed.\
+\
+A003 — corrected exact-head proof\
+Put this ZIP in \~/Downloads:\
+\
+VEXLIFE-ANDROID-PR209-SOURCE-OWNER-A003-FORM-AND-RUN\
+\
+SHA-256:\
+\
+e0d2aebf18f73e1e1707d059bc004020ffb5131bd23f2c3d976475b9f689007c\
+Run:\
+\
+/bin/bash -c 'set -euo pipefail; ZIP="$HOME/Downloads/VEXLIFE-ANDROID-PR209-SOURCE-OWNER-A003-FORM-AND-RUN--sha256-e0d2aebf18f73e1e1707d059bc004020ffb5131bd23f2c3d976475b9f689007c.zip"; EXPECTED="e0d2aebf18f73e1e1707d059bc004020ffb5131bd23f2c3d976475b9f689007c"; [ -f "$ZIP" ] || { printf "%s\n" "Exact PR209 A003 proof ZIP not found in Downloads." >&2; exit 2; }; OBSERVED="$(/usr/bin/shasum -a 256 "$ZIP" | /usr/bin/cut -d " " -f 1)"; [ "$OBSERVED" = "$EXPECTED" ] || { printf "SHA mismatch expected=%s observed=%s\n" "$EXPECTED" "$OBSERVED" >&2; exit 3; }; ROOT="$(/usr/bin/mktemp -d "$HOME/Downloads/.vex-pr209-a003.XXXXXX")"; trap "/bin/rm -rf -- \\"$ROOT\\"" EXIT HUP INT TERM; /usr/bin/ditto -x -k "$ZIP" "$ROOT"; /bin/bash "$ROOT/FORM-AND-RUN.sh"'\
+\
+A003 will run the same repository-owned gate:\
+\
+./gradlew vexVerifyLocal --no-configuration-cache --continue --stacktrace\
+git diff --exit-code\
+against the new immutable head/tree.\
+\
+Upload the canonical RETURN ZIP it reveals and I’ll continue directly from whatever Gradle finds next. \
+\
+\
+RETURN-vexlife-android-pr209-source-owner-a001-attempt-a003--sha256-7dd97184b812e13c8a652a9588d84c1e9817132fddd23ca15c57539fe111088d.zip\
+File\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+A003 reached the real repository build and gave us a clean, actionable compiler result. ✅\
+\
+The first substantive failure was:\
+\
+:architecture:execution:compileDebugKotlin\
+\
+VexExecution.kt:469\
+INAPPLICABLE_CANDIDATE\
+suspend fun Job.join(): Unit\
+I traced the whole execution file rather than fixing only that line. There were three remaining method-reference adaptations from the execution rewrite:\
+\
+1 × Job::join\
+2 × Job::start\
+All three are now explicit calls. No execution ownership or overlap semantics changed.\
+\
+A003 also exposed a non-failing Kotlin 2.4 warning on VexFamily.Act: its constructor is intentionally internal, but generated copy() would otherwise have wider visibility. I added @ConsistentCopyVisibility so the generated API obeys the same construction boundary instead of leaving future Kotlin 2.5 debt.\
+\
+Current candidate:\
+\
+head = f16951c65bb5c74c8f9b94c43cddf9e01a443c6f\
+tree = 33583d43383019f25686f12ca6c7a4a2b8c0983b\
+I recorded A003 and both corrections on PR #209. A003 should not be replayed.\
+\
+Run A004\
+Put this exact ZIP in \~/Downloads:\
+\
+VEXLIFE-ANDROID-PR209-SOURCE-OWNER-A004-FORM-AND-RUN\
+\
+SHA-256:\
+\
+cbe967ecec7a72ba808999557d4b79982342970f4397e2c098f5db75b8edd59c\
+Run:\
+\
+/bin/bash -c 'set -euo pipefail; ZIP="$HOME/Downloads/VEXLIFE-ANDROID-PR209-SOURCE-OWNER-A004-FORM-AND-RUN--sha256-cbe967ecec7a72ba808999557d4b79982342970f4397e2c098f5db75b8edd59c.zip"; EXPECTED="cbe967ecec7a72ba808999557d4b79982342970f4397e2c098f5db75b8edd59c"; [ -f "$ZIP" ] || { printf "%s\n" "Exact PR209 A004 proof ZIP not found in Downloads." >&2; exit 2; }; OBSERVED="$(/usr/bin/shasum -a 256 "$ZIP" | /usr/bin/cut -d " " -f 1)"; [ "$OBSERVED" = "$EXPECTED" ] || { printf "SHA mismatch expected=%s observed=%s\n" "$EXPECTED" "$OBSERVED" >&2; exit 3; }; ROOT="$(/usr/bin/mktemp -d "$HOME/Downloads/.vex-pr209-a004.XXXXXX")"; trap "/bin/rm -rf -- \\"$ROOT\\"" EXIT HUP INT TERM; /usr/bin/ditto -x -k "$ZIP" "$ROOT"; /bin/bash "$ROOT/FORM-AND-RUN.sh"'\
+\
+A004 is bound to the new exact head/tree and will again run the repository-owned vexVerifyLocal proof plus the clean tracked-source check.\
+\
+Upload the canonical RETURN ZIP it reveals; I’ll continue directly from the next actual Gradle result.&#x20;
+
+
+
+A003 reached the real repository build and gave us a clean, actionable compiler result. ✅
+
+The first substantive failure was:
+```
+:architecture:execution:compileDebugKotlin
+
+VexExecution.kt:469
+INAPPLICABLE_CANDIDATE
+suspend fun Job.join(): Unit
+```
+
+I traced the whole execution file rather than fixing only that line. There were **three remaining method-reference adaptations** from the execution rewrite:
+```
+1 × Job::join
+2 × Job::start
+```
+
+All three are now explicit calls. No execution ownership or overlap semantics changed.
+
+A003 also exposed a non-failing Kotlin 2.4 warning on `VexFamily.Act`: its constructor is intentionally `internal`, but generated `copy()` would otherwise have wider visibility. I added `@ConsistentCopyVisibility` so the generated API obeys the same construction boundary instead of leaving future Kotlin 2.5 debt.
+
+Current candidate:
+```
+head = f16951c65bb5c74c8f9b94c43cddf9e01a443c6f
+tree = 33583d43383019f25686f12ca6c7a4a2b8c0983b
+```
+
+I recorded A003 and both corrections on PR #209. **A003 should not be replayed.**
+
+### Run A004
+
+Put this exact ZIP in `~/Downloads`:
+
+VEXLIFE-ANDROID-PR209-SOURCE-OWNER-A004-FORM-AND-RUN--sha256-cbe967ecec7a72ba808999557d4b79982342970f4397e2c098f5db75b8edd59c.zip
+
+SHA-256:
+```
+cbe967ecec7a72ba808999557d4b79982342970f4397e2c098f5db75b8edd59c
+```
+
+Run:
+```
+/bin/bash -c 'set -euo pipefail; ZIP="$HOME/Downloads/VEXLIFE-ANDROID-PR209-SOURCE-OWNER-A004-FORM-AND-RUN--sha256-cbe967ecec7a72ba808999557d4b79982342970f4397e2c098f5db75b8edd59c.zip"; EXPECTED="cbe967ecec7a72ba808999557d4b79982342970f4397e2c098f5db75b8edd59c"; [ -f "$ZIP" ] || { printf "%s\n" "Exact PR209 A004 proof ZIP not found in Downloads." >&2; exit 2; }; OBSERVED="$(/usr/bin/shasum -a 256 "$ZIP" | /usr/bin/cut -d " " -f 1)"; [ "$OBSERVED" = "$EXPECTED" ] || { printf "SHA mismatch expected=%s observed=%s\n" "$EXPECTED" "$OBSEVED\" >&2; exit 3; }; ROOT="$(/usr/bin/mktemp -d "$HOME/Downloads/.vex-pr209-a004.XXXXXX")"; trap "/bin/rm -rf -- \"$ROOT\"" EXIT HUP INT TERM; /usr/bin/ditto -x -k "$ZIP" "$ROOT"; /bin/bash "$ROOT/FORM-AND-RUN.sh"'
+```
+
+A004 is bound to the new exact head/tree and will again run the repository-owned `vexVerifyLocal` proof plus the clean tracked-source check.
+
+Upload the canonical RETURN ZIP it reveals; I’ll continue directly from the next actual Gradle result. "
