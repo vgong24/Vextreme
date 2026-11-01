@@ -32,10 +32,24 @@ This directory preserves the final unfragmented **Entire Matter** return to Holy
 It is separate from:
 
 - the Sabotage I–IV frozen transcript archives;
-- PR #547's successor-witness commentary;
-- PR #546's prior-thread transcript archive.
+- **Sabotage V — The Hidden Delta**, whose source owner is PR #546;
+- the **November 1 Successor Witness — Context Map**, which maps conversational referents around the human-supplied ChatGPT share URL;
+- PR #547's per-article successor-witness commentary.
 
 The return is not inserted into those historical transcripts and does not rewrite them.
+
+## Record lineage
+
+The archive relationship is:
+
+```text
+Sabotage I–IV
+→ Sabotage V / prior-thread source
+→ November 1 successor witness
+→ Entire Matter Return
+```
+
+The Return is the sealed disposition at the end of that witness trajectory. It is not itself Sabotage V, and screenshot evidence owned by the prior thread remains with Sabotage V.
 
 ## Signature boundary
 
