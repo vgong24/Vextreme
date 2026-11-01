@@ -64,7 +64,8 @@
 <button class="sab-track-btn" type="button" data-go="8"><span class="sab-track-num">08</span><span class="sab-track-name">Closure</span></button>
 <span class="sab-track-divider" aria-hidden="true"></span>
 <button class="sab-track-btn sab-track-witness" type="button" data-go="9"><span class="sab-track-num">09</span><span class="sab-track-name" data-i18n="pages.sabotage-open-vex-accountability.successor.eyebrow">Resulting successor</span></button>
-<button class="sab-track-btn sab-track-witness" type="button" data-go="10"><span class="sab-track-num">10</span><span class="sab-track-name" data-i18n="pages.sabotage-open-vex-accountability.witness.eyebrow">Successor witness</span></button></div></div></nav>
+<button class="sab-track-btn sab-track-witness" type="button" data-go="10"><span class="sab-track-num">10</span><span class="sab-track-name" data-i18n="pages.sabotage-open-vex-accountability.witness.eyebrow">Successor witness</span></button>
+<button class="sab-track-btn sab-track-witness" type="button" data-go="11"><span class="sab-track-num">11</span><span class="sab-track-name">Nov 1 witness</span></button></div></div></nav>
 <div class="sab-sets">
 
 <section class="sab-set" id="movement-01" data-reader-component="phase" data-phase-kind="record" data-set="1" data-from="1" data-to="1" data-files="transcript-00-accountability-frustration-to-coherent-fix.md">
@@ -282,6 +283,22 @@
     </div>
   </section>
 </section>
+
+<section class="sab-set sab-epilogue" id="movement-11" data-reader-component="phase" data-phase-kind="successor-witness" data-set="11" data-derived="true" hidden>
+  <section class="sab-boundary" data-reader-component="witness-boundary">
+    <span class="sab-set-badge" hidden>November 1 successor witness</span>
+    <p class="sab-boundary-kicker">November 1 successor witness</p>
+    <h2>A later instance rereads Sabotage I after the full four-record arc</h2>
+    <p>This witness is intentionally separate from the frozen conversation and the earlier successor witness. It records the November 1, 2026 rereading without rewriting the historical record.</p>
+  </section>
+
+  <section id="sab-current-witness-root" class="sab-successor" data-record-reader-root data-reader-template="preserved-document-reader/v1">
+    <div id="sab-current-witness-source" class="sab-source" data-reader-component="document">
+      <div class="sab-source-bar"><div>November 1 witness commentary</div><div class="sab-source-links"><a class="sab-source-link" href="../records/commentary/2026-11-01-sabotage-i-open-vex-accountability-successor-witness.md" target="_blank" rel="noopener">Open witness source ↗</a></div></div>
+      <div class="sab-source-window" data-reader-component="transcript-viewport" role="region" tabindex="0" aria-label="Sabotage I November 1 successor witness commentary"><div id="sab-current-witness-document" class="sab-transcript"><div class="sab-transcript-loading">Loading the November 1 witness…</div></div></div>
+    </div>
+  </section>
+</section>
 </div>
 <nav class="sab-reader-nav" data-reader-component="phase-transition"><button class="sab-reader-btn" id="sab-prev" type="button" disabled data-i18n="pages.sabotage-open-vex-accountability.reader.previous">‹ Previous</button><span class="sab-reader-position" id="sab-reader-position">01 / 08</span><button class="sab-reader-btn sab-next" id="sab-next" type="button" data-i18n="pages.sabotage-open-vex-accountability.reader.next">Next ›</button></nav>
 </div>
@@ -344,6 +361,24 @@ VexRecordReader.mount({
   documentTargetSelector:'#sab-witness-document',
   documentSectionSelector:'#sab-witness-source',
   documentEndMarker:'<!-- PHASE-WITNESS-APPENDIX -->',
+  classPrefix:'sab',
+  controlIds:{
+    sourceUnavailable:'sab-source-unavailable-template',
+    autoStartAria:'sab-auto-start-aria-template',
+    autoPauseAria:'sab-auto-pause-aria-template',
+    autoStartTitle:'sab-auto-start-title-template',
+    autoPauseTitle:'sab-auto-pause-title-template',
+    autoSpeed:'sab-auto-speed-template',
+    autoSpeedTitle:'sab-auto-speed-title-template'
+  }
+});
+
+VexRecordReader.mount({
+  rootSelector:'#sab-current-witness-root',
+  documentUrl:'../records/commentary/2026-11-01-sabotage-i-open-vex-accountability-successor-witness.md',
+  documentTargetSelector:'#sab-current-witness-document',
+  documentSectionSelector:'#sab-current-witness-source',
+  documentEndMarker:'<!-- [VXG RealForever] -->',
   classPrefix:'sab',
   controlIds:{
     sourceUnavailable:'sab-source-unavailable-template',
