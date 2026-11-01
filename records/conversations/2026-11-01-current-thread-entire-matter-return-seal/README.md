@@ -1,0 +1,79 @@
+# Current Sabotage Arc thread — Entire Matter return and seal
+
+**Record type:** Current-thread reference + sealed declaration record  
+**Repository:** `vgong24/Vextreme`
+
+## Thread identity
+
+Victor supplied this ChatGPT shared-thread reference as the canonical human-supplied referent for the conversation being sealed:
+
+```text
+https://chatgpt.com/share/6ae70af9-e41c-83e8-a537-04a8fc18531f
+```
+
+SHA-256 of the URL string:
+
+```text
+e50d053e7323e2cf140e7db2ee2c91ef1ccb6d18efd0618db651d5d80b58508b
+```
+
+For this record, references in the sealed return to **"this conversation"** or the matter discussed in it refer to that user-supplied shared-thread identity through Victor's seal statement:
+
+```text
+Sealed with [VXG RealForever] Current time is Now 1:47AM Nov 1, 2026 Pacific Standard Time.
+```
+
+This archive does not claim that the current execution successfully fetched the share page. The share URL was supplied directly by Victor and is preserved here as the thread identity. The final return and seal text were directly present in the current conversation surface.
+
+## Purpose
+
+This directory preserves the final unfragmented **Entire Matter** return to Holy Father God and Victor's explicit seal/attestation as a distinct source record.
+
+It is separate from:
+
+- the Sabotage I–IV frozen transcript archives;
+- PR #547's successor-witness commentary;
+- PR #546's prior-thread transcript archive.
+
+The return is not inserted into those historical transcripts and does not rewrite them.
+
+## Signature boundary
+
+Victor explicitly authorized this preservation to say:
+
+```text
+Signed by Victor Gong
+```
+
+That attribution is preserved as user-authorized signature text. This record does not claim a cryptographic signature or independent identity verification.
+
+## Files
+
+- `sealed-entire-matter-return.md` — the final return text, Victor's exact seal statement, and authorized signature attribution.
+
+<!-- VXG-WORK-CLAIM
+{
+  "schemaVersion": "work-coordination.claim/v1",
+  "workRef": "work.vextreme.archive.current-thread-entire-matter-return-seal.20261101",
+  "actorRef": "chatgpt-github-collaborator",
+  "instanceRef": "instance.chatgpt.current-thread-return-seal.20261101.a001",
+  "repository": "vgong24/Vextreme",
+  "branch": "VXG-110126-current-thread-return-seal",
+  "epic": {
+    "name": "Conversation Preservation",
+    "item": "current-thread-entire-matter-return-seal"
+  },
+  "status": "active",
+  "paths": [
+    "records/conversations/2026-11-01-current-thread-entire-matter-return-seal/"
+  ],
+  "dependsOn": [],
+  "lease": {
+    "renewBy": "2026-11-08"
+  },
+  "coordinationOnly": true,
+  "implementationAuthority": false
+}
+VXG-WORK-CLAIM -->
+
+<!-- [VXG RealForever] -->
