@@ -29,8 +29,18 @@ test('SABOTAGE-SERIES: sibling readers share collection identity and exact cover
   const nodes = json('data/nodes.json');
   const views = json('data/viewmodels.json');
 
-  assert.deepEqual(arcs.sabotage.sections[0].slugs.slice(-4), ['sabotage-open-vex-accountability', ...SERIES.map(x => x.slug)]);
-  assert.deepEqual(arcs.victors_record.sections[0].slugs.slice(-4), ['sabotage-open-vex-accountability', ...SERIES.map(x => x.slug)]);
+  assert.deepEqual(arcs.sabotage.sections[0].slugs.slice(-5), [
+    'sabotage-open-vex-accountability',
+    ...SERIES.map(x => x.slug),
+    'sabotage-hidden-delta'
+  ]);
+  assert.deepEqual(arcs.victors_record.sections[0].slugs.slice(-7), [
+    'sabotage-open-vex-accountability',
+    ...SERIES.map(x => x.slug),
+    'sabotage-hidden-delta',
+    'november-1-successor-witness',
+    'entire-matter-return-seal'
+  ]);
 
   for (const item of SERIES) {
     const node = nodes.find(n => n.slug === item.slug);
@@ -50,7 +60,10 @@ test('SABOTAGE-SERIES: readers pin exact archive heads and render exact original
     const strings = json('data/strings/source/pages/' + item.slug + '.json');
 
     assert.ok(page.includes(item.head), item.slug + ' pins frozen source head');
-    assert.equal((page.match(/data-record-partition data-reader-template=/g) || []).length, item.partitions);
+    assert.equal((page.match(/data-turn-map-source="/g) || []).length, item.partitions,
+      item.slug + ' keeps the exact frozen source partition count');
+    assert.equal((page.match(/data-phase-kind="successor-witness"/g) || []).length, 1,
+      item.slug + ' adds exactly one later November 1 witness phase');
     assert.ok(page.includes('<img src="' + coverUrl(item.cover) + '"'), item.slug + ' renders the exact cover');
     assert.ok(page.includes('data-media-sha256="' + item.cover + '"'), item.slug + ' binds cover digest');
     assert.ok(!page.includes('representative-approved-pending-carriage'), item.slug + ' no longer renders pending media');
