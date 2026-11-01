@@ -33,7 +33,7 @@ These refer to the separately preserved PR #546 conversation, now classified for
 
 **Sabotage V — The Hidden Delta**
 
-The source owner remains PR #546 exact head:
+The source owner is merged PR #546. Its exact preserved source freeze is:
 
 `bce54f533fe7f766f68538b2dc355280269831ab`
 
