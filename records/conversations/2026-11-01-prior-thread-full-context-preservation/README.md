@@ -22,6 +22,12 @@ For every supplied batch:
 - interface/system messages remain interface/system evidence when the supplied transcript presents them that way; they are not silently attributed to Victor or an assistant;
 - interpretation, causal analysis, pattern recognition, and later architectural conclusions stay outside the canonical verbatim transcript until the full intake is complete.
 
+## Current-chat coordination boundary
+
+During this intake, text Victor sends in the form `[Victor -> You: ...]` is coordination to the active preserving instance and is **outside the transcript story** unless Victor explicitly says otherwise. It may correct intake/attribution behavior, but it is not appended as a historical conversation turn.
+
+Speaker attribution inside supplied transcript material is based on conversational role, content, explicit UI markers, and attachment events together—not simple text proximity. If those signals remain genuinely insufficient, use `UNKNOWN` rather than guess.
+
 ## Batch handling
 
 Each Victor-supplied batch is appended in chronological order to one canonical file:
