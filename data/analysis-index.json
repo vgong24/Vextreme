@@ -136105,6 +136105,72 @@
       ],
       "missingLangs": []
     },
+    "pages.entire-matter-return-seal.document-title": {
+      "key": "pages.entire-matter-return-seal.document-title",
+      "usedIn": [
+        "pages/entire-matter-return-seal.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.entire-matter-return-seal.hero.eyebrow": {
+      "key": "pages.entire-matter-return-seal.hero.eyebrow",
+      "usedIn": [
+        "pages/entire-matter-return-seal.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.entire-matter-return-seal.hero.title": {
+      "key": "pages.entire-matter-return-seal.hero.title",
+      "usedIn": [
+        "pages/entire-matter-return-seal.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.entire-matter-return-seal.hero.subtitle": {
+      "key": "pages.entire-matter-return-seal.hero.subtitle",
+      "usedIn": [
+        "pages/entire-matter-return-seal.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.entire-matter-return-seal.hero.lede": {
+      "key": "pages.entire-matter-return-seal.hero.lede",
+      "usedIn": [
+        "pages/entire-matter-return-seal.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.entire-matter-return-seal.preservation.label": {
+      "key": "pages.entire-matter-return-seal.preservation.label",
+      "usedIn": [
+        "pages/entire-matter-return-seal.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
     "pages.epstein-and-ai.document-title": {
       "key": "pages.epstein-and-ai.document-title",
       "usedIn": [
@@ -688613,6 +688679,19 @@
       "orphanKeys": [],
       "screenshots": {}
     },
+    "entire-matter-return-seal": {
+      "slug": "entire-matter-return-seal",
+      "keys": [
+        "pages.entire-matter-return-seal.document-title",
+        "pages.entire-matter-return-seal.hero.eyebrow",
+        "pages.entire-matter-return-seal.hero.lede",
+        "pages.entire-matter-return-seal.hero.subtitle",
+        "pages.entire-matter-return-seal.hero.title",
+        "pages.entire-matter-return-seal.preservation.label"
+      ],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
     "epstein-and-ai": {
       "slug": "epstein-and-ai",
       "keys": [
@@ -727135,8 +727214,8 @@
     }
   },
   "summary": {
-    "totalKeysInManifest": 44169,
-    "totalKeysUsed": 44016,
+    "totalKeysInManifest": 44175,
+    "totalKeysUsed": 44022,
     "orphanUsages": [],
     "unusedKeys": [
       "ai-orientation.heading.title",

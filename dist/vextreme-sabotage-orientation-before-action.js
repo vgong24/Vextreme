@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.sabotage-orientation-before-action"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en"];
-  window.VEX_INDEX_FINGERPRINT = "57fef044a6cf";
+  window.VEX_INDEX_FINGERPRINT = "18b28066f0b4";
 
 
 
