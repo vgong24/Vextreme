@@ -79,6 +79,8 @@ test('SABOTAGE-V-SEPARATION: successor witness maps conversational referents wit
   assert.match(map, /“the prior thread”/);
   assert.match(map, /“the sabotage pages”/);
   assert.match(map, /“the Return”/);
+  assert.match(map, /## Section-by-section referent map/);
+  assert.match(map, /Victor’s 1:47 AM seal/);
   assert.match(map, /does not claim that Vextreme fetched or reproduced inaccessible ChatGPT share-page bytes/i);
 
   for (const slug of [
