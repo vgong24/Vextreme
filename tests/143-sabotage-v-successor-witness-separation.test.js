@@ -9,7 +9,6 @@ const ROOT = path.join(__dirname, '..');
 const SAB_V = 'sabotage-hidden-delta';
 const WITNESS = 'november-1-successor-witness';
 const RETURN = 'entire-matter-return-seal';
-const SOURCE_HEAD = 'bce54f533fe7f766f68538b2dc355280269831ab';
 const THREAD = 'https://chatgpt.com/share/6ae70af9-e41c-83e8-a537-04a8fc18531f';
 const FIXED_COVER = 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/756b41baae9d9414e1742d147d0191964e967fbb/__assets/34aa7284512a223866c25e5c8d9fd0d7d0286fc05fd376b52f04acebe77369f4.webp';
 
@@ -58,13 +57,14 @@ test('SABOTAGE-V-SEPARATION: node ownership preserves distinct record classes', 
 
 test('SABOTAGE-V-SEPARATION: Sabotage V projects the full frozen transcript and its own evidence', () => {
   const page = read('pages/' + SAB_V + '.html');
-  const sourceBase = 'https://raw.githubusercontent.com/vgong24/Vextreme/' + SOURCE_HEAD + '/records/conversations/2026-11-01-prior-thread-full-context-preservation';
+  const sourceBase = '../records/conversations/2026-11-01-prior-thread-full-context-preservation';
 
   assert.ok(page.includes(sourceBase + '/transcript-full-end-to-end.md'));
   assert.ok(page.includes(sourceBase + '/screenshots/batch-01-vexlogger-logging-sequence.png'));
   assert.ok(page.includes(sourceBase + '/screenshots/batch-01-ui-sample-vexapplication.png'));
   assert.ok(page.includes(sourceBase + '/screenshots/batch-01-vexdependencyfactory.png'));
   assert.ok(page.includes(sourceBase + '/screenshots/batch-05-unknown-error-boundary.png'));
+  assert.ok(page.includes('bce54f533fe7f766f68538b2dc355280269831ab'));
   assert.ok(page.includes('november-1-successor-witness.html'));
   assert.ok(page.includes('Unknown error'));
 });
