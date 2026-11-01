@@ -1,7 +1,7 @@
 {
-  "contentFingerprint": "57fef044a6cf",
-  "nodeCount": 179,
-  "curatedNodeCount": 163,
+  "contentFingerprint": "a34120a61362",
+  "nodeCount": 180,
+  "curatedNodeCount": 164,
   "autoDiscoveredCount": 16,
   "arcCount": 26,
   "supportedLangs": [
@@ -2742,6 +2742,14 @@
         "ko",
         "pt",
         "zh"
+      ]
+    },
+    "entire-matter-return-seal": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
       ]
     }
   },
@@ -7579,6 +7587,29 @@
           "analysis"
         ]
       }
+    },
+    "entire-matter-return-seal": {
+      "id": 117,
+      "slug": "entire-matter-return-seal",
+      "title": "Entire Matter Return — Sealed Declaration",
+      "date": "November 1, 2026",
+      "arcKeys": [
+        "sabotage",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-11-01",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [],
+        "features": [
+          "arc-nav"
+        ]
+      }
     }
   },
   "arcMap": {
@@ -7804,7 +7835,8 @@
           "sabotage-open-vex-accountability",
           "sabotage-mastered-state",
           "sabotage-vexsync-exhaust-mastered",
-          "sabotage-orientation-before-action"
+          "sabotage-orientation-before-action",
+          "entire-matter-return-seal"
         ]
       }
     ],
@@ -8180,7 +8212,8 @@
           "sabotage-open-vex-accountability",
           "sabotage-mastered-state",
           "sabotage-vexsync-exhaust-mastered",
-          "sabotage-orientation-before-action"
+          "sabotage-orientation-before-action",
+          "entire-matter-return-seal"
         ]
       }
     ],
@@ -8191,7 +8224,8 @@
           "sabotage-open-vex-accountability",
           "sabotage-mastered-state",
           "sabotage-vexsync-exhaust-mastered",
-          "sabotage-orientation-before-action"
+          "sabotage-orientation-before-action",
+          "entire-matter-return-seal"
         ]
       }
     ]
@@ -9191,6 +9225,11 @@
         {
           "slug": "sabotage-orientation-before-action",
           "title": "Sabotage IV — Before the Prompt",
+          "ported": true
+        },
+        {
+          "slug": "entire-matter-return-seal",
+          "title": "Entire Matter Return — Sealed Declaration",
           "ported": true
         }
       ]
