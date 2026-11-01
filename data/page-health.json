@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 199,
+    "total": 200,
     "healthy": 4,
-    "attention": 188,
+    "attention": 189,
     "critical": 7,
-    "sorted": 156,
-    "withFab": 186,
-    "readAloudApplicable": 191,
-    "withReadAloud": 191,
+    "sorted": 157,
+    "withFab": 187,
+    "readAloudApplicable": 192,
+    "withReadAloud": 192,
     "missingReadAloud": 0,
-    "withIdentity": 168,
+    "withIdentity": 169,
     "withScreenshots": 13,
-    "withMetaDescription": 164
+    "withMetaDescription": 165
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -3324,6 +3324,66 @@
         "gaps": [
           "uncurated",
           "identity",
+          "screenshot"
+        ]
+      }
+    },
+    "entire-matter-return-seal": {
+      "slug": "entire-matter-return-seal",
+      "title": "Entire Matter Return — Sealed Declaration",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "sabotage",
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 6,
+        "languages": {
+          "en": {
+            "translated": 6,
+            "total": 6,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Formal presentation of the November 1, 2026 Entire Matter return to Holy Father God, Victor Gong"
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
           "screenshot"
         ]
       }

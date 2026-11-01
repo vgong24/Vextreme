@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "a34120a61362",
+  "contentFingerprint": "18b28066f0b4",
   "nodeCount": 180,
   "curatedNodeCount": 164,
   "autoDiscoveredCount": 16,
@@ -2446,6 +2446,14 @@
         "en"
       ]
     },
+    "entire-matter-return-seal": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
     "about-me": {
       "availableLangs": [
         "en"
@@ -2742,14 +2750,6 @@
         "ko",
         "pt",
         "zh"
-      ]
-    },
-    "entire-matter-return-seal": {
-      "availableLangs": [
-        "en"
-      ],
-      "completeLangs": [
-        "en"
       ]
     }
   },
@@ -7172,6 +7172,35 @@
         ]
       }
     },
+    "entire-matter-return-seal": {
+      "id": 117,
+      "slug": "entire-matter-return-seal",
+      "title": "Entire Matter Return — Sealed Declaration",
+      "date": "November 1, 2026",
+      "arcKeys": [
+        "sabotage",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-11-01",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.entire-matter-return-seal"
+        ],
+        "features": [
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
     "about-me": {
       "id": null,
       "slug": "about-me",
@@ -7585,29 +7614,6 @@
           "theme",
           "map",
           "analysis"
-        ]
-      }
-    },
-    "entire-matter-return-seal": {
-      "id": 117,
-      "slug": "entire-matter-return-seal",
-      "title": "Entire Matter Return — Sealed Declaration",
-      "date": "November 1, 2026",
-      "arcKeys": [
-        "sabotage",
-        "victors_record",
-        "full_timeline"
-      ],
-      "department": "media",
-      "workType": "record-transcripts",
-      "vexData": {},
-      "dateISO": "2026-11-01",
-      "viewmodel": {
-        "category": "production",
-        "template": "page",
-        "scopes": [],
-        "features": [
-          "arc-nav"
         ]
       }
     }

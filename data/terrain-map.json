@@ -4388,12 +4388,12 @@
       "key": "sabotage",
       "name": "Sabotage",
       "sub": "priority 1",
-      "count": 4,
+      "count": 5,
       "rect": {
         "x": 3410,
         "y": 40,
         "width": 300,
-        "height": 330
+        "height": 390
       },
       "parent": {
         "title": "Sabotage",
@@ -4409,7 +4409,8 @@
             "sabotage-open-vex-accountability",
             "sabotage-mastered-state",
             "sabotage-vexsync-exhaust-mastered",
-            "sabotage-orientation-before-action"
+            "sabotage-orientation-before-action",
+            "entire-matter-return-seal"
           ]
         }
       ],
@@ -4417,7 +4418,8 @@
         "sabotage-open-vex-accountability",
         "sabotage-mastered-state",
         "sabotage-vexsync-exhaust-mastered",
-        "sabotage-orientation-before-action"
+        "sabotage-orientation-before-action",
+        "entire-matter-return-seal"
       ]
     },
     {
@@ -4551,7 +4553,8 @@
             "sabotage-open-vex-accountability",
             "sabotage-mastered-state",
             "sabotage-vexsync-exhaust-mastered",
-            "sabotage-orientation-before-action"
+            "sabotage-orientation-before-action",
+            "entire-matter-return-seal"
           ]
         }
       ],
@@ -4575,7 +4578,8 @@
         "sabotage-open-vex-accountability",
         "sabotage-mastered-state",
         "sabotage-vexsync-exhaust-mastered",
-        "sabotage-orientation-before-action"
+        "sabotage-orientation-before-action",
+        "entire-matter-return-seal"
       ]
     },
     {
@@ -5287,7 +5291,8 @@
             "sabotage-open-vex-accountability",
             "sabotage-mastered-state",
             "sabotage-vexsync-exhaust-mastered",
-            "sabotage-orientation-before-action"
+            "sabotage-orientation-before-action",
+            "entire-matter-return-seal"
           ]
         }
       ],
@@ -5426,7 +5431,8 @@
         "sabotage-open-vex-accountability",
         "sabotage-mastered-state",
         "sabotage-vexsync-exhaust-mastered",
-        "sabotage-orientation-before-action"
+        "sabotage-orientation-before-action",
+        "entire-matter-return-seal"
       ]
     },
     {
@@ -13321,6 +13327,56 @@
       },
       "curated": true,
       "date": "October 30, 2026"
+    },
+    {
+      "id": "entire-matter-return-seal",
+      "slug": "entire-matter-return-seal",
+      "title": "Entire Matter Return — Sealed Declaration",
+      "arcKeys": [
+        "sabotage",
+        "victors_record",
+        "full_timeline"
+      ],
+      "titleKey": "pages.entire-matter-return-seal.document-title",
+      "titleByLang": {
+        "en": "Entire Matter Return — Sealed Declaration — Vextreme"
+      },
+      "arc": "sabotage",
+      "arcName": "Sabotage",
+      "x": 3460,
+      "y": 330,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/entire-matter-return-seal.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/0112ddb696f9b604402809fb945f2e2e88ad1359/__assets/96269d955043540d2eda8a8e973be9307c691bec816fdb41be9b68b1b19a8cd9.webp",
+        "alt": "What Survived the Break — a continuous thread of light crosses fractured dark archival structures into a quiet golden threshold"
+      },
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 6,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Formal presentation of the November 1, 2026 Entire Matter return to Holy Father God, Victor Gong"
+      },
+      "curated": true,
+      "date": "November 1, 2026"
     },
     {
       "id": "about-me",

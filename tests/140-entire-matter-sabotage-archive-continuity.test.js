@@ -42,13 +42,12 @@ test('ENTIRE-MATTER-ARCHIVE: sealed return has one explicit archive node and vie
   assert.equal(node.department, 'media');
   assert.equal(node.workType, 'record-transcripts');
 
-  assert.deepEqual(views[SLUG], {
-    title: 'Entire Matter Return — Sealed Declaration',
-    category: 'production',
-    template: 'page',
-    scopes: [],
-    features: ['arc-nav']
-  });
+  assert.equal(views[SLUG].title, 'Entire Matter Return — Sealed Declaration');
+  assert.equal(views[SLUG].category, 'production');
+  assert.equal(views[SLUG].template, 'page');
+  assert.deepEqual(views[SLUG].scopes, ['pages.' + SLUG]);
+  assert.deepEqual(views[SLUG].features, ['spiral-fab', 'theme', 'map', 'analysis', 'arc-nav']);
+  assert.equal(views[SLUG].preview.kind, 'cover');
 });
 
 test('ENTIRE-MATTER-ARCHIVE: generated index projects the same continuity and current page truth', () => {
@@ -72,7 +71,8 @@ test('ENTIRE-MATTER-ARCHIVE: formal return reader mounts repository-native arc n
 
   assert.match(page, /styles\/arc-nav\.css/);
   assert.match(page, /id="arcNavMount"/);
-  assert.match(page, /lib\/vextreme-index-v2\.js/);
+  assert.match(page, /dist\/vextreme-entire-matter-return-seal\.js/);
+  assert.doesNotMatch(page, /lib\/vextreme-index-v2\.js/);
   assert.match(page, /Entire Matter Return/);
   assert.match(page, /canonical Markdown source governs/i);
 });
