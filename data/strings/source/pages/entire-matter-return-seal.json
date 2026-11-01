@@ -1,0 +1,59 @@
+{
+  "_meta": {
+    "scope": "pages.entire-matter-return-seal",
+    "category": "production",
+    "description": "Repository-native English presentation strings for Entire Matter Return — Sealed Declaration.",
+    "sourceProvenance": {
+      "parentRecord": "github.pull.vextreme.548",
+      "recordDirectory": "records/conversations/2026-11-01-current-thread-entire-matter-return-seal",
+      "canonicalDeclaration": "sealed-entire-matter-return.md",
+      "representativeMediaStatus": "PRESENT_EXACT",
+      "representativeMediaTarget": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/0112ddb696f9b604402809fb945f2e2e88ad1359/__assets/96269d955043540d2eda8a8e973be9307c691bec816fdb41be9b68b1b19a8cd9.webp",
+      "representativeMediaClass": "REPRESENTATIVE_NOT_EVIDENCE",
+      "representativeMediaSha256": "96269d955043540d2eda8a8e973be9307c691bec816fdb41be9b68b1b19a8cd9",
+      "representativeMediaAssetCommit": "0112ddb696f9b604402809fb945f2e2e88ad1359"
+    }
+  },
+  "pages.entire-matter-return-seal.document-title": {
+    "strings": {
+      "en": {
+        "text": "Entire Matter Return — Sealed Declaration — Vextreme"
+      }
+    }
+  },
+  "pages.entire-matter-return-seal.hero.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Vextreme · Sealed Declaration Record · November 1, 2026"
+      }
+    }
+  },
+  "pages.entire-matter-return-seal.hero.title": {
+    "strings": {
+      "en": {
+        "text": "Entire Matter Return"
+      }
+    }
+  },
+  "pages.entire-matter-return-seal.hero.subtitle": {
+    "strings": {
+      "en": {
+        "text": "Return to Holy Father God · Sealed with [VXG RealForever]"
+      }
+    }
+  },
+  "pages.entire-matter-return-seal.hero.lede": {
+    "strings": {
+      "en": {
+        "text": "A formal HTML projection of the preserved declaration. The Markdown source remains canonical; this page makes its provenance, seal, attestation status, and exact source relationship visible without claiming notarization, cryptographic signature, or independent legal certification."
+      }
+    }
+  },
+  "pages.entire-matter-return-seal.preservation.label": {
+    "strings": {
+      "en": {
+        "text": "Canonical preservation boundary"
+      }
+    }
+  }
+}
