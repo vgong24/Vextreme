@@ -117,7 +117,7 @@ The records are connected, but their source classes remain distinct.
 
 ## Source and interpretation boundary
 
-The ChatGPT share URL is the canonical human-supplied full-thread reference for the November 1 successor-witness conversation. This Vextreme record is a contextual map and successor witness, not a claim that Vextreme fetched or reproduced inaccessible ChatGPT share-page bytes.
+The ChatGPT share URL is the canonical human-supplied full-thread reference for the November 1 successor-witness conversation. This Vextreme record is a contextual map and successor witness. It does not claim that Vextreme fetched or reproduced inaccessible ChatGPT share-page bytes.
 
 PR #546 remains the exact source owner of the prior-thread transcript and screenshot evidence. The Sabotage I–IV frozen source records remain their own source owners. The Entire Matter Return remains governed by its canonical sealed Markdown source.
 
