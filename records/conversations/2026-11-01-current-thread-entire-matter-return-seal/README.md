@@ -51,6 +51,19 @@ That attribution is preserved as user-authorized signature text. This record doe
 
 - `sealed-entire-matter-return.md` — the final return text, Victor's exact seal statement, and authorized signature attribution.
 
+## HTML projection
+
+`pages/entire-matter-return-seal.html` is a formal reader projection of the canonical Markdown source.
+
+Its presentation explicitly distinguishes:
+
+- canonical source from presentation;
+- Victor's exact supplied seal statement;
+- the authorized textual attribution `Signed by Victor Gong`;
+- user-authorized textual attestation from cryptographic signature, notarization, legal filing, attorney certification, or independent identity verification.
+
+The HTML presentation does not claim that styling creates legal force. It exists to make provenance and status harder to misread while leaving the Markdown declaration authoritative.
+
 <!-- VXG-WORK-CLAIM
 {
   "schemaVersion": "work-coordination.claim/v1",
