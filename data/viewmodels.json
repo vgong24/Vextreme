@@ -2560,8 +2560,14 @@
     "title": "Entire Matter Return — Sealed Declaration",
     "category": "production",
     "template": "page",
-    "scopes": [],
+    "scopes": [
+      "pages.entire-matter-return-seal"
+    ],
     "features": [
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
       "arc-nav"
     ],
     "preview": {
