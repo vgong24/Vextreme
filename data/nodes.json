@@ -1829,7 +1829,33 @@
     "title": "Entire Matter Return — Sealed Declaration",
     "date": "November 1, 2026",
     "arcKeys": [
+      "victors_record",
+      "full_timeline"
+    ],
+    "department": "media",
+    "workType": "record-transcripts",
+    "vexData": {}
+  },
+  {
+    "id": 118,
+    "slug": "sabotage-hidden-delta",
+    "title": "Sabotage V — The Hidden Delta",
+    "date": "November 1, 2026",
+    "arcKeys": [
       "sabotage",
+      "victors_record",
+      "full_timeline"
+    ],
+    "department": "media",
+    "workType": "record-transcripts",
+    "vexData": {}
+  },
+  {
+    "id": 119,
+    "slug": "november-1-successor-witness",
+    "title": "November 1 Successor Witness — Context Map",
+    "date": "November 1, 2026",
+    "arcKeys": [
       "victors_record",
       "full_timeline"
     ],
