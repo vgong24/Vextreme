@@ -47,6 +47,14 @@ test('ENTIRE-MATTER-CURRENTNESS: generated index carries I–VI plus Return as S
   assert.equal(index.arcMap.victors_record[0].slugs.at(-1), RETURN);
   assert.deepEqual(witness.arcKeys, ['sabotage', 'victors_record', 'full_timeline']);
   assert.deepEqual(returned.arcKeys, ['sabotage', 'victors_record', 'full_timeline']);
+
+  const fullTimeline = index.arcMap.full_timeline.flatMap(section => section.slugs || []);
+  const v = fullTimeline.indexOf('sabotage-hidden-delta');
+  const vi = fullTimeline.indexOf(VI);
+  const returnedIndex = fullTimeline.indexOf(RETURN);
+  assert.ok(v >= 0 && vi >= 0 && returnedIndex >= 0);
+  assert.equal(vi, v + 1, 'Sabotage VI follows V in same-day Full Timeline ordering');
+  assert.equal(returnedIndex, vi + 1, 'Entire Matter Return follows Sabotage VI as the consequence/coda');
 });
 
 test('ENTIRE-MATTER-CURRENTNESS: Terrain projects seven Sabotage collection entries with Return as consequence', () => {
