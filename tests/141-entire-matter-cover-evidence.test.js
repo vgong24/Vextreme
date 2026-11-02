@@ -28,31 +28,9 @@ test('ENTIRE-MATTER-MEDIA: valid repair renders at native size while original tr
   assert.ok(page.includes(originalUrl), 'historical original remains addressable in lineage');
   assert.ok(page.includes('data-media-target="' + repairUrl + '"'));
   assert.ok(page.includes('data-media-sha256="' + REPAIR_SHA + '"'));
-  assert.match(page, new RegExp('<img src="' + repairUrl.replace(/[.*+?^$()|[\]\\]/g, '\\test('ENTIRE-MATTER-MEDIA: original archival media identity and later display repair remain visibly distinct', () => {
-  const page = read(RETURN_PAGE);
-  const strings = json('data/strings/source/pages/entire-matter-return-seal.json');
-  const views = json(VIEWS);
-  const originalUrl = 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/' + ORIGINAL_COMMIT + '/__assets/' + ORIGINAL_SHA + '.webp';
-  const repairUrl = 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/' + REPAIR_COMMIT + '/__assets/' + REPAIR_SHA + '.webp';
-
-  assert.ok(page.includes(originalUrl), 'Return restores original archived media identity');
-  assert.ok(page.includes('data-media-sha256="' + ORIGINAL_SHA + '"'));
-  assert.ok(page.includes(repairUrl), 'Return retains the later valid repair as a distinct route');
-  assert.match(page, /original archived representative-media identity/i);
-  assert.match(page, /display repair/i);
-
-  const provenance = strings._meta.sourceProvenance;
-  assert.equal(provenance.representativeMediaOriginalTarget, originalUrl);
-  assert.equal(provenance.representativeMediaOriginalSha256, ORIGINAL_SHA);
-  assert.equal(provenance.representativeMediaRepairTarget, repairUrl);
-  assert.equal(provenance.representativeMediaRepairSha256, REPAIR_SHA);
-  assert.equal(provenance.representativeMediaRelationship, 'ORIGINAL_ARCHIVAL_IDENTITY_WITH_SEPARATE_DISPLAY_REPAIR');
-
-  // Terrain/discovery may use the valid repair without rewriting the Return's archival identity.
-  assert.equal(views['entire-matter-return-seal'].preview.src, repairUrl);
-});
-') + '"[^>]*width="384"[^>]*height="216"'));
-  assert.match(page, /style="width:min\(100%,384px\)"/);
+  assert.ok(page.includes('<img src="' + repairUrl + '"'));
+  assert.ok(page.includes('width="384" height="216"'));
+  assert.ok(page.includes('style="width:min(100%,384px)"'));
   assert.match(page, /native 384×216 resolution/i);
   assert.match(page, /truncated and does not render reliably/i);
 
