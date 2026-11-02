@@ -18,28 +18,29 @@ const REPAIR_SHA = '34aa7284512a223866c25e5c8d9fd0d7d0286fc05fd376b52f04acebe773
 function read(rel) { return fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n'); }
 function json(rel) { return JSON.parse(read(rel)); }
 
-test('ENTIRE-MATTER-MEDIA: valid repair renders at native size while original truncated identity remains archival', () => {
+test('ENTIRE-MATTER-MEDIA: low-resolution lineage remains addressable without being promoted as reader showcase', () => {
   const page = read(RETURN_PAGE);
   const strings = json('data/strings/source/pages/entire-matter-return-seal.json');
   const views = json(VIEWS);
   const originalUrl = 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/' + ORIGINAL_COMMIT + '/__assets/' + ORIGINAL_SHA + '.webp';
   const repairUrl = 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/' + REPAIR_COMMIT + '/__assets/' + REPAIR_SHA + '.webp';
 
-  assert.ok(page.includes(originalUrl), 'historical original remains addressable in lineage');
-  assert.ok(page.includes('data-media-target="' + repairUrl + '"'));
-  assert.ok(page.includes('data-media-sha256="' + REPAIR_SHA + '"'));
-  assert.ok(page.includes('<img src="' + repairUrl + '"'));
-  assert.ok(page.includes('width="384" height="216"'));
-  assert.ok(page.includes('style="width:min(100%,384px)"'));
-  assert.match(page, /native 384×216 resolution/i);
-  assert.match(page, /truncated and does not render reliably/i);
+  assert.ok(page.includes(originalUrl), 'truncated archival identity remains inspectable');
+  assert.ok(page.includes(repairUrl), 'lightweight repair remains inspectable');
+  assert.doesNotMatch(page, /data-media-target=/);
+  assert.doesNotMatch(page, /<figure class="sar-media"/);
+  assert.doesNotMatch(page, new RegExp('<img[^>]+34aa7284512a223866c25e5c8d9fd0d7d0286fc05fd376b52f04acebe77369f4'));
+  assert.match(page, /too small to serve as a high-fidelity reader showcase/i);
+  assert.match(page, /lightweight Terrain\/discovery preview/i);
 
   const provenance = strings._meta.sourceProvenance;
+  assert.equal(provenance.representativeMediaStatus, 'HISTORICAL_LINEAGE_ONLY_NO_READER_SHOWCASE');
   assert.equal(provenance.representativeMediaTarget, repairUrl);
   assert.equal(provenance.representativeMediaSha256, REPAIR_SHA);
   assert.equal(provenance.representativeMediaWidth, 384);
   assert.equal(provenance.representativeMediaHeight, 216);
-  assert.equal(provenance.representativeMediaDisplayPolicy, 'NATIVE_SIZE_NO_UPSCALE');
+  assert.equal(provenance.representativeMediaDisplayPolicy, 'TERRAIN_PREVIEW_ONLY_NO_READER_SHOWCASE');
+  assert.equal(provenance.representativeMediaRelationship, 'ORIGINAL_ARCHIVAL_IDENTITY_WITH_LIGHTWEIGHT_TERRAIN_REPAIR');
   assert.equal(provenance.representativeMediaOriginalTarget, originalUrl);
   assert.equal(provenance.representativeMediaOriginalSha256, ORIGINAL_SHA);
   assert.equal(provenance.representativeMediaOriginalStatus, 'ARCHIVAL_IDENTITY_RETAINED_TRUNCATED_NOT_RENDERED');
@@ -47,29 +48,28 @@ test('ENTIRE-MATTER-MEDIA: valid repair renders at native size while original tr
   assert.equal(views['entire-matter-return-seal'].preview.src, repairUrl);
 });
 
-test('ENTIRE-MATTER-MEDIA: inherited prior-thread evidence remains exact but is opt-in behind the Evidence phase', () => {
-  const page = read(RETURN_PAGE);
-  const base = '../records/conversations/2026-11-01-current-thread-entire-matter-return-seal/evidence/prior-thread/';
-
-  assert.ok(page.includes('data-go="3"><span>03</span><span>Evidence</span>'));
-  assert.match(page, /id="return-evidence"[^>]*data-phase-kind="evidence"[^>]*hidden/);
-  assert.ok(page.indexOf('id="return-declaration"') < page.indexOf('id="return-evidence"'));
-  assert.ok(page.includes('id="prior-thread-evidence"'));
-  for (const filename of [
+test('ENTIRE-MATTER-MEDIA: Return routes evidence to Sabotage V instead of duplicating its screenshot gallery', () => {
+  const returnPage = read(RETURN_PAGE);
+  const sabotageV = read(SABOTAGE_V_PAGE);
+  const files = [
     'batch-01-vexlogger-logging-sequence.png',
     'batch-01-ui-sample-vexapplication.png',
     'batch-01-vexdependencyfactory.png',
     'batch-05-unknown-error-boundary.png',
-  ]) {
-    assert.ok(page.includes(base + filename), filename + ' remains visible in the Return');
+  ];
+
+  assert.ok(returnPage.includes('sabotage-hidden-delta.html'));
+  assert.match(returnPage, /screenshot evidence belong to Sabotage V/i);
+  assert.doesNotMatch(returnPage, /id="prior-thread-evidence"/);
+  assert.doesNotMatch(returnPage, /id="return-evidence"/);
+  assert.doesNotMatch(returnPage, /data-go="3"/);
+  for (const filename of files) {
+    assert.ok(!returnPage.includes(filename), filename + ' is not duplicated in the Return');
+    assert.ok(sabotageV.includes(filename), filename + ' remains visible in Sabotage V');
   }
-  assert.match(page, /Evidence carried into the return/);
-  assert.match(page, /inherited mirrors/i);
-  assert.ok(page.includes('sabotage-hidden-delta.html'));
-  assert.ok(page.includes('november-1-successor-witness.html'));
 });
 
-test('ENTIRE-MATTER-MEDIA: inherited display does not transfer Sabotage V provenance ownership', () => {
+test('ENTIRE-MATTER-MEDIA: evidence ownership stays with Sabotage V and Return keeps only lineage routes', () => {
   const returnPage = read(RETURN_PAGE);
   const sabotageV = read(SABOTAGE_V_PAGE);
   const sourceBase = 'records/conversations/2026-11-01-prior-thread-full-context-preservation/screenshots/';
@@ -83,8 +83,8 @@ test('ENTIRE-MATTER-MEDIA: inherited display does not transfer Sabotage V proven
     assert.ok(sabotageV.includes(sourceBase + filename), filename + ' remains source-owned/displayed by Sabotage V');
   }
 
-  assert.match(returnPage, /provenance are owned by Sabotage V/i);
-  assert.match(returnPage, /without transferring source ownership/i);
+  assert.match(returnPage, /prior-thread transcript and screenshot evidence belong to Sabotage V/i);
+  assert.ok(returnPage.includes('november-1-successor-witness.html'));
 });
 
 // [VXG RealForever]
