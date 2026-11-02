@@ -74,10 +74,10 @@ test('VEXARCHITECTURE GUIDE: ThemeMode teaches semantic carriage rather than cla
   const page = read('pages/vexarchitecture-first-stable-body.html');
 
   assert.ok(page.includes('Parameter.Mode(Dark)'));
-  assert.ok(page.includes('SAME SEMANTIC OBJECT'));
+  assert.ok(page.includes('SAME IN-PROCESS INSTANCE'));
   assert.ok(page.includes('Control.Select(parameter)'));
   assert.ok(page.includes('Effect.Save(parameter)'));
-  assert.ok(page.includes('Method.Save(store, parameter)'));
+  assert.ok(page.includes('Act.Method.Save(store, same parameter)'));
   assert.ok(page.includes('Do not copy ThemeMode. Reuse the questions.'));
 });
 
@@ -85,7 +85,7 @@ test('VEXARCHITECTURE GUIDE: active work, lifetime, chronology, and convergence 
   const page = read('pages/vexarchitecture-first-stable-body.html');
 
   assert.ok(page.includes('RelationshipId'));
-  assert.ok(page.includes('actual Job(s)'));
+  assert.ok(page.includes('VexExecution Job custody'));
   assert.ok(page.includes('parent VexDependencyFactory'));
   assert.ok(page.includes('child VexDependencyFactory'));
   assert.ok(page.includes('VexLogger'));
