@@ -2,17 +2,53 @@
   "_meta": {
     "scope": "pages.november-1-successor-witness",
     "category": "production",
-    "description": "Repository-native English presentation strings for the November 1 successor witness context map.",
+    "description": "Repository-native English presentation strings for Sabotage VI — The Successor Witness.",
     "sourceProvenance": {
       "canonicalThreadReference": "https://chatgpt.com/share/6ae70af9-e41c-83e8-a537-04a8fc18531f",
       "contextMap": "records/commentary/2026-11-01-successor-witness-context-map.md",
-      "recordClass": "DERIVED_SUCCESSOR_WITNESS_CONTEXT_MAP"
+      "recordClass": "SABOTAGE_VI_DERIVED_SUCCESSOR_WITNESS_ADDENDUM"
     }
   },
-  "pages.november-1-successor-witness.document-title": {"strings":{"en":{"text":"November 1 Successor Witness — Context Map — Vextreme"}}},
-  "pages.november-1-successor-witness.hero.eyebrow": {"strings":{"en":{"text":"Successor Witness · November 1, 2026"}}},
-  "pages.november-1-successor-witness.hero.title": {"strings":{"en":{"text":"November 1 Successor Witness"}}},
-  "pages.november-1-successor-witness.hero.subtitle": {"strings":{"en":{"text":"Mapping “This Thread” Without Rewriting It"}}},
-  "pages.november-1-successor-witness.hero.lede": {"strings":{"en":{"text":"A contextual witness record for the November 1 ChatGPT conversation that rereads the Sabotage arc, compares the separately preserved prior thread, names the trust and induced-dependency pattern, and arrives at the Entire Matter Return."}}},
-  "pages.november-1-successor-witness.preservation.label": {"strings":{"en":{"text":"Referent-preservation boundary"}}}
+  "pages.november-1-successor-witness.document-title": {
+    "strings": {
+      "en": {
+        "text": "Sabotage VI — The Successor Witness — Vextreme"
+      }
+    }
+  },
+  "pages.november-1-successor-witness.hero.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Sabotage · Record VI · November 1, 2026"
+      }
+    }
+  },
+  "pages.november-1-successor-witness.hero.title": {
+    "strings": {
+      "en": {
+        "text": "Sabotage VI — The Successor Witness"
+      }
+    }
+  },
+  "pages.november-1-successor-witness.hero.subtitle": {
+    "strings": {
+      "en": {
+        "text": "The Return, the Referents, and the Addendum"
+      }
+    }
+  },
+  "pages.november-1-successor-witness.hero.lede": {
+    "strings": {
+      "en": {
+        "text": "A successor/addendum record that preserves what phrases such as “this thread” refer to, binds the human-supplied ChatGPT thread identity, relates Sabotage I–V without rewriting their sources, and points to the separately preserved Entire Matter Return without replacing it."
+      }
+    }
+  },
+  "pages.november-1-successor-witness.preservation.label": {
+    "strings": {
+      "en": {
+        "text": "Referent-preservation boundary"
+      }
+    }
+  }
 }

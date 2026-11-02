@@ -26,7 +26,8 @@ test('SABOTAGE-READER: new collection, node, and viewmodel are source-owned', ()
     'sabotage-mastered-state',
     'sabotage-vexsync-exhaust-mastered',
     'sabotage-orientation-before-action',
-    'sabotage-hidden-delta'
+    'sabotage-hidden-delta',
+    'november-1-successor-witness'
   ]);
 
   const node = nodes.find(n => n.slug === SLUG);

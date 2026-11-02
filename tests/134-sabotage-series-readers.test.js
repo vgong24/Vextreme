@@ -29,10 +29,11 @@ test('SABOTAGE-SERIES: sibling readers share collection identity and exact cover
   const nodes = json('data/nodes.json');
   const views = json('data/viewmodels.json');
 
-  assert.deepEqual(arcs.sabotage.sections[0].slugs.slice(-5), [
+  assert.deepEqual(arcs.sabotage.sections[0].slugs.slice(-6), [
     'sabotage-open-vex-accountability',
     ...SERIES.map(x => x.slug),
-    'sabotage-hidden-delta'
+    'sabotage-hidden-delta',
+    'november-1-successor-witness'
   ]);
   assert.deepEqual(arcs.victors_record.sections[0].slugs.slice(-7), [
     'sabotage-open-vex-accountability',
@@ -41,6 +42,11 @@ test('SABOTAGE-SERIES: sibling readers share collection identity and exact cover
     'november-1-successor-witness',
     'entire-matter-return-seal'
   ]);
+
+  const witness = nodes.find(n => n.slug === 'november-1-successor-witness');
+  assert.ok(witness, 'Sabotage VI node exists');
+  assert.equal(witness.title, 'Sabotage VI — The Successor Witness');
+  assert.deepEqual(witness.arcKeys, ['sabotage', 'victors_record', 'full_timeline']);
 
   for (const item of SERIES) {
     const node = nodes.find(n => n.slug === item.slug);

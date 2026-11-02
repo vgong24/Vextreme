@@ -160,15 +160,17 @@ function mount(config){
       target.textContent=templateText('sourceUnavailable');
     });
   }
-  function boundedDocumentBody(raw){
+  function boundedDocumentBody(raw,beginMarker,endMarker){
     var body=raw;
-    if(documentBeginMarker){
-      var a=body.indexOf(documentBeginMarker);
+    beginMarker=beginMarker===undefined||beginMarker===null?documentBeginMarker:beginMarker;
+    endMarker=endMarker===undefined||endMarker===null?documentEndMarker:endMarker;
+    if(beginMarker){
+      var a=body.indexOf(beginMarker);
       if(a<0)throw new Error('DOCUMENT_BEGIN_MARKER_MISSING');
-      body=body.slice(a+documentBeginMarker.length);
+      body=body.slice(a+beginMarker.length);
     }
-    if(documentEndMarker){
-      var b=body.indexOf(documentEndMarker);
+    if(endMarker){
+      var b=body.indexOf(endMarker);
       if(b<0)throw new Error('DOCUMENT_END_MARKER_MISSING');
       body=body.slice(0,b);
     }
@@ -323,11 +325,13 @@ function mount(config){
     }
     installTranscriptControls(section);
     if(section.dataset.loaded==='true')return true;
+    var beginMarker=section.hasAttribute('data-document-begin-marker')?section.dataset.documentBeginMarker:null;
+    var endMarker=section.hasAttribute('data-document-end-marker')?section.dataset.documentEndMarker:null;
     Promise.all([
       fetch(url).then(function(r){if(!r.ok)throw new Error(String(r.status));return r.text();}),
       turnMapSource()
     ]).then(function(values){
-      var body=boundedDocumentBody(values[0]);
+      var body=boundedDocumentBody(values[0],beginMarker,endMarker);
       var sourceId=section.dataset.turnMapSource||turnMapSourceId;
       target.innerHTML=values[1]?renderTurnMappedDocument(body,values[1],sourceId):renderDocument(body);
       target.dataset.loaded='true';
