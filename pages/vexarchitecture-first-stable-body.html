@@ -606,37 +606,72 @@
       <div class="subtitle" data-i18n="pages.vexarchitecture-first-stable-body.hero.subtitle">Build complex systems without letting every layer become the owner of the same truth.</div>
       <p class="tagline" data-i18n="pages.vexarchitecture-first-stable-body.hero.tagline">Come inside the codebase. Follow one request from human intention to pixels, and watch the architecture emerge from the questions each layer is actually allowed to answer.</p>
       <div class="hero-meta">
-        <span class="pill status" data-i18n="pages.vexarchitecture-first-stable-body.hero.status">Accepted architecture · live public guide</span>
+        <span class="pill status" data-i18n="pages.vexarchitecture-first-stable-body.hero.status">Accepted stability point · public origin guide</span>
         <span class="pill" data-i18n="pages.vexarchitecture-first-stable-body.hero.origin">VexLife-Android · PR #209</span>
       </div>
+      <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.hero.reader-contract">Use this page to understand why the first stable VexArchitecture body took this shape. Current VexLife-Android source and tests own present behavior. PR #209 preserves the pressure, subtraction, and proof that earned this stability point.</p>
       <p class="lede" data-i18n="pages.vexarchitecture-first-stable-body.hero.lede">VexArchitecture did not begin with a framework diagram. It emerged while a real Android application kept forcing semantic state, asynchronous work, persistence, provider truth, dependency construction, logging, convergence, and presentation to stop impersonating one another.</p>
     </header>
 
     <section class="causal-map" id="guide-map">
       <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.map.kicker">How to read this guide</div>
-      <h2 data-i18n="pages.vexarchitecture-first-stable-body.map.heading">The page follows the same causal descent as the architecture</h2>
-      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.map.lede">Each layer owns one question. As you move downward, no section is allowed to silently become a second owner for a question already answered above it.</p>
-      <pre class="causal-flow"><code data-i18n="pages.vexarchitecture-first-stable-body.map.flow">PRESSURE
-  ↓
-SEMANTIC MEANING
-  ↓
-ACTIVE WORK
-  ↓
-OUTSIDE REALITY
-  ↓
-OBSERVATION
-  ↓
-CONSTRUCTION + LIFETIME
-  ↓
-CHRONOLOGY
-  ↓
-CONVERGENCE
-  ↓
-PRESENTATION
-  ↓
-HUMAN EXPERIENCE
+      <h2 data-i18n="pages.vexarchitecture-first-stable-body.map.heading">The architecture has one core causal path — and several relationships that sit beside it</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.map.lede">Construction/lifetime creates and reuses the live objects in the path. VexLogger observes facts across owners. Relay/convergence appears only when independently-owned truths must become new relationship truth. Forensics explains why the shape was earned. None of those are automatic next runtime stages.</p>
+      <pre class="causal-flow"><code data-i18n="pages.vexarchitecture-first-stable-body.map.flow">WHY THIS ARCHITECTURE EXISTS
 
-forensics sits beside the path — it proves history; it does not own behavior</code></pre>
+pressure / failure
+      ↓
+ownership question
+
+
+CORE SEMANTIC + RUNTIME PATH
+
+Control + exact CURRENT State
+      ↓
+Family.act(...)
+      ↓
+accepted Act
+├─ admitted State?
+└─ Begin?
+   ├─ Effect
+   └─ overlap Approach
+      ↓
+fully-bound Act.Method
+      ↓
+VexExecution custody
+      ↓
+Store / provider / platform reality
+      ↓
+rightful interpretation of observation
+      ↓
+Family.observe(State)
+      ↓
+Projection / DisplayState
+      ↓
+concrete presentation meaning
+      ↓
+platform manifestation
+      ↓
+presentation arrival, when actually observed
+      ↓
+human experience
+
+
+ORTHOGONAL / CONDITIONAL RELATIONSHIPS
+
+Construction + lifetime
+  → creates and reuses the live objects above
+
+Chronology / VexLogger
+  → observes facts as rightful owners know them
+
+Relay / convergence
+  → only when independently-owned truths
+    must become new relationship truth
+
+Forensics / PR provenance
+  → explains why this shape was earned
+    without becoming runtime authority</code></pre>
       <div class="owner-strip" aria-label="Architecture responsibility legend">
         <span class="semantic" data-i18n="pages.vexarchitecture-first-stable-body.legend.semantic">SEMANTIC</span>
         <span class="execution" data-i18n="pages.vexarchitecture-first-stable-body.legend.execution">EXECUTION</span>
@@ -685,7 +720,7 @@ forensics sits beside the path — it proves history; it does not own behavior</
         <details class="owner-card" data-owner="family" open>
           <summary data-i18n="pages.vexarchitecture-first-stable-body.owner.family.title">Family · semantic meaning</summary>
           <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.family.question">What does this Control mean against the exact current State?</div>
-          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.family.body">Family owns State, Control, the lawful Act, optional Effect, and outward Projection/DisplayState. It does not become persistence, a coroutine manager, or provider truth.</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.family.body">Family owns State, Control, the lawful Act, optional Effect, and outward Projection/DisplayState. Parameter is optional and earned when a Family-scoped semantic value needs to remain recognizable across relationships; it is not a wrapper for every Kotlin argument. An Act may admit immediate semantic State and may also carry an inert Begin of Effect + overlap Approach. act(...) remains pure.</div>
         </details>
         <details class="owner-card" data-owner="execution">
           <summary data-i18n="pages.vexarchitecture-first-stable-body.owner.execution.title">Execution · active custody</summary>
@@ -785,38 +820,44 @@ sealed interface Effect {
 }</code></pre>
         </article>
         <article class="workbench">
-          <h3 data-i18n="pages.vexarchitecture-first-stable-body.walk.same-heading">Why carry the same Parameter object?</h3>
-          <p data-i18n="pages.vexarchitecture-first-stable-body.walk.same-body">The selection is not reconstructed later from a primitive. The exact Parameter.Mode accepted as meaning is carried through Control, Effect, and the bound Method. Semantic provenance survives the trip without inventing another operation ID.</p>
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.walk.same-heading">Same in-process Parameter instance — an earned ThemeMode mechanism</h3>
+          <p data-i18n="pages.vexarchitecture-first-stable-body.walk.same-body">ThemeMode deliberately preserves the exact Parameter.Mode instance across Control, Effect, and the fully-bound Method. That referential identity is used by this concrete currentness fence; it is not a universal distributed identity rule and does not authorize a generic currentness-token framework.</p>
           <pre><code data-i18n="pages.vexarchitecture-first-stable-body.walk.flow">human selects Dark
         ↓
 Parameter.Mode(Dark)
-        ↓ SAME SEMANTIC OBJECT
+        ↓ SAME IN-PROCESS INSTANCE
 Control.Select(parameter)
         ↓
-Family act(current State, Control)
+Family.act(exact CURRENT State, Control)
         ↓
-Act + Effect.Save(parameter)
+accepted Act
+├─ immediate State?
+└─ Begin(Effect.Save(parameter), Latest)
         ↓
-Method.Save(store, parameter)
+bind live Family + maintained RelationshipId
         ↓
-VexExecution
+fully-bound Act.Method.Save(store, same parameter)
+        ↓
+Act.launchWith(executionRoot).method(...)
+  consumes already-authored owner / Approach / RelationshipId
+        ↓
+VexExecution Job custody
         ↓
 Store.save(Dark)
         ↓
-outside observation
+physical result / outside observation
         ↓
-ThemeMode State
+ThemeMode-owned interpretation
         ↓
-DisplayState
+Family.observe(State)
         ↓
-VexThemePresentation
+DisplayState → VexThemePresentation
         ↓
-VexLifeTheme / Compose
-        ↓
-human sees Dark</code></pre>
+Compose / system bars receive manifestation meaning</code></pre>
         </article>
       </div>
 
+      <div class="question-box"><strong data-i18n="pages.vexarchitecture-first-stable-body.walk.realization-label">The realization seam</strong><br><span data-i18n="pages.vexarchitecture-first-stable-body.walk.realization-body">Family.act() authors semantic consequence. Begin remains inert. activate() mechanically binds the live Family and a maintained RelationshipId when the overlap law requires one. A concrete Family Act.Method then contains the real Store/provider and semantic Parameter. launchWith() transports those already-authored execution facts into VexExecution instead of asking downstream code to reconstruct them.</span></div>
       <div class="source-link-row">
         <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/66c866dea6a8dd78e2946da88715c4deb78c1847/app/src/main/kotlin/com/vextreme/vexlife/android/ui/ThemeMode.kt" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.walk.source-label">Open ThemeMode.kt ↗</a>
       </div>
@@ -829,42 +870,30 @@ human sees Dark</code></pre>
 
       <div class="workbench-grid">
         <article class="workbench">
-          <h3 data-i18n="pages.vexarchitecture-first-stable-body.execution.law-label">The active-work law</h3>
-          <pre><code data-i18n="pages.vexarchitecture-first-stable-body.execution.custody">RelationshipId
-     │
-     ▼
-actual Job(s)
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.execution.law-label">When maintained identity actually exists</h3>
+          <pre><code data-i18n="pages.vexarchitecture-first-stable-body.execution.custody">Independent work
+→ no maintained RelationshipId
 
-Job completes
-→ remove Job
+Earliest / Latest / Queued work
+→ maintained relationship exists
+→ RelationshipId is derived from:
+   live Family
+   + Control kind/name
+   + optional typed ResourceId when genuinely distinguishing
 
-no Jobs remain
-→ remove RelationshipId</code></pre>
+ordinary Control payload
+→ NOT identity</code></pre>
         </article>
         <article class="workbench">
-          <h3 data-i18n="pages.vexarchitecture-first-stable-body.execution.approaches-label">Overlap meanings</h3>
-          <pre><code data-i18n="pages.vexarchitecture-first-stable-body.execution.approaches">Independent · do not coordinate with prior work
-Earliest    · existing unfinished Job is sufficient
-Latest      · cancel unfinished Job(s), then admit newest
-Queued      · preserve accepted Job(s) in admission order</code></pre>
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.execution.approaches-label">The question to ask</h3>
+          <pre><code data-i18n="pages.vexarchitecture-first-stable-body.execution.approaches">Does unfinished work need to be related to other unfinished work as Earliest, Latest, or Queued?
+
+No  → do not mint maintained identity.
+Yes → derive the smallest semantic coordinate that already distinguishes that relationship.</code></pre>
         </article>
       </div>
 
-      <div class="comparison-grid">
-        <article class="panel">
-          <h3 data-i18n="pages.vexarchitecture-first-stable-body.execution.before-label">Before separation</h3>
-          <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.execution.before">The tempting identity pile:
-InstanceId · SourceRef · Handle · Snapshot · OwnerToken · CoordinationKey</code></pre>
-        </article>
-        <article class="panel">
-          <h3 data-i18n="pages.vexarchitecture-first-stable-body.execution.after-label">After separation</h3>
-          <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.execution.after">The smaller separation:
-RelationshipId → maintained semantic work
-Job            → live runtime occurrence
-VexLogger      → historical chronology</code></pre>
-        </article>
-      </div>
-      <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.execution.payoff">Three questions that looked like one identity problem become three ordinary owners. That is why subtraction here increases scalability rather than reducing capability.</p>
+      <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.execution.payoff">RelationshipId exists only when unfinished work must be maintained as one semantic/runtime relationship. The actual Job remains the runtime occurrence, and ordinary payload never becomes identity merely because it is present on the Control.</p>
       <div class="source-link-row">
         <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/66c866dea6a8dd78e2946da88715c4deb78c1847/architecture/execution/src/main/kotlin/com/vextreme/vexlife/android/execution/VexExecution.kt" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.execution.source-label">Open VexExecution.kt ↗</a>
       </div>
@@ -897,25 +926,29 @@ pending-state manager
 synchronization registry</code></pre>
         </article>
         <article class="panel">
-          <h3 data-i18n="pages.vexarchitecture-first-stable-body.race.solution-heading">The missing identity already existed</h3>
-          <p data-i18n="pages.vexarchitecture-first-stable-body.race.solution-body">The newer accepted selection already carried the exact Parameter.Mode. ThemeMode temporarily remembers that same object while its consequence settles. An older Store observation is held only while a newer Parameter is unsettled. No second currentness vocabulary is minted.</p>
-          <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.race.solution">newer Parameter.Mode(Dark) unsettled
-        ↓
-old Light observation arrives
-        ↓
-HOLD
-        ↓
-Dark realization finishes
-        ↓
-reconcile outside truth normally</code></pre>
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.race.solution-heading">ThemeMode's exact settlement rule</h3>
+          <p data-i18n="pages.vexarchitecture-first-stable-body.race.solution-body">Select(Parameter B) makes B the unsettled selection, admits semantic State immediately, and starts Save(B). A mismatching Store observation is held because it carries no revision proving it is newer than B. When B's exact Method realization terminates, ThemeMode settles only if the completed parameter is referentially the same instance (===) as the current unsettled selection. Ordinary Store observations then resume. This is ThemeMode-specific, not a generic currentness framework.</p>
+          <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.race.solution">Select(Parameter B)
+→ B becomes unsettled
+→ semantic State admitted immediately
+→ Save(B) runs
+
+mismatching Store observation arrives while B unsettled
+→ HOLD
+→ Store carries no revision proving it is newer than B
+
+terminal Method realization for B
+→ success / Store failure / execution failure
+→ settle only when completed parameter === unsettled B
+→ ordinary Store observations resume</code></pre>
         </article>
       </div>
     </section>
 
     <section class="guide-section" id="construction" data-owner="construction">
-      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.construction.kicker">07 · Construction and lifetime</div>
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.construction.kicker">Supporting topology · construction and lifetime</div>
       <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.construction.heading">Make the object graph readable without turning dependency injection into runtime meaning</h2>
-      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.construction.lede">VexDependencyFactory treats construction as its own question. Provider object identity is the construction coordinate; prerequisites are explicit source; one factory lifetime memoizes one value per provider.</p>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.construction.lede">This is not another stage in the runtime path. VexDependencyFactory answers a different question: which live objects exist, what prerequisites built them, and which lifetime owns/reuses them. Provider object identity is the construction coordinate; prerequisites are explicit source; one factory lifetime memoizes one value per provider.</p>
 
       <div class="workbench-grid">
         <article class="workbench">
@@ -973,9 +1006,9 @@ create(scope) {
     </section>
 
     <section class="guide-section" id="chronology" data-owner="chronology">
-      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.logger.kicker">08 · History without hijacking the architecture</div>
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.logger.kicker">Cross-cutting observation · chronology</div>
       <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.logger.heading">Chronology is powerful when it is allowed to remain chronology</h2>
-      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.logger.lede">VexLogger receives accepted and observed facts from rightful owners. It answers what happened and in what order; it does not become a shadow State machine or an execution registry.</p>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.logger.lede">VexLogger sits beside the causal path and receives accepted or observed facts from many rightful owners. It answers what happened and in what order; it does not become a shadow State machine, a predicted-future store, or an execution registry.</p>
 
       <div class="workbench-grid">
         <article class="workbench">
@@ -1003,9 +1036,9 @@ VexLogger      → what happened historically</code></pre>
     </section>
 
     <section class="guide-section" id="convergence" data-owner="convergence">
-      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.relay.kicker">09 · Convergence without stealing truth</div>
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.relay.kicker">Conditional composition · Relay / convergence</div>
       <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.relay.heading">Relationship truth can be new without becoming a new owner of its inputs</h2>
-      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.relay.lede">Events and Conversation already have concrete convergence relays in VexLife. Their job is to combine independently-owned truths, not to reach inside another owner and perform its Effects directly.</p>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.relay.lede">Relay is not a mandatory stage after Family or Execution. It exists when independently-owned current truths must be composed into new relationship truth. A convergence owner may request change through another Family's public Control/Port; it may not bypass that semantic owner and invoke a foreign Effect directly.</p>
       <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.relay.diagram">EventsRepository truth ──────┐
 AttentionPreferences truth ──┼─→ EventsConvergenceRelay → relationship truth
 UserProfile truth ────────────┘
@@ -1013,7 +1046,7 @@ UserProfile truth ────────────┘
 ConversationRepository truth ─┐
 ConversationLab truth ─────────┼─→ VexConversationHybridRelay → relationship truth
                               └─→ request change only through rightful Controls</code></pre>
-      <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.relay.rule">Convergence may compose truth. It may not appropriate the authority that created the truth.</p>
+      <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.relay.rule">VexLifeRelayGraph is only a session-level projection of which independently-owned Relay nodes exist. It does not construct, activate, or semantically own them. Convergence may compose truth; it may not appropriate the authority that created the truth.</p>
     </section>
 
     <section class="guide-section" id="presentation" data-owner="presentation">
@@ -1031,28 +1064,30 @@ VexThemePresentation
       ↓
 VexLifeTheme
       ↓
-MaterialTheme / system bars / Compose Surface
+Compose / system bars receive manifestation meaning
+      ↓
+presentation arrival, when actually observed
       ↓
 human experience</code></pre>
         </article>
         <article class="workbench">
           <h3 data-i18n="pages.vexarchitecture-first-stable-body.presentation.why-label">Why the boundary matters</h3>
-          <p data-i18n="pages.vexarchitecture-first-stable-body.presentation.rule">A Switch, segmented control, menu, voice command, or future surface may all select ThemeMode without redefining ThemeMode. Presentation can change while semantic ownership stays stable.</p>
+          <p data-i18n="pages.vexarchitecture-first-stable-body.presentation.rule">Projection describes what presentation should manifest. It does not, by itself, prove what actually reached the human. A Switch, segmented control, menu, voice command, or future surface may all select ThemeMode without redefining ThemeMode.</p>
           <p data-i18n="pages.vexarchitecture-first-stable-body.presentation.anti">Do not invent a generic FamilyRenderer, UiState, or ViewState merely because a concrete presentation boundary already exists. Add another layer only when it answers a different required question.</p>
         </article>
       </div>
     </section>
 
     <section class="guide-section" id="subtraction" data-owner="semantic">
-      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.kicker">10 · What we deleted</div>
-      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.heading">Less architecture scaled better because false unifications disappeared</h2>
-      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.lede">The rejected abstractions were not stupid. Most were reasonable responses to real pressure. They became unnecessary when one overloaded question was separated into several truthful ones.</p>
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.kicker">11 · What reality made unnecessary</div>
+      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.heading">Each deletion happened because another owner could answer the question more truthfully</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.lede">The rejected abstractions were reasonable responses to real pressure. They disappeared when their question was returned to a smaller existing owner.</p>
 
       <div class="owner-grid">
         <details class="owner-card" data-owner="execution" open>
           <summary data-i18n="pages.vexarchitecture-first-stable-body.subtraction.identity-title">One giant identity problem</summary>
           <div class="owner-body">
-            <p data-i18n="pages.vexarchitecture-first-stable-body.subtraction.identity-body">InstanceId, SourceRef, Handle, Snapshot, OwnerToken, and CoordinationKey looked useful while semantic relationship, runtime occurrence, and historical chronology were conflated.</p>
+            <p data-i18n="pages.vexarchitecture-first-stable-body.subtraction.identity-body">Manual relationship / coordinate machinery → duplicated identity ownership → Control-derived maintained RelationshipId.</p>
             <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.subtraction.identity-after">RelationshipId → maintained relationship
 Job            → runtime occurrence
 VexLogger      → chronology</code></pre>
@@ -1060,23 +1095,23 @@ VexLogger      → chronology</code></pre>
         </details>
         <details class="owner-card" data-owner="execution">
           <summary data-i18n="pages.vexarchitecture-first-stable-body.subtraction.wrapper-title">Feature execution wrappers</summary>
-          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.wrapper-body">ThemeModeExecution and mirrored feature-specific execution owners disappeared once Family kept meaning and VexExecution kept custody.</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.wrapper-body">ThemeMode execution / coordination wrappers → duplicated runtime ownership → Family meaning + VexExecution custody + Store truth.</div>
         </details>
         <details class="owner-card" data-owner="logger">
           <summary data-i18n="pages.vexarchitecture-first-stable-body.subtraction.logger-title">Predictive history</summary>
-          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.logger-body">Expected destinations stopped being recorded as production facts. The interaction is logged where it occurs; navigation is logged after the actual CurrentScreen changes.</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.logger-body">Predictive navigationTarget logging → expectation serialized as observation → interaction before mutation + actual CurrentScreen afterward.</div>
         </details>
         <details class="owner-card" data-owner="dependency">
           <summary data-i18n="pages.vexarchitecture-first-stable-body.subtraction.container-title">Construction bags</summary>
-          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.container-body">Generic binding containers disappeared where explicit providers, concrete relay owners, and projection already explained the relationships.</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.container-body">Eager Relay / construction bag → projection became construction owner → independent Relay owners + projection-only VexLifeRelayGraph.</div>
         </details>
       </div>
     </section>
 
     <section class="guide-section" id="apply" data-owner="presentation">
-      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.apply.kicker">11 · Use it on your own feature</div>
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.apply.kicker">12 · Use it on your own feature</div>
       <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.apply.heading">Do not copy ThemeMode. Reuse the questions.</h2>
-      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.apply.lede">The architecture scales by preserving the reasoning posture, not by forcing every feature into the same class diagram.</p>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.apply.lede">The architecture scales by preserving the reasoning posture, not by forcing every feature into the same class diagram. Parameter, maintained RelationshipId, Relay/convergence, richer projection, and other mechanisms appear only when their specific question is actually present.</p>
 
       <ol class="apply-list">
         <li data-i18n="pages.vexarchitecture-first-stable-body.apply.1">Name the semantic question in ordinary language.</li>
@@ -1128,15 +1163,19 @@ present  → map, route, and availability meaning?</code></pre>
 
       <div class="forensics">
         <details open>
-          <summary data-i18n="pages.vexarchitecture-first-stable-body.forensics.proof-summary">How reality changed the architecture</summary>
+          <summary data-i18n="pages.vexarchitecture-first-stable-body.forensics.proof-summary">What was actually proven</summary>
           <div class="inside">
-            <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.forensics.proof">Overgrowth exposed false owners → managers, IDs, wrappers, and duplicate registries were removed when an existing owner could truthfully carry the responsibility.
+            <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.forensics.proof">SOURCE / BUILD
+Exact head + tree passed the repository-owned full verification.
 
-Concurrency exposed missing semantic currentness → the Light/Dark race proved static elegance was insufficient; same-Parameter carriage supplied the missing relationship without a new generation/trace framework.
+CONCURRENCY
+The rapid ThemeMode Light/Dark stale-observation race was reproduced and then deterministically covered.
 
-Production construction exposed lifetime ownership → the design had to survive real Android process → Application → ViewModel → Session composition.
+PRODUCTION CONSTRUCTION
+The real VexApplication → VexLifeViewModel path cold-launched on Android and remained alive.
 
-Integration proved the tested architecture is the architecture that shipped → the actual merge tree exactly equaled the proved candidate tree.</code></pre>
+INTEGRATION
+The actual merge tree exactly equaled the candidate tree that received proof.</code></pre>
           </div>
         </details>
 
