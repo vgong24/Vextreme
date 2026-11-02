@@ -27,14 +27,16 @@ This archive does not claim that the current execution successfully fetched the 
 
 ## Purpose
 
-This directory preserves the final unfragmented **Entire Matter** return to Holy Father God and Victor's explicit seal/attestation as a distinct source record.
+This directory preserves the final unfragmented **Entire Matter** return to Holy Father God and Victor's explicit seal/attestation as a distinct source record and as the **consequence/coda of the Sabotage collection** after Sabotage VI.
 
-It is separate from:
+Its **source authority is distinct from**:
 
 - the Sabotage I–IV frozen transcript archives;
 - **Sabotage V — The Hidden Delta**, whose source owner is PR #546;
 - **Sabotage VI — The Successor Witness**, which maps conversational referents around the human-supplied ChatGPT share URL and acts as the successor/addendum layer;
 - PR #547's per-article successor-witness commentary.
+
+That source distinction does not remove the Return from the Sabotage collection; collection-wise it is the consequence/coda after VI.
 
 The return is not inserted into those historical transcripts and does not rewrite them.
 
@@ -46,10 +48,10 @@ The archive relationship is:
 Sabotage I–IV
 → Sabotage V / prior-thread source
 → Sabotage VI / November 1 successor witness addendum
-→ Entire Matter Return
+→ Consequence / coda: Entire Matter Return
 ```
 
-The Return is the sealed disposition at the end of that witness trajectory. It is not itself Sabotage V or Sabotage VI. Prior-thread screenshot evidence remains provenance-owned by Sabotage V, while the Return may carry exact inherited mirrors as contextual evidence without transferring source ownership.
+The Return is the sealed disposition at the end of that witness trajectory and the consequence/coda inside the Sabotage collection. It is not itself Sabotage V or Sabotage VI. Prior-thread screenshot evidence remains provenance-owned by Sabotage V, while the Return may carry exact inherited mirrors as contextual evidence without transferring source ownership.
 
 ## Signature boundary
 
