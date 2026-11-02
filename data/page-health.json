@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 204,
+    "total": 205,
     "healthy": 4,
-    "attention": 193,
+    "attention": 194,
     "critical": 7,
-    "sorted": 161,
-    "withFab": 191,
-    "readAloudApplicable": 196,
-    "withReadAloud": 196,
+    "sorted": 162,
+    "withFab": 192,
+    "readAloudApplicable": 197,
+    "withReadAloud": 197,
     "missingReadAloud": 0,
-    "withIdentity": 173,
+    "withIdentity": 174,
     "withScreenshots": 13,
-    "withMetaDescription": 169
+    "withMetaDescription": 170
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -13269,6 +13269,66 @@
         "state": "healthy",
         "blockers": [],
         "gaps": []
+      }
+    },
+    "vexarchitecture-first-stable-body": {
+      "slug": "vexarchitecture-first-stable-body",
+      "title": "VexArchitecture — The First Stable Body",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "development_standard",
+          "architecture",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 106,
+        "languages": {
+          "en": {
+            "translated": 106,
+            "total": 106,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "A Vextreme Development Standard witness record for the first accepted executable VexArchitecture stability point, rooted in VexLife-Android PR #209."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
       }
     },
     "vextreme-covenant": {

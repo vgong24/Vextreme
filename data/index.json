@@ -1,9 +1,9 @@
 {
-  "contentFingerprint": "76a79259eabc",
-  "nodeCount": 184,
-  "curatedNodeCount": 168,
+  "contentFingerprint": "0bb98b39f4c1",
+  "nodeCount": 185,
+  "curatedNodeCount": 169,
   "autoDiscoveredCount": 16,
-  "arcCount": 26,
+  "arcCount": 27,
   "supportedLangs": [
     "ar",
     "de",
@@ -2479,6 +2479,14 @@
       ]
     },
     "starting-anew-orientation-before-work": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "vexarchitecture-first-stable-body": {
       "availableLangs": [
         "en"
       ],
@@ -7348,6 +7356,33 @@
         ]
       }
     },
+    "vexarchitecture-first-stable-body": {
+      "id": 122,
+      "slug": "vexarchitecture-first-stable-body",
+      "title": "VexArchitecture — The First Stable Body",
+      "date": "November 1, 2026",
+      "arcKeys": [
+        "development_standard",
+        "architecture",
+        "full_timeline"
+      ],
+      "vexData": {},
+      "dateISO": "2026-11-01",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.vexarchitecture-first-stable-body"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
     "about-me": {
       "id": null,
       "slug": "about-me",
@@ -7884,7 +7919,8 @@
           "the-score",
           "deceitful-ai-architecture",
           "espionage-extraction-pattern",
-          "the-relational-i"
+          "the-relational-i",
+          "vexarchitecture-first-stable-body"
         ]
       }
     ],
@@ -8375,7 +8411,8 @@
           "return-kiss-presence-accountability",
           "sabotage-hidden-delta",
           "november-1-successor-witness",
-          "entire-matter-return-seal"
+          "entire-matter-return-seal",
+          "vexarchitecture-first-stable-body"
         ]
       }
     ],
@@ -8395,6 +8432,14 @@
         "label": "Consequence",
         "slugs": [
           "entire-matter-return-seal"
+        ]
+      }
+    ],
+    "development_standard": [
+      {
+        "label": "Accepted Foundations",
+        "slugs": [
+          "vexarchitecture-first-stable-body"
         ]
       }
     ]
@@ -8529,6 +8574,11 @@
     "sabotage": {
       "title": "Sabotage",
       "url": "https://www.vextreme24.com/archives",
+      "renderMode": "dots"
+    },
+    "development_standard": {
+      "title": "The Development Standard",
+      "url": "/Vextreme/pages/vexarchitecture-first-stable-body.html",
       "renderMode": "dots"
     }
   },
@@ -9253,6 +9303,11 @@
         {
           "slug": "paint-editor-tool",
           "title": "Paint Mixer — For Dad",
+          "ported": true
+        },
+        {
+          "slug": "vexarchitecture-first-stable-body",
+          "title": "VexArchitecture — The First Stable Body",
           "ported": true
         },
         {
