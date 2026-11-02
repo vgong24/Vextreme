@@ -29,6 +29,7 @@ test('VEXARCHITECTURE GUIDE: builder journey precedes forensic provenance', () =
     'construction',
     'chronology',
     'convergence',
+    'presentation',
     'subtraction',
     'apply',
     'pressure',
@@ -96,6 +97,7 @@ test('VEXARCHITECTURE GUIDE: active work, lifetime, chronology, and convergence 
     'data-owner="construction"',
     'data-owner="chronology"',
     'data-owner="convergence"',
+    'data-owner="presentation"',
   ];
   for (const marker of ownerSections) assert.ok(page.includes(marker), 'missing visual owner boundary ' + marker);
 });
