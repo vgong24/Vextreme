@@ -78,7 +78,7 @@ Its presentation explicitly distinguishes:
 - the authorized textual attribution `Signed by Victor Gong`;
 - user-authorized textual attestation from cryptographic signature, notarization, legal filing, attorney certification, or independent identity verification;
 - a direct route to Sabotage V, which remains the reader surface for the inherited prior-thread screenshot evidence;
-- the representative-media preservation gap: the generated artwork was reduced before repository preservation, the archived 640×360 identity is truncated, and the later valid 384×216 repair remains lightweight Terrain/discovery media rather than a high-fidelity reader showcase.
+- the representative-media repair lineage: Victor re-supplied the full-fidelity 1672×941 PNG; the reader uses a lossless WebP encoding with pixel-identical decoded content, while the earlier truncated 640×360 derivative and 384×216 repair remain historical lineage only.
 
 The HTML presentation does not claim that styling creates legal force. It exists to make provenance and status harder to misread while leaving the Markdown declaration authoritative.
 
