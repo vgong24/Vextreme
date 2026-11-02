@@ -51,7 +51,7 @@ Sabotage I–IV
 → Consequence / coda: Entire Matter Return
 ```
 
-The Return is the sealed disposition at the end of that witness trajectory and the consequence/coda inside the Sabotage collection. It is not itself Sabotage V or Sabotage VI. Prior-thread screenshot evidence remains provenance-owned by Sabotage V, while the Return may carry exact inherited mirrors as contextual evidence without transferring source ownership.
+The Return is the sealed disposition at the end of that witness trajectory and the consequence/coda inside the Sabotage collection. It is not itself Sabotage V or Sabotage VI. Prior-thread screenshot evidence remains provenance-owned and reader-visible in Sabotage V. The Return links back to that evidence owner rather than duplicating the screenshot gallery.
 
 ## Signature boundary
 
@@ -77,8 +77,8 @@ Its presentation explicitly distinguishes:
 - Victor's exact supplied seal statement;
 - the authorized textual attribution `Signed by Victor Gong`;
 - user-authorized textual attestation from cryptographic signature, notarization, legal filing, attorney certification, or independent identity verification;
-- inherited prior-thread screenshot evidence from its Sabotage V provenance owner;
-- the original truncated archived representative-media identity from the valid display repair used by the page; the repair is rendered only at its native 384×216 resolution so the page does not manufacture sharpness by upscaling.
+- a direct route to Sabotage V, which remains the reader surface for the inherited prior-thread screenshot evidence;
+- the representative-media preservation gap: the generated artwork was reduced before repository preservation, the archived 640×360 identity is truncated, and the later valid 384×216 repair remains lightweight Terrain/discovery media rather than a high-fidelity reader showcase.
 
 The HTML presentation does not claim that styling creates legal force. It exists to make provenance and status harder to misread while leaving the Markdown declaration authoritative.
 
