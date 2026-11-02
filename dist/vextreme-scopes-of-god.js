@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.scopes-of-god"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en","ar","de","es","fr","hi","ja","ko","pt","zh"];
-  window.VEX_INDEX_FINGERPRINT = "a58bcb1a98ab";
+  window.VEX_INDEX_FINGERPRINT = "693687ada2e3";
 
 
 
@@ -2051,7 +2051,7 @@
   // this constant had never been bumped since introduction, which is most
   // of why a real fix here silently didn't reach CDN-script-tag pages —
   // see docs/lattice-map.json's context note on this file for the story.
-  var VERSION    = '4.3.0';
+  var VERSION    = '4.4.0';
   var CDN_BASE   = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main';
   var INDEX_URL  = CDN_BASE + '/data/index.json?v=' + VERSION;
   var LS_LANG    = 'vex-lang';

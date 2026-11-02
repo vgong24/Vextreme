@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.november-1-successor-witness"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en"];
-  window.VEX_INDEX_FINGERPRINT = "a58bcb1a98ab";
+  window.VEX_INDEX_FINGERPRINT = "693687ada2e3";
 
 
 
