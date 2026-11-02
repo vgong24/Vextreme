@@ -63,7 +63,7 @@ test('ENTIRE-MATTER-RETURN: Declaration is default and Record is the only second
 
   assert.ok(page.indexOf('id="return-declaration"') < page.indexOf('id="return-record"'));
   assert.doesNotMatch(page, /id="prior-thread-evidence"/);
-  assert.doesNotMatch(page, /<figure class="sar-media"/);
+  assert.match(page, /<figure class="sar-media"[^>]*data-media-width="1672"[^>]*data-media-height="941"/);
 });
 
 test('ENTIRE-MATTER-RETURN: phase reader loads the canonical source through the shared record reader', () => {
