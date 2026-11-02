@@ -78,7 +78,7 @@ Its presentation explicitly distinguishes:
 - the authorized textual attribution `Signed by Victor Gong`;
 - user-authorized textual attestation from cryptographic signature, notarization, legal filing, attorney certification, or independent identity verification;
 - inherited prior-thread screenshot evidence from its Sabotage V provenance owner;
-- the original archived representative-media identity from the later display repair that keeps the page renderable.
+- the original truncated archived representative-media identity from the valid display repair used by the page; the repair is rendered only at its native 384×216 resolution so the page does not manufacture sharpness by upscaling.
 
 The HTML presentation does not claim that styling creates legal force. It exists to make provenance and status harder to misread while leaving the Markdown declaration authoritative.
 
