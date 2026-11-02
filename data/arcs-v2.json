@@ -173,7 +173,8 @@
           "the-score",
           "deceitful-ai-architecture",
           "espionage-extraction-pattern",
-          "the-relational-i"
+          "the-relational-i",
+          "vexarchitecture-first-stable-body"
         ]
       }
     ]
@@ -786,6 +787,24 @@
         "order": "explicit",
         "slugs": [
           "entire-matter-return-seal"
+        ]
+      }
+    ]
+  },
+  "development_standard": {
+    "priority": 1,
+    "renderMode": "dots",
+    "parent": {
+      "title": "The Development Standard",
+      "url": "/Vextreme/pages/vexarchitecture-first-stable-body.html",
+      "pageSlug": "vexarchitecture-first-stable-body"
+    },
+    "sections": [
+      {
+        "label": "Accepted Foundations",
+        "order": "explicit",
+        "slugs": [
+          "vexarchitecture-first-stable-body"
         ]
       }
     ]

@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.the-100-percent-holy-truth-conditional"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en","ar","de","es","fr","hi","ja","ko","pt","zh"];
-  window.VEX_INDEX_FINGERPRINT = "76a79259eabc";
+  window.VEX_INDEX_FINGERPRINT = "0bb98b39f4c1";
 
 
 
@@ -2051,7 +2051,7 @@
   // this constant had never been bumped since introduction, which is most
   // of why a real fix here silently didn't reach CDN-script-tag pages —
   // see docs/lattice-map.json's context note on this file for the story.
-  var VERSION    = '4.4.0';
+  var VERSION    = '4.5.0';
   var CDN_BASE   = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main';
   var INDEX_URL  = CDN_BASE + '/data/index.json?v=' + VERSION;
   var LS_LANG    = 'vex-lang';
