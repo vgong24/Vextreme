@@ -607,7 +607,7 @@
       <p class="tagline" data-i18n="pages.vexarchitecture-first-stable-body.hero.tagline">Come inside the codebase. Follow one request from human intention to pixels, and watch the architecture emerge from the questions each layer is actually allowed to answer.</p>
       <div class="hero-meta">
         <span class="pill status" data-i18n="pages.vexarchitecture-first-stable-body.hero.status">Accepted architecture · live public guide</span>
-        <span class="pill">VexLife-Android · PR #209</span>
+        <span class="pill" data-i18n="pages.vexarchitecture-first-stable-body.hero.origin">VexLife-Android · PR #209</span>
       </div>
       <p class="lede" data-i18n="pages.vexarchitecture-first-stable-body.hero.lede">VexArchitecture did not begin with a framework diagram. It emerged while a real Android application kept forcing semantic state, asynchronous work, persistence, provider truth, dependency construction, logging, convergence, and presentation to stop impersonating one another.</p>
     </header>
@@ -638,13 +638,13 @@ HUMAN EXPERIENCE
 
 forensics sits beside the path — it proves history; it does not own behavior</code></pre>
       <div class="owner-strip" aria-label="Architecture responsibility legend">
-        <span class="semantic">SEMANTIC</span>
-        <span class="execution">EXECUTION</span>
-        <span class="outside">OUTSIDE TRUTH</span>
-        <span class="construction">CONSTRUCTION</span>
-        <span class="chronology">CHRONOLOGY</span>
-        <span class="convergence">CONVERGENCE</span>
-        <span class="presentation">PRESENTATION</span>
+        <span class="semantic" data-i18n="pages.vexarchitecture-first-stable-body.legend.semantic">SEMANTIC</span>
+        <span class="execution" data-i18n="pages.vexarchitecture-first-stable-body.legend.execution">EXECUTION</span>
+        <span class="outside" data-i18n="pages.vexarchitecture-first-stable-body.legend.outside">OUTSIDE TRUTH</span>
+        <span class="construction" data-i18n="pages.vexarchitecture-first-stable-body.legend.construction">CONSTRUCTION</span>
+        <span class="chronology" data-i18n="pages.vexarchitecture-first-stable-body.legend.chronology">CHRONOLOGY</span>
+        <span class="convergence" data-i18n="pages.vexarchitecture-first-stable-body.legend.convergence">CONVERGENCE</span>
+        <span class="presentation" data-i18n="pages.vexarchitecture-first-stable-body.legend.presentation">PRESENTATION</span>
       </div>
     </section>
 
@@ -670,7 +670,7 @@ forensics sits beside the path — it proves history; it does not own behavior</
           <p data-i18n="pages.vexarchitecture-first-stable-body.problem.symptom-body">A new requirement arrives and nobody can say whether it belongs in the feature state holder, execution wrapper, repository, ViewModel, logger, dependency graph, or UI state. So the requirement gets represented in several places. Every representation is individually reasonable; together they become drift.</p>
         </article>
         <article class="panel">
-          <h3>THE TURNING QUESTION</h3>
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.problem.turning-label">The turning question</h3>
           <p data-i18n="pages.vexarchitecture-first-stable-body.problem.question">The question that changed the architecture: What exact question are we trying to answer, and which existing owner already has enough truth to answer it?</p>
         </article>
       </div>
@@ -818,7 +818,7 @@ human sees Dark</code></pre>
       </div>
 
       <div class="source-link-row">
-        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/66c866dea6a8dd78e2946da88715c4deb78c1847/app/src/main/kotlin/com/vextreme/vexlife/android/ui/ThemeMode.kt" target="_blank" rel="noopener">ThemeMode.kt ↗</a>
+        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/66c866dea6a8dd78e2946da88715c4deb78c1847/app/src/main/kotlin/com/vextreme/vexlife/android/ui/ThemeMode.kt" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.walk.source-label">Open ThemeMode.kt ↗</a>
       </div>
     </section>
 
@@ -829,7 +829,7 @@ human sees Dark</code></pre>
 
       <div class="workbench-grid">
         <article class="workbench">
-          <h3>THE ACTIVE-WORK LAW</h3>
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.execution.law-label">The active-work law</h3>
           <pre><code data-i18n="pages.vexarchitecture-first-stable-body.execution.custody">RelationshipId
      │
      ▼
@@ -842,7 +842,7 @@ no Jobs remain
 → remove RelationshipId</code></pre>
         </article>
         <article class="workbench">
-          <h3>OVERLAP MEANINGS</h3>
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.execution.approaches-label">Overlap meanings</h3>
           <pre><code data-i18n="pages.vexarchitecture-first-stable-body.execution.approaches">Independent · do not coordinate with prior work
 Earliest    · existing unfinished Job is sufficient
 Latest      · cancel unfinished Job(s), then admit newest
@@ -852,12 +852,12 @@ Queued      · preserve accepted Job(s) in admission order</code></pre>
 
       <div class="comparison-grid">
         <article class="panel">
-          <h3>BEFORE SEPARATION</h3>
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.execution.before-label">Before separation</h3>
           <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.execution.before">The tempting identity pile:
 InstanceId · SourceRef · Handle · Snapshot · OwnerToken · CoordinationKey</code></pre>
         </article>
         <article class="panel">
-          <h3>AFTER SEPARATION</h3>
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.execution.after-label">After separation</h3>
           <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.execution.after">The smaller separation:
 RelationshipId → maintained semantic work
 Job            → live runtime occurrence
@@ -866,7 +866,7 @@ VexLogger      → historical chronology</code></pre>
       </div>
       <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.execution.payoff">Three questions that looked like one identity problem become three ordinary owners. That is why subtraction here increases scalability rather than reducing capability.</p>
       <div class="source-link-row">
-        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/66c866dea6a8dd78e2946da88715c4deb78c1847/architecture/execution/src/main/kotlin/com/vextreme/vexlife/android/execution/VexExecution.kt" target="_blank" rel="noopener">VexExecution.kt ↗</a>
+        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/66c866dea6a8dd78e2946da88715c4deb78c1847/architecture/execution/src/main/kotlin/com/vextreme/vexlife/android/execution/VexExecution.kt" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.execution.source-label">Open VexExecution.kt ↗</a>
       </div>
     </section>
 
@@ -919,7 +919,7 @@ reconcile outside truth normally</code></pre>
 
       <div class="workbench-grid">
         <article class="workbench">
-          <h3>LIFETIME COMPOSITION</h3>
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.construction.lifetimes-label">Lifetime composition</h3>
           <pre><code data-i18n="pages.vexarchitecture-first-stable-body.construction.lifetimes">ANDROID PROCESS LIFETIME
 VexApplication
   └─ parent VexDependencyFactory
@@ -966,9 +966,9 @@ create(scope) {
       </div>
       <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.construction.payoff">No ambient get&lt;T&gt;(). No constructor scanning. No feature code reaching into Application as a service locator. No dependency identifier reused as semantic identity. Construction remains visible and boring.</p>
       <div class="source-link-row">
-        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/66c866dea6a8dd78e2946da88715c4deb78c1847/architecture/dependency/src/main/kotlin/com/vextreme/vexlife/android/dependency/VexDependencyFactory.kt" target="_blank" rel="noopener">VexDependencyFactory.kt ↗</a>
-        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/66c866dea6a8dd78e2946da88715c4deb78c1847/app/src/main/kotlin/com/vextreme/vexlife/android/VexApplication.kt" target="_blank" rel="noopener">VexApplication.kt ↗</a>
-        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/66c866dea6a8dd78e2946da88715c4deb78c1847/app/src/main/kotlin/com/vextreme/vexlife/android/ui/VexLifeSession.kt" target="_blank" rel="noopener">VexLifeSession.kt ↗</a>
+        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/66c866dea6a8dd78e2946da88715c4deb78c1847/architecture/dependency/src/main/kotlin/com/vextreme/vexlife/android/dependency/VexDependencyFactory.kt" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.construction.dependency-source">Open VexDependencyFactory.kt ↗</a>
+        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/66c866dea6a8dd78e2946da88715c4deb78c1847/app/src/main/kotlin/com/vextreme/vexlife/android/VexApplication.kt" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.construction.application-source">Open VexApplication.kt ↗</a>
+        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/66c866dea6a8dd78e2946da88715c4deb78c1847/app/src/main/kotlin/com/vextreme/vexlife/android/ui/VexLifeSession.kt" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.construction.session-source">Open VexLifeSession.kt ↗</a>
       </div>
     </section>
 
@@ -979,7 +979,7 @@ create(scope) {
 
       <div class="workbench-grid">
         <article class="workbench">
-          <h3>PRODUCTION FACTS</h3>
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.logger.facts-label">Production facts</h3>
           <pre><code data-i18n="pages.vexarchitecture-first-stable-body.logger.facts">App opened
 Control accepted
 Button clicked
@@ -993,7 +993,7 @@ next song selected
 song started</code></pre>
         </article>
         <article class="workbench">
-          <h3>IDENTITY STAYS SEPARATE</h3>
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.logger.separation-label">Identity stays separate</h3>
           <pre><code data-i18n="pages.vexarchitecture-first-stable-body.logger.separation">RelationshipId → which maintained semantic relationship
 Job            → which live runtime occurrence
 VexLogger      → what happened historically</code></pre>
@@ -1129,7 +1129,7 @@ Integration · actual merge tree == proved candidate tree</code></pre>
         </details>
 
         <details>
-          <summary>Exact source coordinates</summary>
+          <summary data-i18n="pages.vexarchitecture-first-stable-body.forensics.coordinates-summary">Exact source coordinates</summary>
           <div class="inside">
             <dl class="coordinate-grid">
               <div class="coordinate">
