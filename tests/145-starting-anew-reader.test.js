@@ -25,8 +25,8 @@ test('STARTING-ANEW: baseline collection is Victor Record context, not a seventh
   assert.ok(!arcs.sabotage.sections[0].slugs.includes(SLUG));
 
   const record = arcs.victors_record.sections[0].slugs;
-  assert.equal(record.indexOf(SLUG), record.indexOf('sabotage-orientation-before-action') + 1);
-  assert.equal(record[record.indexOf(SLUG) + 1], 'return-kiss-presence-accountability');
+  assert.equal(record.indexOf(SLUG), record.indexOf('return-kiss-presence-accountability') + 1);
+  assert.equal(record[record.indexOf(SLUG) + 1], 'sabotage-open-vex-accountability');
 
   assert.equal(views[SLUG].title, node.title);
   assert.equal(views[SLUG].preview, undefined, 'cover judgment is intentionally deferred');
