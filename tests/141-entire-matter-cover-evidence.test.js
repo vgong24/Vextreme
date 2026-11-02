@@ -47,10 +47,13 @@ test('ENTIRE-MATTER-MEDIA: valid repair renders at native size while original tr
   assert.equal(views['entire-matter-return-seal'].preview.src, repairUrl);
 });
 
-test('ENTIRE-MATTER-MEDIA: Return carries the exact inherited prior-thread evidence instead of erasing it', () => {
+test('ENTIRE-MATTER-MEDIA: inherited prior-thread evidence remains exact but is opt-in behind the Evidence phase', () => {
   const page = read(RETURN_PAGE);
   const base = '../records/conversations/2026-11-01-current-thread-entire-matter-return-seal/evidence/prior-thread/';
 
+  assert.match(page, /data-go="3"><span>03<\\/span><span>Evidence<\\/span>/);
+  assert.match(page, /id="return-evidence"[^>]*data-phase-kind="evidence"[^>]*hidden/);
+  assert.ok(page.indexOf('id="return-declaration"') < page.indexOf('id="return-evidence"'));
   assert.ok(page.includes('id="prior-thread-evidence"'));
   for (const filename of [
     'batch-01-vexlogger-logging-sequence.png',
