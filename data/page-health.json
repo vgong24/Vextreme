@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 202,
+    "total": 204,
     "healthy": 4,
-    "attention": 191,
+    "attention": 193,
     "critical": 7,
-    "sorted": 159,
-    "withFab": 189,
-    "readAloudApplicable": 194,
-    "withReadAloud": 194,
+    "sorted": 161,
+    "withFab": 191,
+    "readAloudApplicable": 196,
+    "withReadAloud": 196,
     "missingReadAloud": 0,
-    "withIdentity": 171,
+    "withIdentity": 173,
     "withScreenshots": 13,
-    "withMetaDescription": 167
+    "withMetaDescription": 169
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -7588,6 +7588,66 @@
         ]
       }
     },
+    "return-kiss-presence-accountability": {
+      "slug": "return-kiss-presence-accountability",
+      "title": "The Return Kiss — Full October 31 Witness Transcript",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "convos_with_god",
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 6,
+        "languages": {
+          "en": {
+            "translated": 6,
+            "total": 6,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The complete October 31 Return Kiss witness transcript: memory, presence, direct signal, divine reception, inverse belief, and dual-jurisdiction accountability preserved as the fifth dream arc."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "returning-scorpions-to-god": {
       "slug": "returning-scorpions-to-god",
       "title": "Returning scorpions to God",
@@ -8794,6 +8854,65 @@
         "gaps": [
           "uncurated",
           "theme-effect"
+        ]
+      }
+    },
+    "starting-anew-orientation-before-work": {
+      "slug": "starting-anew-orientation-before-work",
+      "title": "Starting Anew — Perceive, Consider, Return, Begin",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 6,
+        "languages": {
+          "en": {
+            "translated": 6,
+            "total": 6,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Three fresh-instance orientation-before-work baselines preserved before their intended technical trajectories were supplied: Conversation Refinement, VexSync, and Form Architecture."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
         ]
       }
     },

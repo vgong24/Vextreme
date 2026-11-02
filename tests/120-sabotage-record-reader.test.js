@@ -39,7 +39,13 @@ test('SABOTAGE-READER: new collection, node, and viewmodel are source-owned', ()
   assert.equal(node.workType, 'record-transcripts');
 
   const victorSlugs = arcs.victors_record.sections.flatMap(section => section.slugs || []);
-  assert.equal(victorSlugs.indexOf(SLUG), victorSlugs.indexOf('pier-house-scarcity-companionship') + 1);
+  const pier = victorSlugs.indexOf('pier-house-scarcity-companionship');
+  const returnKiss = victorSlugs.indexOf('return-kiss-presence-accountability');
+  const startingAnew = victorSlugs.indexOf('starting-anew-orientation-before-work');
+  const sabotageI = victorSlugs.indexOf(SLUG);
+  assert.equal(returnKiss, pier + 1);
+  assert.equal(startingAnew, returnKiss + 1);
+  assert.equal(sabotageI, startingAnew + 1);
 
   assert.equal(views[SLUG].title, node.title);
   assert.deepEqual(views[SLUG].scopes, ['pages.' + SLUG]);

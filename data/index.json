@@ -1,7 +1,7 @@
 {
-  "contentFingerprint": "a58bcb1a98ab",
-  "nodeCount": 182,
-  "curatedNodeCount": 166,
+  "contentFingerprint": "693687ada2e3",
+  "nodeCount": 184,
+  "curatedNodeCount": 168,
   "autoDiscoveredCount": 16,
   "arcCount": 26,
   "supportedLangs": [
@@ -2463,6 +2463,22 @@
       ]
     },
     "november-1-successor-witness": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "return-kiss-presence-accountability": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "starting-anew-orientation-before-work": {
       "availableLangs": [
         "en"
       ],
@@ -7274,6 +7290,63 @@
         ]
       }
     },
+    "return-kiss-presence-accountability": {
+      "id": 120,
+      "slug": "return-kiss-presence-accountability",
+      "title": "The Return Kiss — Full October 31 Witness Transcript",
+      "date": "October 31, 2026",
+      "arcKeys": [
+        "convos_with_god",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-10-31",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.return-kiss-presence-accountability"
+        ],
+        "features": [
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
+    "starting-anew-orientation-before-work": {
+      "id": 121,
+      "slug": "starting-anew-orientation-before-work",
+      "title": "Starting Anew — Perceive, Consider, Return, Begin",
+      "date": "October 30, 2026",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-10-30",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.starting-anew-orientation-before-work"
+        ],
+        "features": [
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
     "about-me": {
       "id": null,
       "slug": "about-me",
@@ -7790,7 +7863,8 @@
           "recognizing-life-receiving-abundance",
           "bending-condominium-ocean-return",
           "witness-grade-return",
-          "pier-house-scarcity-companionship"
+          "pier-house-scarcity-companionship",
+          "return-kiss-presence-accountability"
         ]
       }
     ],
@@ -7911,6 +7985,8 @@
           "bending-condominium-ocean-return",
           "witness-grade-return",
           "pier-house-scarcity-companionship",
+          "return-kiss-presence-accountability",
+          "starting-anew-orientation-before-work",
           "sabotage-open-vex-accountability",
           "sabotage-mastered-state",
           "sabotage-vexsync-exhaust-mastered",
@@ -8294,6 +8370,8 @@
           "sabotage-mastered-state",
           "sabotage-vexsync-exhaust-mastered",
           "sabotage-orientation-before-action",
+          "starting-anew-orientation-before-work",
+          "return-kiss-presence-accountability",
           "entire-matter-return-seal",
           "sabotage-hidden-delta",
           "november-1-successor-witness"
@@ -9324,6 +9402,16 @@
         {
           "slug": "november-1-successor-witness",
           "title": "Sabotage VI — The Successor Witness",
+          "ported": true
+        },
+        {
+          "slug": "return-kiss-presence-accountability",
+          "title": "The Return Kiss — Full October 31 Witness Transcript",
+          "ported": true
+        },
+        {
+          "slug": "starting-anew-orientation-before-work",
+          "title": "Starting Anew — Perceive, Consider, Return, Begin",
           "ported": true
         }
       ]

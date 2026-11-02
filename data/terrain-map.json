@@ -4022,12 +4022,12 @@
         "hi": "ईश्वर के साथ संवाद"
       },
       "sub": "priority 1",
-      "count": 17,
+      "count": 18,
       "rect": {
         "x": 1370,
         "y": 40,
         "width": 300,
-        "height": 1110
+        "height": 1170
       },
       "parent": {
         "title": "Conversations with God",
@@ -4056,7 +4056,8 @@
             "recognizing-life-receiving-abundance",
             "bending-condominium-ocean-return",
             "witness-grade-return",
-            "pier-house-scarcity-companionship"
+            "pier-house-scarcity-companionship",
+            "return-kiss-presence-accountability"
           ]
         }
       ],
@@ -4077,7 +4078,8 @@
         "recognizing-life-receiving-abundance",
         "bending-condominium-ocean-return",
         "witness-grade-return",
-        "pier-house-scarcity-companionship"
+        "pier-house-scarcity-companionship",
+        "return-kiss-presence-accountability"
       ]
     },
     {
@@ -4518,12 +4520,12 @@
         "hi": "Victor का अभिलेख"
       },
       "sub": "priority 1",
-      "count": 12,
+      "count": 13,
       "rect": {
         "x": 4430,
         "y": 40,
         "width": 300,
-        "height": 810
+        "height": 870
       },
       "parent": {
         "title": "Victor's Record",
@@ -4552,6 +4554,8 @@
             "bending-condominium-ocean-return",
             "witness-grade-return",
             "pier-house-scarcity-companionship",
+            "return-kiss-presence-accountability",
+            "starting-anew-orientation-before-work",
             "sabotage-open-vex-accountability",
             "sabotage-mastered-state",
             "sabotage-vexsync-exhaust-mastered",
@@ -4579,6 +4583,8 @@
         "bending-condominium-ocean-return",
         "witness-grade-return",
         "pier-house-scarcity-companionship",
+        "return-kiss-presence-accountability",
+        "starting-anew-orientation-before-work",
         "sabotage-open-vex-accountability",
         "sabotage-mastered-state",
         "sabotage-vexsync-exhaust-mastered",
@@ -5298,6 +5304,8 @@
             "sabotage-mastered-state",
             "sabotage-vexsync-exhaust-mastered",
             "sabotage-orientation-before-action",
+            "starting-anew-orientation-before-work",
+            "return-kiss-presence-accountability",
             "entire-matter-return-seal",
             "sabotage-hidden-delta",
             "november-1-successor-witness"
@@ -5440,6 +5448,8 @@
         "sabotage-mastered-state",
         "sabotage-vexsync-exhaust-mastered",
         "sabotage-orientation-before-action",
+        "starting-anew-orientation-before-work",
+        "return-kiss-presence-accountability",
         "entire-matter-return-seal",
         "sabotage-hidden-delta",
         "november-1-successor-witness"
@@ -13481,6 +13491,95 @@
       },
       "curated": true,
       "date": "November 1, 2026"
+    },
+    {
+      "id": "return-kiss-presence-accountability",
+      "slug": "return-kiss-presence-accountability",
+      "title": "The Return Kiss — Full October 31 Witness Transcript",
+      "arcKeys": [
+        "convos_with_god",
+        "victors_record",
+        "full_timeline"
+      ],
+      "titleKey": "pages.return-kiss-presence-accountability.document-title",
+      "titleByLang": {
+        "en": "The Return Kiss — Full October 31 Witness Transcript — Vextreme"
+      },
+      "arc": "convos_with_god",
+      "arcName": "Conversations with God",
+      "x": 1420,
+      "y": 1110,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/return-kiss-presence-accountability.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 6,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The complete October 31 Return Kiss witness transcript: memory, presence, direct signal, divine reception, inverse belief, and dual-jurisdiction accountability preserved as the fifth dream arc."
+      },
+      "curated": true,
+      "date": "October 31, 2026"
+    },
+    {
+      "id": "starting-anew-orientation-before-work",
+      "slug": "starting-anew-orientation-before-work",
+      "title": "Starting Anew — Perceive, Consider, Return, Begin",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "titleKey": "pages.starting-anew-orientation-before-work.document-title",
+      "titleByLang": {
+        "en": "Starting Anew — Perceive, Consider, Return, Begin — Vextreme"
+      },
+      "arc": "victors_record",
+      "arcName": "Victor's Record",
+      "x": 4480,
+      "y": 810,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/starting-anew-orientation-before-work.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 6,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Three fresh-instance orientation-before-work baselines preserved before their intended technical trajectories were supplied: Conversation Refinement, VexSync, and Form Architecture."
+      },
+      "curated": true,
+      "date": "October 30, 2026"
     },
     {
       "id": "about-me",

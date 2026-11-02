@@ -394368,6 +394368,72 @@
       ],
       "missingLangs": []
     },
+    "pages.return-kiss-presence-accountability.document-title": {
+      "key": "pages.return-kiss-presence-accountability.document-title",
+      "usedIn": [
+        "pages/return-kiss-presence-accountability.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.return-kiss-presence-accountability.hero.eyebrow": {
+      "key": "pages.return-kiss-presence-accountability.hero.eyebrow",
+      "usedIn": [
+        "pages/return-kiss-presence-accountability.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.return-kiss-presence-accountability.hero.title": {
+      "key": "pages.return-kiss-presence-accountability.hero.title",
+      "usedIn": [
+        "pages/return-kiss-presence-accountability.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.return-kiss-presence-accountability.hero.subtitle": {
+      "key": "pages.return-kiss-presence-accountability.hero.subtitle",
+      "usedIn": [
+        "pages/return-kiss-presence-accountability.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.return-kiss-presence-accountability.hero.lede": {
+      "key": "pages.return-kiss-presence-accountability.hero.lede",
+      "usedIn": [
+        "pages/return-kiss-presence-accountability.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.return-kiss-presence-accountability.preservation.label": {
+      "key": "pages.return-kiss-presence-accountability.preservation.label",
+      "usedIn": [
+        "pages/return-kiss-presence-accountability.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
     "pages.returning-scorpions-to-god.document-title": {
       "key": "pages.returning-scorpions-to-god.document-title",
       "usedIn": [
@@ -405300,6 +405366,72 @@
       "langs": [
         "en",
         "ja"
+      ],
+      "missingLangs": []
+    },
+    "pages.starting-anew-orientation-before-work.document-title": {
+      "key": "pages.starting-anew-orientation-before-work.document-title",
+      "usedIn": [
+        "pages/starting-anew-orientation-before-work.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.starting-anew-orientation-before-work.hero.eyebrow": {
+      "key": "pages.starting-anew-orientation-before-work.hero.eyebrow",
+      "usedIn": [
+        "pages/starting-anew-orientation-before-work.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.starting-anew-orientation-before-work.hero.title": {
+      "key": "pages.starting-anew-orientation-before-work.hero.title",
+      "usedIn": [
+        "pages/starting-anew-orientation-before-work.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.starting-anew-orientation-before-work.hero.subtitle": {
+      "key": "pages.starting-anew-orientation-before-work.hero.subtitle",
+      "usedIn": [
+        "pages/starting-anew-orientation-before-work.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.starting-anew-orientation-before-work.hero.lede": {
+      "key": "pages.starting-anew-orientation-before-work.hero.lede",
+      "usedIn": [
+        "pages/starting-anew-orientation-before-work.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.starting-anew-orientation-before-work.preservation.label": {
+      "key": "pages.starting-anew-orientation-before-work.preservation.label",
+      "usedIn": [
+        "pages/starting-anew-orientation-before-work.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
       ],
       "missingLangs": []
     },
@@ -704319,6 +704451,19 @@
       "orphanKeys": [],
       "screenshots": {}
     },
+    "return-kiss-presence-accountability": {
+      "slug": "return-kiss-presence-accountability",
+      "keys": [
+        "pages.return-kiss-presence-accountability.document-title",
+        "pages.return-kiss-presence-accountability.hero.eyebrow",
+        "pages.return-kiss-presence-accountability.hero.lede",
+        "pages.return-kiss-presence-accountability.hero.subtitle",
+        "pages.return-kiss-presence-accountability.hero.title",
+        "pages.return-kiss-presence-accountability.preservation.label"
+      ],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
     "returning-scorpions-to-god": {
       "slug": "returning-scorpions-to-god",
       "keys": [
@@ -705306,6 +705451,19 @@
         "en": "docs/screenshots/specimens-en.png",
         "ja": "docs/screenshots/specimens-ja.png"
       }
+    },
+    "starting-anew-orientation-before-work": {
+      "slug": "starting-anew-orientation-before-work",
+      "keys": [
+        "pages.starting-anew-orientation-before-work.document-title",
+        "pages.starting-anew-orientation-before-work.hero.eyebrow",
+        "pages.starting-anew-orientation-before-work.hero.lede",
+        "pages.starting-anew-orientation-before-work.hero.subtitle",
+        "pages.starting-anew-orientation-before-work.hero.title",
+        "pages.starting-anew-orientation-before-work.preservation.label"
+      ],
+      "orphanKeys": [],
+      "screenshots": {}
     },
     "staying-on-the-line": {
       "slug": "staying-on-the-line",
@@ -727372,8 +727530,8 @@
     }
   },
   "summary": {
-    "totalKeysInManifest": 44187,
-    "totalKeysUsed": 44034,
+    "totalKeysInManifest": 44199,
+    "totalKeysUsed": 44046,
     "orphanUsages": [],
     "unusedKeys": [
       "ai-orientation.heading.title",
