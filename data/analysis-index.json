@@ -540203,6 +540203,17 @@
       ],
       "missingLangs": []
     },
+    "pages.vexarchitecture-first-stable-body.forensics.open-origin-snapshot": {
+      "key": "pages.vexarchitecture-first-stable-body.forensics.open-origin-snapshot",
+      "usedIn": [
+        "pages/vexarchitecture-first-stable-body.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
     "pages.vexarchitecture-first-stable-body.closing.quote": {
       "key": "pages.vexarchitecture-first-stable-body.closing.quote",
       "usedIn": [
@@ -717309,6 +717320,7 @@
         "pages.vexarchitecture-first-stable-body.forensics.ledger-summary",
         "pages.vexarchitecture-first-stable-body.forensics.merge",
         "pages.vexarchitecture-first-stable-body.forensics.open-architecture",
+        "pages.vexarchitecture-first-stable-body.forensics.open-origin-snapshot",
         "pages.vexarchitecture-first-stable-body.forensics.open-pr",
         "pages.vexarchitecture-first-stable-body.forensics.open-source",
         "pages.vexarchitecture-first-stable-body.forensics.origin",
@@ -729706,8 +729718,8 @@
     }
   },
   "summary": {
-    "totalKeysInManifest": 44381,
-    "totalKeysUsed": 44223,
+    "totalKeysInManifest": 44382,
+    "totalKeysUsed": 44224,
     "orphanUsages": [],
     "unusedKeys": [
       "ai-orientation.heading.title",
