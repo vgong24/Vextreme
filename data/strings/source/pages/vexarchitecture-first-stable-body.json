@@ -1238,5 +1238,12 @@
         "text": "Do not invent a generic FamilyRenderer, UiState, or ViewState merely because a concrete presentation boundary already exists. Add another layer only when it answers a different required question."
       }
     }
+  },
+  "pages.vexarchitecture-first-stable-body.presentation.why-label": {
+    "strings": {
+      "en": {
+        "text": "Why the boundary matters"
+      }
+    }
   }
 }
