@@ -2,7 +2,7 @@
   "_meta": {
     "scope": "pages.vexarchitecture-first-stable-body",
     "category": "production",
-    "description": "English source strings for the first Development Standard witness record: VexArchitecture PR #209.",
+    "description": "English source strings for the VexArchitecture Development Standard builder field guide, rooted in the accepted VexLife-Android #209 architecture.",
     "sourceProvenance": {
       "originRepository": "vgong24/VexLife-Android",
       "originPullRequest": 209,
@@ -10,20 +10,21 @@
       "candidateTree": "b4deed075fdb927769b6d7202746d24da474070d",
       "mergeCommit": "66c866dea6a8dd78e2946da88715c4deb78c1847",
       "recordClass": "ACCEPTED_DEVELOPMENT_STANDARD_ORIGIN",
-      "witnessFormedAt": "2026-11-01T21:40:00-08:00"
+      "witnessFormedAt": "2026-11-01T21:40:00-08:00",
+      "guideRevision": "DEVELOPMENT_STANDARD_2_N_BUILDER_FIELD_GUIDE"
     }
   },
   "pages.vexarchitecture-first-stable-body.document-title": {
     "strings": {
       "en": {
-        "text": "VexArchitecture — The First Stable Body — Vextreme"
+        "text": "VexArchitecture — A Builder Field Guide — Vextreme"
       }
     }
   },
   "pages.vexarchitecture-first-stable-body.hero.eyebrow": {
     "strings": {
       "en": {
-        "text": "The Development Standard · Origin Record 001"
+        "text": "The Development Standard · Origin Record 001 · Builder Field Guide"
       }
     }
   },
@@ -37,721 +38,1008 @@
   "pages.vexarchitecture-first-stable-body.hero.subtitle": {
     "strings": {
       "en": {
-        "text": "The First Stable Body"
+        "text": "Build complex systems without letting every layer become the owner of the same truth."
       }
     }
   },
   "pages.vexarchitecture-first-stable-body.hero.tagline": {
     "strings": {
       "en": {
-        "text": "The architecture that survived its own rewriting."
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.hero.timestamp": {
-    "strings": {
-      "en": {
-        "text": "Witness formed November 1, 2026 · 9:40 PM PT"
+        "text": "Come inside the codebase. Follow one request from human intention to pixels, and watch the architecture emerge from the questions each layer is actually allowed to answer."
       }
     }
   },
   "pages.vexarchitecture-first-stable-body.hero.status": {
     "strings": {
       "en": {
-        "text": "Accepted on main"
+        "text": "Accepted architecture · live public guide"
       }
     }
   },
   "pages.vexarchitecture-first-stable-body.hero.lede": {
     "strings": {
       "en": {
-        "text": "This record marks the first VexArchitecture composition that was allowed to become accepted source after surviving implementation, subtraction, concurrency failure, exact-head repository proof, fresh semantic assurance, native Android process launch, and tree-exact integration."
+        "text": "VexArchitecture did not begin with a framework diagram. It emerged while a real Android application kept forcing semantic state, asynchronous work, persistence, provider truth, dependency construction, logging, convergence, and presentation to stop impersonating one another."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.provenance.label": {
+  "pages.vexarchitecture-first-stable-body.map.kicker": {
     "strings": {
       "en": {
-        "text": "Preservation boundary"
+        "text": "How to read this guide"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.provenance.origin": {
+  "pages.vexarchitecture-first-stable-body.map.heading": {
     "strings": {
       "en": {
-        "text": "Source origin"
+        "text": "The page follows the same causal descent as the architecture"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.provenance.candidate": {
+  "pages.vexarchitecture-first-stable-body.map.lede": {
     "strings": {
       "en": {
-        "text": "Proved candidate"
+        "text": "Each layer owns one question. As you move downward, no section is allowed to silently become a second owner for a question already answered above it."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.provenance.tree": {
+  "pages.vexarchitecture-first-stable-body.map.flow": {
     "strings": {
       "en": {
-        "text": "Proved tree"
+        "text": "PRESSURE\n  ↓\nSEMANTIC MEANING\n  ↓\nACTIVE WORK\n  ↓\nOUTSIDE REALITY\n  ↓\nOBSERVATION\n  ↓\nCONSTRUCTION + LIFETIME\n  ↓\nCHRONOLOGY\n  ↓\nCONVERGENCE\n  ↓\nPRESENTATION\n  ↓\nHUMAN EXPERIENCE\n\nforensics sits beside the path — it proves history; it does not own behavior"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.provenance.merge": {
+  "pages.vexarchitecture-first-stable-body.problem.kicker": {
     "strings": {
       "en": {
-        "text": "Accepted merge"
+        "text": "01 · Start with the failure"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.provenance.equality": {
+  "pages.vexarchitecture-first-stable-body.problem.heading": {
     "strings": {
       "en": {
-        "text": "The actual merge tree exactly matched the proved candidate tree."
+        "text": "Complexity becomes dangerous when several layers start answering the same question"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.provenance.open-pr": {
+  "pages.vexarchitecture-first-stable-body.problem.lede": {
     "strings": {
       "en": {
-        "text": "Open PR #209 ↗"
+        "text": "A serious feature can involve semantic state, user intention, concurrency, cancellation, persistence, remote truth, lifecycle, dependency construction, navigation, logging, and presentation. The usual response is to add managers. The deeper failure is that those managers gradually compete to define what the system means."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.provenance.open-source": {
+  "pages.vexarchitecture-first-stable-body.problem.diagram": {
     "strings": {
       "en": {
-        "text": "Open current VexLife-Android source ↗"
+        "text": "                         “WHO OWNS THIS?”\n                                │\n          ┌─────────────────────┼─────────────────────┐\n          ▼                     ▼                     ▼\n   FeatureManager       ExecutionManager         Repository\n          │                     │                     │\n          ├──────────────┬──────┴──────┬─────────────┤\n          ▼              ▼             ▼             ▼\n      ViewModel       UI State       Logger      DI Container\n          └──────────────┴──────┬──────┴─────────────┘\n                                ▼\n                    the same meaning leaks everywhere"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.witness.kicker": {
+  "pages.vexarchitecture-first-stable-body.problem.symptom-heading": {
     "strings": {
       "en": {
-        "text": "01 · What this record witnesses"
+        "text": "What it feels like in a mature codebase"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.witness.heading": {
+  "pages.vexarchitecture-first-stable-body.problem.symptom-body": {
     "strings": {
       "en": {
-        "text": "A stability point, not a claim of finality"
+        "text": "A new requirement arrives and nobody can say whether it belongs in the feature state holder, execution wrapper, repository, ViewModel, logger, dependency graph, or UI state. So the requirement gets represented in several places. Every representation is individually reasonable; together they become drift."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.witness.body1": {
+  "pages.vexarchitecture-first-stable-body.problem.question": {
     "strings": {
       "en": {
-        "text": "VexArchitecture stopped being a proposal here. Future work should begin by preserving its accepted ownership boundaries and pressuring them with real consumers before inventing replacements."
+        "text": "The question that changed the architecture: What exact question are we trying to answer, and which existing owner already has enough truth to answer it?"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.witness.body2": {
+  "pages.vexarchitecture-first-stable-body.discovery.kicker": {
     "strings": {
       "en": {
-        "text": "This page is not the architecture specification. Current VexLife-Android source owns current behavior. PR #209 preserves why the accepted shape exists. This page preserves the milestone and the route between those truths."
+        "text": "02 · The discovery"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.means.heading": {
+  "pages.vexarchitecture-first-stable-body.discovery.heading": {
     "strings": {
       "en": {
-        "text": "This record means"
+        "text": "One question. One rightful owner."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.means.1": {
+  "pages.vexarchitecture-first-stable-body.discovery.lede": {
     "strings": {
       "en": {
-        "text": "The architecture has an accepted stability point."
+        "text": "VexArchitecture became smaller as the questions became clearer. These are not framework tiers. They are responsibility boundaries discovered by asking what truth each layer can actually know."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.means.2": {
+  "pages.vexarchitecture-first-stable-body.owner.family.title": {
     "strings": {
       "en": {
-        "text": "Its source of origin and rejected alternatives remain recoverable."
+        "text": "Family · semantic meaning"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.means.3": {
+  "pages.vexarchitecture-first-stable-body.owner.family.question": {
     "strings": {
       "en": {
-        "text": "Future work should extend or pressure the current owners before redesigning them."
+        "text": "What does this Control mean against the exact current State?"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.means.4": {
+  "pages.vexarchitecture-first-stable-body.owner.family.body": {
     "strings": {
       "en": {
-        "text": "Proof and provenance are part of the architecture's history, not afterthoughts."
+        "text": "Family owns State, Control, the lawful Act, optional Effect, and outward Projection/DisplayState. It does not become persistence, a coroutine manager, or provider truth."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.notmeans.heading": {
+  "pages.vexarchitecture-first-stable-body.owner.execution.title": {
     "strings": {
       "en": {
-        "text": "This record does not mean"
+        "text": "Execution · active custody"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.notmeans.1": {
+  "pages.vexarchitecture-first-stable-body.owner.execution.question": {
     "strings": {
       "en": {
-        "text": "Every possible consumer has already been exercised."
+        "text": "What asynchronous work is actually alive right now?"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.notmeans.2": {
+  "pages.vexarchitecture-first-stable-body.owner.execution.body": {
     "strings": {
       "en": {
-        "text": "No future primitive can ever be earned."
+        "text": "VexExecution owns Job custody and overlap behavior. It does not decide feature meaning and it does not become history."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.notmeans.3": {
+  "pages.vexarchitecture-first-stable-body.owner.store.title": {
     "strings": {
       "en": {
-        "text": "Every feature must copy ThemeMode's exact class shape."
+        "text": "Store / provider · outside truth"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.notmeans.4": {
+  "pages.vexarchitecture-first-stable-body.owner.store.question": {
     "strings": {
       "en": {
-        "text": "Accepted architecture is exempt from evidence or correction."
+        "text": "What does independently-owned reality currently say?"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.body.kicker": {
+  "pages.vexarchitecture-first-stable-body.owner.store.body": {
     "strings": {
       "en": {
-        "text": "02 · The body"
+        "text": "A Store is a boundary to outside truth. That truth may be SharedPreferences, a remote service, filesystem, OS state, device media, GPS, or another process. Store does not automatically mean database."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.body.heading": {
+  "pages.vexarchitecture-first-stable-body.owner.dependency.title": {
     "strings": {
       "en": {
-        "text": "One question, one rightful owner"
+        "text": "Dependency Factory · construction"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.body.lede": {
+  "pages.vexarchitecture-first-stable-body.owner.dependency.question": {
     "strings": {
       "en": {
-        "text": "The architecture became legible when semantic meaning, active custody, outside truth, construction, chronology, convergence, and presentation stopped competing to answer the same question."
+        "text": "Why does this live object exist, what must exist before it, and for how long is it reused?"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.body.caption": {
+  "pages.vexarchitecture-first-stable-body.owner.dependency.body": {
     "strings": {
       "en": {
-        "text": "The central causal body is surrounded by construction, chronology, and convergence without allowing any of them to become a second semantic owner."
+        "text": "Providers declare prerequisites. Factories traverse, memoize, detect cycles, and preserve lifetimes. Construction identity never becomes semantic identity."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.laws.kicker": {
+  "pages.vexarchitecture-first-stable-body.owner.logger.title": {
     "strings": {
       "en": {
-        "text": "03 · Laws that survived"
+        "text": "Logger · chronology"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.laws.heading": {
+  "pages.vexarchitecture-first-stable-body.owner.logger.question": {
     "strings": {
       "en": {
-        "text": "What future work inherits by default"
+        "text": "What was accepted or observed, and in what order?"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.laws.1": {
+  "pages.vexarchitecture-first-stable-body.owner.logger.body": {
     "strings": {
       "en": {
-        "text": "Meaning stays with the owner that can truthfully answer the semantic question."
+        "text": "VexLogger receives facts after rightful owners know them. It does not predict navigation, duplicate active-work registries, or mint correlation identities just to narrate history."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.laws.2": {
+  "pages.vexarchitecture-first-stable-body.owner.relay.title": {
     "strings": {
       "en": {
-        "text": "Execution owns custody, not feature meaning."
+        "text": "Relay / convergence · relationship truth"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.laws.3": {
+  "pages.vexarchitecture-first-stable-body.owner.relay.question": {
     "strings": {
       "en": {
-        "text": "A Store is an outside-truth boundary, not automatically persistence."
+        "text": "What new relationship truth emerges from truths owned somewhere else?"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.laws.4": {
+  "pages.vexarchitecture-first-stable-body.owner.relay.body": {
     "strings": {
       "en": {
-        "text": "Logger records accepted and observed facts; it does not predict reality."
+        "text": "Convergence composes independently-owned truths. It can request change through rightful Controls; it does not steal another Family's Effect or State."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.laws.5": {
+  "pages.vexarchitecture-first-stable-body.owner.presentation.title": {
     "strings": {
       "en": {
-        "text": "Construction explains why an object exists; construction does not become runtime semantics."
+        "text": "Projection / presentation · human meaning"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.laws.6": {
+  "pages.vexarchitecture-first-stable-body.owner.presentation.question": {
     "strings": {
       "en": {
-        "text": "Convergence composes independently-owned truths; it does not appropriate them."
+        "text": "How should semantic truth become an experience without turning UI technology into semantic authority?"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.laws.7": {
+  "pages.vexarchitecture-first-stable-body.owner.presentation.body": {
     "strings": {
       "en": {
-        "text": "Presentation manifests truth; presentation does not silently become truth."
+        "text": "Family-owned projection becomes concrete presentation meaning, then Android/Compose manifests it. Compose is a manifestation technology, not the semantic owner."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.laws.8": {
+  "pages.vexarchitecture-first-stable-body.owner.rule": {
     "strings": {
       "en": {
-        "text": "A new architectural noun must earn a responsibility that cannot truthfully live with an existing owner."
+        "text": "The reusable rule: before adding a new architectural noun, name the question it alone can answer. If an existing owner already has the truth, add the relationship there instead."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.patient.kicker": {
+  "pages.vexarchitecture-first-stable-body.codebase.kicker": {
     "strings": {
       "en": {
-        "text": "04 · Patient zero"
+        "text": "03 · See it in a real codebase"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.patient.heading": {
+  "pages.vexarchitecture-first-stable-body.codebase.heading": {
     "strings": {
       "en": {
-        "text": "ThemeMode made the architecture answer reality"
+        "text": "The architecture is visible in the repository, not hidden behind a framework"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.patient.lede": {
+  "pages.vexarchitecture-first-stable-body.codebase.lede": {
     "strings": {
       "en": {
-        "text": "ThemeMode was small enough to inspect end to end and real enough to expose where a clean diagram still lied about timing, identity, and outside truth."
+        "text": "This is the accepted VexLife-Android shape after #209. The file tree matters because the boundaries remain readable in source: semantics, execution, construction, chronology, convergence, and the app's concrete composition are separate without becoming isolated."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.patient.race-heading": {
+  "pages.vexarchitecture-first-stable-body.codebase.tree": {
     "strings": {
       "en": {
-        "text": "The race that increased confidence"
+        "text": "VexLife-Android/\n│\n├── architecture/\n│   ├── behavior/\n│   │   └── .../VexFamily.kt\n│   ├── execution/\n│   │   ├── .../VexExecution.kt\n│   │   └── .../VexExecutionRoot.kt\n│   ├── dependency/\n│   │   └── .../VexDependencyFactory.kt\n│   ├── logging/\n│   │   └── .../VexLogger.kt\n│   ├── relay/\n│   │   ├── .../VexRelay.kt\n│   │   ├── .../VexCompoundRelay.kt\n│   │   └── .../VexCompoundState.kt\n│   └── vexarchitecture/\n│       ├── README.md\n│       ├── REFINED-BOUNDARIES.md\n│       └── VEXLOGGER.md\n│\n└── app/src/main/.../\n    ├── VexApplication.kt\n    ├── ui/\n    │   ├── VexLifeSession.kt\n    │   ├── ThemeMode.kt\n    │   ├── ThemeModeStore.kt\n    │   └── VexLifeRelayGraph.kt\n    ├── conversation/\n    │   └── VexConversationHybridRelay.kt\n    └── screens/\n        └── .../EventsConvergenceRelay.kt"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.patient.race-body": {
+  "pages.vexarchitecture-first-stable-body.codebase.caption": {
     "strings": {
       "en": {
-        "text": "A delayed Light Store observation could cross a newer accepted Dark selection. The correction preserved the same semantic Parameter through Control, Effect, Method, and settlement instead of inventing a generation counter, trace ID, pending-state framework, or runtime manager."
+        "text": "Notice what is absent: there is no universal ArchitectureManager standing above everything. The architecture is the set of truthful relationships among owners that already have real responsibilities."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.museum.kicker": {
+  "pages.vexarchitecture-first-stable-body.codebase.source": {
     "strings": {
       "en": {
-        "text": "05 · Museum of things we did not keep"
+        "text": "Open the accepted VexLife-Android source snapshot ↗"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.museum.heading": {
+  "pages.vexarchitecture-first-stable-body.walk.kicker": {
     "strings": {
       "en": {
-        "text": "Plausible answers that lost their claim to exist"
+        "text": "04 · Walk one feature from intention to pixels"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.museum.lede": {
+  "pages.vexarchitecture-first-stable-body.walk.heading": {
     "strings": {
       "en": {
-        "text": "These names were not all foolish. They were attempts to answer real questions. They disappeared when the questions were separated and returned to smaller rightful owners."
+        "text": "Dark Mode is small enough to see everything, but real enough to expose the hard parts"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.museum.identity-title": {
+  "pages.vexarchitecture-first-stable-body.walk.lede": {
     "strings": {
       "en": {
-        "text": "Universal runtime identity"
+        "text": "ThemeMode is the patient zero because it crosses semantics, persistence, concurrency, execution, observation, projection, and Compose without being large enough to hide architectural mistakes."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.museum.identity-body": {
+  "pages.vexarchitecture-first-stable-body.walk.code-heading": {
     "strings": {
       "en": {
-        "text": "InstanceId, SourceRef, Handle, Snapshot, OwnerToken, and CoordinationKey became unnecessary once maintained semantic work, live runtime occurrence, and historical chronology stopped being treated as the same identity problem."
+        "text": "The semantic vocabulary"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.museum.wrapper-title": {
+  "pages.vexarchitecture-first-stable-body.walk.code": {
+    "strings": {
+      "en": {
+        "text": "sealed interface Parameter {\n    data class Mode(val mode: ThemeMode) : Parameter\n}\n\nsealed interface Control {\n    data class Select(val mode: Parameter.Mode) : Control\n}\n\nsealed interface Effect {\n    data class Save(val mode: Parameter.Mode) : Effect\n}"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.walk.same-heading": {
+    "strings": {
+      "en": {
+        "text": "Why carry the same Parameter object?"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.walk.same-body": {
+    "strings": {
+      "en": {
+        "text": "The selection is not reconstructed later from a primitive. The exact Parameter.Mode accepted as meaning is carried through Control, Effect, and the bound Method. Semantic provenance survives the trip without inventing another operation ID."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.walk.flow": {
+    "strings": {
+      "en": {
+        "text": "human selects Dark\n        ↓\nParameter.Mode(Dark)\n        ↓ SAME SEMANTIC OBJECT\nControl.Select(parameter)\n        ↓\nFamily act(current State, Control)\n        ↓\nAct + Effect.Save(parameter)\n        ↓\nMethod.Save(store, parameter)\n        ↓\nVexExecution\n        ↓\nStore.save(Dark)\n        ↓\noutside observation\n        ↓\nThemeMode State\n        ↓\nDisplayState\n        ↓\nVexThemePresentation\n        ↓\nVexLifeTheme / Compose\n        ↓\nhuman sees Dark"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.execution.kicker": {
+    "strings": {
+      "en": {
+        "text": "05 · When work becomes asynchronous"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.execution.heading": {
+    "strings": {
+      "en": {
+        "text": "Execution keeps custody. It does not become the feature."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.execution.lede": {
+    "strings": {
+      "en": {
+        "text": "Once an accepted Act needs runtime work, VexExecution answers a narrower question: which Jobs are alive under this maintained semantic relationship?"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.execution.custody": {
+    "strings": {
+      "en": {
+        "text": "RelationshipId\n     │\n     ▼\nactual Job(s)\n\nJob completes\n→ remove Job\n\nno Jobs remain\n→ remove RelationshipId"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.execution.approaches": {
+    "strings": {
+      "en": {
+        "text": "Independent · do not coordinate with prior work\nEarliest    · existing unfinished Job is sufficient\nLatest      · cancel unfinished Job(s), then admit newest\nQueued      · preserve accepted Job(s) in admission order"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.execution.before": {
+    "strings": {
+      "en": {
+        "text": "The tempting identity pile:\nInstanceId · SourceRef · Handle · Snapshot · OwnerToken · CoordinationKey"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.execution.after": {
+    "strings": {
+      "en": {
+        "text": "The smaller separation:\nRelationshipId → maintained semantic work\nJob            → live runtime occurrence\nVexLogger      → historical chronology"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.execution.payoff": {
+    "strings": {
+      "en": {
+        "text": "Three questions that looked like one identity problem become three ordinary owners. That is why subtraction here increases scalability rather than reducing capability."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.race.kicker": {
+    "strings": {
+      "en": {
+        "text": "06 · When outside reality arrives late"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.race.heading": {
+    "strings": {
+      "en": {
+        "text": "The race is where the architecture stopped being a clean diagram and had to answer time"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.race.lede": {
+    "strings": {
+      "en": {
+        "text": "The semantic State could already be Dark while an older Light Store observation was still in flight. If the old observation were blindly admitted, outside timing would overwrite a newer accepted human choice."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.race.timeline": {
+    "strings": {
+      "en": {
+        "text": "Select Light\n  ↓\nSave Light ───────────── delayed Store observation ────────┐\n                                                           │\nSelect Dark                                                │\n  ↓                                                        │\nState Dark                                                 │\n  ↓                                                        │\nSave Dark                                                  │\n                                                           │\nold Light observation ◄────────────────────────────────────┘"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.race.common-heading": {
+    "strings": {
+      "en": {
+        "text": "The obvious fixes were all plausible"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.race.common": {
+    "strings": {
+      "en": {
+        "text": "generation counter\nrequest ID\noperation ID\ntimestamp arbitration\npending-state manager\nsynchronization registry"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.race.solution-heading": {
+    "strings": {
+      "en": {
+        "text": "The missing identity already existed"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.race.solution-body": {
+    "strings": {
+      "en": {
+        "text": "The newer accepted selection already carried the exact Parameter.Mode. ThemeMode temporarily remembers that same object while its consequence settles. An older Store observation is held only while a newer Parameter is unsettled. No second currentness vocabulary is minted."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.race.solution": {
+    "strings": {
+      "en": {
+        "text": "newer Parameter.Mode(Dark) unsettled\n        ↓\nold Light observation arrives\n        ↓\nHOLD\n        ↓\nDark realization finishes\n        ↓\nreconcile outside truth normally"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.construction.kicker": {
+    "strings": {
+      "en": {
+        "text": "07 · Construction and lifetime"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.construction.heading": {
+    "strings": {
+      "en": {
+        "text": "Make the object graph readable without turning dependency injection into runtime meaning"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.construction.lede": {
+    "strings": {
+      "en": {
+        "text": "VexDependencyFactory treats construction as its own question. Provider object identity is the construction coordinate; prerequisites are explicit source; one factory lifetime memoizes one value per provider."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.construction.lifetimes": {
+    "strings": {
+      "en": {
+        "text": "ANDROID PROCESS LIFETIME\nVexApplication\n  └─ parent VexDependencyFactory\n       ├─ Android Application\n       ├─ UIBlueprintRegistry\n       ├─ AppRepositories\n       └─ ThemeModeStore\n\nVIEWMODEL / SESSION LIFETIME\nVexLifeViewModel\n  └─ child VexDependencyFactory\n       ├─ CoroutineScope\n       ├─ VexExecutionRoot\n       ├─ LogHistoryPersistenceQueue\n       ├─ VexLogger\n       ├─ ThemeModeFamily\n       ├─ EventsConvergenceRelay\n       ├─ VexConversationHybridRelay\n       ├─ AppActions\n       ├─ VexRuntime\n       └─ VexLifeSession"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.construction.provider-heading": {
+    "strings": {
+      "en": {
+        "text": "A provider says what it needs before it says how to build"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.construction.provider": {
+    "strings": {
+      "en": {
+        "text": "ThemeModeFamilyProvider(\n    dependencies = listOf(\n        ThemeModeStore,\n        VexExecutionRoot,\n        VexLogger,\n    )\n)\n\ncreate(scope) {\n    val family = ThemeModeFamily(initialState)\n    observeThemeModeStore(\n        family,\n        scope.require(ThemeModeStore),\n        scope.require(VexExecutionRoot),\n        scope.require(VexLogger),\n    )\n    return family\n}"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.construction.payoff": {
+    "strings": {
+      "en": {
+        "text": "No ambient get<T>(). No constructor scanning. No feature code reaching into Application as a service locator. No dependency identifier reused as semantic identity. Construction remains visible and boring."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.logger.kicker": {
+    "strings": {
+      "en": {
+        "text": "08 · History without hijacking the architecture"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.logger.heading": {
+    "strings": {
+      "en": {
+        "text": "Chronology is powerful when it is allowed to remain chronology"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.logger.lede": {
+    "strings": {
+      "en": {
+        "text": "VexLogger receives accepted and observed facts from rightful owners. It answers what happened and in what order; it does not become a shadow State machine or an execution registry."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.logger.facts": {
+    "strings": {
+      "en": {
+        "text": "App opened\nControl accepted\nButton clicked\nSave requested\nSave succeeded / failed\nScreen disappeared\nScreen arrived\nDialog appeared\nSong ended\nnext song selected\nsong started"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.logger.separation": {
+    "strings": {
+      "en": {
+        "text": "RelationshipId → which maintained semantic relationship\nJob            → which live runtime occurrence\nVexLogger      → what happened historically"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.logger.rule": {
+    "strings": {
+      "en": {
+        "text": "A backend success is not proof that the intended presentation arrived. Log facts from the layers that actually observe them; derive history from chronology before minting correlation machinery."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.relay.kicker": {
+    "strings": {
+      "en": {
+        "text": "09 · Convergence without stealing truth"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.relay.heading": {
+    "strings": {
+      "en": {
+        "text": "Relationship truth can be new without becoming a new owner of its inputs"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.relay.lede": {
+    "strings": {
+      "en": {
+        "text": "Events and Conversation already have concrete convergence relays in VexLife. Their job is to combine independently-owned truths, not to reach inside another owner and perform its Effects directly."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.relay.diagram": {
+    "strings": {
+      "en": {
+        "text": "EventsRepository truth ──────┐\nAttentionPreferences truth ──┼─→ EventsConvergenceRelay → relationship truth\nUserProfile truth ────────────┘\n\nConversationRepository truth ─┐\nConversationLab truth ─────────┼─→ VexConversationHybridRelay → relationship truth\n                              └─→ request change only through rightful Controls"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.relay.rule": {
+    "strings": {
+      "en": {
+        "text": "Convergence may compose truth. It may not appropriate the authority that created the truth."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.subtraction.kicker": {
+    "strings": {
+      "en": {
+        "text": "10 · What we deleted"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.subtraction.heading": {
+    "strings": {
+      "en": {
+        "text": "Less architecture scaled better because false unifications disappeared"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.subtraction.lede": {
+    "strings": {
+      "en": {
+        "text": "The rejected abstractions were not stupid. Most were reasonable responses to real pressure. They became unnecessary when one overloaded question was separated into several truthful ones."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.subtraction.identity-title": {
+    "strings": {
+      "en": {
+        "text": "One giant identity problem"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.subtraction.identity-body": {
+    "strings": {
+      "en": {
+        "text": "InstanceId, SourceRef, Handle, Snapshot, OwnerToken, and CoordinationKey looked useful while semantic relationship, runtime occurrence, and historical chronology were conflated."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.subtraction.identity-after": {
+    "strings": {
+      "en": {
+        "text": "RelationshipId → maintained relationship\nJob            → runtime occurrence\nVexLogger      → chronology"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.subtraction.wrapper-title": {
     "strings": {
       "en": {
         "text": "Feature execution wrappers"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.museum.wrapper-body": {
+  "pages.vexarchitecture-first-stable-body.subtraction.wrapper-body": {
     "strings": {
       "en": {
-        "text": "ThemeModeExecution and the mirrored VexMaps Distribution execution owner disappeared when existing Family and Session owners were allowed to keep their own meaning while VexExecution supplied custody."
+        "text": "ThemeModeExecution and mirrored feature-specific execution owners disappeared once Family kept meaning and VexExecution kept custody."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.museum.logger-title": {
+  "pages.vexarchitecture-first-stable-body.subtraction.logger-title": {
     "strings": {
       "en": {
-        "text": "Predictive Logger transitions"
+        "text": "Predictive history"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.museum.logger-body": {
+  "pages.vexarchitecture-first-stable-body.subtraction.logger-body": {
     "strings": {
       "en": {
-        "text": "Expected destination and before/after narration were removed from production facts. Chronology now records the current interaction, then the Screen actually current after navigation."
+        "text": "Expected destinations stopped being recorded as production facts. The interaction is logged where it occurs; navigation is logged after the actual CurrentScreen changes."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.museum.container-title": {
+  "pages.vexarchitecture-first-stable-body.subtraction.container-title": {
     "strings": {
       "en": {
-        "text": "Construction bags as architecture"
+        "text": "Construction bags"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.museum.container-body": {
+  "pages.vexarchitecture-first-stable-body.subtraction.container-body": {
     "strings": {
       "en": {
-        "text": "VexLifeRelays and generic binding machinery were subtracted where they duplicated construction, projection, or relationship meaning already owned elsewhere."
+        "text": "Generic binding containers disappeared where explicit providers, concrete relay owners, and projection already explained the relationships."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.proof.kicker": {
+  "pages.vexarchitecture-first-stable-body.apply.kicker": {
     "strings": {
       "en": {
-        "text": "06 · How it was proved"
+        "text": "11 · Use it on your own feature"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.proof.heading": {
+  "pages.vexarchitecture-first-stable-body.apply.heading": {
     "strings": {
       "en": {
-        "text": "Acceptance came through falsification"
+        "text": "Do not copy ThemeMode. Reuse the questions."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.proof.lede": {
+  "pages.vexarchitecture-first-stable-body.apply.lede": {
     "strings": {
       "en": {
-        "text": "The important history is not that the branch eventually became green. It is that failures were classified, the smallest rightful relationship was corrected, and the exact candidate was re-proved whenever its bytes changed."
+        "text": "The architecture scales by preserving the reasoning posture, not by forcing every feature into the same class diagram."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.proof.a001": {
+  "pages.vexarchitecture-first-stable-body.apply.1": {
     "strings": {
       "en": {
-        "text": "A001 · The carrier worked; Gradle was not reached. The harness was corrected without blaming the candidate."
+        "text": "Name the semantic question in ordinary language."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.proof.a002": {
+  "pages.vexarchitecture-first-stable-body.apply.2": {
     "strings": {
       "en": {
-        "text": "A002 · Real Gradle parsing exposed malformed generated newlines. The mechanical defect was corrected."
+        "text": "Find the smallest owner that already knows the exact current truth needed to answer it."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.proof.a003": {
+  "pages.vexarchitecture-first-stable-body.apply.3": {
     "strings": {
       "en": {
-        "text": "A003 onward · Kotlin compilation, migration gaps, stale APIs, and architectural overgrowth were repeatedly exposed and subtracted."
+        "text": "Define State and Control only when there is real semantic meaning to preserve."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.proof.a009": {
+  "pages.vexarchitecture-first-stable-body.apply.4": {
     "strings": {
       "en": {
-        "text": "A009 · The aggregate ThemeMode race was reproduced: expected Dark, observed Light."
+        "text": "If accepted meaning requests outside work, author an Effect; do not claim the Effect already happened."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.proof.a010": {
+  "pages.vexarchitecture-first-stable-body.apply.5": {
     "strings": {
       "en": {
-        "text": "A010 · Full exact-head repository proof passed after the semantic currentness correction and topology currentization."
+        "text": "Ask whether active work needs a maintained RelationshipId. Ordinary payload does not become identity by default."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.proof.assurance": {
+  "pages.vexarchitecture-first-stable-body.apply.6": {
     "strings": {
       "en": {
-        "text": "Fresh assurance · A stale inherited KDoc still taught the rejected navigation model. Only that comment was corrected."
+        "text": "Let Execution own actual Jobs and overlap behavior, not feature meaning."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.proof.a011": {
+  "pages.vexarchitecture-first-stable-body.apply.7": {
     "strings": {
       "en": {
-        "text": "A011 · The corrected exact head passed the full repository proof again."
+        "text": "Let the Store/provider expose independently-owned outside truth."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.proof.a012": {
+  "pages.vexarchitecture-first-stable-body.apply.8": {
     "strings": {
       "en": {
-        "text": "A012 · The real Android production composition cold-launched through VexApplication and VexLifeViewModel, and the process remained alive."
+        "text": "Interpret observations through the rightful semantic owner before changing State."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.proof.merge": {
+  "pages.vexarchitecture-first-stable-body.apply.9": {
     "strings": {
       "en": {
-        "text": "Integration · The actual merge tree exactly equaled the proved candidate tree."
+        "text": "Project semantic State outward before choosing a concrete presentation technology."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.accepted.kicker": {
+  "pages.vexarchitecture-first-stable-body.apply.10": {
     "strings": {
       "en": {
-        "text": "07 · The moment it entered history"
+        "text": "Log accepted and observed facts where they become knowable; derive chronology before adding IDs."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.accepted.heading": {
+  "pages.vexarchitecture-first-stable-body.apply.11": {
     "strings": {
       "en": {
-        "text": "What was proved is what became main"
+        "text": "Construct objects explicitly at the lifetime that actually owns them."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.accepted.body": {
+  "pages.vexarchitecture-first-stable-body.apply.12": {
     "strings": {
       "en": {
-        "text": "No rebase, merge resolution, or last-minute source rewrite separated the proved candidate from accepted source. The merge commit added ancestry, not different file bytes."
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.next.kicker": {
-    "strings": {
-      "en": {
-        "text": "08 · For the next intelligence"
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.next.heading": {
-    "strings": {
-      "en": {
-        "text": "Recover current truth before touching old history"
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.next.lede": {
-    "strings": {
-      "en": {
-        "text": "A future human or AI should not begin by reading old PRs and copying whichever noun appears most often."
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.next.1": {
-    "strings": {
-      "en": {
-        "text": "First: read current VexLife-Android repository source."
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.next.2": {
-    "strings": {
-      "en": {
-        "text": "Then: read architecture/vexarchitecture/README.md and the current topology map."
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.next.3": {
-    "strings": {
-      "en": {
-        "text": "Then: descend to the exact owner — Family, Execution, Logger, Dependency, Relay, Store, or presentation."
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.next.4": {
-    "strings": {
-      "en": {
-        "text": "Only then: use PR #209 when you need to understand why the accepted relationships have this shape."
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.next.rule": {
-    "strings": {
-      "en": {
-        "text": "PR #209 is provenance. Current main is authority. The topology map is navigation. Tests prove only the claims they actually exercise."
+        "text": "Before inventing a new architectural noun, ask what required correctness disappears if you delete it."
       }
     }
   },
   "pages.vexarchitecture-first-stable-body.pressure.kicker": {
     "strings": {
       "en": {
-        "text": "09 · Where reality may still pressure it"
+        "text": "12 · Try the questions on something harder"
       }
     }
   },
   "pages.vexarchitecture-first-stable-body.pressure.heading": {
     "strings": {
       "en": {
-        "text": "Open edges are invitations to observe, not frameworks waiting to be invented"
+        "text": "Portability is demonstrated by questions, not by pretending every product already conforms"
       }
     }
   },
   "pages.vexarchitecture-first-stable-body.pressure.lede": {
     "strings": {
       "en": {
-        "text": "Future pressure should come from real consumers. The following surfaces remain useful places to learn whether the current architecture is sufficient."
+        "text": "VexStream and Maps are useful pressure surfaces because they contain richer concurrency, outside truth, and convergence. They are not declared migrated by this page."
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.pressure.1": {
+  "pages.vexarchitecture-first-stable-body.pressure.stream-title": {
     "strings": {
       "en": {
-        "text": "A real multi-field Family Parameter and Method."
+        "text": "VexStream · questions to ask"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.pressure.2": {
+  "pages.vexarchitecture-first-stable-body.pressure.stream": {
     "strings": {
       "en": {
-        "text": "A genuine zero-input Method and multiple Methods inside one Family."
+        "text": "semantic → Play / Pause / Seek / Download meaning?\nruntime  → which playback or download Jobs are alive?\noutside  → Desktop hub, local media, MediaPlayer, filesystem?\nconverge → HUB_AND_LOCAL, LOCAL_ONLY, HUB_ONLY?\npresent  → what should the human actually see?"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.pressure.3": {
+  "pages.vexarchitecture-first-stable-body.pressure.maps-title": {
     "strings": {
       "en": {
-        "text": "More complex outside-truth reconciliation and service/process lifetimes."
+        "text": "Maps · questions to ask"
       }
     }
   },
-  "pages.vexarchitecture-first-stable-body.pressure.4": {
+  "pages.vexarchitecture-first-stable-body.pressure.maps": {
     "strings": {
       "en": {
-        "text": "More cross-Family convergence using rightful Controls rather than foreign Effects."
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.pressure.5": {
-    "strings": {
-      "en": {
-        "text": "Cross-version Blueprint and VexSync currentness."
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.pressure.6": {
-    "strings": {
-      "en": {
-        "text": "Rendered-presentation arrival and historical Logger storage cleanup."
+        "text": "semantic → selected place, route intent, region download?\nruntime  → search, routing, navigation, download work?\noutside  → map provider, GPS, offline region store?\nconverge → provider + location + local availability?\npresent  → map, route, and availability meaning?"
       }
     }
   },
   "pages.vexarchitecture-first-stable-body.pressure.rule": {
     "strings": {
       "en": {
-        "text": "These are pressure surfaces, not missing frameworks waiting to be pre-designed."
+        "text": "If a real consumer reveals a question that no existing owner can truthfully answer, that is evidence for architecture evolution. Similarity alone is not."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.forensics.kicker": {
+    "strings": {
+      "en": {
+        "text": "Appendix · Source, provenance, and exact evidence"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.forensics.heading": {
+    "strings": {
+      "en": {
+        "text": "The guide teaches from current structure; the appendix preserves how this structure earned trust"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.forensics.lede": {
+    "strings": {
+      "en": {
+        "text": "This page is not the architecture authority. Current VexLife-Android source owns current behavior. PR #209 preserves the before / pressure / subtraction / after reasoning that produced this accepted stability point."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.forensics.authority": {
+    "strings": {
+      "en": {
+        "text": "Current source = behavioral authority · PR #209 = provenance · this Vextreme page = public historical guide"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.forensics.origin": {
+    "strings": {
+      "en": {
+        "text": "Source origin"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.forensics.candidate": {
+    "strings": {
+      "en": {
+        "text": "Proved candidate"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.forensics.tree": {
+    "strings": {
+      "en": {
+        "text": "Proved candidate tree"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.forensics.merge": {
+    "strings": {
+      "en": {
+        "text": "Accepted merge"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.forensics.equality": {
+    "strings": {
+      "en": {
+        "text": "The actual merge tree exactly matched the proved candidate tree."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.forensics.proof-summary": {
+    "strings": {
+      "en": {
+        "text": "How reality changed the architecture"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.forensics.proof": {
+    "strings": {
+      "en": {
+        "text": "Overgrowth exposed false owners → managers, IDs, wrappers, and duplicate registries were removed when an existing owner could truthfully carry the responsibility.\n\nConcurrency exposed missing semantic currentness → the Light/Dark race proved static elegance was insufficient; same-Parameter carriage supplied the missing relationship without a new generation/trace framework.\n\nProduction construction exposed lifetime ownership → the design had to survive real Android process → Application → ViewModel → Session composition.\n\nIntegration proved the tested architecture is the architecture that shipped → the actual merge tree exactly equaled the proved candidate tree."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.forensics.ledger-summary": {
+    "strings": {
+      "en": {
+        "text": "Open exact proof ledger"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.forensics.ledger": {
+    "strings": {
+      "en": {
+        "text": "A001 · carrier/harness boundary classified without candidate blame\nA002 · generated newline defect exposed by real Gradle parsing\nA003+ · compilation, migration, stale API, and overgrowth corrections\nA009 · ThemeMode race reproduced: expected Dark, observed Light\nA010 · full exact-head proof after semantic currentness correction\nFresh assurance · stale inherited KDoc corrected\nA011 · corrected exact head fully re-proved\nA012 · real Android production composition cold-launched and survived\nIntegration · actual merge tree == proved candidate tree"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.forensics.open-pr": {
+    "strings": {
+      "en": {
+        "text": "Open PR #209 reasoning record ↗"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.forensics.open-source": {
+    "strings": {
+      "en": {
+        "text": "Open current VexLife-Android source ↗"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.forensics.open-architecture": {
+    "strings": {
+      "en": {
+        "text": "Open VexArchitecture source guide ↗"
       }
     }
   },
   "pages.vexarchitecture-first-stable-body.closing.quote": {
     "strings": {
       "en": {
-        "text": "A living architecture is not one that changes constantly. It is one that knows what must remain stable, what may still be questioned, and how to tell the difference."
+        "text": "A useful architecture does not ask every layer to become smarter. It makes each layer honest about the question it owns."
       }
     }
   },
   "pages.vexarchitecture-first-stable-body.closing.body": {
     "strings": {
       "en": {
-        "text": "VexArchitecture became trustworthy when it stopped trying to name everything and began asking who already owned the truth."
+        "text": "VexArchitecture became smaller as responsibility became clearer. The reusable innovation is not a set of class names. It is the discipline of preserving meaning, custody, outside truth, construction, history, convergence, and presentation without letting them collapse into one another."
       }
     }
   },
   "pages.vexarchitecture-first-stable-body.closing.standard": {
     "strings": {
       "en": {
-        "text": "The Development Standard begins here: source before projection, ownership before abstraction, proof follows claim, provenance survives success, and correction remains allowed."
+        "text": "Take the questions. Pressure them with your real system. Keep only the architecture that reality earns."
       }
     }
   },
   "pages.vexarchitecture-first-stable-body.closing.lineage": {
     "strings": {
       "en": {
-        "text": "[VXG RealForever] · Source origin: VexLife-Android PR #209 · Accepted November 1, 2026"
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.body.topology": {
-    "strings": {
-      "en": {
-        "text": "HUMAN INTENTION\n      │\n      ▼\nFamily.Parameter?   ← when semantic provenance is earned\n      │\n      ▼\nFamily.Control\n      │\n      ▼\nFamily.activate(Control)\n      │\n      ├─ act(exact CURRENT State, Control)\n      │      │\n      │      ▼\n      │     Act\n      │   ┌──┴────────────┐\n      │   │               │\n      │ State?          Begin\n      │                 │\n      │          Effect + Approach\n      │\n      ├─ bind live Family owner\n      ├─ bind RelationshipId when maintained\n      └─ admit immediate State when authored\n              │\n              ▼\n        accepted Act\n              │\n              ▼\n       bound Act.Method\n              │\n              ▼\n        VexExecution\n              │\n   RelationshipId → actual Job(s)\n              │\n              ▼\n   Store / provider / platform reality\n              │\n              ▼\n        observation / result\n              │\n              ▼\n       rightful interpretation\n              │\n              ▼\n         Family.State\n              │\n              ▼\n          Projection\n              │\n              ▼\n         DisplayState\n              │\n              ▼\n    presentation meaning\n              │\n              ▼\n      Android / Compose\n              │\n              ▼\n       HUMAN EXPERIENCE"
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.body.dependency": {
-    "strings": {
-      "en": {
-        "text": "Constructs and reuses live objects at explicit lifetimes. It does not become semantic truth."
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.body.logger": {
-    "strings": {
-      "en": {
-        "text": "Receives chronological accepted and observed facts. It does not predict the future."
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.body.relay": {
-    "strings": {
-      "en": {
-        "text": "Composes independently-owned truths into relationship truth without stealing their ownership."
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.patient.carriage-heading": {
-    "strings": {
-      "en": {
-        "text": "Semantic carriage"
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.patient.carriage-diagram": {
-    "strings": {
-      "en": {
-        "text": "Parameter.Mode(Dark)\n      ↓ SAME OBJECT\nControl.Select(parameter)\n      ↓\nEffect.Save(parameter)\n      ↓\nAct.Method.Save(Store, parameter)\n      ↓\nLatest\n      ↓\nRelationshipId\n      ↓\nactual Job\n      ↓\nStore.save(Dark)\n      ↓\nobservation\n      ↓\nThemeMode.State\n      ↓\nVexThemePresentation\n      ↓\nhuman sees Dark"
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.patient.race-diagram": {
-    "strings": {
-      "en": {
-        "text": "Select Light\n  ↓\nSave Light ─── delayed Store Light ───────┐\n                                         │\nSelect Dark                              │\n  ↓                                      │\nState Dark                               │\n  ↓                                      │\nSave Dark                                │\n                                         │\nold Light observation ◄──────────────────┘\n  ↓\nHOLD while newer Parameter is unsettled"
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.museum.identity-code": {
-    "strings": {
-      "en": {
-        "text": "RelationshipId → maintained semantic work\nJob            → live runtime occurrence\nVexLogger      → chronology"
-      }
-    }
-  },
-  "pages.vexarchitecture-first-stable-body.accepted.hashes": {
-    "strings": {
-      "en": {
-        "text": "prior main\n772f506de2df66d372977ad487028289405fc10b\n\nproved candidate\nb0a76ba1063c653c0db6781ff0314766a7b0347f\n\nmerge commit\n66c866dea6a8dd78e2946da88715c4deb78c1847\n\nproved candidate tree\nb4deed075fdb927769b6d7202746d24da474070d\n\nactual merge tree\nb4deed075fdb927769b6d7202746d24da474070d\n\nACTUAL MERGE TREE == PROVED CANDIDATE TREE"
+        "text": "[VXG RealForever] · Origin: VexLife-Android PR #209 · Public guide: The Development Standard"
       }
     }
   }
