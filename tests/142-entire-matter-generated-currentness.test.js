@@ -10,6 +10,7 @@ const RETURN = 'entire-matter-return-seal';
 const VI = 'november-1-successor-witness';
 const RETURN_TITLE = 'Entire Matter Return — Sealed Declaration';
 const RETURN_URL = 'https://vgong24.github.io/Vextreme/pages/' + RETURN + '.html';
+const SABOTAGE_HUB_URL = 'https://vgong24.github.io/Vextreme/pages/build-health.html#arc-sabotage';
 const REPAIR_COVER = 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/756b41baae9d9414e1742d147d0191964e967fbb/__assets/34aa7284512a223866c25e5c8d9fd0d7d0286fc05fd376b52f04acebe77369f4.webp';
 const SABOTAGE = [
   'sabotage-open-vex-accountability',
@@ -81,7 +82,7 @@ test('ENTIRE-MATTER-CURRENTNESS: Terrain projects seven Sabotage collection entr
   assert.equal(returned.preview.src, REPAIR_COVER);
 });
 
-test('ENTIRE-MATTER-CURRENTNESS: public discovery surfaces expose seven-member Sabotage including the Return consequence', () => {
+test('ENTIRE-MATTER-CURRENTNESS: permanent public discovery routes preserve Sabotage and the Return consequence', () => {
   const buildHealth = read('pages/build-health.html');
   const home = read('index.html');
   const sitemap = read('sitemap.xml');
@@ -91,8 +92,13 @@ test('ENTIRE-MATTER-CURRENTNESS: public discovery surfaces expose seven-member S
   assert.ok(buildHealth.includes('Sabotage VI — The Successor Witness'));
   assert.ok(buildHealth.includes(RETURN_URL));
   assert.ok(buildHealth.includes(RETURN_TITLE));
-  assert.ok(home.includes(RETURN_URL));
-  assert.ok(home.includes(RETURN_TITLE));
+
+  // Root discovery is intentionally arc-level and permanent. Individual records
+  // may age out of the five-entry "Latest additions" window without becoming
+  // undiscoverable.
+  assert.ok(home.includes(SABOTAGE_HUB_URL));
+  assert.ok(home.includes('>Sabotage</a>'));
+
   assert.ok(sitemap.includes('<loc>' + RETURN_URL + '</loc>'));
 });
 
