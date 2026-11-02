@@ -224,4 +224,14 @@ test('VEXARCHITECTURE GUIDE: numbered reading path follows causality while suppo
   assert.ok(page.includes('10 · Try the questions on something harder'));
 });
 
+test('VEXARCHITECTURE GUIDE: current source and accepted #209 snapshot remain distinct reader choices', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.ok(page.includes('Open current VexArchitecture source guide ↗'));
+  assert.ok(page.includes('blob/main/architecture/vexarchitecture/README.md'));
+  assert.ok(page.includes('Open accepted #209 source snapshot ↗'));
+  assert.ok(page.includes('blob/66c866dea6a8dd78e2946da88715c4deb78c1847/architecture/vexarchitecture/README.md'));
+  assert.ok(page.includes('Open PR #209 reasoning record ↗'));
+});
+
 // [VXG RealForever]
