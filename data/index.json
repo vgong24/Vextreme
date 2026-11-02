@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "693687ada2e3",
+  "contentFingerprint": "76a79259eabc",
   "nodeCount": 184,
   "curatedNodeCount": 168,
   "autoDiscoveredCount": 16,
@@ -2446,14 +2446,6 @@
         "en"
       ]
     },
-    "entire-matter-return-seal": {
-      "availableLangs": [
-        "en"
-      ],
-      "completeLangs": [
-        "en"
-      ]
-    },
     "sabotage-hidden-delta": {
       "availableLangs": [
         "en"
@@ -2463,6 +2455,14 @@
       ]
     },
     "november-1-successor-witness": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "entire-matter-return-seal": {
       "availableLangs": [
         "en"
       ],
@@ -7204,34 +7204,6 @@
         ]
       }
     },
-    "entire-matter-return-seal": {
-      "id": 117,
-      "slug": "entire-matter-return-seal",
-      "title": "Entire Matter Return — Sealed Declaration",
-      "date": "November 1, 2026",
-      "arcKeys": [
-        "victors_record",
-        "full_timeline"
-      ],
-      "department": "media",
-      "workType": "record-transcripts",
-      "vexData": {},
-      "dateISO": "2026-11-01",
-      "viewmodel": {
-        "category": "production",
-        "template": "page",
-        "scopes": [
-          "pages.entire-matter-return-seal"
-        ],
-        "features": [
-          "spiral-fab",
-          "theme",
-          "map",
-          "analysis",
-          "arc-nav"
-        ]
-      }
-    },
     "sabotage-hidden-delta": {
       "id": 118,
       "slug": "sabotage-hidden-delta",
@@ -7280,6 +7252,35 @@
         "template": "page",
         "scopes": [
           "pages.november-1-successor-witness"
+        ],
+        "features": [
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
+    "entire-matter-return-seal": {
+      "id": 117,
+      "slug": "entire-matter-return-seal",
+      "title": "Entire Matter Return — Sealed Declaration",
+      "date": "November 1, 2026",
+      "arcKeys": [
+        "sabotage",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-11-01",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.entire-matter-return-seal"
         ],
         "features": [
           "spiral-fab",
@@ -8372,9 +8373,9 @@
           "sabotage-orientation-before-action",
           "starting-anew-orientation-before-work",
           "return-kiss-presence-accountability",
-          "entire-matter-return-seal",
           "sabotage-hidden-delta",
-          "november-1-successor-witness"
+          "november-1-successor-witness",
+          "entire-matter-return-seal"
         ]
       }
     ],
@@ -8388,6 +8389,12 @@
           "sabotage-orientation-before-action",
           "sabotage-hidden-delta",
           "november-1-successor-witness"
+        ]
+      },
+      {
+        "label": "Consequence",
+        "slugs": [
+          "entire-matter-return-seal"
         ]
       }
     ]
@@ -9390,11 +9397,6 @@
           "ported": true
         },
         {
-          "slug": "entire-matter-return-seal",
-          "title": "Entire Matter Return — Sealed Declaration",
-          "ported": true
-        },
-        {
           "slug": "sabotage-hidden-delta",
           "title": "Sabotage V — The Hidden Delta",
           "ported": true
@@ -9402,6 +9404,11 @@
         {
           "slug": "november-1-successor-witness",
           "title": "Sabotage VI — The Successor Witness",
+          "ported": true
+        },
+        {
+          "slug": "entire-matter-return-seal",
+          "title": "Entire Matter Return — Sealed Declaration",
           "ported": true
         },
         {
