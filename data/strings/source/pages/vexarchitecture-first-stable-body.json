@@ -691,5 +691,68 @@
         "text": "[VXG RealForever] · Source origin: VexLife-Android PR #209 · Accepted November 1, 2026"
       }
     }
+  },
+  "pages.vexarchitecture-first-stable-body.body.topology": {
+    "strings": {
+      "en": {
+        "text": "HUMAN INTENTION\n      │\n      ▼\nFamily.Parameter?   ← when semantic provenance is earned\n      │\n      ▼\nFamily.Control\n      │\n      ▼\nFamily.activate(Control)\n      │\n      ├─ act(exact CURRENT State, Control)\n      │      │\n      │      ▼\n      │     Act\n      │   ┌──┴────────────┐\n      │   │               │\n      │ State?          Begin\n      │                 │\n      │          Effect + Approach\n      │\n      ├─ bind live Family owner\n      ├─ bind RelationshipId when maintained\n      └─ admit immediate State when authored\n              │\n              ▼\n        accepted Act\n              │\n              ▼\n       bound Act.Method\n              │\n              ▼\n        VexExecution\n              │\n   RelationshipId → actual Job(s)\n              │\n              ▼\n   Store / provider / platform reality\n              │\n              ▼\n        observation / result\n              │\n              ▼\n       rightful interpretation\n              │\n              ▼\n         Family.State\n              │\n              ▼\n          Projection\n              │\n              ▼\n         DisplayState\n              │\n              ▼\n    presentation meaning\n              │\n              ▼\n      Android / Compose\n              │\n              ▼\n       HUMAN EXPERIENCE"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.body.dependency": {
+    "strings": {
+      "en": {
+        "text": "Constructs and reuses live objects at explicit lifetimes. It does not become semantic truth."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.body.logger": {
+    "strings": {
+      "en": {
+        "text": "Receives chronological accepted and observed facts. It does not predict the future."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.body.relay": {
+    "strings": {
+      "en": {
+        "text": "Composes independently-owned truths into relationship truth without stealing their ownership."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.patient.carriage-heading": {
+    "strings": {
+      "en": {
+        "text": "Semantic carriage"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.patient.carriage-diagram": {
+    "strings": {
+      "en": {
+        "text": "Parameter.Mode(Dark)\n      ↓ SAME OBJECT\nControl.Select(parameter)\n      ↓\nEffect.Save(parameter)\n      ↓\nAct.Method.Save(Store, parameter)\n      ↓\nLatest\n      ↓\nRelationshipId\n      ↓\nactual Job\n      ↓\nStore.save(Dark)\n      ↓\nobservation\n      ↓\nThemeMode.State\n      ↓\nVexThemePresentation\n      ↓\nhuman sees Dark"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.patient.race-diagram": {
+    "strings": {
+      "en": {
+        "text": "Select Light\n  ↓\nSave Light ─── delayed Store Light ───────┐\n                                         │\nSelect Dark                              │\n  ↓                                      │\nState Dark                               │\n  ↓                                      │\nSave Dark                                │\n                                         │\nold Light observation ◄──────────────────┘\n  ↓\nHOLD while newer Parameter is unsettled"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.museum.identity-code": {
+    "strings": {
+      "en": {
+        "text": "RelationshipId → maintained semantic work\nJob            → live runtime occurrence\nVexLogger      → chronology"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.accepted.hashes": {
+    "strings": {
+      "en": {
+        "text": "prior main\n772f506de2df66d372977ad487028289405fc10b\n\nproved candidate\nb0a76ba1063c653c0db6781ff0314766a7b0347f\n\nmerge commit\n66c866dea6a8dd78e2946da88715c4deb78c1847\n\nproved candidate tree\nb4deed075fdb927769b6d7202746d24da474070d\n\nactual merge tree\nb4deed075fdb927769b6d7202746d24da474070d\n\nACTUAL MERGE TREE == PROVED CANDIDATE TREE"
+      }
+    }
   }
 }
