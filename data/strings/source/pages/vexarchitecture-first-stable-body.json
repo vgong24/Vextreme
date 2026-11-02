@@ -381,7 +381,7 @@
   "pages.vexarchitecture-first-stable-body.walk.code-heading": {
     "strings": {
       "en": {
-        "text": "The semantic vocabulary"
+        "text": "Semantic vocabulary · abridged from accepted source"
       }
     }
   },
@@ -563,7 +563,7 @@
   "pages.vexarchitecture-first-stable-body.construction.provider-heading": {
     "strings": {
       "en": {
-        "text": "A provider says what it needs before it says how to build"
+        "text": "Provider shape · abridged from accepted source"
       }
     }
   },
@@ -661,7 +661,7 @@
   "pages.vexarchitecture-first-stable-body.subtraction.kicker": {
     "strings": {
       "en": {
-        "text": "10 · What we deleted"
+        "text": "11 · What we deleted"
       }
     }
   },
@@ -745,7 +745,7 @@
   "pages.vexarchitecture-first-stable-body.apply.kicker": {
     "strings": {
       "en": {
-        "text": "11 · Use it on your own feature"
+        "text": "12 · Use it on your own feature"
       }
     }
   },
@@ -850,7 +850,7 @@
   "pages.vexarchitecture-first-stable-body.pressure.kicker": {
     "strings": {
       "en": {
-        "text": "12 · Try the questions on something harder"
+        "text": "13 · Try the questions on something harder"
       }
     }
   },
@@ -1194,6 +1194,48 @@
     "strings": {
       "en": {
         "text": "Exact source coordinates"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.presentation.kicker": {
+    "strings": {
+      "en": {
+        "text": "10 · From semantic truth to human experience"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.presentation.heading": {
+    "strings": {
+      "en": {
+        "text": "Presentation manifests truth. It does not become the truth owner."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.presentation.lede": {
+    "strings": {
+      "en": {
+        "text": "ThemeMode does not hand a Boolean straight to Compose and call that architecture. The Family first interprets semantic State into a Family-owned DisplayState; concrete presentation meaning follows; Android/Compose then manifests that meaning."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.presentation.flow": {
+    "strings": {
+      "en": {
+        "text": "ThemeMode State\n      ↓\nThemeModeFamily.DisplayState\n      ↓\nVexThemePresentation\n      ↓\nVexLifeTheme\n      ↓\nMaterialTheme / system bars / Compose Surface\n      ↓\nhuman experience"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.presentation.rule": {
+    "strings": {
+      "en": {
+        "text": "A Switch, segmented control, menu, voice command, or future surface may all select ThemeMode without redefining ThemeMode. Presentation can change while semantic ownership stays stable."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.presentation.anti": {
+    "strings": {
+      "en": {
+        "text": "Do not invent a generic FamilyRenderer, UiState, or ViewState merely because a concrete presentation boundary already exists. Add another layer only when it answers a different required question."
       }
     }
   }
