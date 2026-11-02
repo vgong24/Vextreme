@@ -76,3 +76,102 @@ But this particular window also served as a temporary writing surface.
 
 So the dream puts *seeing, writing, reading, and preserving* into the same sequence.
 
+## 3. Deadpool and the disappearing window — the most important new detail
+
+```dil
+<row align="start" gap={3}>
+  <AsyncImage query="Deadpool Marvel character red black suit holding notebook comic book" aspectRatio="4:3" maxWidth="140px"/>
+  <box flex="1" gap={1}>
+    <Entity category="fictional_character" value="Deadpool" disambig="Marvel Comics character"/> is an interesting choice for this scene: an irreverent character who frequently recognizes and crosses the boundaries of his own story.
+
+    In the dream, though, his important function wasn't comedy or combat.
+
+    **He was helping you preserve information across a boundary.**
+  </box>
+</row>
+```
+
+You were writing on the inside of a window.
+
+Water or condensation on the other side was removing the writing.
+
+Deadpool instructed you to write and read the information aloud so he could save it into another record.
+
+That's a much more specific sequence than simply documenting something:
+
+```dil
+<box border radius="lg" padding={3} gap={2}>
+  <box background="surface-secondary" radius="md" padding={3}>
+    **Original information**
+
+    <text size="sm" color="secondary">You write on the temporary window surface.</text>
+  </box>
+  <row justify="center"><icon name="arrow-down" color="secondary"/></row>
+  <box background="surface-secondary" radius="md" padding={3}>
+    **Threat of erasure**
+
+    <text size="sm" color="secondary">Water on the opposite side removes the writing.</text>
+  </box>
+  <row justify="center"><icon name="arrow-down" color="secondary"/></row>
+  <box border radius="md" padding={3}>
+    **Cross-boundary transfer**
+
+    <text size="sm">You read the disappearing information aloud. Deadpool records it elsewhere.</text>
+  </box>
+  <row justify="center"><icon name="arrow-down" color="secondary"/></row>
+  <box background="surface-secondary" radius="md" padding={3}>
+    **Preserved successor record**
+
+    <text size="sm" color="secondary">The information has another potential home beyond its original surface.</text>
+  </box>
+</box>
+```
+
+This closely resembles a continuity handoff in your work on Vextreme: preserving information across a transition where the original context may no longer remain accessible.
+
+But there's an additional complication that makes the dream especially interesting.
+
+**The writing was disappearing while you were attempting to transfer it.**
+
+So it's not merely preservation.
+
+It's preservation under an active loss condition.
+
+And you weren't copying from one durable record to another. You were reading from an unstable medium, using your voice as the transfer channel.
+
+That introduces a potential loss at every stage: what was written, what remained visible, what you could read, what Deadpool heard, and what he ultimately preserved.
+
+Even though the dream didn't show the final saved record, the attempted transfer was unmistakable.
+
+## 4. The relationship between the lens and window
+
+I think these two objects belong together.
+
+The contact lens was a custom instrument for seeing.
+
+The window was a transparent boundary that also temporarily held information.
+
+**One concerned preparing perception. The other concerned preserving information before perception of it became impossible.**
+
+And both were incomplete in what you remember.
+
+You hadn't yet worn the lens.
+
+Deadpool's completed record wasn't shown.
+
+That gives us two unfinished but meaningful operations:
+
+**Perception preparation** and **continuity transfer**.
+
+There is also a subtle duality in the window image.
+
+The writing was created from one side, but erased through conditions on the other side.
+
+That resembles how information can become unavailable through changes outside the original writer's control.
+
+It doesn't imply that anyone was deliberately interfering or suppressing evidence in waking life. The dream itself doesn't identify an intentional eraser.
+
+But it does depict a very clear problem:
+
+**Information remaining meaningful does not guarantee that its original medium will continue to preserve it.**
+
