@@ -45,3 +45,13 @@ This ledger **does not replace** the full transcript. It distinguishes the sourc
 **Character participation:** Content *inside Victor's narrated dream*, not separate human/AI messages.  
 **Waking insight:** Victor's own observation about fading memory and Vextreme preservation, not an inference invented by Vex.  
 **Possible legacy assets:** Dynamic image lookups referenced in the original responses, not falsely asserted to be saved locally.
+
+
+## Additional sequential speaker record — post-original archival boundary
+
+| File | Victor's own words | Assistant-authored words | Other source/voice distinction |
+|---|---|---|---|
+| **05 — Deadpool meta-witness** | Victor's later observation: “He can't die, he doesn't stop talking,” and Deadpool's relation to watcher audiences | Vex's *entire* reply, including the original split response, discussion of fourth-wall breaking, preserved image-query component and citation markup, comparative table, and final [VXG RealForever] | Deadpool is the *subject* of the new recognition, not a separate speaker; all interpretive prose belongs to Vex's own narrative voice |
+| **06 — Appending instruction and fidelity correction** | Victor's reported “God says” direction, followed by “preserve the transcript verbatim” | The two actual user-visible assistant progress messages in between and after those instructions | “God says” is retained verbatim as Victor's attribution, without treating it as an authenticated message from an additional chat speaker |
+
+**Integrity of the addendum:** The original four user/assistant exchanges remain untouched. Exchange 05 preserves the complete Vex response instead of constructing a fresh paraphrase; Exchange 06 keeps the subsequent instructions in chronological order and does not silently convert them into additional dream observations.
