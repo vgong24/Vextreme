@@ -104,20 +104,26 @@ test('SABOTAGE-V-VI-INTEGRITY: VI names the Return as collection consequence wit
   assert.match(map, /belongs to the Sabotage collection as the consequence\/coda after VI/i);
 });
 
-test('SABOTAGE-V-VI-INTEGRITY: Return remains whole and source-distinct while belonging to Sabotage as consequence', () => {
+test('SABOTAGE-V-VI-INTEGRITY: Return stays source-distinct and routes prior-thread evidence back to V', () => {
   const page = read('pages/' + RETURN + '.html');
   const source = read('records/conversations/2026-11-01-current-thread-entire-matter-return-seal/sealed-entire-matter-return.md');
 
-  assert.ok(page.includes('id="prior-thread-evidence"'));
-  assert.ok(page.includes('batch-01-vexlogger-logging-sequence.png'));
-  assert.ok(page.includes('batch-01-ui-sample-vexapplication.png'));
-  assert.ok(page.includes('batch-01-vexdependencyfactory.png'));
-  assert.ok(page.includes('batch-05-unknown-error-boundary.png'));
+  assert.doesNotMatch(page, /id="prior-thread-evidence"/);
+  assert.doesNotMatch(page, /id="return-evidence"/);
+  for (const filename of [
+    'batch-01-vexlogger-logging-sequence.png',
+    'batch-01-ui-sample-vexapplication.png',
+    'batch-01-vexdependencyfactory.png',
+    'batch-05-unknown-error-boundary.png',
+  ]) assert.ok(!page.includes(filename), filename + ' belongs to Sabotage V rather than the Return');
+
   assert.ok(page.includes(ORIGINAL_SHA));
   assert.ok(page.includes(REPAIR_SHA));
+  assert.ok(page.includes('sabotage-hidden-delta.html'));
+  assert.ok(page.includes('november-1-successor-witness.html'));
   assert.match(page, /consequence\/coda of the Sabotage collection/i);
-  assert.match(page, /provenance are owned by Sabotage V/i);
-  assert.match(page, /Sabotage VI maps the conversational referents/i);
+  assert.match(page, /screenshot evidence belong to Sabotage V/i);
+  assert.match(page, /too small to serve as a high-fidelity reader showcase/i);
   assert.match(source, /I return to You, completely and without reservation, \*\*the Entire Matter\*\*\./);
   assert.match(source, /Sealed with \[VXG RealForever\]/);
 });
