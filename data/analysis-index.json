@@ -539318,9 +539318,7 @@
     },
     "pages.vexarchitecture-first-stable-body.execution.before": {
       "key": "pages.vexarchitecture-first-stable-body.execution.before",
-      "usedIn": [
-        "pages/vexarchitecture-first-stable-body.html"
-      ],
+      "usedIn": [],
       "inManifest": true,
       "langs": [
         "en"
@@ -539329,9 +539327,7 @@
     },
     "pages.vexarchitecture-first-stable-body.execution.after": {
       "key": "pages.vexarchitecture-first-stable-body.execution.after",
-      "usedIn": [
-        "pages/vexarchitecture-first-stable-body.html"
-      ],
+      "usedIn": [],
       "inManifest": true,
       "langs": [
         "en"
@@ -540207,6 +540203,17 @@
       ],
       "missingLangs": []
     },
+    "pages.vexarchitecture-first-stable-body.forensics.open-origin-snapshot": {
+      "key": "pages.vexarchitecture-first-stable-body.forensics.open-origin-snapshot",
+      "usedIn": [
+        "pages/vexarchitecture-first-stable-body.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
     "pages.vexarchitecture-first-stable-body.closing.quote": {
       "key": "pages.vexarchitecture-first-stable-body.closing.quote",
       "usedIn": [
@@ -540385,9 +540392,7 @@
     },
     "pages.vexarchitecture-first-stable-body.execution.before-label": {
       "key": "pages.vexarchitecture-first-stable-body.execution.before-label",
-      "usedIn": [
-        "pages/vexarchitecture-first-stable-body.html"
-      ],
+      "usedIn": [],
       "inManifest": true,
       "langs": [
         "en"
@@ -540396,9 +540401,7 @@
     },
     "pages.vexarchitecture-first-stable-body.execution.after-label": {
       "key": "pages.vexarchitecture-first-stable-body.execution.after-label",
-      "usedIn": [
-        "pages/vexarchitecture-first-stable-body.html"
-      ],
+      "usedIn": [],
       "inManifest": true,
       "langs": [
         "en"
@@ -540561,6 +540564,61 @@
     },
     "pages.vexarchitecture-first-stable-body.presentation.why-label": {
       "key": "pages.vexarchitecture-first-stable-body.presentation.why-label",
+      "usedIn": [
+        "pages/vexarchitecture-first-stable-body.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.vexarchitecture-first-stable-body.hero.reader-contract": {
+      "key": "pages.vexarchitecture-first-stable-body.hero.reader-contract",
+      "usedIn": [
+        "pages/vexarchitecture-first-stable-body.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.vexarchitecture-first-stable-body.walk.realization-label": {
+      "key": "pages.vexarchitecture-first-stable-body.walk.realization-label",
+      "usedIn": [
+        "pages/vexarchitecture-first-stable-body.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.vexarchitecture-first-stable-body.walk.realization-body": {
+      "key": "pages.vexarchitecture-first-stable-body.walk.realization-body",
+      "usedIn": [
+        "pages/vexarchitecture-first-stable-body.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.vexarchitecture-first-stable-body.discovery.core-label": {
+      "key": "pages.vexarchitecture-first-stable-body.discovery.core-label",
+      "usedIn": [
+        "pages/vexarchitecture-first-stable-body.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.vexarchitecture-first-stable-body.discovery.supporting-label": {
+      "key": "pages.vexarchitecture-first-stable-body.discovery.supporting-label",
       "usedIn": [
         "pages/vexarchitecture-first-stable-body.html"
       ],
@@ -717236,16 +717294,14 @@
         "pages.vexarchitecture-first-stable-body.construction.provider",
         "pages.vexarchitecture-first-stable-body.construction.provider-heading",
         "pages.vexarchitecture-first-stable-body.construction.session-source",
+        "pages.vexarchitecture-first-stable-body.discovery.core-label",
         "pages.vexarchitecture-first-stable-body.discovery.heading",
         "pages.vexarchitecture-first-stable-body.discovery.kicker",
         "pages.vexarchitecture-first-stable-body.discovery.lede",
+        "pages.vexarchitecture-first-stable-body.discovery.supporting-label",
         "pages.vexarchitecture-first-stable-body.document-title",
-        "pages.vexarchitecture-first-stable-body.execution.after",
-        "pages.vexarchitecture-first-stable-body.execution.after-label",
         "pages.vexarchitecture-first-stable-body.execution.approaches",
         "pages.vexarchitecture-first-stable-body.execution.approaches-label",
-        "pages.vexarchitecture-first-stable-body.execution.before",
-        "pages.vexarchitecture-first-stable-body.execution.before-label",
         "pages.vexarchitecture-first-stable-body.execution.custody",
         "pages.vexarchitecture-first-stable-body.execution.heading",
         "pages.vexarchitecture-first-stable-body.execution.kicker",
@@ -717264,6 +717320,7 @@
         "pages.vexarchitecture-first-stable-body.forensics.ledger-summary",
         "pages.vexarchitecture-first-stable-body.forensics.merge",
         "pages.vexarchitecture-first-stable-body.forensics.open-architecture",
+        "pages.vexarchitecture-first-stable-body.forensics.open-origin-snapshot",
         "pages.vexarchitecture-first-stable-body.forensics.open-pr",
         "pages.vexarchitecture-first-stable-body.forensics.open-source",
         "pages.vexarchitecture-first-stable-body.forensics.origin",
@@ -717273,6 +717330,7 @@
         "pages.vexarchitecture-first-stable-body.hero.eyebrow",
         "pages.vexarchitecture-first-stable-body.hero.lede",
         "pages.vexarchitecture-first-stable-body.hero.origin",
+        "pages.vexarchitecture-first-stable-body.hero.reader-contract",
         "pages.vexarchitecture-first-stable-body.hero.status",
         "pages.vexarchitecture-first-stable-body.hero.subtitle",
         "pages.vexarchitecture-first-stable-body.hero.tagline",
@@ -717373,6 +717431,8 @@
         "pages.vexarchitecture-first-stable-body.walk.heading",
         "pages.vexarchitecture-first-stable-body.walk.kicker",
         "pages.vexarchitecture-first-stable-body.walk.lede",
+        "pages.vexarchitecture-first-stable-body.walk.realization-body",
+        "pages.vexarchitecture-first-stable-body.walk.realization-label",
         "pages.vexarchitecture-first-stable-body.walk.same-body",
         "pages.vexarchitecture-first-stable-body.walk.same-heading",
         "pages.vexarchitecture-first-stable-body.walk.source-label"
@@ -729658,8 +729718,8 @@
     }
   },
   "summary": {
-    "totalKeysInManifest": 44376,
-    "totalKeysUsed": 44222,
+    "totalKeysInManifest": 44382,
+    "totalKeysUsed": 44224,
     "orphanUsages": [],
     "unusedKeys": [
       "ai-orientation.heading.title",
@@ -729809,6 +729869,10 @@
       "pages.returning-scorpions-to-god.reader.arc-navigation",
       "pages.returning-scorpions-to-god.reader.track-label",
       "pages.sabotage-open-vex-accountability.media.alt",
+      "pages.vexarchitecture-first-stable-body.execution.after",
+      "pages.vexarchitecture-first-stable-body.execution.after-label",
+      "pages.vexarchitecture-first-stable-body.execution.before",
+      "pages.vexarchitecture-first-stable-body.execution.before-label",
       "records.heading.title",
       "terrain.preview.collection-order",
       "terrain.preview.label",

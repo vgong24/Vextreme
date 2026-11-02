@@ -26,10 +26,10 @@ test('VEXARCHITECTURE GUIDE: builder journey precedes forensic provenance', () =
     'theme-walk',
     'execution',
     'outside-truth',
+    'presentation',
     'construction',
     'chronology',
     'convergence',
-    'presentation',
     'subtraction',
     'apply',
     'pressure',
@@ -74,10 +74,10 @@ test('VEXARCHITECTURE GUIDE: ThemeMode teaches semantic carriage rather than cla
   const page = read('pages/vexarchitecture-first-stable-body.html');
 
   assert.ok(page.includes('Parameter.Mode(Dark)'));
-  assert.ok(page.includes('SAME SEMANTIC OBJECT'));
+  assert.ok(page.includes('SAME IN-PROCESS INSTANCE'));
   assert.ok(page.includes('Control.Select(parameter)'));
   assert.ok(page.includes('Effect.Save(parameter)'));
-  assert.ok(page.includes('Method.Save(store, parameter)'));
+  assert.ok(page.includes('Act.Method.Save(store, same parameter)'));
   assert.ok(page.includes('Do not copy ThemeMode. Reuse the questions.'));
 });
 
@@ -85,7 +85,7 @@ test('VEXARCHITECTURE GUIDE: active work, lifetime, chronology, and convergence 
   const page = read('pages/vexarchitecture-first-stable-body.html');
 
   assert.ok(page.includes('RelationshipId'));
-  assert.ok(page.includes('actual Job(s)'));
+  assert.ok(page.includes('VexExecution Job custody'));
   assert.ok(page.includes('parent VexDependencyFactory'));
   assert.ok(page.includes('child VexDependencyFactory'));
   assert.ok(page.includes('VexLogger'));
@@ -123,6 +123,115 @@ test('VEXARCHITECTURE GUIDE: every bound display key exists in the page string s
   assert.deepEqual(missing, []);
   assert.equal(strings._meta.sourceProvenance.originPullRequest, 209);
   assert.equal(strings._meta.sourceProvenance.guideRevision, 'DEVELOPMENT_STANDARD_2_N_BUILDER_FIELD_GUIDE');
+});
+
+
+test('VEXARCHITECTURE GUIDE: opening topology separates core causality from orthogonal relationships', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.ok(page.includes('CORE SEMANTIC + RUNTIME PATH'));
+  assert.ok(page.includes('ORTHOGONAL / CONDITIONAL RELATIONSHIPS'));
+  assert.ok(page.includes('Construction + lifetime'));
+  assert.ok(page.includes('Chronology / VexLogger'));
+  assert.ok(page.includes('Relay / convergence'));
+  assert.equal(page.includes('CONSTRUCTION + LIFETIME\n  ↓\nCHRONOLOGY\n  ↓\nCONVERGENCE'), false);
+});
+
+test('VEXARCHITECTURE GUIDE: Parameter and RelationshipId are earned rather than mandatory ceremony', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.ok(page.includes('Parameter is optional and earned'));
+  assert.ok(page.includes('Independent work'));
+  assert.ok(page.includes('no maintained RelationshipId'));
+  assert.ok(page.includes('Earliest / Latest / Queued work'));
+  assert.ok(page.includes('optional typed ResourceId when genuinely distinguishing'));
+  assert.ok(page.includes('ordinary Control payload'));
+  assert.ok(page.includes('NOT identity'));
+});
+
+test('VEXARCHITECTURE GUIDE: realization seam preserves pure Act meaning and fully-bound Method execution', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.ok(page.includes('Begin remains inert'));
+  assert.ok(page.includes('fully-bound Act.Method.Save'));
+  assert.ok(page.includes('Act.launchWith(executionRoot).method'));
+  assert.ok(page.includes('already-authored owner / Approach / RelationshipId'));
+});
+
+test('VEXARCHITECTURE GUIDE: ThemeMode referential currentness stays explicitly local to ThemeMode', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.ok(page.includes('Same in-process Parameter instance'));
+  assert.ok(page.includes('referentially the same instance (===)'));
+  assert.ok(page.includes('This is ThemeMode-specific, not a generic currentness framework.'));
+  assert.ok(page.includes('Store carries no revision proving it is newer than B'));
+});
+
+test('VEXARCHITECTURE GUIDE: Relay is conditional composition and graph remains projection-only', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.ok(page.includes('Relay is not a mandatory stage after Family or Execution.'));
+  assert.ok(page.includes("another Family's public Control/Port"));
+  assert.ok(page.includes('invoke a foreign Effect directly'));
+  assert.ok(page.includes('VexLifeRelayGraph is only a session-level projection'));
+  assert.ok(page.includes('does not construct, activate, or semantically own them'));
+});
+
+test('VEXARCHITECTURE GUIDE: projection never claims rendered presentation arrival by itself', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.ok(page.includes('presentation arrival, when actually observed'));
+  assert.ok(page.includes('Projection describes what presentation should manifest.'));
+  assert.ok(page.includes('It does not, by itself, prove what actually reached the human.'));
+  assert.equal(page.includes('MaterialTheme / system bars / Compose Surface\n      ↓\nhuman experience'), false);
+});
+
+
+test('VEXARCHITECTURE GUIDE: narrow screens do not require horizontal scrolling to read core material', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.ok(page.includes('white-space: pre-wrap'));
+  assert.ok(page.includes('overflow-x: hidden'));
+  assert.ok(page.includes('overflow-wrap: anywhere'));
+  assert.ok(page.includes('display: flex;\n      flex-wrap: wrap;'));
+  assert.ok(page.includes('calc(100% - 12px)'));
+});
+
+test('VEXARCHITECTURE GUIDE: short ownership explanations are visible without accordion interaction', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.equal(page.includes('<details class="owner-card"'), false);
+  assert.ok(page.includes('Core causal path · sequential'));
+  assert.ok(page.includes('Supporting relationships · orthogonal / conditional'));
+
+  const family = page.indexOf('Family · semantic meaning');
+  const execution = page.indexOf('Execution · active custody');
+  const store = page.indexOf('Store / provider · outside truth');
+  const presentation = page.indexOf('Projection / presentation · human meaning');
+  const construction = page.indexOf('Dependency Factory · construction');
+  assert.ok(family < execution && execution < store && store < presentation && presentation < construction);
+});
+
+test('VEXARCHITECTURE GUIDE: numbered reading path follows causality while supporting relationships remain unnumbered', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.ok(page.includes('07 · From semantic truth to human experience'));
+  assert.ok(page.includes('Supporting topology · construction and lifetime'));
+  assert.ok(page.includes('Cross-cutting observation · chronology'));
+  assert.ok(page.includes('Conditional composition · Relay / convergence'));
+  assert.ok(page.includes('08 · What reality made unnecessary'));
+  assert.ok(page.includes('09 · Use it on your own feature'));
+  assert.ok(page.includes('10 · Try the questions on something harder'));
+});
+
+test('VEXARCHITECTURE GUIDE: current source and accepted #209 snapshot remain distinct reader choices', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.ok(page.includes('Open current VexArchitecture source guide ↗'));
+  assert.ok(page.includes('blob/main/architecture/vexarchitecture/README.md'));
+  assert.ok(page.includes('Open accepted #209 source snapshot ↗'));
+  assert.ok(page.includes('blob/66c866dea6a8dd78e2946da88715c4deb78c1847/architecture/vexarchitecture/README.md'));
+  assert.ok(page.includes('Open PR #209 reasoning record ↗'));
 });
 
 // [VXG RealForever]
