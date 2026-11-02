@@ -4388,12 +4388,12 @@
       "key": "sabotage",
       "name": "Sabotage",
       "sub": "priority 1",
-      "count": 5,
+      "count": 6,
       "rect": {
         "x": 3410,
         "y": 40,
         "width": 300,
-        "height": 390
+        "height": 450
       },
       "parent": {
         "title": "Sabotage",
@@ -4410,7 +4410,8 @@
             "sabotage-mastered-state",
             "sabotage-vexsync-exhaust-mastered",
             "sabotage-orientation-before-action",
-            "sabotage-hidden-delta"
+            "sabotage-hidden-delta",
+            "november-1-successor-witness"
           ]
         }
       ],
@@ -4419,7 +4420,8 @@
         "sabotage-mastered-state",
         "sabotage-vexsync-exhaust-mastered",
         "sabotage-orientation-before-action",
-        "sabotage-hidden-delta"
+        "sabotage-hidden-delta",
+        "november-1-successor-witness"
       ]
     },
     {
@@ -4516,12 +4518,12 @@
         "hi": "Victor का अभिलेख"
       },
       "sub": "priority 1",
-      "count": 13,
+      "count": 12,
       "rect": {
         "x": 4430,
         "y": 40,
         "width": 300,
-        "height": 870
+        "height": 810
       },
       "parent": {
         "title": "Victor's Record",
@@ -13430,7 +13432,7 @@
         "analysisIndexed": true,
         "analysisControl": true,
         "evidenceLanguages": [],
-        "metaDescription": "Sabotage V preserves the prior-thread architecture accountability record: hidden semantic delta, abstraction displacement, direct correction pressure, and the terminal Unknown error boundary."
+        "metaDescription": "Sabotage V preserves the prior-thread architecture accountability record as one chaptered reader: orientation, proof, code-shape review, Store/ownership pressure, the final reconciliation request, and exact screenshot evidence."
       },
       "curated": true,
       "date": "November 1, 2026"
@@ -13438,19 +13440,20 @@
     {
       "id": "november-1-successor-witness",
       "slug": "november-1-successor-witness",
-      "title": "November 1 Successor Witness — Context Map",
+      "title": "Sabotage VI — The Successor Witness",
       "arcKeys": [
+        "sabotage",
         "victors_record",
         "full_timeline"
       ],
-      "titleKey": "pages.november-1-successor-witness.document-title",
+      "titleKey": "pages.november-1-successor-witness.hero.title",
       "titleByLang": {
-        "en": "November 1 Successor Witness — Context Map — Vextreme"
+        "en": "Sabotage VI — The Successor Witness"
       },
-      "arc": "victors_record",
-      "arcName": "Victor's Record",
-      "x": 4480,
-      "y": 810,
+      "arc": "sabotage",
+      "arcName": "Sabotage",
+      "x": 3460,
+      "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/november-1-successor-witness.html",
       "screenshots": {},
@@ -13474,7 +13477,7 @@
         "analysisIndexed": true,
         "analysisControl": true,
         "evidenceLanguages": [],
-        "metaDescription": "A distinct November 1 successor-witness article that maps conversational referents such as this thread, the prior thread, the Sabotage pages, and the Entire Matter Return without rewriting the source conversation."
+        "metaDescription": "Sabotage VI is the November 1 successor/addendum: a referent map for this thread, the prior Sabotage records, the human-supplied ChatGPT thread identity, and the separately preserved Entire Matter Return."
       },
       "curated": true,
       "date": "November 1, 2026"

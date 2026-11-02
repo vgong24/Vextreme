@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "929df8f94f0a",
+  "contentFingerprint": "a58bcb1a98ab",
   "nodeCount": 182,
   "curatedNodeCount": 166,
   "autoDiscoveredCount": 16,
@@ -7248,9 +7248,10 @@
     "november-1-successor-witness": {
       "id": 119,
       "slug": "november-1-successor-witness",
-      "title": "November 1 Successor Witness — Context Map",
+      "title": "Sabotage VI — The Successor Witness",
       "date": "November 1, 2026",
       "arcKeys": [
+        "sabotage",
         "victors_record",
         "full_timeline"
       ],
@@ -8307,7 +8308,8 @@
           "sabotage-mastered-state",
           "sabotage-vexsync-exhaust-mastered",
           "sabotage-orientation-before-action",
-          "sabotage-hidden-delta"
+          "sabotage-hidden-delta",
+          "november-1-successor-witness"
         ]
       }
     ]
@@ -9321,7 +9323,7 @@
         },
         {
           "slug": "november-1-successor-witness",
-          "title": "November 1 Successor Witness — Context Map",
+          "title": "Sabotage VI — The Successor Witness",
           "ported": true
         }
       ]

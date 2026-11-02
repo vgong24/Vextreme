@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.covenant"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en"];
-  window.VEX_INDEX_FINGERPRINT = "929df8f94f0a";
+  window.VEX_INDEX_FINGERPRINT = "a58bcb1a98ab";
 
 
 
