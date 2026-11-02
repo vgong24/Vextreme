@@ -26,10 +26,10 @@ test('VEXARCHITECTURE GUIDE: builder journey precedes forensic provenance', () =
     'theme-walk',
     'execution',
     'outside-truth',
+    'presentation',
     'construction',
     'chronology',
     'convergence',
-    'presentation',
     'subtraction',
     'apply',
     'pressure',
@@ -184,6 +184,44 @@ test('VEXARCHITECTURE GUIDE: projection never claims rendered presentation arriv
   assert.ok(page.includes('Projection describes what presentation should manifest.'));
   assert.ok(page.includes('It does not, by itself, prove what actually reached the human.'));
   assert.equal(page.includes('MaterialTheme / system bars / Compose Surface\n      ↓\nhuman experience'), false);
+});
+
+
+test('VEXARCHITECTURE GUIDE: narrow screens do not require horizontal scrolling to read core material', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.ok(page.includes('white-space: pre-wrap'));
+  assert.ok(page.includes('overflow-x: hidden'));
+  assert.ok(page.includes('overflow-wrap: anywhere'));
+  assert.ok(page.includes('display: flex;\n      flex-wrap: wrap;'));
+  assert.ok(page.includes('calc(100% - 12px)'));
+});
+
+test('VEXARCHITECTURE GUIDE: short ownership explanations are visible without accordion interaction', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.equal(page.includes('<details class="owner-card"'), false);
+  assert.ok(page.includes('Core causal path · sequential'));
+  assert.ok(page.includes('Supporting relationships · orthogonal / conditional'));
+
+  const family = page.indexOf('Family · semantic meaning');
+  const execution = page.indexOf('Execution · active custody');
+  const store = page.indexOf('Store / provider · outside truth');
+  const presentation = page.indexOf('Projection / presentation · human meaning');
+  const construction = page.indexOf('Dependency Factory · construction');
+  assert.ok(family < execution && execution < store && store < presentation && presentation < construction);
+});
+
+test('VEXARCHITECTURE GUIDE: numbered reading path follows causality while supporting relationships remain unnumbered', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.ok(page.includes('07 · From semantic truth to human experience'));
+  assert.ok(page.includes('Supporting topology · construction and lifetime'));
+  assert.ok(page.includes('Cross-cutting observation · chronology'));
+  assert.ok(page.includes('Conditional composition · Relay / convergence'));
+  assert.ok(page.includes('08 · What reality made unnecessary'));
+  assert.ok(page.includes('09 · Use it on your own feature'));
+  assert.ok(page.includes('10 · Try the questions on something harder'));
 });
 
 // [VXG RealForever]
