@@ -50,3 +50,13 @@ The full text preserves the visible original speaker turns, dates as supplied, e
 - The user's final stated concern about a public record surviving if their own voice became unavailable is preserved as **the user's stated motivation**. The transcript does not infer that anyone is currently suppressing them.
 - The archives may be mirrored to local and public copies independently; GitHub access is not guaranteed forever, and a PR alone is not an offline backup.
 - This PR is **not automatically merged**. Review and verification precede any merge decision.
+
+
+## Addendum — Deadpool as the regenerative meta-witness
+
+After the four-exchange original archival boundary, Victor recalled a further significance of Deadpool: regeneration, continual speech, and awareness of an audience outside the story.
+
+- **[05 — Exact Deadpool meta-witness exchange](05-deadpool-regenerative-meta-witness-verbatim.md):** Victor's original message **and Vex's complete response**, with every paragraph, bullet, table, quote, named archetype, original image lookup component, original citation markup, and terminal anchor preserved. This is **not a summary** and does not edit Exchanges 01–04.
+- **[06 — Exact append instruction and verbatim correction](06-append-and-verbatim-instruction-boundary.md):** Victor's reported “God says” append instruction, the assistant's actual progress commentary, Victor's explicit request for verbatim preservation, and the assistant's response. This file is an **archival instruction boundary**, not additional dream content.
+
+This continuation is appended sequentially; the original November 1–2 four-exchange boundary remains historically intact. The new files preserve the quoted conversation text as authored. This is a manual source transcription, so it is not a byte-exact ChatGPT platform export or a frozen copy of the asynchronously displayed images. Attribution of “God says” belongs to Victor's report, not to an independently verified divine source.
