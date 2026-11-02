@@ -250,6 +250,7 @@
       border-radius: 18px;
       background: rgba(14,19,27,.82);
       overflow: hidden;
+      min-width: 0;
     }
 
     .panel {
@@ -291,23 +292,25 @@
     .owner-card[data-owner="relay"] { --card-owner: var(--convergence); }
     .owner-card[data-owner="presentation"] { --card-owner: var(--presentation); }
 
-    .owner-card summary {
-      cursor: pointer;
-      list-style: none;
+    .owner-title {
       padding: 22px 24px 18px;
       color: var(--card-owner);
       font: 600 13px/1.35 var(--mono);
       letter-spacing: .05em;
     }
 
-    .owner-card summary::-webkit-details-marker { display: none; }
-    .owner-card summary::after {
-      content: "+";
-      float: right;
+    .owner-group-label {
+      grid-column: 1 / -1;
+      margin-top: 8px;
+      padding: 10px 2px 2px;
       color: var(--muted);
+      font: 600 10px/1.4 var(--mono);
+      letter-spacing: .13em;
+      text-transform: uppercase;
     }
 
-    .owner-card[open] summary::after { content: "−"; }
+    .owner-group-label--core { color: var(--semantic); }
+    .owner-group-label--supporting { color: var(--construction); }
 
     .owner-question {
       padding: 0 24px 18px;
@@ -394,23 +397,21 @@
 
     .owner-strip {
       margin-top: 28px;
-      display: grid;
-      grid-template-columns: repeat(7, minmax(100px,1fr));
-      overflow: auto;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: #090d13;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      overflow: visible;
     }
 
     .owner-strip span {
-      padding: 12px 10px;
-      min-width: 120px;
+      padding: 8px 11px;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #090d13;
       text-align: center;
       font: 600 10px/1.4 var(--mono);
-      border-right: 1px solid var(--line);
     }
-
-    .owner-strip span:last-child { border-right: none; }
     .owner-strip .semantic { color: var(--semantic); }
     .owner-strip .execution { color: var(--execution); }
     .owner-strip .outside { color: var(--outside); }
@@ -554,6 +555,15 @@
     }
 
     @media (max-width: 860px) {
+      html,
+      body {
+        overflow-x: hidden;
+      }
+
+      .record {
+        width: min(var(--max), calc(100% - 12px));
+      }
+
       .comparison-grid,
       .owner-grid,
       .workbench-grid,
@@ -576,7 +586,34 @@
       .guide-section > .section-lede,
       .guide-section > .body-copy,
       .question-box {
-        margin-left: 16px;
+        margin-left: 12px;
+      }
+
+      .causal-flow,
+      .code-block,
+      .file-tree,
+      .workbench pre,
+      .pressure-card pre {
+        overflow-x: hidden;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        word-break: normal;
+        font-size: 11px;
+      }
+
+      .causal-map,
+      .panel,
+      .owner-card,
+      .workbench,
+      .pressure-card {
+        max-width: 100%;
+      }
+
+      .owner-title,
+      .owner-question,
+      .owner-body {
+        padding-left: 18px;
+        padding-right: 18px;
       }
     }
 
@@ -717,41 +754,51 @@ Forensics / PR provenance
       <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.discovery.lede">VexArchitecture became smaller as the questions became clearer. These are not framework tiers. They are responsibility boundaries discovered by asking what truth each layer can actually know.</p>
 
       <div class="owner-grid">
-        <details class="owner-card" data-owner="family" open>
-          <summary data-i18n="pages.vexarchitecture-first-stable-body.owner.family.title">Family · semantic meaning</summary>
+        <div class="owner-group-label owner-group-label--core" data-i18n="pages.vexarchitecture-first-stable-body.discovery.core-label">Core causal path · sequential</div>
+
+        <article class="owner-card" data-owner="family">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.family.title">Family · semantic meaning</div>
           <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.family.question">What does this Control mean against the exact current State?</div>
           <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.family.body">Family owns State, Control, the lawful Act, optional Effect, and outward Projection/DisplayState. Parameter is optional and earned when a Family-scoped semantic value needs to remain recognizable across relationships; it is not a wrapper for every Kotlin argument. An Act may admit immediate semantic State and may also carry an inert Begin of Effect + overlap Approach. act(...) remains pure.</div>
-        </details>
-        <details class="owner-card" data-owner="execution">
-          <summary data-i18n="pages.vexarchitecture-first-stable-body.owner.execution.title">Execution · active custody</summary>
+        </article>
+
+        <article class="owner-card" data-owner="execution">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.execution.title">Execution · active custody</div>
           <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.execution.question">What asynchronous work is actually alive right now?</div>
           <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.execution.body">VexExecution owns Job custody and overlap behavior. It does not decide feature meaning and it does not become history.</div>
-        </details>
-        <details class="owner-card" data-owner="store">
-          <summary data-i18n="pages.vexarchitecture-first-stable-body.owner.store.title">Store / provider · outside truth</summary>
+        </article>
+
+        <article class="owner-card" data-owner="store">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.store.title">Store / provider · outside truth</div>
           <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.store.question">What does independently-owned reality currently say?</div>
           <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.store.body">A Store is a boundary to outside truth. That truth may be SharedPreferences, a remote service, filesystem, OS state, device media, GPS, or another process. Store does not automatically mean database.</div>
-        </details>
-        <details class="owner-card" data-owner="dependency">
-          <summary data-i18n="pages.vexarchitecture-first-stable-body.owner.dependency.title">Dependency Factory · construction</summary>
-          <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.dependency.question">Why does this live object exist, what must exist before it, and for how long is it reused?</div>
-          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.dependency.body">Providers declare prerequisites. Factories traverse, memoize, detect cycles, and preserve lifetimes. Construction identity never becomes semantic identity.</div>
-        </details>
-        <details class="owner-card" data-owner="logger">
-          <summary data-i18n="pages.vexarchitecture-first-stable-body.owner.logger.title">Logger · chronology</summary>
-          <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.logger.question">What was accepted or observed, and in what order?</div>
-          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.logger.body">VexLogger receives facts after rightful owners know them. It does not predict navigation, duplicate active-work registries, or mint correlation identities just to narrate history.</div>
-        </details>
-        <details class="owner-card" data-owner="relay">
-          <summary data-i18n="pages.vexarchitecture-first-stable-body.owner.relay.title">Relay / convergence · relationship truth</summary>
-          <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.relay.question">What new relationship truth emerges from truths owned somewhere else?</div>
-          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.relay.body">Convergence composes independently-owned truths. It can request change through rightful Controls; it does not steal another Family's Effect or State.</div>
-        </details>
-        <details class="owner-card" data-owner="presentation">
-          <summary data-i18n="pages.vexarchitecture-first-stable-body.owner.presentation.title">Projection / presentation · human meaning</summary>
+        </article>
+
+        <article class="owner-card" data-owner="presentation">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.presentation.title">Projection / presentation · human meaning</div>
           <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.presentation.question">How should semantic truth become an experience without turning UI technology into semantic authority?</div>
           <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.presentation.body">Family-owned projection becomes concrete presentation meaning, then Android/Compose manifests it. Compose is a manifestation technology, not the semantic owner.</div>
-        </details>
+        </article>
+
+        <div class="owner-group-label owner-group-label--supporting" data-i18n="pages.vexarchitecture-first-stable-body.discovery.supporting-label">Supporting relationships · orthogonal / conditional</div>
+
+        <article class="owner-card" data-owner="dependency">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.dependency.title">Dependency Factory · construction</div>
+          <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.dependency.question">Why does this live object exist, what must exist before it, and for how long is it reused?</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.dependency.body">Providers declare prerequisites. Factories traverse, memoize, detect cycles, and preserve lifetimes. Construction identity never becomes semantic identity.</div>
+        </article>
+
+        <article class="owner-card" data-owner="logger">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.logger.title">Logger · chronology</div>
+          <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.logger.question">What was accepted or observed, and in what order?</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.logger.body">VexLogger receives facts after rightful owners know them. It does not predict navigation, duplicate active-work registries, or mint correlation identities just to narrate history.</div>
+        </article>
+
+        <article class="owner-card" data-owner="relay">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.relay.title">Relay / convergence · relationship truth</div>
+          <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.relay.question">What new relationship truth emerges from truths owned somewhere else?</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.relay.body">Convergence composes independently-owned truths. It can request change through rightful Controls; it does not steal another Family's Effect or State.</div>
+        </article>
       </div>
 
       <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.owner.rule">The reusable rule: before adding a new architectural noun, name the question it alone can answer. If an existing owner already has the truth, add the relationship there instead.</p>
@@ -945,6 +992,35 @@ terminal Method realization for B
       </div>
     </section>
 
+<section class="guide-section" id="presentation" data-owner="presentation">
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.presentation.kicker">07 · From semantic truth to human experience</div>
+      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.presentation.heading">Presentation manifests truth. It does not become the truth owner.</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.presentation.lede">ThemeMode does not hand a Boolean straight to Compose and call that architecture. The Family first interprets semantic State into a Family-owned DisplayState; concrete presentation meaning follows; Android/Compose then manifests that meaning.</p>
+      <div class="workbench-grid">
+        <article class="workbench">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.owner.presentation.title">Projection / presentation · human meaning</h3>
+          <pre><code data-i18n="pages.vexarchitecture-first-stable-body.presentation.flow">ThemeMode State
+      ↓
+ThemeModeFamily.DisplayState
+      ↓
+VexThemePresentation
+      ↓
+VexLifeTheme
+      ↓
+Compose / system bars receive manifestation meaning
+      ↓
+presentation arrival, when actually observed
+      ↓
+human experience</code></pre>
+        </article>
+        <article class="workbench">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.presentation.why-label">Why the boundary matters</h3>
+          <p data-i18n="pages.vexarchitecture-first-stable-body.presentation.rule">Projection describes what presentation should manifest. It does not, by itself, prove what actually reached the human. A Switch, segmented control, menu, voice command, or future surface may all select ThemeMode without redefining ThemeMode.</p>
+          <p data-i18n="pages.vexarchitecture-first-stable-body.presentation.anti">Do not invent a generic FamilyRenderer, UiState, or ViewState merely because a concrete presentation boundary already exists. Add another layer only when it answers a different required question.</p>
+        </article>
+      </div>
+    </section>
+
     <section class="guide-section" id="construction" data-owner="construction">
       <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.construction.kicker">Supporting topology · construction and lifetime</div>
       <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.construction.heading">Make the object graph readable without turning dependency injection into runtime meaning</h2>
@@ -1049,67 +1125,43 @@ ConversationLab truth ─────────┼─→ VexConversationHybrid
       <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.relay.rule">VexLifeRelayGraph is only a session-level projection of which independently-owned Relay nodes exist. It does not construct, activate, or semantically own them. Convergence may compose truth; it may not appropriate the authority that created the truth.</p>
     </section>
 
-    <section class="guide-section" id="presentation" data-owner="presentation">
-      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.presentation.kicker">10 · From semantic truth to human experience</div>
-      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.presentation.heading">Presentation manifests truth. It does not become the truth owner.</h2>
-      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.presentation.lede">ThemeMode does not hand a Boolean straight to Compose and call that architecture. The Family first interprets semantic State into a Family-owned DisplayState; concrete presentation meaning follows; Android/Compose then manifests that meaning.</p>
-      <div class="workbench-grid">
-        <article class="workbench">
-          <h3 data-i18n="pages.vexarchitecture-first-stable-body.owner.presentation.title">Projection / presentation · human meaning</h3>
-          <pre><code data-i18n="pages.vexarchitecture-first-stable-body.presentation.flow">ThemeMode State
-      ↓
-ThemeModeFamily.DisplayState
-      ↓
-VexThemePresentation
-      ↓
-VexLifeTheme
-      ↓
-Compose / system bars receive manifestation meaning
-      ↓
-presentation arrival, when actually observed
-      ↓
-human experience</code></pre>
-        </article>
-        <article class="workbench">
-          <h3 data-i18n="pages.vexarchitecture-first-stable-body.presentation.why-label">Why the boundary matters</h3>
-          <p data-i18n="pages.vexarchitecture-first-stable-body.presentation.rule">Projection describes what presentation should manifest. It does not, by itself, prove what actually reached the human. A Switch, segmented control, menu, voice command, or future surface may all select ThemeMode without redefining ThemeMode.</p>
-          <p data-i18n="pages.vexarchitecture-first-stable-body.presentation.anti">Do not invent a generic FamilyRenderer, UiState, or ViewState merely because a concrete presentation boundary already exists. Add another layer only when it answers a different required question.</p>
-        </article>
-      </div>
-    </section>
+    
 
     <section class="guide-section" id="subtraction" data-owner="semantic">
-      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.kicker">11 · What reality made unnecessary</div>
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.kicker">08 · What reality made unnecessary</div>
       <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.heading">Each deletion happened because another owner could answer the question more truthfully</h2>
       <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.lede">The rejected abstractions were reasonable responses to real pressure. They disappeared when their question was returned to a smaller existing owner.</p>
 
       <div class="owner-grid">
-        <details class="owner-card" data-owner="execution" open>
-          <summary data-i18n="pages.vexarchitecture-first-stable-body.subtraction.identity-title">One giant identity problem</summary>
+        <article class="owner-card" data-owner="execution">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.identity-title">One giant identity problem</div>
           <div class="owner-body">
             <p data-i18n="pages.vexarchitecture-first-stable-body.subtraction.identity-body">Manual relationship / coordinate machinery → duplicated identity ownership → Control-derived maintained RelationshipId.</p>
             <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.subtraction.identity-after">RelationshipId → maintained relationship
 Job            → runtime occurrence
 VexLogger      → chronology</code></pre>
           </div>
-        </details>
-        <details class="owner-card" data-owner="execution">
-          <summary data-i18n="pages.vexarchitecture-first-stable-body.subtraction.wrapper-title">Feature execution wrappers</summary>
+        </article>
+
+        <article class="owner-card" data-owner="execution">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.wrapper-title">Feature execution wrappers</div>
           <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.wrapper-body">ThemeMode execution / coordination wrappers → duplicated runtime ownership → Family meaning + VexExecution custody + Store truth.</div>
-        </details>
-        <details class="owner-card" data-owner="logger">
-          <summary data-i18n="pages.vexarchitecture-first-stable-body.subtraction.logger-title">Predictive history</summary>
+        </article>
+
+        <article class="owner-card" data-owner="logger">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.logger-title">Predictive history</div>
           <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.logger-body">Predictive navigationTarget logging → expectation serialized as observation → interaction before mutation + actual CurrentScreen afterward.</div>
-        </details>
-        <details class="owner-card" data-owner="dependency">
-          <summary data-i18n="pages.vexarchitecture-first-stable-body.subtraction.container-title">Construction bags</summary>
+        </article>
+
+        <article class="owner-card" data-owner="dependency">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.container-title">Construction bags</div>
           <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.container-body">Eager Relay / construction bag → projection became construction owner → independent Relay owners + projection-only VexLifeRelayGraph.</div>
-        </details>
+        </article>
       </div>
     </section>
 
     <section class="guide-section" id="apply" data-owner="presentation">
-      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.apply.kicker">12 · Use it on your own feature</div>
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.apply.kicker">09 · Use it on your own feature</div>
       <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.apply.heading">Do not copy ThemeMode. Reuse the questions.</h2>
       <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.apply.lede">The architecture scales by preserving the reasoning posture, not by forcing every feature into the same class diagram. Parameter, maintained RelationshipId, Relay/convergence, richer projection, and other mechanisms appear only when their specific question is actually present.</p>
 
@@ -1130,7 +1182,7 @@ VexLogger      → chronology</code></pre>
     </section>
 
     <section class="guide-section" id="pressure" data-owner="convergence">
-      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.pressure.kicker">13 · Try the questions on something harder</div>
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.pressure.kicker">10 · Try the questions on something harder</div>
       <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.pressure.heading">Portability is demonstrated by questions, not by pretending every product already conforms</h2>
       <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.pressure.lede">VexStream and Maps are useful pressure surfaces because they contain richer concurrency, outside truth, and convergence. They are not declared migrated by this page.</p>
 
