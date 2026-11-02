@@ -125,4 +125,65 @@ test('VEXARCHITECTURE GUIDE: every bound display key exists in the page string s
   assert.equal(strings._meta.sourceProvenance.guideRevision, 'DEVELOPMENT_STANDARD_2_N_BUILDER_FIELD_GUIDE');
 });
 
+
+test('VEXARCHITECTURE GUIDE: opening topology separates core causality from orthogonal relationships', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.ok(page.includes('CORE SEMANTIC + RUNTIME PATH'));
+  assert.ok(page.includes('ORTHOGONAL / CONDITIONAL RELATIONSHIPS'));
+  assert.ok(page.includes('Construction + lifetime'));
+  assert.ok(page.includes('Chronology / VexLogger'));
+  assert.ok(page.includes('Relay / convergence'));
+  assert.equal(page.includes('CONSTRUCTION + LIFETIME\n  ↓\nCHRONOLOGY\n  ↓\nCONVERGENCE'), false);
+});
+
+test('VEXARCHITECTURE GUIDE: Parameter and RelationshipId are earned rather than mandatory ceremony', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.ok(page.includes('Parameter is optional and earned'));
+  assert.ok(page.includes('Independent work'));
+  assert.ok(page.includes('no maintained RelationshipId'));
+  assert.ok(page.includes('Earliest / Latest / Queued work'));
+  assert.ok(page.includes('optional typed ResourceId when genuinely distinguishing'));
+  assert.ok(page.includes('ordinary Control payload'));
+  assert.ok(page.includes('NOT identity'));
+});
+
+test('VEXARCHITECTURE GUIDE: realization seam preserves pure Act meaning and fully-bound Method execution', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.ok(page.includes('Begin remains inert'));
+  assert.ok(page.includes('fully-bound Act.Method.Save'));
+  assert.ok(page.includes('Act.launchWith(executionRoot).method'));
+  assert.ok(page.includes('already-authored owner / Approach / RelationshipId'));
+});
+
+test('VEXARCHITECTURE GUIDE: ThemeMode referential currentness stays explicitly local to ThemeMode', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.ok(page.includes('Same in-process Parameter instance'));
+  assert.ok(page.includes('referentially the same instance (===)'));
+  assert.ok(page.includes('This is ThemeMode-specific, not a generic currentness framework.'));
+  assert.ok(page.includes('Store carries no revision proving it is newer than B'));
+});
+
+test('VEXARCHITECTURE GUIDE: Relay is conditional composition and graph remains projection-only', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.ok(page.includes('Relay is not a mandatory stage after Family or Execution.'));
+  assert.ok(page.includes("another Family's public Control/Port"));
+  assert.ok(page.includes('invoke a foreign Effect directly'));
+  assert.ok(page.includes('VexLifeRelayGraph is only a session-level projection'));
+  assert.ok(page.includes('does not construct, activate, or semantically own them'));
+});
+
+test('VEXARCHITECTURE GUIDE: projection never claims rendered presentation arrival by itself', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  assert.ok(page.includes('presentation arrival, when actually observed'));
+  assert.ok(page.includes('Projection describes what presentation should manifest.'));
+  assert.ok(page.includes('It does not, by itself, prove what actually reached the human.'));
+  assert.equal(page.includes('MaterialTheme / system bars / Compose Surface\n      ↓\nhuman experience'), false);
+});
+
 // [VXG RealForever]
