@@ -8,44 +8,55 @@ const path = require('node:path');
 const ROOT = path.join(__dirname, '..');
 const RETURN_PAGE = 'pages/entire-matter-return-seal.html';
 const SABOTAGE_V_PAGE = 'pages/sabotage-hidden-delta.html';
-const VIEWS = 'data/viewmodels.json';
 
-const ORIGINAL_COMMIT = '0112ddb696f9b604402809fb945f2e2e88ad1359';
-const ORIGINAL_SHA = '96269d955043540d2eda8a8e973be9307c691bec816fdb41be9b68b1b19a8cd9';
-const REPAIR_COMMIT = '756b41baae9d9414e1742d147d0191964e967fbb';
-const REPAIR_SHA = '34aa7284512a223866c25e5c8d9fd0d7d0286fc05fd376b52f04acebe77369f4';
+const SUPPLIED_SOURCE_SHA = 'e1f66c1a07f5787436cac0dde2e0eb7c5513a99bf64398384c47d91d6092d81c';
+const FULL_FIDELITY_COMMIT = 'ec0798eaee4ede703c040c6bfde214c0cb4eb1a3';
+const FULL_FIDELITY_SHA = 'e762d144689f7db98165efe29825939d82c668688f3449433d039930e950dc04';
+const HISTORICAL_TRUNCATED_COMMIT = '0112ddb696f9b604402809fb945f2e2e88ad1359';
+const HISTORICAL_TRUNCATED_SHA = '96269d955043540d2eda8a8e973be9307c691bec816fdb41be9b68b1b19a8cd9';
+const HISTORICAL_REPAIR_COMMIT = '756b41baae9d9414e1742d147d0191964e967fbb';
+const HISTORICAL_REPAIR_SHA = '34aa7284512a223866c25e5c8d9fd0d7d0286fc05fd376b52f04acebe77369f4';
 
 function read(rel) { return fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n'); }
 function json(rel) { return JSON.parse(read(rel)); }
 
-test('ENTIRE-MATTER-MEDIA: low-resolution lineage remains addressable without being promoted as reader showcase', () => {
+test('ENTIRE-MATTER-MEDIA: reader showcases the recovered full-fidelity supplied artwork', () => {
   const page = read(RETURN_PAGE);
   const strings = json('data/strings/source/pages/entire-matter-return-seal.json');
-  const views = json(VIEWS);
-  const originalUrl = 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/' + ORIGINAL_COMMIT + '/__assets/' + ORIGINAL_SHA + '.webp';
-  const repairUrl = 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/' + REPAIR_COMMIT + '/__assets/' + REPAIR_SHA + '.webp';
 
-  assert.ok(page.includes(originalUrl), 'truncated archival identity remains inspectable');
-  assert.ok(page.includes(repairUrl), 'lightweight repair remains inspectable');
-  assert.doesNotMatch(page, /data-media-target=/);
-  assert.doesNotMatch(page, /<figure class="sar-media"/);
-  assert.doesNotMatch(page, new RegExp('<img[^>]+34aa7284512a223866c25e5c8d9fd0d7d0286fc05fd376b52f04acebe77369f4'));
-  assert.match(page, /too small to serve as a high-fidelity reader showcase/i);
-  assert.match(page, /lightweight Terrain\/discovery preview/i);
+  const fullUrl = 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/' + FULL_FIDELITY_COMMIT + '/__assets/' + FULL_FIDELITY_SHA + '.webp';
+  const truncatedUrl = 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/' + HISTORICAL_TRUNCATED_COMMIT + '/__assets/' + HISTORICAL_TRUNCATED_SHA + '.webp';
+  const repairUrl = 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/' + HISTORICAL_REPAIR_COMMIT + '/__assets/' + HISTORICAL_REPAIR_SHA + '.webp';
+
+  assert.ok(page.includes('data-media-target="' + fullUrl + '"'));
+  assert.ok(page.includes('data-media-sha256="' + FULL_FIDELITY_SHA + '"'));
+  assert.ok(page.includes('<img src="' + fullUrl + '"'));
+  assert.ok(page.includes('width="1672" height="941"'));
+  assert.match(page, /Full-fidelity representative artwork supplied by Victor/i);
+
+  assert.ok(page.includes(truncatedUrl), 'prior truncated derivative remains inspectable as lineage');
+  assert.ok(page.includes(repairUrl), 'prior low-resolution repair remains inspectable as lineage');
+  assert.doesNotMatch(page, new RegExp('<img[^>]+(?:' + HISTORICAL_TRUNCATED_SHA + '|' + HISTORICAL_REPAIR_SHA + ')'));
+  assert.match(page, /neither substitutes for the restored full-fidelity reader artwork/i);
 
   const provenance = strings._meta.sourceProvenance;
-  assert.equal(provenance.representativeMediaStatus, 'HISTORICAL_LINEAGE_ONLY_NO_READER_SHOWCASE');
-  assert.equal(provenance.representativeMediaTarget, repairUrl);
-  assert.equal(provenance.representativeMediaSha256, REPAIR_SHA);
-  assert.equal(provenance.representativeMediaWidth, 384);
-  assert.equal(provenance.representativeMediaHeight, 216);
-  assert.equal(provenance.representativeMediaDisplayPolicy, 'TERRAIN_PREVIEW_ONLY_NO_READER_SHOWCASE');
-  assert.equal(provenance.representativeMediaRelationship, 'ORIGINAL_ARCHIVAL_IDENTITY_WITH_LIGHTWEIGHT_TERRAIN_REPAIR');
-  assert.equal(provenance.representativeMediaOriginalTarget, originalUrl);
-  assert.equal(provenance.representativeMediaOriginalSha256, ORIGINAL_SHA);
-  assert.equal(provenance.representativeMediaOriginalStatus, 'ARCHIVAL_IDENTITY_RETAINED_TRUNCATED_NOT_RENDERED');
-
-  assert.equal(views['entire-matter-return-seal'].preview.src, repairUrl);
+  assert.equal(provenance.representativeMediaStatus, 'PRESENT_FULL_FIDELITY_LOSSLESS_DISPLAY');
+  assert.equal(provenance.representativeMediaTarget, fullUrl);
+  assert.equal(provenance.representativeMediaSha256, FULL_FIDELITY_SHA);
+  assert.equal(provenance.representativeMediaAssetCommit, FULL_FIDELITY_COMMIT);
+  assert.equal(provenance.representativeMediaWidth, 1672);
+  assert.equal(provenance.representativeMediaHeight, 941);
+  assert.equal(provenance.representativeMediaDisplayPolicy, 'NATIVE_SOURCE_OR_DOWNSCALE_ONLY');
+  assert.equal(provenance.representativeMediaSuppliedSourceFormat, 'PNG');
+  assert.equal(provenance.representativeMediaSuppliedSourceSha256, SUPPLIED_SOURCE_SHA);
+  assert.equal(provenance.representativeMediaSuppliedSourceBytes, 3588855);
+  assert.equal(provenance.representativeMediaPublishedEncoding, 'WEBP_LOSSLESS_PIXEL_EQUIVALENT');
+  assert.equal(provenance.representativeMediaPublishedBytes, 1879240);
+  assert.equal(provenance.representativeMediaHistoricalTruncatedTarget, truncatedUrl);
+  assert.equal(provenance.representativeMediaHistoricalTruncatedStatus, 'ARCHIVED_TRUNCATED_DERIVATIVE_NOT_ACTIVE');
+  assert.equal(provenance.representativeMediaHistoricalRepairTarget, repairUrl);
+  assert.equal(provenance.representativeMediaHistoricalRepairStatus, 'ARCHIVED_LOW_RESOLUTION_REPAIR_NOT_ACTIVE');
+  assert.equal(provenance.representativeMediaRelationship, 'SUPPLIED_SOURCE_PUBLISHED_LOSSLESS_WITH_HISTORICAL_DERIVATIVES');
 });
 
 test('ENTIRE-MATTER-MEDIA: Return routes evidence to Sabotage V instead of duplicating its screenshot gallery', () => {
