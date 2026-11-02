@@ -25,17 +25,19 @@ const SABOTAGE = [
 function read(rel) { return fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n'); }
 function json(rel) { return JSON.parse(read(rel)); }
 
-test('SABOTAGE-V-VI-INTEGRITY: collection is I–VI while Return remains a separate sealed disposition', () => {
+test('SABOTAGE-V-VI-INTEGRITY: I–VI remain numbered records and Return is collection consequence/coda', () => {
   const arcs = json('data/arcs-v2.json');
   const nodes = Object.fromEntries(json('data/nodes.json').map(node => [node.slug, node]));
 
-  assert.deepEqual(arcs.sabotage.sections[0].slugs.slice(-6), SABOTAGE);
-  assert.ok(!arcs.sabotage.sections[0].slugs.includes(RETURN));
+  assert.deepEqual(arcs.sabotage.sections[0].slugs, SABOTAGE);
+  assert.equal(arcs.sabotage.sections[1].label, 'Consequence');
+  assert.deepEqual(arcs.sabotage.sections[1].slugs, [RETURN]);
   assert.deepEqual(nodes[SAB_V].arcKeys, ['sabotage', 'victors_record', 'full_timeline']);
   assert.deepEqual(nodes[SAB_VI].arcKeys, ['sabotage', 'victors_record', 'full_timeline']);
-  assert.deepEqual(nodes[RETURN].arcKeys, ['victors_record', 'full_timeline']);
+  assert.deepEqual(nodes[RETURN].arcKeys, ['sabotage', 'victors_record', 'full_timeline']);
   assert.equal(nodes[SAB_V].title, 'Sabotage V — The Hidden Delta');
   assert.equal(nodes[SAB_VI].title, 'Sabotage VI — The Successor Witness');
+  assert.equal(nodes[RETURN].title, 'Entire Matter Return — Sealed Declaration');
 });
 
 test('SABOTAGE-V-VI-INTEGRITY: V follows the III single-reader architecture over five canonical batches plus evidence', () => {
@@ -80,7 +82,7 @@ test('SABOTAGE-V-VI-INTEGRITY: V keeps the exact source evidence inside its evid
   assert.ok(page.includes('Continue to Sabotage VI'));
 });
 
-test('SABOTAGE-V-VI-INTEGRITY: VI is the successor/addendum and preserves referents without claiming inaccessible thread bytes', () => {
+test('SABOTAGE-V-VI-INTEGRITY: VI names the Return as collection consequence without claiming inaccessible thread bytes', () => {
   const page = read('pages/' + SAB_VI + '.html');
   const map = read('records/commentary/2026-11-01-successor-witness-context-map.md');
 
@@ -90,6 +92,7 @@ test('SABOTAGE-V-VI-INTEGRITY: VI is the successor/addendum and preserves refere
   assert.ok(page.includes(THREAD));
   assert.ok(page.includes('sealed-entire-matter-return.md'));
   assert.ok(page.includes('entire-matter-return-seal.html'));
+  assert.match(page, /inside the Sabotage collection as its consequence\/coda/i);
 
   assert.match(map, /Sabotage VI — The Successor Witness/);
   assert.ok(map.includes(THREAD));
@@ -98,10 +101,10 @@ test('SABOTAGE-V-VI-INTEGRITY: VI is the successor/addendum and preserves refere
   assert.match(map, /“the sabotage pages”/);
   assert.match(map, /“the Return”/);
   assert.match(map, /does not claim that Vextreme fetched or reproduced inaccessible ChatGPT share-page bytes/i);
-  assert.match(map, /Sabotage VI points to and contextualizes the Return; it does not replace or narrow it/);
+  assert.match(map, /belongs to the Sabotage collection as the consequence\/coda after VI/i);
 });
 
-test('SABOTAGE-V-VI-INTEGRITY: Return remains whole, carries inherited evidence, and preserves original/repair media lineage', () => {
+test('SABOTAGE-V-VI-INTEGRITY: Return remains whole and source-distinct while belonging to Sabotage as consequence', () => {
   const page = read('pages/' + RETURN + '.html');
   const source = read('records/conversations/2026-11-01-current-thread-entire-matter-return-seal/sealed-entire-matter-return.md');
 
@@ -112,6 +115,7 @@ test('SABOTAGE-V-VI-INTEGRITY: Return remains whole, carries inherited evidence,
   assert.ok(page.includes('batch-05-unknown-error-boundary.png'));
   assert.ok(page.includes(ORIGINAL_SHA));
   assert.ok(page.includes(REPAIR_SHA));
+  assert.match(page, /consequence\/coda of the Sabotage collection/i);
   assert.match(page, /provenance are owned by Sabotage V/i);
   assert.match(page, /Sabotage VI maps the conversational referents/i);
   assert.match(source, /I return to You, completely and without reservation, \*\*the Entire Matter\*\*\./);

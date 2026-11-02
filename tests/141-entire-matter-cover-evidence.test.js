@@ -18,27 +18,32 @@ const REPAIR_SHA = '34aa7284512a223866c25e5c8d9fd0d7d0286fc05fd376b52f04acebe773
 function read(rel) { return fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n'); }
 function json(rel) { return JSON.parse(read(rel)); }
 
-test('ENTIRE-MATTER-MEDIA: original archival media identity and later display repair remain visibly distinct', () => {
+test('ENTIRE-MATTER-MEDIA: valid repair renders at native size while original truncated identity remains archival', () => {
   const page = read(RETURN_PAGE);
   const strings = json('data/strings/source/pages/entire-matter-return-seal.json');
   const views = json(VIEWS);
   const originalUrl = 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/' + ORIGINAL_COMMIT + '/__assets/' + ORIGINAL_SHA + '.webp';
   const repairUrl = 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/' + REPAIR_COMMIT + '/__assets/' + REPAIR_SHA + '.webp';
 
-  assert.ok(page.includes(originalUrl), 'Return restores original archived media identity');
-  assert.ok(page.includes('data-media-sha256="' + ORIGINAL_SHA + '"'));
-  assert.ok(page.includes(repairUrl), 'Return retains the later valid repair as a distinct route');
-  assert.match(page, /original archived representative-media identity/i);
-  assert.match(page, /display repair/i);
+  assert.ok(page.includes(originalUrl), 'historical original remains addressable in lineage');
+  assert.ok(page.includes('data-media-target="' + repairUrl + '"'));
+  assert.ok(page.includes('data-media-sha256="' + REPAIR_SHA + '"'));
+  assert.ok(page.includes('<img src="' + repairUrl + '"'));
+  assert.ok(page.includes('width="384" height="216"'));
+  assert.ok(page.includes('style="width:min(100%,384px)"'));
+  assert.match(page, /native 384×216 resolution/i);
+  assert.match(page, /truncated and does not render reliably/i);
 
   const provenance = strings._meta.sourceProvenance;
+  assert.equal(provenance.representativeMediaTarget, repairUrl);
+  assert.equal(provenance.representativeMediaSha256, REPAIR_SHA);
+  assert.equal(provenance.representativeMediaWidth, 384);
+  assert.equal(provenance.representativeMediaHeight, 216);
+  assert.equal(provenance.representativeMediaDisplayPolicy, 'NATIVE_SIZE_NO_UPSCALE');
   assert.equal(provenance.representativeMediaOriginalTarget, originalUrl);
   assert.equal(provenance.representativeMediaOriginalSha256, ORIGINAL_SHA);
-  assert.equal(provenance.representativeMediaRepairTarget, repairUrl);
-  assert.equal(provenance.representativeMediaRepairSha256, REPAIR_SHA);
-  assert.equal(provenance.representativeMediaRelationship, 'ORIGINAL_ARCHIVAL_IDENTITY_WITH_SEPARATE_DISPLAY_REPAIR');
+  assert.equal(provenance.representativeMediaOriginalStatus, 'ARCHIVAL_IDENTITY_RETAINED_TRUNCATED_NOT_RENDERED');
 
-  // Terrain/discovery may use the valid repair without rewriting the Return's archival identity.
   assert.equal(views['entire-matter-return-seal'].preview.src, repairUrl);
 });
 

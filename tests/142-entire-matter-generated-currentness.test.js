@@ -23,7 +23,7 @@ const SABOTAGE = [
 function read(rel) { return fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n'); }
 function json(rel) { return JSON.parse(read(rel)); }
 
-test('ENTIRE-MATTER-CURRENTNESS: Return uses generated runtime while retaining its distinct source role', () => {
+test('ENTIRE-MATTER-CURRENTNESS: Return uses generated runtime while retaining distinct sealed source authority', () => {
   const page = read('pages/' + RETURN + '.html');
   const views = json('data/viewmodels.json');
 
@@ -34,30 +34,41 @@ test('ENTIRE-MATTER-CURRENTNESS: Return uses generated runtime while retaining i
   assert.ok(page.includes('sealed-entire-matter-return.md'));
 });
 
-test('ENTIRE-MATTER-CURRENTNESS: generated index carries Sabotage I–VI and then the separate Return', () => {
+test('ENTIRE-MATTER-CURRENTNESS: generated index carries I–VI plus Return as Sabotage consequence/coda', () => {
   const index = json('data/index.json');
   const returned = index.slugMap[RETURN];
   const witness = index.slugMap[VI];
 
   assert.ok(returned);
   assert.ok(witness);
-  assert.deepEqual(index.arcMap.sabotage[0].slugs.slice(-6), SABOTAGE);
-  assert.ok(!index.arcMap.sabotage[0].slugs.includes(RETURN));
+  assert.deepEqual(index.arcMap.sabotage[0].slugs, SABOTAGE);
+  assert.equal(index.arcMap.sabotage[1].label, 'Consequence');
+  assert.deepEqual(index.arcMap.sabotage[1].slugs, [RETURN]);
   assert.equal(index.arcMap.victors_record[0].slugs.at(-1), RETURN);
   assert.deepEqual(witness.arcKeys, ['sabotage', 'victors_record', 'full_timeline']);
-  assert.deepEqual(returned.arcKeys, ['victors_record', 'full_timeline']);
+  assert.deepEqual(returned.arcKeys, ['sabotage', 'victors_record', 'full_timeline']);
+
+  const fullTimeline = index.arcMap.full_timeline.flatMap(section => section.slugs || []);
+  const v = fullTimeline.indexOf('sabotage-hidden-delta');
+  const vi = fullTimeline.indexOf(VI);
+  const returnedIndex = fullTimeline.indexOf(RETURN);
+  assert.ok(v >= 0 && vi >= 0 && returnedIndex >= 0);
+  assert.equal(vi, v + 1, 'Sabotage VI follows V in same-day Full Timeline ordering');
+  assert.equal(returnedIndex, vi + 1, 'Entire Matter Return follows Sabotage VI as the consequence/coda');
 });
 
-test('ENTIRE-MATTER-CURRENTNESS: Terrain projects six Sabotage records and a distinct live Return card', () => {
+test('ENTIRE-MATTER-CURRENTNESS: Terrain projects seven Sabotage collection entries with Return as consequence', () => {
   const terrain = json('data/terrain-map.json');
   const sabotage = terrain.arcs.find(arc => arc.key === 'sabotage');
   const returned = terrain.pages.find(item => item.slug === RETURN);
   const witness = terrain.pages.find(item => item.slug === VI);
 
   assert.ok(sabotage);
-  assert.equal(sabotage.count, 6);
-  assert.deepEqual(sabotage.memberSlugs.slice(-6), SABOTAGE);
+  assert.equal(sabotage.count, 7);
+  assert.deepEqual(sabotage.memberSlugs.slice(-7), [...SABOTAGE, RETURN]);
   assert.equal(sabotage.sections[0].slugs.at(-1), VI);
+  assert.equal(sabotage.sections[1].label, 'Consequence');
+  assert.deepEqual(sabotage.sections[1].slugs, [RETURN]);
 
   assert.ok(witness);
   assert.equal(witness.arc, 'sabotage');
@@ -65,18 +76,18 @@ test('ENTIRE-MATTER-CURRENTNESS: Terrain projects six Sabotage records and a dis
   assert.equal(returned.title, RETURN_TITLE);
   assert.equal(returned.live, true);
   assert.equal(returned.liveUrl, RETURN_URL);
-  assert.equal(returned.arc, 'victors_record');
+  assert.equal(returned.arc, 'sabotage');
   assert.equal(returned.preview.kind, 'cover');
   assert.equal(returned.preview.src, REPAIR_COVER);
 });
 
-test('ENTIRE-MATTER-CURRENTNESS: public discovery surfaces expose six-member Sabotage and the Return', () => {
+test('ENTIRE-MATTER-CURRENTNESS: public discovery surfaces expose seven-member Sabotage including the Return consequence', () => {
   const buildHealth = read('pages/build-health.html');
   const home = read('index.html');
   const sitemap = read('sitemap.xml');
 
   assert.ok(buildHealth.includes('Sabotage'));
-  assert.ok(buildHealth.includes('6 / 6'));
+  assert.ok(buildHealth.includes('7 / 7'));
   assert.ok(buildHealth.includes('Sabotage VI — The Successor Witness'));
   assert.ok(buildHealth.includes(RETURN_URL));
   assert.ok(buildHealth.includes(RETURN_TITLE));

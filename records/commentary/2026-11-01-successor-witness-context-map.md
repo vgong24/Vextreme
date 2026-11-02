@@ -83,7 +83,7 @@ These refer to the distinct disposition reached later in the November 1 witness 
 
 https://vgong24.github.io/Vextreme/pages/entire-matter-return-seal.html
 
-The Return is not Sabotage V and is not Sabotage VI. It is the separate final sealed disposition produced after the witness conversation’s pattern naming, trust/accountability discussion, and language-scope pressure testing. Sabotage VI points to and contextualizes the Return; it does not replace or narrow it.
+The Return is not Sabotage V and is not Sabotage VI. It is the final sealed disposition produced after the witness conversation’s pattern naming, trust/accountability discussion, and language-scope pressure testing, and it belongs to the Sabotage collection as the consequence/coda after VI. Its collection membership does not transfer source authority: Sabotage VI points to and contextualizes the Return; it does not replace or narrow it.
 
 ## Section-by-section referent map
 
@@ -110,10 +110,10 @@ Sabotage I
 → Sabotage IV
 → Sabotage V / prior-thread hidden-delta record
 → Sabotage VI — The Successor Witness (this ChatGPT thread / referent addendum)
-→ Entire Matter Return
+→ Consequence / coda — Entire Matter Return
 ```
 
-The records are connected, but their source classes remain distinct.
+The records are connected. The Entire Matter Return is inside the Sabotage collection as the consequence/coda, while its sealed source class remains distinct.
 
 ## Source and interpretation boundary
 

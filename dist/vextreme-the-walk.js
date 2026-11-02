@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.the-walk"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en","ar","de","es","fr","hi","ja","ko","pt","zh"];
-  window.VEX_INDEX_FINGERPRINT = "693687ada2e3";
+  window.VEX_INDEX_FINGERPRINT = "76a79259eabc";
 
 
 
