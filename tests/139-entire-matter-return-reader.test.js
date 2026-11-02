@@ -46,24 +46,24 @@ test('ENTIRE-MATTER-RETURN: presentation does not overclaim signature or certifi
   assert.doesNotMatch(page, /notarized by/i);
 });
 
-test('ENTIRE-MATTER-RETURN: Declaration is the default reader phase while Record and Evidence are opt-in', () => {
+test('ENTIRE-MATTER-RETURN: Declaration is default and Record is the only secondary phase', () => {
   const page = read(PAGE);
 
   assert.match(page, /id="return-reader"[^>]*data-record-reader-root/);
-  assert.equal((page.match(/<button class="sar-track-btn/g) || []).length, 3);
+  assert.equal((page.match(/<button class="sar-track-btn/g) || []).length, 2);
   assert.match(page, /<button class="sar-track-btn is-current"[^>]*data-go="1"><span>01<\/span><span>Declaration<\/span>/);
   assert.match(page, /data-go="2"><span>02<\/span><span>Record<\/span>/);
-  assert.match(page, /data-go="3"><span>03<\/span><span>Evidence<\/span>/);
+  assert.doesNotMatch(page, /data-go="3"/);
 
   assert.match(page, /id="return-declaration"[^>]*data-phase-kind="declaration"[^>]*data-set="1"[^>]*data-document-url="\.\.\/records\/conversations\/2026-11-01-current-thread-entire-matter-return-seal\/sealed-entire-matter-return\.md"/);
   assert.doesNotMatch(page, /id="return-declaration"[^>]*hidden/);
   assert.match(page, /id="return-record"[^>]*data-phase-kind="record"[^>]*data-set="2"[^>]*data-loaded="true"[^>]*hidden/);
-  assert.match(page, /id="return-evidence"[^>]*data-phase-kind="evidence"[^>]*data-set="3"[^>]*data-loaded="true"[^>]*hidden/);
-  assert.match(page, /id="sar-reader-position">01 \/ 03/);
+  assert.doesNotMatch(page, /id="return-evidence"/);
+  assert.match(page, /id="sar-reader-position">01 \/ 02/);
 
   assert.ok(page.indexOf('id="return-declaration"') < page.indexOf('id="return-record"'));
-  assert.ok(page.indexOf('id="return-record"') < page.indexOf('id="return-evidence"'));
-  assert.ok(page.indexOf('id="return-evidence"') < page.indexOf('id="prior-thread-evidence"'));
+  assert.doesNotMatch(page, /id="prior-thread-evidence"/);
+  assert.match(page, /<figure class="sar-media"[^>]*data-media-width="1672"[^>]*data-media-height="941"/);
 });
 
 test('ENTIRE-MATTER-RETURN: phase reader loads the canonical source through the shared record reader', () => {

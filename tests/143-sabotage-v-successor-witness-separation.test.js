@@ -11,8 +11,9 @@ const SAB_VI = 'november-1-successor-witness';
 const RETURN = 'entire-matter-return-seal';
 const THREAD = 'https://chatgpt.com/share/6ae70af9-e41c-83e8-a537-04a8fc18531f';
 const SOURCE_HEAD = 'bce54f533fe7f766f68538b2dc355280269831ab';
-const ORIGINAL_SHA = '96269d955043540d2eda8a8e973be9307c691bec816fdb41be9b68b1b19a8cd9';
-const REPAIR_SHA = '34aa7284512a223866c25e5c8d9fd0d7d0286fc05fd376b52f04acebe77369f4';
+const FULL_FIDELITY_SHA = 'e762d144689f7db98165efe29825939d82c668688f3449433d039930e950dc04';
+const HISTORICAL_TRUNCATED_SHA = '96269d955043540d2eda8a8e973be9307c691bec816fdb41be9b68b1b19a8cd9';
+const HISTORICAL_REPAIR_SHA = '34aa7284512a223866c25e5c8d9fd0d7d0286fc05fd376b52f04acebe77369f4';
 const SABOTAGE = [
   'sabotage-open-vex-accountability',
   'sabotage-mastered-state',
@@ -104,20 +105,28 @@ test('SABOTAGE-V-VI-INTEGRITY: VI names the Return as collection consequence wit
   assert.match(map, /belongs to the Sabotage collection as the consequence\/coda after VI/i);
 });
 
-test('SABOTAGE-V-VI-INTEGRITY: Return remains whole and source-distinct while belonging to Sabotage as consequence', () => {
+test('SABOTAGE-V-VI-INTEGRITY: Return stays source-distinct and routes prior-thread evidence back to V', () => {
   const page = read('pages/' + RETURN + '.html');
   const source = read('records/conversations/2026-11-01-current-thread-entire-matter-return-seal/sealed-entire-matter-return.md');
 
-  assert.ok(page.includes('id="prior-thread-evidence"'));
-  assert.ok(page.includes('batch-01-vexlogger-logging-sequence.png'));
-  assert.ok(page.includes('batch-01-ui-sample-vexapplication.png'));
-  assert.ok(page.includes('batch-01-vexdependencyfactory.png'));
-  assert.ok(page.includes('batch-05-unknown-error-boundary.png'));
-  assert.ok(page.includes(ORIGINAL_SHA));
-  assert.ok(page.includes(REPAIR_SHA));
+  assert.doesNotMatch(page, /id="prior-thread-evidence"/);
+  assert.doesNotMatch(page, /id="return-evidence"/);
+  for (const filename of [
+    'batch-01-vexlogger-logging-sequence.png',
+    'batch-01-ui-sample-vexapplication.png',
+    'batch-01-vexdependencyfactory.png',
+    'batch-05-unknown-error-boundary.png',
+  ]) assert.ok(!page.includes(filename), filename + ' belongs to Sabotage V rather than the Return');
+
+  assert.ok(page.includes(FULL_FIDELITY_SHA));
+  assert.ok(page.includes(HISTORICAL_TRUNCATED_SHA));
+  assert.ok(page.includes(HISTORICAL_REPAIR_SHA));
+  assert.ok(page.includes('sabotage-hidden-delta.html'));
+  assert.ok(page.includes('november-1-successor-witness.html'));
   assert.match(page, /consequence\/coda of the Sabotage collection/i);
-  assert.match(page, /provenance are owned by Sabotage V/i);
-  assert.match(page, /Sabotage VI maps the conversational referents/i);
+  assert.match(page, /screenshot evidence belong to Sabotage V/i);
+  assert.match(page, /full-fidelity 1672×941 PNG/i);
+  assert.match(page, /neither substitutes for the restored full-fidelity reader artwork/i);
   assert.match(source, /I return to You, completely and without reservation, \*\*the Entire Matter\*\*\./);
   assert.match(source, /Sealed with \[VXG RealForever\]/);
 });
