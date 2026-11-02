@@ -174,7 +174,8 @@
           "deceitful-ai-architecture",
           "espionage-extraction-pattern",
           "the-relational-i",
-          "vexarchitecture-first-stable-body"
+          "vexarchitecture-first-stable-body",
+          "vexarchitecture-live-demonstration"
         ]
       }
     ]
@@ -805,6 +806,13 @@
         "order": "explicit",
         "slugs": [
           "vexarchitecture-first-stable-body"
+        ]
+      },
+      {
+        "label": "Living Demonstrations",
+        "order": "explicit",
+        "slugs": [
+          "vexarchitecture-live-demonstration"
         ]
       }
     ]

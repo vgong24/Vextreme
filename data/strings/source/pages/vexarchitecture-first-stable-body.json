@@ -1287,5 +1287,33 @@
         "text": "Supporting relationships · orthogonal / conditional"
       }
     }
+  },
+  "pages.vexarchitecture-first-stable-body.live-demo.kicker": {
+    "strings": {
+      "en": {
+        "text": "Companion witness · walk the living implementation"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.live-demo.heading": {
+    "strings": {
+      "en": {
+        "text": "You have the map. Now walk the code without invisible edges."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.live-demo.body": {
+    "strings": {
+      "en": {
+        "text": "The Live Demonstration starts before a person can click anything, names each owning container and nested member, follows the same live object through construction and runtime, then repeats the method across current VexStream Playback and VexMaps Distribution source."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.live-demo.cta": {
+    "strings": {
+      "en": {
+        "text": "Open VexArchitecture — Live Demonstration ↗"
+      }
+    }
   }
 }
