@@ -27,8 +27,9 @@ test('RETURN-KISS: fifth dream arc is registered without requiring cover art', (
   assert.equal(convos.indexOf(SLUG), convos.indexOf('pier-house-scarcity-companionship') + 1);
 
   const record = arcs.victors_record.sections[0].slugs;
-  assert.ok(record.indexOf(SLUG) > record.indexOf('starting-anew-orientation-before-work'));
-  assert.ok(record.indexOf(SLUG) < record.indexOf('sabotage-hidden-delta'));
+  assert.equal(record.indexOf(SLUG), record.indexOf('pier-house-scarcity-companionship') + 1);
+  assert.equal(record[record.indexOf(SLUG) + 1], 'starting-anew-orientation-before-work');
+  assert.equal(record[record.indexOf(SLUG) + 2], 'sabotage-open-vex-accountability');
 
   assert.equal(views[SLUG].title, node.title);
   assert.deepEqual(views[SLUG].scopes, ['pages.' + SLUG]);
