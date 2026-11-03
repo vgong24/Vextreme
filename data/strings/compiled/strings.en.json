@@ -100581,7 +100581,7 @@
     "text": "Do not memorize the examples. Follow the scopes and relationships."
   },
   "pages.vexarchitecture-live-demonstration.contract.body": {
-    "text": "This page does not redefine VexArchitecture. The Builder Field Guide owns the architectural explanation. Here, every step starts by naming the container we are inside, the member we are touching, what kind of thing it is, why traversal arrived there, and the exact next edge. No introduced object is allowed to disappear behind “later.”"
+    "text": "This page does not redefine VexArchitecture. The Builder Field Guide owns the architectural explanation. Here, every step starts by naming the container we are inside, the member we are touching, what kind of thing it is, why traversal arrived there, and the exact next edge. No introduced object is allowed to disappear behind “later.” Code blocks are scoped teaching excerpts: surrounding lines and incidental syntax may be omitted or normalized for readability. The linked source path and blob own the byte-exact code; this page claims the shown ownership, scope, and traversal relationships."
   },
   "pages.vexarchitecture-live-demonstration.contract.theme.claim": {
     "text": "Accepted patient zero"
