@@ -1583,7 +1583,7 @@
     },
     "lib/content-group-convergence-relay.js": {
       "role": "pure Content Group convergence relay — composes collection membership, configured parent/reference, and live page role/navigation into inspectable relationship truth",
-      "context": "Terrain needs to know whether a collection has a real navigational container without letting data/arcs-v2.json parent references, page files, or the UI independently invent that answer. This pure relay owns only the relationship question. It does not own membership, page content, page role, or navigation. It emits evidence-bearing DEDICATED_GROUP_HOME / MEMBER_REFERENCE / SHARED_REFERENCE / unavailable / partial / live-reference / conflict states so downstream renderers and future AI can recognize why a collection does or does not expose a group home.",
+      "context": "Terrain needs to know whether a collection has a real navigational container without letting data/arcs-v2.json parent references, page files, or the UI independently invent that answer. This pure relay owns only the relationship question. It does not own membership, page content, page role, or navigation. It emits evidence-bearing DEDICATED_GROUP_HOME / MEMBER_REFERENCE / SHARED_REFERENCE / SYSTEM_REFERENCE / unavailable / partial / live-reference / conflict states so downstream renderers and future AI can recognize why a collection does or does not expose a group home.",
       "reads": [],
       "writes": [],
       "loadedBy": [
@@ -1606,6 +1606,11 @@
         "page-role or link recognition changed": [
           "pages carrying data-vex-surface/data-vex-group-key",
           "legacy collection homes whose authored local links provide COMPLETE_COLLECTION_NAVIGATION evidence"
+        ],
+        "system/reference exclusion changed": [
+          "Build Health direct identity and Archives compatibility canonical target remain SYSTEM_REFERENCE, never DEDICATED_GROUP_HOME",
+          "data/terrain-map.json arcs[].contentGroupRelation evidence.systemReferenceTarget",
+          "tests/28-build-terrain-map.test.js and tests/148-content-group-convergence-relay.test.js"
         ]
       }
     },
