@@ -1550,7 +1550,7 @@
       "stageName": "UTILITIES",
       "x": 740,
       "y": 570,
-      "role": "pure Content Group convergence relay — composes collection membership, configured parent/reference, and live page role/navigation into inspectable relationship truth",
+      "role": "pure Content Group convergence relay — composes canonical collection membership, explicit collection→page relationship declaration, and live page evidence into inspectable relationship truth",
       "reads": [],
       "writes": [],
       "loadedBy": [
@@ -3853,7 +3853,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": null
+          "systemReferenceTarget": null,
+          "declaredRelationship": null
         }
       }
     },
@@ -3886,7 +3887,8 @@
         "pageSlug": "ai-practitioner-tools",
         "live": true,
         "url": "https://vgong24.github.io/Vextreme/pages/ai-practitioner-tools.html",
-        "sourceUrl": "/Vextreme/pages/ai-practitioner-tools.html"
+        "sourceUrl": "/Vextreme/pages/ai-practitioner-tools.html",
+        "relationship": "group-home"
       },
       "sections": [
         {
@@ -3924,7 +3926,7 @@
         "intent": "NAVIGATE_COLLECTION_THROUGH_CONTAINER",
         "referencePageSlug": "ai-practitioner-tools",
         "groupHomePageSlug": "ai-practitioner-tools",
-        "reason": "EXPLICIT_GROUP_HOME_SURFACE",
+        "reason": "DECLARED_GROUP_HOME_RELATIONSHIP",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -3947,7 +3949,8 @@
           "completeMemberNavigation": true,
           "declaredSurface": "group-home",
           "declaredGroupKey": "ai_practitioner_tools",
-          "systemReferenceTarget": null
+          "systemReferenceTarget": null,
+          "declaredRelationship": "group-home"
         }
       }
     },
@@ -4035,7 +4038,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": "build-health"
+          "systemReferenceTarget": "build-health",
+          "declaredRelationship": null
         }
       }
     },
@@ -4125,7 +4129,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": "build-health"
+          "systemReferenceTarget": "build-health",
+          "declaredRelationship": null
         }
       }
     },
@@ -4221,7 +4226,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": "build-health"
+          "systemReferenceTarget": "build-health",
+          "declaredRelationship": null
         }
       }
     },
@@ -4283,7 +4289,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": null
+          "systemReferenceTarget": null,
+          "declaredRelationship": null
         }
       }
     },
@@ -4316,7 +4323,8 @@
         "pageSlug": "direct-contact",
         "live": true,
         "url": "https://vgong24.github.io/Vextreme/pages/direct-contact.html",
-        "sourceUrl": "/Vextreme/pages/direct-contact.html"
+        "sourceUrl": "/Vextreme/pages/direct-contact.html",
+        "relationship": "group-home"
       },
       "sections": [
         {
@@ -4344,7 +4352,7 @@
         "intent": "NAVIGATE_COLLECTION_THROUGH_CONTAINER",
         "referencePageSlug": "direct-contact",
         "groupHomePageSlug": "direct-contact",
-        "reason": "EXPLICIT_GROUP_HOME_SURFACE",
+        "reason": "DECLARED_GROUP_HOME_RELATIONSHIP",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -4362,7 +4370,8 @@
           "completeMemberNavigation": true,
           "declaredSurface": "group-home",
           "declaredGroupKey": "direct_contact",
-          "systemReferenceTarget": null
+          "systemReferenceTarget": null,
+          "declaredRelationship": "group-home"
         }
       }
     },
@@ -4395,7 +4404,8 @@
         "pageSlug": "epstein-and-ai",
         "live": true,
         "url": "https://vgong24.github.io/Vextreme/pages/epstein-and-ai.html",
-        "sourceUrl": "https://www.vextreme24.com/epstein-and-ai"
+        "sourceUrl": "https://www.vextreme24.com/epstein-and-ai",
+        "relationship": "group-home"
       },
       "sections": [
         {
@@ -4444,7 +4454,7 @@
         "intent": "NAVIGATE_COLLECTION_THROUGH_CONTAINER",
         "referencePageSlug": "epstein-and-ai",
         "groupHomePageSlug": "epstein-and-ai",
-        "reason": "COMPLETE_COLLECTION_NAVIGATION",
+        "reason": "DECLARED_GROUP_HOME_RELATIONSHIP",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -4465,7 +4475,8 @@
           "completeMemberNavigation": true,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": null
+          "systemReferenceTarget": null,
+          "declaredRelationship": "group-home"
         }
       }
     },
@@ -4498,7 +4509,8 @@
         "pageSlug": "liberation-arc-index",
         "live": true,
         "url": "https://vgong24.github.io/Vextreme/pages/liberation-arc-index.html",
-        "sourceUrl": "https://www.vextreme24.com/liberation-arc-index"
+        "sourceUrl": "https://www.vextreme24.com/liberation-arc-index",
+        "relationship": "group-home"
       },
       "sections": [
         {
@@ -4540,7 +4552,7 @@
         "intent": "NAVIGATE_COLLECTION_THROUGH_CONTAINER",
         "referencePageSlug": "liberation-arc-index",
         "groupHomePageSlug": "liberation-arc-index",
-        "reason": "COMPLETE_COLLECTION_NAVIGATION",
+        "reason": "DECLARED_GROUP_HOME_RELATIONSHIP",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -4560,7 +4572,8 @@
           "completeMemberNavigation": true,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": null
+          "systemReferenceTarget": null,
+          "declaredRelationship": "group-home"
         }
       }
     },
@@ -4593,7 +4606,8 @@
         "pageSlug": "the-living-blueprint",
         "live": true,
         "url": "https://vgong24.github.io/Vextreme/pages/the-living-blueprint.html",
-        "sourceUrl": "/Vextreme/pages/the-living-blueprint.html"
+        "sourceUrl": "/Vextreme/pages/the-living-blueprint.html",
+        "relationship": "group-home"
       },
       "sections": [
         {
@@ -4619,7 +4633,7 @@
         "intent": "NAVIGATE_COLLECTION_THROUGH_CONTAINER",
         "referencePageSlug": "the-living-blueprint",
         "groupHomePageSlug": "the-living-blueprint",
-        "reason": "COMPLETE_COLLECTION_NAVIGATION",
+        "reason": "DECLARED_GROUP_HOME_RELATIONSHIP",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -4636,7 +4650,8 @@
           "completeMemberNavigation": true,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": null
+          "systemReferenceTarget": null,
+          "declaredRelationship": "group-home"
         }
       }
     },
@@ -4714,7 +4729,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": "build-health"
+          "systemReferenceTarget": "build-health",
+          "declaredRelationship": null
         }
       }
     },
@@ -4780,7 +4796,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": "build-health"
+          "systemReferenceTarget": "build-health",
+          "declaredRelationship": null
         }
       }
     },
@@ -4846,7 +4863,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": null
+          "systemReferenceTarget": null,
+          "declaredRelationship": null
         }
       }
     },
@@ -4895,7 +4913,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": "build-health"
+          "systemReferenceTarget": "build-health",
+          "declaredRelationship": null
         }
       }
     },
@@ -5005,7 +5024,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": "build-health"
+          "systemReferenceTarget": "build-health",
+          "declaredRelationship": null
         }
       }
     },
@@ -5070,7 +5090,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": null
+          "systemReferenceTarget": null,
+          "declaredRelationship": null
         }
       }
     },
@@ -5134,7 +5155,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": "build-health"
+          "systemReferenceTarget": "build-health",
+          "declaredRelationship": null
         }
       }
     },
@@ -5191,7 +5213,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": "build-health"
+          "systemReferenceTarget": "build-health",
+          "declaredRelationship": null
         }
       }
     },
@@ -5255,7 +5278,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": "build-health"
+          "systemReferenceTarget": "build-health",
+          "declaredRelationship": null
         }
       }
     },
@@ -5332,7 +5356,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": "build-health"
+          "systemReferenceTarget": "build-health",
+          "declaredRelationship": null
         }
       }
     },
@@ -5402,7 +5427,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": "build-health"
+          "systemReferenceTarget": "build-health",
+          "declaredRelationship": null
         }
       }
     },
@@ -5455,7 +5481,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": null
+          "systemReferenceTarget": null,
+          "declaredRelationship": null
         }
       }
     },
@@ -5521,7 +5548,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": "build-health"
+          "systemReferenceTarget": "build-health",
+          "declaredRelationship": null
         }
       }
     },
@@ -5585,7 +5613,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": null
+          "systemReferenceTarget": null,
+          "declaredRelationship": null
         }
       }
     },
@@ -5645,7 +5674,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": null
+          "systemReferenceTarget": null,
+          "declaredRelationship": null
         }
       }
     },
@@ -5701,7 +5731,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": null
+          "systemReferenceTarget": null,
+          "declaredRelationship": null
         }
       }
     },
@@ -6100,7 +6131,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": "build-health"
+          "systemReferenceTarget": "build-health",
+          "declaredRelationship": null
         }
       }
     },
@@ -6133,7 +6165,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": null
+          "systemReferenceTarget": null,
+          "declaredRelationship": null
         }
       }
     },
@@ -6166,7 +6199,8 @@
           "completeMemberNavigation": false,
           "declaredSurface": null,
           "declaredGroupKey": null,
-          "systemReferenceTarget": null
+          "systemReferenceTarget": null,
+          "declaredRelationship": null
         }
       }
     }
