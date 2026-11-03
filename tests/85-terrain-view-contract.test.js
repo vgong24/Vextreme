@@ -727,6 +727,7 @@ test('TERRAIN-VIEW: focused Content group reveals members and consumes converged
   assert.match(source, /relation\.kind === 'DEDICATED_GROUP_HOME'/);
   assert.match(source, /if \(isDedicatedGroupHome\(stage\)\)/);
   assert.match(source, /member reference · no separate group home/);
+  assert.match(source, /system reference · no collection container/);
   assert.match(source, /GROUP HOME · /);
   assert.doesNotMatch(source, /var groupHomeCard = stage\.parent && stage\.parent\.live/);
   assert.doesNotMatch(source, /groupDescriptions|groupMeaning|semanticDescription/);
