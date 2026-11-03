@@ -89,12 +89,12 @@ S_{t+1}=F(S_t,A_t,E_t)
 
 Where:
 
-- `S_t` is the accumulated state at a particular time.
-- `A_t` represents actions taken within that state.
-- `E_t` represents surrounding circumstances.
-- `F` describes how those interactions produce the next state.
+- \(S_t\) is the accumulated state at a particular time.
+- \(A_t\) represents actions taken within that state.
+- \(E_t\) represents surrounding circumstances.
+- \(F\) describes how those interactions produce the next state.
 
-The important part is that `S_{t+1}` inherits consequences from `S_t`. The next stage isn't independent of the previous one.
+The important part is that \(S_{t+1}\) inherits consequences from \(S_t\). The next stage isn't independent of the previous one.
 
 And because the state changes, the same underlying commitment may be exercised under increasingly consequential circumstances.
 
