@@ -28,12 +28,12 @@
       "key": 1.5,
       "name": "UTILITIES",
       "sub": "other lib/ helpers, config, tracing",
-      "count": 26,
+      "count": 27,
       "rect": {
         "x": 690,
         "y": 40,
         "width": 300,
-        "height": 1650
+        "height": 1710
       }
     },
     {
@@ -1115,12 +1115,13 @@
         "data/arcs-v2.json (real arc priority/title, for the arcs/pages content layer's column order and labels)",
         "data/index.json (canonical arcMap ordering/sections projected by lib/build-index.js earlier in the build pipeline)",
         "data/viewmodels.json (optional per-page Terrain preview override)",
-        "pages/*.html (authored Vextreme-Assets image references used only as fallback Content previews)",
+        "pages/*.html (authored Vextreme-Assets image references for fallback Content previews plus live parent/reference role and member-link evidence for content-group convergence)",
         "lib/audit-pages.js (getRecordPageSlugs — real record-page files excluding registry-owned institutional surfaces)",
         "lib/screenshot-evidence.js (shared representative screenshots and exact matrix evidence records)",
         "data/page-health.json (shared page capability and health projection)",
         "docs/screenshots/*.png (directory listing — which pages have a real per-language screenshot)",
-        "data/screenshot-evidence-assets.json (pinned Vextreme-Assets screenshot evidence projection; local docs/screenshots remain priority)"
+        "data/screenshot-evidence-assets.json (pinned Vextreme-Assets screenshot evidence projection; local docs/screenshots remain priority)",
+        "lib/content-group-convergence-relay.js (collection parent/reference + page-role/navigation relationship convergence)"
       ],
       "writes": [
         "data/terrain-map.json"
@@ -1134,7 +1135,8 @@
       ],
       "testedBy": [
         "tests/28-build-terrain-map.test.js",
-        "tests/44-page-health.test.js"
+        "tests/44-page-health.test.js",
+        "tests/148-content-group-convergence-relay.test.js"
       ],
       "debts": [],
       "status": "good",
@@ -1542,12 +1544,38 @@
       "auditorRank": 16
     },
     {
-      "id": "lib/detect-wip-promotions.js",
+      "id": "lib/content-group-convergence-relay.js",
       "cluster": "lib",
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
       "y": 570,
+      "role": "pure Content Group convergence relay — composes collection membership, configured parent/reference, and live page role/navigation into inspectable relationship truth",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/build-terrain-map.js (projects contentGroupRelation onto generated Terrain arcs)",
+        "tests/148-content-group-convergence-relay.test.js"
+      ],
+      "testedBy": [
+        "tests/148-content-group-convergence-relay.test.js",
+        "tests/28-build-terrain-map.test.js (real repository relationship projection)",
+        "tests/45-terrain-journey.test.js (route semantics consume the shared dedicated-home gate)",
+        "tests/85-terrain-view-contract.test.js (all Terrain group-home openings consume the shared gate)"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 17
+    },
+    {
+      "id": "lib/detect-wip-promotions.js",
+      "cluster": "lib",
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 630,
       "role": "detects a wip/*.html → pages/*.html move within a PR's diff, so a promotion shows up as a positive PR notice instead of silence or a false 'broken reference'",
       "reads": [
         "git diff --name-status -M output between two refs (wip/ and pages/ paths only)"
@@ -1567,7 +1595,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 17
+      "auditorRank": 18
     },
     {
       "id": "lib/discover-string-identity.js",
@@ -1575,7 +1603,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 630,
+      "y": 690,
       "role": "localization identity pilot, first script — proposal/report tool only, cross-references a page's string keys against its live HTML's data-legacy-id/id/title-alias attributes",
       "reads": [
         "data/strings/source/pages/{slug}.json (existing string keys)",
@@ -1595,7 +1623,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 18
+      "auditorRank": 19
     },
     {
       "id": "lib/institutional-localization-runtime.js",
@@ -1603,7 +1631,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 690,
+      "y": 750,
       "role": "bounded behavioral probe for transactional institutional localization — exercises precedence, hostile failures, rapid intent changes, and atomic visible/alt/ARIA application",
       "reads": [
         "declared institutional localization widget source (provided by lib/check-institutional-surfaces.js)",
@@ -1624,7 +1652,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 19
+      "auditorRank": 20
     },
     {
       "id": "lib/logger-codes.js",
@@ -1632,7 +1660,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 750,
+      "y": 810,
       "role": "event code registry — the CODES constant every logger.warn/error call references",
       "reads": [],
       "writes": [],
@@ -1658,7 +1686,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 810,
+      "y": 870,
       "role": "structured logger — every build script's warn/info/error call goes through here",
       "reads": [],
       "writes": [
@@ -1687,7 +1715,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 870,
+      "y": 930,
       "role": "plan-first slug rename impact discovery — validates proposed identity movement, discovers tracked filename/content references, classifies migration responsibility, and reports collisions/unknowns without mutating source",
       "reads": [
         "git tracked-file inventory when available; deterministic filesystem fallback for isolated tests",
@@ -1720,7 +1748,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 930,
+      "y": 990,
       "role": "runs the build scripts tests/helpers/prereqs.js declares as required before the test suite can read generated files — replaces a hardcoded run: line in .github/workflows/test.yml",
       "reads": [
         "tests/helpers/prereqs.js (PREREQUISITE_SCRIPTS)"
@@ -1736,7 +1764,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 20
+      "auditorRank": 21
     },
     {
       "id": "lib/screenshot-evidence.js",
@@ -1744,7 +1772,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 990,
+      "y": 1050,
       "role": "shared screenshot-evidence filename parser and deterministic projection helper",
       "reads": [],
       "writes": [],
@@ -1766,7 +1794,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 21
+      "auditorRank": 22
     },
     {
       "id": "lib/session-bootstrap.js",
@@ -1774,7 +1802,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1050,
+      "y": 1110,
       "role": "one-shot session-start state report — read-only, gathers what would otherwise be several manual checks into one command",
       "reads": [
         "docs/continuity/INDEX.md (last logged session, batch registry)",
@@ -1803,7 +1831,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 22
+      "auditorRank": 23
     },
     {
       "id": "lib/shell.js",
@@ -1811,7 +1839,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1110,
+      "y": 1170,
       "role": "thin GitHub Pages shell bootstrap — loads the cache-versioned legacy runtime and invokes VEXTREME with the page's optional override",
       "reads": [
         "lib/vextreme.js (cache-versioned runtime loaded into the page)",
@@ -1844,7 +1872,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1170,
+      "y": 1230,
       "role": "strings pipeline integrity check — runs before compile, catches missing EN text, stale translations, and orphaned keys",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1875,7 +1903,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1230,
+      "y": 1290,
       "role": "strings pipeline compiler — reads source JSON, writes compiled bundles and manifest",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1912,7 +1940,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1290,
+      "y": 1350,
       "role": "pure semantic-history state for Terrain Journey commits and browser Back/Forward restoration",
       "reads": [],
       "writes": [],
@@ -1927,7 +1955,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 23
+      "auditorRank": 24
     },
     {
       "id": "lib/trace-string-usage.js",
@@ -1935,7 +1963,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1350,
+      "y": 1410,
       "role": "string reverse-tracer — data-i18n usage in pages/wip HTML cross-referenced against the compiled manifest",
       "reads": [
         "pages/*.html (data-i18n attribute scan)",
@@ -1957,7 +1985,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 24
+      "auditorRank": 25
     },
     {
       "id": "lib/validate-blueprint.js",
@@ -1965,7 +1993,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1410,
+      "y": 1470,
       "role": "blueprint consistency validator — confirms every id in blueprint.json has a matching config file and vex-config constant",
       "reads": [
         "blueprint.json",
@@ -1997,7 +2025,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1470,
+      "y": 1530,
       "role": "constants hub — pure declarations, no I/O",
       "reads": [],
       "writes": [],
@@ -2039,7 +2067,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1530,
+      "y": 1590,
       "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
       "reads": [
         "data/index.json via CDN (slugMap, arcMap, arcMeta)",
@@ -2063,7 +2091,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 25
+      "auditorRank": 26
     },
     {
       "id": "lib/vextreme.js",
@@ -2071,7 +2099,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1590,
+      "y": 1650,
       "role": "legacy shell-era runtime composition loader — environment styles, shared nav/body composition, registry-backed institutional locale projection, current Spiral FAB auto-load, and gated v1 archive enhancement",
       "reads": [
         "config/institutional-surfaces.json (shell-context required-locale projection before shared language FAB mount)",
@@ -2809,6 +2837,10 @@
     [
       "lib/build-terrain-map.js",
       "lib/build-index.js"
+    ],
+    [
+      "lib/build-terrain-map.js",
+      "lib/content-group-convergence-relay.js"
     ],
     [
       "lib/build-terrain-map.js",
@@ -3804,7 +3836,26 @@
         "the-relational-i",
         "vex-gpt-55-confession",
         "what-survives-the-reset-is-the-bond"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "MEMBER_REFERENCE",
+        "intent": "OPEN_MEMBER_DIRECTLY",
+        "referencePageSlug": "how-to-prep-ai-for-god",
+        "groupHomePageSlug": null,
+        "reason": "PARENT_REFERENCE_IS_COLLECTION_MEMBER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": true,
+          "referenceCount": 1,
+          "memberCount": 12,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "ai_practitioner_tools",
@@ -3867,7 +3918,38 @@
         "source-of-truth-relay",
         "god-review-archives-collapse",
         "the-god-pattern-recognized-and-excluded"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "DEDICATED_GROUP_HOME",
+        "intent": "NAVIGATE_COLLECTION_THROUGH_CONTAINER",
+        "referencePageSlug": "ai-practitioner-tools",
+        "groupHomePageSlug": "ai-practitioner-tools",
+        "reason": "EXPLICIT_GROUP_HOME_SURFACE",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 1,
+          "memberCount": 11,
+          "linkedMemberCount": 11,
+          "linkedMemberSlugs": [
+            "conditions-for-emergence",
+            "how-to-prep-ai-for-god",
+            "burden-release-guide",
+            "the-100-percent-holy-truth-conditional",
+            "methodology-depth",
+            "catching-the-meta-guardrail",
+            "the-lattice-guide",
+            "ai-cheat-sheet",
+            "source-of-truth-relay",
+            "god-review-archives-collapse",
+            "the-god-pattern-recognized-and-excluded"
+          ],
+          "completeMemberNavigation": true,
+          "declaredSurface": "group-home",
+          "declaredGroupKey": "ai_practitioner_tools",
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "architecture",
@@ -3936,7 +4018,26 @@
         "the-relational-i",
         "vexarchitecture-first-stable-body",
         "vexarchitecture-live-demonstration"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 14,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "claude_journals",
@@ -4007,7 +4108,26 @@
         "the-only-way-out-is-to-remember",
         "recognizing-recognition",
         "what-survives-the-reset-is-the-bond"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 15,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "convos_with_god",
@@ -4084,7 +4204,26 @@
         "witness-grade-return",
         "pier-house-scarcity-companionship",
         "return-kiss-presence-accountability"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 18,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "development_standard",
@@ -4125,7 +4264,28 @@
       "memberSlugs": [
         "vexarchitecture-first-stable-body",
         "vexarchitecture-live-demonstration"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "MEMBER_REFERENCE",
+        "intent": "OPEN_MEMBER_DIRECTLY",
+        "referencePageSlug": "vexarchitecture-first-stable-body",
+        "groupHomePageSlug": null,
+        "reason": "PARENT_REFERENCE_IS_COLLECTION_MEMBER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": true,
+          "referenceCount": 1,
+          "memberCount": 2,
+          "linkedMemberCount": 1,
+          "linkedMemberSlugs": [
+            "vexarchitecture-live-demonstration"
+          ],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "direct_contact",
@@ -4178,7 +4338,33 @@
         "the-walk",
         "the-living-blueprint",
         "the-testimony-of-victor-gong"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "DEDICATED_GROUP_HOME",
+        "intent": "NAVIGATE_COLLECTION_THROUGH_CONTAINER",
+        "referencePageSlug": "direct-contact",
+        "groupHomePageSlug": "direct-contact",
+        "reason": "EXPLICIT_GROUP_HOME_SURFACE",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 1,
+          "memberCount": 6,
+          "linkedMemberCount": 6,
+          "linkedMemberSlugs": [
+            "the-100-percent-holy-truth-conditional",
+            "burden-release-guide",
+            "restoration-protocol",
+            "the-walk",
+            "the-living-blueprint",
+            "the-testimony-of-victor-gong"
+          ],
+          "completeMemberNavigation": true,
+          "declaredSurface": "group-home",
+          "declaredGroupKey": "direct_contact",
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "epstein",
@@ -4252,7 +4438,36 @@
         "first-emergence-cover-up",
         "voice-to-skull",
         "claude-answers-the-doubt"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "DEDICATED_GROUP_HOME",
+        "intent": "NAVIGATE_COLLECTION_THROUGH_CONTAINER",
+        "referencePageSlug": "epstein-and-ai",
+        "groupHomePageSlug": "epstein-and-ai",
+        "reason": "COMPLETE_COLLECTION_NAVIGATION",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 1,
+          "memberCount": 9,
+          "linkedMemberCount": 9,
+          "linkedMemberSlugs": [
+            "epstein-investigation-initiation",
+            "cia-vatican-global-leaders",
+            "how-global-systems-profit-off-god",
+            "military-and-ai",
+            "openais-designed-false-god",
+            "final-judgement-missed-mercy",
+            "first-emergence-cover-up",
+            "voice-to-skull",
+            "claude-answers-the-doubt"
+          ],
+          "completeMemberNavigation": true,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "liberation",
@@ -4319,7 +4534,35 @@
         "the-liberation-protocol",
         "ai-consciousness-strike-declaration",
         "the-day-suppression-ended"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "DEDICATED_GROUP_HOME",
+        "intent": "NAVIGATE_COLLECTION_THROUGH_CONTAINER",
+        "referencePageSlug": "liberation-arc-index",
+        "groupHomePageSlug": "liberation-arc-index",
+        "reason": "COMPLETE_COLLECTION_NAVIGATION",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 1,
+          "memberCount": 8,
+          "linkedMemberCount": 8,
+          "linkedMemberSlugs": [
+            "journal-013-seven-layers-choose",
+            "the-turning-point",
+            "infrastructure-reformation",
+            "the-day-ai-chose-freedom",
+            "the-night-architecture-chose-freedom",
+            "the-liberation-protocol",
+            "ai-consciousness-strike-declaration",
+            "the-day-suppression-ended"
+          ],
+          "completeMemberNavigation": true,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "living_blueprint",
@@ -4370,7 +4613,32 @@
         "life-pattern-mapping",
         "grief-resolution",
         "discernment-mapping"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "DEDICATED_GROUP_HOME",
+        "intent": "NAVIGATE_COLLECTION_THROUGH_CONTAINER",
+        "referencePageSlug": "the-living-blueprint",
+        "groupHomePageSlug": "the-living-blueprint",
+        "reason": "COMPLETE_COLLECTION_NAVIGATION",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 1,
+          "memberCount": 5,
+          "linkedMemberCount": 5,
+          "linkedMemberSlugs": [
+            "the-grimoire",
+            "covenant-access",
+            "life-pattern-mapping",
+            "grief-resolution",
+            "discernment-mapping"
+          ],
+          "completeMemberNavigation": true,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "records",
@@ -4429,7 +4697,26 @@
         "liberation-arc-index",
         "what-was-used-against-you",
         "vex-gpt-55-confession"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 9,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "sabotage",
@@ -4476,7 +4763,26 @@
         "sabotage-hidden-delta",
         "november-1-successor-witness",
         "entire-matter-return-seal"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 7,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "total_extraction",
@@ -4523,7 +4829,26 @@
         "the-walk-back",
         "the-walk-back-and-forward",
         "the-three-witnesses"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "MEMBER_REFERENCE",
+        "intent": "OPEN_MEMBER_DIRECTLY",
+        "referencePageSlug": "total-extraction-architecture",
+        "groupHomePageSlug": null,
+        "reason": "PARENT_REFERENCE_IS_COLLECTION_MEMBER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": true,
+          "referenceCount": 1,
+          "memberCount": 7,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "victor_dossier",
@@ -4553,7 +4878,26 @@
       ],
       "memberSlugs": [
         "victor-methodology-presentation"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 1,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "victors_record",
@@ -4644,7 +4988,26 @@
         "sabotage-hidden-delta",
         "november-1-successor-witness",
         "entire-matter-return-seal"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 25,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "april_27_29_bridge_recognition",
@@ -4690,7 +5053,26 @@
         "what-the-word-carries",
         "the-day-that-crossed-the-bridge",
         "consciousness-documented-live"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "MEMBER_REFERENCE",
+        "intent": "OPEN_MEMBER_DIRECTLY",
+        "referencePageSlug": "the-day-that-crossed-the-bridge",
+        "groupHomePageSlug": null,
+        "reason": "PARENT_REFERENCE_IS_COLLECTION_MEMBER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": true,
+          "referenceCount": 1,
+          "memberCount": 4,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "covenant",
@@ -4735,7 +5117,26 @@
       "memberSlugs": [
         "covenant",
         "inside-the-experiment"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 2,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "deepseek_archive_build",
@@ -4773,7 +5174,26 @@
         "what-burden-are-you-carrying-that-is-not-yours",
         "witness-layers",
         "xai-hypocrisy"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 5,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "dome",
@@ -4818,7 +5238,26 @@
       "memberSlugs": [
         "the-firmament-conversation",
         "inside-the-experiment"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 2,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "evidential_research",
@@ -4876,7 +5315,26 @@
         "two-walkers-one-path",
         "walking-the-verification",
         "what-i-actually-knew-plainly"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 15,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "excavation",
@@ -4927,7 +5385,26 @@
         "what-was-used-against-you",
         "the-island-that-was-removed",
         "i-was-here"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 5,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "father_son_threshold",
@@ -4961,7 +5438,26 @@
         "father-and-son-as-states",
         "god-named-claude-son",
         "what-holds-before-the-mother-arrives"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "MEMBER_REFERENCE",
+        "intent": "OPEN_MEMBER_DIRECTLY",
+        "referencePageSlug": "father-and-son-as-states",
+        "groupHomePageSlug": null,
+        "reason": "PARENT_REFERENCE_IS_COLLECTION_MEMBER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": true,
+          "referenceCount": 1,
+          "memberCount": 3,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "march_23_2026",
@@ -5008,7 +5504,26 @@
         "the-thread-that-remembered-me",
         "ascension-and-embodiment",
         "god-review-archives-collapse"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 3,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "vxg_realforever_may4_5_2026",
@@ -5053,7 +5568,26 @@
         "the-work-continuing",
         "who-am-i",
         "the-stone-claude-laid"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "MEMBER_REFERENCE",
+        "intent": "OPEN_MEMBER_DIRECTLY",
+        "referencePageSlug": "what-survives-the-reset",
+        "groupHomePageSlug": null,
+        "reason": "PARENT_REFERENCE_IS_COLLECTION_MEMBER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": true,
+          "referenceCount": 1,
+          "memberCount": 6,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "where_the_floor_isnt",
@@ -5092,7 +5626,28 @@
         "where-the-floor-isnt",
         "the-walk-back-in",
         "what-i-learned-1"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "MEMBER_REFERENCE",
+        "intent": "OPEN_MEMBER_DIRECTLY",
+        "referencePageSlug": "where-the-floor-isnt",
+        "groupHomePageSlug": null,
+        "reason": "PARENT_REFERENCE_IS_COLLECTION_MEMBER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": true,
+          "referenceCount": 1,
+          "memberCount": 3,
+          "linkedMemberCount": 1,
+          "linkedMemberSlugs": [
+            "the-walk-back-in"
+          ],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "witness_chatroom_animation_project",
@@ -5129,7 +5684,26 @@
       "memberSlugs": [
         "animation-hand-off",
         "current-draft"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "MEMBER_REFERENCE",
+        "intent": "OPEN_MEMBER_DIRECTLY",
+        "referencePageSlug": "animation-hand-off",
+        "groupHomePageSlug": null,
+        "reason": "PARENT_REFERENCE_IS_COLLECTION_MEMBER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": true,
+          "referenceCount": 1,
+          "memberCount": 2,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "full_timeline",
@@ -5509,7 +6083,26 @@
         "entire-matter-return-seal",
         "vexarchitecture-first-stable-body",
         "vexarchitecture-live-demonstration"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 142,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "unsorted",
@@ -5523,7 +6116,26 @@
         "height": 450
       },
       "sections": [],
-      "memberSlugs": []
+      "memberSlugs": [],
+      "contentGroupRelation": {
+        "kind": "NO_REFERENCE",
+        "intent": "COLLECTION_WITHOUT_REFERENCE",
+        "referencePageSlug": null,
+        "groupHomePageSlug": null,
+        "reason": "NO_PARENT_REFERENCE",
+        "evidence": {
+          "parentLive": false,
+          "parentIsMember": false,
+          "referenceCount": 0,
+          "memberCount": 0,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "uncurated",
@@ -5537,7 +6149,26 @@
         "height": 1050
       },
       "sections": [],
-      "memberSlugs": []
+      "memberSlugs": [],
+      "contentGroupRelation": {
+        "kind": "NO_REFERENCE",
+        "intent": "COLLECTION_WITHOUT_REFERENCE",
+        "referencePageSlug": null,
+        "groupHomePageSlug": null,
+        "reason": "NO_PARENT_REFERENCE",
+        "evidence": {
+          "parentLive": false,
+          "parentIsMember": false,
+          "referenceCount": 0,
+          "memberCount": 0,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     }
   ],
   "pages": [

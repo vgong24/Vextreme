@@ -1496,7 +1496,7 @@
     initializeJourneyHistory(initialRoute.explicit);
     if (currentWorld === 'content' && (currentProfile === 'evolution-v1' || currentProfile === 'evolution-v2') && initialRoute.page) {
       var initialStage = typeof levelCtx.stageIdx === 'number' ? STAGES[levelCtx.stageIdx] : null;
-      if (initialStage && initialStage.parent && initialStage.parent.live && initialStage.parent.pageSlug === initialRoute.page) {
+      if (initialStage && isDedicatedGroupHome(initialStage) && initialStage.parent.pageSlug === initialRoute.page) {
         openEvolutionGroupHome(initialStage, { writeUrl:false });
       } else {
         var initialPage = ALL.find(function (node) { return node.slug === initialRoute.page || node.id === initialRoute.page; });
@@ -1721,7 +1721,7 @@
     if (stageIdx < 0) return;
     if (!isEvolutionAGroup() || levelCtx.stageIdx !== stageIdx) enterLevel(1, { stageIdx:stageIdx });
     var stage = STAGES[stageIdx];
-    if (kind === 'group-home' && stage.parent && stage.parent.live && stage.parent.pageSlug === route.page) {
+    if (kind === 'group-home' && isDedicatedGroupHome(stage) && stage.parent.pageSlug === route.page) {
       openEvolutionGroupHome(stage, {
         writeUrl:false,
         returnKind:presentation && presentation.returnKind ? presentation.returnKind : 'collection',
@@ -2022,7 +2022,7 @@
     var stageIdx = STAGES.findIndex(function (stage) { return String(stage.key) === String(groupKey); });
     if (stageIdx < 0) return;
     var stage = STAGES[stageIdx];
-    if (!stage.parent || !stage.parent.live || !stage.parent.url) return;
+    if (!isDedicatedGroupHome(stage)) return;
 
     enterLevel(1, { stageIdx:stageIdx });
     openEvolutionGroupHome(stage, {
@@ -2074,10 +2074,7 @@
     return STAGES.map(function (stage, stageIdx) {
       return { stage:stage, stageIdx:stageIdx };
     }).filter(function (candidate) {
-      return candidate.stage
-        && candidate.stage.parent
-        && candidate.stage.parent.live
-        && candidate.stage.parent.url
+      return isDedicatedGroupHome(candidate.stage)
         && candidate.stage.parent.pageSlug === slug;
     });
   }
@@ -2233,7 +2230,7 @@
 
   function openEvolutionGroupHome(stage, options) {
     options = options || {};
-    if (!stage || !stage.parent || !stage.parent.live || !stage.parent.url || currentWorld !== 'content' || currentProfile !== 'evolution-v1') return;
+    if (!isDedicatedGroupHome(stage) || currentWorld !== 'content' || currentProfile !== 'evolution-v1') return;
     var returnKind = options.returnKind
       || (options.historyMode !== 'replace' ? 'collection' : activeReaderReturnKind);
     setReaderReturnContext(returnKind, {
@@ -2920,14 +2917,15 @@
     var summary = stageSummary(stage);
     var members = stageMembers(stage);
     var kindLabel = summary.groupKind.replace(/-/g, ' ');
-    var parentPending = stage.parent && !(stage.parent.live && stage.parent.url)
-      ? '<span class="evo-context-meta">group home pending</span>'
+    var relationText = contentGroupRelationText(stage);
+    var relationMeta = relationText
+      ? ' · <span class="evo-context-meta">' + esc(relationText) + '</span>'
       : '';
-    var groupHomeCard = stage.parent && stage.parent.live && stage.parent.url
+    var groupHomeCard = isDedicatedGroupHome(stage)
       ? '<button class="evo-group-depth-card" type="button" data-evo-group-home="' + escAttr(stage.key) + '" aria-label="Open ' + escAttr(stageDisplayName(stage)) + ' group home">'
         + '<span class="evo-group-depth-kicker">Group home</span>'
         + '<span class="evo-group-depth-title">' + esc(stageDisplayName(stage)) + '</span>'
-        + '<span class="evo-group-depth-meta">' + summary.membershipCount + ' members · parent surface</span>'
+        + '<span class="evo-group-depth-meta">' + summary.membershipCount + ' members · dedicated container</span>'
         + '<span class="evo-group-depth-action">Enter the group →</span>'
         + '</button>'
       : '';
@@ -2989,7 +2987,7 @@
       + '<section class="evo-context">'
       + '<div class="evo-kicker">Content · ' + esc(kindLabel) + '</div>'
       + '<div class="evo-context-row"><div><h2>' + esc(stageDisplayName(stage)) + '</h2><div class="evo-context-meta">' + summary.membershipCount + ' members · ' + summary.primaryCount + ' primary placements · same Terrain state, alternate renderer</div></div>'
-      + '<div class="evo-context-meta">Live remains the accepted reference' + parentPending + '</div></div>'
+      + '<div class="evo-context-meta">Live remains the accepted reference' + relationMeta + '</div></div>'
       + '<div class="evo-rail" aria-label="Content groups">' + rail + '</div>'
       + '</section>'
       + (cards ? cards : '<div class="evo-empty">No destinations are currently projected in this group.</div>')
@@ -3109,6 +3107,40 @@
   function contentMembershipText(summary) {
     if (summary.groupKind === 'timeline-view') return summary.membershipCount + ' members · cross-cutting view';
     return summary.membershipCount + ' members · ' + summary.primaryCount + ' primary placement' + (summary.primaryCount === 1 ? '' : 's');
+  }
+
+  function contentGroupRelation(stage) {
+    return stage && stage.contentGroupRelation ? stage.contentGroupRelation : null;
+  }
+
+  function isDedicatedGroupHome(stage) {
+    var relation = contentGroupRelation(stage);
+    return !!(
+      relation
+      && relation.kind === 'DEDICATED_GROUP_HOME'
+      && stage
+      && stage.parent
+      && stage.parent.live
+      && stage.parent.url
+      && relation.groupHomePageSlug === stage.parent.pageSlug
+    );
+  }
+
+  function contentGroupRelationText(stage) {
+    var relation = contentGroupRelation(stage);
+    if (!relation) return '';
+    switch (relation.kind) {
+      case 'DEDICATED_GROUP_HOME': return 'dedicated group home';
+      case 'MEMBER_REFERENCE': return 'member reference · no separate group home';
+      case 'SHARED_REFERENCE': return 'shared reference · no separate group home';
+      case 'SYSTEM_REFERENCE': return 'system reference · no collection container';
+      case 'UNAVAILABLE_REFERENCE': return 'reference not live';
+      case 'PARTIAL_COLLECTION_REFERENCE': return 'partial collection reference · no container claim';
+      case 'LIVE_REFERENCE': return 'live reference · no container evidence';
+      case 'CONFLICT': return 'group-home conflict held';
+      case 'NO_REFERENCE': return 'no separate group home';
+      default: return String(relation.kind || '').toLowerCase().replace(/_/g, ' ');
+    }
   }
 
   function stageSummary(stage) {
@@ -3703,7 +3735,7 @@
           more.textContent='+' + (summary.members.length-previewMembers.length);
           g.appendChild(more);
         }
-        if (stage.parent && stage.parent.live) {
+        if (isDedicatedGroupHome(stage)) {
           var parentText=el('text',{x:r.x+24,y:r.y+r.height-62,class:'stage-parent'});
           parentText.textContent='GROUP HOME · ' + stageLabelText(stageDisplayName(stage), 44);
           g.appendChild(parentText);
