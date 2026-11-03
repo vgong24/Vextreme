@@ -717,14 +717,27 @@ test('TERRAIN-VIEW: Content group overview exposes one bounded orientation legen
   assert.match(source, /stageOrientationSummary\.textContent = ALL\.length \+ ' pages/);
 });
 
-test('TERRAIN-VIEW: focused Content group reveals real member titles and existing group-home relationship', () => {
+test('TERRAIN-VIEW: focused Content group reveals members and consumes converged group-home intention', () => {
   const source = pageSource();
   assert.match(source, /var previewMembers = summary\.members\.slice\(0, 5\)/);
   assert.match(source, /memberText\.textContent = '• ' \+ stageLabelText\(nodeDisplayTitle\(member\), 46\)/);
   assert.match(source, /class:'stage-member'/);
-  assert.match(source, /stage\.parent && stage\.parent\.live/);
+  assert.match(source, /function isDedicatedGroupHome\(stage\)/);
+  assert.match(source, /relation\.kind === 'DEDICATED_GROUP_HOME'/);
+  assert.match(source, /if \(isDedicatedGroupHome\(stage\)\)/);
+  assert.match(source, /member reference · no separate group home/);
   assert.match(source, /GROUP HOME · /);
+  assert.doesNotMatch(source, /var groupHomeCard = stage\.parent && stage\.parent\.live/);
   assert.doesNotMatch(source, /groupDescriptions|groupMeaning|semanticDescription/);
+});
+
+test('TERRAIN-VIEW: every group-home opening path uses the same convergence gate', () => {
+  const source = pageSource();
+  assert.match(source, /function contentGroupRelationText\(stage\)/);
+  assert.match(source, /function openEvolutionGroupHome\(stage, options\)[\s\S]*if \(!isDedicatedGroupHome\(stage\)/);
+  assert.match(source, /function groupHomeRouteMatches\(slug\)[\s\S]*isDedicatedGroupHome\(candidate\.stage\)/);
+  assert.match(source, /kind === 'group-home' && isDedicatedGroupHome\(stage\)/);
+  assert.match(source, /if \(!isDedicatedGroupHome\(stage\)\) return;/);
 });
 
 test('TERRAIN-VIEW: Content groups no longer imply a linear sequence with Stage arrows', () => {
