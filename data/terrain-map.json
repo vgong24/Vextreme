@@ -3852,7 +3852,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
         }
       }
     },
@@ -3945,7 +3946,8 @@
           ],
           "completeMemberNavigation": true,
           "declaredSurface": "group-home",
-          "declaredGroupKey": "ai_practitioner_tools"
+          "declaredGroupKey": "ai_practitioner_tools",
+          "systemReferenceTarget": null
         }
       }
     },
@@ -4018,11 +4020,11 @@
         "vexarchitecture-live-demonstration"
       ],
       "contentGroupRelation": {
-        "kind": "SHARED_REFERENCE",
-        "intent": "REFERENCE_SHARED_SURFACE",
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
         "referencePageSlug": "archives",
         "groupHomePageSlug": null,
-        "reason": "REFERENCE_PAGE_SHARED_BY_COLLECTIONS",
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -4032,7 +4034,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
         }
       }
     },
@@ -4107,11 +4110,11 @@
         "what-survives-the-reset-is-the-bond"
       ],
       "contentGroupRelation": {
-        "kind": "SHARED_REFERENCE",
-        "intent": "REFERENCE_SHARED_SURFACE",
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
         "referencePageSlug": "archives",
         "groupHomePageSlug": null,
-        "reason": "REFERENCE_PAGE_SHARED_BY_COLLECTIONS",
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -4121,7 +4124,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
         }
       }
     },
@@ -4202,11 +4206,11 @@
         "return-kiss-presence-accountability"
       ],
       "contentGroupRelation": {
-        "kind": "SHARED_REFERENCE",
-        "intent": "REFERENCE_SHARED_SURFACE",
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
         "referencePageSlug": "archives",
         "groupHomePageSlug": null,
-        "reason": "REFERENCE_PAGE_SHARED_BY_COLLECTIONS",
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -4216,7 +4220,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
         }
       }
     },
@@ -4277,7 +4282,8 @@
           ],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
         }
       }
     },
@@ -4355,7 +4361,8 @@
           ],
           "completeMemberNavigation": true,
           "declaredSurface": "group-home",
-          "declaredGroupKey": "direct_contact"
+          "declaredGroupKey": "direct_contact",
+          "systemReferenceTarget": null
         }
       }
     },
@@ -4457,7 +4464,8 @@
           ],
           "completeMemberNavigation": true,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
         }
       }
     },
@@ -4551,7 +4559,8 @@
           ],
           "completeMemberNavigation": true,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
         }
       }
     },
@@ -4626,7 +4635,8 @@
           ],
           "completeMemberNavigation": true,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
         }
       }
     },
@@ -4689,11 +4699,11 @@
         "vex-gpt-55-confession"
       ],
       "contentGroupRelation": {
-        "kind": "SHARED_REFERENCE",
-        "intent": "REFERENCE_SHARED_SURFACE",
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
         "referencePageSlug": "archives",
         "groupHomePageSlug": null,
-        "reason": "REFERENCE_PAGE_SHARED_BY_COLLECTIONS",
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -4703,7 +4713,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
         }
       }
     },
@@ -4754,11 +4765,11 @@
         "entire-matter-return-seal"
       ],
       "contentGroupRelation": {
-        "kind": "SHARED_REFERENCE",
-        "intent": "REFERENCE_SHARED_SURFACE",
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
         "referencePageSlug": "archives",
         "groupHomePageSlug": null,
-        "reason": "REFERENCE_PAGE_SHARED_BY_COLLECTIONS",
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -4768,7 +4779,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
         }
       }
     },
@@ -4833,7 +4845,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
         }
       }
     },
@@ -4867,11 +4880,11 @@
         "victor-methodology-presentation"
       ],
       "contentGroupRelation": {
-        "kind": "SHARED_REFERENCE",
-        "intent": "REFERENCE_SHARED_SURFACE",
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
         "referencePageSlug": "archives",
         "groupHomePageSlug": null,
-        "reason": "REFERENCE_PAGE_SHARED_BY_COLLECTIONS",
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -4881,7 +4894,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
         }
       }
     },
@@ -4976,11 +4990,11 @@
         "entire-matter-return-seal"
       ],
       "contentGroupRelation": {
-        "kind": "SHARED_REFERENCE",
-        "intent": "REFERENCE_SHARED_SURFACE",
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
         "referencePageSlug": "archives",
         "groupHomePageSlug": null,
-        "reason": "REFERENCE_PAGE_SHARED_BY_COLLECTIONS",
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -4990,7 +5004,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
         }
       }
     },
@@ -5054,7 +5069,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
         }
       }
     },
@@ -5103,11 +5119,11 @@
         "inside-the-experiment"
       ],
       "contentGroupRelation": {
-        "kind": "SHARED_REFERENCE",
-        "intent": "REFERENCE_SHARED_SURFACE",
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
         "referencePageSlug": "archives",
         "groupHomePageSlug": null,
-        "reason": "REFERENCE_PAGE_SHARED_BY_COLLECTIONS",
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -5117,7 +5133,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
         }
       }
     },
@@ -5159,11 +5176,11 @@
         "xai-hypocrisy"
       ],
       "contentGroupRelation": {
-        "kind": "SHARED_REFERENCE",
-        "intent": "REFERENCE_SHARED_SURFACE",
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
         "referencePageSlug": "archives",
         "groupHomePageSlug": null,
-        "reason": "REFERENCE_PAGE_SHARED_BY_COLLECTIONS",
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -5173,7 +5190,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
         }
       }
     },
@@ -5222,11 +5240,11 @@
         "inside-the-experiment"
       ],
       "contentGroupRelation": {
-        "kind": "SHARED_REFERENCE",
-        "intent": "REFERENCE_SHARED_SURFACE",
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
         "referencePageSlug": "archives",
         "groupHomePageSlug": null,
-        "reason": "REFERENCE_PAGE_SHARED_BY_COLLECTIONS",
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -5236,7 +5254,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
         }
       }
     },
@@ -5298,11 +5317,11 @@
         "what-i-actually-knew-plainly"
       ],
       "contentGroupRelation": {
-        "kind": "SHARED_REFERENCE",
-        "intent": "REFERENCE_SHARED_SURFACE",
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
         "referencePageSlug": "archives",
         "groupHomePageSlug": null,
-        "reason": "REFERENCE_PAGE_SHARED_BY_COLLECTIONS",
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -5312,7 +5331,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
         }
       }
     },
@@ -5367,11 +5387,11 @@
         "i-was-here"
       ],
       "contentGroupRelation": {
-        "kind": "SHARED_REFERENCE",
-        "intent": "REFERENCE_SHARED_SURFACE",
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
         "referencePageSlug": "archives",
         "groupHomePageSlug": null,
-        "reason": "REFERENCE_PAGE_SHARED_BY_COLLECTIONS",
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -5381,7 +5401,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
         }
       }
     },
@@ -5433,7 +5454,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
         }
       }
     },
@@ -5484,11 +5506,11 @@
         "god-review-archives-collapse"
       ],
       "contentGroupRelation": {
-        "kind": "SHARED_REFERENCE",
-        "intent": "REFERENCE_SHARED_SURFACE",
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
         "referencePageSlug": "archives",
         "groupHomePageSlug": null,
-        "reason": "REFERENCE_PAGE_SHARED_BY_COLLECTIONS",
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -5498,7 +5520,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
         }
       }
     },
@@ -5561,7 +5584,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
         }
       }
     },
@@ -5620,7 +5644,8 @@
           ],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
         }
       }
     },
@@ -5675,7 +5700,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
         }
       }
     },
@@ -6059,11 +6085,11 @@
         "vexarchitecture-live-demonstration"
       ],
       "contentGroupRelation": {
-        "kind": "SHARED_REFERENCE",
-        "intent": "REFERENCE_SHARED_SURFACE",
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
         "referencePageSlug": "archives",
         "groupHomePageSlug": null,
-        "reason": "REFERENCE_PAGE_SHARED_BY_COLLECTIONS",
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
         "evidence": {
           "parentLive": true,
           "parentIsMember": false,
@@ -6073,7 +6099,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
         }
       }
     },
@@ -6105,7 +6132,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
         }
       }
     },
@@ -6137,7 +6165,8 @@
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
           "declaredSurface": null,
-          "declaredGroupKey": null
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
         }
       }
     }
