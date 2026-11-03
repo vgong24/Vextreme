@@ -250,6 +250,36 @@ test('TERRAIN-VIEW: accepted Content remains the no-query default while Evolutio
   assert.doesNotMatch(profileFunction[1], /commitSemanticState/, 'renderer switching must not add a Journey step');
 });
 
+test('TERRAIN-VIEW: Content-world adapter preserves convergence relationship into runtime stages', () => {
+  const source = pageSource();
+  const fn = source.match(/function buildContentWorld\(data\) \{[\s\S]*?\n  \}/);
+  assert.ok(fn, 'buildContentWorld must remain extractable for adapter-boundary proof');
+
+  const buildContentWorld = new Function(fn[0] + '\nreturn buildContentWorld;')();
+  const relation = {
+    kind:'DEDICATED_GROUP_HOME',
+    intent:'NAVIGATE_COLLECTION_THROUGH_CONTAINER',
+    groupHomePageSlug:'ai-practitioner-tools',
+  };
+  const world = buildContentWorld({
+    arcs:[{
+      key:'ai_practitioner_tools',
+      name:'AI Practitioner Tools',
+      sub:'priority 1',
+      count:11,
+      rect:{ x:10, y:40, width:300, height:750 },
+      parent:{ pageSlug:'ai-practitioner-tools', live:true, url:'/pages/ai-practitioner-tools.html' },
+      sections:[],
+      memberSlugs:['a'],
+      contentGroupRelation:relation,
+    }],
+    pages:[],
+  });
+
+  assert.deepEqual(world.stages[0].contentGroupRelation, relation,
+    'the browser adapter must not discard the relationship that controls real group-home accessibility');
+});
+
 test('TERRAIN-VIEW: collection group homes are relationship truth, not parent.live aliases', () => {
   const source = pageSource();
   assert.match(source, /parent: a\.parent \|\| null/);
