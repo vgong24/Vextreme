@@ -301,7 +301,7 @@ resolve(session) is the visible startup request that causes the declared depende
         </article>
 
         <article class="step" id="theme-step-04">
-          <div class="step-head"><span class="step-no">04</span><div><h3>See the provider in its owning container</h3><div class="question">When SessionProvider eventually needs a live ThemeMode semantic owner, what provider declaration inside this module describes how to make it?</div></div></div>
+          <div class="step-head"><span class="step-no">04</span><div><h3>See the provider in its owning container</h3><div class="question">When SessionProvider resolution asks for a live ThemeMode semantic owner, what provider declaration inside this module describes how to make it?</div></div></div>
           <dl class="scope"><div><dt>Container</dt><dd>VexLifeSessionDependencyModule</dd></div><div><dt>Member</dt><dd>themeModeFamily: ThemeModeFamilyProvider</dd></div><div><dt>Role</dt><dd>provider recipe, not the live Family</dd></div><div><dt>Consumers</dt><dd>AppActionsProvider + SessionProvider + module registration</dd></div></dl>
           <pre class="code"><code>internal class VexLifeSessionDependencyModule(...) {
     val executionRoot = ExecutionRootProvider()
