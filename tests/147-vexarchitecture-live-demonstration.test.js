@@ -30,9 +30,12 @@ test('VEXARCHITECTURE LIVE: companion stays separate from the Builder Field Guid
     'VexLifeApp(session: VexLifeSession)',
     'AppScreens',
     'VexRuntime.activate(...)',
+    'RuntimeProvider',
+    'currentAppActions = {',
     'AppActionRegistrations.dispatch(AppActionRequest)',
     'VexStreamLibrarySurface',
     'VexStreamPlaybackConnectionViewModel',
+    'CurrentVexStreamPlaybackExperience',
     'VexMapsMapSurface',
   ]) {
     assert.ok(live.includes(bridge), 'missing explicit traversal bridge: ' + bridge);
@@ -102,6 +105,8 @@ test('VEXARCHITECTURE LIVE: Maps shows local ownership and relationship ownershi
   for (const required of [
     'VexMapsMapSurface',
     'VexMapsDistributionProcess.session',
+    'VexMapsDistributionProcess',
+    'productionSession',
     'VexMapsDistributionUi',
     'VexMapsDistributionSession',
     'VexMapsDistributionModeConnection',

@@ -433,7 +433,7 @@ internal fun VexLifeApp(
     }
 }</code></pre>
           <div class="edge returning">USING THE SAME live ThemeModeFamily stored by SessionProvider:
-the setup is now visibly consumed by the production composition root. When semantic State changes through Steps 13–17, this already-wired VexLifeTheme observes that same Family.</div>
+the setup is now visibly consumed by the production composition root. When semantic State changes through Steps 14–18, this already-wired VexLifeTheme observes that same Family.</div>
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/ui/VexLifeApp.kt" target="_blank" rel="noopener">VexLifeApp.kt</a> · blob d14e38941a4f767b832fe0e1b2180dbc3df419c2</div>
         </article>
 
@@ -504,7 +504,55 @@ the closure captures that resolved object. No UI code reconstructs another Famil
         </article>
 
         <article class="step" id="theme-step-10">
-          <div class="step-head"><span class="step-no">10</span><div><h3>Enter the screen that owns the visible control</h3><div class="question">Which visible UI element names the intent, and where does the same screen register what that intent does?</div></div></div>
+          <div class="step-head"><span class="step-no">10</span><div><h3>Bind the same assembled actions into the runtime</h3><div class="question">AppScreens returned one AppActionRegistrations snapshot. How does the VexRuntime that handles UI input receive that exact snapshot?</div></div></div>
+          <dl class="scope"><div><dt>Container</dt><dd>VexLifeSessionDependencyModule.RuntimeProvider</dd></div><div><dt>Dependency slot</dt><dd>appActions: VexDependencyProvider&lt;AppActionRegistrations&gt;</dd></div><div><dt>Resolved member</dt><dd>actions = dependencies.require(appActions)</dd></div><div><dt>Next edge</dt><dd>VexRuntime(currentAppActions = { actions })</dd></div></dl>
+          <pre class="code"><code>internal class RuntimeProvider(
+    private val blueprintRegistry:
+        VexDependencyProvider&lt;UIBlueprintRegistry&gt;,
+    private val logger:
+        VexDependencyProvider&lt;VexLogger&gt;,
+    private val appActions:
+        VexDependencyProvider&lt;AppActionRegistrations&gt;,
+) : VexDependencyProvider&lt;VexRuntime&gt;(
+    dependencies =
+        listOf(
+            blueprintRegistry,
+            logger,
+            appActions,
+        ),
+) {
+    override fun create(
+        dependencies: VexDependencyBuildScope,
+    ): VexRuntime {
+        val actions =
+            dependencies.require(
+                appActions,
+            )
+
+        return VexRuntime(
+            registry =
+                dependencies.require(
+                    blueprintRegistry,
+                ),
+            logger =
+                dependencies.require(
+                    logger,
+                ),
+            initialScreen = HomeScreen,
+            primaryScreens = AppScreens.primary,
+            currentAppActions = {
+                actions
+            },
+        )
+    }
+}</code></pre>
+          <div class="edge returning">SAME REGISTRATION SNAPSHOT:
+the AppActionRegistrations assembled from AppScreens is the value RuntimeProvider resolves and captures inside VexRuntime. When Step 12 reaches runtime.appActions.dispatch(...), it is dispatching through this same snapshot rather than another registry.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/ui/VexLifeSession.kt" target="_blank" rel="noopener">VexLifeSession.kt · RuntimeProvider</a> · blob 4c30cc3d0f10c041c19ece4924b5d6b0f89abdac</div>
+        </article>
+
+        <article class="step" id="theme-step-11">
+          <div class="step-head"><span class="step-no">11</span><div><h3>Enter the screen that owns the visible control</h3><div class="question">Which visible UI element names the intent, and where does the same screen register what that intent does?</div></div></div>
           <dl class="scope"><div><dt>Container</dt><dd>DebugMenuScreen</dd></div><div><dt>UI member</dt><dd>DarkMode toggleRef</dd></div><div><dt>Intent</dt><dd>invoke(AppActions.ToggleDarkMode)</dd></div><div><dt>Registered action</dt><dd>appAction(ToggleDarkMode) { toggleDarkMode() }</dd></div></dl>
           <pre class="code"><code>object DebugMenuScreen : AppScreenBlueprint(...) {
     val DarkMode = toggleRef(
@@ -530,8 +578,8 @@ It names an application action; the screen registration calls the closure assemb
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/debug/DebugMenuScreen.kt" target="_blank" rel="noopener">DebugMenuScreen.kt</a> · blob 3d774ce0286e61cca6637a0b642bac2a5f2ad168</div>
         </article>
 
-        <article class="step" id="theme-step-11">
-          <div class="step-head"><span class="step-no">11</span><div><h3>Do not jump from an Invoke declaration to the handler</h3><div class="question">The human taps the DarkMode element. What runtime path turns ElementIntent.Invoke into the registered ToggleDarkMode handler?</div></div></div>
+        <article class="step" id="theme-step-12">
+          <div class="step-head"><span class="step-no">12</span><div><h3>Do not jump from an Invoke declaration to the handler</h3><div class="question">The human taps the DarkMode element. What runtime path turns ElementIntent.Invoke into the registered ToggleDarkMode handler?</div></div></div>
           <dl class="scope"><div><dt>UI container</dt><dd>DebugMenuScreenContent → VexElementTree(handler = runtime)</dd></div><div><dt>Runtime container</dt><dd>VexRuntime.activate(...) → applyIntent(...)</dd></div><div><dt>Dispatch container</dt><dd>AppActionRegistrations.dispatch(AppActionRequest)</dd></div><div><dt>Next edge</dt><dd>require(request.action).handle(request) → DebugMenuScreen's captured toggleDarkMode closure</dd></div></dl>
           <pre class="code"><code>// DebugMenuScreenContent
 VexElementTree(
@@ -565,8 +613,8 @@ fun dispatch(
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/debug/DebugMenuScreen.kt" target="_blank" rel="noopener">DebugMenuScreen.kt</a> · blob 3d774ce0286e61cca6637a0b642bac2a5f2ad168 · <a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/runtime/VexRuntime.kt" target="_blank" rel="noopener">VexRuntime.kt</a> · blob 733b1b8fb867301fe452239a073087be775e430b · <a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/runtime/AppActionRegistrations.kt" target="_blank" rel="noopener">AppActionRegistrations.kt</a> · blob 707593961ba6b4fd1533a5bdde7e6c21662d002c</div>
         </article>
 
-        <article class="step" id="theme-step-12">
-          <div class="step-head"><span class="step-no">12</span><div><h3>Translate the UI action into semantic intention</h3><div class="question">The human has invoked ToggleDarkMode. What code turns that doorway action into a ThemeMode Control?</div></div></div>
+        <article class="step" id="theme-step-13">
+          <div class="step-head"><span class="step-no">13</span><div><h3>Translate the UI action into semantic intention</h3><div class="question">The human has invoked ToggleDarkMode. What code turns that doorway action into a ThemeMode Control?</div></div></div>
           <dl class="scope"><div><dt>Container</dt><dd>toggleThemeMode(...)</dd></div><div><dt>Input</dt><dd>same ThemeModeFamily + Store + ExecutionRoot + Logger</dd></div><div><dt>Created value</dt><dd>ThemeModeFamily.Parameter.Mode(selectedMode)</dd></div><div><dt>Next edge</dt><dd>activateThemeMode(... Control.Select(parameter) ...)</dd></div></dl>
           <pre class="code"><code>private fun toggleThemeMode(
     family: ThemeModeFamily,
@@ -599,8 +647,8 @@ The local selectedMode is consumed immediately by Parameter.Mode, which is consu
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/ui/VexLifeSession.kt" target="_blank" rel="noopener">VexLifeSession.kt · toggleThemeMode</a></div>
         </article>
 
-        <article class="step" id="theme-step-13">
-          <div class="step-head"><span class="step-no">13</span><div><h3>Enter semantic ownership</h3><div class="question">What does the Family do with exact current State + Control, before persistence has happened?</div></div></div>
+        <article class="step" id="theme-step-14">
+          <div class="step-head"><span class="step-no">14</span><div><h3>Enter semantic ownership</h3><div class="question">What does the Family do with exact current State + Control, before persistence has happened?</div></div></div>
           <dl class="scope"><div><dt>Container</dt><dd>ThemeModeFamily / VexFamily.activate</dd></div><div><dt>Semantic carriage</dt><dd>Parameter.Mode → Control.Select → Effect.Save</dd></div><div><dt>Accepted consequence</dt><dd>immediate State + Begin(Effect.Save, Latest)</dd></div><div><dt>Next edge</dt><dd>activateThemeMode receives the accepted Act and realizes its inert Begin</dd></div></dl>
           <pre class="code"><code>sealed interface Parameter {
     data class Mode(val mode: ThemeMode) : Parameter
@@ -631,8 +679,8 @@ Begin remains inert; accepting intention does not claim Store success.</div>
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/ui/ThemeMode.kt" target="_blank" rel="noopener">ThemeMode.kt</a> · blob c49c7132d4977795365390120dbcf20934242799 · <a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/architecture/behavior/src/main/kotlin/com/vextreme/vexlife/android/behavior/VexFamily.kt" target="_blank" rel="noopener">VexFamily.kt</a> · blob 2fdb76e48fec41933256e2bbd47a4e232668ef08</div>
         </article>
 
-        <article class="step" id="theme-step-14">
-          <div class="step-head"><span class="step-no">14</span><div><h3>Bind the requested consequence to real execution</h3><div class="question">The Act authored Save + Latest. Where do Store access and Job custody finally enter?</div></div></div>
+        <article class="step" id="theme-step-15">
+          <div class="step-head"><span class="step-no">15</span><div><h3>Bind the requested consequence to real execution</h3><div class="question">The Act authored Save + Latest. Where do Store access and Job custody finally enter?</div></div></div>
           <dl class="scope"><div><dt>Container</dt><dd>activateThemeMode(...)</dd></div><div><dt>Bound method</dt><dd>ThemeModeFamily.Act.Method.Save(store, same Parameter.Mode)</dd></div><div><dt>Execution edge</dt><dd>act.launchWith(executionRoot).method(...)</dd></div><div><dt>Logger side rail</dt><dd>ControlAccepted / StateChanged / EffectRequested / EffectSucceeded facts are recorded as they become true</dd></div></dl>
           <pre class="code"><code>val method =
     ThemeModeFamily.Act.Method.Save(
@@ -663,8 +711,8 @@ VexExecution receives the Act's already-authored owner / Approach / Relationship
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/ui/ThemeMode.kt" target="_blank" rel="noopener">ThemeMode.kt · activateThemeMode</a> · <a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/architecture/execution/src/main/kotlin/com/vextreme/vexlife/android/execution/VexExecution.kt" target="_blank" rel="noopener">VexExecution.kt</a> · blob 292b65924cc4ad723d81a9b0d75af9b933d40ae9</div>
         </article>
 
-        <article class="step" id="theme-step-15">
-          <div class="step-head"><span class="step-no">15</span><div><h3>Cross into outside truth, then come back</h3><div class="question">What happens when the bound Method touches persistence, and where does the returned observation go?</div></div></div>
+        <article class="step" id="theme-step-16">
+          <div class="step-head"><span class="step-no">16</span><div><h3>Cross into outside truth, then come back</h3><div class="question">What happens when the bound Method touches persistence, and where does the returned observation go?</div></div></div>
           <dl class="scope"><div><dt>Outside owner</dt><dd>ThemeModeStore</dd></div><div><dt>Physical operation</dt><dd>store.save(parameter.mode)</dd></div><div><dt>Returned value</dt><dd>ThemeModeStore.Result.Success(observedState)</dd></div><div><dt>Return edge</dt><dd>selectionRealizationFinished(parameter) → observeThemeModeState(family, observedState)</dd></div></dl>
           <pre class="code"><code>class Save(
     private val store: ThemeModeStore,
@@ -692,8 +740,8 @@ Store does not mutate semantic State directly. Observed outside truth is returne
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/ui/ThemeMode.kt" target="_blank" rel="noopener">ThemeMode.kt</a></div>
         </article>
 
-        <article class="step" id="theme-step-16">
-          <div class="step-head"><span class="step-no">16</span><div><h3>See why the exact Parameter remained recognizable</h3><div class="question">A Store observation can arrive late. How does this Family avoid letting an older mismatching observation overwrite a newer accepted selection?</div></div></div>
+        <article class="step" id="theme-step-17">
+          <div class="step-head"><span class="step-no">17</span><div><h3>See why the exact Parameter remained recognizable</h3><div class="question">A Store observation can arrive late. How does this Family avoid letting an older mismatching observation overwrite a newer accepted selection?</div></div></div>
           <dl class="scope"><div><dt>Container</dt><dd>ThemeModeFamily</dd></div><div><dt>Member</dt><dd>unsettledSelection: Parameter.Mode?</dd></div><div><dt>Settlement</dt><dd>referentially same Parameter instance (===)</dd></div><div><dt>Observation rule</dt><dd>mismatching observation is held while newer selection remains unsettled</dd></div></dl>
           <pre class="code"><code>private var unsettledSelection:
     Parameter.Mode? = null
@@ -722,8 +770,8 @@ The walk makes the identity meaningful because the reader has followed that Para
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/ui/ThemeMode.kt" target="_blank" rel="noopener">ThemeMode.kt · currentness fence</a></div>
         </article>
 
-        <article class="step" id="theme-step-17">
-          <div class="step-head"><span class="step-no">17</span><div><h3>Project semantic truth back toward the human</h3><div class="question">The Family now owns current ThemeMode truth. What container turns that truth into concrete presentation meaning?</div></div></div>
+        <article class="step" id="theme-step-18">
+          <div class="step-head"><span class="step-no">18</span><div><h3>Project semantic truth back toward the human</h3><div class="question">The Family now owns current ThemeMode truth. What container turns that truth into concrete presentation meaning?</div></div></div>
           <dl class="scope"><div><dt>Container</dt><dd>ThemeModeFamily.DisplayState</dd></div><div><dt>Member</dt><dd>presentation: VexThemePresentation</dd></div><div><dt>Consumer</dt><dd>VexLifeTheme</dd></div><div><dt>Manifestation</dt><dd>MaterialTheme colors + Android status/navigation bars + control presentation</dd></div></dl>
           <pre class="code"><code>data object Dark : DisplayState {
     override val presentation =
@@ -751,8 +799,8 @@ Family projection produces presentation meaning; VexLifeTheme manifests that mea
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/ui/VexLifeTheme.kt" target="_blank" rel="noopener">VexLifeTheme.kt</a> · blob 1e9d6c2dcf412180e57471210ab380883028209c</div>
         </article>
 
-        <article class="step" id="theme-step-18">
-          <div class="step-head"><span class="step-no">18</span><div><h3>Return to the exact UI surface where the walk began</h3><div class="question">How does the original Debug Menu toggle render the resulting ThemeMode presentation?</div></div></div>
+        <article class="step" id="theme-step-19">
+          <div class="step-head"><span class="step-no">19</span><div><h3>Return to the exact UI surface where the walk began</h3><div class="question">How does the original Debug Menu toggle render the resulting ThemeMode presentation?</div></div></div>
           <dl class="scope"><div><dt>Container</dt><dd>DebugMenuScreenContent</dd></div><div><dt>Presentation source</dt><dd>currentVexThemePresentation()</dd></div><div><dt>UI member</dt><dd>DebugMenuScreen.DarkMode</dd></div><div><dt>Rendered value</dt><dd>themePresentation.darkModeControlChecked</dd></div></dl>
           <pre class="code"><code>@Composable
 internal fun DebugMenuScreenContent(...) {
@@ -780,49 +828,57 @@ the same visible control that emitted the human doorway action now reads the pre
     <div class="chunk-label" data-i18n="pages.vexarchitecture-live-demonstration.stream.chunk">Copy/paste chunk B · current-source walk</div>
     <div class="kicker" data-i18n="pages.vexarchitecture-live-demonstration.stream.kicker">VexStream Playback · current-source exemplar</div>
     <h2 data-i18n="pages.vexarchitecture-live-demonstration.stream.heading">The same ownership questions survive when physical truth belongs to a sustained Media3 runtime</h2>
-    <p class="lede" data-i18n="pages.vexarchitecture-live-demonstration.stream.lede">This section does not claim VexStream is another ThemeMode-shaped implementation. It follows current source so the different shape can be seen: UI activates an Experience, a Media3 Connection interprets Behavior, physical Player reality returns through observation, and projection comes back to the same controls.</p>
+    <p class="lede" data-i18n="pages.vexarchitecture-live-demonstration.stream.lede">This section does not claim VexStream is another ThemeMode-shaped implementation. It follows current source so the different shape can be seen: Compose asks for a Playback Experience, an Android ViewModel owns the concrete Media3 connection, UI sends Controls through the Experience, Media3 owns physical reality, and observed projection returns to presentation.</p>
 
     <div class="walk-grid">
       <aside class="map">
         <h4>VexStream playback map</h4>
         <pre>VexStreamLibrarySurface
-├─ rememberVexStreamPlaybackExperience()
-└─ VexStreamMiniPlayer(playbackExperience)
-       │
-       ▼
-VexStreamPlaybackExperience
-       │ activate(PlayPause)
-       ▼
+        │
+        ▼
+rememberVexStreamPlaybackExperience()
+        │ viewModel()
+        ▼
 VexStreamPlaybackConnectionViewModel
+├─ MediaController → PlaybackService
 └─ Media3VexStreamPlaybackConnection
-├─ behavior
-├─ controls
-├─ pending
-├─ controller
-└─ Player.Listener
-       │
-       ├─ resolve current + control
-       ├─ Effect
-       └─ controller.play/pause
-                    │
-              Media3 reality
-                    │
-             Player.Listener
-                    ▼
-          reconciled State
-                    ▼
-              Projection
-                    ▼
-         PlaybackExperience
-                    ▼
-   icon/enabled on same UI</pre>
+        │
+        └──── owner.connection ─────┐
+                                    ▼
+                    CurrentVexStreamPlaybackExperience
+                                    │
+                                    ▼
+                     VexStreamMiniPlayer
+                     └─ TogglePlayback
+                                    │
+                         activate(PlayPause)
+                                    ▼
+                    same Media3 Connection
+                    ├─ behavior
+                    ├─ controls
+                    ├─ pending
+                    └─ controller
+                                    │
+                             Media3 reality
+                                    │
+                            Player.Listener
+                                    ▼
+                         reconciled State
+                                    ▼
+                            Projection
+                                    ▼
+                     PlaybackExperience
+                                    ▼
+                      same UI presentation</pre>
       </aside>
       <div class="steps">
         <article class="step">
-          <div class="step-head"><span class="step-no">S1</span><div><h3>Show where the playbackExperience parameter came from</h3><div class="question">Before VexStreamMiniPlayer can receive playbackExperience, which parent surface creates that Experience and passes it down?</div></div></div>
-          <dl class="scope"><div><dt>Container</dt><dd>VexStreamLibrarySurface</dd></div><div><dt>Created member</dt><dd>playbackExperience = rememberVexStreamPlaybackExperience()</dd></div><div><dt>Presentation decision</dt><dd>render mini player only for Transitioning / Active display state</dd></div><div><dt>Next edge</dt><dd>VexStreamMiniPlayer(playbackExperience = requireNotNull(playbackExperience))</dd></div></dl>
+          <div class="step-head"><span class="step-no">S1</span><div><h3>Enter the parent surface that asks for a Playback Experience</h3><div class="question">Before VexStreamMiniPlayer can receive playbackExperience, which parent composition asks for that object?</div></div></div>
+          <dl class="scope"><div><dt>Container</dt><dd>VexStreamLibrarySurface</dd></div><div><dt>Member being requested</dt><dd>playbackExperience = rememberVexStreamPlaybackExperience()</dd></div><div><dt>Role</dt><dd>parent VexStream composition surface</dd></div><div><dt>Next edge</dt><dd>enter rememberVexStreamPlaybackExperience() before using its returned value</dd></div></dl>
           <pre class="code"><code>@Composable
 internal fun VexStreamLibrarySurface(...) {
+    ...
+
     val playbackExperience =
         if (inspectionMode) {
             null
@@ -831,76 +887,38 @@ internal fun VexStreamLibrarySurface(...) {
         }
 
     ...
-
-    is VexStreamPlaybackDisplayState.Active -&gt; {
-        VexStreamMiniPlayer(
-            controller = controller,
-            playbackExperience =
-                requireNotNull(
-                    playbackExperience,
-                ),
-            runtime = runtime,
-        )
-    }
 }</code></pre>
-          <div class="edge">VexStreamMiniPlayer does not receive an unexplained Experience from nowhere. Its parent VexStreamLibrarySurface creates/observes the Experience and explicitly passes that same reference into the player presentation.</div>
+          <div class="edge">We do not jump to VexStreamMiniPlayer yet. The parent has asked for a Playback Experience; the next step enters that constructor-like Compose boundary to see what it depends on and what it returns.</div>
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/vexstream/VexStreamLibrarySurface.kt" target="_blank" rel="noopener">VexStreamLibrarySurface.kt</a> · blob 7173db2beda80e8a497deda292e73d288094b6c3</div>
         </article>
 
         <article class="step">
-          <div class="step-head"><span class="step-no">S2</span><div><h3>Start in the real UI container</h3><div class="question">The person presses Play/Pause. Which object receives the semantic control from this presentation surface?</div></div></div>
-          <dl class="scope"><div><dt>Container</dt><dd>VexStreamMiniPlayer</dd></div><div><dt>UI member</dt><dd>VexStreamMusicScreen.TogglePlayback</dd></div><div><dt>Owner reference</dt><dd>playbackExperience: VexStreamPlaybackExperience</dd></div><div><dt>Next edge</dt><dd>playbackExperience.activate(VexStreamPlaybackControl.PlayPause)</dd></div></dl>
+          <div class="step-head"><span class="step-no">S2</span><div><h3>Enter the Experience constructor boundary</h3><div class="question">What owner does rememberVexStreamPlaybackExperience() ask Android/Compose for before it can form a UI-facing Experience?</div></div></div>
+          <dl class="scope"><div><dt>Container</dt><dd>rememberVexStreamPlaybackExperience()</dd></div><div><dt>Owner member</dt><dd>owner: VexStreamPlaybackConnectionViewModel = viewModel()</dd></div><div><dt>References read from owner</dt><dd>owner.connection + owner.controller</dd></div><div><dt>Next edge</dt><dd>enter VexStreamPlaybackConnectionViewModel to see how those references become live</dd></div></dl>
           <pre class="code"><code>@Composable
-internal fun VexStreamMiniPlayer(
-    controller: MediaController?,
-    playbackExperience: VexStreamPlaybackExperience,
-    runtime: VexRuntime,
-) {
-    val handler =
-        ElementActionHandler { element ->
-            runtime.activate(element)
-            when (element) {
-                VexStreamMusicScreen.TogglePlayback ->
-                    playbackExperience.activate(
-                        VexStreamPlaybackControl.PlayPause,
-                    )
-                ...
-            }
-        }
+internal fun rememberVexStreamPlaybackExperience():
+    VexStreamPlaybackExperience {
+    val owner:
+        VexStreamPlaybackConnectionViewModel =
+        viewModel()
 
-    VexIconButton(
-        element = VexStreamMusicScreen.TogglePlayback,
-        handler = handler,
-        enabled = playPause.enabled,
-        iconOverride = playPause.icon,
-    )
+    val connection =
+        owner.connection
+
+    val playback by
+        rememberVexStreamPlaybackReadState(
+            owner.controller,
+        )
+
+    ...
 }</code></pre>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/vexstream/VexStreamPlayerPresentation.kt" target="_blank" rel="noopener">VexStreamPlayerPresentation.kt</a> · blob c2dca6366eb8437640d2aa96baa653e0184c17d4</div>
-        </article>
-
-        <article class="step">
-          <div class="step-head"><span class="step-no">S3</span><div><h3>Pass through the UI-facing Experience membrane</h3><div class="question">What does the Experience do with the Control?</div></div></div>
-          <dl class="scope"><div><dt>Container</dt><dd>CurrentVexStreamPlaybackExperience</dd></div><div><dt>Member</dt><dd>connection: VexStreamPlaybackConnection?</dd></div><div><dt>Role</dt><dd>UI-facing membrane, not semantic truth owner</dd></div><div><dt>Next edge</dt><dd>connection?.activate(control)</dd></div></dl>
-          <pre class="code"><code>private class CurrentVexStreamPlaybackExperience(
-    override val displayState:
-        VexStreamPlaybackDisplayState,
-    private val connection:
-        VexStreamPlaybackConnection?,
-) : VexStreamPlaybackExperience {
-
-    override fun activate(
-        control: VexStreamPlaybackControl,
-    ) {
-        connection?.activate(control)
-    }
-}</code></pre>
-          <div class="edge">The Experience carries Controls into the existing connection boundary and carries derived display classification back to Compose. It does not become Media3 or Behavior ownership.</div>
+          <div class="edge">The names connection and controller are not treated as magically initialized. They are fields on a specific configuration-lifetime owner, so the traversal enters that owner next.</div>
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/VexStreamPlaybackExperience.kt" target="_blank" rel="noopener">VexStreamPlaybackExperience.kt</a> · blob c5c2f543f7de94e50be989b7f45133fc60effd00</div>
         </article>
 
         <article class="step">
-          <div class="step-head"><span class="step-no">S4</span><div><h3>Show how the Experience acquires a concrete Media3 Connection</h3><div class="question">CurrentVexStreamPlaybackExperience holds a connection reference. What lifetime owner creates the concrete Media3VexStreamPlaybackConnection stored there?</div></div></div>
-          <dl class="scope"><div><dt>Container</dt><dd>VexStreamPlaybackConnectionViewModel</dd></div><div><dt>Outside-lifetime member</dt><dd>MediaController future bound to VexStreamPlaybackService</dd></div><div><dt>Created member</dt><dd>Media3VexStreamPlaybackConnection(connected)</dd></div><div><dt>Next edge</dt><dd>connection = playbackConnection → rememberVexStreamPlaybackExperience() → CurrentVexStreamPlaybackExperience</dd></div></dl>
+          <div class="step-head"><span class="step-no">S3</span><div><h3>Watch the Android lifetime owner create the concrete connection</h3><div class="question">How do VexStreamPlaybackConnectionViewModel.connection and controller become live values?</div></div></div>
+          <dl class="scope"><div><dt>Container</dt><dd>VexStreamPlaybackConnectionViewModel</dd></div><div><dt>Outside connection request</dt><dd>MediaController.Builder(... VexStreamPlaybackService ...).buildAsync()</dd></div><div><dt>Created member</dt><dd>Media3VexStreamPlaybackConnection(connected)</dd></div><div><dt>Stored references</dt><dd>connection = playbackConnection; controller = connected</dd></div></dl>
           <pre class="code"><code>internal class
 VexStreamPlaybackConnectionViewModel(
     application: Application,
@@ -931,8 +949,11 @@ VexStreamPlaybackConnectionViewModel(
                             Media3VexStreamPlaybackConnection(
                                 connected,
                             )
+
                         connection =
                             playbackConnection
+                        controller =
+                            connected
                     }
             },
             ContextCompat.getMainExecutor(
@@ -941,18 +962,94 @@ VexStreamPlaybackConnectionViewModel(
         )
     }
 }</code></pre>
-          <div class="edge">The Experience's connection slot is now traceable to a concrete Android lifetime owner. Media3 connection construction is not hidden inside the mini player and is not inferred from the interface name.</div>
+          <div class="edge">The concrete Connection is owned by an Android configuration-lifetime ViewModel because Media3 connection lifetime must survive Compose recomposition. When the controller arrives, the ViewModel constructs one Media3VexStreamPlaybackConnection and exposes that same reference through owner.connection.</div>
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/VexStreamPlaybackConnectionViewModel.kt" target="_blank" rel="noopener">VexStreamPlaybackConnectionViewModel.kt</a> · blob e6ad9066a6f26ae2afd713b7e2c6f8f76fc2e206</div>
         </article>
 
         <article class="step">
-          <div class="step-head"><span class="step-no">S5</span><div><h3>Enter the container that spans Behavior and Media3 reality</h3><div class="question">How does PlayPause become a semantic Act/Effect before the physical Player is commanded?</div></div></div>
+          <div class="step-head"><span class="step-no">S4</span><div><h3>Return to the Experience and form the UI-facing object</h3><div class="question">Now that owner.connection has a concrete origin, how is it carried into the object Compose will pass around?</div></div></div>
+          <dl class="scope"><div><dt>Container</dt><dd>rememberVexStreamPlaybackExperience()</dd></div><div><dt>Observed input</dt><dd>connection.projections + owner.controller playback read state</dd></div><div><dt>Derived member</dt><dd>displayState</dd></div><div><dt>Returned object</dt><dd>CurrentVexStreamPlaybackExperience(displayState, connection)</dd></div></dl>
+          <pre class="code"><code>val projections =
+    connection?.projections
+
+val projection =
+    if (projections == null) {
+        null
+    } else {
+        val current by
+            projections
+                .collectAsStateWithLifecycle()
+        current
+    }
+
+val displayState =
+    projection
+        .toVexStreamPlaybackDisplayState(
+            playback = playback,
+        )
+
+return remember(
+    connection,
+    displayState,
+) {
+    CurrentVexStreamPlaybackExperience(
+        displayState = displayState,
+        connection = connection,
+    )
+}</code></pre>
+          <div class="edge returning">RETURNING FROM THE OWNER DESCENT:
+the Experience now visibly contains the same Connection created in S3 plus the current derived display classification. That returned Experience is the value S1 requested.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/VexStreamPlaybackExperience.kt" target="_blank" rel="noopener">VexStreamPlaybackExperience.kt</a></div>
+        </article>
+
+        <article class="step">
+          <div class="step-head"><span class="step-no">S5</span><div><h3>Pass that same Experience into the visible player control</h3><div class="question">Where does VexStreamLibrarySurface actually consume the Experience it requested in S1?</div></div></div>
+          <dl class="scope"><div><dt>Container</dt><dd>VexStreamLibrarySurface</dd></div><div><dt>Presentation condition</dt><dd>displayState is Transitioning or Active</dd></div><div><dt>Consumer</dt><dd>VexStreamMiniPlayer(playbackExperience = requireNotNull(playbackExperience))</dd></div><div><dt>Next edge</dt><dd>human TogglePlayback → playbackExperience.activate(PlayPause)</dd></div></dl>
+          <pre class="code"><code>is VexStreamPlaybackDisplayState.Active -&gt; {
+    VexStreamMiniPlayer(
+        controller = controller,
+        playbackExperience =
+            requireNotNull(
+                playbackExperience,
+            ),
+        runtime = runtime,
+    )
+}</code></pre>
+          <div class="edge returning">USING THE SAME Experience returned in S4:
+the parent passes it directly into the mini player rather than recreating connection/behavior/presentation state inside the UI control.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/vexstream/VexStreamLibrarySurface.kt" target="_blank" rel="noopener">VexStreamLibrarySurface.kt</a></div>
+        </article>
+
+        <article class="step">
+          <div class="step-head"><span class="step-no">S6</span><div><h3>Let the human control call the Experience</h3><div class="question">The person presses Play/Pause. Which exact object receives the Control?</div></div></div>
+          <dl class="scope"><div><dt>Container</dt><dd>VexStreamMiniPlayer</dd></div><div><dt>UI member</dt><dd>VexStreamMusicScreen.TogglePlayback</dd></div><div><dt>Object reference</dt><dd>the playbackExperience passed from S5</dd></div><div><dt>Next edge</dt><dd>playbackExperience.activate(VexStreamPlaybackControl.PlayPause)</dd></div></dl>
+          <pre class="code"><code>VexIconButton(
+    element =
+        VexStreamMusicScreen.TogglePlayback,
+    handler = handler,
+    enabled = playPause.enabled,
+    iconOverride = playPause.icon,
+)
+
+// handler branch
+VexStreamMusicScreen.TogglePlayback -&gt;
+    playbackExperience.activate(
+        VexStreamPlaybackControl.PlayPause,
+    )</code></pre>
+          <div class="edge">The Control enters the same CurrentVexStreamPlaybackExperience formed in S4. Its activate(control) method forwards to the same connection stored inside that Experience.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/vexstream/VexStreamPlayerPresentation.kt" target="_blank" rel="noopener">VexStreamPlayerPresentation.kt</a> · blob c2dca6366eb8437640d2aa96baa653e0184c17d4</div>
+        </article>
+
+        <article class="step">
+          <div class="step-head"><span class="step-no">S7</span><div><h3>Interpret the Control and realize it against Media3</h3><div class="question">How does PlayPause become semantic Act/Effect before physical Player state is commanded?</div></div></div>
           <dl class="scope"><div><dt>Container</dt><dd>Media3VexStreamPlaybackConnection</dd></div><div><dt>Members</dt><dd>controller + behavior + controls + pending + projections + Player.Listener</dd></div><div><dt>Semantic edge</dt><dd>controls.resolve(current, control) → behavior.resolve(current, act) → effect</dd></div><div><dt>Physical edge</dt><dd>realize(effect) → MediaController</dd></div></dl>
           <pre class="code"><code>override fun activate(
     control: VexStreamPlaybackControl,
 ) {
     val current =
-        currentSemanticState(controller)
+        currentSemanticState(
+            controller,
+        )
 
     val act =
         controls.resolve(
@@ -968,25 +1065,42 @@ VexStreamPlaybackConnectionViewModel(
 
     val effect = relationship.effect
 
-    pending = pending.after(effect)
-    publish(current.afterIntent(effect))
-    realize(effect)
-    publishObserved(controller)
+    pending =
+        pending.after(
+            effect,
+        )
+
+    publish(
+        current.afterIntent(
+            effect,
+        ),
+    )
+
+    realize(
+        effect,
+    )
+
+    publishObserved(
+        controller,
+    )
 }</code></pre>
-          <div class="edge">Behavior answers what PlayPause means in current semantic state.
-Connection owns realization against Media3 and the pending/observed reconciliation needed because requested intent and physical Player reality are not identical facts.</div>
+          <div class="edge">Behavior answers what PlayPause means in current semantic state. Connection owns realization against Media3 and the pending/observed reconciliation needed because requested intent and physical Player reality are not identical facts.</div>
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/Media3VexStreamPlaybackConnection.kt" target="_blank" rel="noopener">Media3VexStreamPlaybackConnection.kt</a> · blob bc7f9fc00d05316965fa87dbce18108f2b52f066 · <a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/VexStreamPlaybackBehavior.kt" target="_blank" rel="noopener">VexStreamPlaybackBehavior.kt</a> · blob 08b6d8cc73b30d77003dbca17886678e51e7eb3a</div>
         </article>
 
         <article class="step">
-          <div class="step-head"><span class="step-no">S6</span><div><h3>Let Media3 own physical playback, then observe it back</h3><div class="question">Where does physical play/pause happen, and how does asynchronous Player truth return?</div></div></div>
-          <dl class="scope"><div><dt>Container</dt><dd>Media3VexStreamPlaybackConnection</dd></div><div><dt>Physical member</dt><dd>controller: MediaController</dd></div><div><dt>Observation member</dt><dd>Player.Listener.onEvents</dd></div><div><dt>Return edge</dt><dd>publishObserved → currentSemanticState → projection StateFlow</dd></div></dl>
+          <div class="step-head"><span class="step-no">S8</span><div><h3>Let Media3 own physical reality, then return projection to the same UI</h3><div class="question">Where does physical play/pause happen, and how does asynchronous Player truth make its way back to the original control?</div></div></div>
+          <dl class="scope"><div><dt>Physical owner</dt><dd>MediaController / Player</dd></div><div><dt>Observation member</dt><dd>Player.Listener.onEvents → publishObserved</dd></div><div><dt>Return path</dt><dd>currentSemanticState → controls.projection → connection.projections</dd></div><div><dt>Presentation consumer</dt><dd>PlaybackExperience displayState → projection.present(PlayPause) → VexIconButton</dd></div></dl>
           <pre class="code"><code>private fun realize(
     effect: VexStreamPlaybackEffect,
 ) {
     when (effect) {
-        RequestPlay -&gt; controller.play()
-        RequestPause -&gt; controller.pause()
+        RequestPlay -&gt;
+            controller.play()
+
+        RequestPause -&gt;
+            controller.pause()
+
         RestartCurrent -&gt; {
             controller.seekToDefaultPosition()
             controller.play()
@@ -994,47 +1108,23 @@ Connection owns realization against Media3 and the pending/observed reconciliati
     }
 }
 
-private val listener =
-    object : Player.Listener {
-        override fun onEvents(
-            player: Player,
-            events: Player.Events,
-        ) {
-            publishObserved(player)
-        }
-    }</code></pre>
-          <div class="edge">The Player is allowed to be physical truth.
-Listener observations return through reconciliation rather than the UI pretending its requested Play/Pause already equals observed playback.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/Media3VexStreamPlaybackConnection.kt" target="_blank" rel="noopener">Media3VexStreamPlaybackConnection.kt</a></div>
-        </article>
-
-        <article class="step">
-          <div class="step-head"><span class="step-no">S7</span><div><h3>Return projection to the same presentation surface</h3><div class="question">How does observed playback truth become the icon and enabled state on the original control?</div></div></div>
-          <dl class="scope"><div><dt>Container</dt><dd>rememberVexStreamPlaybackExperience()</dd></div><div><dt>Observed member</dt><dd>connection.projections StateFlow</dd></div><div><dt>Derived value</dt><dd>VexStreamPlaybackDisplayState</dd></div><div><dt>Presentation edge</dt><dd>projection.present(PlayPause) → icon + enabled → VexIconButton</dd></div></dl>
-          <pre class="code"><code>val projection =
-    connection?.projections
-        ?.collectAsStateWithLifecycle()
-        ?.value
-
-val displayState =
-    projection.toVexStreamPlaybackDisplayState(
-        playback = playback,
+override fun onEvents(
+    player: Player,
+    events: Player.Events,
+) {
+    publishObserved(
+        player,
     )
+}
 
-// Back in VexStreamMiniPlayer:
-val playPause =
-    playbackProjection.present(
-        VexStreamPlaybackControl.PlayPause,
-    )
-
-VexIconButton(
-    element = VexStreamMusicScreen.TogglePlayback,
-    enabled = playPause.enabled,
-    iconOverride = playPause.icon,
-)</code></pre>
+// projection is collected by
+// rememberVexStreamPlaybackExperience(),
+// then VexStreamMiniPlayer renders:
+// projection.present(PlayPause)
+// → enabled + icon</code></pre>
           <div class="edge returning">THE ROUND TRIP CLOSES:
-the same Play/Pause presentation that emitted the Control now renders from projection derived from observed Media3 reality.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/VexStreamPlaybackExperience.kt" target="_blank" rel="noopener">VexStreamPlaybackExperience.kt</a> · <a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/vexstream/VexStreamPlayerPresentation.kt" target="_blank" rel="noopener">VexStreamPlayerPresentation.kt</a></div>
+the same Connection created in S3 receives observed Player reality, publishes projection, and the same Experience/UI path from S4–S6 renders the resulting Play/Pause presentation.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/Media3VexStreamPlaybackConnection.kt" target="_blank" rel="noopener">Media3VexStreamPlaybackConnection.kt</a> · <a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/VexStreamPlaybackExperience.kt" target="_blank" rel="noopener">VexStreamPlaybackExperience.kt</a> · <a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/vexstream/VexStreamPlayerPresentation.kt" target="_blank" rel="noopener">VexStreamPlayerPresentation.kt</a></div>
         </article>
       </div>
     </div>
@@ -1043,56 +1133,73 @@ the same Play/Pause presentation that emitted the Control now renders from proje
   <section class="walk" id="vexmaps">
     <div class="chunk-label" data-i18n="pages.vexarchitecture-live-demonstration.maps.chunk">Copy/paste chunk C · current-source walk</div>
     <div class="kicker" data-i18n="pages.vexarchitecture-live-demonstration.maps.kicker">VexMaps Distribution · current-source exemplar</div>
-    <h2 data-i18n="pages.vexarchitecture-live-demonstration.maps.heading">Watch one local semantic owner, then watch two independent truths become relationship truth without collapsing ownership</h2>
-    <p class="lede" data-i18n="pages.vexarchitecture-live-demonstration.maps.lede">Maps is useful here because the current code makes a different pressure visible. Distribution Mode and Delivery Route remain independent owners, while a Relay can observe their projections and request Mode’s own public Control when their relationship is incoherent.</p>
+    <h2 data-i18n="pages.vexarchitecture-live-demonstration.maps.heading">Watch process-local construction, one local semantic owner, then relationship truth without collapsing ownership</h2>
+    <p class="lede" data-i18n="pages.vexarchitecture-live-demonstration.maps.lede">Maps is useful here because current code exposes both lifetime and relationship pressure. VexMapsMapSurface asks a process-local allocator for the lived Distribution session, wraps it in a UI boundary, then Mode and Delivery Route remain independent owners while a Relay observes their projections and may request Mode’s public Control.</p>
 
     <div class="walk-grid">
       <aside class="map">
         <h4>VexMaps Distribution map</h4>
         <pre>VexMapsMapSurface
-├─ VexMapsDistributionProcess.session(...)
-├─ VexMapsDistributionUi(session)
-└─ Context Dock onToggleMode
         │
         ▼
-VexMapsDistributionUi.toggleMode()
+VexMapsDistributionProcess.session(...)
+├─ process-local scope
+├─ productionSession / isolatedSessions
+└─ newSession(...)
+     └─ VexMapsDistributionSession
+          ├─ mode
+          ├─ deliveryRoute
+          └─ modeDeliveryRouteRelay
         │
         ▼
-VexMapsDistributionSession
-├─ mode: VexMapsDistributionModeConnection
-├─ deliveryRoute: VexMapsDeliveryRouteConnection
-└─ modeDeliveryRouteRelay
+VexMapsDistributionUi(session)
         │
-        ├──── mode.projections
-        └──── deliveryRoute.projections
-                  │
-                  ▼
-      relationship output
-      requestedModeControl?
-                  │
-                  ▼
- acceptModeDeliveryRouteOutput
-                  │
-                  ▼
-        mode.activate(control)
-                  │
-                  ▼
-Mode owns its own Act/Effect/State
-                  │
-                  ▼
-          mode.projections
-                  │
-                  ▼
-       VexMapsDistributionUi</pre>
+Context Dock onToggleMode
+        │
+        ▼
+distributionUi.toggleMode()
+        │
+        ▼
+session.toggleMode()
+        │
+        ▼
+mode.activate(control)
+        │
+        ├──── mode.projections ───────┐
+        └──── deliveryRoute.projections┤
+                                      ▼
+                           Convergence Relay
+                                      │
+                          requestedModeControl?
+                                      │
+                                      ▼
+                          session accepts output
+                                      │
+                                      ▼
+                          mode.activate(control)
+                                      │
+                                      ▼
+                               UI projection</pre>
       </aside>
       <div class="steps">
         <article class="step">
-          <div class="step-head"><span class="step-no">M1</span><div><h3>Show where DistributionSession and DistributionUi come from</h3><div class="question">Before VexMapsDistributionUi can receive toggleMode(), which Maps composition container creates the session/UI pair and connects the human control to it?</div></div></div>
-          <dl class="scope"><div><dt>Container</dt><dd>VexMapsMapSurface</dd></div><div><dt>Created members</dt><dd>distributionSession + distributionUi</dd></div><div><dt>UI doorway</dt><dd>vexMapsDistributionContextDockPage(onToggleMode = ...)</dd></div><div><dt>Next edge</dt><dd>runtime.activate(ToggleDistributionMode) then distributionUi.toggleMode()</dd></div></dl>
+          <div class="step-head"><span class="step-no">M1</span><div><h3>Enter the Maps composition where a Distribution session is requested</h3><div class="question">Before VexMapsDistributionUi exists, which composition container asks for the lived Distribution session?</div></div></div>
+          <dl class="scope"><div><dt>Container</dt><dd>VexMapsMapSurface</dd></div><div><dt>Requested member</dt><dd>distributionSession = VexMapsDistributionProcess.session(...)</dd></div><div><dt>Inputs supplied</dt><dd>application context + distribution repository</dd></div><div><dt>Next edge</dt><dd>enter VexMapsDistributionProcess.session(...) before treating the returned session as understood</dd></div></dl>
           <pre class="code"><code>@Composable
-internal fun VexMapsMapSurface(...) {
+internal fun VexMapsMapSurface(
+    runtime: VexRuntime,
+    repository: VexMapsRepository,
+    distributionRepository:
+        VexMapsDistributionRepository,
+) {
+    val context =
+        LocalContext.current
+
     val distributionSession =
-        remember(...) {
+        remember(
+            context.applicationContext,
+            distributionRepository,
+        ) {
             VexMapsDistributionProcess
                 .session(
                     context = context,
@@ -1101,77 +1208,157 @@ internal fun VexMapsMapSurface(...) {
                 )
         }
 
-    val distributionUi =
-        remember(distributionSession) {
-            VexMapsDistributionUi(
-                distributionSession,
-            )
-        }
-
-    val distributionDockPage =
-        vexMapsDistributionContextDockPage(
-            ui = distributionUi,
-            ...,
-            onToggleMode = {
-                runtime.activate(
-                    VexMapsScreen
-                        .ToggleDistributionMode,
-                )
-                distributionUi.toggleMode()
-            },
-        )
+    ...
 }</code></pre>
-          <div class="edge">The Maps walk now begins where the lived session/UI boundary is actually created and where the human control is wired. VexMapsDistributionUi is not introduced as an unexplained constructor parameter.</div>
+          <div class="edge">The Maps surface has asked a named process owner for a session. The next step enters that owner rather than treating .session(...) as a magic factory call.</div>
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/VexMapsMapSurface.kt" target="_blank" rel="noopener">VexMapsMapSurface.kt</a> · blob c327ca8a42adeae7f150709a85f046aa43911392</div>
         </article>
 
         <article class="step">
-          <div class="step-head"><span class="step-no">M2</span><div><h3>Start at the UI-facing Distribution boundary</h3><div class="question">When the UI asks to toggle Distribution Mode, which session object receives that request?</div></div></div>
+          <div class="step-head"><span class="step-no">M2</span><div><h3>Watch the process-local owner allocate or reuse the session</h3><div class="question">What does VexMapsDistributionProcess.session(...) actually own and return?</div></div></div>
+          <dl class="scope"><div><dt>Container</dt><dd>VexMapsDistributionProcess</dd></div><div><dt>Lifetime members</dt><dd>process-local scope + productionSession + isolatedSessions</dd></div><div><dt>Construction member</dt><dd>newSession(...)</dd></div><div><dt>Returned object</dt><dd>VexMapsDistributionSession</dd></div></dl>
+          <pre class="code"><code>internal object VexMapsDistributionProcess {
+    private val scope =
+        CoroutineScope(
+            SupervisorJob() +
+                Dispatchers.Main.immediate,
+        )
+
+    private var productionSession:
+        VexMapsDistributionSession? =
+        null
+
+    fun session(
+        context: Context,
+        repository:
+            VexMapsDistributionRepository,
+    ): VexMapsDistributionSession =
+        synchronized(lock) {
+            productionSession
+                ?: newSession(
+                    context = context,
+                    repository = repository,
+                ).also {
+                    productionSession = it
+                }
+        }
+
+    private fun newSession(
+        context: Context,
+        repository:
+            VexMapsDistributionRepository,
+    ): VexMapsDistributionSession =
+        VexMapsDistributionSession(
+            repository = repository,
+            routing =
+                AndroidDistributionRouting(
+                    context.applicationContext,
+                ),
+            navigation =
+                AndroidDistributionNavigation(
+                    context.applicationContext,
+                ),
+            executionRoot =
+                VexExecutionRoot(
+                    dispatcher =
+                        Dispatchers.Main.immediate,
+                ),
+            relayScope = scope,
+        )
+}</code></pre>
+          <div class="edge">The returned Distribution session has a visible lifetime owner and visible prerequisites: repository, routing, navigation, ExecutionRoot, and Relay scope. Process allocation remains a lifetime concern; the session still owns its own active relationship semantics.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/session/VexMapsDistributionProcess.kt" target="_blank" rel="noopener">VexMapsDistributionProcess.kt</a></div>
+        </article>
+
+        <article class="step">
+          <div class="step-head"><span class="step-no">M3</span><div><h3>Return to Maps and wrap the lived session in its UI boundary</h3><div class="question">Where is the session returned by M2 stored for presentation, and where does the human Distribution Mode control enter?</div></div></div>
+          <dl class="scope"><div><dt>Container</dt><dd>VexMapsMapSurface</dd></div><div><dt>Created member</dt><dd>distributionUi = VexMapsDistributionUi(distributionSession)</dd></div><div><dt>UI doorway</dt><dd>vexMapsDistributionContextDockPage(onToggleMode = ...)</dd></div><div><dt>Next edge</dt><dd>distributionUi.toggleMode()</dd></div></dl>
+          <pre class="code"><code>val distributionUi =
+    remember(
+        distributionSession,
+    ) {
+        VexMapsDistributionUi(
+            distributionSession,
+        )
+    }
+
+val distributionDockPage =
+    vexMapsDistributionContextDockPage(
+        ui = distributionUi,
+        ...,
+        onToggleMode = {
+            runtime.activate(
+                VexMapsScreen
+                    .ToggleDistributionMode,
+            )
+            distributionUi
+                .toggleMode()
+        },
+    )</code></pre>
+          <div class="edge returning">RETURNING FROM PROCESS ALLOCATION:
+the exact session returned by M2 is wrapped once in VexMapsDistributionUi. The human-facing Context Dock callback invokes that UI boundary after separately recording the runtime interaction.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/VexMapsMapSurface.kt" target="_blank" rel="noopener">VexMapsMapSurface.kt</a></div>
+        </article>
+
+        <article class="step">
+          <div class="step-head"><span class="step-no">M4</span><div><h3>Follow the UI boundary into the same session</h3><div class="question">What does VexMapsDistributionUi.toggleMode() do with the session reference it received in M3?</div></div></div>
           <dl class="scope"><div><dt>Container</dt><dd>VexMapsDistributionUi</dd></div><div><dt>Member</dt><dd>session: VexMapsDistributionSession</dd></div><div><dt>Doorway</dt><dd>toggleMode()</dd></div><div><dt>Next edge</dt><dd>session.toggleMode()</dd></div></dl>
           <pre class="code"><code>internal class VexMapsDistributionUi(
     private val session:
         VexMapsDistributionSession,
 ) {
     val modeProjections
-        get() = session.modeProjections
+        get() =
+            session.modeProjections
 
     fun toggleMode() =
         session.toggleMode()
 }</code></pre>
+          <div class="edge returning">SAME SESSION:
+VexMapsDistributionUi is a narrow presentation boundary over the process-owned lived session. toggleMode() forwards to that same session; it does not create or own a second Mode truth.</div>
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/VexMapsDistributionUi.kt" target="_blank" rel="noopener">VexMapsDistributionUi.kt</a> · blob e7b0d958fd3427dc44dc451ee18e05e5c198c767</div>
         </article>
 
         <article class="step">
-          <div class="step-head"><span class="step-no">M3</span><div><h3>See the independently owned pieces inside the session</h3><div class="question">What does this session actually contain before we follow Mode or Relay?</div></div></div>
+          <div class="step-head"><span class="step-no">M5</span><div><h3>See the independently owned pieces inside the session</h3><div class="question">What does VexMapsDistributionSession contain before we follow Mode or Relay?</div></div></div>
           <dl class="scope"><div><dt>Container</dt><dd>VexMapsDistributionSession</dd></div><div><dt>Independent members</dt><dd>mode + deliveryRoute + navigation + repository/routing</dd></div><div><dt>Relationship member</dt><dd>modeDeliveryRouteRelay</dd></div><div><dt>Execution role</dt><dd>Session extends VexExecution for work it authors; feature verbs remain on Session</dd></div></dl>
           <pre class="code"><code>internal class VexMapsDistributionSession(
-    private val repository: VexMapsDistributionRepository,
-    private val routing: VexMapsDistributionRouting,
-    private val navigation: VexMapsDistributionNavigationPort,
-    executionRoot: VexExecutionRoot,
-    private val relayScope: CoroutineScope,
+    private val repository:
+        VexMapsDistributionRepository,
+    private val routing:
+        VexMapsDistributionRouting,
+    private val navigation:
+        VexMapsDistributionNavigationPort,
+    executionRoot:
+        VexExecutionRoot,
+    private val relayScope:
+        CoroutineScope,
     private val mode:
         VexMapsDistributionModeConnection =
             VexMapsDistributionModeConnection(),
     private val deliveryRoute:
         VexMapsDeliveryRouteConnection =
             VexMapsDeliveryRouteConnection(),
-) : VexExecution(executionRoot) {
-
+) : VexExecution(
+    executionRoot,
+) {
     private val modeDeliveryRouteRelay =
         VexMapsDistributionModeDeliveryRouteConvergenceRelay(
-            modeProjections = mode.projections,
-            deliveryRouteProjections = deliveryRoute.projections,
+            modeProjections =
+                mode.projections,
+            deliveryRouteProjections =
+                deliveryRoute.projections,
         )
+
+    ...
 }</code></pre>
-          <div class="edge">Mode and DeliveryRoute are not fields of one giant semantic state machine.
-They are separate owners whose projections are also supplied to a relationship owner.</div>
+          <div class="edge">Mode and DeliveryRoute are separate owners whose projections are also supplied to a relationship owner. The process allocator in M2 chose lifetime; it did not collapse these semantic owners into one state machine.</div>
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/session/VexMapsDistributionSession.kt" target="_blank" rel="noopener">VexMapsDistributionSession.kt</a> · blob 0ccf546b276935aeb827e7963b06200cc729a39d</div>
         </article>
 
         <article class="step">
-          <div class="step-head"><span class="step-no">M4</span><div><h3>Follow an ordinary local Mode Control</h3><div class="question">What does session.toggleMode() do without involving Relay at all?</div></div></div>
-          <dl class="scope"><div><dt>Container</dt><dd>VexMapsDistributionSession</dd></div><div><dt>Member used</dt><dd>mode: VexMapsDistributionModeConnection</dd></div><div><dt>Control</dt><dd>VexMapsDistributionModeControl.ToggleDistribution</dd></div><div><dt>Next edge</dt><dd>mode.activate(control) → current State + Behavior → admitted State → projection</dd></div></dl>
+          <div class="step-head"><span class="step-no">M6</span><div><h3>Follow the human Mode Control through its rightful owner</h3><div class="question">What does the session do when toggleMode() reaches it?</div></div></div>
+          <dl class="scope"><div><dt>Container</dt><dd>VexMapsDistributionSession + VexMapsDistributionModeConnection</dd></div><div><dt>Control</dt><dd>VexMapsDistributionModeControl.ToggleDistribution</dd></div><div><dt>Semantic path</dt><dd>mode.activate → controls.resolve → behavior.resolve → admitted State</dd></div><div><dt>Output</dt><dd>mode.projections</dd></div></dl>
           <pre class="code"><code>// VexMapsDistributionSession
 fun toggleMode() {
     mode.activate(
@@ -1182,7 +1369,8 @@ fun toggleMode() {
 
 // VexMapsDistributionModeConnection
 override fun activate(
-    control: VexMapsDistributionModeControl,
+    control:
+        VexMapsDistributionModeControl,
 ) {
     val act =
         controls.resolve(
@@ -1197,22 +1385,27 @@ override fun activate(
         ) ?: return
 
     val admitted =
-        when (resolution.effect) {
-            UseDistributionMode -&gt; Distribution
-            UseRegularMode -&gt; Regular
+        when (
+            resolution.effect
+        ) {
+            UseDistributionMode -&gt;
+                Distribution
+            UseRegularMode -&gt;
+                Regular
         }
 
     state = admitted
     mutableProjections.value =
-        controls.projection(admitted)
+        controls.projection(
+            admitted,
+        )
 }</code></pre>
-          <div class="edge">Mode answers its own Control through its own Behavior/Connection.
-This is the local path the Relay reuses in M6 rather than bypassing.</div>
+          <div class="edge">Mode answers its own Control through its own Behavior/Connection. This is the same public doorway that the convergence relationship will request in M8 rather than bypassing.</div>
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/mode/VexMapsDistributionModeConnection.kt" target="_blank" rel="noopener">VexMapsDistributionModeConnection.kt</a> · blob 4ecc9c95fa73d2ae51a6bf7d1ff54ec4ed1e4d29</div>
         </article>
 
         <article class="step">
-          <div class="step-head"><span class="step-no">M5</span><div><h3>Enter relationship truth without stealing either owner</h3><div class="question">Delivery Route now exists while Mode says Regular. Which object can answer “do these truths agree?”</div></div></div>
+          <div class="step-head"><span class="step-no">M7</span><div><h3>Enter relationship truth without stealing either owner</h3><div class="question">Delivery Route now exists while Mode says Regular. Which object can answer “do these truths agree?”</div></div></div>
           <dl class="scope"><div><dt>Container</dt><dd>VexMapsDistributionModeDeliveryRouteConvergenceRelay</dd></div><div><dt>Inputs</dt><dd>modeProjections + deliveryRouteProjections</dd></div><div><dt>Owned question</dt><dd>coherence of the two independently complete truths</dd></div><div><dt>Possible output</dt><dd>requestedModeControl = UseDistribution</dd></div></dl>
           <pre class="code"><code>internal class
 VexMapsDistributionModeDeliveryRouteConvergenceRelay(
@@ -1224,44 +1417,57 @@ VexMapsDistributionModeDeliveryRouteConvergenceRelay(
 
     override fun dependencies() =
         vexDependencies {
-            observe("mode", modeProjections) { ... }
-            observe("delivery-route", deliveryRouteProjections) { ... }
+            observe(
+                "mode",
+                modeProjections,
+            ) { ... }
+
+            observe(
+                "delivery-route",
+                deliveryRouteProjections,
+            ) { ... }
         }
 }
 
-// output can carry:
+// output may carry:
 val requestedModeControl:
     VexMapsDistributionModeControl? = null</code></pre>
-          <div class="edge">The Relay owns the relationship question, not Mode or DeliveryRoute.
-Its repair request is expressed as Mode's public Control rather than a foreign Effect or direct state mutation.</div>
+          <div class="edge">The Relay owns the relationship question, not Mode or DeliveryRoute. Its repair request is expressed as Mode's public Control rather than a foreign Effect or direct state mutation.</div>
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/convergence/VexMapsDistributionModeDeliveryRouteConvergenceRelay.kt" target="_blank" rel="noopener">VexMapsDistributionModeDeliveryRouteConvergenceRelay.kt</a> · blob 1333d2d88d6541c3e10a914f8962390d42f69255</div>
         </article>
 
         <article class="step">
-          <div class="step-head"><span class="step-no">M6</span><div><h3>Follow the Relay request back into Mode’s own doorway</h3><div class="question">The Relay produced requestedModeControl. Who consumes it, and where does semantic authority remain?</div></div></div>
+          <div class="step-head"><span class="step-no">M8</span><div><h3>Follow the Relay request back into Mode’s own doorway</h3><div class="question">The Relay produced requestedModeControl. Who consumes it, and where does semantic authority remain?</div></div></div>
           <dl class="scope"><div><dt>Container</dt><dd>VexMapsDistributionSession</dd></div><div><dt>Collection edge</dt><dd>modeDeliveryRouteRelay.outputStates → acceptModeDeliveryRouteOutput</dd></div><div><dt>Requested value</dt><dd>output.requestedModeControl</dd></div><div><dt>Final edge</dt><dd>mode.activate(control)</dd></div></dl>
           <pre class="code"><code>init {
-    modeDeliveryRouteRelay.activate(relayScope)
+    modeDeliveryRouteRelay
+        .activate(
+            relayScope,
+        )
 
     launchForCollect(
         source =
             ::modeDeliveryRouteOutputsForExecution,
     ) { output -&gt;
-        acceptModeDeliveryRouteOutput(output)
+        acceptModeDeliveryRouteOutput(
+            output,
+        )
     }
 }
 
 private fun acceptModeDeliveryRouteOutput(
-    output: VexMapsDistributionModeDeliveryRouteOutput,
+    output:
+        VexMapsDistributionModeDeliveryRouteOutput,
 ) {
     output.requestedModeControl
         ?.let { control -&gt;
-            mode.activate(control)
+            mode.activate(
+                control,
+            )
         }
 }</code></pre>
           <div class="edge returning">THE RELATIONSHIP WALK CLOSES:
-Relay identifies incoherence and requests Mode's Control.
-Mode's own Connection still resolves the Control, Act, Effect, admitted State, and projection.</div>
+Relay identifies incoherence and requests Mode's Control. Mode's own Connection still resolves the Control, Act, Effect, admitted State, and projection using the same doorway shown in M6.</div>
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/session/VexMapsDistributionSession.kt" target="_blank" rel="noopener">VexMapsDistributionSession.kt · Relay output consumer</a></div>
         </article>
       </div>
