@@ -2919,7 +2919,7 @@
     var kindLabel = summary.groupKind.replace(/-/g, ' ');
     var relationText = contentGroupRelationText(stage);
     var relationMeta = relationText
-      ? '<span class="evo-context-meta">' + esc(relationText) + '</span>'
+      ? ' · <span class="evo-context-meta">' + esc(relationText) + '</span>'
       : '';
     var groupHomeCard = isDedicatedGroupHome(stage)
       ? '<button class="evo-group-depth-card" type="button" data-evo-group-home="' + escAttr(stage.key) + '" aria-label="Open ' + escAttr(stageDisplayName(stage)) + ' group home">'
