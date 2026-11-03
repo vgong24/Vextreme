@@ -28,12 +28,12 @@
       "key": 1.5,
       "name": "UTILITIES",
       "sub": "other lib/ helpers, config, tracing",
-      "count": 26,
+      "count": 27,
       "rect": {
         "x": 690,
         "y": 40,
         "width": 300,
-        "height": 1650
+        "height": 1710
       }
     },
     {
@@ -1115,12 +1115,13 @@
         "data/arcs-v2.json (real arc priority/title, for the arcs/pages content layer's column order and labels)",
         "data/index.json (canonical arcMap ordering/sections projected by lib/build-index.js earlier in the build pipeline)",
         "data/viewmodels.json (optional per-page Terrain preview override)",
-        "pages/*.html (authored Vextreme-Assets image references used only as fallback Content previews)",
+        "pages/*.html (authored Vextreme-Assets image references for fallback Content previews plus live parent/reference role and member-link evidence for content-group convergence)",
         "lib/audit-pages.js (getRecordPageSlugs — real record-page files excluding registry-owned institutional surfaces)",
         "lib/screenshot-evidence.js (shared representative screenshots and exact matrix evidence records)",
         "data/page-health.json (shared page capability and health projection)",
         "docs/screenshots/*.png (directory listing — which pages have a real per-language screenshot)",
-        "data/screenshot-evidence-assets.json (pinned Vextreme-Assets screenshot evidence projection; local docs/screenshots remain priority)"
+        "data/screenshot-evidence-assets.json (pinned Vextreme-Assets screenshot evidence projection; local docs/screenshots remain priority)",
+        "lib/content-group-convergence-relay.js (collection parent/reference + page-role/navigation relationship convergence)"
       ],
       "writes": [
         "data/terrain-map.json"
@@ -1134,7 +1135,8 @@
       ],
       "testedBy": [
         "tests/28-build-terrain-map.test.js",
-        "tests/44-page-health.test.js"
+        "tests/44-page-health.test.js",
+        "tests/148-content-group-convergence-relay.test.js"
       ],
       "debts": [],
       "status": "good",
@@ -1542,12 +1544,36 @@
       "auditorRank": 16
     },
     {
-      "id": "lib/detect-wip-promotions.js",
+      "id": "lib/content-group-convergence-relay.js",
       "cluster": "lib",
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
       "y": 570,
+      "role": "pure Content Group convergence relay — composes collection membership, configured parent/reference, and live page role/navigation into inspectable relationship truth",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/build-terrain-map.js (projects contentGroupRelation onto generated Terrain arcs)",
+        "tests/148-content-group-convergence-relay.test.js"
+      ],
+      "testedBy": [
+        "tests/148-content-group-convergence-relay.test.js",
+        "tests/28-build-terrain-map.test.js (real repository relationship projection)"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 17
+    },
+    {
+      "id": "lib/detect-wip-promotions.js",
+      "cluster": "lib",
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 630,
       "role": "detects a wip/*.html → pages/*.html move within a PR's diff, so a promotion shows up as a positive PR notice instead of silence or a false 'broken reference'",
       "reads": [
         "git diff --name-status -M output between two refs (wip/ and pages/ paths only)"
@@ -1567,7 +1593,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 17
+      "auditorRank": 18
     },
     {
       "id": "lib/discover-string-identity.js",
@@ -1575,7 +1601,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 630,
+      "y": 690,
       "role": "localization identity pilot, first script — proposal/report tool only, cross-references a page's string keys against its live HTML's data-legacy-id/id/title-alias attributes",
       "reads": [
         "data/strings/source/pages/{slug}.json (existing string keys)",
@@ -1595,7 +1621,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 18
+      "auditorRank": 19
     },
     {
       "id": "lib/institutional-localization-runtime.js",
@@ -1603,7 +1629,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 690,
+      "y": 750,
       "role": "bounded behavioral probe for transactional institutional localization — exercises precedence, hostile failures, rapid intent changes, and atomic visible/alt/ARIA application",
       "reads": [
         "declared institutional localization widget source (provided by lib/check-institutional-surfaces.js)",
@@ -1624,7 +1650,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 19
+      "auditorRank": 20
     },
     {
       "id": "lib/logger-codes.js",
@@ -1632,7 +1658,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 750,
+      "y": 810,
       "role": "event code registry — the CODES constant every logger.warn/error call references",
       "reads": [],
       "writes": [],
@@ -1658,7 +1684,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 810,
+      "y": 870,
       "role": "structured logger — every build script's warn/info/error call goes through here",
       "reads": [],
       "writes": [
@@ -1687,7 +1713,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 870,
+      "y": 930,
       "role": "plan-first slug rename impact discovery — validates proposed identity movement, discovers tracked filename/content references, classifies migration responsibility, and reports collisions/unknowns without mutating source",
       "reads": [
         "git tracked-file inventory when available; deterministic filesystem fallback for isolated tests",
@@ -1720,7 +1746,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 930,
+      "y": 990,
       "role": "runs the build scripts tests/helpers/prereqs.js declares as required before the test suite can read generated files — replaces a hardcoded run: line in .github/workflows/test.yml",
       "reads": [
         "tests/helpers/prereqs.js (PREREQUISITE_SCRIPTS)"
@@ -1736,7 +1762,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 20
+      "auditorRank": 21
     },
     {
       "id": "lib/screenshot-evidence.js",
@@ -1744,7 +1770,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 990,
+      "y": 1050,
       "role": "shared screenshot-evidence filename parser and deterministic projection helper",
       "reads": [],
       "writes": [],
@@ -1766,7 +1792,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 21
+      "auditorRank": 22
     },
     {
       "id": "lib/session-bootstrap.js",
@@ -1774,7 +1800,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1050,
+      "y": 1110,
       "role": "one-shot session-start state report — read-only, gathers what would otherwise be several manual checks into one command",
       "reads": [
         "docs/continuity/INDEX.md (last logged session, batch registry)",
@@ -1803,7 +1829,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 22
+      "auditorRank": 23
     },
     {
       "id": "lib/shell.js",
@@ -1811,7 +1837,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1110,
+      "y": 1170,
       "role": "thin GitHub Pages shell bootstrap — loads the cache-versioned legacy runtime and invokes VEXTREME with the page's optional override",
       "reads": [
         "lib/vextreme.js (cache-versioned runtime loaded into the page)",
@@ -1844,7 +1870,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1170,
+      "y": 1230,
       "role": "strings pipeline integrity check — runs before compile, catches missing EN text, stale translations, and orphaned keys",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1875,7 +1901,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1230,
+      "y": 1290,
       "role": "strings pipeline compiler — reads source JSON, writes compiled bundles and manifest",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1912,7 +1938,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1290,
+      "y": 1350,
       "role": "pure semantic-history state for Terrain Journey commits and browser Back/Forward restoration",
       "reads": [],
       "writes": [],
@@ -1927,7 +1953,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 23
+      "auditorRank": 24
     },
     {
       "id": "lib/trace-string-usage.js",
@@ -1935,7 +1961,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1350,
+      "y": 1410,
       "role": "string reverse-tracer — data-i18n usage in pages/wip HTML cross-referenced against the compiled manifest",
       "reads": [
         "pages/*.html (data-i18n attribute scan)",
@@ -1957,7 +1983,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 24
+      "auditorRank": 25
     },
     {
       "id": "lib/validate-blueprint.js",
@@ -1965,7 +1991,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1410,
+      "y": 1470,
       "role": "blueprint consistency validator — confirms every id in blueprint.json has a matching config file and vex-config constant",
       "reads": [
         "blueprint.json",
@@ -1997,7 +2023,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1470,
+      "y": 1530,
       "role": "constants hub — pure declarations, no I/O",
       "reads": [],
       "writes": [],
@@ -2039,7 +2065,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1530,
+      "y": 1590,
       "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
       "reads": [
         "data/index.json via CDN (slugMap, arcMap, arcMeta)",
@@ -2063,7 +2089,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 25
+      "auditorRank": 26
     },
     {
       "id": "lib/vextreme.js",
@@ -2071,7 +2097,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1590,
+      "y": 1650,
       "role": "legacy shell-era runtime composition loader — environment styles, shared nav/body composition, registry-backed institutional locale projection, current Spiral FAB auto-load, and gated v1 archive enhancement",
       "reads": [
         "config/institutional-surfaces.json (shell-context required-locale projection before shared language FAB mount)",
@@ -2809,6 +2835,10 @@
     [
       "lib/build-terrain-map.js",
       "lib/build-index.js"
+    ],
+    [
+      "lib/build-terrain-map.js",
+      "lib/content-group-convergence-relay.js"
     ],
     [
       "lib/build-terrain-map.js",
