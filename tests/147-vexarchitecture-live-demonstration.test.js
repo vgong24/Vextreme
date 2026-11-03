@@ -88,6 +88,11 @@ test('VEXARCHITECTURE LIVE: every introduced ThemeMode scope has a visible next 
   assert.equal(live.includes('later used'), false);
   assert.ok(live.includes('theme-step-20'));
   assert.ok(live.includes('same concrete Store resolved in Step 05'));
+  assert.ok(live.includes('Copy this dependency pattern'));
+  assert.ok(live.includes('VexDependencyProvider.named(...)'));
+  assert.ok(live.includes('copy this pattern rather than adding a parallel path'));
+  assert.ok(live.includes('Dependency README · copy/reference contract'));
+  assert.ok(live.includes('VexDependencyFactoryTest.kt · executable pattern proof'));
 });
 
 test('VEXARCHITECTURE LIVE: VexStream walk closes UI to Media3 and back', () => {
