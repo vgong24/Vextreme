@@ -30,6 +30,10 @@ test('VEXARCHITECTURE LIVE: companion stays separate from the Builder Field Guid
     'VexLifeApp(session: VexLifeSession)',
     'AppScreens',
     'VexRuntime.activate(...)',
+    'ThemeModeStoreProvider',
+    'SharedPreferencesThemeModeStore',
+    'observeThemeModeStore',
+    'VexExecution.observe',
     'RuntimeProvider',
     'currentAppActions = {',
     'AppActionRegistrations.dispatch(AppActionRequest)',
@@ -75,6 +79,8 @@ test('VEXARCHITECTURE LIVE: every introduced ThemeMode scope has a visible next 
 
   assert.equal(live.includes('used later'), false);
   assert.equal(live.includes('later used'), false);
+  assert.ok(live.includes('theme-step-20'));
+  assert.ok(live.includes('same concrete Store resolved in Step 06'));
 });
 
 test('VEXARCHITECTURE LIVE: VexStream walk closes UI to Media3 and back', () => {
