@@ -1525,13 +1525,12 @@
         "data/arcs-v2.json (real arc priority/title, for the arcs/pages content layer's column order and labels)",
         "data/index.json (canonical arcMap ordering/sections projected by lib/build-index.js earlier in the build pipeline)",
         "data/viewmodels.json (optional per-page Terrain preview override)",
-        "pages/*.html (authored Vextreme-Assets image references for fallback Content previews plus live parent/reference role and member-link evidence for content-group convergence)",
+        "pages/*.html (authored Vextreme-Assets image references used only as fallback Content previews)",
         "lib/audit-pages.js (getRecordPageSlugs — real record-page files excluding registry-owned institutional surfaces)",
         "lib/screenshot-evidence.js (shared representative screenshots and exact matrix evidence records)",
         "data/page-health.json (shared page capability and health projection)",
         "docs/screenshots/*.png (directory listing — which pages have a real per-language screenshot)",
-        "data/screenshot-evidence-assets.json (pinned Vextreme-Assets screenshot evidence projection; local docs/screenshots remain priority)",
-        "lib/content-group-convergence-relay.js (collection parent/reference + page-role/navigation relationship convergence)"
+        "data/screenshot-evidence-assets.json (pinned Vextreme-Assets screenshot evidence projection; local docs/screenshots remain priority)"
       ],
       "writes": [
         "data/terrain-map.json"
@@ -1545,8 +1544,7 @@
       ],
       "testedBy": [
         "tests/28-build-terrain-map.test.js",
-        "tests/44-page-health.test.js",
-        "tests/148-content-group-convergence-relay.test.js"
+        "tests/44-page-health.test.js"
       ],
       "changeMap": {
         "docs/lattice-map.json schema changed (reads/writes/loadedBy/testedBy shape)": [
@@ -1572,38 +1570,6 @@
           "lib/build-terrain-map.js (projects canonical memberSlugs/sections into data/terrain-map.json)",
           "pages/terrain-map.html (stageMembers and Timeline section renderer consume that order)",
           "tests/28-build-terrain-map.test.js and tests/85-terrain-view-contract.test.js"
-        ],
-        "content-group relationship classification changed": [
-          "lib/content-group-convergence-relay.js (single relationship owner)",
-          "pages/terrain-map.html (GROUP HOME rendering/routing consumes only DEDICATED_GROUP_HOME)",
-          "data/terrain-map.json arcs[].contentGroupRelation generated projection",
-          "tests/28-build-terrain-map.test.js, tests/85-terrain-view-contract.test.js, tests/148-content-group-convergence-relay.test.js"
-        ]
-      }
-    },
-    "lib/content-group-convergence-relay.js": {
-      "role": "pure Content Group convergence relay — composes collection membership, configured parent/reference, and live page role/navigation into inspectable relationship truth",
-      "context": "Terrain needs to know whether a collection has a real navigational container without letting data/arcs-v2.json parent references, page files, or the UI independently invent that answer. This pure relay owns only the relationship question. It does not own membership, page content, page role, or navigation. It emits evidence-bearing DEDICATED_GROUP_HOME / MEMBER_REFERENCE / SHARED_REFERENCE / unavailable / partial / live-reference / conflict states so downstream renderers and future AI can recognize why a collection does or does not expose a group home.",
-      "reads": [],
-      "writes": [],
-      "loadedBy": [
-        "lib/build-terrain-map.js (projects contentGroupRelation onto generated Terrain arcs)",
-        "tests/148-content-group-convergence-relay.test.js"
-      ],
-      "testedBy": [
-        "tests/148-content-group-convergence-relay.test.js",
-        "tests/28-build-terrain-map.test.js (real repository relationship projection)"
-      ],
-      "changeMap": {
-        "relationship kind or precedence changed": [
-          "lib/build-terrain-map.js (projection caller)",
-          "pages/terrain-map.html (dedicated group-home gate and relationship text)",
-          "data/terrain-map.json arcs[].contentGroupRelation",
-          "tests/28-build-terrain-map.test.js, tests/85-terrain-view-contract.test.js, tests/148-content-group-convergence-relay.test.js"
-        ],
-        "page-role or link recognition changed": [
-          "pages carrying data-vex-surface/data-vex-group-key",
-          "legacy collection homes whose authored local links provide COMPLETE_COLLECTION_NAVIGATION evidence"
         ]
       }
     },
