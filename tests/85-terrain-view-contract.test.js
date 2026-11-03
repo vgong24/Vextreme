@@ -278,6 +278,16 @@ test('TERRAIN-VIEW: Content-world adapter preserves convergence relationship int
 
   assert.deepEqual(world.stages[0].contentGroupRelation, relation,
     'the browser adapter must not discard the relationship that controls real group-home accessibility');
+
+  const relationFn = source.match(/function contentGroupRelation\(stage\) \{[\s\S]*?\n  \}/);
+  const dedicatedFn = source.match(/function isDedicatedGroupHome\(stage\) \{[\s\S]*?\n  \}/);
+  assert.ok(relationFn && dedicatedFn, 'dedicated-home gate must remain extractable for adapter-to-gate proof');
+  const isDedicatedGroupHome = new Function(
+    relationFn[0] + '\n' + dedicatedFn[0] + '\nreturn isDedicatedGroupHome;'
+  )();
+
+  assert.equal(isDedicatedGroupHome(world.stages[0]), true,
+    'Receive God / collection entry must still recognize a dedicated home after the Content-world adapter');
 });
 
 test('TERRAIN-VIEW: collection group homes are relationship truth, not parent.live aliases', () => {
