@@ -1496,7 +1496,7 @@
     initializeJourneyHistory(initialRoute.explicit);
     if (currentWorld === 'content' && (currentProfile === 'evolution-v1' || currentProfile === 'evolution-v2') && initialRoute.page) {
       var initialStage = typeof levelCtx.stageIdx === 'number' ? STAGES[levelCtx.stageIdx] : null;
-      if (initialStage && initialStage.parent && initialStage.parent.live && initialStage.parent.pageSlug === initialRoute.page) {
+      if (initialStage && isDedicatedGroupHome(initialStage) && initialStage.parent.pageSlug === initialRoute.page) {
         openEvolutionGroupHome(initialStage, { writeUrl:false });
       } else {
         var initialPage = ALL.find(function (node) { return node.slug === initialRoute.page || node.id === initialRoute.page; });
