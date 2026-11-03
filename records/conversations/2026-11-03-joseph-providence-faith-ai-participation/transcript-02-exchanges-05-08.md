@@ -10,7 +10,11 @@ Chronological visible user/assistant dialogue. Speaker headings are archive fram
 
 Wait you said scientists disproved but wasn't there a choice factor and had to observe like further away particles kind of counter argument 
 
-### Assistant
+### Assistant (progress message)
+
+Yes—that sounds like the **freedom-of-choice and locality loopholes** in Bell experiments. You’re remembering a real debate: scientists had to carefully control *when and how* distant particles were measured, and whether the measurement choices were genuinely independent. I’ll separate what the experiments ruled out from what remains open.
+
+### Assistant (final answer)
 
 **Yes! You're remembering a legitimate scientific counterargument.** And you're right to challenge the word *disproved*, because the experiments did **not** disprove determinism itself.
 
