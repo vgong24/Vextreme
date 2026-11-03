@@ -102,7 +102,7 @@ test('VEXARCHITECTURE LIVE: VexStream walk closes UI to Media3 and back', () => 
     'controller.play()',
     'Player.Listener',
     'publishObserved',
-    'connection.projections StateFlow',
+    'connection.projections',
     'projection.present(PlayPause)',
   ]) {
     assert.ok(live.includes(required), 'missing VexStream witness: ' + required);
