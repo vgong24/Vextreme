@@ -139,7 +139,8 @@ test('TERRAIN-VIEW: current canonical arcs are not empty; three are secondary-on
 
 test('TERRAIN-VIEW: Full Timeline consumes canonical projected sections/order and preserves complete page readers', () => {
   const source = pageSource();
-  assert.match(source, /sections: a\.sections \|\| \[\], memberSlugs: a\.memberSlugs \|\| \[\]/);
+  assert.match(source, /sections: a\.sections \|\| \[\]/);
+  assert.match(source, /memberSlugs: a\.memberSlugs \|\| \[\]/);
   assert.match(source, /Array\.isArray\(stage\.memberSlugs\) && stage\.memberSlugs\.length/);
   assert.match(source, /stage\.memberSlugs\.map\(function \(slug\) \{ return byId\[slug\]; \}\)\.filter\(Boolean\)/);
   assert.match(source, /summary\.groupKind === 'timeline-view'/);
