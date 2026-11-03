@@ -114,6 +114,31 @@ test('VEXARCHITECTURE GUIDE: application guidance pressures harder products with
   assert.ok(page.includes('They are not declared migrated by this page.'));
 });
 
+test('VEXARCHITECTURE GUIDE: simple localized fallbacks match English source text', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+  const strings = json('data/strings/source/pages/vexarchitecture-first-stable-body.json');
+  const decode = value => value
+    .replace(/&rarr;/g, '→')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&#39;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const matches = [...page.matchAll(/<([a-z0-9]+)\b[^>]*data-i18n="([^"]+)"[^>]*>([\s\S]*?)<\/\1>/gi)];
+  const mismatches = [];
+  for (const match of matches) {
+    if (/<[^>]+>/.test(match[3])) continue;
+    const source = strings[match[2]]?.strings?.en?.text;
+    if (source === undefined) continue;
+    if (decode(match[3]) !== decode(source)) mismatches.push(match[2]);
+  }
+
+  assert.deepEqual(mismatches, []);
+});
+
 test('VEXARCHITECTURE GUIDE: every bound display key exists in the page string source', () => {
   const page = fs.readFileSync(PAGE, 'utf8');
   const strings = JSON.parse(fs.readFileSync(STRINGS, 'utf8'));

@@ -155,6 +155,31 @@ test('VEXARCHITECTURE LIVE: copy-paste structure survives without interactive st
   assert.equal(live.includes('<details'), false);
 });
 
+test('VEXARCHITECTURE LIVE: simple localized fallbacks match English source text', () => {
+  const live = read('pages/vexarchitecture-live-demonstration.html');
+  const strings = json('data/strings/source/pages/vexarchitecture-live-demonstration.json');
+  const decode = value => value
+    .replace(/&rarr;/g, '→')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&#39;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const matches = [...live.matchAll(/<([a-z0-9]+)\b[^>]*data-i18n="([^"]+)"[^>]*>([\s\S]*?)<\/\1>/gi)];
+  const mismatches = [];
+  for (const match of matches) {
+    if (/<[^>]+>/.test(match[3])) continue;
+    const source = strings[match[2]]?.strings?.en?.text;
+    if (source === undefined) continue;
+    if (decode(match[3]) !== decode(source)) mismatches.push(match[2]);
+  }
+
+  assert.deepEqual(mismatches, []);
+});
+
 test('VEXARCHITECTURE LIVE: page strings cover every bound localization key', () => {
   const live = read('pages/vexarchitecture-live-demonstration.html');
   const strings = json('data/strings/source/pages/vexarchitecture-live-demonstration.json');
