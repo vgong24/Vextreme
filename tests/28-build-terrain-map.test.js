@@ -567,9 +567,17 @@ test('BUILD-TERRAIN-MAP: real Content groups expose converged container intentio
     assert.equal(byKey[key].contentGroupRelation.evidence.parentIsMember, true);
   }
 
-  assert.equal(byKey.architecture.contentGroupRelation.kind, 'SHARED_REFERENCE',
-    'Archives is shared reference surface, not Architecture & Methodology\'s dedicated group home');
-  assert.equal(byKey.architecture.contentGroupRelation.evidence.referenceCount > 1, true);
+  const buildHealthCompatibilityArcs = data.arcs.filter(arc =>
+    arc.parent && arc.parent.pageSlug === 'archives'
+  );
+  assert.ok(buildHealthCompatibilityArcs.length > 0, 'fixture must include current Archives compatibility references');
+  for (const arc of buildHealthCompatibilityArcs) {
+    assert.equal(arc.contentGroupRelation.kind, 'SYSTEM_REFERENCE',
+      arc.key + ': Archives -> Build Health compatibility must never become a collection group home');
+    assert.equal(arc.contentGroupRelation.intent, 'REFERENCE_SYSTEM_SURFACE');
+    assert.equal(arc.contentGroupRelation.groupHomePageSlug, null);
+    assert.equal(arc.contentGroupRelation.evidence.systemReferenceTarget, 'build-health');
+  }
 });
 
 test('BUILD-TERRAIN-MAP integration: the real generator produces byte-identical output on repeated runs', () => {
