@@ -91,7 +91,8 @@ test('VEXARCHITECTURE LIVE: every introduced ThemeMode scope has a visible next 
   assert.ok(live.includes('Copy this dependency pattern'));
   assert.ok(live.includes('VexDependencyProvider.named(...)'));
   assert.ok(live.includes('copy this pattern rather than adding a parallel path'));
-  assert.ok(live.includes('Dependency README · copy/reference contract'));
+  assert.ok(live.includes('Dependency README · conceptual/lifetime contract'));
+  assert.ok(live.includes('current source/tests own implementation details'));
   assert.ok(live.includes('VexDependencyFactoryTest.kt · executable pattern proof'));
 });
 
