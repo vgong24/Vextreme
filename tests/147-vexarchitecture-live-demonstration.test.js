@@ -23,6 +23,8 @@ test('VEXARCHITECTURE LIVE: companion stays separate from the Builder Field Guid
   assert.ok(guide.includes('Open VexArchitecture — Live Demonstration ↗'));
   assert.ok(live.includes('./vexarchitecture-first-stable-body.html'));
   assert.ok(live.includes('This page does not redefine VexArchitecture.'));
+  assert.ok(live.includes('Code blocks are scoped teaching excerpts'));
+  assert.ok(live.includes('The linked source path and blob own the byte-exact code'));
   assert.ok(live.includes('ThemeMode · accepted patient zero'));
   assert.ok(live.includes('VexStream Playback · current-source exemplar'));
   assert.ok(live.includes('VexMaps Distribution · current-source exemplar'));
