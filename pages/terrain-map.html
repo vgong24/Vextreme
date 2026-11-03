@@ -1461,7 +1461,13 @@
   }
 
   function buildContentWorld(data) {
-    var stages = (data.arcs || []).map(function (a) { return { key: a.key, name: a.name, sub: a.sub, count: a.count, rect: a.rect, parent: a.parent || null, sections: a.sections || [], memberSlugs: a.memberSlugs || [], contentGroupRelation: a.contentGroupRelation || null }; });
+    var stages = (data.arcs || []).map(function (a) {
+      return Object.assign({}, a, {
+        parent: a.parent || null,
+        sections: a.sections || [],
+        memberSlugs: a.memberSlugs || [],
+      });
+    });
     var colW = (stages.length > 1) ? (stages[1].rect.x - stages[0].rect.x) : 340;
     var all = (data.pages || []).map(function (p) {
       return Object.assign({ kind: 'page' }, p, { stage: p.arc, stageName: p.arcName });
