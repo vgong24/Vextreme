@@ -54,6 +54,35 @@ test('CONTENT GROUP RELAY: a collection member nominated as parent remains a mem
   assert.equal(result.contentGroupRelation.evidence.parentIsMember, true);
 });
 
+test('CONTENT GROUP RELAY: Build Health and its compatibility route are system references even when they enumerate every member', () => {
+  const results = convergeContentGroupRelationships(
+    [
+      arc('direct-build', 'build-health', ['a','b']),
+      arc('compat-build', 'archives', ['c','d']),
+    ],
+    {
+      'build-health':'<html><a href="a.html">A</a><a href="b.html">B</a></html>',
+      archives:'<html><head><link rel="canonical" href="https://vgong24.github.io/Vextreme/pages/build-health.html"></head><body><a href="c.html">C</a><a href="d.html">D</a></body></html>',
+    }
+  );
+
+  assert.deepEqual(results.map(item => item.contentGroupRelation.kind), [
+    RELATION_KINDS.SYSTEM_REFERENCE,
+    RELATION_KINDS.SYSTEM_REFERENCE,
+  ]);
+  assert.deepEqual(results.map(item => item.contentGroupRelation.intent), [
+    'REFERENCE_SYSTEM_SURFACE',
+    'REFERENCE_SYSTEM_SURFACE',
+  ]);
+  for (const result of results) {
+    assert.equal(result.contentGroupRelation.groupHomePageSlug, null);
+    assert.equal(result.contentGroupRelation.reason, 'SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER');
+    assert.equal(result.contentGroupRelation.evidence.completeMemberNavigation, true,
+      'dashboard completeness must not promote an operational surface into group-home meaning');
+    assert.equal(result.contentGroupRelation.evidence.systemReferenceTarget, 'build-health');
+  }
+});
+
 test('CONTENT GROUP RELAY: a shared live reference does not become every collection home', () => {
   const results = convergeContentGroupRelationships(
     [
