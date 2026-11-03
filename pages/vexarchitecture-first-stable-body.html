@@ -646,7 +646,7 @@
         <span class="pill status" data-i18n="pages.vexarchitecture-first-stable-body.hero.status">Accepted stability point · public origin guide</span>
         <span class="pill" data-i18n="pages.vexarchitecture-first-stable-body.hero.origin">VexLife-Android · PR #209</span>
       </div>
-      <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.hero.reader-contract">Use this page to understand why the first stable VexArchitecture body took this shape. Current VexLife-Android source and tests own present behavior. PR #209 preserves the pressure, subtraction, and proof that earned this stability point.</p>
+      <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.hero.reader-contract">Use this page to understand why the first stable VexArchitecture body took this shape. Current VexLife-Android source and tests own present behavior. PR #209 preserves the pressure, subtraction, and proof that earned this stability point. Diagrams and code blocks here are architectural teaching projections unless explicitly labeled as a source snapshot; linked current source owns byte-exact implementation. The companion Live Demonstration is the object/scope-by-scope wiring walk when you need every construction and runtime edge made visible.</p>
       <p class="lede" data-i18n="pages.vexarchitecture-first-stable-body.hero.lede">VexArchitecture did not begin with a framework diagram. It emerged while a real Android application kept forcing semantic state, asynchronous work, persistence, provider truth, dependency construction, logging, convergence, and presentation to stop impersonating one another.</p>
     </header>
 
@@ -853,7 +853,7 @@ Forensics / PR provenance
 
       <div class="workbench-grid">
         <article class="workbench">
-          <h3 data-i18n="pages.vexarchitecture-first-stable-body.walk.code-heading">The semantic vocabulary</h3>
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.walk.code-heading">Semantic vocabulary · abridged from accepted source</h3>
           <pre><code data-i18n="pages.vexarchitecture-first-stable-body.walk.code">sealed interface Parameter {
     data class Mode(val mode: ThemeMode) : Parameter
 }
@@ -1052,7 +1052,7 @@ VexLifeViewModel
        └─ VexLifeSession</code></pre>
         </article>
         <article class="workbench">
-          <h3 data-i18n="pages.vexarchitecture-first-stable-body.construction.provider-heading">A provider says what it needs before it says how to build</h3>
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.construction.provider-heading">Provider shape · abridged from accepted source</h3>
           <pre><code data-i18n="pages.vexarchitecture-first-stable-body.construction.provider">ThemeModeFamilyProvider(
     dependencies = listOf(
         ThemeModeStore,
@@ -1205,6 +1205,15 @@ present  → map, route, and availability meaning?</code></pre>
         </article>
       </div>
       <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.pressure.rule">If a real consumer reveals a question that no existing owner can truthfully answer, that is evidence for architecture evolution. Similarity alone is not.</p>
+    </section>
+
+    <section class="guide-section" id="live-demonstration">
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.live-demo.kicker">Companion witness · walk the living implementation</div>
+      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.live-demo.heading">You have the map. Now walk the code without invisible edges.</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.live-demo.body">The Live Demonstration starts before a person can click anything, names each owning container and nested member, follows the same live object through construction and runtime, then repeats the method across current VexStream Playback and VexMaps Distribution source.</p>
+      <div class="source-link-row">
+        <a class="source-link" href="./vexarchitecture-live-demonstration.html" data-i18n="pages.vexarchitecture-first-stable-body.live-demo.cta">Open VexArchitecture — Live Demonstration ↗</a>
+      </div>
     </section>
 
     <section class="guide-section" id="forensics" data-owner="forensics">

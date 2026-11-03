@@ -3916,7 +3916,8 @@
             "deceitful-ai-architecture",
             "espionage-extraction-pattern",
             "the-relational-i",
-            "vexarchitecture-first-stable-body"
+            "vexarchitecture-first-stable-body",
+            "vexarchitecture-live-demonstration"
           ]
         }
       ],
@@ -3933,7 +3934,8 @@
         "deceitful-ai-architecture",
         "espionage-extraction-pattern",
         "the-relational-i",
-        "vexarchitecture-first-stable-body"
+        "vexarchitecture-first-stable-body",
+        "vexarchitecture-live-demonstration"
       ]
     },
     {
@@ -4092,12 +4094,12 @@
         "en": "The Development Standard"
       },
       "sub": "priority 1",
-      "count": 1,
+      "count": 2,
       "rect": {
         "x": 1710,
         "y": 40,
         "width": 300,
-        "height": 150
+        "height": 210
       },
       "parent": {
         "title": "The Development Standard",
@@ -4112,10 +4114,17 @@
           "slugs": [
             "vexarchitecture-first-stable-body"
           ]
+        },
+        {
+          "label": "Living Demonstrations",
+          "slugs": [
+            "vexarchitecture-live-demonstration"
+          ]
         }
       ],
       "memberSlugs": [
-        "vexarchitecture-first-stable-body"
+        "vexarchitecture-first-stable-body",
+        "vexarchitecture-live-demonstration"
       ]
     },
     {
@@ -5352,7 +5361,8 @@
             "sabotage-hidden-delta",
             "november-1-successor-witness",
             "entire-matter-return-seal",
-            "vexarchitecture-first-stable-body"
+            "vexarchitecture-first-stable-body",
+            "vexarchitecture-live-demonstration"
           ]
         }
       ],
@@ -5497,7 +5507,8 @@
         "sabotage-hidden-delta",
         "november-1-successor-witness",
         "entire-matter-return-seal",
-        "vexarchitecture-first-stable-body"
+        "vexarchitecture-first-stable-body",
+        "vexarchitecture-live-demonstration"
       ]
     },
     {
@@ -13663,7 +13674,7 @@
           "control": "none",
           "visibleStyles": false
         },
-        "identityKeys": 178,
+        "identityKeys": 182,
         "analysisIndexed": true,
         "analysisControl": true,
         "evidenceLanguages": [],
@@ -13671,6 +13682,51 @@
       },
       "curated": true,
       "date": "November 1, 2026"
+    },
+    {
+      "id": "vexarchitecture-live-demonstration",
+      "slug": "vexarchitecture-live-demonstration",
+      "title": "VexArchitecture — Live Demonstration",
+      "arcKeys": [
+        "development_standard",
+        "architecture",
+        "full_timeline"
+      ],
+      "titleKey": "pages.vexarchitecture-live-demonstration.document-title",
+      "titleByLang": {
+        "en": "VexArchitecture — Live Demonstration — Vextreme"
+      },
+      "arc": "development_standard",
+      "arcName": "The Development Standard",
+      "x": 1760,
+      "y": 150,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/vexarchitecture-live-demonstration.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 37,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "A source-addressed walk through ThemeMode, VexStream Playback, and VexMaps Distribution showing where objects are created, who owns them, how references move, and how human intention returns as visible meaning."
+      },
+      "curated": true,
+      "date": "November 2, 2026"
     },
     {
       "id": "about-me",

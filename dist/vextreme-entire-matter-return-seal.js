@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.entire-matter-return-seal"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en"];
-  window.VEX_INDEX_FINGERPRINT = "0bb98b39f4c1";
+  window.VEX_INDEX_FINGERPRINT = "a4ab254b9b25";
 
 
 

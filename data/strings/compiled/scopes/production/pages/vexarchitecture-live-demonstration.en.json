@@ -1,0 +1,113 @@
+{
+  "pages.vexarchitecture-live-demonstration.document-title": {
+    "text": "VexArchitecture — Live Demonstration — Vextreme"
+  },
+  "pages.vexarchitecture-live-demonstration.topline.left": {
+    "text": "The Development Standard · Live Witness Surface"
+  },
+  "pages.vexarchitecture-live-demonstration.topline.right": {
+    "text": "VexLife-Android source snapshot · 4d357c48…"
+  },
+  "pages.vexarchitecture-live-demonstration.hero.eyebrow": {
+    "text": "Development Standard · 4/N · Companion to the Builder Field Guide"
+  },
+  "pages.vexarchitecture-live-demonstration.hero.title": {
+    "text": "Live Demonstration"
+  },
+  "pages.vexarchitecture-live-demonstration.hero.subtitle": {
+    "text": "Stand inside the code. See which container owns each thing, how it was created, where the same live object goes next, and how human intention returns as visible meaning."
+  },
+  "pages.vexarchitecture-live-demonstration.hero.tagline": {
+    "text": "The Builder Field Guide teaches the architecture. This page lets you witness it inhabiting real VexLife code without asking you to invent the missing edges."
+  },
+  "pages.vexarchitecture-live-demonstration.contract.kicker": {
+    "text": "How to use this page"
+  },
+  "pages.vexarchitecture-live-demonstration.contract.heading": {
+    "text": "Do not memorize the examples. Follow the scopes and relationships."
+  },
+  "pages.vexarchitecture-live-demonstration.contract.body": {
+    "text": "This page does not redefine VexArchitecture. The Builder Field Guide owns the architectural explanation. Here, every step starts by naming the container we are inside, the member we are touching, what kind of thing it is, why traversal arrived there, and the exact next edge. No introduced object is allowed to disappear behind “later.” Code blocks are scoped teaching excerpts: surrounding lines and incidental syntax may be omitted or normalized for readability. The linked source path and blob own the byte-exact code; this page claims the shown ownership, scope, and traversal relationships."
+  },
+  "pages.vexarchitecture-live-demonstration.contract.theme.claim": {
+    "text": "Accepted patient zero"
+  },
+  "pages.vexarchitecture-live-demonstration.contract.theme.body": {
+    "text": "ThemeMode receives the full construction-to-human walk because PR #209 is the accepted implementation origin for the stable body."
+  },
+  "pages.vexarchitecture-live-demonstration.contract.stream.claim": {
+    "text": "Current-source exemplar"
+  },
+  "pages.vexarchitecture-live-demonstration.contract.stream.body": {
+    "text": "VexStream Playback is shown because current code visibly answers the same ownership questions around Media3 reality, pending intent, projection, and UI."
+  },
+  "pages.vexarchitecture-live-demonstration.contract.maps.claim": {
+    "text": "Current-source exemplar"
+  },
+  "pages.vexarchitecture-live-demonstration.contract.maps.body": {
+    "text": "VexMaps Distribution is shown because current code makes independent owners and Relay/convergence visible without pretending Relay owns either source truth."
+  },
+  "pages.vexarchitecture-live-demonstration.contract.guide": {
+    "text": "Open the Builder Field Guide ↗"
+  },
+  "pages.vexarchitecture-live-demonstration.contract.snapshot": {
+    "text": "Open the demonstrated VexLife source snapshot ↗"
+  },
+  "pages.vexarchitecture-live-demonstration.theme.chunk": {
+    "text": "Copy/paste chunk A · full walk"
+  },
+  "pages.vexarchitecture-live-demonstration.theme.kicker": {
+    "text": "ThemeMode · accepted patient zero"
+  },
+  "pages.vexarchitecture-live-demonstration.theme.heading": {
+    "text": "From Android process construction to the same Dark Mode control reflecting returned truth"
+  },
+  "pages.vexarchitecture-live-demonstration.theme.lede": {
+    "text": "We begin before a person can click anything. The questions beside each step only explain why we move to the next real piece of code. They are not a second architecture framework."
+  },
+  "pages.vexarchitecture-live-demonstration.stream.chunk": {
+    "text": "Copy/paste chunk B · current-source walk"
+  },
+  "pages.vexarchitecture-live-demonstration.stream.kicker": {
+    "text": "VexStream Playback · current-source exemplar"
+  },
+  "pages.vexarchitecture-live-demonstration.stream.heading": {
+    "text": "The same ownership questions survive when physical truth belongs to a sustained Media3 runtime"
+  },
+  "pages.vexarchitecture-live-demonstration.stream.lede": {
+    "text": "This section does not claim VexStream is another ThemeMode-shaped implementation. It follows current source so the different shape can be seen: Compose asks for a Playback Experience, an Android ViewModel owns the concrete Media3 connection, UI sends Controls through the Experience, Media3 owns physical reality, and observed projection returns to presentation."
+  },
+  "pages.vexarchitecture-live-demonstration.maps.chunk": {
+    "text": "Copy/paste chunk C · current-source walk"
+  },
+  "pages.vexarchitecture-live-demonstration.maps.kicker": {
+    "text": "VexMaps Distribution · current-source exemplar"
+  },
+  "pages.vexarchitecture-live-demonstration.maps.heading": {
+    "text": "Watch process-local construction, one local semantic owner, then relationship truth without collapsing ownership"
+  },
+  "pages.vexarchitecture-live-demonstration.maps.lede": {
+    "text": "Maps is useful here because current code exposes both lifetime and relationship pressure. VexMapsMapSurface asks a process-local allocator for the lived Distribution session, wraps it in a UI boundary, then Mode and Delivery Route remain independent owners while a Relay observes their projections and may request Mode’s public Control."
+  },
+  "pages.vexarchitecture-live-demonstration.compare.kicker": {
+    "text": "After walking three systems"
+  },
+  "pages.vexarchitecture-live-demonstration.compare.heading": {
+    "text": "The implementations differ. The questions become recognizable."
+  },
+  "pages.vexarchitecture-live-demonstration.compare.lede": {
+    "text": "ThemeMode, VexStream, and Maps should not be collapsed into one class template. What transfers is the ability to locate human intention, semantic ownership, outside truth, active custody, relationship truth, and the presentation that returns to the human."
+  },
+  "pages.vexarchitecture-live-demonstration.compare.back": {
+    "text": "Return to the Builder Field Guide ↗"
+  },
+  "pages.vexarchitecture-live-demonstration.compare.current": {
+    "text": "Open current VexLife-Android main ↗"
+  },
+  "pages.vexarchitecture-live-demonstration.closing.quote": {
+    "text": "The architecture becomes easier to recognize when nothing important has to teleport between code snippets."
+  },
+  "pages.vexarchitecture-live-demonstration.closing.body": {
+    "text": "When you enter unfamiliar code, keep asking the next concrete navigation question: what container am I in, what member am I touching, who supplied it, what kind of thing is it here, and where does this exact value or object go next? The Builder Field Guide explains the wisdom behind those relationships; this page exists so you can see them live."
+  }
+}
