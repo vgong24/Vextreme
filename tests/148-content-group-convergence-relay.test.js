@@ -144,6 +144,16 @@ test('CONTENT GROUP RELAY: shared references, unsupported declarations, and ordi
   assert.equal(unsupported.contentGroupRelation.kind, RELATION_KINDS.CONFLICT);
   assert.equal(unsupported.contentGroupRelation.reason, 'UNSUPPORTED_PARENT_RELATIONSHIP');
 
+  const emptyRelationshipArc = arc('empty', 'empty-home', ['a']);
+  emptyRelationshipArc.parent.relationship = '';
+  const [emptyRelationship] = convergeContentGroupRelationships(
+    [emptyRelationshipArc],
+    { 'empty-home':'<html></html>' }
+  );
+  assert.equal(emptyRelationship.contentGroupRelation.kind, RELATION_KINDS.LIVE_REFERENCE,
+    'empty optional relationship value is equivalent to no declaration');
+  assert.equal(emptyRelationship.contentGroupRelation.evidence.declaredRelationship, null);
+
   const ordinary = convergeContentGroupRelationships(
     [
       arc('none', null, ['a']),
