@@ -545,26 +545,39 @@ test('BUILD-TERRAIN-MAP: canonical collection and page-title identities project 
 
 // ── 9. Integration ───────────────────────────────────────────────────────────
 
-test('BUILD-TERRAIN-MAP: real Content groups expose converged container intention instead of parent.live inference', () => {
+test('BUILD-TERRAIN-MAP: real group-home authority is explicit in topology and never inferred from page completeness', () => {
   const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'terrain-map.json'), 'utf8'));
   const byKey = Object.fromEntries(data.arcs.map(arc => [arc.key, arc]));
+  const declaredHomes = ['ai_practitioner_tools', 'direct_contact', 'epstein', 'liberation', 'living_blueprint'];
 
   for (const arc of data.arcs) {
     assert.ok(arc.contentGroupRelation, arc.key + ': missing contentGroupRelation');
     assert.equal(typeof arc.contentGroupRelation.kind, 'string', arc.key + ': relationship kind missing');
     assert.equal(typeof arc.contentGroupRelation.intent, 'string', arc.key + ': relationship intent missing');
     assert.ok(arc.contentGroupRelation.evidence, arc.key + ': relationship evidence missing');
+    assert.notEqual(arc.contentGroupRelation.reason, 'COMPLETE_COLLECTION_NAVIGATION',
+      arc.key + ': complete navigation must not remain an authority-producing reason');
   }
 
-  for (const key of ['ai_practitioner_tools', 'direct_contact', 'living_blueprint']) {
-    assert.equal(byKey[key].contentGroupRelation.kind, 'DEDICATED_GROUP_HOME', key + ': real collection home must remain navigable');
+  assert.deepEqual(
+    data.arcs.filter(arc => arc.contentGroupRelation.kind === 'DEDICATED_GROUP_HOME').map(arc => arc.key).sort(),
+    declaredHomes.slice().sort(),
+    'only explicitly declared collection relationships may become dedicated group homes'
+  );
+
+  for (const key of declaredHomes) {
+    assert.equal(byKey[key].parent.relationship, 'group-home', key + ': topology declaration missing');
+    assert.equal(byKey[key].contentGroupRelation.kind, 'DEDICATED_GROUP_HOME', key + ': declared collection home must remain navigable');
+    assert.equal(byKey[key].contentGroupRelation.reason, 'DECLARED_GROUP_HOME_RELATIONSHIP');
     assert.equal(byKey[key].contentGroupRelation.groupHomePageSlug, byKey[key].parent.pageSlug);
+    assert.equal(byKey[key].contentGroupRelation.evidence.declaredRelationship, 'group-home');
   }
 
   for (const key of ['development_standard', 'ai_orientation', 'total_extraction']) {
     assert.equal(byKey[key].contentGroupRelation.kind, 'MEMBER_REFERENCE', key + ': a collection member must not impersonate a group home');
     assert.equal(byKey[key].contentGroupRelation.groupHomePageSlug, null);
     assert.equal(byKey[key].contentGroupRelation.evidence.parentIsMember, true);
+    assert.equal(byKey[key].contentGroupRelation.evidence.declaredRelationship, null);
   }
 
   const buildHealthCompatibilityArcs = data.arcs.filter(arc =>
@@ -577,6 +590,7 @@ test('BUILD-TERRAIN-MAP: real Content groups expose converged container intentio
     assert.equal(arc.contentGroupRelation.intent, 'REFERENCE_SYSTEM_SURFACE');
     assert.equal(arc.contentGroupRelation.groupHomePageSlug, null);
     assert.equal(arc.contentGroupRelation.evidence.systemReferenceTarget, 'build-health');
+    assert.equal(arc.contentGroupRelation.evidence.declaredRelationship, null);
   }
 });
 

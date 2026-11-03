@@ -37,7 +37,7 @@ data/analysis-index.json            ──┘  (page-demand-aware missing-langua
 
 `data/arcs-v2.json` — 16 arc definitions. Each arc has:
 - `priority` — display order (1 = primary, 2 = secondary, 99 = meta)
-- `parent` — `{ title, url }` for the arc hub link on vextreme24.com
+- `parent` — `{ title, url, pageSlug?, relationship? }` for the arc reference/hub page. `relationship` is an optional non-empty semantic declaration; the current supported value is `"group-home"`. Omit it (or leave it empty) when no collection→page relationship is declared. Unsupported non-empty values fail closed in the Content Group Convergence Relay.
 - `sections` — ordered list of sections, each with `order` and `slugs` or `dateRange`
 - `renderMode` — how the arc nav widget visualizes this arc (dots, position)
 

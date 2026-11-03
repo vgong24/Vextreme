@@ -8,53 +8,94 @@ const {
   convergeContentGroupRelationships,
 } = require('../lib/content-group-convergence-relay');
 
-function arc(key, pageSlug, memberSlugs, live = true) {
+function arc(key, pageSlug, memberSlugs, live = true, relationship = null) {
   return {
     key,
     name: key,
-    parent: pageSlug ? { title:key, pageSlug, live, url:live ? 'https://example.test/' + pageSlug + '.html' : null } : null,
+    parent: pageSlug ? {
+      title:key,
+      pageSlug,
+      live,
+      url:live ? 'https://example.test/' + pageSlug + '.html' : null,
+      ...(relationship ? { relationship } : {}),
+    } : null,
     memberSlugs,
   };
 }
 
-test('CONTENT GROUP RELAY: explicit matching group-home surface is a dedicated container', () => {
+test('CONTENT GROUP RELAY: explicit collection relationship owns dedicated group-home authority', () => {
   const [result] = convergeContentGroupRelationships(
-    [arc('tools', 'tools-home', ['a','b'])],
+    [arc('tools', 'tools-home', ['a','b'], true, 'group-home')],
     {
-      'tools-home':'<html data-vex-surface="group-home" data-vex-group-key="tools"><a href="a.html">A</a></html>',
+      'tools-home':'<html data-vex-surface="group-home" data-vex-group-key="tools"><a href="a.html">A</a><a href="b.html">B</a></html>',
     }
   );
+
   assert.equal(result.contentGroupRelation.kind, RELATION_KINDS.DEDICATED_GROUP_HOME);
-  assert.equal(result.contentGroupRelation.reason, 'EXPLICIT_GROUP_HOME_SURFACE');
+  assert.equal(result.contentGroupRelation.reason, 'DECLARED_GROUP_HOME_RELATIONSHIP');
   assert.equal(result.contentGroupRelation.groupHomePageSlug, 'tools-home');
+  assert.equal(result.contentGroupRelation.evidence.declaredRelationship, 'group-home');
+  assert.equal(result.contentGroupRelation.evidence.completeMemberNavigation, true);
 });
 
-test('CONTENT GROUP RELAY: complete non-member navigation recognizes a legacy dedicated container', () => {
+test('CONTENT GROUP RELAY: declared legacy home may remain a home without page-global group-home markup', () => {
+  const [result] = convergeContentGroupRelationships(
+    [arc('blueprint', 'blueprint-home', ['a','b','c'], true, 'group-home')],
+    {
+      'blueprint-home':'<html><a href="a.html">A</a><a href="./b.html">B</a><a href="/Vextreme/pages/c.html">C</a></html>',
+    }
+  );
+
+  assert.equal(result.contentGroupRelation.kind, RELATION_KINDS.DEDICATED_GROUP_HOME);
+  assert.equal(result.contentGroupRelation.reason, 'DECLARED_GROUP_HOME_RELATIONSHIP');
+  assert.equal(result.contentGroupRelation.evidence.declaredSurface, null);
+  assert.deepEqual(result.contentGroupRelation.evidence.linkedMemberSlugs, ['a','b','c']);
+});
+
+test('CONTENT GROUP RELAY: complete navigation is evidence only and cannot invent group-home authority', () => {
   const [result] = convergeContentGroupRelationships(
     [arc('blueprint', 'blueprint-home', ['a','b','c'])],
     {
       'blueprint-home':'<html><a href="a.html">A</a><a href="./b.html">B</a><a href="/Vextreme/pages/c.html">C</a></html>',
     }
   );
-  assert.equal(result.contentGroupRelation.kind, RELATION_KINDS.DEDICATED_GROUP_HOME);
-  assert.equal(result.contentGroupRelation.reason, 'COMPLETE_COLLECTION_NAVIGATION');
-  assert.deepEqual(result.contentGroupRelation.evidence.linkedMemberSlugs, ['a','b','c']);
+
+  assert.equal(result.contentGroupRelation.kind, RELATION_KINDS.LIVE_REFERENCE);
+  assert.equal(result.contentGroupRelation.reason, 'COMPLETE_NAVIGATION_WITHOUT_GROUP_HOME_RELATIONSHIP');
+  assert.equal(result.contentGroupRelation.groupHomePageSlug, null);
+  assert.equal(result.contentGroupRelation.evidence.completeMemberNavigation, true);
+  assert.equal(result.contentGroupRelation.evidence.declaredRelationship, null);
 });
 
-test('CONTENT GROUP RELAY: a collection member nominated as parent remains a member reference', () => {
+test('CONTENT GROUP RELAY: page-global group-home markup without collection relationship fails closed', () => {
   const [result] = convergeContentGroupRelationships(
-    [arc('standard', 'guide', ['guide','demo'])],
+    [arc('tools', 'tools-home', ['a','b'])],
     {
-      guide:'<html><a href="demo.html">Demo</a></html>',
+      'tools-home':'<html data-vex-surface="group-home" data-vex-group-key="tools"><a href="a.html">A</a></html>',
     }
   );
-  assert.equal(result.contentGroupRelation.kind, RELATION_KINDS.MEMBER_REFERENCE);
-  assert.equal(result.contentGroupRelation.intent, 'OPEN_MEMBER_DIRECTLY');
+
+  assert.equal(result.contentGroupRelation.kind, RELATION_KINDS.CONFLICT);
+  assert.equal(result.contentGroupRelation.reason, 'PAGE_GROUP_HOME_WITHOUT_COLLECTION_RELATIONSHIP');
   assert.equal(result.contentGroupRelation.groupHomePageSlug, null);
-  assert.equal(result.contentGroupRelation.evidence.parentIsMember, true);
 });
 
-test('CONTENT GROUP RELAY: Build Health and its compatibility route are system references even when they enumerate every member', () => {
+test('CONTENT GROUP RELAY: collection members cannot acquire group-home authority', () => {
+  const [ordinary] = convergeContentGroupRelationships(
+    [arc('standard', 'guide', ['guide','demo'])],
+    { guide:'<html><a href="demo.html">Demo</a></html>' }
+  );
+  assert.equal(ordinary.contentGroupRelation.kind, RELATION_KINDS.MEMBER_REFERENCE);
+
+  const [misdeclared] = convergeContentGroupRelationships(
+    [arc('standard', 'guide', ['guide','demo'], true, 'group-home')],
+    { guide:'<html><a href="demo.html">Demo</a></html>' }
+  );
+  assert.equal(misdeclared.contentGroupRelation.kind, RELATION_KINDS.CONFLICT);
+  assert.equal(misdeclared.contentGroupRelation.reason, 'GROUP_HOME_DECLARED_ON_COLLECTION_MEMBER');
+});
+
+test('CONTENT GROUP RELAY: Build Health and its compatibility route stay system references even when complete', () => {
   const results = convergeContentGroupRelationships(
     [
       arc('direct-build', 'build-health', ['a','b']),
@@ -66,56 +107,54 @@ test('CONTENT GROUP RELAY: Build Health and its compatibility route are system r
     }
   );
 
-  assert.deepEqual(results.map(item => item.contentGroupRelation.kind), [
-    RELATION_KINDS.SYSTEM_REFERENCE,
-    RELATION_KINDS.SYSTEM_REFERENCE,
-  ]);
-  assert.deepEqual(results.map(item => item.contentGroupRelation.intent), [
-    'REFERENCE_SYSTEM_SURFACE',
-    'REFERENCE_SYSTEM_SURFACE',
-  ]);
   for (const result of results) {
+    assert.equal(result.contentGroupRelation.kind, RELATION_KINDS.SYSTEM_REFERENCE);
+    assert.equal(result.contentGroupRelation.intent, 'REFERENCE_SYSTEM_SURFACE');
     assert.equal(result.contentGroupRelation.groupHomePageSlug, null);
-    assert.equal(result.contentGroupRelation.reason, 'SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER');
     assert.equal(result.contentGroupRelation.evidence.completeMemberNavigation, true,
-      'dashboard completeness must not promote an operational surface into group-home meaning');
+      'operational completeness is not collection-container authority');
     assert.equal(result.contentGroupRelation.evidence.systemReferenceTarget, 'build-health');
   }
+
+  const [misdeclared] = convergeContentGroupRelationships(
+    [arc('direct-build', 'build-health', ['a'], true, 'group-home')],
+    { 'build-health':'<html><a href="a.html">A</a></html>' }
+  );
+  assert.equal(misdeclared.contentGroupRelation.kind, RELATION_KINDS.CONFLICT);
+  assert.equal(misdeclared.contentGroupRelation.reason, 'SYSTEM_REFERENCE_DECLARED_GROUP_HOME');
 });
 
-test('CONTENT GROUP RELAY: a shared live reference does not become every collection home', () => {
-  const results = convergeContentGroupRelationships(
+test('CONTENT GROUP RELAY: shared references, unsupported declarations, and ordinary references fail closed distinctly', () => {
+  const shared = convergeContentGroupRelationships(
     [
       arc('one', 'archives', ['a']),
       arc('two', 'archives', ['b']),
     ],
     { archives:'<html><a href="a.html">A</a><a href="b.html">B</a></html>' }
   );
-  assert.deepEqual(results.map(item => item.contentGroupRelation.kind), [
+  assert.deepEqual(shared.map(item => item.contentGroupRelation.kind), [
     RELATION_KINDS.SHARED_REFERENCE,
     RELATION_KINDS.SHARED_REFERENCE,
   ]);
-  assert.equal(results[0].contentGroupRelation.evidence.referenceCount, 2);
-});
 
-test('CONTENT GROUP RELAY: explicit contradictory group-home declarations fail closed', () => {
-  const [wrongKey] = convergeContentGroupRelationships(
-    [arc('one', 'home', ['a'])],
-    { home:'<html data-vex-surface="group-home" data-vex-group-key="two"></html>' }
+  const [unsupported] = convergeContentGroupRelationships(
+    [arc('one', 'home', ['a'], true, 'maybe-home')],
+    { home:'<html></html>' }
   );
-  assert.equal(wrongKey.contentGroupRelation.kind, RELATION_KINDS.CONFLICT);
-  assert.equal(wrongKey.contentGroupRelation.reason, 'GROUP_HOME_DECLARATION_KEY_MISMATCH');
+  assert.equal(unsupported.contentGroupRelation.kind, RELATION_KINDS.CONFLICT);
+  assert.equal(unsupported.contentGroupRelation.reason, 'UNSUPPORTED_PARENT_RELATIONSHIP');
 
-  const [memberHome] = convergeContentGroupRelationships(
-    [arc('one', 'a', ['a'])],
-    { a:'<html data-vex-surface="group-home" data-vex-group-key="one"></html>' }
+  const emptyRelationshipArc = arc('empty', 'empty-home', ['a']);
+  emptyRelationshipArc.parent.relationship = '';
+  const [emptyRelationship] = convergeContentGroupRelationships(
+    [emptyRelationshipArc],
+    { 'empty-home':'<html></html>' }
   );
-  assert.equal(memberHome.contentGroupRelation.kind, RELATION_KINDS.CONFLICT);
-  assert.equal(memberHome.contentGroupRelation.reason, 'GROUP_HOME_DECLARED_ON_COLLECTION_MEMBER');
-});
+  assert.equal(emptyRelationship.contentGroupRelation.kind, RELATION_KINDS.LIVE_REFERENCE,
+    'empty optional relationship value is equivalent to no declaration');
+  assert.equal(emptyRelationship.contentGroupRelation.evidence.declaredRelationship, null);
 
-test('CONTENT GROUP RELAY: missing, unavailable, partial, and ordinary live references remain distinct', () => {
-  const results = convergeContentGroupRelationships(
+  const ordinary = convergeContentGroupRelationships(
     [
       arc('none', null, ['a']),
       arc('missing', 'missing-home', ['a'], false),
@@ -127,8 +166,7 @@ test('CONTENT GROUP RELAY: missing, unavailable, partial, and ordinary live refe
       'live-home':'<html><a href="elsewhere.html">Elsewhere</a></html>',
     }
   );
-
-  assert.deepEqual(results.map(item => item.contentGroupRelation.kind), [
+  assert.deepEqual(ordinary.map(item => item.contentGroupRelation.kind), [
     RELATION_KINDS.NO_REFERENCE,
     RELATION_KINDS.UNAVAILABLE_REFERENCE,
     RELATION_KINDS.PARTIAL_COLLECTION_REFERENCE,
