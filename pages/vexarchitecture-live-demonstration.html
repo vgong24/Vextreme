@@ -433,7 +433,7 @@ internal fun VexLifeApp(
     }
 }</code></pre>
           <div class="edge returning">USING THE SAME live ThemeModeFamily stored by SessionProvider:
-the setup is now visibly consumed by the production composition root. Later, when semantic State changes, this already-wired VexLifeTheme observes that same Family.</div>
+the setup is now visibly consumed by the production composition root. When semantic State changes through Steps 13–17, this already-wired VexLifeTheme observes that same Family.</div>
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/ui/VexLifeApp.kt" target="_blank" rel="noopener">VexLifeApp.kt</a> · blob d14e38941a4f767b832fe0e1b2180dbc3df419c2</div>
         </article>
 
@@ -460,7 +460,7 @@ the setup is now visibly consumed by the production composition root. Later, whe
             },
         ),
     )</code></pre>
-          <div class="edge returning">RETURNING TO THE SAME live ThemeModeFamily constructed in Step 04:
+          <div class="edge returning">RETURNING TO THE SAME live ThemeModeFamily constructed in Step 05:
 the closure captures that resolved object. No UI code reconstructs another Family.</div>
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/ui/VexLifeSession.kt" target="_blank" rel="noopener">VexLifeSession.kt · createAppActions</a></div>
         </article>
@@ -1207,7 +1207,7 @@ override fun activate(
         controls.projection(admitted)
 }</code></pre>
           <div class="edge">Mode answers its own Control through its own Behavior/Connection.
-This is the local path the Relay will later reuse rather than bypass.</div>
+This is the local path the Relay reuses in M6 rather than bypassing.</div>
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/4d357c48eb5a25797513708f800e61a87e0195c0/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/mode/VexMapsDistributionModeConnection.kt" target="_blank" rel="noopener">VexMapsDistributionModeConnection.kt</a> · blob 4ecc9c95fa73d2ae51a6bf7d1ff54ec4ed1e4d29</div>
         </article>
 
