@@ -100527,7 +100527,7 @@
     "text": "Why the boundary matters"
   },
   "pages.vexarchitecture-first-stable-body.hero.reader-contract": {
-    "text": "Use this page to understand why the first stable VexArchitecture body took this shape. Current VexLife-Android source and tests own present behavior. PR #209 preserves the pressure, subtraction, and proof that earned this stability point."
+    "text": "Use this page to understand why the first stable VexArchitecture body took this shape. Current VexLife-Android source and tests own present behavior. PR #209 preserves the pressure, subtraction, and proof that earned this stability point. Diagrams and code blocks here are architectural teaching projections unless explicitly labeled as a source snapshot; linked current source owns byte-exact implementation. The companion Live Demonstration is the object/scope-by-scope wiring walk when you need every construction and runtime edge made visible."
   },
   "pages.vexarchitecture-first-stable-body.walk.realization-label": {
     "text": "The realization seam"
@@ -100629,7 +100629,7 @@
     "text": "The same ownership questions survive when physical truth belongs to a sustained Media3 runtime"
   },
   "pages.vexarchitecture-live-demonstration.stream.lede": {
-    "text": "This section does not claim VexStream is another ThemeMode-shaped implementation. It follows current source so the different shape can be seen: UI activates an Experience, a Media3 Connection interprets Behavior, physical Player reality returns through observation, and projection comes back to the same controls."
+    "text": "This section does not claim VexStream is another ThemeMode-shaped implementation. It follows current source so the different shape can be seen: Compose asks for a Playback Experience, an Android ViewModel owns the concrete Media3 connection, UI sends Controls through the Experience, Media3 owns physical reality, and observed projection returns to presentation."
   },
   "pages.vexarchitecture-live-demonstration.maps.chunk": {
     "text": "Copy/paste chunk C · current-source walk"
@@ -100638,10 +100638,10 @@
     "text": "VexMaps Distribution · current-source exemplar"
   },
   "pages.vexarchitecture-live-demonstration.maps.heading": {
-    "text": "Watch one local semantic owner, then watch two independent truths become relationship truth without collapsing ownership"
+    "text": "Watch process-local construction, one local semantic owner, then relationship truth without collapsing ownership"
   },
   "pages.vexarchitecture-live-demonstration.maps.lede": {
-    "text": "Maps is useful here because the current code makes a different pressure visible. Distribution Mode and Delivery Route remain independent owners, while a Relay can observe their projections and request Mode’s own public Control when their relationship is incoherent."
+    "text": "Maps is useful here because current code exposes both lifetime and relationship pressure. VexMapsMapSurface asks a process-local allocator for the lived Distribution session, wraps it in a UI boundary, then Mode and Delivery Route remain independent owners while a Relay observes their projections and may request Mode’s public Control."
   },
   "pages.vexarchitecture-live-demonstration.compare.kicker": {
     "text": "After walking three systems"
