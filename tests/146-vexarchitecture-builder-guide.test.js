@@ -232,6 +232,8 @@ test('VEXARCHITECTURE GUIDE: current source and accepted #209 snapshot remain di
   assert.ok(page.includes('Open accepted #209 source snapshot ↗'));
   assert.ok(page.includes('blob/66c866dea6a8dd78e2946da88715c4deb78c1847/architecture/vexarchitecture/README.md'));
   assert.ok(page.includes('Open PR #209 reasoning record ↗'));
+  assert.ok(page.includes('architectural teaching projections'));
+  assert.ok(page.includes('object/scope-by-scope wiring walk'));
 });
 
 // [VXG RealForever]

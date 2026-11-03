@@ -1256,7 +1256,7 @@
   "pages.vexarchitecture-first-stable-body.hero.reader-contract": {
     "strings": {
       "en": {
-        "text": "Use this page to understand why the first stable VexArchitecture body took this shape. Current VexLife-Android source and tests own present behavior. PR #209 preserves the pressure, subtraction, and proof that earned this stability point."
+        "text": "Use this page to understand why the first stable VexArchitecture body took this shape. Current VexLife-Android source and tests own present behavior. PR #209 preserves the pressure, subtraction, and proof that earned this stability point. Diagrams and code blocks here are architectural teaching projections unless explicitly labeled as a source snapshot; linked current source owns byte-exact implementation. The companion Live Demonstration is the object/scope-by-scope wiring walk when you need every construction and runtime edge made visible."
       }
     }
   },

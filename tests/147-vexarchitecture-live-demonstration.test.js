@@ -25,6 +25,18 @@ test('VEXARCHITECTURE LIVE: companion stays separate from the Builder Field Guid
   assert.ok(live.includes('This page does not redefine VexArchitecture.'));
   assert.ok(live.includes('Code blocks are scoped teaching excerpts'));
   assert.ok(live.includes('The linked source path and blob own the byte-exact code'));
+  for (const bridge of [
+    'MainActivity',
+    'VexLifeApp(session: VexLifeSession)',
+    'AppScreens',
+    'VexRuntime.activate(...)',
+    'AppActionRegistrations.dispatch(AppActionRequest)',
+    'VexStreamLibrarySurface',
+    'VexStreamPlaybackConnectionViewModel',
+    'VexMapsMapSurface',
+  ]) {
+    assert.ok(live.includes(bridge), 'missing explicit traversal bridge: ' + bridge);
+  }
   assert.ok(live.includes('ThemeMode · accepted patient zero'));
   assert.ok(live.includes('VexStream Playback · current-source exemplar'));
   assert.ok(live.includes('VexMaps Distribution · current-source exemplar'));
@@ -34,6 +46,8 @@ test('VEXARCHITECTURE LIVE: every introduced ThemeMode scope has a visible next 
   const live = read('pages/vexarchitecture-live-demonstration.html');
 
   for (const required of [
+    'MainActivity',
+    'VexLifeApp()',
     'VexApplicationDependencyModule',
     'themeModeStore: ThemeModeStoreProvider',
     'VexLifeViewModel',
@@ -64,6 +78,9 @@ test('VEXARCHITECTURE LIVE: VexStream walk closes UI to Media3 and back', () => 
   const live = read('pages/vexarchitecture-live-demonstration.html');
 
   for (const required of [
+    'VexStreamLibrarySurface',
+    'rememberVexStreamPlaybackExperience()',
+    'VexStreamPlaybackConnectionViewModel',
     'VexStreamMiniPlayer',
     'playbackExperience.activate',
     'CurrentVexStreamPlaybackExperience',
@@ -83,6 +100,8 @@ test('VEXARCHITECTURE LIVE: Maps shows local ownership and relationship ownershi
   const live = read('pages/vexarchitecture-live-demonstration.html');
 
   for (const required of [
+    'VexMapsMapSurface',
+    'VexMapsDistributionProcess.session',
     'VexMapsDistributionUi',
     'VexMapsDistributionSession',
     'VexMapsDistributionModeConnection',
