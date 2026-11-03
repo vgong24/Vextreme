@@ -1461,7 +1461,20 @@
   }
 
   function buildContentWorld(data) {
-    var stages = (data.arcs || []).map(function (a) { return { key: a.key, name: a.name, sub: a.sub, count: a.count, rect: a.rect, parent: a.parent || null, sections: a.sections || [], memberSlugs: a.memberSlugs || [] }; });
+    // Projection-boundary rule: data/terrain-map.json already carries semantic
+    // relationship truth (for example contentGroupRelation). Preserve the full
+    // generated Arc object first, then normalize only optional presentation
+    // defaults. Do NOT replace this with a hand-picked field whitelist: that
+    // dropped contentGroupRelation in PR #565 and made real group homes such as
+    // Direct Contact / AI Practitioner Tools unreachable even though their
+    // source pages and generated relationship evidence were still correct.
+    var stages = (data.arcs || []).map(function (a) {
+      return Object.assign({}, a, {
+        parent: a.parent || null,
+        sections: a.sections || [],
+        memberSlugs: a.memberSlugs || [],
+      });
+    });
     var colW = (stages.length > 1) ? (stages[1].rect.x - stages[0].rect.x) : 340;
     var all = (data.pages || []).map(function (p) {
       return Object.assign({ kind: 'page' }, p, { stage: p.arc, stageName: p.arcName });
@@ -3114,6 +3127,10 @@
   }
 
   function isDedicatedGroupHome(stage) {
+    // This gate consumes converged relationship truth; parent.live only proves
+    // that a page exists. A live page is not automatically a collection home.
+    // Keep false/system/member references blocked while preserving explicitly
+    // established dedicated homes carried through buildContentWorld().
     var relation = contentGroupRelation(stage);
     return !!(
       relation

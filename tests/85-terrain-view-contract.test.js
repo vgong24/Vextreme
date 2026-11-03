@@ -139,7 +139,8 @@ test('TERRAIN-VIEW: current canonical arcs are not empty; three are secondary-on
 
 test('TERRAIN-VIEW: Full Timeline consumes canonical projected sections/order and preserves complete page readers', () => {
   const source = pageSource();
-  assert.match(source, /sections: a\.sections \|\| \[\], memberSlugs: a\.memberSlugs \|\| \[\]/);
+  assert.match(source, /sections: a\.sections \|\| \[\]/);
+  assert.match(source, /memberSlugs: a\.memberSlugs \|\| \[\]/);
   assert.match(source, /Array\.isArray\(stage\.memberSlugs\) && stage\.memberSlugs\.length/);
   assert.match(source, /stage\.memberSlugs\.map\(function \(slug\) \{ return byId\[slug\]; \}\)\.filter\(Boolean\)/);
   assert.match(source, /summary\.groupKind === 'timeline-view'/);
@@ -248,6 +249,46 @@ test('TERRAIN-VIEW: accepted Content remains the no-query default while Evolutio
   const profileFunction = source.match(/function setPresentationProfile\(profile, writeUrl\) \{([\s\S]*?)\n  \}/);
   assert.ok(profileFunction, 'presentation-profile function should be present');
   assert.doesNotMatch(profileFunction[1], /commitSemanticState/, 'renderer switching must not add a Journey step');
+});
+
+test('TERRAIN-VIEW: Content-world adapter preserves convergence relationship into runtime stages', () => {
+  const source = pageSource();
+  const fn = source.match(/function buildContentWorld\(data\) \{[\s\S]*?\n  \}/);
+  assert.ok(fn, 'buildContentWorld must remain extractable for adapter-boundary proof');
+
+  const buildContentWorld = new Function(fn[0] + '\nreturn buildContentWorld;')();
+  const relation = {
+    kind:'DEDICATED_GROUP_HOME',
+    intent:'NAVIGATE_COLLECTION_THROUGH_CONTAINER',
+    groupHomePageSlug:'ai-practitioner-tools',
+  };
+  const world = buildContentWorld({
+    arcs:[{
+      key:'ai_practitioner_tools',
+      name:'AI Practitioner Tools',
+      sub:'priority 1',
+      count:11,
+      rect:{ x:10, y:40, width:300, height:750 },
+      parent:{ pageSlug:'ai-practitioner-tools', live:true, url:'/pages/ai-practitioner-tools.html' },
+      sections:[],
+      memberSlugs:['a'],
+      contentGroupRelation:relation,
+    }],
+    pages:[],
+  });
+
+  assert.deepEqual(world.stages[0].contentGroupRelation, relation,
+    'the browser adapter must not discard the relationship that controls real group-home accessibility');
+
+  const relationFn = source.match(/function contentGroupRelation\(stage\) \{[\s\S]*?\n  \}/);
+  const dedicatedFn = source.match(/function isDedicatedGroupHome\(stage\) \{[\s\S]*?\n  \}/);
+  assert.ok(relationFn && dedicatedFn, 'dedicated-home gate must remain extractable for adapter-to-gate proof');
+  const isDedicatedGroupHome = new Function(
+    relationFn[0] + '\n' + dedicatedFn[0] + '\nreturn isDedicatedGroupHome;'
+  )();
+
+  assert.equal(isDedicatedGroupHome(world.stages[0]), true,
+    'Receive God / collection entry must still recognize a dedicated home after the Content-world adapter');
 });
 
 test('TERRAIN-VIEW: collection group homes are relationship truth, not parent.live aliases', () => {
