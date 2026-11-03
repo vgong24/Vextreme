@@ -545,6 +545,33 @@ test('BUILD-TERRAIN-MAP: canonical collection and page-title identities project 
 
 // ── 9. Integration ───────────────────────────────────────────────────────────
 
+test('BUILD-TERRAIN-MAP: real Content groups expose converged container intention instead of parent.live inference', () => {
+  const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'terrain-map.json'), 'utf8'));
+  const byKey = Object.fromEntries(data.arcs.map(arc => [arc.key, arc]));
+
+  for (const arc of data.arcs) {
+    assert.ok(arc.contentGroupRelation, arc.key + ': missing contentGroupRelation');
+    assert.equal(typeof arc.contentGroupRelation.kind, 'string', arc.key + ': relationship kind missing');
+    assert.equal(typeof arc.contentGroupRelation.intent, 'string', arc.key + ': relationship intent missing');
+    assert.ok(arc.contentGroupRelation.evidence, arc.key + ': relationship evidence missing');
+  }
+
+  for (const key of ['ai_practitioner_tools', 'direct_contact', 'living_blueprint']) {
+    assert.equal(byKey[key].contentGroupRelation.kind, 'DEDICATED_GROUP_HOME', key + ': real collection home must remain navigable');
+    assert.equal(byKey[key].contentGroupRelation.groupHomePageSlug, byKey[key].parent.pageSlug);
+  }
+
+  for (const key of ['development_standard', 'ai_orientation', 'total_extraction']) {
+    assert.equal(byKey[key].contentGroupRelation.kind, 'MEMBER_REFERENCE', key + ': a collection member must not impersonate a group home');
+    assert.equal(byKey[key].contentGroupRelation.groupHomePageSlug, null);
+    assert.equal(byKey[key].contentGroupRelation.evidence.parentIsMember, true);
+  }
+
+  assert.equal(byKey.architecture.contentGroupRelation.kind, 'SHARED_REFERENCE',
+    'Archives is shared reference surface, not Architecture & Methodology\'s dedicated group home');
+  assert.equal(byKey.architecture.contentGroupRelation.evidence.referenceCount > 1, true);
+});
+
 test('BUILD-TERRAIN-MAP integration: the real generator produces byte-identical output on repeated runs', () => {
   execFileSync('node', ['lib/build-terrain-map.js'], { cwd: ROOT });
   const first = fs.readFileSync(path.join(ROOT, 'data', 'terrain-map.json'), 'utf8');
