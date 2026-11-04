@@ -104,7 +104,7 @@
       <div class="claim-grid">
         <article class="claim-card">
           <strong data-i18n="pages.vexarchitecture-live-demonstration.contract.theme.claim">Accepted patient zero</strong>
-          <p data-i18n="pages.vexarchitecture-live-demonstration.contract.theme.body">ThemeMode remains the accepted patient zero from PR #209, and this walk is current through PR #211's accepted VexMethod Result refinement: provider fact, bound Method result, and outside observation stay visibly distinct.</p>
+          <p data-i18n="pages.vexarchitecture-live-demonstration.contract.theme.body">ThemeMode receives the full construction-to-human walk because PR #209 is the accepted implementation origin for the stable body. It remains the accepted patient zero, and this walk is current through PR #211's accepted VexMethod Result refinement: provider fact, bound Method result, and outside observation stay visibly distinct.</p>
         </article>
         <article class="claim-card">
           <strong data-i18n="pages.vexarchitecture-live-demonstration.contract.stream.claim">Current-source exemplar</strong>
@@ -798,7 +798,7 @@ VexExecution receives the Act's already-authored owner / Approach / Relationship
         </article>
 
         <article class="step" id="theme-step-17">
-          <div class="step-head"><span class="step-no">17</span><div><h3>Cross the provider boundary, then form the Method result</h3><div class="question">What does the Store actually return, and which owner is allowed to turn that provider fact into Success / Failure / Error?</div></div></div>
+          <div class="step-head"><span class="step-no">17</span><div><h3>Cross the provider boundary, then form the Method result</h3><div class="question">What does the Store actually return, which owner maps that lawful provider fact into Success / Failure, and where does an escaped invocation become Error?</div></div></div>
           <dl class="scope"><div><dt>Outside owner</dt><dd>ThemeModeStore</dd></div><div><dt>Physical operation</dt><dd>store.save(parameter.mode)</dd></div><div><dt>Provider fact</dt><dd>Boolean — did the physical write commit?</dd></div><div><dt>Method terminal</dt><dd>VexMethod.Result&lt;ThemeMode, Unit&gt;</dd></div></dl>
           <pre class="code"><code>class Save(
     private val store: ThemeModeStore,
