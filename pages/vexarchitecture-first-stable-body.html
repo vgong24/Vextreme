@@ -680,15 +680,16 @@ fully-bound Act.Method
       ↓
 VexExecution custody
       ↓
-Method.invoke()
-├─ may touch Store / provider / platform reality
-│  └─ returns the smallest truthful provider/domain fact
-└─ interprets its concrete realization
-      ↓
-VexMethod.Result
-├─ Success(output)
-├─ Failure(output)
-└─ Error(cause)
+attempt Method.invoke()
+├─ returns lawfully
+│  ├─ may touch Store / provider / platform reality
+│  │  └─ returns the smallest truthful provider/domain fact
+│  └─ VexMethod.Result
+│     ├─ Success(output)
+│     └─ Failure(output)
+└─ escapes with Throwable
+   └─ Family / Execution continuation
+      forms VexMethod.Result.Error(cause)
       ↓
 rightful Method-result interpretation
 
@@ -916,16 +917,18 @@ Act.launchWith(executionRoot).method(...)
         ↓
 VexExecution Job custody
         ↓
-Method.Save.invoke()
-        ↓
-ThemeModeStore.save(Dark)
-        ↓
-Boolean provider commit fact
-        ↓
-VexMethod.Result&lt;ThemeMode, Unit&gt;
-├─ Success(Dark)
-├─ Failure(Unit)
-└─ Error(cause) only when invocation escapes
+attempt Method.Save.invoke()
+├─ returns lawfully
+│  └─ ThemeModeStore.save(Dark)
+│     ↓
+│     Boolean provider commit fact
+│     ↓
+│     VexMethod.Result&lt;ThemeMode, Unit&gt;
+│     ├─ Success(Dark)
+│     └─ Failure(Unit)
+└─ escapes with Throwable
+   └─ Family / Execution continuation
+      forms VexMethod.Result.Error(cause)
         ↓
 ThemeMode-owned result interpretation
 
@@ -942,7 +945,7 @@ Compose / system bars receive manifestation meaning</code></pre>
         </article>
       </div>
 
-      <div class="question-box"><strong data-i18n="pages.vexarchitecture-first-stable-body.walk.realization-label">The realization seam</strong><br><span data-i18n="pages.vexarchitecture-first-stable-body.walk.realization-body">Family.act() authors semantic consequence. Begin remains inert. activate() mechanically binds the live Family and a maintained RelationshipId when the overlap law requires one. A concrete Family Act.Method contains the real Store/provider and semantic Parameter and specializes reusable VexMethod. The Store returns only its smallest truthful provider fact; VexMethod.Result begins at invoke(). launchWith() transports the already-authored owner / Approach / RelationshipId into VexExecution, which owns Job custody and cancellation without acquiring feature meaning.</span></div>
+      <div class="question-box"><strong data-i18n="pages.vexarchitecture-first-stable-body.walk.realization-label">The realization seam</strong><br><span data-i18n="pages.vexarchitecture-first-stable-body.walk.realization-body">Family.act() authors semantic consequence. Begin remains inert. activate() mechanically binds the live Family and a maintained RelationshipId when the overlap law requires one. A concrete Family Act.Method contains the real Store/provider and semantic Parameter and specializes reusable VexMethod. The Store returns only its smallest truthful provider fact. Success / Failure are lawful returns from invoke(); if invoke() escapes with a Throwable, the Family / Execution continuation forms Error. launchWith() transports the already-authored owner / Approach / RelationshipId into VexExecution, which owns Job custody and cancellation without acquiring feature meaning.</span></div>
       <div class="source-link-row">
         <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/ui/ThemeMode.kt" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.walk.source-label">Open ThemeMode.kt ↗</a>
       </div>
