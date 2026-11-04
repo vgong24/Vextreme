@@ -89,6 +89,8 @@ test('VEXARCHITECTURE LIVE: every introduced ThemeMode scope has a visible next 
   assert.equal(live.includes('later used'), false);
   assert.ok(live.includes('theme-step-20'));
   assert.ok(live.includes('same concrete Store resolved in Step 05'));
+  assert.ok(live.includes('bound Method lawfully returns Success / Failure'));
+  assert.ok(live.includes('Family / Execution continuation forms Error'));
   assert.ok(live.includes('Copy this dependency pattern'));
   assert.ok(live.includes('VexDependencyProvider.named(...)'));
   assert.ok(live.includes('copy this pattern rather than adding a parallel path'));
