@@ -76,7 +76,8 @@ test('VEXARCHITECTURE LIVE: every introduced ThemeMode scope has a visible next 
     'ThemeModeFamily / VexFamily.activate',
     'activateThemeMode(...)',
     'ThemeModeFamily.Act.Method.Save',
-    'ThemeModeStore.Result.Success',
+    'Boolean — did the physical write commit?',
+    'VexMethod.Result&lt;ThemeMode, Unit&gt;',
     'unsettledSelection: Parameter.Mode?',
     'ThemeModeFamily.DisplayState',
     'DebugMenuScreenContent',
@@ -144,11 +145,13 @@ test('VEXARCHITECTURE LIVE: Maps shows local ownership and relationship ownershi
 test('VEXARCHITECTURE LIVE: source snapshot and exact blob coordinates are visible', () => {
   const live = read('pages/vexarchitecture-live-demonstration.html');
 
-  assert.ok(live.includes('4d357c48eb5a25797513708f800e61a87e0195c0'));
+  assert.ok(live.includes('305a09eac1fabebcf2241bd207386950f41121f2'));
   for (const blob of [
     'c1a82ee96ad0944b956301672353a20978186162',
     '4c30cc3d0f10c041c19ece4924b5d6b0f89abdac',
-    'c49c7132d4977795365390120dbcf20934242799',
+    '3fc3cdfa165b8122029cccfd2cfbd4bbe3a671cb',
+    '9df5c797c839c02a3be1eb0cd37685d05a1a89a0',
+    '15530b17dd478ad747fbeb513ace198147c3b040',
     '1e9d6c2dcf412180e57471210ab380883028209c',
     'c5c2f543f7de94e50be989b7f45133fc60effd00',
     'bc7f9fc00d05316965fa87dbce18108f2b52f066',
@@ -210,6 +213,10 @@ test('VEXARCHITECTURE LIVE: page strings cover every bound localization key', ()
   assert.equal(
     strings._meta.sourceProvenance.guideRevision,
     'DEVELOPMENT_STANDARD_4_N_LIVE_DEMONSTRATION',
+  );
+  assert.equal(
+    strings._meta.sourceProvenance.currentSourceSnapshot,
+    '305a09eac1fabebcf2241bd207386950f41121f2',
   );
 });
 
