@@ -661,7 +661,7 @@ pressure / failure
 ownership question
 
 
-CORE SEMANTIC + RUNTIME PATH
+REQUEST / REALIZATION
 
 Control + exact CURRENT State
       ↓
@@ -674,14 +674,35 @@ accepted Act
    └─ overlap Approach
       ↓
 fully-bound Act.Method
+  specializes VexMethod
       ↓
 VexExecution custody
       ↓
-Store / provider / platform reality
+Method.invoke()
       ↓
-rightful interpretation of observation
+VexMethod.Result
+├─ Success(output)
+├─ Failure(output)
+└─ Error(cause)
+      ↓
+rightful Method-result interpretation
+
+
+OUTSIDE / OBSERVATION
+
+Store / provider / platform reality
+├─ returns the smallest truthful provider/domain fact
+│  when a Method touches it
+└─ changes independently over time
+      ↓
+rightful observation / reconciliation
       ↓
 Family.observe(State)
+
+
+EXPERIENCE / DISPLAY
+
+Family State
       ↓
 Projection / DisplayState
       ↓
@@ -759,19 +780,19 @@ Forensics / PR provenance
         <article class="owner-card" data-owner="family">
           <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.family.title">Family · semantic meaning</div>
           <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.family.question">What does this Control mean against the exact current State?</div>
-          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.family.body">Family owns State, Control, the lawful Act, optional Effect, and outward Projection/DisplayState. Parameter is optional and earned when a Family-scoped semantic value needs to remain recognizable across relationships; it is not a wrapper for every Kotlin argument. An Act may admit immediate semantic State and may also carry an inert Begin of Effect + overlap Approach. act(...) remains pure.</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.family.body">Family owns State, Control, the lawful Act, optional Effect, and outward Projection/DisplayState. Parameter is optional and earned when a Family-scoped semantic value needs to remain recognizable across relationships; it is not a wrapper for every Kotlin argument. An Act may admit immediate semantic State and may also carry an inert Begin of Effect + overlap Approach. When concrete realization is needed, the Family-scoped Act.Method specializes reusable VexMethod without giving up semantic ownership. act(...) remains pure.</div>
         </article>
 
         <article class="owner-card" data-owner="execution">
           <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.execution.title">Execution · active custody</div>
           <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.execution.question">What asynchronous work is actually alive right now?</div>
-          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.execution.body">VexExecution owns Job custody and overlap behavior. It does not decide feature meaning and it does not become history.</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.execution.body">VexExecution owns Job custody, overlap behavior, and cancellation. It invokes already-authored work; it does not decide feature meaning, define a domain's lawful Success/Failure vocabulary, or become history.</div>
         </article>
 
         <article class="owner-card" data-owner="store">
           <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.store.title">Store / provider · outside truth</div>
           <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.store.question">What does independently-owned reality currently say?</div>
-          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.store.body">A Store is a boundary to outside truth. That truth may be SharedPreferences, a remote service, filesystem, OS state, device media, GPS, or another process. Store does not automatically mean database.</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.store.body">A Store is a boundary to outside truth. That truth may be SharedPreferences, a remote service, filesystem, OS state, device media, GPS, or another process. Store does not automatically mean database. Its contracts return the smallest truthful provider/domain fact; they do not adopt VexMethod.Result merely because an operation can succeed or fail.</div>
         </article>
 
         <article class="owner-card" data-owner="presentation">
@@ -807,11 +828,12 @@ Forensics / PR provenance
     <section class="guide-section" id="codebase" data-owner="construction">
       <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.codebase.kicker">03 · See it in a real codebase</div>
       <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.codebase.heading">The architecture is visible in the repository, not hidden behind a framework</h2>
-      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.codebase.lede">This is the accepted VexLife-Android shape after #209. The file tree matters because the boundaries remain readable in source: semantics, execution, construction, chronology, convergence, and the app's concrete composition are separate without becoming isolated.</p>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.codebase.lede">This VexLife-Android shape originated at the accepted #209 stability point and is current through the accepted #211 VexMethod refinement. The file tree matters because the boundaries remain readable in source: semantic meaning, Method result, execution custody, outside truth, construction, chronology, convergence, and concrete composition remain distinct without becoming isolated.</p>
       <pre class="file-tree"><code data-i18n="pages.vexarchitecture-first-stable-body.codebase.tree">VexLife-Android/
 │
 ├── architecture/
 │   ├── behavior/
+│   │   ├── .../VexMethod.kt
 │   │   └── .../VexFamily.kt
 │   ├── execution/
 │   │   ├── .../VexExecution.kt
@@ -842,7 +864,7 @@ Forensics / PR provenance
         └── .../EventsConvergenceRelay.kt</code></pre>
       <p class="body-copy" data-i18n="pages.vexarchitecture-first-stable-body.codebase.caption">Notice what is absent: there is no universal ArchitectureManager standing above everything. The architecture is the set of truthful relationships among owners that already have real responsibilities.</p>
       <div class="source-link-row">
-        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/tree/66c866dea6a8dd78e2946da88715c4deb78c1847" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.codebase.source">Open the accepted VexLife-Android source snapshot ↗</a>
+        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/tree/305a09eac1fabebcf2241bd207386950f41121f2" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.codebase.source">Open the accepted VexLife-Android source snapshot ↗</a>
       </div>
     </section>
 
@@ -884,17 +906,30 @@ accepted Act
 bind live Family + maintained RelationshipId
         ↓
 fully-bound Act.Method.Save(store, same parameter)
+  specializes VexMethod&lt;ThemeMode, Unit&gt;
         ↓
 Act.launchWith(executionRoot).method(...)
   consumes already-authored owner / Approach / RelationshipId
         ↓
 VexExecution Job custody
         ↓
-Store.save(Dark)
+Method.Save.invoke()
         ↓
-physical result / outside observation
+ThemeModeStore.save(Dark)
         ↓
-ThemeMode-owned interpretation
+Boolean provider commit fact
+        ↓
+VexMethod.Result&lt;ThemeMode, Unit&gt;
+├─ Success(Dark)
+├─ Failure(Unit)
+└─ Error(cause) only when invocation escapes
+        ↓
+ThemeMode-owned result interpretation
+
+SEPARATELY:
+ThemeModeStore.states observation
+        ↓
+ThemeMode-owned reconciliation/currentness
         ↓
 Family.observe(State)
         ↓
@@ -904,9 +939,9 @@ Compose / system bars receive manifestation meaning</code></pre>
         </article>
       </div>
 
-      <div class="question-box"><strong data-i18n="pages.vexarchitecture-first-stable-body.walk.realization-label">The realization seam</strong><br><span data-i18n="pages.vexarchitecture-first-stable-body.walk.realization-body">Family.act() authors semantic consequence. Begin remains inert. activate() mechanically binds the live Family and a maintained RelationshipId when the overlap law requires one. A concrete Family Act.Method then contains the real Store/provider and semantic Parameter. launchWith() transports those already-authored execution facts into VexExecution instead of asking downstream code to reconstruct them.</span></div>
+      <div class="question-box"><strong data-i18n="pages.vexarchitecture-first-stable-body.walk.realization-label">The realization seam</strong><br><span data-i18n="pages.vexarchitecture-first-stable-body.walk.realization-body">Family.act() authors semantic consequence. Begin remains inert. activate() mechanically binds the live Family and a maintained RelationshipId when the overlap law requires one. A concrete Family Act.Method contains the real Store/provider and semantic Parameter and specializes reusable VexMethod. The Store returns only its smallest truthful provider fact; VexMethod.Result begins at invoke(). launchWith() transports the already-authored owner / Approach / RelationshipId into VexExecution, which owns Job custody and cancellation without acquiring feature meaning.</span></div>
       <div class="source-link-row">
-        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/66c866dea6a8dd78e2946da88715c4deb78c1847/app/src/main/kotlin/com/vextreme/vexlife/android/ui/ThemeMode.kt" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.walk.source-label">Open ThemeMode.kt ↗</a>
+        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/ui/ThemeMode.kt" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.walk.source-label">Open ThemeMode.kt ↗</a>
       </div>
     </section>
 
@@ -942,7 +977,7 @@ Yes → derive the smallest semantic coordinate that already distinguishes that 
 
       <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.execution.payoff">RelationshipId exists only when unfinished work must be maintained as one semantic/runtime relationship. The actual Job remains the runtime occurrence, and ordinary payload never becomes identity merely because it is present on the Control.</p>
       <div class="source-link-row">
-        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/66c866dea6a8dd78e2946da88715c4deb78c1847/architecture/execution/src/main/kotlin/com/vextreme/vexlife/android/execution/VexExecution.kt" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.execution.source-label">Open VexExecution.kt ↗</a>
+        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/architecture/execution/src/main/kotlin/com/vextreme/vexlife/android/execution/VexExecution.kt" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.execution.source-label">Open VexExecution.kt ↗</a>
       </div>
     </section>
 
