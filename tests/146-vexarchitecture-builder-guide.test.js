@@ -52,6 +52,7 @@ test('VEXARCHITECTURE GUIDE: accepted code structure is visible and source-addre
   const page = read('pages/vexarchitecture-first-stable-body.html');
 
   for (const required of [
+    'VexMethod.kt',
     'VexFamily.kt',
     'VexExecution.kt',
     'VexExecutionRoot.kt',
@@ -181,6 +182,8 @@ test('VEXARCHITECTURE GUIDE: realization seam preserves pure Act meaning and ful
   assert.ok(page.includes('fully-bound Act.Method.Save'));
   assert.ok(page.includes('Act.launchWith(executionRoot).method'));
   assert.ok(page.includes('already-authored owner / Approach / RelationshipId'));
+  assert.ok(page.includes('VexMethod.Result'));
+  assert.ok(page.includes('smallest truthful provider fact'));
 });
 
 test('VEXARCHITECTURE GUIDE: ThemeMode referential currentness stays explicitly local to ThemeMode', () => {
