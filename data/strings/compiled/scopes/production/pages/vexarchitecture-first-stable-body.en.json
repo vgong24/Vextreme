@@ -30,7 +30,7 @@
     "text": "Construction/lifetime creates and reuses the live objects in the path. VexLogger observes facts across owners. Relay/convergence appears only when independently-owned truths must become new relationship truth. Forensics explains why the shape was earned. None of those are automatic next runtime stages."
   },
   "pages.vexarchitecture-first-stable-body.map.flow": {
-    "text": "WHY THIS ARCHITECTURE EXISTS\n\npressure / failure\n      ↓\nownership question\n\n\nCORE SEMANTIC + RUNTIME PATH\n\nControl + exact CURRENT State\n      ↓\nFamily.act(...)\n      ↓\naccepted Act\n├─ admitted State?\n└─ Begin?\n   ├─ Effect\n   └─ overlap Approach\n      ↓\nfully-bound Act.Method\n      ↓\nVexExecution custody\n      ↓\nStore / provider / platform reality\n      ↓\nrightful interpretation of observation\n      ↓\nFamily.observe(State)\n      ↓\nProjection / DisplayState\n      ↓\nconcrete presentation meaning\n      ↓\nplatform manifestation\n      ↓\npresentation arrival, when actually observed\n      ↓\nhuman experience\n\n\nORTHOGONAL / CONDITIONAL RELATIONSHIPS\n\nConstruction + lifetime\n  → creates and reuses the live objects above\n\nChronology / VexLogger\n  → observes facts as rightful owners know them\n\nRelay / convergence\n  → only when independently-owned truths\n    must become new relationship truth\n\nForensics / PR provenance\n  → explains why this shape was earned\n    without becoming runtime authority"
+    "text": "WHY THIS ARCHITECTURE EXISTS\n\npressure / failure\n      ↓\nownership question\n\n\nCORE SEMANTIC + RUNTIME PATH\n\nREQUEST / REALIZATION\n\nControl + exact CURRENT State\n      ↓\nFamily.act(...)\n      ↓\naccepted Act\n├─ admitted State?\n└─ Begin?\n   ├─ Effect\n   └─ overlap Approach\n      ↓\nfully-bound Act.Method\n  specializes VexMethod\n      ↓\nVexExecution custody\n      ↓\nattempt Method.invoke()\n├─ returns lawfully\n│  ├─ may touch Store / provider / platform reality\n│  │  └─ returns the smallest truthful provider/domain fact\n│  └─ VexMethod.Result\n│     ├─ Success(output)\n│     └─ Failure(output)\n└─ escapes with Throwable\n   └─ Family / Execution continuation\n      forms VexMethod.Result.Error(cause)\n      ↓\nrightful Method-result interpretation\n\n\nOUTSIDE / OBSERVATION\n\nStore / provider / platform reality\nchanges independently over time\n      ↓\nrightful observation / reconciliation\n      ↓\nFamily.observe(State)\n\n\nEXPERIENCE / DISPLAY\n\nFamily State\n      ↓\nProjection / DisplayState\n      ↓\nconcrete presentation meaning\n      ↓\nplatform manifestation\n      ↓\npresentation arrival, when actually observed\n      ↓\nhuman experience\n\n\nORTHOGONAL / CONDITIONAL RELATIONSHIPS\n\nConstruction + lifetime\n  → creates and reuses the live objects above\n\nChronology / VexLogger\n  → observes facts as rightful owners know them\n\nRelay / convergence\n  → only when independently-owned truths\n    must become new relationship truth\n\nForensics / PR provenance\n  → explains why this shape was earned\n    without becoming runtime authority"
   },
   "pages.vexarchitecture-first-stable-body.problem.kicker": {
     "text": "01 · Start with the failure"
@@ -69,7 +69,7 @@
     "text": "What does this Control mean against the exact current State?"
   },
   "pages.vexarchitecture-first-stable-body.owner.family.body": {
-    "text": "Family owns State, Control, the lawful Act, optional Effect, and outward Projection/DisplayState. Parameter is optional and earned when a Family-scoped semantic value needs to remain recognizable across relationships; it is not a wrapper for every Kotlin argument. An Act may admit immediate semantic State and may also carry an inert Begin of Effect + overlap Approach. act(...) remains pure."
+    "text": "Family owns State, Control, the lawful Act, optional Effect, and outward Projection/DisplayState. Parameter is optional and earned when a Family-scoped semantic value needs to remain recognizable across relationships; it is not a wrapper for every Kotlin argument. An Act may admit immediate semantic State and may also carry an inert Begin of Effect + overlap Approach. When concrete realization is needed, the Family-scoped Act.Method specializes reusable VexMethod without giving up semantic ownership. act(...) remains pure."
   },
   "pages.vexarchitecture-first-stable-body.owner.execution.title": {
     "text": "Execution · active custody"
@@ -78,7 +78,7 @@
     "text": "What asynchronous work is actually alive right now?"
   },
   "pages.vexarchitecture-first-stable-body.owner.execution.body": {
-    "text": "VexExecution owns Job custody and overlap behavior. It does not decide feature meaning and it does not become history."
+    "text": "VexExecution owns Job custody, overlap behavior, and cancellation. It invokes already-authored work; it does not decide feature meaning, define a domain's lawful Success/Failure vocabulary, or become history."
   },
   "pages.vexarchitecture-first-stable-body.owner.store.title": {
     "text": "Store / provider · outside truth"
@@ -87,7 +87,7 @@
     "text": "What does independently-owned reality currently say?"
   },
   "pages.vexarchitecture-first-stable-body.owner.store.body": {
-    "text": "A Store is a boundary to outside truth. That truth may be SharedPreferences, a remote service, filesystem, OS state, device media, GPS, or another process. Store does not automatically mean database."
+    "text": "A Store is a boundary to outside truth. That truth may be SharedPreferences, a remote service, filesystem, OS state, device media, GPS, or another process. Store does not automatically mean database. Its contracts return the smallest truthful provider/domain fact; they do not adopt VexMethod.Result merely because an operation can succeed or fail."
   },
   "pages.vexarchitecture-first-stable-body.owner.dependency.title": {
     "text": "Dependency Factory · construction"
@@ -135,10 +135,10 @@
     "text": "The architecture is visible in the repository, not hidden behind a framework"
   },
   "pages.vexarchitecture-first-stable-body.codebase.lede": {
-    "text": "This is the accepted VexLife-Android shape after #209. The file tree matters because the boundaries remain readable in source: semantics, execution, construction, chronology, convergence, and the app's concrete composition are separate without becoming isolated."
+    "text": "This VexLife-Android shape originated at the accepted #209 stability point and is current through the accepted #211 VexMethod refinement. The file tree matters because the boundaries remain readable in source: semantic meaning, Method result, execution custody, outside truth, construction, chronology, convergence, and concrete composition remain distinct without becoming isolated."
   },
   "pages.vexarchitecture-first-stable-body.codebase.tree": {
-    "text": "VexLife-Android/\n│\n├── architecture/\n│   ├── behavior/\n│   │   └── .../VexFamily.kt\n│   ├── execution/\n│   │   ├── .../VexExecution.kt\n│   │   └── .../VexExecutionRoot.kt\n│   ├── dependency/\n│   │   └── .../VexDependencyFactory.kt\n│   ├── logging/\n│   │   └── .../VexLogger.kt\n│   ├── relay/\n│   │   ├── .../VexRelay.kt\n│   │   ├── .../VexCompoundRelay.kt\n│   │   └── .../VexCompoundState.kt\n│   └── vexarchitecture/\n│       ├── README.md\n│       ├── REFINED-BOUNDARIES.md\n│       └── VEXLOGGER.md\n│\n└── app/src/main/.../\n    ├── VexApplication.kt\n    ├── ui/\n    │   ├── VexLifeSession.kt\n    │   ├── ThemeMode.kt\n    │   ├── ThemeModeStore.kt\n    │   └── VexLifeRelayGraph.kt\n    ├── conversation/\n    │   └── VexConversationHybridRelay.kt\n    └── screens/\n        └── .../EventsConvergenceRelay.kt"
+    "text": "VexLife-Android/\n│\n├── architecture/\n│   ├── behavior/\n│   │   ├── .../VexMethod.kt\n│   │   └── .../VexFamily.kt\n│   ├── execution/\n│   │   ├── .../VexExecution.kt\n│   │   └── .../VexExecutionRoot.kt\n│   ├── dependency/\n│   │   └── .../VexDependencyFactory.kt\n│   ├── logging/\n│   │   └── .../VexLogger.kt\n│   ├── relay/\n│   │   ├── .../VexRelay.kt\n│   │   ├── .../VexCompoundRelay.kt\n│   │   └── .../VexCompoundState.kt\n│   └── vexarchitecture/\n│       ├── README.md\n│       ├── REFINED-BOUNDARIES.md\n│       └── VEXLOGGER.md\n│\n└── app/src/main/.../\n    ├── VexApplication.kt\n    ├── ui/\n    │   ├── VexLifeSession.kt\n    │   ├── ThemeMode.kt\n    │   ├── ThemeModeStore.kt\n    │   └── VexLifeRelayGraph.kt\n    ├── conversation/\n    │   └── VexConversationHybridRelay.kt\n    └── screens/\n        └── .../EventsConvergenceRelay.kt"
   },
   "pages.vexarchitecture-first-stable-body.codebase.caption": {
     "text": "Notice what is absent: there is no universal ArchitectureManager standing above everything. The architecture is the set of truthful relationships among owners that already have real responsibilities."
@@ -168,7 +168,7 @@
     "text": "ThemeMode deliberately preserves the exact Parameter.Mode instance across Control, Effect, and the fully-bound Method. That referential identity is used by this concrete currentness fence; it is not a universal distributed identity rule and does not authorize a generic currentness-token framework."
   },
   "pages.vexarchitecture-first-stable-body.walk.flow": {
-    "text": "human selects Dark\n        ↓\nParameter.Mode(Dark)\n        ↓ SAME IN-PROCESS INSTANCE\nControl.Select(parameter)\n        ↓\nFamily.act(exact CURRENT State, Control)\n        ↓\naccepted Act\n├─ immediate State?\n└─ Begin(Effect.Save(parameter), Latest)\n        ↓\nbind live Family + maintained RelationshipId\n        ↓\nfully-bound Act.Method.Save(store, same parameter)\n        ↓\nAct.launchWith(executionRoot).method(...)\n  consumes already-authored owner / Approach / RelationshipId\n        ↓\nVexExecution Job custody\n        ↓\nStore.save(Dark)\n        ↓\nphysical result / outside observation\n        ↓\nThemeMode-owned interpretation\n        ↓\nFamily.observe(State)\n        ↓\nDisplayState → VexThemePresentation\n        ↓\nCompose / system bars receive manifestation meaning"
+    "text": "human selects Dark\n        ↓\nParameter.Mode(Dark)\n        ↓ SAME IN-PROCESS INSTANCE\nControl.Select(parameter)\n        ↓\nFamily.act(exact CURRENT State, Control)\n        ↓\naccepted Act\n├─ immediate State?\n└─ Begin(Effect.Save(parameter), Latest)\n        ↓\nbind live Family + maintained RelationshipId\n        ↓\nfully-bound Act.Method.Save(store, same parameter)\n  specializes VexMethod<ThemeMode, Unit>\n        ↓\nAct.launchWith(executionRoot).method(...)\n  consumes already-authored owner / Approach / RelationshipId\n        ↓\nVexExecution Job custody\n        ↓\nattempt Method.Save.invoke()\n├─ returns lawfully\n│  └─ ThemeModeStore.save(Dark)\n│     ↓\n│     Boolean provider commit fact\n│     ↓\n│     VexMethod.Result<ThemeMode, Unit>\n│     ├─ Success(Dark)\n│     └─ Failure(Unit)\n└─ escapes with Throwable\n   └─ Family / Execution continuation\n      forms VexMethod.Result.Error(cause)\n        ↓\nThemeMode-owned result interpretation\n\nSEPARATELY:\nThemeModeStore.states observation\n        ↓\nThemeMode-owned reconciliation/currentness\n        ↓\nFamily.observe(State)\n        ↓\nDisplayState → VexThemePresentation\n        ↓\nCompose / system bars receive manifestation meaning"
   },
   "pages.vexarchitecture-first-stable-body.execution.kicker": {
     "text": "05 · When work becomes asynchronous"
@@ -537,7 +537,7 @@
     "text": "The realization seam"
   },
   "pages.vexarchitecture-first-stable-body.walk.realization-body": {
-    "text": "Family.act() authors semantic consequence. Begin remains inert. activate() mechanically binds the live Family and a maintained RelationshipId when the overlap law requires one. A concrete Family Act.Method then contains the real Store/provider and semantic Parameter. launchWith() transports those already-authored execution facts into VexExecution instead of asking downstream code to reconstruct them."
+    "text": "Family.act() authors semantic consequence. Begin remains inert. activate() mechanically binds the live Family and a maintained RelationshipId when the overlap law requires one. A concrete Family Act.Method contains the real Store/provider and semantic Parameter and specializes reusable VexMethod. The Store returns only its smallest truthful provider fact. Success / Failure are lawful returns from invoke(); if invoke() escapes with a Throwable, the Family / Execution continuation forms Error. launchWith() transports the already-authored owner / Approach / RelationshipId into VexExecution, which owns Job custody and cancellation without acquiring feature meaning."
   },
   "pages.vexarchitecture-first-stable-body.discovery.core-label": {
     "text": "Core causal path · sequential"

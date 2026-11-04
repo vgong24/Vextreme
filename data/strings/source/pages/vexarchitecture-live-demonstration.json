@@ -6,7 +6,7 @@
     "sourceProvenance": {
       "originRepository": "vgong24/VexLife-Android",
       "originPullRequest": 209,
-      "currentSourceSnapshot": "4d357c48eb5a25797513708f800e61a87e0195c0",
+      "currentSourceSnapshot": "305a09eac1fabebcf2241bd207386950f41121f2",
       "recordClass": "DEVELOPMENT_STANDARD_LIVE_WITNESS",
       "guideRevision": "DEVELOPMENT_STANDARD_4_N_LIVE_DEMONSTRATION"
     }
@@ -28,7 +28,7 @@
   "pages.vexarchitecture-live-demonstration.topline.right": {
     "strings": {
       "en": {
-        "text": "VexLife-Android source snapshot · 4d357c48…"
+        "text": "VexLife-Android source snapshot · 305a09ea…"
       }
     }
   },
@@ -91,7 +91,7 @@
   "pages.vexarchitecture-live-demonstration.contract.theme.body": {
     "strings": {
       "en": {
-        "text": "ThemeMode receives the full construction-to-human walk because PR #209 is the accepted implementation origin for the stable body."
+        "text": "ThemeMode receives the full construction-to-human walk because PR #209 is the accepted implementation origin for the stable body. It remains the accepted patient zero, and this walk is current through PR #211's accepted VexMethod Result refinement: provider fact, bound Method result, and outside observation stay visibly distinct."
       }
     }
   },
