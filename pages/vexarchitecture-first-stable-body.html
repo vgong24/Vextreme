@@ -681,6 +681,9 @@ fully-bound Act.Method
 VexExecution custody
       ↓
 Method.invoke()
+├─ may touch Store / provider / platform reality
+│  └─ returns the smallest truthful provider/domain fact
+└─ interprets its concrete realization
       ↓
 VexMethod.Result
 ├─ Success(output)
@@ -693,9 +696,7 @@ rightful Method-result interpretation
 OUTSIDE / OBSERVATION
 
 Store / provider / platform reality
-├─ returns the smallest truthful provider/domain fact
-│  when a Method touches it
-└─ changes independently over time
+changes independently over time
       ↓
 rightful observation / reconciliation
       ↓
