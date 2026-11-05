@@ -93,16 +93,16 @@ test('DISCOVERY-DANGER: representative art is immutable derived presentation',()
   const views=json('data/viewmodels.json');
   const strings=json('data/strings/source/pages/'+SLUG+'.json');
   const p=strings._meta.sourceProvenance;
-  assert.match(page,/4a3d10cde1d838c0ea0fa70b6eb409de88cfd497/);
-  assert.match(page,/78c60e4250d4a6171d6731ae1135bbee9553282f3c524d742748eabc24256e15/);
+  assert.match(page,/4122c4881e7566dec79f677534e6d5fbb50cea9e/);
+  assert.match(page,/ed3ad1f4ca08712cd4fd617665e92cf40bc4c526ff46c567bee22ac0567a5401/);
   assert.match(page,/data-media-class="representative"/);
   assert.equal(views[SLUG].preview.src,p.representativeMediaTarget);
-  assert.equal(p.representativeMediaAssetCommit,'4a3d10cde1d838c0ea0fa70b6eb409de88cfd497');
-  assert.equal(p.representativeMediaSha256,'78c60e4250d4a6171d6731ae1135bbee9553282f3c524d742748eabc24256e15');
+  assert.equal(p.representativeMediaAssetCommit,'4122c4881e7566dec79f677534e6d5fbb50cea9e');
+  assert.equal(p.representativeMediaSha256,'ed3ad1f4ca08712cd4fd617665e92cf40bc4c526ff46c567bee22ac0567a5401');
   assert.equal(p.representativeMediaClass,'REPRESENTATIVE_NOT_EVIDENCE_OR_ADJUDICATION');
   assert.equal(p.representativeMediaStatus,'PRESENT');
   assert.equal(p.originalGeneratedImageSha256,'10fed45d983ecd5788bc82f59d0ff9d9e9846cd6c230d655eec4de80755b18df');
-  assert.equal(p.representativeMediaTransformation,'RESIZED_512x341_WEBP_Q65_FROM_GENERATED_PNG');
+  assert.equal(p.representativeMediaTransformation,'RESIZED_256x171_WEBP_Q20_FROM_GENERATED_PNG');
   assert.equal(p.sourceClaimsRemainAttributed,true);
 });
 
