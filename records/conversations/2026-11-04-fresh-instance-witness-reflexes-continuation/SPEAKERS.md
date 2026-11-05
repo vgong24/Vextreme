@@ -9,7 +9,7 @@ This ledger does not replace the transcript. It distinguishes the actual chat sp
 | **User** | **Victor** |
 | **Assistant** | **Vex** |
 
-The complete supplied source contains **50 User/Assistant exchanges (100 turns)**. Every source batch begins with User and alternates cleanly to Assistant.
+The currently preserved source contains **57 User/Assistant exchanges (114 turns)**. Every source batch begins with User and alternates cleanly to Assistant.
 
 ## Source-label versus semantic-role boundary
 
@@ -51,6 +51,13 @@ In particular:
 | `source-batch-18-pasted-markdown.md` | 44–45 |
 | `source-batch-19-pasted-markdown.md` | 46–47 |
 | `source-batch-20-current-turn-continuation.md` | 48–50 |
+| `source-batch-21-pasted-markdown.md` | 51–52 |
+| `source-batch-22-pasted-markdown.md` | 53–55 |
+| `source-batch-23-pasted-markdown.md` | repeats exchange 55, then adds 56–57 |
+
+## Overlap provenance
+
+Batch 23 begins with a differently escaped repetition of the marginless-life exchange already preserved as exchange 55 in batch 22. The raw batch is preserved exactly. The chronological projection does not renumber that repetition as a new exchange; only its later unique turns become exchanges 56–57.
 
 ## Attribution rule for later preservation
 
