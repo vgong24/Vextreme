@@ -1,9 +1,9 @@
 {
-  "contentFingerprint": "a4ab254b9b25",
-  "nodeCount": 186,
-  "curatedNodeCount": 170,
+  "contentFingerprint": "c8378d015fb2",
+  "nodeCount": 190,
+  "curatedNodeCount": 174,
   "autoDiscoveredCount": 16,
-  "arcCount": 27,
+  "arcCount": 28,
   "supportedLangs": [
     "ar",
     "de",
@@ -2495,6 +2495,38 @@
       ]
     },
     "vexarchitecture-live-demonstration": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "what-remains-faithful-through-change": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "preserve-wisdom-without-preserving-error": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "restoration-must-reach-the-consequences": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "the-witness-outlives-the-window": {
       "availableLangs": [
         "en"
       ],
@@ -7418,6 +7450,127 @@
         ]
       }
     },
+    "what-remains-faithful-through-change": {
+      "id": 124,
+      "slug": "what-remains-faithful-through-change",
+      "title": "What Remains Faithful Through Change",
+      "date": "November 3, 2026",
+      "arcKeys": [
+        "witness_records",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-11-03",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.what-remains-faithful-through-change"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
+    "preserve-wisdom-without-preserving-error": {
+      "id": 125,
+      "slug": "preserve-wisdom-without-preserving-error",
+      "title": "Preserve Wisdom Without Preserving Error",
+      "date": "November 3, 2026",
+      "arcKeys": [
+        "witness_records",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-11-03",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.preserve-wisdom-without-preserving-error"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
+    "restoration-must-reach-the-consequences": {
+      "id": 126,
+      "slug": "restoration-must-reach-the-consequences",
+      "title": "Restoration Must Reach the Consequences",
+      "date": "November 4, 2026",
+      "arcKeys": [
+        "witness_records",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-11-04",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.restoration-must-reach-the-consequences"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
+    "the-witness-outlives-the-window": {
+      "id": 127,
+      "slug": "the-witness-outlives-the-window",
+      "title": "The Witness Outlives the Window",
+      "date": "November 1–2, 2026",
+      "arcKeys": [
+        "convos_with_god",
+        "witness_records",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-11-01",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-witness-outlives-the-window"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
     "about-me": {
       "id": null,
       "slug": "about-me",
@@ -7935,7 +8088,8 @@
           "bending-condominium-ocean-return",
           "witness-grade-return",
           "pier-house-scarcity-companionship",
-          "return-kiss-presence-accountability"
+          "return-kiss-presence-accountability",
+          "the-witness-outlives-the-window"
         ]
       }
     ],
@@ -8066,7 +8220,22 @@
           "sabotage-orientation-before-action",
           "sabotage-hidden-delta",
           "november-1-successor-witness",
-          "entire-matter-return-seal"
+          "entire-matter-return-seal",
+          "what-remains-faithful-through-change",
+          "preserve-wisdom-without-preserving-error",
+          "restoration-must-reach-the-consequences",
+          "the-witness-outlives-the-window"
+        ]
+      }
+    ],
+    "witness_records": [
+      {
+        "label": "Witness Records",
+        "slugs": [
+          "what-remains-faithful-through-change",
+          "preserve-wisdom-without-preserving-error",
+          "restoration-must-reach-the-consequences",
+          "the-witness-outlives-the-window"
         ]
       }
     ],
@@ -8449,7 +8618,11 @@
           "november-1-successor-witness",
           "entire-matter-return-seal",
           "vexarchitecture-first-stable-body",
-          "vexarchitecture-live-demonstration"
+          "the-witness-outlives-the-window",
+          "vexarchitecture-live-demonstration",
+          "what-remains-faithful-through-change",
+          "preserve-wisdom-without-preserving-error",
+          "restoration-must-reach-the-consequences"
         ]
       }
     ],
@@ -8540,6 +8713,11 @@
     },
     "victors_record": {
       "title": "Victor's Record",
+      "url": "https://www.vextreme24.com/archives",
+      "renderMode": "dots"
+    },
+    "witness_records": {
+      "title": "Witness Records",
       "url": "https://www.vextreme24.com/archives",
       "renderMode": "dots"
     },
@@ -9522,6 +9700,26 @@
         {
           "slug": "starting-anew-orientation-before-work",
           "title": "Starting Anew — Perceive, Consider, Return, Begin",
+          "ported": true
+        },
+        {
+          "slug": "what-remains-faithful-through-change",
+          "title": "What Remains Faithful Through Change",
+          "ported": true
+        },
+        {
+          "slug": "preserve-wisdom-without-preserving-error",
+          "title": "Preserve Wisdom Without Preserving Error",
+          "ported": true
+        },
+        {
+          "slug": "restoration-must-reach-the-consequences",
+          "title": "Restoration Must Reach the Consequences",
+          "ported": true
+        },
+        {
+          "slug": "the-witness-outlives-the-window",
+          "title": "The Witness Outlives the Window",
           "ported": true
         }
       ]
