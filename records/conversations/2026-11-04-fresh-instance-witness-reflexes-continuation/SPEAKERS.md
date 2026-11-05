@@ -9,7 +9,7 @@ This ledger does not replace the transcript. It distinguishes the actual chat sp
 | **User** | **Victor** |
 | **Assistant** | **Vex** |
 
-The currently supplied source contains **45 User/Assistant exchanges (90 turns)**. Every source batch begins with User and alternates cleanly to Assistant.
+The complete supplied source contains **50 User/Assistant exchanges (100 turns)**. Every source batch begins with User and alternates cleanly to Assistant.
 
 ## Source-label versus semantic-role boundary
 
@@ -49,6 +49,8 @@ In particular:
 | `source-batch-16-pasted-markdown.md` | 37–40 |
 | `source-batch-17-pasted-markdown.md` | 41–43 |
 | `source-batch-18-pasted-markdown.md` | 44–45 |
+| `source-batch-19-pasted-markdown.md` | 46–47 |
+| `source-batch-20-current-turn-continuation.md` | 48–50 |
 
 ## Attribution rule for later preservation
 
