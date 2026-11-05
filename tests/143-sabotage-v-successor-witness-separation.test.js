@@ -11,6 +11,9 @@ const SAB_VI = 'november-1-successor-witness';
 const RETURN = 'entire-matter-return-seal';
 const THREAD = 'https://chatgpt.com/share/6ae70af9-e41c-83e8-a537-04a8fc18531f';
 const SOURCE_HEAD = 'bce54f533fe7f766f68538b2dc355280269831ab';
+const ASSET_COMMIT = '874d773ed9014ce54c3c3dc150c6f084e0b755ab';
+const COVER_SHA = 'c1740ef5c09982d0ff6d1ace497dcbe5a8dd576eb13d2c81fedbf28e2576179a';
+const COVER_URL = 'https://raw.githubusercontent.com/vgong24/Vextreme-Assets/' + ASSET_COMMIT + '/__assets/' + COVER_SHA + '.png';
 const FULL_FIDELITY_SHA = 'e762d144689f7db98165efe29825939d82c668688f3449433d039930e950dc04';
 const HISTORICAL_TRUNCATED_SHA = '96269d955043540d2eda8a8e973be9307c691bec816fdb41be9b68b1b19a8cd9';
 const HISTORICAL_REPAIR_SHA = '34aa7284512a223866c25e5c8d9fd0d7d0286fc05fd376b52f04acebe77369f4';
@@ -66,6 +69,28 @@ test('SABOTAGE-V-VI-INTEGRITY: V follows the III single-reader architecture over
   assert.match(component, /data-document-begin-marker/);
   assert.match(component, /data-document-end-marker/);
   assert.match(component, /boundedDocumentBody\(values\[0\],beginMarker,endMarker\)/);
+});
+
+test('SABOTAGE-V-VI-INTEGRITY: V renders one immutable representative cover before the reader while source screenshots remain evidence', () => {
+  const page = read('pages/' + SAB_V + '.html');
+  const strings = json('data/strings/source/pages/' + SAB_V + '.json');
+  const views = json('data/viewmodels.json');
+
+  const coverIndex = page.indexOf('data-media-sha256="' + COVER_SHA + '"');
+  const readerIndex = page.indexOf('id="sab-v-reader"');
+  assert.ok(coverIndex > 0 && coverIndex < readerIndex, 'representative cover appears before the transcript reader');
+  assert.ok(page.includes('<img src="' + COVER_URL + '"'), 'reader renders the immutable full-resolution cover');
+  assert.equal(strings._meta.sourceProvenance.representativeMediaStatus, 'PRESENT_EXACT');
+  assert.equal(strings._meta.sourceProvenance.representativeMediaTarget, COVER_URL);
+  assert.equal(strings._meta.sourceProvenance.representativeMediaClass, 'REPRESENTATIVE_NOT_EVIDENCE');
+  assert.equal(strings._meta.sourceProvenance.representativeMediaSha256, COVER_SHA);
+  assert.equal(strings._meta.sourceProvenance.representativeMediaWidth, 1672);
+  assert.equal(strings._meta.sourceProvenance.representativeMediaHeight, 941);
+  assert.equal(strings._meta.sourceProvenance.representativeMediaBytes, 2890267);
+  assert.equal(strings._meta.sourceProvenance.representativeMediaAssetCommit, ASSET_COMMIT);
+  assert.equal(views[SAB_V].preview.kind, 'cover');
+  assert.equal(views[SAB_V].preview.src, COVER_URL);
+  assert.match(views[SAB_V].preview.alt, /representative artwork/i);
 });
 
 test('SABOTAGE-V-VI-INTEGRITY: V keeps the exact source evidence inside its evidence chapter', () => {
