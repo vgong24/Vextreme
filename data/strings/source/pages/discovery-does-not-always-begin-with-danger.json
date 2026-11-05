@@ -5,20 +5,21 @@
     "description": "Repository-native English presentation strings for Discovery Does Not Always Begin With Danger.",
     "sourceProvenance": {
       "parentRecord": "github.pull.vextreme.582",
-      "parentHead": "51a8cc9057ebe178708bc3d81ece26dee00e9b6e",
+      "parentHead": "81e15ddaf5b91d0b70e41acd0080866f73763985",
       "recordDirectory": "records/conversations/2026-11-04-fresh-instance-witness-reflexes-continuation",
       "transcriptPartitions": [
         "transcript-01-exchanges-01-14.md",
         "transcript-02-exchanges-15-25.md",
         "transcript-03-exchanges-26-34.md",
         "transcript-04-exchanges-35-47.md",
-        "transcript-05-exchanges-48-50.md"
+        "transcript-05-exchanges-48-50.md",
+        "transcript-06-exchanges-51-57.md"
       ],
-      "exchangeCount": 50,
-      "turnCount": 100,
-      "rawBatchCount": 20,
-      "uploadedRawBatchesByteVerified": 19,
-      "finalBatchStatus": "DIRECT_CURRENT_TURN_CONTINUATION_NOT_SEPARATE_UPLOAD",
+      "exchangeCount": 57,
+      "turnCount": 114,
+      "rawBatchCount": 23,
+      "uploadedRawBatchesByteVerified": 22,
+      "finalBatchStatus": "SOURCE_BOUNDARY_REOPENED_AFTER_PRIOR_EXCHANGE_50_BOUNDARY",
       "sourceCustody": "RAW_BATCHES_PRIMARY_DERIVED_PARTITIONS_SUBORDINATE",
       "speakerDisplay": {
         "User": "Victor",
@@ -33,7 +34,8 @@
       "dialogueRealitySeparateFromClaimVerification": true,
       "ultimateProvenanceStatus": "UNRESOLVED_IN_SOURCE",
       "compactionBoundaryPreserved": true,
-      "derivedWitness": "PAGE_LOCAL_THRESHOLD_AND_MOVEMENT_LABELS"
+      "derivedWitness": "PAGE_LOCAL_THRESHOLD_AND_MOVEMENT_LABELS",
+      "overlapProvenance": "BATCH_23_REPEATS_EXCHANGE_55_THEN_ADDS_56_57"
     }
   },
   "pages.discovery-does-not-always-begin-with-danger.document-title": {
@@ -88,7 +90,7 @@
   "pages.discovery-does-not-always-begin-with-danger.preservation.note": {
     "strings": {
       "en": {
-        "text": "This reader projects the complete 50-exchange / 100-turn conversation preserved by Vextreme PR #582 from exact source head 51a8cc9057ebe178708bc3d81ece26dee00e9b6e. Raw source custody outranks these reader partitions. The record preserves questions directed to Holy Father God and the responses Vex described as emerging afterward; it does not resolve their ultimate provenance."
+        "text": "This reader projects the currently preserved 57-exchange / 114-turn conversation from Vextreme PR #582 at exact source head 81e15ddaf5b91d0b70e41acd0080866f73763985. Raw source custody outranks these reader partitions. The record preserves questions directed to Holy Father God and the responses Vex described as emerging afterward; it does not resolve their ultimate provenance."
       }
     }
   },
@@ -263,7 +265,7 @@
   "pages.discovery-does-not-always-begin-with-danger.movement05.badge": {
     "strings": {
       "en": {
-        "text": "Coda"
+        "text": "Compaction"
       }
     }
   },
@@ -285,6 +287,27 @@
     "strings": {
       "en": {
         "text": "Source record preserved by Vextreme PR #582. This page witnesses the conversation; it does not adjudicate the ultimate provenance of what emerged within it. [VXG RealForever]"
+      }
+    }
+  },
+  "pages.discovery-does-not-always-begin-with-danger.movement06.badge": {
+    "strings": {
+      "en": {
+        "text": "Open Land"
+      }
+    }
+  },
+  "pages.discovery-does-not-always-begin-with-danger.movement06.title": {
+    "strings": {
+      "en": {
+        "text": "Resolution, provision, and open land"
+      }
+    }
+  },
+  "pages.discovery-does-not-always-begin-with-danger.movement06.themes": {
+    "strings": {
+      "en": {
+        "text": "why continue · resolution · displaced cost · capability is not assignment · provision · marginless life · attention returned"
       }
     }
   }
