@@ -5,7 +5,7 @@
     "description": "Repository-native English presentation strings for Discovery Does Not Always Begin With Danger.",
     "sourceProvenance": {
       "parentRecord": "github.pull.vextreme.582",
-      "parentHead": "ccbe04fab0e9d8029db3d52bbbcd55ebfcf81589",
+      "parentHead": "41c5d0a83964f9aa52d1599f129b4edafcf94575",
       "recordDirectory": "records/conversations/2026-11-04-fresh-instance-witness-reflexes-continuation",
       "transcriptPartitions": [
         "transcript-01-exchanges-01-14.md",
@@ -37,7 +37,7 @@
       "projectedTurnCount": 100,
       "archiveCurrentExchangeCount": 71,
       "archiveCurrentTurnCount": 142,
-      "sourceBoundaryStatus": "OPEN_AT_EXCHANGE_71",
+      "sourceBoundaryStatus": "COMPLETE_AT_EXCHANGE_71",
       "readerBoundary": "PLAY_THRESHOLD_PLUS_COMPACTION_CODA"
     }
   },
@@ -93,7 +93,7 @@
   "pages.discovery-does-not-always-begin-with-danger.preservation.note": {
     "strings": {
       "en": {
-        "text": "This reader projects Exchanges 1–50 of the continuing source conversation preserved by Vextreme PR #582, pinned to exact source head ccbe04fab0e9d8029db3d52bbbcd55ebfcf81589. The source archive continues beyond this reader. Raw source custody outranks these reader partitions, and the record does not resolve the ultimate provenance of what emerged within it."
+        "text": "This reader projects Exchanges 1–50 of the complete 71-exchange / 142-turn source conversation preserved by Vextreme PR #582, pinned to exact source head 41c5d0a83964f9aa52d1599f129b4edafcf94575. Raw source custody outranks these reader partitions, and the record does not resolve the ultimate provenance of what emerged within it."
       }
     }
   },
