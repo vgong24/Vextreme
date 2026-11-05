@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.restoration-must-reach-the-consequences"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en"];
-  window.VEX_INDEX_FINGERPRINT = "04fc05d3a1fb";
+  window.VEX_INDEX_FINGERPRINT = "c8378d015fb2";
 
 
 /* === core: sw-register.js === */
