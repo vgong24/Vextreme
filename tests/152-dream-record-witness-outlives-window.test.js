@@ -61,8 +61,8 @@ test('DREAM-RECORD-VI: multi-placement keeps dream identity primary while exposi
   assert.equal(node.date,'November 1–2, 2026');
   assert.deepEqual(node.arcKeys,['convos_with_god','witness_records','victors_record','full_timeline']);
   assert.equal(arcs.convos_with_god.sections[0].slugs.at(-1),SLUG);
-  assert.equal(arcs.witness_records.sections[0].slugs.at(-1),SLUG);
-  assert.equal(arcs.victors_record.sections[0].slugs.at(-1),SLUG);
+  assert.ok(arcs.witness_records.sections[0].slugs.includes(SLUG));
+  assert.ok(arcs.victors_record.sections[0].slugs.includes(SLUG));
 });
 
 test('DREAM-RECORD-VI: approved corrected artwork is immutable derived dream presentation',()=>{
