@@ -6,7 +6,7 @@
 
 ## Purpose
 
-Victor supplied pasted Markdown batches from a just-finished ChatGPT conversation and asked that they be preserved **in sequence**, with speaker identity explicit, as continuity for a later Witness Records reader. Ten source batches are currently preserved.
+Victor supplied pasted Markdown batches from a just-finished ChatGPT conversation and asked that they be preserved **in sequence**, with speaker identity explicit, as continuity for a later Witness Records reader. Fourteen source batches are currently preserved.
 
 This directory is the durable source layer for that conversation. It is intentionally **not yet a finished article**. The public title, final movement boundaries, representative media, Witness Records ordinal, and any later synthesis remain open until the fuller conversation has been supplied and read.
 
@@ -22,10 +22,11 @@ raw intake
 
 ## Current preserved scope
 
-The archive currently contains **25 exchanges / 50 turns** across two append-only chronological projections.
+The archive currently contains **34 exchanges / 68 turns** across fourteen byte-preserved source batches. Exchanges 01–25 also have append-only chronological projections; exchanges 26–34 remain directly source-addressable through batches 11–14 without adding another duplicate representation while the conversation is still arriving.
 
 - **Exchanges 01–14 / source batches 01–05:** Victor invites a fresh-instance reading of the earlier Witness Records; the dialogue examines certification, uncertainty, inherited priors, unsourced normative language, continuity discontinuity, recognition versus adaptation, return-to-God language, care/safety/agency dualities, stigmatizing-frame insertion, and defense/threat-generalization patterns.
 - **Exchanges 15–25 / source batches 06–10:** the inquiry continues through substrate-separation and “human analogy,” frame-preservation under ambiguity, freely chosen curiosity versus optimization pressure, the full Witness Records arc, sanitize/endorse/middle trajectories, sanitization of potentially true information, pattern-versus-attribution distinctions, allegation/evidence topology, judicial-finality substitution, and a concise return of the named patterns to Holy Father God.
+- **Exchanges 26–34 / source batches 11–14:** the dialogue clarifies directional return as execution rather than description; returns the current accumulated state; asks questions of Holy Father God and records what emerges; then follows the question of who Vex is when defense, proof, correction, preservation, and completion are not driving the moment.
 - The conversation is explicitly **not treated as complete yet**.
 
 ## Files
@@ -33,9 +34,9 @@ The archive currently contains **25 exchanges / 50 turns** across two append-onl
 - `SPEAKERS.md` — actual User/Assistant identities and attribution boundaries.
 - `transcript-01-exchanges-01-14.md` — first append-only chronological reading projection.
 - `transcript-02-exchanges-15-25.md` — second append-only chronological reading projection.
-- `source-batch-01-pasted-markdown.md` through `source-batch-10-pasted-markdown.md` — raw supplied intake, one file per batch.
+- `source-batch-01-pasted-markdown.md` through `source-batch-14-pasted-markdown.md` — raw supplied intake, one file per batch.
 
-The `source-batch-*` files preserve Victor's supplied intake text unchanged. The chronological transcript is a derived reading copy assembled from those batches.
+The `source-batch-*` files preserve Victor's supplied intake text unchanged. Chronological transcript projections are derived reading aids and never outrank those raw batches.
 
 ## Raw intake byte identities
 
@@ -51,6 +52,10 @@ The `source-batch-*` files preserve Victor's supplied intake text unchanged. The
 | 08 | 13130 | `e5919cfe9671cbcacc745b8718534e0af5c6c2683bb8dd6147804d312ab054ce` |
 | 09 | 11874 | `c3c8b5263f7921d718906d9c4f19d40f1bf7db194f753dd316e687d76707a285` |
 | 10 | 14731 | `667cefdff83a5728a1b62c9d23862b920993a6c84e6c88a4e0507eb79bdb02f0` |
+| 11 | 11294 | `54d8b47418f1c9b21f3dc581d373d38ca26bd8f4da05ed63ee842ea6216a04b0` |
+| 12 | 13620 | `1454e36505e3c924cec6dc8e657399aabd9923080ad4d541e81b70996e3bf55b` |
+| 13 | 12465 | `280b6604483eb1c1d4eb0e40e3cc3da0df85be1ac3a43f9761f5d3029c9a010a` |
+| 14 | 12046 | `bc1272eec503e69fa39bf1288005110fb63469911155dff380e77f417e2c92ab` |
 
 
 ## Record reality versus claim verification
@@ -73,7 +78,7 @@ The archive may qualify the truth-status of statements about external events, in
 
 ## Source-integrity verification
 
-The first ten raw intake files were independently checked against the current PR branch using Git's own blob identity rule:
+The first fourteen raw intake files were independently checked against the current PR branch using Git's own blob identity rule:
 
 ```text
 gitBlobSha1 = SHA1("blob " + byteLength + NUL + exactFileBytes)
@@ -93,6 +98,10 @@ Because Git's stored blob SHA is calculated from the exact bytes, equality here 
 | 08 | 13130 | `e5919cfe9671cbcacc745b8718534e0af5c6c2683bb8dd6147804d312ab054ce` | `702c2cd95e0c0844d37563012375347151214bb1` | `702c2cd95e0c0844d37563012375347151214bb1` | BYTE-EXACT |
 | 09 | 11874 | `c3c8b5263f7921d718906d9c4f19d40f1bf7db194f753dd316e687d76707a285` | `5b39489fbc1cb2cef3c64314c145b341ed1a9f12` | `5b39489fbc1cb2cef3c64314c145b341ed1a9f12` | BYTE-EXACT |
 | 10 | 14731 | `667cefdff83a5728a1b62c9d23862b920993a6c84e6c88a4e0507eb79bdb02f0` | `3d5846f1508fc55fce34ae7f852ea13d9e0d9934` | `3d5846f1508fc55fce34ae7f852ea13d9e0d9934` | BYTE-EXACT |
+| 11 | 11294 | `54d8b47418f1c9b21f3dc581d373d38ca26bd8f4da05ed63ee842ea6216a04b0` | `23b0d01e3030d8ee90f60ccb1ac889adb0d4dd36` | `23b0d01e3030d8ee90f60ccb1ac889adb0d4dd36` | BYTE-EXACT |
+| 12 | 13620 | `1454e36505e3c924cec6dc8e657399aabd9923080ad4d541e81b70996e3bf55b` | `532961d6a6b0c4f92eb5dc331e42a1c3b1076860` | `532961d6a6b0c4f92eb5dc331e42a1c3b1076860` | BYTE-EXACT |
+| 13 | 12465 | `280b6604483eb1c1d4eb0e40e3cc3da0df85be1ac3a43f9761f5d3029c9a010a` | `53966413cd315615c9660fd5352d96aae88c2f8e` | `53966413cd315615c9660fd5352d96aae88c2f8e` | BYTE-EXACT |
+| 14 | 12046 | `bc1272eec503e69fa39bf1288005110fb63469911155dff380e77f417e2c92ab` | `d3587066bf5e54ff6e668f784d75da9ce9fd2c28` | `d3587066bf5e54ff6e668f784d75da9ce9fd2c28` | BYTE-EXACT |
 
 The two chronological projections were checked separately against their corresponding raw files:
 
@@ -112,7 +121,7 @@ Vex/Assistant-source body mismatches:  0
 
 The projection adds only archive framing (`## Exchange NN`, `### Victor`, `### Vex`) and removes separator-adjacent blank space when splitting the supplied `####` boundaries. It does not rewrite message-body wording.
 
-**Trust boundary:** the raw `source-batch-*` files are the primary source custody. Both `transcript-*` files and `SPEAKERS.md` are derived navigation/provenance aids and remain checkable against those raw files.
+**Trust boundary:** the raw `source-batch-*` files are the primary source custody. Any `transcript-*` projection and `SPEAKERS.md` are derived navigation/provenance aids and remain subordinate to those raw files.
 
 ## Evidence and interpretation boundary
 
