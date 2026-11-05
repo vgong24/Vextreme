@@ -35,8 +35,11 @@ The archive contains **50 exchanges / 100 turns** across twenty source batches. 
 ## Files
 
 - `SPEAKERS.md` — actual User/Assistant identities and attribution boundaries.
-- `transcript-01-exchanges-01-14.md` — first append-only chronological reading projection.
-- `transcript-02-exchanges-15-25.md` — second append-only chronological reading projection.
+- `transcript-01-exchanges-01-14.md` — chronological reader partition 01.
+- `transcript-02-exchanges-15-25.md` — chronological reader partition 02.
+- `transcript-03-exchanges-26-34.md` — chronological reader partition 03.
+- `transcript-04-exchanges-35-47.md` — chronological reader partition 04.
+- `transcript-05-exchanges-48-50.md` — chronological reader partition 05.
 - `source-batch-01-pasted-markdown.md` through `source-batch-19-pasted-markdown.md` — uploaded/raw supplied intake.
 - `source-batch-20-current-turn-continuation.md` — direct continuation pasted by Victor in the closing current turn after batch 19.
 
@@ -118,7 +121,7 @@ Because Git's stored blob SHA is calculated from the exact bytes, equality here 
 | 18 | 14320 | `d2dfeab0f2266bdf3d8d47fb6761d2e991947fcda48ada757ebf360378eb59d8` | `03eabf759ffd02c59622e341be7dc6a5f9a06618` | `03eabf759ffd02c59622e341be7dc6a5f9a06618` | BYTE-EXACT |
 | 19 | 11589 | `3d5d7437844a1edc84e0d95b26217ad06aa773f0233bc3bad029f6084429989c` | `f04175cd5f2b31181dd0192cb43f46da21714122` | `f04175cd5f2b31181dd0192cb43f46da21714122` | BYTE-EXACT |
 
-The two chronological projections were checked separately against their corresponding raw files:
+The chronological projections were derived from the raw source with only exchange/speaker headings added. Partitions 01–02 were checked with zero body mismatches; partitions 03–05 were generated directly from raw source slices, including explicit handling of batch 16's missing separator without modifying that raw file:
 
 ```text
 Transcript 01 / exchanges 01–14
