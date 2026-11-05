@@ -78,7 +78,8 @@ test('LIFE-COMES-TOWARD-YOU: provenance keeps source and reader boundaries disti
   assert.equal(p.archiveTurnCount,142);
   assert.equal(p.sourceBoundaryStatus,'COMPLETE_AT_EXCHANGE_71');
   assert.equal(p.titleSource,'EXCHANGE_71_LIFE_COMES_TOWARD_YOU');
-  assert.equal(p.representativeMediaStatus,'ABSENT_NOT_REQUIRED');
+  assert.equal(p.representativeMediaStatus,'DEFERRED_FOR_FRESH_INSTANCE_READ');
+  assert.equal(p.representativeMediaReason,'VICTOR_REQUESTED_FRESH_INSTANCE_REGENERATION_FROM_FRESH_READ');
   assert.equal(p.ultimateProvenanceStatus,'UNRESOLVED_IN_SOURCE');
 });
 
