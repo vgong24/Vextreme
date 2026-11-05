@@ -47,7 +47,8 @@ test('WITNESS-RECORD-III: collection ordering stays I then II then III',()=>{
   assert.equal(node.id,126);
   assert.equal(node.date,'November 4, 2026');
   assert.deepEqual(node.arcKeys,['witness_records','victors_record','full_timeline']);
-  assert.deepEqual(arcs.witness_records.sections[0].slugs,[RECORD_I,RECORD_II,SLUG]);
+  const witness=arcs.witness_records.sections[0].slugs;
+  assert.deepEqual(witness.slice(0,3),[RECORD_I,RECORD_II,SLUG]);
   const victor=arcs.victors_record.sections[0].slugs;
   assert.equal(victor.indexOf(SLUG),victor.indexOf(RECORD_II)+1);
   assert.equal(views[SLUG].scopes[0],'pages.'+SLUG);

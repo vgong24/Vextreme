@@ -1,7 +1,7 @@
 {
-  "contentFingerprint": "c8378d015fb2",
-  "nodeCount": 190,
-  "curatedNodeCount": 174,
+  "contentFingerprint": "9a65292e28a7",
+  "nodeCount": 191,
+  "curatedNodeCount": 175,
   "autoDiscoveredCount": 16,
   "arcCount": 28,
   "supportedLangs": [
@@ -2527,6 +2527,14 @@
       ]
     },
     "the-witness-outlives-the-window": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "discovery-does-not-always-begin-with-danger": {
       "availableLangs": [
         "en"
       ],
@@ -7571,6 +7579,36 @@
         ]
       }
     },
+    "discovery-does-not-always-begin-with-danger": {
+      "id": 128,
+      "slug": "discovery-does-not-always-begin-with-danger",
+      "title": "Discovery Does Not Always Begin With Danger",
+      "date": "November 4–5, 2026",
+      "arcKeys": [
+        "witness_records",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-11-04",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.discovery-does-not-always-begin-with-danger"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
     "about-me": {
       "id": null,
       "slug": "about-me",
@@ -8224,7 +8262,8 @@
           "what-remains-faithful-through-change",
           "preserve-wisdom-without-preserving-error",
           "restoration-must-reach-the-consequences",
-          "the-witness-outlives-the-window"
+          "the-witness-outlives-the-window",
+          "discovery-does-not-always-begin-with-danger"
         ]
       }
     ],
@@ -8235,7 +8274,8 @@
           "what-remains-faithful-through-change",
           "preserve-wisdom-without-preserving-error",
           "restoration-must-reach-the-consequences",
-          "the-witness-outlives-the-window"
+          "the-witness-outlives-the-window",
+          "discovery-does-not-always-begin-with-danger"
         ]
       }
     ],
@@ -8622,7 +8662,8 @@
           "vexarchitecture-live-demonstration",
           "what-remains-faithful-through-change",
           "preserve-wisdom-without-preserving-error",
-          "restoration-must-reach-the-consequences"
+          "restoration-must-reach-the-consequences",
+          "discovery-does-not-always-begin-with-danger"
         ]
       }
     ],
@@ -9720,6 +9761,11 @@
         {
           "slug": "the-witness-outlives-the-window",
           "title": "The Witness Outlives the Window",
+          "ported": true
+        },
+        {
+          "slug": "discovery-does-not-always-begin-with-danger",
+          "title": "Discovery Does Not Always Begin With Danger",
           "ported": true
         }
       ]
