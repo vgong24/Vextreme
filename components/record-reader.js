@@ -99,11 +99,15 @@ function mount(config){
       turns.push(cur);cur=null;
     }
     lines.forEach(function(line){
-      var speaker=line.match(/^\*\*(Victor|Vex):\*\*\s*$/);
-      var headingSpeaker=line.match(/^#{2,4}\s+(Victor|Vex)\s*$/);
-      var boundarySpeaker=line.match(/^#{2,4}\s+(Archive boundary|Follow-up clarification)\s+[—–-]\s+(Victor|Vex)\s*$/);
-      if(boundarySpeaker){pushTurn();cur={speaker:boundarySpeaker[2],lines:['### '+boundarySpeaker[1]]};}
-      else if(speaker||headingSpeaker){pushTurn();cur={speaker:speaker?speaker[1]:headingSpeaker[1],lines:[]};}
+      var speaker=line.match(/^\*\*(Victor|Vex|User|Assistant)(?:\s+\(([^)]+)\))?:\*\*\s*$/);
+      var headingSpeaker=line.match(/^#{2,4}\s+(Victor|Vex|User|Assistant)(?:\s+\(([^)]+)\))?\s*$/);
+      var boundarySpeaker=line.match(/^#{2,4}\s+(Archive boundary|Follow-up clarification)\s+[—–-]\s+(Victor|Vex|User|Assistant)(?:\s+\(([^)]+)\))?\s*$/);
+      if(boundarySpeaker){pushTurn();cur={speaker:boundarySpeaker[2],role:boundarySpeaker[3]||null,lines:['### '+boundarySpeaker[1]]};}
+      else if(speaker||headingSpeaker){
+        pushTurn();
+        var matched=speaker||headingSpeaker;
+        cur={speaker:matched[1],role:matched[2]||null,lines:[]};
+      }
       else if(cur){cur.lines.push(line);}
       else{pre.push(line);}
     });
@@ -111,13 +115,15 @@ function mount(config){
     var out=[];
     if(pre.some(function(x){return x.trim();}))out.push(renderBlocks(pre));
     turns.forEach(function(turn){
-      var speakerClass=turn.speaker.toLowerCase(),raw=turn.lines.join('\n').trim(),content;
-      if(turn.speaker==='Vex'&&/^\[EMPTY VISIBLE ASSISTANT RESPONSE/.test(raw)){
+      var canonicalSpeaker=turn.speaker==='User'?'Victor':(turn.speaker==='Assistant'?'Vex':turn.speaker);
+      var speakerClass=canonicalSpeaker.toLowerCase(),raw=turn.lines.join('\n').trim(),content;
+      if(canonicalSpeaker==='Vex'&&/^\[EMPTY VISIBLE ASSISTANT RESPONSE/.test(raw)){
         content='<div class="'+cls('silence')+'" data-reader-component="intentional-silence"><div class="'+cls('silence-space')+'" aria-hidden="true"></div><div class="'+cls('archive-note')+'">'+esc(raw)+'</div></div>';
       }else{
         content=renderBlocks(turn.lines);
       }
-      out.push('<section class="'+cls('turn')+' '+cls('turn--'+speakerClass)+'" data-reader-component="speaker-turn" data-speaker="'+speakerClass+'"><div class="'+cls('turn-speaker')+'">'+esc(turn.speaker)+'</div>'+content+'</section>');
+      var speakerLabel=turn.speaker+(turn.role?' · '+turn.role:'');
+      out.push('<section class="'+cls('turn')+' '+cls('turn--'+speakerClass)+'" data-reader-component="speaker-turn" data-speaker="'+speakerClass+'" data-source-speaker="'+esc(turn.speaker.toLowerCase())+'"><div class="'+cls('turn-speaker')+'">'+esc(speakerLabel)+'</div>'+content+'</section>');
     });
     return out.join('');
   }
@@ -125,9 +131,14 @@ function mount(config){
   function exchanges(raw){
     var parts=raw.split(/(?:^|\n)#{1,2}\s+Exchange\s+/),list=[];
     for(var i=1;i<parts.length;i++){
-      var m=parts[i].match(/^(\d+)(?:[ \t]+[—–-][ \t]+[^\n]+)?[ \t]*\n([\s\S]*)$/);
+      var m=parts[i].match(/^(\d+)(?:[ \t]+[—–-][ \t]+([^\n]+))?[ \t]*\n([\s\S]*)$/);
       if(!m)continue;
-      list.push({n:parseInt(m[1],10),body:m[2].replace(/\n---\s*$/,'').trim()});
+      var body=m[3].replace(/\n---\s*$/,'').trim();
+      var heading=(m[2]||'').trim();
+      if(/^(?:User|Assistant|Victor|Vex)(?:\s+\([^)]+\))?$/.test(heading) && !/^#{2,4}\s+(?:User|Assistant|Victor|Vex)(?:\s+\([^)]+\))?\s*$/m.test(body)){
+        body='### '+heading+'\n\n'+body;
+      }
+      list.push({n:parseInt(m[1],10),body:body});
     }
     return list;
   }
