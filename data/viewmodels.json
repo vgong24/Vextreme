@@ -2740,5 +2740,21 @@
       "analysis",
       "arc-nav"
     ]
+  },
+  "life-comes-toward-you": {
+    "title": "Life Comes Toward You",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.life-comes-toward-you"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
   }
 }
