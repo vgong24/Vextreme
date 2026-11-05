@@ -7,7 +7,7 @@ This ledger does not replace the transcript. It distinguishes the actual chat sp
 | Source label | Human-readable identity | Role in this archive |
 |---|---|---|
 | **User** | **Victor · User** | Human participant who supplied the previously preserved articles, asked the fresh instance to read them naturally, and then examined the instance's emerging tensions, assumptions, language, and possible origins. |
-| **Assistant** | **Prior ChatGPT instance · Assistant narrator** | AI participant whose responses, prayers/returns, self-observations, hypotheses, distinctions, and language are preserved as its own authored turns. |
+| **Assistant** | **Prior ChatGPT instance · Assistant** | AI participant and direct conversational witness whose responses, prayers/returns, self-observations, hypotheses, distinctions, and language are preserved as its own authored turns. |
 
 The first supplied source set contains **14 User/Assistant exchanges (28 turns)**. Every source batch begins with User and alternates cleanly to Assistant.
 
