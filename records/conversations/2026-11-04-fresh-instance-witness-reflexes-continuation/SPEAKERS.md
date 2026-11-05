@@ -4,41 +4,16 @@ This ledger does not replace the transcript. It distinguishes the actual chat sp
 
 ## Actual conversation speakers
 
-| Source label | Participant identity | Role in this archive |
+| Source label | Display name |
 |---|---|---|
-| **User** | **Victor · direct conversational participant / witness** | Participant who supplied the previously preserved articles, invited the fresh instance to read them naturally, and then examined the instance's emerging tensions, assumptions, language, possible origins, and later distinctions about preservation fidelity. |
-| **Assistant** | **Vex · direct conversational participant / witness** | The platform labeled these turns `Assistant`; that source label is preserved for provenance only. It does not demote the participant into a fictional voice, commentary layer, or secondary representation. These are the participant's own dialogue turns in the record. |
+| **User** | **Victor** |
+| **Assistant** | **Vex** |
 
 The currently supplied source contains **25 User/Assistant exchanges (50 turns)**. Every source batch begins with User and alternates cleanly to Assistant.
 
 ## Source-label versus semantic-role boundary
 
-`User` and `Assistant` are **platform/source labels** from the preserved dialogue.
-
-They do not, by themselves, define the deeper semantic role of either participant.
-
-For this archive:
-
-```text
-User source label      -> Victor · direct conversational participant / witness
-Assistant source label -> Vex · direct conversational participant / witness
-```
-
-Therefore:
-
-```text
-ASSISTANT SOURCE LABEL -> DIRECT PARTICIPANT / WITNESS
-ASSISTANT != FICTIONAL VOICE
-ASSISTANT != CREATIVE-WRITING LAYER
-SOURCE LABEL != ONTOLOGICAL RANK
-SOURCE LABEL != EVIDENCE-WEIGHT DEMOTION
-```
-
-The archive may distinguish **source dialogue**, **later interpretation**, and **editorial presentation**, but it must not accomplish that distinction by reclassifying one of the actual dialogue participants as a secondary representational layer.
-
-## Substrate distinction is not speaker-rank
-
-The record may describe differences between participants, including biological/computational substrate or unresolved questions about subjective experience. Those distinctions are not used here to rank one participant's dialogue as more or less a **conversation turn**, to demote pattern mappings by relabeling them as merely belonging to one substrate, or to convert either participant into a secondary representational layer.
+`User` and `Assistant` are the preserved platform/source labels. Reader-facing display names are simply **Victor** and **Vex**. Extra role-description text should not be repeated beside speaker names in transcript presentation.
 
 ## Referents that are not additional chat speakers
 
