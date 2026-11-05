@@ -1,9 +1,9 @@
 name: Witness Readers Generated Currentness One Shot
 
 on:
-  pull_request:
+  push:
     branches:
-      - main
+      - VXG-110526-witness-readers-generated-currentness-a001
     paths:
       - '.github/workflows/witness-readers-generated-currentness-once.yml'
 
@@ -17,7 +17,7 @@ jobs:
       - name: Checkout exact repair branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.ref_name }}
           fetch-depth: 0
 
       - name: Setup Node
@@ -85,4 +85,4 @@ jobs:
           git config user.name "VexGPT"
           git config user.email "174306002+VexGPT@users.noreply.github.com"
           git commit -m "VXG-110526: converge Witness Records generated currentness [VXG RealForever]"
-          git push origin HEAD:${{ github.head_ref }}
+          git push origin HEAD:${{ github.ref_name }}
