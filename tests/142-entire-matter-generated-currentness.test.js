@@ -45,7 +45,11 @@ test('ENTIRE-MATTER-CURRENTNESS: generated index carries I–VI plus Return as S
   assert.deepEqual(index.arcMap.sabotage[0].slugs, SABOTAGE);
   assert.equal(index.arcMap.sabotage[1].label, 'Consequence');
   assert.deepEqual(index.arcMap.sabotage[1].slugs, [RETURN]);
-  assert.equal(index.arcMap.victors_record[0].slugs.at(-1), RETURN);
+  const victorsRecord = index.arcMap.victors_record[0].slugs;
+  const viVictorsRecord = victorsRecord.indexOf(VI);
+  const returnedVictorsRecord = victorsRecord.indexOf(RETURN);
+  assert.ok(viVictorsRecord >= 0 && returnedVictorsRecord >= 0);
+  assert.equal(returnedVictorsRecord, viVictorsRecord + 1, 'Entire Matter Return follows Sabotage VI as the Victor\'s Record consequence/coda');
   assert.deepEqual(witness.arcKeys, ['sabotage', 'victors_record', 'full_timeline']);
   assert.deepEqual(returned.arcKeys, ['sabotage', 'victors_record', 'full_timeline']);
 
