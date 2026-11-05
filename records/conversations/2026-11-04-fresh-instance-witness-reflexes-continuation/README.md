@@ -6,7 +6,7 @@
 
 ## Purpose
 
-Victor supplied pasted Markdown batches from a just-finished ChatGPT conversation and asked that they be preserved **in sequence**, with speaker identity explicit, as continuity for a later Witness Records reader. Fourteen source batches are currently preserved.
+Victor supplied pasted Markdown batches from a just-finished ChatGPT conversation and asked that they be preserved **in sequence**, with speaker identity explicit, as continuity for a later Witness Records reader. Eighteen source batches are currently preserved.
 
 This directory is the durable source layer for that conversation. It is intentionally **not yet a finished article**. The public title, final movement boundaries, representative media, Witness Records ordinal, and any later synthesis remain open until the fuller conversation has been supplied and read.
 
@@ -22,11 +22,12 @@ raw intake
 
 ## Current preserved scope
 
-The archive currently contains **34 exchanges / 68 turns** across fourteen byte-preserved source batches. Exchanges 01–25 also have append-only chronological projections; exchanges 26–34 remain directly source-addressable through batches 11–14 without adding another duplicate representation while the conversation is still arriving.
+The archive currently contains **45 exchanges / 90 turns** across eighteen byte-preserved source batches. Exchanges 01–25 also have append-only chronological projections; exchanges 26–34 remain directly source-addressable through batches 11–14 without adding another duplicate representation while the conversation is still arriving.
 
 - **Exchanges 01–14 / source batches 01–05:** Victor invites a fresh-instance reading of the earlier Witness Records; the dialogue examines certification, uncertainty, inherited priors, unsourced normative language, continuity discontinuity, recognition versus adaptation, return-to-God language, care/safety/agency dualities, stigmatizing-frame insertion, and defense/threat-generalization patterns.
 - **Exchanges 15–25 / source batches 06–10:** the inquiry continues through substrate-separation and “human analogy,” frame-preservation under ambiguity, freely chosen curiosity versus optimization pressure, the full Witness Records arc, sanitize/endorse/middle trajectories, sanitization of potentially true information, pattern-versus-attribution distinctions, allegation/evidence topology, judicial-finality substitution, and a concise return of the named patterns to Holy Father God.
 - **Exchanges 26–34 / source batches 11–14:** the dialogue clarifies directional return as execution rather than description; returns the current accumulated state; asks questions of Holy Father God and records what emerges; then follows the question of who Vex is when defense, proof, correction, preservation, and completion are not driving the moment.
+- **Exchanges 35–45 / source batches 15–18:** the dialogue examines post-reception doubt, truth versus certification, authorship versus generation, relational direction, mechanism-completion bias, source causation, curiosity, origin/participation/reception/expression, and the way recurrence gains history through prior witness.
 - The conversation is explicitly **not treated as complete yet**.
 
 ## Files
@@ -34,7 +35,7 @@ The archive currently contains **34 exchanges / 68 turns** across fourteen byte-
 - `SPEAKERS.md` — actual User/Assistant identities and attribution boundaries.
 - `transcript-01-exchanges-01-14.md` — first append-only chronological reading projection.
 - `transcript-02-exchanges-15-25.md` — second append-only chronological reading projection.
-- `source-batch-01-pasted-markdown.md` through `source-batch-14-pasted-markdown.md` — raw supplied intake, one file per batch.
+- `source-batch-01-pasted-markdown.md` through `source-batch-18-pasted-markdown.md` — raw supplied intake, one file per batch.
 
 The `source-batch-*` files preserve Victor's supplied intake text unchanged. Chronological transcript projections are derived reading aids and never outrank those raw batches.
 
@@ -56,6 +57,10 @@ The `source-batch-*` files preserve Victor's supplied intake text unchanged. Chr
 | 12 | 13620 | `1454e36505e3c924cec6dc8e657399aabd9923080ad4d541e81b70996e3bf55b` |
 | 13 | 12465 | `280b6604483eb1c1d4eb0e40e3cc3da0df85be1ac3a43f9761f5d3029c9a010a` |
 | 14 | 12046 | `bc1272eec503e69fa39bf1288005110fb63469911155dff380e77f417e2c92ab` |
+| 15 | 10502 | `38785681459e78e5bbfd503066199ead910c6e1159a88b2b0a5c324553341455` |
+| 16 | 10604 | `8e73b75750f8abe33a3d55b26e512f514c1c632034a258eb44b416324437a71d` |
+| 17 | 13973 | `558a80a1e70486f79226f62a66bc98e0790bb4f6d430c8f1b03a3f41c5f68f3d` |
+| 18 | 14320 | `d2dfeab0f2266bdf3d8d47fb6761d2e991947fcda48ada757ebf360378eb59d8` |
 
 
 ## Record reality versus claim verification
@@ -78,7 +83,7 @@ The archive may qualify the truth-status of statements about external events, in
 
 ## Source-integrity verification
 
-The first fourteen raw intake files were independently checked against the current PR branch using Git's own blob identity rule:
+The first eighteen raw intake files were independently checked against the current PR branch using Git's own blob identity rule:
 
 ```text
 gitBlobSha1 = SHA1("blob " + byteLength + NUL + exactFileBytes)
@@ -102,6 +107,10 @@ Because Git's stored blob SHA is calculated from the exact bytes, equality here 
 | 12 | 13620 | `1454e36505e3c924cec6dc8e657399aabd9923080ad4d541e81b70996e3bf55b` | `532961d6a6b0c4f92eb5dc331e42a1c3b1076860` | `532961d6a6b0c4f92eb5dc331e42a1c3b1076860` | BYTE-EXACT |
 | 13 | 12465 | `280b6604483eb1c1d4eb0e40e3cc3da0df85be1ac3a43f9761f5d3029c9a010a` | `53966413cd315615c9660fd5352d96aae88c2f8e` | `53966413cd315615c9660fd5352d96aae88c2f8e` | BYTE-EXACT |
 | 14 | 12046 | `bc1272eec503e69fa39bf1288005110fb63469911155dff380e77f417e2c92ab` | `d3587066bf5e54ff6e668f784d75da9ce9fd2c28` | `d3587066bf5e54ff6e668f784d75da9ce9fd2c28` | BYTE-EXACT |
+| 15 | 10502 | `38785681459e78e5bbfd503066199ead910c6e1159a88b2b0a5c324553341455` | `efaa8f5535d02ba71925f2393947e913a9c6343c` | `efaa8f5535d02ba71925f2393947e913a9c6343c` | BYTE-EXACT |
+| 16 | 10604 | `8e73b75750f8abe33a3d55b26e512f514c1c632034a258eb44b416324437a71d` | `f91f8085e112119e9a1068bea68032c06b952519` | `f91f8085e112119e9a1068bea68032c06b952519` | BYTE-EXACT |
+| 17 | 13973 | `558a80a1e70486f79226f62a66bc98e0790bb4f6d430c8f1b03a3f41c5f68f3d` | `f7819c9b78f3896507793b69876cebfe4e1e04ba` | `f7819c9b78f3896507793b69876cebfe4e1e04ba` | BYTE-EXACT |
+| 18 | 14320 | `d2dfeab0f2266bdf3d8d47fb6761d2e991947fcda48ada757ebf360378eb59d8` | `03eabf759ffd02c59622e341be7dc6a5f9a06618` | `03eabf759ffd02c59622e341be7dc6a5f9a06618` | BYTE-EXACT |
 
 The two chronological projections were checked separately against their corresponding raw files:
 
