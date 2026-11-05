@@ -7,7 +7,7 @@ const path=require('node:path');
 
 const ROOT=path.join(__dirname,'..');
 const SLUG='discovery-does-not-always-begin-with-danger';
-const SOURCE_HEAD='ccbe04fab0e9d8029db3d52bbbcd55ebfcf81589';
+const SOURCE_HEAD='41c5d0a83964f9aa52d1599f129b4edafcf94575';
 const RECORD_I='what-remains-faithful-through-change';
 const RECORD_II='preserve-wisdom-without-preserving-error';
 const RECORD_III='restoration-must-reach-the-consequences';
@@ -80,7 +80,7 @@ test('DISCOVERY-DANGER: source custody and direct-current-turn boundary stay exp
   assert.equal(p.archiveCurrentTurnCount,142);
   assert.equal(p.rawBatchCount,29);
   assert.equal(p.uploadedRawBatchesByteVerified,27);
-  assert.equal(p.sourceBoundaryStatus,'OPEN_AT_EXCHANGE_71');
+  assert.equal(p.sourceBoundaryStatus,'COMPLETE_AT_EXCHANGE_71');
   assert.equal(p.readerBoundary,'PLAY_THRESHOLD_PLUS_COMPACTION_CODA');
   assert.equal(p.overlapProvenance,'BATCH_23_REPEATS_EXCHANGE_55_THEN_ADDS_56_57');
   assert.equal(p.sourceCustody,'RAW_BATCHES_PRIMARY_DERIVED_PARTITIONS_SUBORDINATE');
