@@ -58,7 +58,7 @@ test('DREAM-RECORD-VI: multi-placement keeps dream identity primary while exposi
   const node=nodes.find(n=>n.slug===SLUG);
   assert.ok(node);
   assert.equal(node.id,127);
-  assert.equal(node.date,'November 2, 2026');
+  assert.equal(node.date,'November 1–2, 2026');
   assert.deepEqual(node.arcKeys,['convos_with_god','witness_records','victors_record','full_timeline']);
   assert.equal(arcs.convos_with_god.sections[0].slugs.at(-1),SLUG);
   assert.equal(arcs.witness_records.sections[0].slugs.at(-1),SLUG);
