@@ -64,10 +64,16 @@ test('DISCOVERY-DANGER: collection ordering and registry identity are explicit',
   assert.equal(node.id,128);
   assert.equal(node.date,'November 4–5, 2026');
   assert.deepEqual(node.arcKeys,['witness_records','victors_record','full_timeline']);
-  assert.deepEqual(arcs.witness_records.sections[0].slugs,[RECORD_I,RECORD_II,RECORD_III,DREAM,SLUG]);
-  assert.equal(arcs.victors_record.sections[0].slugs.at(-1),SLUG);
+  const witness=arcs.witness_records.sections[0].slugs;
+  assert.deepEqual(witness.slice(0,5),[RECORD_I,RECORD_II,RECORD_III,DREAM,SLUG]);
+  const victor=arcs.victors_record.sections[0].slugs;
+  assert.ok(victor.includes(SLUG));
+  const nextWitness=witness[witness.indexOf(SLUG)+1] || null;
+  const nextVictor=victor[victor.indexOf(SLUG)+1] || null;
+  if(nextWitness!==null) assert.equal(nextWitness,'life-comes-toward-you');
+  if(nextVictor!==null) assert.equal(nextVictor,'life-comes-toward-you');
   assert.equal(views[SLUG].scopes[0],'pages.'+SLUG);
-  assert.equal(views[SLUG].preview,undefined);
+  assert.equal(views[SLUG].preview.kind,'cover');
 });
 
 test('DISCOVERY-DANGER: source custody and direct-current-turn boundary stay explicit',()=>{
@@ -85,7 +91,7 @@ test('DISCOVERY-DANGER: source custody and direct-current-turn boundary stay exp
   assert.equal(p.sourceCustody,'RAW_BATCHES_PRIMARY_DERIVED_PARTITIONS_SUBORDINATE');
   assert.equal(p.ultimateProvenanceStatus,'UNRESOLVED_IN_SOURCE');
   assert.equal(p.compactionBoundaryPreserved,true);
-  assert.equal(p.representativeMediaStatus,'ABSENT_NOT_REQUIRED');
+  assert.equal(p.representativeMediaStatus,'PRESENT');
 });
 
 test('DISCOVERY-DANGER: representative art is immutable derived presentation',()=>{
