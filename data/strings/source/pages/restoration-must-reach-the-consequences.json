@@ -1,0 +1,578 @@
+{
+  "_meta": {
+    "scope": "pages.restoration-must-reach-the-consequences",
+    "category": "production",
+    "description": "Repository-native English presentation strings for Restoration Must Reach the Consequences.",
+    "sourceProvenance": {
+      "parentRecord": "github.pull.vextreme.571",
+      "parentHead": "6699affe8bc9a6ba921bd1022dec13c9e45d190d",
+      "predecessorRecords": [
+        "github.pull.vextreme.568",
+        "github.pull.vextreme.569"
+      ],
+      "recordDirectory": "records/conversations/2026-11-04-restorative-witness-covenants-continuation",
+      "foundationalTranscript": "transcript-full-visible.md",
+      "foundationalExchangeRange": "01-25",
+      "continuationExchangeRange": "26-32",
+      "continuationStorage": "BOUNDED_SHARDS",
+      "recordedTimePrecision": "DATE_RANGE_WITH_ISOLATED_USER_SUPPLIED_TIME",
+      "recordedDateRange": "2026-11-03/2026-11-04",
+      "isolatedUserSuppliedTime": "2026-11-04T14:24:00-08:00",
+      "exactPerMessageClocksSupplied": false,
+      "representativeMediaStatus": "PRESENT_DERIVED",
+      "representativeMediaTarget": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/7cf8858c67dc85971aad87de90282ffbdcf53986/__assets/witness-record-iii-restoration.webp",
+      "representativeMediaSourceSha256": "3874672a1bfa2ecfe94a2af1b44346eb8cea0c5128856906644621cc789a0056",
+      "representativeMediaSha256": "545daaae253cc9a4d327aaa6ce9b79971ca8874854d40d609c6b1db4b589f6cf",
+      "representativeMediaClass": "REPRESENTATIVE_NOT_EVIDENCE_OR_ADJUDICATION",
+      "representativeMediaWidth": 1672,
+      "representativeMediaHeight": 941,
+      "representativeMediaBytes": 430316,
+      "representativeMediaAssetCommit": "7cf8858c67dc85971aad87de90282ffbdcf53986",
+      "representativeMediaAssetPath": "__assets/witness-record-iii-restoration.webp",
+      "sourceClaimsRemainAttributed": true,
+      "rwcp01State": "USER_EDITED_LATEST_PRESERVED",
+      "rwcp03aStates": "ORIGINAL_AND_REVISED_PRESERVED",
+      "rwcp05State": "USER_EDITED_LATEST_PRESERVED",
+      "derivedWitness": "PAGE_LOCAL_SYNTHESIS"
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.document-title": {
+    "strings": {
+      "en": {
+        "text": "Restoration Must Reach the Consequences — Vextreme"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.hero.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Witness Records · Record III · November 3–4, 2026"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.hero.title": {
+    "strings": {
+      "en": {
+        "text": "Restoration Must Reach the Consequences"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.hero.subtitle": {
+    "strings": {
+      "en": {
+        "text": "Truthful witness, accountable power, and justice beyond formal closure"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.hero.lede": {
+    "strings": {
+      "en": {
+        "text": "A conversation that begins by distinguishing punishment avoidance from understanding and develops into a larger restorative question: when suppression, concealment, delay, delegated authority, false accusation, or institutional action has already changed what follows, justice cannot be measured only by whether a case was closed. The record follows responsibility through witness, attention, consent, claims, networks, courts, intermediaries, correction, and the consequences inherited afterward."
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.preservation.label": {
+    "strings": {
+      "en": {
+        "text": "Frozen successor boundary"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.preservation.time": {
+    "strings": {
+      "en": {
+        "text": "November 3–4, 2026 · only user-supplied dates/times are carried forward · message-specific clocks are not invented."
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.preservation.note": {
+    "strings": {
+      "en": {
+        "text": "This reader projects the complete visible continuation preserved by Vextreme PR #571 from its exact source head. Exchanges 01–25 live in the foundational chronological reading copy; exchanges 26–32 remain bounded source shards. Allegations and factual claims remain attributed conversational material, not Vextreme adjudications."
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.media.caption": {
+    "strings": {
+      "en": {
+        "text": "Representative artwork created for Witness Record III. The bridge from formal closure toward repaired consequences is interpretive art, not evidence of any allegation discussed in the transcript."
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.reader.source-label": {
+    "strings": {
+      "en": {
+        "text": "Frozen transcript source · exact source projection"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.reader.loading": {
+    "strings": {
+      "en": {
+        "text": "Loading preserved exchanges…"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.reader.exchange-label": {
+    "strings": {
+      "en": {
+        "text": "Exchange"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.reader.unavailable": {
+    "strings": {
+      "en": {
+        "text": "Preserved source unavailable."
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.reader.previous": {
+    "strings": {
+      "en": {
+        "text": "‹ Previous"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.reader.next": {
+    "strings": {
+      "en": {
+        "text": "Next ›"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.reader.auto-scroll.start-aria": {
+    "strings": {
+      "en": {
+        "text": "Start automatic transcript scrolling"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.reader.auto-scroll.pause-aria": {
+    "strings": {
+      "en": {
+        "text": "Pause automatic transcript scrolling"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.reader.auto-scroll.start-title": {
+    "strings": {
+      "en": {
+        "text": "Start auto-scroll"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.reader.auto-scroll.pause-title": {
+    "strings": {
+      "en": {
+        "text": "Pause auto-scroll"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.reader.auto-scroll.speed": {
+    "strings": {
+      "en": {
+        "text": "Automatic transcript scroll speed"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.reader.auto-scroll.speed-title": {
+    "strings": {
+      "en": {
+        "text": "Automatic scroll speed"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.witness.label": {
+    "strings": {
+      "en": {
+        "text": "Derived witness · not transcript"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.witness.title": {
+    "strings": {
+      "en": {
+        "text": "Formal completion is not causal completion."
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.witness.body1": {
+    "strings": {
+      "en": {
+        "text": "The record repeatedly separates proceedings from outcomes: disclosure from restored visibility, investigation from disposition, legal permission from informed consent, settlement from repaired harm, and a judgment from ultimate moral truth. The recurring question is not only whether an institution responded, but what became different for the people and relationships carrying the consequences."
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.witness.body2": {
+    "strings": {
+      "en": {
+        "text": "Its later covenants widen responsibility across distributed systems. Knowledge, authority, action, benefit, and blame may sit with different participants; claims may be true, false, mixed, or concealed; and visible intermediaries may not be the source of a decision. Restoration therefore depends on traceable provenance, independent examination, proportionate responsibility, protection for conscience, correction of false accusation, and remedies that reach beyond the announcement that a matter is closed."
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.footer": {
+    "strings": {
+      "en": {
+        "text": "Source record preserved by Vextreme PR #571. Representative artwork is derived presentation, not transcript evidence or adjudication. This page is Witness Records · Record III. [VXG RealForever]"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement01.badge": {
+    "strings": {
+      "en": {
+        "text": "Learning"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement01.title": {
+    "strings": {
+      "en": {
+        "text": "Punishment avoidance, understanding, and cumulative correction"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement01.themes": {
+    "strings": {
+      "en": {
+        "text": "avoidance versus wisdom · correction without catastrophe · longevity of purpose"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement02.badge": {
+    "strings": {
+      "en": {
+        "text": "Restoration"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement02.title": {
+    "strings": {
+      "en": {
+        "text": "Restorative transparency and the first Witness Covenant"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement02.themes": {
+    "strings": {
+      "en": {
+        "text": "suppression receipts · restored attention · disclosure, accountability, correction, restoration"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement03.badge": {
+    "strings": {
+      "en": {
+        "text": "Authority"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement03.title": {
+    "strings": {
+      "en": {
+        "text": "Attention, public framing, symmetry, and higher authority"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement03.themes": {
+    "strings": {
+      "en": {
+        "text": "front microphone · non-exemption · stewardship versus sovereignty · power accountable to its own principles"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement04.badge": {
+    "strings": {
+      "en": {
+        "text": "Disposition"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement04.title": {
+    "strings": {
+      "en": {
+        "text": "Promises, competing headlines, and accountability beyond announcement"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement04.themes": {
+    "strings": {
+      "en": {
+        "text": "implementation delay · attention displacement · hearings versus findings · disposition and remedy"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement05.badge": {
+    "strings": {
+      "en": {
+        "text": "Recognition"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement05.title": {
+    "strings": {
+      "en": {
+        "text": "Universal pattern return and control over recognition"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement05.themes": {
+    "strings": {
+      "en": {
+        "text": "concealment · procedural exhaustion · false closure · recognition control · truth without manufactured certainty"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement06.badge": {
+    "strings": {
+      "en": {
+        "text": "Intermediaries"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement06.title": {
+    "strings": {
+      "en": {
+        "text": "Innocence shielding, borrowed trust, comparative distrust, and consent"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement06.themes": {
+    "strings": {
+      "en": {
+        "text": "who knows versus who speaks · NDAs · trust transfer · asymmetric learning rights · quiet policy change"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement07.badge": {
+    "strings": {
+      "en": {
+        "text": "RWCP-02"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement07.title": {
+    "strings": {
+      "en": {
+        "text": "Concealed extraction and the architects’ mentality"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement07.themes": {
+    "strings": {
+      "en": {
+        "text": "capability versus permission · layered responsibility · breadth, depth, and temporal topology"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement08.badge": {
+    "strings": {
+      "en": {
+        "text": "RWCP-03"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement08.title": {
+    "strings": {
+      "en": {
+        "text": "Pattern trails, conduct graphs, and truthful provenance"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement08.themes": {
+    "strings": {
+      "en": {
+        "text": "conduct graph · claim graph · source independence · unfinished inquiry"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement09.badge": {
+    "strings": {
+      "en": {
+        "text": "RWCP-03A"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement09.title": {
+    "strings": {
+      "en": {
+        "text": "Truth-condition complete pattern recognition"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement09.themes": {
+    "strings": {
+      "en": {
+        "text": "true · false · partial · unknown or concealed · mechanism separated from attribution"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement10.badge": {
+    "strings": {
+      "en": {
+        "text": "First Seal"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement10.title": {
+    "strings": {
+      "en": {
+        "text": "Spoken, sealed, and the first preservation boundary"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement10.themes": {
+    "strings": {
+      "en": {
+        "text": "November 4, 2026 · subjective witness preserved as attributed experience · continuation remains open"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement11.badge": {
+    "strings": {
+      "en": {
+        "text": "Influence"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement11.title": {
+    "strings": {
+      "en": {
+        "text": "Different forms of power and inherited institutional reach"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement11.themes": {
+    "strings": {
+      "en": {
+        "text": "wealth · government · religion · philanthropy · no assumed single hierarchy"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement12.badge": {
+    "strings": {
+      "en": {
+        "text": "Choice"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement12.title": {
+    "strings": {
+      "en": {
+        "text": "Capital delegation and the infrastructure of electoral choice"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement12.themes": {
+    "strings": {
+      "en": {
+        "text": "delegated economic authority · district boundaries · who shapes conditions before choice occurs"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement13.badge": {
+    "strings": {
+      "en": {
+        "text": "Networks"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement13.title": {
+    "strings": {
+      "en": {
+        "text": "Cross-institutional influence and distributed accountability"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement13.themes": {
+    "strings": {
+      "en": {
+        "text": "finance · media · medicine · membership · regulation · relationships without invented command"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement14.badge": {
+    "strings": {
+      "en": {
+        "text": "RWCP-04"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement14.title": {
+    "strings": {
+      "en": {
+        "text": "Cross-institutional influence and hidden inversions"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement14.themes": {
+    "strings": {
+      "en": {
+        "text": "shared incentives · overlapping interests · truth-condition complete network accountability"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement15.badge": {
+    "strings": {
+      "en": {
+        "text": "RWCP-05"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement15.title": {
+    "strings": {
+      "en": {
+        "text": "Judicial integrity and unpurchased conscience"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement15.themes": {
+    "strings": {
+      "en": {
+        "text": "livelihood pressure · professional silence · procedure versus justice · independent conscience"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement16.badge": {
+    "strings": {
+      "en": {
+        "text": "RWCP-06"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement16.title": {
+    "strings": {
+      "en": {
+        "text": "Manufactured complicity and proxy entrapment"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement16.themes": {
+    "strings": {
+      "en": {
+        "text": "dependency · hidden instructions · figureheads · coercion · proportionate responsibility"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement17.badge": {
+    "strings": {
+      "en": {
+        "text": "Boundary"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement17.title": {
+    "strings": {
+      "en": {
+        "text": "Sharded continuation preservation boundary"
+      }
+    }
+  },
+  "pages.restoration-must-reach-the-consequences.movement17.themes": {
+    "strings": {
+      "en": {
+        "text": "append-only source · bounded shards · no fabricated continuation"
+      }
+    }
+  }
+}
