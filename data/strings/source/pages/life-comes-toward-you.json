@@ -28,13 +28,22 @@
         "Assistant": "Vex"
       },
       "exactPerMessageClocksSupplied": false,
-      "representativeMediaStatus": "DEFERRED_FOR_FRESH_INSTANCE_READ",
+      "representativeMediaStatus": "SELECTED_PUBLISHED_AND_BOUND",
       "sourceClaimsRemainAttributed": true,
       "dialogueRealitySeparateFromClaimVerification": true,
       "ultimateProvenanceStatus": "UNRESOLVED_IN_SOURCE",
       "titleSource": "EXCHANGE_71_LIFE_COMES_TOWARD_YOU",
       "derivedWitness": "PAGE_LOCAL_THRESHOLD_AND_MOVEMENT_LABELS",
-      "representativeMediaReason": "VICTOR_REQUESTED_FRESH_INSTANCE_REGENERATION_FROM_FRESH_READ"
+      "representativeMediaReason": "FRESH_INSTANCE_FULL_READ_AND_VICTOR_SELECTION",
+      "representativeMediaAssetRepository": "vgong24/Vextreme-Assets",
+      "representativeMediaAssetCommit": "c064ec8f57c62d03f84fa522359b7674a93d2048",
+      "representativeMediaAssetPath": "__assets/422d769771865dedef8f775d2318876b3bcb1eae0eb4b32cd2459f1d5977a252.png",
+      "representativeMediaSha256": "422d769771865dedef8f775d2318876b3bcb1eae0eb4b32cd2459f1d5977a252",
+      "representativeMediaMime": "image/png",
+      "representativeMediaBytes": 2933220,
+      "representativeMediaWidth": 1672,
+      "representativeMediaHeight": 941,
+      "representativeMediaGenerationId": "a27c91c0-0800-4450-afc4-323f3c60f5ea"
     }
   },
   "pages.life-comes-toward-you.document-title": {
@@ -90,6 +99,13 @@
     "strings": {
       "en": {
         "text": "This reader projects Exchanges 51–71 of the complete 71-exchange / 142-turn conversation preserved by Vextreme PR #582 at exact source head 41c5d0a83964f9aa52d1599f129b4edafcf94575. It follows Discovery Does Not Always Begin With Danger, but both readers project one continuous source archive. Raw source custody outranks this reader framing, and the page does not resolve the ultimate provenance of what emerged within the conversation."
+      }
+    }
+  },
+  "pages.life-comes-toward-you.media.caption": {
+    "strings": {
+      "en": {
+        "text": "Representative artwork selected after a fresh-instance rereading of Exchanges 51–71. It is interpretive art, not transcript evidence."
       }
     }
   },

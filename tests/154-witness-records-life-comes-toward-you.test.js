@@ -9,6 +9,9 @@ const ROOT=path.join(__dirname,'..');
 const SLUG='life-comes-toward-you';
 const SOURCE_HEAD='41c5d0a83964f9aa52d1599f129b4edafcf94575';
 const READER_I='discovery-does-not-always-begin-with-danger';
+const ASSET_COMMIT='c064ec8f57c62d03f84fa522359b7674a93d2048';
+const MEDIA_SHA='422d769771865dedef8f775d2318876b3bcb1eae0eb4b32cd2459f1d5977a252';
+const MEDIA_URL='https://raw.githubusercontent.com/vgong24/Vextreme-Assets/'+ASSET_COMMIT+'/__assets/'+MEDIA_SHA+'.png';
 
 function read(rel){return fs.readFileSync(path.join(ROOT,rel),'utf8').replace(/\r\n/g,'\n');}
 function json(rel){return JSON.parse(read(rel));}
@@ -21,7 +24,14 @@ test('LIFE-COMES-TOWARD-YOU: source boundary and predecessor-reader relationship
   assert.match(page,/data-reader-template="conversation-witness-reader\/v1"/);
   assert.ok(page.includes("sourceBase:'https://raw.githubusercontent.com/vgong24/Vextreme/"+SOURCE_HEAD+"/"));
   assert.match(page,/does not resolve the ultimate provenance/i);
-  assert.doesNotMatch(page,/data-media-class=/);
+  assert.ok(page.includes('data-media-class="representative"'));
+  assert.ok(page.includes('data-media-target="'+MEDIA_URL+'"'));
+  assert.ok(page.includes('data-media-sha256="'+MEDIA_SHA+'"'));
+  assert.ok(page.includes('data-media-width="1672"'));
+  assert.ok(page.includes('data-media-height="941"'));
+  assert.ok(page.includes('src="'+MEDIA_URL+'"'));
+  assert.ok(page.includes('width="1672" height="941"'));
+  assert.match(page,/interpretive art, not transcript evidence/i);
 });
 
 test('LIFE-COMES-TOWARD-YOU: three movements cover exchanges 51 through 71 exactly once',()=>{
@@ -78,8 +88,16 @@ test('LIFE-COMES-TOWARD-YOU: provenance keeps source and reader boundaries disti
   assert.equal(p.archiveTurnCount,142);
   assert.equal(p.sourceBoundaryStatus,'COMPLETE_AT_EXCHANGE_71');
   assert.equal(p.titleSource,'EXCHANGE_71_LIFE_COMES_TOWARD_YOU');
-  assert.equal(p.representativeMediaStatus,'DEFERRED_FOR_FRESH_INSTANCE_READ');
-  assert.equal(p.representativeMediaReason,'VICTOR_REQUESTED_FRESH_INSTANCE_REGENERATION_FROM_FRESH_READ');
+  assert.equal(p.representativeMediaStatus,'SELECTED_PUBLISHED_AND_BOUND');
+  assert.equal(p.representativeMediaReason,'FRESH_INSTANCE_FULL_READ_AND_VICTOR_SELECTION');
+  assert.equal(p.representativeMediaAssetRepository,'vgong24/Vextreme-Assets');
+  assert.equal(p.representativeMediaAssetCommit,ASSET_COMMIT);
+  assert.equal(p.representativeMediaAssetPath,'__assets/'+MEDIA_SHA+'.png');
+  assert.equal(p.representativeMediaSha256,MEDIA_SHA);
+  assert.equal(p.representativeMediaMime,'image/png');
+  assert.equal(p.representativeMediaBytes,2933220);
+  assert.equal(p.representativeMediaWidth,1672);
+  assert.equal(p.representativeMediaHeight,941);
   assert.equal(p.ultimateProvenanceStatus,'UNRESOLVED_IN_SOURCE');
 });
 
