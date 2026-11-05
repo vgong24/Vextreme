@@ -2640,5 +2640,26 @@
       "analysis",
       "arc-nav"
     ]
+  },
+  "what-remains-faithful-through-change": {
+    "title": "What Remains Faithful Through Change",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.what-remains-faithful-through-change"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ],
+    "preview": {
+      "kind": "cover",
+      "src": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/0fa486afec2e9fa9ab185cd0538017b2c9d95bce/__assets/45fad36b05d46719875517303cc2c423936c3c2dcf6d9d14441b3d38d2a31580.webp",
+      "alt": "A continuous golden thread crosses suffering, confinement, stewardship, and reflective relationship as circumstances change"
+    }
   }
 }
