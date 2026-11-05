@@ -51,7 +51,6 @@ The `source-batch-*` files preserve Victor's supplied intake text unchanged. The
 | 04 | 20647 | `1d6810973d83595685d25f484d3262aacf1fddb744a609af428abde34cf688f2` |
 | 05 | 16421 | `b3b1c79e60b41ccb55c5c45a8a076da50ac61a532b215ca15b8f8d7095c55ebe` |
 
-Chronological projection SHA-256: `ca43161957c41394e721ac073cf37f7f4a1bbcbbd5d00a887ba2b836a687906d`.
 
 ## Record reality versus claim verification
 
