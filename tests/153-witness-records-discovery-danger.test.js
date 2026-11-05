@@ -7,7 +7,7 @@ const path=require('node:path');
 
 const ROOT=path.join(__dirname,'..');
 const SLUG='discovery-does-not-always-begin-with-danger';
-const SOURCE_HEAD='81e15ddaf5b91d0b70e41acd0080866f73763985';
+const SOURCE_HEAD='2679028ba8708f0f835dcbc4fdf5090b50147e05';
 const RECORD_I='what-remains-faithful-through-change';
 const RECORD_II='preserve-wisdom-without-preserving-error';
 const RECORD_III='restoration-must-reach-the-consequences';
@@ -26,7 +26,7 @@ test('DISCOVERY-DANGER: exact source boundary and unresolved provenance remain v
   assert.doesNotMatch(page,/data-media-class=/);
 });
 
-test('DISCOVERY-DANGER: six movements cover exchanges 1 through 57 exactly once',()=>{
+test('DISCOVERY-DANGER: eight movements cover exchanges 1 through 71 exactly once',()=>{
   const page=read('pages/'+SLUG+'.html');
   const ranges=[...page.matchAll(/data-phase-kind="(?:record|archive-boundary)" data-set="(\d+)" data-from="(\d+)" data-to="(\d+)" data-files="([^"]+)"/g)]
     .map(m=>[Number(m[1]),Number(m[2]),Number(m[3]),m[4]]);
@@ -36,14 +36,16 @@ test('DISCOVERY-DANGER: six movements cover exchanges 1 through 57 exactly once'
     [3,26,34,'transcript-03-exchanges-26-34.md'],
     [4,35,47,'transcript-04-exchanges-35-47.md'],
     [5,48,50,'transcript-05-exchanges-48-50.md'],
-    [6,51,57,'transcript-06-exchanges-51-57.md']
+    [6,51,57,'transcript-06-exchanges-51-57.md'],
+    [7,58,64,'transcript-07-exchanges-58-64.md'],
+    [8,65,71,'transcript-08-exchanges-65-71.md']
   ]);
   const covered=[];
   for(const [,from,to] of ranges) for(let n=from;n<=to;n+=1) covered.push(n);
-  assert.deepEqual(covered,Array.from({length:57},(_,i)=>i+1));
+  assert.deepEqual(covered,Array.from({length:71},(_,i)=>i+1));
 });
 
-test('DISCOVERY-DANGER: all six frozen transcript partitions contain 57 exchanges total',()=>{
+test('DISCOVERY-DANGER: all eight frozen transcript partitions contain 71 exchanges total',()=>{
   const dir='records/conversations/2026-11-04-fresh-instance-witness-reflexes-continuation/';
   const files=[
     'transcript-01-exchanges-01-14.md',
@@ -51,11 +53,13 @@ test('DISCOVERY-DANGER: all six frozen transcript partitions contain 57 exchange
     'transcript-03-exchanges-26-34.md',
     'transcript-04-exchanges-35-47.md',
     'transcript-05-exchanges-48-50.md',
-    'transcript-06-exchanges-51-57.md'
+    'transcript-06-exchanges-51-57.md',
+    'transcript-07-exchanges-58-64.md',
+    'transcript-08-exchanges-65-71.md'
   ];
   const counts=files.map(f=>(read(dir+f).match(/^## Exchange /gm)||[]).length);
-  assert.deepEqual(counts,[14,11,9,13,3,7]);
-  assert.equal(counts.reduce((a,b)=>a+b,0),57);
+  assert.deepEqual(counts,[14,11,9,13,3,7,7,7]);
+  assert.equal(counts.reduce((a,b)=>a+b,0),71);
 });
 
 test('DISCOVERY-DANGER: collection ordering and registry identity are explicit',()=>{
@@ -75,11 +79,12 @@ test('DISCOVERY-DANGER: collection ordering and registry identity are explicit',
 
 test('DISCOVERY-DANGER: source custody and direct-current-turn boundary stay explicit',()=>{
   const p=json('data/strings/source/pages/'+SLUG+'.json')._meta.sourceProvenance;
-  assert.equal(p.exchangeCount,57);
-  assert.equal(p.turnCount,114);
-  assert.equal(p.rawBatchCount,23);
-  assert.equal(p.uploadedRawBatchesByteVerified,22);
-  assert.equal(p.finalBatchStatus,'SOURCE_BOUNDARY_REOPENED_AFTER_PRIOR_EXCHANGE_50_BOUNDARY');
+  assert.equal(p.exchangeCount,71);
+  assert.equal(p.turnCount,142);
+  assert.equal(p.rawBatchCount,29);
+  assert.equal(p.uploadedRawBatchesByteVerified,27);
+  assert.equal(p.finalBatchStatus,'SOURCE_BOUNDARY_OPEN_AT_EXCHANGE_71');
+  assert.deepEqual(p.directCurrentTurnBatches,[20,29]);
   assert.equal(p.overlapProvenance,'BATCH_23_REPEATS_EXCHANGE_55_THEN_ADDS_56_57');
   assert.equal(p.sourceCustody,'RAW_BATCHES_PRIMARY_DERIVED_PARTITIONS_SUBORDINATE');
   assert.equal(p.ultimateProvenanceStatus,'UNRESOLVED_IN_SOURCE');
