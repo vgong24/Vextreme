@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.sabotage-hidden-delta"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en"];
-  window.VEX_INDEX_FINGERPRINT = "a4ab254b9b25";
+  window.VEX_INDEX_FINGERPRINT = "bab3a823acb8";
 
 
 
