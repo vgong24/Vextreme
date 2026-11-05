@@ -100,17 +100,17 @@ The two chronological projections were checked separately against their correspo
 Transcript 01 / exchanges 01–14
 source exchanges:          14
 projected exchanges:       14
-User body mismatches:       0
-Assistant body mismatches:  0
+Victor/User-source body mismatches:       0
+Vex/Assistant-source body mismatches:  0
 
 Transcript 02 / exchanges 15–25
 source exchanges:          11
 projected exchanges:       11
-User body mismatches:       0
-Assistant body mismatches:  0
+Victor/User-source body mismatches:       0
+Vex/Assistant-source body mismatches:  0
 ```
 
-The projection adds only archive framing (`## Exchange NN`, `### User`, `### Assistant`) and removes separator-adjacent blank space when splitting the supplied `####` boundaries. It does not rewrite message-body wording.
+The projection adds only archive framing (`## Exchange NN`, `### Victor`, `### Vex`) and removes separator-adjacent blank space when splitting the supplied `####` boundaries. It does not rewrite message-body wording.
 
 **Trust boundary:** the raw `source-batch-*` files are the primary source custody. Both `transcript-*` files and `SPEAKERS.md` are derived navigation/provenance aids and remain checkable against those raw files.
 
