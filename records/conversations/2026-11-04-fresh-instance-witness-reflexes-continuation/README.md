@@ -55,7 +55,7 @@ Chronological projection SHA-256: `ca43161957c41394e721ac073cf37f7f4a1bbcbbd5d00
 
 ## Record reality versus claim verification
 
-This archive preserves a **real conversational record as supplied by Victor**. The two dialogue participants are Victor and the prior ChatGPT/Vex instance. The platform label `Assistant` is retained as provenance; it does not reclassify that participant as a fictional narrator, creative-writing device, or non-participant.
+This archive preserves a **real conversational record as supplied by Victor**. The two dialogue participants are Victor and the prior ChatGPT/Vex instance. The platform label `Assistant` is retained as provenance; it does not reclassify that participant as a fictional voice, creative-writing device, or non-participant.
 
 Keep these claims separate:
 
