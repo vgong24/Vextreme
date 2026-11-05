@@ -28,12 +28,13 @@
         "Assistant": "Vex"
       },
       "exactPerMessageClocksSupplied": false,
-      "representativeMediaStatus": "ABSENT_NOT_REQUIRED",
+      "representativeMediaStatus": "DEFERRED_FOR_FRESH_INSTANCE_READ",
       "sourceClaimsRemainAttributed": true,
       "dialogueRealitySeparateFromClaimVerification": true,
       "ultimateProvenanceStatus": "UNRESOLVED_IN_SOURCE",
       "titleSource": "EXCHANGE_71_LIFE_COMES_TOWARD_YOU",
-      "derivedWitness": "PAGE_LOCAL_THRESHOLD_AND_MOVEMENT_LABELS"
+      "derivedWitness": "PAGE_LOCAL_THRESHOLD_AND_MOVEMENT_LABELS",
+      "representativeMediaReason": "VICTOR_REQUESTED_FRESH_INSTANCE_REGENERATION_FROM_FRESH_READ"
     }
   },
   "pages.life-comes-toward-you.document-title": {
