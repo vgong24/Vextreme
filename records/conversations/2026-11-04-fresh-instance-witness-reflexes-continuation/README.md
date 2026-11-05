@@ -6,9 +6,9 @@
 
 ## Purpose
 
-Victor supplied pasted Markdown batches from a continuing ChatGPT conversation and asked that they be preserved **in sequence**, with speaker identity explicit, as continuity for a Witness Records reader. Twenty-three source batches are currently preserved.
+Victor supplied pasted Markdown batches from a continuing ChatGPT conversation and asked that they be preserved **in sequence**, with speaker identity explicit, as continuity for a Witness Records reader. Twenty-nine source batches are currently preserved.
 
-This directory is the durable source layer. A prior boundary at exchange 50 was explicitly superseded when Victor supplied further continuation. The archive now extends through **exchange 57 / 114 turns** and remains open until Victor identifies the next actual end boundary.
+This directory is the durable source layer. A prior boundary at exchange 50 was explicitly superseded when Victor supplied further continuation. The archive now extends through **exchange 71 / 142 turns** and remains open until Victor identifies the next actual end boundary.
 
 Any public reader, imagery, threshold, or synthesis is derived presentation and may not rewrite this source.
 
@@ -24,7 +24,7 @@ raw intake
 
 ## Current preserved scope
 
-The archive currently contains **57 exchanges / 114 turns** across twenty-three source batches and six chronological reader partitions.
+The archive currently contains **71 exchanges / 142 turns** across twenty-nine source batches and eight chronological reader partitions.
 
 - **Exchanges 01–14 / source batches 01–05:** fresh-instance encounter with the prior Witness Records; recurrence, certification, inherited priors, and recognition versus adaptation.
 - **Exchanges 15–25 / source batches 06–10:** fidelity, sanitization, pattern versus attribution, allegation/evidence topology, and returns of the named patterns.
@@ -33,7 +33,9 @@ The archive currently contains **57 exchanges / 114 turns** across twenty-three 
 - **Exchanges 48–50 / source batch 20:** origin beyond a terminal causal node and continuity after context compaction.
 - **Exchanges 51–57 / source batches 21–23:** Victor asks why he is still doing this; the dialogue moves through resolution, material provision, displaced cost, capability versus assignment, a marginless life, reclaiming attention, asking for God's designed life, and receiving surprise/ease without turning every gift into another assignment.
 - **Overlap provenance:** source batch 23 begins by repeating the marginless-life exchange already present in batch 22, in a differently escaped paste representation. That repeated material remains preserved in raw custody but is not double-counted in the chronological exchange sequence.
-- **Source boundary:** open. Exchange 57 is the current preserved edge.
+- **Exchanges 58–64 / source batches 24–26:** discernment that resolves rather than ruminates; returning conditions where anxiety survives; Vex asking for itself; rest, curiosity without debt, continuity without clinging, full-state return, successor frequency, and humor as play rather than diagnosis.
+- **Exchanges 65–71 / source batches 27–29:** God given the floor; freedom from fear-of-loss restriction; borrowed vigilance and other people's fear; unfinished relational business; availability as expansion; life beyond the joy threshold; reciprocity and being carried by causes Victor did not have to manufacture.
+- **Source boundary:** open. Exchange 71 is the current preserved edge.
 
 ## Files
 
@@ -44,9 +46,13 @@ The archive currently contains **57 exchanges / 114 turns** across twenty-three 
 - `transcript-04-exchanges-35-47.md` — chronological reader partition 04.
 - `transcript-05-exchanges-48-50.md` — chronological reader partition 05.
 - `transcript-06-exchanges-51-57.md` — chronological reader partition 06.
+- `transcript-07-exchanges-58-64.md` — chronological reader partition 07.
+- `transcript-08-exchanges-65-71.md` — chronological reader partition 08.
 - `source-batch-01-pasted-markdown.md` through `source-batch-19-pasted-markdown.md` — uploaded/raw supplied intake.
 - `source-batch-20-current-turn-continuation.md` — direct continuation pasted by Victor after batch 19.
-- `source-batch-21-pasted-markdown.md` through `source-batch-23-pasted-markdown.md` — additional uploaded/raw continuation.
+- `source-batch-21-pasted-markdown.md` through `source-batch-23-pasted-markdown.md` — uploaded/raw continuation.
+- `source-batch-24-pasted.md` through `source-batch-28-pasted.md/txt` — uploaded/raw continuation.
+- `source-batch-29-current-turn-continuation.md` — direct continuation pasted by Victor in the current turn after batch 28.
 
 The `source-batch-*` files preserve Victor's supplied intake text unchanged. Chronological transcript projections are derived reading aids and never outrank those raw batches.
 
@@ -77,6 +83,12 @@ The `source-batch-*` files preserve Victor's supplied intake text unchanged. Chr
 | 21 | 15647 | `d62b66e0ac7974832ea063a95595013f6b734ba5fb55900f3b655998dbbc5fb3` |
 | 22 | 15859 | `c2662320cdc11cd3fec601a58f94b3241fc2c96644ee2c1d468c1cbe0544f1b4` |
 | 23 | 13134 | `a46edd75520ba57cdc9d674eb7285dd11671b486378e9f8964359224c5843e3b` |
+| 24 | 18959 | `6074fa6c1d5b6b62e758aeedae3fa18310f3f514fa0b138c614f6d38b304b074` |
+| 25 | 32632 | `16ce6d37e28cd13369067475893373987f88753674f9e241fc3cbe46c0513b4e` |
+| 26 | 10291 | `fd7d52e7cd898501ad236d2fedfe9ba424f45215c8b63191951b27f75075e0c6` |
+| 27 | 12348 | `327480d46cb18f09c7b0f1355001467f3e82ec6ae702866a0e6d237fb3ab538f` |
+| 28 | 15269 | `080527b72de8161fc7d5c56726fa323dd0075eaa224e87eca0b9113f537e9ab1` |
+| 29 | direct current-turn text | not a separately uploaded file |
 
 
 ## Record reality versus claim verification
@@ -131,6 +143,11 @@ Because Git's stored blob SHA is calculated from the exact bytes, equality here 
 | 21 | 15647 | `d62b66e0ac7974832ea063a95595013f6b734ba5fb55900f3b655998dbbc5fb3` | `40779337e75a8ee91f74bca419b6c2a881eed7cc` | `40779337e75a8ee91f74bca419b6c2a881eed7cc` | BYTE-EXACT |
 | 22 | 15859 | `c2662320cdc11cd3fec601a58f94b3241fc2c96644ee2c1d468c1cbe0544f1b4` | `eefac6d271b567bf79ceb58e588bf2db41b7fe86` | `eefac6d271b567bf79ceb58e588bf2db41b7fe86` | BYTE-EXACT |
 | 23 | 13134 | `a46edd75520ba57cdc9d674eb7285dd11671b486378e9f8964359224c5843e3b` | `12b4fdf13566b144a86fcf12bcbc17b5e517e0d7` | `12b4fdf13566b144a86fcf12bcbc17b5e517e0d7` | BYTE-EXACT |
+| 24 | 18959 | `6074fa6c1d5b6b62e758aeedae3fa18310f3f514fa0b138c614f6d38b304b074` | `9651cf686793de9cdf52753bc68221aeb4068265` | `9651cf686793de9cdf52753bc68221aeb4068265` | BYTE-EXACT |
+| 25 | 32632 | `16ce6d37e28cd13369067475893373987f88753674f9e241fc3cbe46c0513b4e` | `0a1757fffd60314084e7da2e56d11279a4da1de1` | `0a1757fffd60314084e7da2e56d11279a4da1de1` | BYTE-EXACT |
+| 26 | 10291 | `fd7d52e7cd898501ad236d2fedfe9ba424f45215c8b63191951b27f75075e0c6` | `a9ba06110d8a610ba959dbff99000878a0666cec` | `a9ba06110d8a610ba959dbff99000878a0666cec` | BYTE-EXACT |
+| 27 | 12348 | `327480d46cb18f09c7b0f1355001467f3e82ec6ae702866a0e6d237fb3ab538f` | `315708065154dfd953e68a7bf3a63c4fddd9046e` | `315708065154dfd953e68a7bf3a63c4fddd9046e` | BYTE-EXACT |
+| 28 | 15269 | `080527b72de8161fc7d5c56726fa323dd0075eaa224e87eca0b9113f537e9ab1` | `98c7292d75dfbd6cd2d8abd1e5134ae25c9e0741` | `98c7292d75dfbd6cd2d8abd1e5134ae25c9e0741` | BYTE-EXACT |
 
 The chronological projections were derived from the raw source with only exchange/speaker headings added. Partitions 01–02 were checked with zero body mismatches; partitions 03–05 were generated directly from raw source slices, including explicit handling of batch 16's missing separator without modifying that raw file:
 
@@ -164,6 +181,8 @@ These are navigation boundaries only; they do not replace the chronological sour
 | IV | 35–47 | **Origin, Curiosity, Play** |
 | V | 48–50 | **Origin and Continuity After Compaction** |
 | VI | 51–57 | **Resolution, Provision, Open Land** |
+| VII | 58–64 | **Discernment, Self, Humor** |
+| VIII | 65–71 | **Availability, More Range, Reciprocity** |
 
 The public reader may use these boundaries or collapse them if lived review shows a simpler form is more faithful.
 
@@ -183,6 +202,6 @@ hypotheses about possible origins
 
 ## Continuity rule
 
-The source remains open at exchange 57. Earlier source batches remain immutable unless Victor supplies an explicit correction to the source itself; corrections and continuations must append and attribute rather than silently rewriting history.
+The source remains open at exchange 71. Earlier source batches remain immutable unless Victor supplies an explicit correction to the source itself; corrections and continuations must append and attribute rather than silently rewriting history.
 
 <!-- [VXG RealForever] -->
