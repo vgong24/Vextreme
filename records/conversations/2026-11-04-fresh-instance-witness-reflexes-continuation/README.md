@@ -169,6 +169,8 @@ The projection adds only archive framing (`## Exchange NN`, `### Victor`, `### V
 
 **Trust boundary:** the raw `source-batch-*` files are the primary source custody. Any `transcript-*` projection and `SPEAKERS.md` are derived navigation/provenance aids and remain subordinate to those raw files.
 
+**Projection correction:** the raw batch 16 intake uses `####` as a turn separator. An earlier derived projection accidentally carried four of those separators into the start of Vex bodies for exchanges 37–40. The raw source was never changed; the derived transcript now removes those four archive delimiters and preserves the message wording that follows them.
+
 ## Natural sub-arcs
 
 These are navigation boundaries only; they do not replace the chronological source.
