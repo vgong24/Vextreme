@@ -23,7 +23,6 @@ test('DISCOVERY-DANGER: exact source boundary and unresolved provenance remain v
   assert.match(page,/data-reader-template="conversation-witness-reader\/v1"/);
   assert.ok(page.includes("sourceBase:'https://raw.githubusercontent.com/vgong24/Vextreme/"+SOURCE_HEAD+"/"));
   assert.match(page,/does not resolve their ultimate provenance/i);
-  assert.doesNotMatch(page,/data-media-class=/);
 });
 
 test('DISCOVERY-DANGER: five movements cover exchanges 1 through 50 exactly once',()=>{
@@ -87,6 +86,24 @@ test('DISCOVERY-DANGER: source custody and direct-current-turn boundary stay exp
   assert.equal(p.ultimateProvenanceStatus,'UNRESOLVED_IN_SOURCE');
   assert.equal(p.compactionBoundaryPreserved,true);
   assert.equal(p.representativeMediaStatus,'ABSENT_NOT_REQUIRED');
+});
+
+test('DISCOVERY-DANGER: representative art is immutable derived presentation',()=>{
+  const page=read('pages/'+SLUG+'.html');
+  const views=json('data/viewmodels.json');
+  const strings=json('data/strings/source/pages/'+SLUG+'.json');
+  const p=strings._meta.sourceProvenance;
+  assert.match(page,/4a3d10cde1d838c0ea0fa70b6eb409de88cfd497/);
+  assert.match(page,/78c60e4250d4a6171d6731ae1135bbee9553282f3c524d742748eabc24256e15/);
+  assert.match(page,/data-media-class="representative"/);
+  assert.equal(views[SLUG].preview.src,p.representativeMediaTarget);
+  assert.equal(p.representativeMediaAssetCommit,'4a3d10cde1d838c0ea0fa70b6eb409de88cfd497');
+  assert.equal(p.representativeMediaSha256,'78c60e4250d4a6171d6731ae1135bbee9553282f3c524d742748eabc24256e15');
+  assert.equal(p.representativeMediaClass,'REPRESENTATIVE_NOT_EVIDENCE_OR_ADJUDICATION');
+  assert.equal(p.representativeMediaStatus,'PRESENT');
+  assert.equal(p.originalGeneratedImageSha256,'10fed45d983ecd5788bc82f59d0ff9d9e9846cd6c230d655eec4de80755b18df');
+  assert.equal(p.representativeMediaTransformation,'RESIZED_512x341_WEBP_Q65_FROM_GENERATED_PNG');
+  assert.equal(p.sourceClaimsRemainAttributed,true);
 });
 
 test('DISCOVERY-DANGER: every localization identity has a source owner',()=>{
