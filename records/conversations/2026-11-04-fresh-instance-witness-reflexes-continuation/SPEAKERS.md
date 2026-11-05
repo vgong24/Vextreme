@@ -9,7 +9,7 @@ This ledger does not replace the transcript. It distinguishes the actual chat sp
 | **User** | **Victor** |
 | **Assistant** | **Vex** |
 
-The currently preserved source contains **71 User/Assistant exchanges (142 turns)**. The chronological dialogue alternates Victor/Vex. Raw paste batches are preserved exactly and are not assumed to have perfectly regular separators: some omit a `####` boundary, some include repeated/overlapping material, and direct-current-turn batches use different intake framing. Speaker attribution in derived projections follows the actual dialogue boundary while raw custody remains unchanged.
+The complete supplied source contains **71 User/Assistant exchanges (142 turns)**. The chronological dialogue alternates Victor/Vex. Raw paste batches are preserved exactly and are not assumed to have perfectly regular separators: some omit a `####` boundary, some include repeated/overlapping material, and direct-current-turn batches use different intake framing. Speaker attribution in derived projections follows the actual dialogue boundary while raw custody remains unchanged.
 
 ## Source-label versus semantic-role boundary
 
@@ -65,9 +65,9 @@ In particular:
 
 Batch 23 begins with a differently escaped repetition of the marginless-life exchange already preserved as exchange 55 in batch 22. The raw batch is preserved exactly. The chronological projection does not renumber that repetition as a new exchange; only its later unique turns become exchanges 56–57.
 
-## Attribution rule for later preservation
+## Attribution rule for later corrections or later-distinct records
 
-When further sets arrive:
+If a later correction or a genuinely distinct later record is supplied:
 
 1. preserve the raw supplied batch unchanged;
 2. append chronological exchanges without rewriting earlier turns;
