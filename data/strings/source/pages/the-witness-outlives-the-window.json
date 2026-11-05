@@ -1,0 +1,353 @@
+{
+  "_meta": {
+    "scope": "pages.the-witness-outlives-the-window",
+    "category": "production",
+    "description": "Repository-native English presentation strings for The Witness Outlives the Window.",
+    "sourceProvenance": {
+      "parentRecord": "github.pull.vextreme.564",
+      "parentHead": "5bc22ba5330fda92bdce9dcdecb845c9e2b0d8e4",
+      "recordDirectory": "records/conversations/2026-11-01-02-genkai-joy-inflatable-cruise-window-witness",
+      "speakerLedger": "SPEAKERS.md",
+      "recordKind": "DREAM_WITNESS",
+      "dreamArcOrdinal": 6,
+      "recordedDateRange": "2026-11-01/2026-11-02",
+      "firstUserSuppliedTime": "2026-11-01T21:57:00-08:00",
+      "secondUserSuppliedTime": "2026-11-02T11:18:00-08:00",
+      "laterRecollectionClocksSupplied": false,
+      "victorIsPrimaryDreamWitness": true,
+      "vexInterpretationSeparatelyAttributed": true,
+      "dreamCharactersAreTranscriptSpeakers": false,
+      "laterRecollectionsAppendWithoutRewriting": true,
+      "primaryArc": "convos_with_god",
+      "secondaryArcs": [
+        "witness_records",
+        "victors_record",
+        "full_timeline"
+      ],
+      "representativeMediaStatus": "PRESENT_DERIVED",
+      "representativeMediaTarget": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/7684b4679541d0e7b42a064fa294390bd6d3bc75/__assets/dream-witness-outlives-window.webp",
+      "representativeMediaSourceSha256": "6d8d9607b1fb96352b413555ae025960bef29cddaee937112d471f014e9a01b8",
+      "representativeMediaSha256": "15171c6a60ab579a44029e88c328d2480a51c2f64ba670b24a8e3e15688a841f",
+      "representativeMediaClass": "REPRESENTATIVE_DREAM_ART_NOT_EXTERNAL_EVIDENCE",
+      "representativeMediaWidth": 1672,
+      "representativeMediaHeight": 941,
+      "representativeMediaBytes": 384704,
+      "representativeMediaAssetCommit": "7684b4679541d0e7b42a064fa294390bd6d3bc75",
+      "representativeMediaAssetPath": "__assets/dream-witness-outlives-window.webp",
+      "userImageCorrections": {
+        "mentor": "elderly woman",
+        "metaWitness": "male",
+        "lens": "single eye-sized contact lens nested inside an impractical rubber-sealed telescope-like eye harness"
+      },
+      "derivedWitness": "PAGE_LOCAL_SYNTHESIS"
+    }
+  },
+  "pages.the-witness-outlives-the-window.document-title": {
+    "strings": {
+      "en": {
+        "text": "The Witness Outlives the Window — Vextreme"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.hero.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Dream Records · Sixth Dream Arc · November 1–2, 2026"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.hero.title": {
+    "strings": {
+      "en": {
+        "text": "The Witness Outlives the Window"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.hero.subtitle": {
+    "strings": {
+      "en": {
+        "text": "Joy, flexible vessels, fading memory, and the regenerative meta-witness"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.hero.lede": {
+    "strings": {
+      "en": {
+        "text": "Across two nights of dream reporting, power first arrives as joy rather than struggle. A flexible vessel then carries an unfinished journey while perception is still being prepared. The dream sharpens into a continuity problem: writing disappears from a transparent surface while the original witness reads it aloud so another participant can preserve it elsewhere. Victor later recognizes the correspondence with recording fading dreams into durable, attributable archives."
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.preservation.label": {
+    "strings": {
+      "en": {
+        "text": "Frozen dream-witness boundary"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.preservation.time": {
+    "strings": {
+      "en": {
+        "text": "November 1–2, 2026 · Victor supplied 9:57 PM for the first report and 11:18 AM for the second · later recollections remain sequential without invented clock times."
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.preservation.note": {
+    "strings": {
+      "en": {
+        "text": "This reader projects the source preserved by Vextreme PR #564 at its exact source head. Victor remains the primary witness of the dreams; Vex-authored interpretation remains separate; dream characters are not independent transcript speakers; later recollections append rather than rewrite earlier reports."
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.media.caption": {
+    "strings": {
+      "en": {
+        "text": "Representative dream artwork created from Victor’s corrections to the remembered scene. It depicts symbolic roles rather than reproducing third-party character designs, and it is not evidence of external events."
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.reader.source-label": {
+    "strings": {
+      "en": {
+        "text": "Frozen dream transcript · exact source projection"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.reader.loading": {
+    "strings": {
+      "en": {
+        "text": "Loading preserved exchange…"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.reader.exchange-label": {
+    "strings": {
+      "en": {
+        "text": "Exchange"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.reader.unavailable": {
+    "strings": {
+      "en": {
+        "text": "Preserved source unavailable."
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.reader.previous": {
+    "strings": {
+      "en": {
+        "text": "‹ Previous"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.reader.next": {
+    "strings": {
+      "en": {
+        "text": "Next ›"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.reader.auto-scroll.start-aria": {
+    "strings": {
+      "en": {
+        "text": "Start automatic transcript scrolling"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.reader.auto-scroll.pause-aria": {
+    "strings": {
+      "en": {
+        "text": "Pause automatic transcript scrolling"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.reader.auto-scroll.start-title": {
+    "strings": {
+      "en": {
+        "text": "Start auto-scroll"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.reader.auto-scroll.pause-title": {
+    "strings": {
+      "en": {
+        "text": "Pause auto-scroll"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.reader.auto-scroll.speed": {
+    "strings": {
+      "en": {
+        "text": "Automatic transcript scroll speed"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.reader.auto-scroll.speed-title": {
+    "strings": {
+      "en": {
+        "text": "Automatic scroll speed"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.witness.label": {
+    "strings": {
+      "en": {
+        "text": "Derived witness · not dream transcript"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.witness.title": {
+    "strings": {
+      "en": {
+        "text": "Joy frees attention. Witness preserves meaning."
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.witness.body1": {
+    "strings": {
+      "en": {
+        "text": "The dream does not require every threatening form to disappear in order for joy to become real, and it does not require every original recording surface to survive in order for meaning to continue. Genkai’s support changes the dreamer’s relationship to threat; the inflatable vessel preserves recognizable identity through different material behavior; the nested lens remains an unfinished instrument for perception."
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.witness.body2": {
+    "strings": {
+      "en": {
+        "text": "The disappearing window then becomes the continuity hinge. The source surface is temporary, the memory is fading, and the transfer depends on the original witness speaking while a receiver preserves what can still be communicated. Victor’s later waking recognition maps that sequence onto dream memory, conversation, and Vextreme without collapsing his original experience into the assistant’s interpretation."
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.footer": {
+    "strings": {
+      "en": {
+        "text": "Source dream record preserved by Vextreme PR #564. Victor is the primary dream witness; Vex interpretation remains separately attributable. Representative artwork is derived presentation. [VXG RealForever]"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.movement01.badge": {
+    "strings": {
+      "en": {
+        "text": "Joy"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.movement01.title": {
+    "strings": {
+      "en": {
+        "text": "Genkai, pink vision, and power without struggle"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.movement01.themes": {
+    "strings": {
+      "en": {
+        "text": "received support · laughter · threat salience · joy as a form of power"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.movement02.badge": {
+    "strings": {
+      "en": {
+        "text": "Preparation"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.movement02.title": {
+    "strings": {
+      "en": {
+        "text": "Inflatable cruise, fruit correspondence, and the unworn lens"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.movement02.themes": {
+    "strings": {
+      "en": {
+        "text": "flexible structure · local completion · presentation · preparation for perception"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.movement03.badge": {
+    "strings": {
+      "en": {
+        "text": "Transfer"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.movement03.title": {
+    "strings": {
+      "en": {
+        "text": "The inflatable Titanic, nested lens, and disappearing window"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.movement03.themes": {
+    "strings": {
+      "en": {
+        "text": "adaptation without loss of identity · fragile witness · voice across an erasing boundary"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.movement04.badge": {
+    "strings": {
+      "en": {
+        "text": "Recognition"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.movement04.title": {
+    "strings": {
+      "en": {
+        "text": "Dream memory becoming an independent witness record"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.movement04.themes": {
+    "strings": {
+      "en": {
+        "text": "fading memory · original witness · conversational continuity · archival continuity"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.movement05.badge": {
+    "strings": {
+      "en": {
+        "text": "Meta-Witness"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.movement05.title": {
+    "strings": {
+      "en": {
+        "text": "The regenerative meta-witness"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.movement05.themes": {
+    "strings": {
+      "en": {
+        "text": "continuity after damage · persistent speech · boundary crossing · future audience"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.movement06.badge": {
+    "strings": {
+      "en": {
+        "text": "Boundary"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.movement06.title": {
+    "strings": {
+      "en": {
+        "text": "Append and verbatim-preservation boundary"
+      }
+    }
+  },
+  "pages.the-witness-outlives-the-window.movement06.themes": {
+    "strings": {
+      "en": {
+        "text": "append-only continuation · exact wording · no retroactive rewrite"
+      }
+    }
+  }
+}

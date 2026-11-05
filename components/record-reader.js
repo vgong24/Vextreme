@@ -99,14 +99,14 @@ function mount(config){
       turns.push(cur);cur=null;
     }
     lines.forEach(function(line){
-      var speaker=line.match(/^\*\*(Victor|Vex|User|Assistant)(?:\s+\(([^)]+)\))?:\*\*\s*$/);
-      var headingSpeaker=line.match(/^#{2,4}\s+(Victor|Vex|User|Assistant)(?:\s+\(([^)]+)\))?\s*$/);
-      var boundarySpeaker=line.match(/^#{2,4}\s+(Archive boundary|Follow-up clarification)\s+[—–-]\s+(Victor|Vex|User|Assistant)(?:\s+\(([^)]+)\))?\s*$/);
-      if(boundarySpeaker){pushTurn();cur={speaker:boundarySpeaker[2],role:boundarySpeaker[3]||null,lines:['### '+boundarySpeaker[1]]};}
+      var speaker=line.match(/^\*\*(Victor|Vex|User|Assistant)(?:\s+\(([^)]+)\)|\s+·\s+(.+?))?:\*\*\s*$/);
+      var headingSpeaker=line.match(/^#{2,4}\s+(Victor|Vex|User|Assistant)(?:\s+\(([^)]+)\)|\s+·\s+(.+?))?\s*$/);
+      var boundarySpeaker=line.match(/^#{2,4}\s+(Archive boundary|Follow-up clarification)\s+[—–-]\s+(Victor|Vex|User|Assistant)(?:\s+\(([^)]+)\)|\s+·\s+(.+?))?\s*$/);
+      if(boundarySpeaker){pushTurn();cur={speaker:boundarySpeaker[2],role:boundarySpeaker[3]||boundarySpeaker[4]||null,lines:['### '+boundarySpeaker[1]]};}
       else if(speaker||headingSpeaker){
         pushTurn();
         var matched=speaker||headingSpeaker;
-        cur={speaker:matched[1],role:matched[2]||null,lines:[]};
+        cur={speaker:matched[1],role:matched[2]||matched[3]||null,lines:[]};
       }
       else if(cur){cur.lines.push(line);}
       else{pre.push(line);}
