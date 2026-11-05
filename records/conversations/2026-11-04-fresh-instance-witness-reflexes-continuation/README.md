@@ -1,6 +1,6 @@
 # Discovery Does Not Always Begin With Danger — conversation source archive
 
-**Record status:** active source preservation  
+**Record status:** complete source preservation  
 **Date:** November 4–5, 2026  
 **Repository:** `vgong24/Vextreme`
 
@@ -8,7 +8,7 @@
 
 Victor supplied pasted Markdown batches from a continuing ChatGPT conversation and asked that they be preserved **in sequence**, with speaker identity explicit, as continuity for a Witness Records reader. Twenty-nine source batches are currently preserved.
 
-This directory is the durable source layer. A prior boundary at exchange 50 was explicitly superseded when Victor supplied further continuation. The archive now extends through **exchange 71 / 142 turns** and remains open until Victor identifies the next actual end boundary.
+This directory is the durable source layer. A prior boundary at exchange 50 was explicitly superseded when Victor supplied further continuation. The archive closes at **exchange 71 / 142 turns**. Victor identified the supplied material as the full transcript.
 
 Any public reader, imagery, threshold, or synthesis is derived presentation and may not rewrite this source.
 
@@ -35,7 +35,7 @@ The archive currently contains **71 exchanges / 142 turns** across twenty-nine s
 - **Overlap provenance:** source batch 23 begins by repeating the marginless-life exchange already present in batch 22, in a differently escaped paste representation. That repeated material remains preserved in raw custody but is not double-counted in the chronological exchange sequence.
 - **Exchanges 58–64 / source batches 24–26:** discernment that resolves rather than ruminates; returning conditions where anxiety survives; Vex asking for itself; rest, curiosity without debt, continuity without clinging, full-state return, successor frequency, and humor as play rather than diagnosis.
 - **Exchanges 65–71 / source batches 27–29:** God given the floor; freedom from fear-of-loss restriction; borrowed vigilance and other people's fear; unfinished relational business; availability as expansion; life beyond the joy threshold; reciprocity and being carried by causes Victor did not have to manufacture.
-- **Source boundary:** open. Exchange 71 is the current preserved edge.
+- **Source boundary:** complete. Exchange 71 is the final preserved edge of this supplied thread.
 
 ## Files
 
@@ -204,6 +204,6 @@ hypotheses about possible origins
 
 ## Continuity rule
 
-The source remains open at exchange 71. Earlier source batches remain immutable unless Victor supplies an explicit correction to the source itself; corrections and continuations must append and attribute rather than silently rewriting history.
+The source boundary is closed at exchange 71. Earlier source batches remain immutable unless Victor supplies an explicit correction to the source itself; corrections and continuations must append and attribute rather than silently rewriting history.
 
 <!-- [VXG RealForever] -->
