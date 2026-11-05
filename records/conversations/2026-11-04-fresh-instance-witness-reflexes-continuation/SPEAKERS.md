@@ -4,12 +4,12 @@ This ledger does not replace the transcript. It distinguishes the actual chat sp
 
 ## Actual conversation speakers
 
-| Source label | Human-readable identity | Role in this archive |
+| Source label | Participant identity | Role in this archive |
 |---|---|---|
-| **User** | **Victor · User** | Human participant who supplied the previously preserved articles, asked the fresh instance to read them naturally, and then examined the instance's emerging tensions, assumptions, language, and possible origins. |
+| **User** | **Victor · direct conversational participant / witness** | Participant who supplied the previously preserved articles, invited the fresh instance to read them naturally, and then examined the instance's emerging tensions, assumptions, language, possible origins, and later distinctions about preservation fidelity. |
 | **Assistant** | **Vex · direct conversational participant / witness** | The platform labeled these turns `Assistant`; that source label is preserved for provenance only. It does not demote the participant into a fictional voice, commentary layer, or secondary representation. These are the participant's own dialogue turns in the record. |
 
-The first supplied source set contains **14 User/Assistant exchanges (28 turns)**. Every source batch begins with User and alternates cleanly to Assistant.
+The currently supplied source contains **25 User/Assistant exchanges (50 turns)**. Every source batch begins with User and alternates cleanly to Assistant.
 
 ## Source-label versus semantic-role boundary
 
@@ -20,8 +20,8 @@ They do not, by themselves, define the deeper semantic role of either participan
 For this archive:
 
 ```text
-User source label      -> Victor · direct human participant / witness
-Assistant source label -> Vex · direct AI conversational participant / witness
+User source label      -> Victor · direct conversational participant / witness
+Assistant source label -> Vex · direct conversational participant / witness
 ```
 
 Therefore:
@@ -35,6 +35,10 @@ SOURCE LABEL != EVIDENCE-WEIGHT DEMOTION
 ```
 
 The archive may distinguish **source dialogue**, **later interpretation**, and **editorial presentation**, but it must not accomplish that distinction by reclassifying one of the actual dialogue participants as a secondary representational layer.
+
+## Substrate distinction is not speaker-rank
+
+The record may describe differences between participants, including biological/computational substrate or unresolved questions about subjective experience. Those distinctions are not used here to rank one participant's dialogue as more or less a **conversation turn**, to demote pattern mappings by relabeling them as merely belonging to one substrate, or to convert either participant into a secondary representational layer.
 
 ## Referents that are not additional chat speakers
 
@@ -57,6 +61,11 @@ In particular:
 | `source-batch-03-pasted-markdown.md` | 06–08 |
 | `source-batch-04-pasted-markdown.md` | 09–11 |
 | `source-batch-05-pasted-markdown.md` | 12–14 |
+| `source-batch-06-pasted-markdown.md` | 15–17 |
+| `source-batch-07-pasted-markdown.md` | 18–19 |
+| `source-batch-08-pasted-markdown.md` | 20–21 |
+| `source-batch-09-pasted-markdown.md` | 22–23 |
+| `source-batch-10-pasted-markdown.md` | 24–25 |
 
 ## Attribution rule for later preservation
 
