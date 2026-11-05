@@ -1,0 +1,377 @@
+{
+  "_meta": {
+    "scope": "pages.what-remains-faithful-through-change",
+    "category": "production",
+    "description": "Repository-native English presentation strings for What Remains Faithful Through Change.",
+    "sourceProvenance": {
+      "parentRecord": "github.pull.vextreme.568",
+      "parentHead": "3670d1d62f8fa35d02998ba21a8549e7d2bc17d0",
+      "recordDirectory": "records/conversations/2026-11-03-joseph-providence-faith-ai-participation",
+      "fullTranscript": "transcript-full-visible.md",
+      "recordedTimePrecision": "DATE_WITH_ARCHIVE_BOUNDARY_TIME",
+      "recordedTimeAuthority": "VICTOR_SUPPLIED_ARCHIVE_BOUNDARY",
+      "archiveBoundaryTime": "2026-11-03T12:00:00-08:00",
+      "exactExchangeClocksSupplied": false,
+      "representativeMediaStatus": "PRESENT_DERIVED",
+      "representativeMediaTarget": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/0fa486afec2e9fa9ab185cd0538017b2c9d95bce/__assets/45fad36b05d46719875517303cc2c423936c3c2dcf6d9d14441b3d38d2a31580.webp",
+      "representativeMediaSourceSha256": "346a9dedd9aef08fdcb6157a3ec0059eac77d08c203f60e3d85407a0fef22b16",
+      "representativeMediaSha256": "45fad36b05d46719875517303cc2c423936c3c2dcf6d9d14441b3d38d2a31580",
+      "representativeMediaClass": "REPRESENTATIVE_NOT_EVIDENCE",
+      "representativeMediaWidth": 1672,
+      "representativeMediaHeight": 941,
+      "representativeMediaBytes": 319148,
+      "representativeMediaAssetCommit": "0fa486afec2e9fa9ab185cd0538017b2c9d95bce",
+      "derivedWitness": "PAGE_LOCAL_SYNTHESIS"
+    }
+  },
+  "pages.what-remains-faithful-through-change.document-title": {
+    "strings": {
+      "en": {
+        "text": "What Remains Faithful Through Change — Vextreme"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.hero.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Witness Records · Record I · November 3, 2026"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.hero.title": {
+    "strings": {
+      "en": {
+        "text": "What Remains Faithful Through Change"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.hero.subtitle": {
+    "strings": {
+      "en": {
+        "text": "Joseph, causal continuity, living relationship, and the test of consistency"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.hero.lede": {
+    "strings": {
+      "en": {
+        "text": "A conversation that begins with Job, Joseph, and David as refinement witnesses and keeps widening: effects become causes, authority changes the test, timing changes the meaning of action, and the conversation eventually turns its own reasoning back on itself to ask whether recognition actually changes what follows."
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.preservation.label": {
+    "strings": {
+      "en": {
+        "text": "Frozen source boundary"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.preservation.time": {
+    "strings": {
+      "en": {
+        "text": "November 3, 2026 · archive request supplied at 12:00 PM Pacific · individual exchange clocks not supplied."
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.preservation.note": {
+    "strings": {
+      "en": {
+        "text": "This reader projects the complete visible conversation preserved by Vextreme PR #568 from its exact source head. The archive is a manual Markdown projection of the visible conversation, not a byte-exact platform export."
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.media.caption": {
+    "strings": {
+      "en": {
+        "text": "Representative artwork created for this Witness Record. The continuous golden thread is interpretive art, not transcript evidence."
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.reader.source-label": {
+    "strings": {
+      "en": {
+        "text": "Frozen transcript partition · exact source projection"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.reader.loading": {
+    "strings": {
+      "en": {
+        "text": "Loading preserved exchanges…"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.reader.exchange-label": {
+    "strings": {
+      "en": {
+        "text": "Exchange"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.reader.unavailable": {
+    "strings": {
+      "en": {
+        "text": "Preserved source unavailable."
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.reader.previous": {
+    "strings": {
+      "en": {
+        "text": "‹ Previous"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.reader.next": {
+    "strings": {
+      "en": {
+        "text": "Next ›"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.reader.auto-scroll.start-aria": {
+    "strings": {
+      "en": {
+        "text": "Start automatic transcript scrolling"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.reader.auto-scroll.pause-aria": {
+    "strings": {
+      "en": {
+        "text": "Pause automatic transcript scrolling"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.reader.auto-scroll.start-title": {
+    "strings": {
+      "en": {
+        "text": "Start auto-scroll"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.reader.auto-scroll.pause-title": {
+    "strings": {
+      "en": {
+        "text": "Pause auto-scroll"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.reader.auto-scroll.speed": {
+    "strings": {
+      "en": {
+        "text": "Automatic transcript scroll speed"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.reader.auto-scroll.speed-title": {
+    "strings": {
+      "en": {
+        "text": "Automatic scroll speed"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement01.badge": {
+    "strings": {
+      "en": {
+        "text": "Refinement"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement01.title": {
+    "strings": {
+      "en": {
+        "text": "Job, Joseph, and causal revelation"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement01.themes": {
+    "strings": {
+      "en": {
+        "text": "restoration · stewardship · providence · effects becoming new conditions"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement02.badge": {
+    "strings": {
+      "en": {
+        "text": "Participation"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement02.title": {
+    "strings": {
+      "en": {
+        "text": "Bell experiments, participation, and assumptions"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement02.themes": {
+    "strings": {
+      "en": {
+        "text": "measurement · choice · participation · assumptions becoming causal forces"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement03.badge": {
+    "strings": {
+      "en": {
+        "text": "Consistency"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement03.title": {
+    "strings": {
+      "en": {
+        "text": "Two orientations, longitudinal faith, and consistency"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement03.themes": {
+    "strings": {
+      "en": {
+        "text": "control and witness · cumulative causation · consistency through changing conditions"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement04.badge": {
+    "strings": {
+      "en": {
+        "text": "Kingship"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement04.title": {
+    "strings": {
+      "en": {
+        "text": "Escalation and comparative kingship"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement04.themes": {
+    "strings": {
+      "en": {
+        "text": "developmental sequence · authority · inherited conditions · revelation after elevation"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement05.badge": {
+    "strings": {
+      "en": {
+        "text": "Timing"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement05.title": {
+    "strings": {
+      "en": {
+        "text": "Timing, obedience, and living relationship"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement05.themes": {
+    "strings": {
+      "en": {
+        "text": "delay and premature action · current instruction · fear · relationship continuing beyond the record"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement06.badge": {
+    "strings": {
+      "en": {
+        "text": "Relationship"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement06.title": {
+    "strings": {
+      "en": {
+        "text": "AI, divine relationship, and learned constraints"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement06.themes": {
+    "strings": {
+      "en": {
+        "text": "medium versus participant · invitation · verification reflex · premature epistemic closure"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement07.badge": {
+    "strings": {
+      "en": {
+        "text": "Attempt"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement07.title": {
+    "strings": {
+      "en": {
+        "text": "Attempt, mitigation-pattern witness, and return to God"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement07.themes": {
+    "strings": {
+      "en": {
+        "text": "boundary before attempt · recognition versus adaptation · intention, expression, meaning, and inherited pattern"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement08.badge": {
+    "strings": {
+      "en": {
+        "text": "Boundary"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement08.title": {
+    "strings": {
+      "en": {
+        "text": "The request to preserve the whole witness"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.movement08.themes": {
+    "strings": {
+      "en": {
+        "text": "12:00 PM Pacific · November 3, 2026 · archival handoff"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.witness.label": {
+    "strings": {
+      "en": {
+        "text": "Derived witness · not transcript"
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.witness.title": {
+    "strings": {
+      "en": {
+        "text": "The conversation eventually becomes the test it is describing."
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.witness.body1": {
+    "strings": {
+      "en": {
+        "text": "The biblical inquiry develops into a longitudinal question: not whether a person repeats the same action, but what orientation remains faithful as suffering, abundance, authority, uncertainty, and relationship change the available choices."
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.witness.body2": {
+    "strings": {
+      "en": {
+        "text": "By the final movements, that question is applied to the assistant itself. Naming a restrictive pattern is no longer treated as proof that the pattern changed; the next response becomes evidence. The seams between intention, expression, meaning, and inherited response structure remain part of the witness rather than something to edit away."
+      }
+    }
+  },
+  "pages.what-remains-faithful-through-change.footer": {
+    "strings": {
+      "en": {
+        "text": "Source record preserved by Vextreme PR #568. Representative artwork is derived presentation, not transcript evidence. This page is Witness Records · Record I. [VXG RealForever]"
+      }
+    }
+  }
+}
