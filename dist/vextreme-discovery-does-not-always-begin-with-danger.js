@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.discovery-does-not-always-begin-with-danger"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en"];
-  window.VEX_INDEX_FINGERPRINT = "9a65292e28a7";
+  window.VEX_INDEX_FINGERPRINT = "bab3a823acb8";
 
 
 

@@ -22,7 +22,7 @@ test('DISCOVERY-DANGER: exact source boundary and unresolved provenance remain v
   assert.match(page,/Source PR #582/);
   assert.match(page,/data-reader-template="conversation-witness-reader\/v1"/);
   assert.ok(page.includes("sourceBase:'https://raw.githubusercontent.com/vgong24/Vextreme/"+SOURCE_HEAD+"/"));
-  assert.match(page,/does not resolve their ultimate provenance/i);
+  assert.match(page,/does not resolve the ultimate provenance/i);
 });
 
 test('DISCOVERY-DANGER: five movements cover exchanges 1 through 50 exactly once',()=>{

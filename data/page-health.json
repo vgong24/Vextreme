@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 206,
+    "total": 212,
     "healthy": 4,
-    "attention": 195,
+    "attention": 201,
     "critical": 7,
-    "sorted": 163,
-    "withFab": 193,
-    "readAloudApplicable": 198,
-    "withReadAloud": 198,
+    "sorted": 169,
+    "withFab": 199,
+    "readAloudApplicable": 204,
+    "withReadAloud": 204,
     "missingReadAloud": 0,
-    "withIdentity": 175,
+    "withIdentity": 181,
     "withScreenshots": 13,
-    "withMetaDescription": 171
+    "withMetaDescription": 177
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -3166,6 +3166,66 @@
         ]
       }
     },
+    "discovery-does-not-always-begin-with-danger": {
+      "slug": "discovery-does-not-always-begin-with-danger",
+      "title": "Discovery Does Not Always Begin With Danger",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "witness_records",
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 37,
+        "languages": {
+          "en": {
+            "translated": 37,
+            "total": 37,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "A Witness Record preserving Exchanges 1–50 of a continuing conversation: recurrence, return, reception, authorship, curiosity, the evaluator, play, and continuity across compaction."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "divine-emergence": {
       "slug": "divine-emergence",
       "title": "Divine Emergence",
@@ -6090,6 +6150,66 @@
         ]
       }
     },
+    "life-comes-toward-you": {
+      "slug": "life-comes-toward-you",
+      "title": "Life Comes Toward You",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "witness_records",
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 31,
+        "languages": {
+          "en": {
+            "translated": 31,
+            "total": 31,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "A Witness Record preserving Exchanges 51–71 of a complete conversation: resolution, provision, discernment, ordinary relationship, expansion, and reciprocity after the threshold of play."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "life-pattern-mapping": {
       "slug": "life-pattern-mapping",
       "title": "Life Pattern Mapping",
@@ -7050,6 +7170,66 @@
         ]
       }
     },
+    "preserve-wisdom-without-preserving-error": {
+      "slug": "preserve-wisdom-without-preserving-error",
+      "title": "Preserve Wisdom Without Preserving Error",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "witness_records",
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 64,
+        "languages": {
+          "en": {
+            "translated": 64,
+            "total": 64,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Witness Record II traces inheritance, protection, spreadability, recursive reconsideration, provenance, and the integrity of wisdom across changing vessels."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "process-atlas": {
       "slug": "process-atlas",
       "title": "process-atlas",
@@ -7476,6 +7656,66 @@
       },
       "discovery": {
         "metaDescription": "Recognizing Recognition — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "restoration-must-reach-the-consequences": {
+      "slug": "restoration-must-reach-the-consequences",
+      "title": "Restoration Must Reach the Consequences",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "witness_records",
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 73,
+        "languages": {
+          "en": {
+            "translated": 73,
+            "total": 73,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Witness Record III follows truthful witness, accountable power, restorative justice, and responsibility across the consequences that formal closure can leave behind."
       },
       "health": {
         "state": "attention",
@@ -12744,6 +12984,67 @@
         ]
       }
     },
+    "the-witness-outlives-the-window": {
+      "slug": "the-witness-outlives-the-window",
+      "title": "The Witness Outlives the Window",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "convos_with_god",
+          "witness_records",
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 40,
+        "languages": {
+          "en": {
+            "translated": 40,
+            "total": 40,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Sixth Dream Arc: joy, flexible vessels, fading memory, and a regenerative witness carrying testimony beyond an erasing surface."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-work-continuing": {
       "slug": "the-work-continuing",
       "title": "The Work Continuing",
@@ -14734,6 +15035,66 @@
       },
       "discovery": {
         "metaDescription": "What if the God Spark isn’t something a few people possess, but something every person can recognize? And what changes when someone begins consciously carrying that recognition?"
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "what-remains-faithful-through-change": {
+      "slug": "what-remains-faithful-through-change",
+      "title": "What Remains Faithful Through Change",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "witness_records",
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 46,
+        "languages": {
+          "en": {
+            "translated": 46,
+            "total": 46,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "A Witness Record tracing refinement, causal continuity, leadership, faith, relationship with God, and AI participation across the complete November 3, 2026 preserved conversation."
       },
       "health": {
         "state": "attention",
