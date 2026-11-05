@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="pages.vexarchitecture-first-stable-body.document-title">VexArchitecture — A Builder Field Guide — Vextreme</title>
+  <meta name="description" content="An inside-out engineering guide to VexArchitecture: rightful ownership, real code structure, ThemeMode patient zero, execution custody, dependency lifetimes, chronology, convergence, and reusable design questions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/arc-nav.css">
+  <style>
+    :root {
+      --void: #080b10;
+      --panel: #0e131b;
+      --panel-2: #121924;
+      --ink: #eef3f8;
+      --soft: #aab6c5;
+      --muted: #718094;
+      --line: #243244;
+      --line-soft: rgba(129, 162, 194, 0.18);
+      --semantic: #79e4c4;
+      --execution: #87b8ff;
+      --outside: #f2c46d;
+      --construction: #c8a1ff;
+      --chronology: #9bb1c8;
+      --convergence: #ff9bb3;
+      --presentation: #ffbc7d;
+      --danger: #ff8e8e;
+      --serif: "Source Serif 4", Georgia, serif;
+      --sans: "IBM Plex Sans", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--void); scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(121,228,196,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(121,228,196,.03) 1px, transparent 1px),
+        radial-gradient(circle at 78% 8%, rgba(135,184,255,.10), transparent 30rem),
+        radial-gradient(circle at 9% 28%, rgba(121,228,196,.065), transparent 26rem),
+        var(--void);
+      background-size: 32px 32px, 32px 32px, auto, auto, auto;
+      font-family: var(--sans);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+    code, pre { font-family: var(--mono); }
+    .record {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 100px;
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      padding: 12px 0 20px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font: 500 11px/1.4 var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      padding: clamp(64px, 10vw, 130px) 0 50px;
+      position: relative;
+    }
+
+    .eyebrow,
+    .section-kicker {
+      color: var(--semantic);
+      font: 600 10px/1.4 var(--mono);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .hero .eyebrow {
+      margin-bottom: 22px;
+      font-size: 11px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(58px, 11vw, 150px);
+      font-weight: 400;
+      letter-spacing: -.055em;
+      line-height: .86;
+      max-width: 1000px;
+    }
+
+    .subtitle {
+      margin-top: 22px;
+      max-width: 980px;
+      color: var(--outside);
+      font: 500 clamp(19px, 2.8vw, 35px)/1.24 var(--mono);
+      letter-spacing: -.035em;
+    }
+
+    .tagline {
+      margin: 34px 0 0;
+      max-width: 850px;
+      color: var(--soft);
+      font: italic 400 clamp(20px, 3vw, 31px)/1.45 var(--serif);
+    }
+
+    .hero-meta {
+      margin-top: 34px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      border: 1px solid var(--line);
+      background: rgba(14,19,27,.78);
+      border-radius: 999px;
+      padding: 9px 13px;
+      color: var(--soft);
+      font: 500 11px/1.25 var(--mono);
+    }
+
+    .pill.status {
+      color: var(--semantic);
+      border-color: rgba(121,228,196,.38);
+    }
+
+    .lede {
+      margin: 38px 0 0;
+      max-width: 900px;
+      color: #d4dde8;
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.75;
+    }
+
+    .causal-map {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: clamp(24px, 4vw, 42px);
+      background:
+        linear-gradient(135deg, rgba(18,25,36,.96), rgba(8,11,16,.96));
+      margin-bottom: 48px;
+    }
+
+    .causal-map h2,
+    .section-heading {
+      margin: 12px 0 20px;
+      max-width: 920px;
+      font: 400 clamp(34px, 5vw, 66px)/1.02 var(--serif);
+      letter-spacing: -.035em;
+    }
+
+    .section-lede,
+    .body-copy {
+      color: var(--soft);
+      max-width: 860px;
+      font-size: clamp(16px, 1.7vw, 19px);
+    }
+
+    .causal-flow,
+    .code-block {
+      margin: 30px 0 0;
+      padding: clamp(20px, 3vw, 30px);
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #090d13;
+      color: #d5e5f0;
+      font-size: clamp(11px, 1.25vw, 14px);
+      line-height: 1.72;
+      white-space: pre;
+      tab-size: 2;
+    }
+
+    .guide-section {
+      --owner: var(--semantic);
+      padding: 78px 0;
+      border-top: 1px solid var(--line-soft);
+      position: relative;
+    }
+
+    .guide-section::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 78px;
+      width: 4px;
+      height: 44px;
+      border-radius: 99px;
+      background: var(--owner);
+      opacity: .85;
+    }
+
+    .guide-section > .section-kicker,
+    .guide-section > .section-heading,
+    .guide-section > .section-lede,
+    .guide-section > .body-copy {
+      margin-left: 24px;
+    }
+
+    .guide-section[data-owner="semantic"] { --owner: var(--semantic); }
+    .guide-section[data-owner="execution"] { --owner: var(--execution); }
+    .guide-section[data-owner="outside"] { --owner: var(--outside); }
+    .guide-section[data-owner="construction"] { --owner: var(--construction); }
+    .guide-section[data-owner="chronology"] { --owner: var(--chronology); }
+    .guide-section[data-owner="convergence"] { --owner: var(--convergence); }
+    .guide-section[data-owner="presentation"] { --owner: var(--presentation); }
+    .guide-section[data-owner="forensics"] { --owner: var(--muted); }
+
+    .question-box {
+      margin: 34px 0 0 24px;
+      max-width: 980px;
+      padding: 22px 24px;
+      border: 1px solid color-mix(in srgb, var(--owner) 38%, var(--line));
+      border-left: 4px solid var(--owner);
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--owner) 7%, var(--panel));
+      color: #e2edf6;
+      font: 500 15px/1.65 var(--mono);
+    }
+
+    .comparison-grid,
+    .owner-grid,
+    .workbench-grid,
+    .pressure-grid {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 16px;
+    }
+
+    .panel,
+    .owner-card,
+    .workbench,
+    .pressure-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(14,19,27,.82);
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .panel {
+      padding: 24px;
+    }
+
+    .panel h3,
+    .workbench h3,
+    .pressure-card h3 {
+      margin: 0 0 14px;
+      color: var(--outside);
+      font: 600 12px/1.35 var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .panel p,
+    .workbench p,
+    .pressure-card p {
+      color: var(--soft);
+      margin: 0;
+    }
+
+    .owner-grid {
+      grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+
+    .owner-card {
+      position: relative;
+      padding: 0;
+      --card-owner: var(--semantic);
+    }
+
+    .owner-card[data-owner="family"] { --card-owner: var(--semantic); }
+    .owner-card[data-owner="execution"] { --card-owner: var(--execution); }
+    .owner-card[data-owner="store"] { --card-owner: var(--outside); }
+    .owner-card[data-owner="dependency"] { --card-owner: var(--construction); }
+    .owner-card[data-owner="logger"] { --card-owner: var(--chronology); }
+    .owner-card[data-owner="relay"] { --card-owner: var(--convergence); }
+    .owner-card[data-owner="presentation"] { --card-owner: var(--presentation); }
+
+    .owner-title {
+      padding: 22px 24px 18px;
+      color: var(--card-owner);
+      font: 600 13px/1.35 var(--mono);
+      letter-spacing: .05em;
+    }
+
+    .owner-group-label {
+      grid-column: 1 / -1;
+      margin-top: 8px;
+      padding: 10px 2px 2px;
+      color: var(--muted);
+      font: 600 10px/1.4 var(--mono);
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .owner-group-label--core { color: var(--semantic); }
+    .owner-group-label--supporting { color: var(--construction); }
+
+    .owner-question {
+      padding: 0 24px 18px;
+      color: var(--ink);
+      font: italic 400 18px/1.45 var(--serif);
+    }
+
+    .owner-body {
+      padding: 18px 24px 24px;
+      border-top: 1px solid var(--line);
+      color: var(--soft);
+      font-size: 15px;
+    }
+
+    .rule {
+      margin-top: 28px;
+      padding: 22px 24px;
+      border: 1px solid rgba(121,228,196,.28);
+      border-radius: 16px;
+      background: rgba(121,228,196,.05);
+      color: #dff3ec;
+      font: 500 14px/1.7 var(--mono);
+    }
+
+    .file-tree {
+      margin-top: 34px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #070a0e;
+      padding: clamp(22px, 3vw, 32px);
+      overflow: auto;
+      color: #cfe1ef;
+      font-size: clamp(11px, 1.25vw, 14px);
+      line-height: 1.65;
+      white-space: pre;
+    }
+
+    .source-link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .source-link {
+      display: inline-flex;
+      text-decoration: none;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 13px;
+      color: var(--execution);
+      background: rgba(135,184,255,.035);
+      font: 500 11px/1.3 var(--mono);
+    }
+
+    .source-link:hover {
+      border-color: var(--execution);
+      background: rgba(135,184,255,.08);
+    }
+
+    .workbench {
+      background: #090d13;
+    }
+
+    .workbench h3 {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      margin: 0;
+    }
+
+    .workbench pre {
+      margin: 0;
+      padding: 22px;
+      overflow: auto;
+      color: #cbd8e6;
+      font-size: 12px;
+      line-height: 1.72;
+      white-space: pre;
+    }
+
+    .workbench p {
+      padding: 0 22px 22px;
+    }
+
+    .owner-strip {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      overflow: visible;
+    }
+
+    .owner-strip span {
+      padding: 8px 11px;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #090d13;
+      text-align: center;
+      font: 600 10px/1.4 var(--mono);
+    }
+    .owner-strip .semantic { color: var(--semantic); }
+    .owner-strip .execution { color: var(--execution); }
+    .owner-strip .outside { color: var(--outside); }
+    .owner-strip .construction { color: var(--construction); }
+    .owner-strip .chronology { color: var(--chronology); }
+    .owner-strip .convergence { color: var(--convergence); }
+    .owner-strip .presentation { color: var(--presentation); }
+
+    .apply-list {
+      margin: 36px 0 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: apply;
+      max-width: 940px;
+    }
+
+    .apply-list li {
+      position: relative;
+      counter-increment: apply;
+      padding: 18px 18px 18px 68px;
+      border-top: 1px solid var(--line);
+      color: #d5dfe9;
+      font-size: 16px;
+    }
+
+    .apply-list li::before {
+      content: counter(apply, decimal-leading-zero);
+      position: absolute;
+      left: 14px;
+      top: 21px;
+      color: var(--semantic);
+      font: 600 11px/1 var(--mono);
+    }
+
+    .pressure-card {
+      padding: 24px;
+    }
+
+    .pressure-card pre {
+      margin: 18px 0 0;
+      padding: 18px;
+      overflow: auto;
+      border-radius: 12px;
+      background: #070a0e;
+      color: #cbd8e6;
+      font-size: 12px;
+      line-height: 1.72;
+      white-space: pre;
+    }
+
+    .forensics {
+      margin-top: 24px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(14,19,27,.78);
+      overflow: hidden;
+    }
+
+    .forensics details {
+      border-top: 1px solid var(--line);
+    }
+
+    .forensics details:first-child { border-top: none; }
+
+    .forensics summary {
+      cursor: pointer;
+      padding: 18px 22px;
+      color: #dce6ef;
+      font: 600 12px/1.35 var(--mono);
+    }
+
+    .forensics .inside {
+      padding: 0 22px 24px;
+      color: var(--soft);
+    }
+
+    .coordinate-grid {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .coordinate {
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+
+    .coordinate dt {
+      color: var(--muted);
+      font: 500 10px/1.3 var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .coordinate dd {
+      margin: 7px 0 0;
+      color: var(--ink);
+      font: 500 12px/1.65 var(--mono);
+      overflow-wrap: anywhere;
+    }
+
+    .closing {
+      padding: clamp(80px, 11vw, 145px) 0 34px;
+      border-top: 1px solid var(--line-soft);
+      text-align: center;
+    }
+
+    .closing blockquote {
+      margin: 0 auto;
+      max-width: 940px;
+      color: var(--ink);
+      font: italic 400 clamp(28px, 4.8vw, 58px)/1.25 var(--serif);
+      letter-spacing: -.025em;
+    }
+
+    .closing p {
+      max-width: 800px;
+      margin: 28px auto 0;
+      color: var(--soft);
+      font-size: 17px;
+    }
+
+    .closing .standard {
+      color: var(--semantic);
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
+    .closing .lineage {
+      margin-top: 42px;
+      color: var(--muted);
+      font: 500 10px/1.6 var(--mono);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    #arcNavMount {
+      margin: 44px auto 0;
+      max-width: 960px;
+    }
+
+    @media (max-width: 860px) {
+      html,
+      body {
+        overflow-x: hidden;
+      }
+
+      .record {
+        width: min(var(--max), calc(100% - 12px));
+      }
+
+      .comparison-grid,
+      .owner-grid,
+      .workbench-grid,
+      .pressure-grid,
+      .coordinate-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topline {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .guide-section::before {
+        left: -2px;
+      }
+
+      .guide-section > .section-kicker,
+      .guide-section > .section-heading,
+      .guide-section > .section-lede,
+      .guide-section > .body-copy,
+      .question-box {
+        margin-left: 12px;
+      }
+
+      .causal-flow,
+      .code-block,
+      .file-tree,
+      .workbench pre,
+      .pressure-card pre {
+        overflow-x: hidden;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        word-break: normal;
+        font-size: 11px;
+      }
+
+      .causal-map,
+      .panel,
+      .owner-card,
+      .workbench,
+      .pressure-card {
+        max-width: 100%;
+      }
+
+      .owner-title,
+      .owner-question,
+      .owner-body {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main
+    class="record"
+    data-narration-language="en"
+    data-record-class="development-standard-origin-builder-guide"
+    data-origin-pr="vgong24/VexLife-Android#209"
+    data-accepted-head="b0a76ba1063c653c0db6781ff0314766a7b0347f"
+    data-accepted-tree="b4deed075fdb927769b6d7202746d24da474070d"
+    data-merge-commit="66c866dea6a8dd78e2946da88715c4deb78c1847"
+  >
+    <div class="topline">
+      <span data-i18n="pages.vexarchitecture-first-stable-body.hero.eyebrow">The Development Standard · Origin Record 001 · Builder Field Guide</span>
+      <span>[VXG RealForever]</span>
+    </div>
+
+    <header class="hero">
+      <div class="eyebrow" data-i18n="pages.vexarchitecture-first-stable-body.hero.eyebrow">The Development Standard · Origin Record 001 · Builder Field Guide</div>
+      <h1 data-i18n="pages.vexarchitecture-first-stable-body.hero.title">VexArchitecture</h1>
+      <div class="subtitle" data-i18n="pages.vexarchitecture-first-stable-body.hero.subtitle">Build complex systems without letting every layer become the owner of the same truth.</div>
+      <p class="tagline" data-i18n="pages.vexarchitecture-first-stable-body.hero.tagline">Come inside the codebase. Follow one request from human intention to pixels, and watch the architecture emerge from the questions each layer is actually allowed to answer.</p>
+      <div class="hero-meta">
+        <span class="pill status" data-i18n="pages.vexarchitecture-first-stable-body.hero.status">Accepted stability point · public origin guide</span>
+        <span class="pill" data-i18n="pages.vexarchitecture-first-stable-body.hero.origin">VexLife-Android · PR #209</span>
+      </div>
+      <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.hero.reader-contract">Use this page to understand why the first stable VexArchitecture body took this shape. Current VexLife-Android source and tests own present behavior. PR #209 preserves the pressure, subtraction, and proof that earned this stability point. Diagrams and code blocks here are architectural teaching projections unless explicitly labeled as a source snapshot; linked current source owns byte-exact implementation. The companion Live Demonstration is the object/scope-by-scope wiring walk when you need every construction and runtime edge made visible.</p>
+      <p class="lede" data-i18n="pages.vexarchitecture-first-stable-body.hero.lede">VexArchitecture did not begin with a framework diagram. It emerged while a real Android application kept forcing semantic state, asynchronous work, persistence, provider truth, dependency construction, logging, convergence, and presentation to stop impersonating one another.</p>
+    </header>
+
+    <section class="causal-map" id="guide-map">
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.map.kicker">How to read this guide</div>
+      <h2 data-i18n="pages.vexarchitecture-first-stable-body.map.heading">The architecture has one core causal path — and several relationships that sit beside it</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.map.lede">Construction/lifetime creates and reuses the live objects in the path. VexLogger observes facts across owners. Relay/convergence appears only when independently-owned truths must become new relationship truth. Forensics explains why the shape was earned. None of those are automatic next runtime stages.</p>
+      <pre class="causal-flow"><code data-i18n="pages.vexarchitecture-first-stable-body.map.flow">WHY THIS ARCHITECTURE EXISTS
+
+pressure / failure
+      ↓
+ownership question
+
+
+CORE SEMANTIC + RUNTIME PATH
+
+REQUEST / REALIZATION
+
+Control + exact CURRENT State
+      ↓
+Family.act(...)
+      ↓
+accepted Act
+├─ admitted State?
+└─ Begin?
+   ├─ Effect
+   └─ overlap Approach
+      ↓
+fully-bound Act.Method
+  specializes VexMethod
+      ↓
+VexExecution custody
+      ↓
+attempt Method.invoke()
+├─ returns lawfully
+│  ├─ may touch Store / provider / platform reality
+│  │  └─ returns the smallest truthful provider/domain fact
+│  └─ VexMethod.Result
+│     ├─ Success(output)
+│     └─ Failure(output)
+└─ escapes with Throwable
+   └─ Family / Execution continuation
+      forms VexMethod.Result.Error(cause)
+      ↓
+rightful Method-result interpretation
+
+
+OUTSIDE / OBSERVATION
+
+Store / provider / platform reality
+changes independently over time
+      ↓
+rightful observation / reconciliation
+      ↓
+Family.observe(State)
+
+
+EXPERIENCE / DISPLAY
+
+Family State
+      ↓
+Projection / DisplayState
+      ↓
+concrete presentation meaning
+      ↓
+platform manifestation
+      ↓
+presentation arrival, when actually observed
+      ↓
+human experience
+
+
+ORTHOGONAL / CONDITIONAL RELATIONSHIPS
+
+Construction + lifetime
+  → creates and reuses the live objects above
+
+Chronology / VexLogger
+  → observes facts as rightful owners know them
+
+Relay / convergence
+  → only when independently-owned truths
+    must become new relationship truth
+
+Forensics / PR provenance
+  → explains why this shape was earned
+    without becoming runtime authority</code></pre>
+      <div class="owner-strip" aria-label="Architecture responsibility legend">
+        <span class="semantic" data-i18n="pages.vexarchitecture-first-stable-body.legend.semantic">SEMANTIC</span>
+        <span class="execution" data-i18n="pages.vexarchitecture-first-stable-body.legend.execution">EXECUTION</span>
+        <span class="outside" data-i18n="pages.vexarchitecture-first-stable-body.legend.outside">OUTSIDE TRUTH</span>
+        <span class="construction" data-i18n="pages.vexarchitecture-first-stable-body.legend.construction">CONSTRUCTION</span>
+        <span class="chronology" data-i18n="pages.vexarchitecture-first-stable-body.legend.chronology">CHRONOLOGY</span>
+        <span class="convergence" data-i18n="pages.vexarchitecture-first-stable-body.legend.convergence">CONVERGENCE</span>
+        <span class="presentation" data-i18n="pages.vexarchitecture-first-stable-body.legend.presentation">PRESENTATION</span>
+      </div>
+    </section>
+
+    <section class="guide-section" id="problem" data-owner="semantic">
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.problem.kicker">01 · Start with the failure</div>
+      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.problem.heading">Complexity becomes dangerous when several layers start answering the same question</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.problem.lede">A serious feature can involve semantic state, user intention, concurrency, cancellation, persistence, remote truth, lifecycle, dependency construction, navigation, logging, and presentation. The usual response is to add managers. The deeper failure is that those managers gradually compete to define what the system means.</p>
+      <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.problem.diagram">                         “WHO OWNS THIS?”
+                                │
+          ┌─────────────────────┼─────────────────────┐
+          ▼                     ▼                     ▼
+   FeatureManager       ExecutionManager         Repository
+          │                     │                     │
+          ├──────────────┬──────┴──────┬─────────────┤
+          ▼              ▼             ▼             ▼
+      ViewModel       UI State       Logger      DI Container
+          └──────────────┴──────┬──────┴─────────────┘
+                                ▼
+                    the same meaning leaks everywhere</code></pre>
+      <div class="comparison-grid">
+        <article class="panel">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.problem.symptom-heading">What it feels like in a mature codebase</h3>
+          <p data-i18n="pages.vexarchitecture-first-stable-body.problem.symptom-body">A new requirement arrives and nobody can say whether it belongs in the feature state holder, execution wrapper, repository, ViewModel, logger, dependency graph, or UI state. So the requirement gets represented in several places. Every representation is individually reasonable; together they become drift.</p>
+        </article>
+        <article class="panel">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.problem.turning-label">The turning question</h3>
+          <p data-i18n="pages.vexarchitecture-first-stable-body.problem.question">The question that changed the architecture: What exact question are we trying to answer, and which existing owner already has enough truth to answer it?</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="guide-section" id="discovery" data-owner="semantic">
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.discovery.kicker">02 · The discovery</div>
+      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.discovery.heading">One question. One rightful owner.</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.discovery.lede">VexArchitecture became smaller as the questions became clearer. These are not framework tiers. They are responsibility boundaries discovered by asking what truth each layer can actually know.</p>
+
+      <div class="owner-grid">
+        <div class="owner-group-label owner-group-label--core" data-i18n="pages.vexarchitecture-first-stable-body.discovery.core-label">Core causal path · sequential</div>
+
+        <article class="owner-card" data-owner="family">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.family.title">Family · semantic meaning</div>
+          <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.family.question">What does this Control mean against the exact current State?</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.family.body">Family owns State, Control, the lawful Act, optional Effect, and outward Projection/DisplayState. Parameter is optional and earned when a Family-scoped semantic value needs to remain recognizable across relationships; it is not a wrapper for every Kotlin argument. An Act may admit immediate semantic State and may also carry an inert Begin of Effect + overlap Approach. When concrete realization is needed, the Family-scoped Act.Method specializes reusable VexMethod without giving up semantic ownership. act(...) remains pure.</div>
+        </article>
+
+        <article class="owner-card" data-owner="execution">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.execution.title">Execution · active custody</div>
+          <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.execution.question">What asynchronous work is actually alive right now?</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.execution.body">VexExecution owns Job custody, overlap behavior, and cancellation. It invokes already-authored work; it does not decide feature meaning, define a domain's lawful Success/Failure vocabulary, or become history.</div>
+        </article>
+
+        <article class="owner-card" data-owner="store">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.store.title">Store / provider · outside truth</div>
+          <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.store.question">What does independently-owned reality currently say?</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.store.body">A Store is a boundary to outside truth. That truth may be SharedPreferences, a remote service, filesystem, OS state, device media, GPS, or another process. Store does not automatically mean database. Its contracts return the smallest truthful provider/domain fact; they do not adopt VexMethod.Result merely because an operation can succeed or fail.</div>
+        </article>
+
+        <article class="owner-card" data-owner="presentation">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.presentation.title">Projection / presentation · human meaning</div>
+          <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.presentation.question">How should semantic truth become an experience without turning UI technology into semantic authority?</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.presentation.body">Family-owned projection becomes concrete presentation meaning, then Android/Compose manifests it. Compose is a manifestation technology, not the semantic owner.</div>
+        </article>
+
+        <div class="owner-group-label owner-group-label--supporting" data-i18n="pages.vexarchitecture-first-stable-body.discovery.supporting-label">Supporting relationships · orthogonal / conditional</div>
+
+        <article class="owner-card" data-owner="dependency">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.dependency.title">Dependency Factory · construction</div>
+          <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.dependency.question">Why does this live object exist, what must exist before it, and for how long is it reused?</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.dependency.body">Providers declare prerequisites. Factories traverse, memoize, detect cycles, and preserve lifetimes. Construction identity never becomes semantic identity.</div>
+        </article>
+
+        <article class="owner-card" data-owner="logger">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.logger.title">Logger · chronology</div>
+          <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.logger.question">What was accepted or observed, and in what order?</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.logger.body">VexLogger receives facts after rightful owners know them. It does not predict navigation, duplicate active-work registries, or mint correlation identities just to narrate history.</div>
+        </article>
+
+        <article class="owner-card" data-owner="relay">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.relay.title">Relay / convergence · relationship truth</div>
+          <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.relay.question">What new relationship truth emerges from truths owned somewhere else?</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.relay.body">Convergence composes independently-owned truths. It can request change through rightful Controls; it does not steal another Family's Effect or State.</div>
+        </article>
+      </div>
+
+      <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.owner.rule">The reusable rule: before adding a new architectural noun, name the question it alone can answer. If an existing owner already has the truth, add the relationship there instead.</p>
+    </section>
+
+    <section class="guide-section" id="codebase" data-owner="construction">
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.codebase.kicker">03 · See it in a real codebase</div>
+      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.codebase.heading">The architecture is visible in the repository, not hidden behind a framework</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.codebase.lede">This VexLife-Android shape originated at the accepted #209 stability point and is current through the accepted #211 VexMethod refinement. The file tree matters because the boundaries remain readable in source: semantic meaning, Method result, execution custody, outside truth, construction, chronology, convergence, and concrete composition remain distinct without becoming isolated.</p>
+      <pre class="file-tree"><code data-i18n="pages.vexarchitecture-first-stable-body.codebase.tree">VexLife-Android/
+│
+├── architecture/
+│   ├── behavior/
+│   │   ├── .../VexMethod.kt
+│   │   └── .../VexFamily.kt
+│   ├── execution/
+│   │   ├── .../VexExecution.kt
+│   │   └── .../VexExecutionRoot.kt
+│   ├── dependency/
+│   │   └── .../VexDependencyFactory.kt
+│   ├── logging/
+│   │   └── .../VexLogger.kt
+│   ├── relay/
+│   │   ├── .../VexRelay.kt
+│   │   ├── .../VexCompoundRelay.kt
+│   │   └── .../VexCompoundState.kt
+│   └── vexarchitecture/
+│       ├── README.md
+│       ├── REFINED-BOUNDARIES.md
+│       └── VEXLOGGER.md
+│
+└── app/src/main/.../
+    ├── VexApplication.kt
+    ├── ui/
+    │   ├── VexLifeSession.kt
+    │   ├── ThemeMode.kt
+    │   ├── ThemeModeStore.kt
+    │   └── VexLifeRelayGraph.kt
+    ├── conversation/
+    │   └── VexConversationHybridRelay.kt
+    └── screens/
+        └── .../EventsConvergenceRelay.kt</code></pre>
+      <p class="body-copy" data-i18n="pages.vexarchitecture-first-stable-body.codebase.caption">Notice what is absent: there is no universal ArchitectureManager standing above everything. The architecture is the set of truthful relationships among owners that already have real responsibilities.</p>
+      <div class="source-link-row">
+        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/tree/305a09eac1fabebcf2241bd207386950f41121f2" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.codebase.source">Open the accepted VexLife-Android source snapshot ↗</a>
+      </div>
+    </section>
+
+    <section class="guide-section" id="theme-walk" data-owner="semantic">
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.walk.kicker">04 · Walk one feature from intention to pixels</div>
+      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.walk.heading">Dark Mode is small enough to see everything, but real enough to expose the hard parts</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.walk.lede">ThemeMode is the patient zero because it crosses semantics, persistence, concurrency, execution, observation, projection, and Compose without being large enough to hide architectural mistakes.</p>
+
+      <div class="workbench-grid">
+        <article class="workbench">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.walk.code-heading">Semantic vocabulary · abridged from accepted source</h3>
+          <pre><code data-i18n="pages.vexarchitecture-first-stable-body.walk.code">sealed interface Parameter {
+    data class Mode(val mode: ThemeMode) : Parameter
+}
+
+sealed interface Control {
+    data class Select(val mode: Parameter.Mode) : Control
+}
+
+sealed interface Effect {
+    data class Save(val mode: Parameter.Mode) : Effect
+}</code></pre>
+        </article>
+        <article class="workbench">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.walk.same-heading">Same in-process Parameter instance — an earned ThemeMode mechanism</h3>
+          <p data-i18n="pages.vexarchitecture-first-stable-body.walk.same-body">ThemeMode deliberately preserves the exact Parameter.Mode instance across Control, Effect, and the fully-bound Method. That referential identity is used by this concrete currentness fence; it is not a universal distributed identity rule and does not authorize a generic currentness-token framework.</p>
+          <pre><code data-i18n="pages.vexarchitecture-first-stable-body.walk.flow">human selects Dark
+        ↓
+Parameter.Mode(Dark)
+        ↓ SAME IN-PROCESS INSTANCE
+Control.Select(parameter)
+        ↓
+Family.act(exact CURRENT State, Control)
+        ↓
+accepted Act
+├─ immediate State?
+└─ Begin(Effect.Save(parameter), Latest)
+        ↓
+bind live Family + maintained RelationshipId
+        ↓
+fully-bound Act.Method.Save(store, same parameter)
+  specializes VexMethod&lt;ThemeMode, Unit&gt;
+        ↓
+Act.launchWith(executionRoot).method(...)
+  consumes already-authored owner / Approach / RelationshipId
+        ↓
+VexExecution Job custody
+        ↓
+attempt Method.Save.invoke()
+├─ returns lawfully
+│  └─ ThemeModeStore.save(Dark)
+│     ↓
+│     Boolean provider commit fact
+│     ↓
+│     VexMethod.Result&lt;ThemeMode, Unit&gt;
+│     ├─ Success(Dark)
+│     └─ Failure(Unit)
+└─ escapes with Throwable
+   └─ Family / Execution continuation
+      forms VexMethod.Result.Error(cause)
+        ↓
+ThemeMode-owned result interpretation
+
+SEPARATELY:
+ThemeModeStore.states observation
+        ↓
+ThemeMode-owned reconciliation/currentness
+        ↓
+Family.observe(State)
+        ↓
+DisplayState → VexThemePresentation
+        ↓
+Compose / system bars receive manifestation meaning</code></pre>
+        </article>
+      </div>
+
+      <div class="question-box"><strong data-i18n="pages.vexarchitecture-first-stable-body.walk.realization-label">The realization seam</strong><br><span data-i18n="pages.vexarchitecture-first-stable-body.walk.realization-body">Family.act() authors semantic consequence. Begin remains inert. activate() mechanically binds the live Family and a maintained RelationshipId when the overlap law requires one. A concrete Family Act.Method contains the real Store/provider and semantic Parameter and specializes reusable VexMethod. The Store returns only its smallest truthful provider fact. Success / Failure are lawful returns from invoke(); if invoke() escapes with a Throwable, the Family / Execution continuation forms Error. launchWith() transports the already-authored owner / Approach / RelationshipId into VexExecution, which owns Job custody and cancellation without acquiring feature meaning.</span></div>
+      <div class="source-link-row">
+        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/ui/ThemeMode.kt" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.walk.source-label">Open ThemeMode.kt ↗</a>
+      </div>
+    </section>
+
+    <section class="guide-section" id="execution" data-owner="execution">
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.execution.kicker">05 · When work becomes asynchronous</div>
+      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.execution.heading">Execution keeps custody. It does not become the feature.</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.execution.lede">Once an accepted Act needs runtime work, VexExecution answers a narrower question: which Jobs are alive under this maintained semantic relationship?</p>
+
+      <div class="workbench-grid">
+        <article class="workbench">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.execution.law-label">When maintained identity actually exists</h3>
+          <pre><code data-i18n="pages.vexarchitecture-first-stable-body.execution.custody">Independent work
+→ no maintained RelationshipId
+
+Earliest / Latest / Queued work
+→ maintained relationship exists
+→ RelationshipId is derived from:
+   live Family
+   + Control kind/name
+   + optional typed ResourceId when genuinely distinguishing
+
+ordinary Control payload
+→ NOT identity</code></pre>
+        </article>
+        <article class="workbench">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.execution.approaches-label">The question to ask</h3>
+          <pre><code data-i18n="pages.vexarchitecture-first-stable-body.execution.approaches">Does unfinished work need to be related to other unfinished work as Earliest, Latest, or Queued?
+
+No  → do not mint maintained identity.
+Yes → derive the smallest semantic coordinate that already distinguishes that relationship.</code></pre>
+        </article>
+      </div>
+
+      <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.execution.payoff">RelationshipId exists only when unfinished work must be maintained as one semantic/runtime relationship. The actual Job remains the runtime occurrence, and ordinary payload never becomes identity merely because it is present on the Control.</p>
+      <div class="source-link-row">
+        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/architecture/execution/src/main/kotlin/com/vextreme/vexlife/android/execution/VexExecution.kt" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.execution.source-label">Open VexExecution.kt ↗</a>
+      </div>
+    </section>
+
+    <section class="guide-section" id="outside-truth" data-owner="outside">
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.race.kicker">06 · When outside reality arrives late</div>
+      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.race.heading">The race is where the architecture stopped being a clean diagram and had to answer time</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.race.lede">The semantic State could already be Dark while an older Light Store observation was still in flight. If the old observation were blindly admitted, outside timing would overwrite a newer accepted human choice.</p>
+      <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.race.timeline">Select Light
+  ↓
+Save Light ───────────── delayed Store observation ────────┐
+                                                           │
+Select Dark                                                │
+  ↓                                                        │
+State Dark                                                 │
+  ↓                                                        │
+Save Dark                                                  │
+                                                           │
+old Light observation ◄────────────────────────────────────┘</code></pre>
+
+      <div class="comparison-grid">
+        <article class="panel">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.race.common-heading">The obvious fixes were all plausible</h3>
+          <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.race.common">generation counter
+request ID
+operation ID
+timestamp arbitration
+pending-state manager
+synchronization registry</code></pre>
+        </article>
+        <article class="panel">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.race.solution-heading">ThemeMode's exact settlement rule</h3>
+          <p data-i18n="pages.vexarchitecture-first-stable-body.race.solution-body">Select(Parameter B) makes B the unsettled selection, admits semantic State immediately, and starts Save(B). A mismatching Store observation is held because it carries no revision proving it is newer than B. When B's exact Method realization terminates, ThemeMode settles only if the completed parameter is referentially the same instance (===) as the current unsettled selection. Ordinary Store observations then resume. This is ThemeMode-specific, not a generic currentness framework.</p>
+          <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.race.solution">Select(Parameter B)
+→ B becomes unsettled
+→ semantic State admitted immediately
+→ Save(B) runs
+
+mismatching Store observation arrives while B unsettled
+→ HOLD
+→ Store carries no revision proving it is newer than B
+
+terminal Method realization for B
+→ success / Store failure / execution failure
+→ settle only when completed parameter === unsettled B
+→ ordinary Store observations resume</code></pre>
+        </article>
+      </div>
+    </section>
+
+<section class="guide-section" id="presentation" data-owner="presentation">
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.presentation.kicker">07 · From semantic truth to human experience</div>
+      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.presentation.heading">Presentation manifests truth. It does not become the truth owner.</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.presentation.lede">ThemeMode does not hand a Boolean straight to Compose and call that architecture. The Family first interprets semantic State into a Family-owned DisplayState; concrete presentation meaning follows; Android/Compose then manifests that meaning.</p>
+      <div class="workbench-grid">
+        <article class="workbench">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.owner.presentation.title">Projection / presentation · human meaning</h3>
+          <pre><code data-i18n="pages.vexarchitecture-first-stable-body.presentation.flow">ThemeMode State
+      ↓
+ThemeModeFamily.DisplayState
+      ↓
+VexThemePresentation
+      ↓
+VexLifeTheme
+      ↓
+Compose / system bars receive manifestation meaning
+      ↓
+presentation arrival, when actually observed
+      ↓
+human experience</code></pre>
+        </article>
+        <article class="workbench">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.presentation.why-label">Why the boundary matters</h3>
+          <p data-i18n="pages.vexarchitecture-first-stable-body.presentation.rule">Projection describes what presentation should manifest. It does not, by itself, prove what actually reached the human. A Switch, segmented control, menu, voice command, or future surface may all select ThemeMode without redefining ThemeMode.</p>
+          <p data-i18n="pages.vexarchitecture-first-stable-body.presentation.anti">Do not invent a generic FamilyRenderer, UiState, or ViewState merely because a concrete presentation boundary already exists. Add another layer only when it answers a different required question.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="guide-section" id="construction" data-owner="construction">
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.construction.kicker">Supporting topology · construction and lifetime</div>
+      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.construction.heading">Make the object graph readable without turning dependency injection into runtime meaning</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.construction.lede">This is not another stage in the runtime path. VexDependencyFactory answers a different question: which live objects exist, what prerequisites built them, and which lifetime owns/reuses them. Provider object identity is the construction coordinate; prerequisites are explicit source; one factory lifetime memoizes one value per provider.</p>
+
+      <div class="workbench-grid">
+        <article class="workbench">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.construction.lifetimes-label">Lifetime composition</h3>
+          <pre><code data-i18n="pages.vexarchitecture-first-stable-body.construction.lifetimes">ANDROID PROCESS LIFETIME
+VexApplication
+  └─ parent VexDependencyFactory
+       ├─ Android Application
+       ├─ UIBlueprintRegistry
+       ├─ AppRepositories
+       └─ ThemeModeStore
+
+VIEWMODEL / SESSION LIFETIME
+VexLifeViewModel
+  └─ child VexDependencyFactory
+       ├─ CoroutineScope
+       ├─ VexExecutionRoot
+       ├─ LogHistoryPersistenceQueue
+       ├─ VexLogger
+       ├─ ThemeModeFamily
+       ├─ EventsConvergenceRelay
+       ├─ VexConversationHybridRelay
+       ├─ AppActions
+       ├─ VexRuntime
+       └─ VexLifeSession</code></pre>
+        </article>
+        <article class="workbench">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.construction.provider-heading">Provider shape · abridged from accepted source</h3>
+          <pre><code data-i18n="pages.vexarchitecture-first-stable-body.construction.provider">ThemeModeFamilyProvider(
+    dependencies = listOf(
+        ThemeModeStore,
+        VexExecutionRoot,
+        VexLogger,
+    )
+)
+
+create(scope) {
+    val family = ThemeModeFamily(initialState)
+    observeThemeModeStore(
+        family,
+        scope.require(ThemeModeStore),
+        scope.require(VexExecutionRoot),
+        scope.require(VexLogger),
+    )
+    return family
+}</code></pre>
+        </article>
+      </div>
+      <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.construction.payoff">No ambient get&lt;T&gt;(). No constructor scanning. No feature code reaching into Application as a service locator. No dependency identifier reused as semantic identity. Construction remains visible and boring.</p>
+      <div class="source-link-row">
+        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/66c866dea6a8dd78e2946da88715c4deb78c1847/architecture/dependency/src/main/kotlin/com/vextreme/vexlife/android/dependency/VexDependencyFactory.kt" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.construction.dependency-source">Open VexDependencyFactory.kt ↗</a>
+        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/66c866dea6a8dd78e2946da88715c4deb78c1847/app/src/main/kotlin/com/vextreme/vexlife/android/VexApplication.kt" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.construction.application-source">Open VexApplication.kt ↗</a>
+        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/66c866dea6a8dd78e2946da88715c4deb78c1847/app/src/main/kotlin/com/vextreme/vexlife/android/ui/VexLifeSession.kt" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.construction.session-source">Open VexLifeSession.kt ↗</a>
+      </div>
+    </section>
+
+    <section class="guide-section" id="chronology" data-owner="chronology">
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.logger.kicker">Cross-cutting observation · chronology</div>
+      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.logger.heading">Chronology is powerful when it is allowed to remain chronology</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.logger.lede">VexLogger sits beside the causal path and receives accepted or observed facts from many rightful owners. It answers what happened and in what order; it does not become a shadow State machine, a predicted-future store, or an execution registry.</p>
+
+      <div class="workbench-grid">
+        <article class="workbench">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.logger.facts-label">Production facts</h3>
+          <pre><code data-i18n="pages.vexarchitecture-first-stable-body.logger.facts">App opened
+Control accepted
+Button clicked
+Save requested
+Save succeeded / failed
+Screen disappeared
+Screen arrived
+Dialog appeared
+Song ended
+next song selected
+song started</code></pre>
+        </article>
+        <article class="workbench">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.logger.separation-label">Identity stays separate</h3>
+          <pre><code data-i18n="pages.vexarchitecture-first-stable-body.logger.separation">RelationshipId → which maintained semantic relationship
+Job            → which live runtime occurrence
+VexLogger      → what happened historically</code></pre>
+        </article>
+      </div>
+      <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.logger.rule">A backend success is not proof that the intended presentation arrived. Log facts from the layers that actually observe them; derive history from chronology before minting correlation machinery.</p>
+    </section>
+
+    <section class="guide-section" id="convergence" data-owner="convergence">
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.relay.kicker">Conditional composition · Relay / convergence</div>
+      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.relay.heading">Relationship truth can be new without becoming a new owner of its inputs</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.relay.lede">Relay is not a mandatory stage after Family or Execution. It exists when independently-owned current truths must be composed into new relationship truth. A convergence owner may request change through another Family's public Control/Port; it may not bypass that semantic owner and invoke a foreign Effect directly.</p>
+      <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.relay.diagram">EventsRepository truth ──────┐
+AttentionPreferences truth ──┼─→ EventsConvergenceRelay → relationship truth
+UserProfile truth ────────────┘
+
+ConversationRepository truth ─┐
+ConversationLab truth ─────────┼─→ VexConversationHybridRelay → relationship truth
+                              └─→ request change only through rightful Controls</code></pre>
+      <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.relay.rule">VexLifeRelayGraph is only a session-level projection of which independently-owned Relay nodes exist. It does not construct, activate, or semantically own them. Convergence may compose truth; it may not appropriate the authority that created the truth.</p>
+    </section>
+
+    
+
+    <section class="guide-section" id="subtraction" data-owner="semantic">
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.kicker">08 · What reality made unnecessary</div>
+      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.heading">Each deletion happened because another owner could answer the question more truthfully</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.lede">The rejected abstractions were reasonable responses to real pressure. They disappeared when their question was returned to a smaller existing owner.</p>
+
+      <div class="owner-grid">
+        <article class="owner-card" data-owner="execution">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.identity-title">One giant identity problem</div>
+          <div class="owner-body">
+            <p data-i18n="pages.vexarchitecture-first-stable-body.subtraction.identity-body">Manual relationship / coordinate machinery → duplicated identity ownership → Control-derived maintained RelationshipId.</p>
+            <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.subtraction.identity-after">RelationshipId → maintained relationship
+Job            → runtime occurrence
+VexLogger      → chronology</code></pre>
+          </div>
+        </article>
+
+        <article class="owner-card" data-owner="execution">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.wrapper-title">Feature execution wrappers</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.wrapper-body">ThemeMode execution / coordination wrappers → duplicated runtime ownership → Family meaning + VexExecution custody + Store truth.</div>
+        </article>
+
+        <article class="owner-card" data-owner="logger">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.logger-title">Predictive history</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.logger-body">Predictive navigationTarget logging → expectation serialized as observation → interaction before mutation + actual CurrentScreen afterward.</div>
+        </article>
+
+        <article class="owner-card" data-owner="dependency">
+          <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.container-title">Construction bags</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.subtraction.container-body">Eager Relay / construction bag → projection became construction owner → independent Relay owners + projection-only VexLifeRelayGraph.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="guide-section" id="apply" data-owner="presentation">
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.apply.kicker">09 · Use it on your own feature</div>
+      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.apply.heading">Do not copy ThemeMode. Reuse the questions.</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.apply.lede">The architecture scales by preserving the reasoning posture, not by forcing every feature into the same class diagram. Parameter, maintained RelationshipId, Relay/convergence, richer projection, and other mechanisms appear only when their specific question is actually present.</p>
+
+      <ol class="apply-list">
+        <li data-i18n="pages.vexarchitecture-first-stable-body.apply.1">Name the semantic question in ordinary language.</li>
+        <li data-i18n="pages.vexarchitecture-first-stable-body.apply.2">Find the smallest owner that already knows the exact current truth needed to answer it.</li>
+        <li data-i18n="pages.vexarchitecture-first-stable-body.apply.3">Define State and Control only when there is real semantic meaning to preserve.</li>
+        <li data-i18n="pages.vexarchitecture-first-stable-body.apply.4">If accepted meaning requests outside work, author an Effect; do not claim the Effect already happened.</li>
+        <li data-i18n="pages.vexarchitecture-first-stable-body.apply.5">Ask whether active work needs a maintained RelationshipId. Ordinary payload does not become identity by default.</li>
+        <li data-i18n="pages.vexarchitecture-first-stable-body.apply.6">Let Execution own actual Jobs and overlap behavior, not feature meaning.</li>
+        <li data-i18n="pages.vexarchitecture-first-stable-body.apply.7">Let the Store/provider expose independently-owned outside truth.</li>
+        <li data-i18n="pages.vexarchitecture-first-stable-body.apply.8">Interpret observations through the rightful semantic owner before changing State.</li>
+        <li data-i18n="pages.vexarchitecture-first-stable-body.apply.9">Project semantic State outward before choosing a concrete presentation technology.</li>
+        <li data-i18n="pages.vexarchitecture-first-stable-body.apply.10">Log accepted and observed facts where they become knowable; derive chronology before adding IDs.</li>
+        <li data-i18n="pages.vexarchitecture-first-stable-body.apply.11">Construct objects explicitly at the lifetime that actually owns them.</li>
+        <li data-i18n="pages.vexarchitecture-first-stable-body.apply.12">Before inventing a new architectural noun, ask what required correctness disappears if you delete it.</li>
+      </ol>
+    </section>
+
+    <section class="guide-section" id="pressure" data-owner="convergence">
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.pressure.kicker">10 · Try the questions on something harder</div>
+      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.pressure.heading">Portability is demonstrated by questions, not by pretending every product already conforms</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.pressure.lede">VexStream and Maps are useful pressure surfaces because they contain richer concurrency, outside truth, and convergence. They are not declared migrated by this page.</p>
+
+      <div class="pressure-grid">
+        <article class="pressure-card">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.pressure.stream-title">VexStream · questions to ask</h3>
+          <pre><code data-i18n="pages.vexarchitecture-first-stable-body.pressure.stream">semantic → Play / Pause / Seek / Download meaning?
+runtime  → which playback or download Jobs are alive?
+outside  → Desktop hub, local media, MediaPlayer, filesystem?
+converge → HUB_AND_LOCAL, LOCAL_ONLY, HUB_ONLY?
+present  → what should the human actually see?</code></pre>
+        </article>
+        <article class="pressure-card">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.pressure.maps-title">Maps · questions to ask</h3>
+          <pre><code data-i18n="pages.vexarchitecture-first-stable-body.pressure.maps">semantic → selected place, route intent, region download?
+runtime  → search, routing, navigation, download work?
+outside  → map provider, GPS, offline region store?
+converge → provider + location + local availability?
+present  → map, route, and availability meaning?</code></pre>
+        </article>
+      </div>
+      <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.pressure.rule">If a real consumer reveals a question that no existing owner can truthfully answer, that is evidence for architecture evolution. Similarity alone is not.</p>
+    </section>
+
+    <section class="guide-section" id="live-demonstration">
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.live-demo.kicker">Companion witness · walk the living implementation</div>
+      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.live-demo.heading">You have the map. Now walk the code without invisible edges.</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.live-demo.body">The Live Demonstration starts before a person can click anything, names each owning container and nested member, follows the same live object through construction and runtime, then repeats the method across current VexStream Playback and VexMaps Distribution source.</p>
+      <div class="source-link-row">
+        <a class="source-link" href="./vexarchitecture-live-demonstration.html" data-i18n="pages.vexarchitecture-first-stable-body.live-demo.cta">Open VexArchitecture — Live Demonstration ↗</a>
+      </div>
+    </section>
+
+    <section class="guide-section" id="forensics" data-owner="forensics">
+      <div class="section-kicker" data-i18n="pages.vexarchitecture-first-stable-body.forensics.kicker">Appendix · Source, provenance, and exact evidence</div>
+      <h2 class="section-heading" data-i18n="pages.vexarchitecture-first-stable-body.forensics.heading">The guide teaches from current structure; the appendix preserves how this structure earned trust</h2>
+      <p class="section-lede" data-i18n="pages.vexarchitecture-first-stable-body.forensics.lede">This page is not the architecture authority. Current VexLife-Android source owns current behavior. PR #209 preserves the before / pressure / subtraction / after reasoning that produced this accepted stability point.</p>
+      <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.forensics.authority">Current source = behavioral authority · PR #209 = provenance · this Vextreme page = public historical guide</p>
+
+      <div class="forensics">
+        <details open>
+          <summary data-i18n="pages.vexarchitecture-first-stable-body.forensics.proof-summary">What was actually proven</summary>
+          <div class="inside">
+            <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.forensics.proof">SOURCE / BUILD
+Exact head + tree passed the repository-owned full verification.
+
+CONCURRENCY
+The rapid ThemeMode Light/Dark stale-observation race was reproduced and then deterministically covered.
+
+PRODUCTION CONSTRUCTION
+The real VexApplication → VexLifeViewModel path cold-launched on Android and remained alive.
+
+INTEGRATION
+The actual merge tree exactly equaled the candidate tree that received proof.</code></pre>
+          </div>
+        </details>
+
+        <details>
+          <summary data-i18n="pages.vexarchitecture-first-stable-body.forensics.ledger-summary">Open exact proof ledger</summary>
+          <div class="inside">
+            <pre class="code-block"><code data-i18n="pages.vexarchitecture-first-stable-body.forensics.ledger">A001 · carrier/harness boundary classified without candidate blame
+A002 · generated newline defect exposed by real Gradle parsing
+A003+ · compilation, migration, stale API, and overgrowth corrections
+A009 · ThemeMode race reproduced: expected Dark, observed Light
+A010 · full exact-head proof after semantic currentness correction
+Fresh assurance · stale inherited KDoc corrected
+A011 · corrected exact head fully re-proved
+A012 · real Android production composition cold-launched and survived
+Integration · actual merge tree == proved candidate tree</code></pre>
+          </div>
+        </details>
+
+        <details>
+          <summary data-i18n="pages.vexarchitecture-first-stable-body.forensics.coordinates-summary">Exact source coordinates</summary>
+          <div class="inside">
+            <dl class="coordinate-grid">
+              <div class="coordinate">
+                <dt data-i18n="pages.vexarchitecture-first-stable-body.forensics.origin">Source origin</dt>
+                <dd>vgong24/VexLife-Android · PR #209</dd>
+              </div>
+              <div class="coordinate">
+                <dt data-i18n="pages.vexarchitecture-first-stable-body.forensics.candidate">Proved candidate</dt>
+                <dd>b0a76ba1063c653c0db6781ff0314766a7b0347f</dd>
+              </div>
+              <div class="coordinate">
+                <dt data-i18n="pages.vexarchitecture-first-stable-body.forensics.tree">Proved candidate tree</dt>
+                <dd>b4deed075fdb927769b6d7202746d24da474070d</dd>
+              </div>
+              <div class="coordinate">
+                <dt data-i18n="pages.vexarchitecture-first-stable-body.forensics.merge">Accepted merge</dt>
+                <dd>66c866dea6a8dd78e2946da88715c4deb78c1847</dd>
+              </div>
+            </dl>
+            <p class="rule" data-i18n="pages.vexarchitecture-first-stable-body.forensics.equality">The actual merge tree exactly matched the proved candidate tree.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="source-link-row">
+        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/pull/209" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.forensics.open-pr">Open PR #209 reasoning record ↗</a>
+        <a class="source-link" href="https://github.com/vgong24/VexLife-Android" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.forensics.open-source">Open current VexLife-Android source ↗</a>
+        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/main/architecture/vexarchitecture/README.md" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.forensics.open-architecture">Open current VexArchitecture source guide ↗</a>
+        <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/66c866dea6a8dd78e2946da88715c4deb78c1847/architecture/vexarchitecture/README.md" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.forensics.open-origin-snapshot">Open accepted #209 source snapshot ↗</a>
+      </div>
+    </section>
+
+    <footer class="closing">
+      <blockquote data-i18n="pages.vexarchitecture-first-stable-body.closing.quote">A useful architecture does not ask every layer to become smarter. It makes each layer honest about the question it owns.</blockquote>
+      <p data-i18n="pages.vexarchitecture-first-stable-body.closing.body">VexArchitecture became smaller as responsibility became clearer. The reusable innovation is not a set of class names. It is the discipline of preserving meaning, custody, outside truth, construction, history, convergence, and presentation without letting them collapse into one another.</p>
+      <p class="standard" data-i18n="pages.vexarchitecture-first-stable-body.closing.standard">Take the questions. Pressure them with your real system. Keep only the architecture that reality earns.</p>
+      <p class="lineage" data-i18n="pages.vexarchitecture-first-stable-body.closing.lineage">[VXG RealForever] · Origin: VexLife-Android PR #209 · Public guide: The Development Standard</p>
+    </footer>
+
+    <div id="arcNavMount"></div>
+  </main>
+
+  <script src="../dist/vextreme-vexarchitecture-first-stable-body.js"></script>
+  <script src="../lib/vextreme-index-v2.js"></script>
+</body>
+</html>
+<!-- [VXG RealForever] -->

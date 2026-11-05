@@ -1891,5 +1891,29 @@
     "department": "media",
     "workType": "record-transcripts",
     "vexData": {}
+  },
+  {
+    "id": 122,
+    "slug": "vexarchitecture-first-stable-body",
+    "title": "VexArchitecture — The First Stable Body",
+    "date": "November 1, 2026",
+    "arcKeys": [
+      "development_standard",
+      "architecture",
+      "full_timeline"
+    ],
+    "vexData": {}
+  },
+  {
+    "id": 123,
+    "slug": "vexarchitecture-live-demonstration",
+    "title": "VexArchitecture — Live Demonstration",
+    "date": "November 2, 2026",
+    "arcKeys": [
+      "development_standard",
+      "architecture",
+      "full_timeline"
+    ],
+    "vexData": {}
   }
 ]

@@ -2,7 +2,7 @@
   "arcs": {
     "category": "production",
     "path": "production/arcs",
-    "en": 16,
+    "en": 17,
     "ja": 16,
     "zh": 16,
     "ko": 16,
@@ -1307,6 +1307,16 @@
     "category": "production",
     "path": "production/pages/vex-gpt-55-confession",
     "en": 151
+  },
+  "pages.vexarchitecture-first-stable-body": {
+    "category": "production",
+    "path": "production/pages/vexarchitecture-first-stable-body",
+    "en": 186
+  },
+  "pages.vexarchitecture-live-demonstration": {
+    "category": "production",
+    "path": "production/pages/vexarchitecture-live-demonstration",
+    "en": 37
   },
   "pages.victor-methodology-presentation": {
     "category": "production",

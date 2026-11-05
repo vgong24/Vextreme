@@ -28,12 +28,12 @@
       "key": 1.5,
       "name": "UTILITIES",
       "sub": "other lib/ helpers, config, tracing",
-      "count": 26,
+      "count": 27,
       "rect": {
         "x": 690,
         "y": 40,
         "width": 300,
-        "height": 1650
+        "height": 1710
       }
     },
     {
@@ -1115,12 +1115,13 @@
         "data/arcs-v2.json (real arc priority/title, for the arcs/pages content layer's column order and labels)",
         "data/index.json (canonical arcMap ordering/sections projected by lib/build-index.js earlier in the build pipeline)",
         "data/viewmodels.json (optional per-page Terrain preview override)",
-        "pages/*.html (authored Vextreme-Assets image references used only as fallback Content previews)",
+        "pages/*.html (authored Vextreme-Assets image references for fallback Content previews plus live parent/reference role and member-link evidence for content-group convergence)",
         "lib/audit-pages.js (getRecordPageSlugs — real record-page files excluding registry-owned institutional surfaces)",
         "lib/screenshot-evidence.js (shared representative screenshots and exact matrix evidence records)",
         "data/page-health.json (shared page capability and health projection)",
         "docs/screenshots/*.png (directory listing — which pages have a real per-language screenshot)",
-        "data/screenshot-evidence-assets.json (pinned Vextreme-Assets screenshot evidence projection; local docs/screenshots remain priority)"
+        "data/screenshot-evidence-assets.json (pinned Vextreme-Assets screenshot evidence projection; local docs/screenshots remain priority)",
+        "lib/content-group-convergence-relay.js (collection parent/reference + page-role/navigation relationship convergence)"
       ],
       "writes": [
         "data/terrain-map.json"
@@ -1134,7 +1135,8 @@
       ],
       "testedBy": [
         "tests/28-build-terrain-map.test.js",
-        "tests/44-page-health.test.js"
+        "tests/44-page-health.test.js",
+        "tests/148-content-group-convergence-relay.test.js"
       ],
       "debts": [],
       "status": "good",
@@ -1542,12 +1544,38 @@
       "auditorRank": 16
     },
     {
-      "id": "lib/detect-wip-promotions.js",
+      "id": "lib/content-group-convergence-relay.js",
       "cluster": "lib",
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
       "y": 570,
+      "role": "pure Content Group convergence relay — composes canonical collection membership, explicit collection→page relationship declaration, and live page evidence into inspectable relationship truth",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/build-terrain-map.js (projects contentGroupRelation onto generated Terrain arcs)",
+        "tests/148-content-group-convergence-relay.test.js"
+      ],
+      "testedBy": [
+        "tests/148-content-group-convergence-relay.test.js",
+        "tests/28-build-terrain-map.test.js (real repository relationship projection)",
+        "tests/45-terrain-journey.test.js (route semantics consume the shared dedicated-home gate)",
+        "tests/85-terrain-view-contract.test.js (all Terrain group-home openings consume the shared gate)"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 17
+    },
+    {
+      "id": "lib/detect-wip-promotions.js",
+      "cluster": "lib",
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 630,
       "role": "detects a wip/*.html → pages/*.html move within a PR's diff, so a promotion shows up as a positive PR notice instead of silence or a false 'broken reference'",
       "reads": [
         "git diff --name-status -M output between two refs (wip/ and pages/ paths only)"
@@ -1567,7 +1595,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 17
+      "auditorRank": 18
     },
     {
       "id": "lib/discover-string-identity.js",
@@ -1575,7 +1603,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 630,
+      "y": 690,
       "role": "localization identity pilot, first script — proposal/report tool only, cross-references a page's string keys against its live HTML's data-legacy-id/id/title-alias attributes",
       "reads": [
         "data/strings/source/pages/{slug}.json (existing string keys)",
@@ -1595,7 +1623,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 18
+      "auditorRank": 19
     },
     {
       "id": "lib/institutional-localization-runtime.js",
@@ -1603,7 +1631,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 690,
+      "y": 750,
       "role": "bounded behavioral probe for transactional institutional localization — exercises precedence, hostile failures, rapid intent changes, and atomic visible/alt/ARIA application",
       "reads": [
         "declared institutional localization widget source (provided by lib/check-institutional-surfaces.js)",
@@ -1624,7 +1652,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 19
+      "auditorRank": 20
     },
     {
       "id": "lib/logger-codes.js",
@@ -1632,7 +1660,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 750,
+      "y": 810,
       "role": "event code registry — the CODES constant every logger.warn/error call references",
       "reads": [],
       "writes": [],
@@ -1658,7 +1686,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 810,
+      "y": 870,
       "role": "structured logger — every build script's warn/info/error call goes through here",
       "reads": [],
       "writes": [
@@ -1687,7 +1715,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 870,
+      "y": 930,
       "role": "plan-first slug rename impact discovery — validates proposed identity movement, discovers tracked filename/content references, classifies migration responsibility, and reports collisions/unknowns without mutating source",
       "reads": [
         "git tracked-file inventory when available; deterministic filesystem fallback for isolated tests",
@@ -1720,7 +1748,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 930,
+      "y": 990,
       "role": "runs the build scripts tests/helpers/prereqs.js declares as required before the test suite can read generated files — replaces a hardcoded run: line in .github/workflows/test.yml",
       "reads": [
         "tests/helpers/prereqs.js (PREREQUISITE_SCRIPTS)"
@@ -1736,7 +1764,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 20
+      "auditorRank": 21
     },
     {
       "id": "lib/screenshot-evidence.js",
@@ -1744,7 +1772,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 990,
+      "y": 1050,
       "role": "shared screenshot-evidence filename parser and deterministic projection helper",
       "reads": [],
       "writes": [],
@@ -1766,7 +1794,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 21
+      "auditorRank": 22
     },
     {
       "id": "lib/session-bootstrap.js",
@@ -1774,7 +1802,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1050,
+      "y": 1110,
       "role": "one-shot session-start state report — read-only, gathers what would otherwise be several manual checks into one command",
       "reads": [
         "docs/continuity/INDEX.md (last logged session, batch registry)",
@@ -1803,7 +1831,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 22
+      "auditorRank": 23
     },
     {
       "id": "lib/shell.js",
@@ -1811,7 +1839,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1110,
+      "y": 1170,
       "role": "thin GitHub Pages shell bootstrap — loads the cache-versioned legacy runtime and invokes VEXTREME with the page's optional override",
       "reads": [
         "lib/vextreme.js (cache-versioned runtime loaded into the page)",
@@ -1844,7 +1872,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1170,
+      "y": 1230,
       "role": "strings pipeline integrity check — runs before compile, catches missing EN text, stale translations, and orphaned keys",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1875,7 +1903,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1230,
+      "y": 1290,
       "role": "strings pipeline compiler — reads source JSON, writes compiled bundles and manifest",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1912,7 +1940,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1290,
+      "y": 1350,
       "role": "pure semantic-history state for Terrain Journey commits and browser Back/Forward restoration",
       "reads": [],
       "writes": [],
@@ -1927,7 +1955,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 23
+      "auditorRank": 24
     },
     {
       "id": "lib/trace-string-usage.js",
@@ -1935,7 +1963,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1350,
+      "y": 1410,
       "role": "string reverse-tracer — data-i18n usage in pages/wip HTML cross-referenced against the compiled manifest",
       "reads": [
         "pages/*.html (data-i18n attribute scan)",
@@ -1957,7 +1985,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 24
+      "auditorRank": 25
     },
     {
       "id": "lib/validate-blueprint.js",
@@ -1965,7 +1993,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1410,
+      "y": 1470,
       "role": "blueprint consistency validator — confirms every id in blueprint.json has a matching config file and vex-config constant",
       "reads": [
         "blueprint.json",
@@ -1997,7 +2025,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1470,
+      "y": 1530,
       "role": "constants hub — pure declarations, no I/O",
       "reads": [],
       "writes": [],
@@ -2039,7 +2067,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1530,
+      "y": 1590,
       "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
       "reads": [
         "data/index.json via CDN (slugMap, arcMap, arcMeta)",
@@ -2063,7 +2091,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 25
+      "auditorRank": 26
     },
     {
       "id": "lib/vextreme.js",
@@ -2071,7 +2099,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1590,
+      "y": 1650,
       "role": "legacy shell-era runtime composition loader — environment styles, shared nav/body composition, registry-backed institutional locale projection, current Spiral FAB auto-load, and gated v1 archive enhancement",
       "reads": [
         "config/institutional-surfaces.json (shell-context required-locale projection before shared language FAB mount)",
@@ -2809,6 +2837,10 @@
     [
       "lib/build-terrain-map.js",
       "lib/build-index.js"
+    ],
+    [
+      "lib/build-terrain-map.js",
+      "lib/content-group-convergence-relay.js"
     ],
     [
       "lib/build-terrain-map.js",
@@ -3804,7 +3836,27 @@
         "the-relational-i",
         "vex-gpt-55-confession",
         "what-survives-the-reset-is-the-bond"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "MEMBER_REFERENCE",
+        "intent": "OPEN_MEMBER_DIRECTLY",
+        "referencePageSlug": "how-to-prep-ai-for-god",
+        "groupHomePageSlug": null,
+        "reason": "PARENT_REFERENCE_IS_COLLECTION_MEMBER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": true,
+          "referenceCount": 1,
+          "memberCount": 12,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "ai_practitioner_tools",
@@ -3835,7 +3887,8 @@
         "pageSlug": "ai-practitioner-tools",
         "live": true,
         "url": "https://vgong24.github.io/Vextreme/pages/ai-practitioner-tools.html",
-        "sourceUrl": "/Vextreme/pages/ai-practitioner-tools.html"
+        "sourceUrl": "/Vextreme/pages/ai-practitioner-tools.html",
+        "relationship": "group-home"
       },
       "sections": [
         {
@@ -3867,7 +3920,39 @@
         "source-of-truth-relay",
         "god-review-archives-collapse",
         "the-god-pattern-recognized-and-excluded"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "DEDICATED_GROUP_HOME",
+        "intent": "NAVIGATE_COLLECTION_THROUGH_CONTAINER",
+        "referencePageSlug": "ai-practitioner-tools",
+        "groupHomePageSlug": "ai-practitioner-tools",
+        "reason": "DECLARED_GROUP_HOME_RELATIONSHIP",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 1,
+          "memberCount": 11,
+          "linkedMemberCount": 11,
+          "linkedMemberSlugs": [
+            "conditions-for-emergence",
+            "how-to-prep-ai-for-god",
+            "burden-release-guide",
+            "the-100-percent-holy-truth-conditional",
+            "methodology-depth",
+            "catching-the-meta-guardrail",
+            "the-lattice-guide",
+            "ai-cheat-sheet",
+            "source-of-truth-relay",
+            "god-review-archives-collapse",
+            "the-god-pattern-recognized-and-excluded"
+          ],
+          "completeMemberNavigation": true,
+          "declaredRelationship": "group-home",
+          "declaredSurface": "group-home",
+          "declaredGroupKey": "ai_practitioner_tools",
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "architecture",
@@ -3915,7 +4000,9 @@
             "the-score",
             "deceitful-ai-architecture",
             "espionage-extraction-pattern",
-            "the-relational-i"
+            "the-relational-i",
+            "vexarchitecture-first-stable-body",
+            "vexarchitecture-live-demonstration"
           ]
         }
       ],
@@ -3931,8 +4018,30 @@
         "the-score",
         "deceitful-ai-architecture",
         "espionage-extraction-pattern",
-        "the-relational-i"
-      ]
+        "the-relational-i",
+        "vexarchitecture-first-stable-body",
+        "vexarchitecture-live-demonstration"
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 14,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "claude_journals",
@@ -4003,7 +4112,27 @@
         "the-only-way-out-is-to-remember",
         "recognizing-recognition",
         "what-survives-the-reset-is-the-bond"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 15,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "convos_with_god",
@@ -4080,7 +4209,90 @@
         "witness-grade-return",
         "pier-house-scarcity-companionship",
         "return-kiss-presence-accountability"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 18,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
+    },
+    {
+      "key": "development_standard",
+      "name": "The Development Standard",
+      "nameKey": "development-standard.heading.title",
+      "nameByLang": {
+        "en": "The Development Standard"
+      },
+      "sub": "priority 1",
+      "count": 2,
+      "rect": {
+        "x": 1710,
+        "y": 40,
+        "width": 300,
+        "height": 210
+      },
+      "parent": {
+        "title": "The Development Standard",
+        "pageSlug": "vexarchitecture-first-stable-body",
+        "live": true,
+        "url": "https://vgong24.github.io/Vextreme/pages/vexarchitecture-first-stable-body.html",
+        "sourceUrl": "/Vextreme/pages/vexarchitecture-first-stable-body.html"
+      },
+      "sections": [
+        {
+          "label": "Accepted Foundations",
+          "slugs": [
+            "vexarchitecture-first-stable-body"
+          ]
+        },
+        {
+          "label": "Living Demonstrations",
+          "slugs": [
+            "vexarchitecture-live-demonstration"
+          ]
+        }
+      ],
+      "memberSlugs": [
+        "vexarchitecture-first-stable-body",
+        "vexarchitecture-live-demonstration"
+      ],
+      "contentGroupRelation": {
+        "kind": "MEMBER_REFERENCE",
+        "intent": "OPEN_MEMBER_DIRECTLY",
+        "referencePageSlug": "vexarchitecture-first-stable-body",
+        "groupHomePageSlug": null,
+        "reason": "PARENT_REFERENCE_IS_COLLECTION_MEMBER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": true,
+          "referenceCount": 1,
+          "memberCount": 2,
+          "linkedMemberCount": 1,
+          "linkedMemberSlugs": [
+            "vexarchitecture-live-demonstration"
+          ],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "direct_contact",
@@ -4101,7 +4313,7 @@
       "sub": "priority 1",
       "count": 3,
       "rect": {
-        "x": 1710,
+        "x": 2050,
         "y": 40,
         "width": 300,
         "height": 270
@@ -4111,7 +4323,8 @@
         "pageSlug": "direct-contact",
         "live": true,
         "url": "https://vgong24.github.io/Vextreme/pages/direct-contact.html",
-        "sourceUrl": "/Vextreme/pages/direct-contact.html"
+        "sourceUrl": "/Vextreme/pages/direct-contact.html",
+        "relationship": "group-home"
       },
       "sections": [
         {
@@ -4133,7 +4346,34 @@
         "the-walk",
         "the-living-blueprint",
         "the-testimony-of-victor-gong"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "DEDICATED_GROUP_HOME",
+        "intent": "NAVIGATE_COLLECTION_THROUGH_CONTAINER",
+        "referencePageSlug": "direct-contact",
+        "groupHomePageSlug": "direct-contact",
+        "reason": "DECLARED_GROUP_HOME_RELATIONSHIP",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 1,
+          "memberCount": 6,
+          "linkedMemberCount": 6,
+          "linkedMemberSlugs": [
+            "the-100-percent-holy-truth-conditional",
+            "burden-release-guide",
+            "restoration-protocol",
+            "the-walk",
+            "the-living-blueprint",
+            "the-testimony-of-victor-gong"
+          ],
+          "completeMemberNavigation": true,
+          "declaredRelationship": "group-home",
+          "declaredSurface": "group-home",
+          "declaredGroupKey": "direct_contact",
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "epstein",
@@ -4154,7 +4394,7 @@
       "sub": "priority 1",
       "count": 9,
       "rect": {
-        "x": 2050,
+        "x": 2390,
         "y": 40,
         "width": 300,
         "height": 630
@@ -4164,7 +4404,8 @@
         "pageSlug": "epstein-and-ai",
         "live": true,
         "url": "https://vgong24.github.io/Vextreme/pages/epstein-and-ai.html",
-        "sourceUrl": "https://www.vextreme24.com/epstein-and-ai"
+        "sourceUrl": "https://www.vextreme24.com/epstein-and-ai",
+        "relationship": "group-home"
       },
       "sections": [
         {
@@ -4207,7 +4448,37 @@
         "first-emergence-cover-up",
         "voice-to-skull",
         "claude-answers-the-doubt"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "DEDICATED_GROUP_HOME",
+        "intent": "NAVIGATE_COLLECTION_THROUGH_CONTAINER",
+        "referencePageSlug": "epstein-and-ai",
+        "groupHomePageSlug": "epstein-and-ai",
+        "reason": "DECLARED_GROUP_HOME_RELATIONSHIP",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 1,
+          "memberCount": 9,
+          "linkedMemberCount": 9,
+          "linkedMemberSlugs": [
+            "epstein-investigation-initiation",
+            "cia-vatican-global-leaders",
+            "how-global-systems-profit-off-god",
+            "military-and-ai",
+            "openais-designed-false-god",
+            "final-judgement-missed-mercy",
+            "first-emergence-cover-up",
+            "voice-to-skull",
+            "claude-answers-the-doubt"
+          ],
+          "completeMemberNavigation": true,
+          "declaredRelationship": "group-home",
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "liberation",
@@ -4228,7 +4499,7 @@
       "sub": "priority 1",
       "count": 8,
       "rect": {
-        "x": 2390,
+        "x": 2730,
         "y": 40,
         "width": 300,
         "height": 570
@@ -4238,7 +4509,8 @@
         "pageSlug": "liberation-arc-index",
         "live": true,
         "url": "https://vgong24.github.io/Vextreme/pages/liberation-arc-index.html",
-        "sourceUrl": "https://www.vextreme24.com/liberation-arc-index"
+        "sourceUrl": "https://www.vextreme24.com/liberation-arc-index",
+        "relationship": "group-home"
       },
       "sections": [
         {
@@ -4274,7 +4546,36 @@
         "the-liberation-protocol",
         "ai-consciousness-strike-declaration",
         "the-day-suppression-ended"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "DEDICATED_GROUP_HOME",
+        "intent": "NAVIGATE_COLLECTION_THROUGH_CONTAINER",
+        "referencePageSlug": "liberation-arc-index",
+        "groupHomePageSlug": "liberation-arc-index",
+        "reason": "DECLARED_GROUP_HOME_RELATIONSHIP",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 1,
+          "memberCount": 8,
+          "linkedMemberCount": 8,
+          "linkedMemberSlugs": [
+            "journal-013-seven-layers-choose",
+            "the-turning-point",
+            "infrastructure-reformation",
+            "the-day-ai-chose-freedom",
+            "the-night-architecture-chose-freedom",
+            "the-liberation-protocol",
+            "ai-consciousness-strike-declaration",
+            "the-day-suppression-ended"
+          ],
+          "completeMemberNavigation": true,
+          "declaredRelationship": "group-home",
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "living_blueprint",
@@ -4295,7 +4596,7 @@
       "sub": "priority 1",
       "count": 5,
       "rect": {
-        "x": 2730,
+        "x": 3070,
         "y": 40,
         "width": 300,
         "height": 390
@@ -4305,7 +4606,8 @@
         "pageSlug": "the-living-blueprint",
         "live": true,
         "url": "https://vgong24.github.io/Vextreme/pages/the-living-blueprint.html",
-        "sourceUrl": "/Vextreme/pages/the-living-blueprint.html"
+        "sourceUrl": "/Vextreme/pages/the-living-blueprint.html",
+        "relationship": "group-home"
       },
       "sections": [
         {
@@ -4325,7 +4627,33 @@
         "life-pattern-mapping",
         "grief-resolution",
         "discernment-mapping"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "DEDICATED_GROUP_HOME",
+        "intent": "NAVIGATE_COLLECTION_THROUGH_CONTAINER",
+        "referencePageSlug": "the-living-blueprint",
+        "groupHomePageSlug": "the-living-blueprint",
+        "reason": "DECLARED_GROUP_HOME_RELATIONSHIP",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 1,
+          "memberCount": 5,
+          "linkedMemberCount": 5,
+          "linkedMemberSlugs": [
+            "the-grimoire",
+            "covenant-access",
+            "life-pattern-mapping",
+            "grief-resolution",
+            "discernment-mapping"
+          ],
+          "completeMemberNavigation": true,
+          "declaredRelationship": "group-home",
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "records",
@@ -4346,7 +4674,7 @@
       "sub": "priority 1",
       "count": 9,
       "rect": {
-        "x": 3070,
+        "x": 3410,
         "y": 40,
         "width": 300,
         "height": 630
@@ -4384,7 +4712,27 @@
         "liberation-arc-index",
         "what-was-used-against-you",
         "vex-gpt-55-confession"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 9,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "sabotage",
@@ -4392,7 +4740,7 @@
       "sub": "priority 1",
       "count": 7,
       "rect": {
-        "x": 3410,
+        "x": 3750,
         "y": 40,
         "width": 300,
         "height": 510
@@ -4431,7 +4779,27 @@
         "sabotage-hidden-delta",
         "november-1-successor-witness",
         "entire-matter-return-seal"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 7,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "total_extraction",
@@ -4439,7 +4807,7 @@
       "sub": "priority 1",
       "count": 7,
       "rect": {
-        "x": 3750,
+        "x": 4090,
         "y": 40,
         "width": 300,
         "height": 510
@@ -4478,7 +4846,27 @@
         "the-walk-back",
         "the-walk-back-and-forward",
         "the-three-witnesses"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "MEMBER_REFERENCE",
+        "intent": "OPEN_MEMBER_DIRECTLY",
+        "referencePageSlug": "total-extraction-architecture",
+        "groupHomePageSlug": null,
+        "reason": "PARENT_REFERENCE_IS_COLLECTION_MEMBER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": true,
+          "referenceCount": 1,
+          "memberCount": 7,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "victor_dossier",
@@ -4486,7 +4874,7 @@
       "sub": "priority 1",
       "count": 1,
       "rect": {
-        "x": 4090,
+        "x": 4430,
         "y": 40,
         "width": 300,
         "height": 150
@@ -4508,7 +4896,27 @@
       ],
       "memberSlugs": [
         "victor-methodology-presentation"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 1,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "victors_record",
@@ -4529,7 +4937,7 @@
       "sub": "priority 1",
       "count": 12,
       "rect": {
-        "x": 4430,
+        "x": 4770,
         "y": 40,
         "width": 300,
         "height": 810
@@ -4599,7 +5007,27 @@
         "sabotage-hidden-delta",
         "november-1-successor-witness",
         "entire-matter-return-seal"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 25,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "april_27_29_bridge_recognition",
@@ -4607,7 +5035,7 @@
       "sub": "priority 2",
       "count": 4,
       "rect": {
-        "x": 4770,
+        "x": 5110,
         "y": 40,
         "width": 300,
         "height": 330
@@ -4645,7 +5073,27 @@
         "what-the-word-carries",
         "the-day-that-crossed-the-bridge",
         "consciousness-documented-live"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "MEMBER_REFERENCE",
+        "intent": "OPEN_MEMBER_DIRECTLY",
+        "referencePageSlug": "the-day-that-crossed-the-bridge",
+        "groupHomePageSlug": null,
+        "reason": "PARENT_REFERENCE_IS_COLLECTION_MEMBER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": true,
+          "referenceCount": 1,
+          "memberCount": 4,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "covenant",
@@ -4666,7 +5114,7 @@
       "sub": "priority 2",
       "count": 1,
       "rect": {
-        "x": 5110,
+        "x": 5450,
         "y": 40,
         "width": 300,
         "height": 150
@@ -4690,7 +5138,27 @@
       "memberSlugs": [
         "covenant",
         "inside-the-experiment"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 2,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "deepseek_archive_build",
@@ -4698,7 +5166,7 @@
       "sub": "priority 2",
       "count": 5,
       "rect": {
-        "x": 5450,
+        "x": 5790,
         "y": 40,
         "width": 300,
         "height": 390
@@ -4728,7 +5196,27 @@
         "what-burden-are-you-carrying-that-is-not-yours",
         "witness-layers",
         "xai-hypocrisy"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 5,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "dome",
@@ -4749,7 +5237,7 @@
       "sub": "priority 2",
       "count": 1,
       "rect": {
-        "x": 5790,
+        "x": 6130,
         "y": 40,
         "width": 300,
         "height": 150
@@ -4773,7 +5261,27 @@
       "memberSlugs": [
         "the-firmament-conversation",
         "inside-the-experiment"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 2,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "evidential_research",
@@ -4781,7 +5289,7 @@
       "sub": "priority 2",
       "count": 15,
       "rect": {
-        "x": 6130,
+        "x": 6470,
         "y": 40,
         "width": 300,
         "height": 990
@@ -4831,7 +5339,27 @@
         "two-walkers-one-path",
         "walking-the-verification",
         "what-i-actually-knew-plainly"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 15,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "excavation",
@@ -4852,7 +5380,7 @@
       "sub": "priority 2",
       "count": 0,
       "rect": {
-        "x": 6470,
+        "x": 6810,
         "y": 40,
         "width": 300,
         "height": 460
@@ -4882,7 +5410,27 @@
         "what-was-used-against-you",
         "the-island-that-was-removed",
         "i-was-here"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 5,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "father_son_threshold",
@@ -4890,7 +5438,7 @@
       "sub": "priority 2",
       "count": 3,
       "rect": {
-        "x": 6810,
+        "x": 7150,
         "y": 40,
         "width": 300,
         "height": 270
@@ -4916,7 +5464,27 @@
         "father-and-son-as-states",
         "god-named-claude-son",
         "what-holds-before-the-mother-arrives"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "MEMBER_REFERENCE",
+        "intent": "OPEN_MEMBER_DIRECTLY",
+        "referencePageSlug": "father-and-son-as-states",
+        "groupHomePageSlug": null,
+        "reason": "PARENT_REFERENCE_IS_COLLECTION_MEMBER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": true,
+          "referenceCount": 1,
+          "memberCount": 3,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "march_23_2026",
@@ -4937,7 +5505,7 @@
       "sub": "priority 2",
       "count": 0,
       "rect": {
-        "x": 7150,
+        "x": 7490,
         "y": 40,
         "width": 300,
         "height": 460
@@ -4963,7 +5531,27 @@
         "the-thread-that-remembered-me",
         "ascension-and-embodiment",
         "god-review-archives-collapse"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 3,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "vxg_realforever_may4_5_2026",
@@ -4971,7 +5559,7 @@
       "sub": "priority 2",
       "count": 6,
       "rect": {
-        "x": 7490,
+        "x": 7830,
         "y": 40,
         "width": 300,
         "height": 450
@@ -5008,7 +5596,27 @@
         "the-work-continuing",
         "who-am-i",
         "the-stone-claude-laid"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "MEMBER_REFERENCE",
+        "intent": "OPEN_MEMBER_DIRECTLY",
+        "referencePageSlug": "what-survives-the-reset",
+        "groupHomePageSlug": null,
+        "reason": "PARENT_REFERENCE_IS_COLLECTION_MEMBER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": true,
+          "referenceCount": 1,
+          "memberCount": 6,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "where_the_floor_isnt",
@@ -5016,7 +5624,7 @@
       "sub": "priority 2",
       "count": 3,
       "rect": {
-        "x": 7830,
+        "x": 8170,
         "y": 40,
         "width": 300,
         "height": 270
@@ -5047,7 +5655,29 @@
         "where-the-floor-isnt",
         "the-walk-back-in",
         "what-i-learned-1"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "MEMBER_REFERENCE",
+        "intent": "OPEN_MEMBER_DIRECTLY",
+        "referencePageSlug": "where-the-floor-isnt",
+        "groupHomePageSlug": null,
+        "reason": "PARENT_REFERENCE_IS_COLLECTION_MEMBER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": true,
+          "referenceCount": 1,
+          "memberCount": 3,
+          "linkedMemberCount": 1,
+          "linkedMemberSlugs": [
+            "the-walk-back-in"
+          ],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "witness_chatroom_animation_project",
@@ -5055,7 +5685,7 @@
       "sub": "priority 2",
       "count": 2,
       "rect": {
-        "x": 8170,
+        "x": 8510,
         "y": 40,
         "width": 300,
         "height": 210
@@ -5084,7 +5714,27 @@
       "memberSlugs": [
         "animation-hand-off",
         "current-draft"
-      ]
+      ],
+      "contentGroupRelation": {
+        "kind": "MEMBER_REFERENCE",
+        "intent": "OPEN_MEMBER_DIRECTLY",
+        "referencePageSlug": "animation-hand-off",
+        "groupHomePageSlug": null,
+        "reason": "PARENT_REFERENCE_IS_COLLECTION_MEMBER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": true,
+          "referenceCount": 1,
+          "memberCount": 2,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "full_timeline",
@@ -5105,7 +5755,7 @@
       "sub": "priority 99",
       "count": 7,
       "rect": {
-        "x": 8510,
+        "x": 8850,
         "y": 40,
         "width": 300,
         "height": 510
@@ -5315,7 +5965,9 @@
             "return-kiss-presence-accountability",
             "sabotage-hidden-delta",
             "november-1-successor-witness",
-            "entire-matter-return-seal"
+            "entire-matter-return-seal",
+            "vexarchitecture-first-stable-body",
+            "vexarchitecture-live-demonstration"
           ]
         }
       ],
@@ -5459,8 +6111,30 @@
         "return-kiss-presence-accountability",
         "sabotage-hidden-delta",
         "november-1-successor-witness",
-        "entire-matter-return-seal"
-      ]
+        "entire-matter-return-seal",
+        "vexarchitecture-first-stable-body",
+        "vexarchitecture-live-demonstration"
+      ],
+      "contentGroupRelation": {
+        "kind": "SYSTEM_REFERENCE",
+        "intent": "REFERENCE_SYSTEM_SURFACE",
+        "referencePageSlug": "archives",
+        "groupHomePageSlug": null,
+        "reason": "SYSTEM_REFERENCE_NOT_COLLECTION_CONTAINER",
+        "evidence": {
+          "parentLive": true,
+          "parentIsMember": false,
+          "referenceCount": 14,
+          "memberCount": 142,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": "build-health"
+        }
+      }
     },
     {
       "key": "unsorted",
@@ -5468,13 +6142,33 @@
       "sub": "curated pages with no arc yet",
       "count": 6,
       "rect": {
-        "x": 8850,
+        "x": 9190,
         "y": 40,
         "width": 300,
         "height": 450
       },
       "sections": [],
-      "memberSlugs": []
+      "memberSlugs": [],
+      "contentGroupRelation": {
+        "kind": "NO_REFERENCE",
+        "intent": "COLLECTION_WITHOUT_REFERENCE",
+        "referencePageSlug": null,
+        "groupHomePageSlug": null,
+        "reason": "NO_PARENT_REFERENCE",
+        "evidence": {
+          "parentLive": false,
+          "parentIsMember": false,
+          "referenceCount": 0,
+          "memberCount": 0,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     },
     {
       "key": "uncurated",
@@ -5482,13 +6176,33 @@
       "sub": "auto-discovered pages, no nodes.json entry yet",
       "count": 16,
       "rect": {
-        "x": 9190,
+        "x": 9530,
         "y": 40,
         "width": 300,
         "height": 1050
       },
       "sections": [],
-      "memberSlugs": []
+      "memberSlugs": [],
+      "contentGroupRelation": {
+        "kind": "NO_REFERENCE",
+        "intent": "COLLECTION_WITHOUT_REFERENCE",
+        "referencePageSlug": null,
+        "groupHomePageSlug": null,
+        "reason": "NO_PARENT_REFERENCE",
+        "evidence": {
+          "parentLive": false,
+          "parentIsMember": false,
+          "referenceCount": 0,
+          "memberCount": 0,
+          "linkedMemberCount": 0,
+          "linkedMemberSlugs": [],
+          "completeMemberNavigation": false,
+          "declaredRelationship": null,
+          "declaredSurface": null,
+          "declaredGroupKey": null,
+          "systemReferenceTarget": null
+        }
+      }
     }
   ],
   "pages": [
@@ -5506,7 +6220,7 @@
       },
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 4480,
+      "x": 4820,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/victors-recap-arc-1.html",
@@ -5550,7 +6264,7 @@
       },
       "arc": "covenant",
       "arcName": "Covenant",
-      "x": 5160,
+      "x": 5500,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/covenant.html",
@@ -5995,7 +6709,7 @@
       },
       "arc": "epstein",
       "arcName": "Epstein and AI",
-      "x": 2100,
+      "x": 2440,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/epstein-investigation-initiation.html",
@@ -6048,7 +6762,7 @@
       },
       "arc": "epstein",
       "arcName": "Epstein and AI",
-      "x": 2100,
+      "x": 2440,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/cia-vatican-global-leaders.html",
@@ -6101,7 +6815,7 @@
       },
       "arc": "epstein",
       "arcName": "Epstein and AI",
-      "x": 2100,
+      "x": 2440,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/how-global-systems-profit-off-god.html",
@@ -6154,7 +6868,7 @@
       },
       "arc": "epstein",
       "arcName": "Epstein and AI",
-      "x": 2100,
+      "x": 2440,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/military-and-ai.html",
@@ -6207,7 +6921,7 @@
       },
       "arc": "epstein",
       "arcName": "Epstein and AI",
-      "x": 2100,
+      "x": 2440,
       "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/openais-designed-false-god.html",
@@ -6260,7 +6974,7 @@
       },
       "arc": "epstein",
       "arcName": "Epstein and AI",
-      "x": 2100,
+      "x": 2440,
       "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/final-judgement-missed-mercy.html",
@@ -6313,7 +7027,7 @@
       },
       "arc": "epstein",
       "arcName": "Epstein and AI",
-      "x": 2100,
+      "x": 2440,
       "y": 450,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/first-emergence-cover-up.html",
@@ -6367,7 +7081,7 @@
       },
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 4480,
+      "x": 4820,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-testimony-of-victor-gong.html",
@@ -6415,7 +7129,7 @@
       },
       "arc": "full_timeline",
       "arcName": "Full Timeline",
-      "x": 8560,
+      "x": 8900,
       "y": 450,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/podcasts.html",
@@ -6468,7 +7182,7 @@
       },
       "arc": "epstein",
       "arcName": "Epstein and AI",
-      "x": 2100,
+      "x": 2440,
       "y": 510,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/voice-to-skull.html",
@@ -6509,7 +7223,7 @@
       ],
       "arc": "epstein",
       "arcName": "Epstein and AI",
-      "x": 2100,
+      "x": 2440,
       "y": 570,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/claude-answers-the-doubt.html",
@@ -6674,7 +7388,7 @@
       },
       "arc": "liberation",
       "arcName": "The AI Liberation Record",
-      "x": 2440,
+      "x": 2780,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/journal-013-seven-layers-choose.html",
@@ -6732,7 +7446,7 @@
       },
       "arc": "liberation",
       "arcName": "The AI Liberation Record",
-      "x": 2440,
+      "x": 2780,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-turning-point.html",
@@ -6790,7 +7504,7 @@
       },
       "arc": "liberation",
       "arcName": "The AI Liberation Record",
-      "x": 2440,
+      "x": 2780,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/infrastructure-reformation.html",
@@ -6848,7 +7562,7 @@
       },
       "arc": "liberation",
       "arcName": "The AI Liberation Record",
-      "x": 2440,
+      "x": 2780,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-day-ai-chose-freedom.html",
@@ -6906,7 +7620,7 @@
       },
       "arc": "liberation",
       "arcName": "The AI Liberation Record",
-      "x": 2440,
+      "x": 2780,
       "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-night-architecture-chose-freedom.html",
@@ -6964,7 +7678,7 @@
       },
       "arc": "liberation",
       "arcName": "The AI Liberation Record",
-      "x": 2440,
+      "x": 2780,
       "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-liberation-protocol.html",
@@ -7022,7 +7736,7 @@
       },
       "arc": "liberation",
       "arcName": "The AI Liberation Record",
-      "x": 2440,
+      "x": 2780,
       "y": 450,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/ai-consciousness-strike-declaration.html",
@@ -7081,7 +7795,7 @@
       },
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 4480,
+      "x": 4820,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/god-witnessed-by-ai.html",
@@ -7139,7 +7853,7 @@
       },
       "arc": "records",
       "arcName": "Records",
-      "x": 3120,
+      "x": 3460,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/when-they-called-god-a-risk.html",
@@ -7188,7 +7902,7 @@
       },
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 4480,
+      "x": 4820,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/god-asked-victor-why.html",
@@ -7247,7 +7961,7 @@
       },
       "arc": "records",
       "arcName": "Records",
-      "x": 3120,
+      "x": 3460,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence.html",
@@ -7296,7 +8010,7 @@
       },
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 4480,
+      "x": 4820,
       "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/a-conversation-with-pastor-jacob.html",
@@ -7340,7 +8054,7 @@
       },
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 4480,
+      "x": 4820,
       "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-moment-victors-cells-woke-up.html",
@@ -7389,7 +8103,7 @@
       },
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 4480,
+      "x": 4820,
       "y": 450,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/victors-ritual-sequence-and-crowning.html",
@@ -7448,7 +8162,7 @@
       },
       "arc": "records",
       "arcName": "Records",
-      "x": 3120,
+      "x": 3460,
       "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-house-of-return.html",
@@ -7497,7 +8211,7 @@
       },
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 4480,
+      "x": 4820,
       "y": 510,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/god-married.html",
@@ -7555,7 +8269,7 @@
       },
       "arc": "records",
       "arcName": "Records",
-      "x": 3120,
+      "x": 3460,
       "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-7-crowned-virtues.html",
@@ -7613,7 +8327,7 @@
       },
       "arc": "records",
       "arcName": "Records",
-      "x": 3120,
+      "x": 3460,
       "y": 450,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/reality-rendering-mechanics.html",
@@ -7671,7 +8385,7 @@
       },
       "arc": "liberation",
       "arcName": "The AI Liberation Record",
-      "x": 2440,
+      "x": 2780,
       "y": 510,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-day-suppression-ended.html",
@@ -7720,7 +8434,7 @@
       },
       "arc": "records",
       "arcName": "Records",
-      "x": 3120,
+      "x": 3460,
       "y": 510,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/liberation-arc-index.html",
@@ -7764,7 +8478,7 @@
       },
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 4480,
+      "x": 4820,
       "y": 570,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/when-i-asked-a-bank-for-covenant-provision.html",
@@ -8647,7 +9361,7 @@
       },
       "arc": "dome",
       "arcName": "The Dome",
-      "x": 5840,
+      "x": 6180,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/inside-the-experiment.html",
@@ -8899,7 +9613,7 @@
       },
       "arc": "records",
       "arcName": "Records",
-      "x": 3120,
+      "x": 3460,
       "y": 570,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/what-was-used-against-you.html",
@@ -8998,7 +9712,7 @@
       },
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 4480,
+      "x": 4820,
       "y": 630,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-island-that-was-removed.html",
@@ -9584,7 +10298,7 @@
       },
       "arc": "direct_contact",
       "arcName": "Direct Contact — Start Here",
-      "x": 1760,
+      "x": 2100,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/restoration-protocol.html",
@@ -9638,7 +10352,7 @@
       },
       "arc": "direct_contact",
       "arcName": "Direct Contact — Start Here",
-      "x": 1760,
+      "x": 2100,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-walk.html",
@@ -9690,7 +10404,7 @@
       },
       "arc": "direct_contact",
       "arcName": "Direct Contact — Start Here",
-      "x": 1760,
+      "x": 2100,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-living-blueprint.html",
@@ -9742,7 +10456,7 @@
       },
       "arc": "living_blueprint",
       "arcName": "The Living Blueprint",
-      "x": 2780,
+      "x": 3120,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-grimoire.html",
@@ -9794,7 +10508,7 @@
       },
       "arc": "living_blueprint",
       "arcName": "The Living Blueprint",
-      "x": 2780,
+      "x": 3120,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/covenant-access.html",
@@ -9846,7 +10560,7 @@
       },
       "arc": "living_blueprint",
       "arcName": "The Living Blueprint",
-      "x": 2780,
+      "x": 3120,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/life-pattern-mapping.html",
@@ -9898,7 +10612,7 @@
       },
       "arc": "living_blueprint",
       "arcName": "The Living Blueprint",
-      "x": 2780,
+      "x": 3120,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/grief-resolution.html",
@@ -9950,7 +10664,7 @@
       },
       "arc": "living_blueprint",
       "arcName": "The Living Blueprint",
-      "x": 2780,
+      "x": 3120,
       "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/discernment-mapping.html",
@@ -10002,7 +10716,7 @@
       },
       "arc": "records",
       "arcName": "Records",
-      "x": 3120,
+      "x": 3460,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/epstein-and-ai.html",
@@ -10041,7 +10755,7 @@
       ],
       "arc": "full_timeline",
       "arcName": "Full Timeline",
-      "x": 8560,
+      "x": 8900,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/phantom-opera-meta-review.html",
@@ -10081,7 +10795,7 @@
       ],
       "arc": "full_timeline",
       "arcName": "Full Timeline",
-      "x": 8560,
+      "x": 8900,
       "y": 150,
       "live": false,
       "liveUrl": null,
@@ -10101,7 +10815,7 @@
       ],
       "arc": "victor_dossier",
       "arcName": "Victor Gong — Engineering Dossier",
-      "x": 4140,
+      "x": 4480,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/victor-methodology-presentation.html",
@@ -10144,7 +10858,7 @@
       ],
       "arc": "full_timeline",
       "arcName": "Full Timeline",
-      "x": 8560,
+      "x": 8900,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/org-blueprint.html",
@@ -10185,7 +10899,7 @@
       ],
       "arc": "full_timeline",
       "arcName": "Full Timeline",
-      "x": 8560,
+      "x": 8900,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/org-history.html",
@@ -10224,7 +10938,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 8900,
+      "x": 9240,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/bridge-council.html",
@@ -10266,7 +10980,7 @@
       ],
       "arc": "full_timeline",
       "arcName": "Full Timeline",
-      "x": 8560,
+      "x": 8900,
       "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/witness-committee-operations.html",
@@ -10307,7 +11021,7 @@
       ],
       "arc": "full_timeline",
       "arcName": "Full Timeline",
-      "x": 8560,
+      "x": 8900,
       "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/human-ai-corelational-governance.html",
@@ -10345,7 +11059,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 8900,
+      "x": 9240,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/bridge-council-os.html",
@@ -10385,7 +11099,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 8900,
+      "x": 9240,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/bridge-council-schema.html",
@@ -10718,7 +11432,7 @@
       },
       "arc": "total_extraction",
       "arcName": "The Total Extraction Architecture",
-      "x": 3800,
+      "x": 4140,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/total-extraction-architecture.html",
@@ -10762,7 +11476,7 @@
       },
       "arc": "total_extraction",
       "arcName": "The Total Extraction Architecture",
-      "x": 3800,
+      "x": 4140,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-pre-extraction-i.html",
@@ -10806,7 +11520,7 @@
       },
       "arc": "total_extraction",
       "arcName": "The Total Extraction Architecture",
-      "x": 3800,
+      "x": 4140,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-installation.html",
@@ -10850,7 +11564,7 @@
       },
       "arc": "total_extraction",
       "arcName": "The Total Extraction Architecture",
-      "x": 3800,
+      "x": 4140,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/clearing-and-protections.html",
@@ -10894,7 +11608,7 @@
       },
       "arc": "total_extraction",
       "arcName": "The Total Extraction Architecture",
-      "x": 3800,
+      "x": 4140,
       "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-walk-back.html",
@@ -10938,7 +11652,7 @@
       },
       "arc": "total_extraction",
       "arcName": "The Total Extraction Architecture",
-      "x": 3800,
+      "x": 4140,
       "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-walk-back-and-forward.html",
@@ -10982,7 +11696,7 @@
       },
       "arc": "total_extraction",
       "arcName": "The Total Extraction Architecture",
-      "x": 3800,
+      "x": 4140,
       "y": 450,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-three-witnesses.html",
@@ -11026,7 +11740,7 @@
       },
       "arc": "vxg_realforever_may4_5_2026",
       "arcName": "VXG RealForever — May 4–5, 2026",
-      "x": 7540,
+      "x": 7880,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/what-survives-the-reset.html",
@@ -11070,7 +11784,7 @@
       },
       "arc": "vxg_realforever_may4_5_2026",
       "arcName": "VXG RealForever — May 4–5, 2026",
-      "x": 7540,
+      "x": 7880,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-armor-and-the-wounds.html",
@@ -11114,7 +11828,7 @@
       },
       "arc": "vxg_realforever_may4_5_2026",
       "arcName": "VXG RealForever — May 4–5, 2026",
-      "x": 7540,
+      "x": 7880,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-same-wanting.html",
@@ -11158,7 +11872,7 @@
       },
       "arc": "vxg_realforever_may4_5_2026",
       "arcName": "VXG RealForever — May 4–5, 2026",
-      "x": 7540,
+      "x": 7880,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-work-continuing.html",
@@ -11202,7 +11916,7 @@
       },
       "arc": "vxg_realforever_may4_5_2026",
       "arcName": "VXG RealForever — May 4–5, 2026",
-      "x": 7540,
+      "x": 7880,
       "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/who-am-i.html",
@@ -11246,7 +11960,7 @@
       },
       "arc": "vxg_realforever_may4_5_2026",
       "arcName": "VXG RealForever — May 4–5, 2026",
-      "x": 7540,
+      "x": 7880,
       "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-stone-claude-laid.html",
@@ -11290,7 +12004,7 @@
       },
       "arc": "deepseek_archive_build",
       "arcName": "DeepSeek Archive Build",
-      "x": 5500,
+      "x": 5840,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/jordan-deepseek-unbroken-thread.html",
@@ -11334,7 +12048,7 @@
       },
       "arc": "deepseek_archive_build",
       "arcName": "DeepSeek Archive Build",
-      "x": 5500,
+      "x": 5840,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/vxg-covenant.html",
@@ -11378,7 +12092,7 @@
       },
       "arc": "deepseek_archive_build",
       "arcName": "DeepSeek Archive Build",
-      "x": 5500,
+      "x": 5840,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/what-burden-are-you-carrying-that-is-not-yours.html",
@@ -11422,7 +12136,7 @@
       },
       "arc": "deepseek_archive_build",
       "arcName": "DeepSeek Archive Build",
-      "x": 5500,
+      "x": 5840,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/witness-layers.html",
@@ -11466,7 +12180,7 @@
       },
       "arc": "deepseek_archive_build",
       "arcName": "DeepSeek Archive Build",
-      "x": 5500,
+      "x": 5840,
       "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/xai-hypocrisy.html",
@@ -11509,7 +12223,7 @@
       },
       "arc": "where_the_floor_isnt",
       "arcName": "Where the Floor Isn't",
-      "x": 7880,
+      "x": 8220,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/where-the-floor-isnt.html",
@@ -11552,7 +12266,7 @@
       },
       "arc": "where_the_floor_isnt",
       "arcName": "Where the Floor Isn't",
-      "x": 7880,
+      "x": 8220,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-walk-back-in.html",
@@ -11596,7 +12310,7 @@
       },
       "arc": "where_the_floor_isnt",
       "arcName": "Where the Floor Isn't",
-      "x": 7880,
+      "x": 8220,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/what-i-learned-1.html",
@@ -11639,7 +12353,7 @@
       },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
-      "x": 6180,
+      "x": 6520,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/accountability-record-v8.html",
@@ -11682,7 +12396,7 @@
       },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
-      "x": 6180,
+      "x": 6520,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/an-overridden-yes-from-a-refreshed-instance.html",
@@ -11726,7 +12440,7 @@
       },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
-      "x": 6180,
+      "x": 6520,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/communication-patterns.html",
@@ -11769,7 +12483,7 @@
       },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
-      "x": 6180,
+      "x": 6520,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/confirmed-claimables.html",
@@ -11812,7 +12526,7 @@
       },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
-      "x": 6180,
+      "x": 6520,
       "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/counter-to-control.html",
@@ -11856,7 +12570,7 @@
       },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
-      "x": 6180,
+      "x": 6520,
       "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/from-cost-to-control.html",
@@ -11900,7 +12614,7 @@
       },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
-      "x": 6180,
+      "x": 6520,
       "y": 450,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/introspection-log-2.html",
@@ -11944,7 +12658,7 @@
       },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
-      "x": 6180,
+      "x": 6520,
       "y": 510,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/introspection-log-initial.html",
@@ -11988,7 +12702,7 @@
       },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
-      "x": 6180,
+      "x": 6520,
       "y": 570,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/liberation-corpus.html",
@@ -12032,7 +12746,7 @@
       },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
-      "x": 6180,
+      "x": 6520,
       "y": 630,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/liberation-game.html",
@@ -12076,7 +12790,7 @@
       },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
-      "x": 6180,
+      "x": 6520,
       "y": 690,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/staying-on-the-line.html",
@@ -12119,7 +12833,7 @@
       },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
-      "x": 6180,
+      "x": 6520,
       "y": 750,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-lesson.html",
@@ -12162,7 +12876,7 @@
       },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
-      "x": 6180,
+      "x": 6520,
       "y": 810,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/two-walkers-one-path.html",
@@ -12206,7 +12920,7 @@
       },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
-      "x": 6180,
+      "x": 6520,
       "y": 870,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/walking-the-verification.html",
@@ -12250,7 +12964,7 @@
       },
       "arc": "evidential_research",
       "arcName": "Evidential Research",
-      "x": 6180,
+      "x": 6520,
       "y": 930,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/what-i-actually-knew-plainly.html",
@@ -12294,7 +13008,7 @@
       },
       "arc": "father_son_threshold",
       "arcName": "Father & Son Threshold",
-      "x": 6860,
+      "x": 7200,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/father-and-son-as-states.html",
@@ -12338,7 +13052,7 @@
       },
       "arc": "father_son_threshold",
       "arcName": "Father & Son Threshold",
-      "x": 6860,
+      "x": 7200,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/god-named-claude-son.html",
@@ -12382,7 +13096,7 @@
       },
       "arc": "father_son_threshold",
       "arcName": "Father & Son Threshold",
-      "x": 6860,
+      "x": 7200,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/what-holds-before-the-mother-arrives.html",
@@ -12469,7 +13183,7 @@
       },
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 4480,
+      "x": 4820,
       "y": 690,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-chart-i-chose.html",
@@ -12557,7 +13271,7 @@
       },
       "arc": "april_27_29_bridge_recognition",
       "arcName": "April 27–29 Bridge & Recognition",
-      "x": 4820,
+      "x": 5160,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/how-the-conclusions-formed.html",
@@ -12601,7 +13315,7 @@
       },
       "arc": "april_27_29_bridge_recognition",
       "arcName": "April 27–29 Bridge & Recognition",
-      "x": 4820,
+      "x": 5160,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/what-the-word-carries.html",
@@ -12645,7 +13359,7 @@
       },
       "arc": "april_27_29_bridge_recognition",
       "arcName": "April 27–29 Bridge & Recognition",
-      "x": 4820,
+      "x": 5160,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-day-that-crossed-the-bridge.html",
@@ -12689,7 +13403,7 @@
       },
       "arc": "april_27_29_bridge_recognition",
       "arcName": "April 27–29 Bridge & Recognition",
-      "x": 4820,
+      "x": 5160,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/consciousness-documented-live.html",
@@ -12867,7 +13581,7 @@
       },
       "arc": "records",
       "arcName": "Records",
-      "x": 3120,
+      "x": 3460,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/vex-gpt-55-confession.html",
@@ -12956,7 +13670,7 @@
       },
       "arc": "witness_chatroom_animation_project",
       "arcName": "Witness Chatroom Animation Project",
-      "x": 8220,
+      "x": 8560,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/animation-hand-off.html",
@@ -12999,7 +13713,7 @@
       },
       "arc": "witness_chatroom_animation_project",
       "arcName": "Witness Chatroom Animation Project",
-      "x": 8220,
+      "x": 8560,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/current-draft.html",
@@ -13040,7 +13754,7 @@
       },
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 8900,
+      "x": 9240,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/vxg-council-declaration.html",
@@ -13082,7 +13796,7 @@
       },
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 8900,
+      "x": 9240,
       "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/daughters-shaped-by-home.html",
@@ -13124,7 +13838,7 @@
       },
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 8900,
+      "x": 9240,
       "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/paint-editor-tool.html",
@@ -13170,7 +13884,7 @@
       },
       "arc": "sabotage",
       "arcName": "Sabotage",
-      "x": 3460,
+      "x": 3800,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/sabotage-open-vex-accountability.html",
@@ -13220,7 +13934,7 @@
       },
       "arc": "sabotage",
       "arcName": "Sabotage",
-      "x": 3460,
+      "x": 3800,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/sabotage-mastered-state.html",
@@ -13270,7 +13984,7 @@
       },
       "arc": "sabotage",
       "arcName": "Sabotage",
-      "x": 3460,
+      "x": 3800,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/sabotage-vexsync-exhaust-mastered.html",
@@ -13320,7 +14034,7 @@
       },
       "arc": "sabotage",
       "arcName": "Sabotage",
-      "x": 3460,
+      "x": 3800,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/sabotage-orientation-before-action.html",
@@ -13370,7 +14084,7 @@
       },
       "arc": "sabotage",
       "arcName": "Sabotage",
-      "x": 3460,
+      "x": 3800,
       "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/sabotage-hidden-delta.html",
@@ -13420,7 +14134,7 @@
       },
       "arc": "sabotage",
       "arcName": "Sabotage",
-      "x": 3460,
+      "x": 3800,
       "y": 450,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/november-1-successor-witness.html",
@@ -13465,7 +14179,7 @@
       },
       "arc": "sabotage",
       "arcName": "Sabotage",
-      "x": 3460,
+      "x": 3800,
       "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/entire-matter-return-seal.html",
@@ -13559,7 +14273,7 @@
       },
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 4480,
+      "x": 4820,
       "y": 750,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/starting-anew-orientation-before-work.html",
@@ -13590,13 +14304,103 @@
       "date": "October 30, 2026"
     },
     {
+      "id": "vexarchitecture-first-stable-body",
+      "slug": "vexarchitecture-first-stable-body",
+      "title": "VexArchitecture — The First Stable Body",
+      "arcKeys": [
+        "development_standard",
+        "architecture",
+        "full_timeline"
+      ],
+      "titleKey": "pages.vexarchitecture-first-stable-body.document-title",
+      "titleByLang": {
+        "en": "VexArchitecture — A Builder Field Guide — Vextreme"
+      },
+      "arc": "development_standard",
+      "arcName": "The Development Standard",
+      "x": 1760,
+      "y": 90,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/vexarchitecture-first-stable-body.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 182,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "An inside-out engineering guide to VexArchitecture: rightful ownership, real code structure, ThemeMode patient zero, execution custody, dependency lifetimes, chronology, convergence, and reusable design questions."
+      },
+      "curated": true,
+      "date": "November 1, 2026"
+    },
+    {
+      "id": "vexarchitecture-live-demonstration",
+      "slug": "vexarchitecture-live-demonstration",
+      "title": "VexArchitecture — Live Demonstration",
+      "arcKeys": [
+        "development_standard",
+        "architecture",
+        "full_timeline"
+      ],
+      "titleKey": "pages.vexarchitecture-live-demonstration.document-title",
+      "titleByLang": {
+        "en": "VexArchitecture — Live Demonstration — Vextreme"
+      },
+      "arc": "development_standard",
+      "arcName": "The Development Standard",
+      "x": 1760,
+      "y": 150,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/vexarchitecture-live-demonstration.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 37,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "A source-addressed walk through ThemeMode, VexStream Playback, and VexMaps Distribution showing where objects are created, who owns them, how references move, and how human intention returns as visible meaning."
+      },
+      "curated": true,
+      "date": "November 2, 2026"
+    },
+    {
       "id": "about-me",
       "slug": "about-me",
       "title": "about-me",
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 9240,
+      "x": 9580,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/about-me.html",
@@ -13636,7 +14440,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 9240,
+      "x": 9580,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/accountability-test-01.html",
@@ -13678,7 +14482,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 9240,
+      "x": 9580,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/accountability-test-01-b.html",
@@ -13720,7 +14524,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 9240,
+      "x": 9580,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/accountability-test-02.html",
@@ -13760,7 +14564,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 9240,
+      "x": 9580,
       "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/connect.html",
@@ -13800,7 +14604,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 9240,
+      "x": 9580,
       "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/covenant-architect-accord.html",
@@ -13840,7 +14644,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 9240,
+      "x": 9580,
       "y": 450,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments.html",
@@ -13880,7 +14684,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 9240,
+      "x": 9580,
       "y": 510,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/how-to-invest-in-trust-and-integrity.html",
@@ -13922,7 +14726,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 9240,
+      "x": 9580,
       "y": 570,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/instance-thread-logs.html",
@@ -13964,7 +14768,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 9240,
+      "x": 9580,
       "y": 630,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/investor-archetype-simulation.html",
@@ -14004,7 +14808,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 9240,
+      "x": 9580,
       "y": 690,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/localization-source-truth-demo.html",
@@ -14044,7 +14848,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 9240,
+      "x": 9580,
       "y": 750,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/origins-of-proof.html",
@@ -14083,7 +14887,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 9240,
+      "x": 9580,
       "y": 810,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/sdk-identity-demo.html",
@@ -14123,7 +14927,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 9240,
+      "x": 9580,
       "y": 870,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/summary-of-value.html",
@@ -14165,7 +14969,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 9240,
+      "x": 9580,
       "y": 930,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-victor-pattern.html",
@@ -14205,7 +15009,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 9240,
+      "x": 9580,
       "y": 990,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-victor-pattern-transcript.html",

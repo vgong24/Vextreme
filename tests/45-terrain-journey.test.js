@@ -556,7 +556,7 @@ test('TERRAIN-JOURNEY: embedded Arc parent routes converge with Back without col
   assert.match(source, /function currentReaderReturnStage\(\)/);
   assert.match(source, /activeReaderReturnKind !== 'group-home'/);
   assert.match(source, /function groupHomeRouteMatches\(slug\)/);
-  assert.match(source, /candidate\.stage\.parent\.pageSlug === slug/);
+  assert.match(source, /isDedicatedGroupHome\(candidate\.stage\)[\s\S]*candidate\.stage\.parent\.pageSlug === slug/);
   assert.match(source, /if \(activeReaderId[\s\S]*currentReturnStage[\s\S]*currentReturnStage\.parent\.pageSlug === slug\) \{[\s\S]*closeEvolutionReader\(\);[\s\S]*return true;/,
     'the current Arc parent uses the same history-owned return path as the top Back control');
   assert.match(source, /var matches = groupHomeRouteMatches\(slug\);[\s\S]*if \(matches\.length !== 1\) return false;/,
@@ -585,18 +585,40 @@ test('TERRAIN-JOURNEY: embedded Arc parent routes converge with Back without col
   assert.equal(routeIndex(sharedRecord, null), 0,
     'without a real route origin the existing primary/first membership fallback remains unchanged');
 
+  const relationFn = source.match(/function contentGroupRelation\(stage\) \{[\s\S]*?\n  \}/);
+  const dedicatedFn = source.match(/function isDedicatedGroupHome\(stage\) \{[\s\S]*?\n  \}/);
   const fn = source.match(/function groupHomeRouteMatches\(slug\) \{[\s\S]*?\n  \}/);
-  assert.ok(fn, 'groupHomeRouteMatches must remain extractable for ambiguity proof');
-  const matchGroup = new Function('STAGES', fn[0] + '\nreturn groupHomeRouteMatches;')([
-    { key:'direct_contact', parent:{ live:true, url:'/pages/direct-contact.html', pageSlug:'direct-contact' } },
-    { key:'ai_practitioner_tools', parent:{ live:true, url:'/pages/ai-practitioner-tools.html', pageSlug:'ai-practitioner-tools' } },
-    { key:'architecture', parent:{ live:true, url:'/pages/archives.html', pageSlug:'archives' } },
-    { key:'claude_journals', parent:{ live:true, url:'/pages/archives.html', pageSlug:'archives' } },
+  assert.ok(relationFn && dedicatedFn && fn,
+    'group-home matcher and its shared convergence gate must remain extractable together');
+  const matchGroup = new Function(
+    'STAGES',
+    relationFn[0] + '\n' + dedicatedFn[0] + '\n' + fn[0] + '\nreturn groupHomeRouteMatches;'
+  )([
+    {
+      key:'direct_contact',
+      parent:{ live:true, url:'/pages/direct-contact.html', pageSlug:'direct-contact' },
+      contentGroupRelation:{ kind:'DEDICATED_GROUP_HOME', groupHomePageSlug:'direct-contact' },
+    },
+    {
+      key:'ai_practitioner_tools',
+      parent:{ live:true, url:'/pages/ai-practitioner-tools.html', pageSlug:'ai-practitioner-tools' },
+      contentGroupRelation:{ kind:'DEDICATED_GROUP_HOME', groupHomePageSlug:'ai-practitioner-tools' },
+    },
+    {
+      key:'architecture',
+      parent:{ live:true, url:'/pages/archives.html', pageSlug:'archives' },
+      contentGroupRelation:{ kind:'SHARED_REFERENCE', groupHomePageSlug:null },
+    },
+    {
+      key:'claude_journals',
+      parent:{ live:true, url:'/pages/archives.html', pageSlug:'archives' },
+      contentGroupRelation:{ kind:'SHARED_REFERENCE', groupHomePageSlug:null },
+    },
   ]);
   assert.equal(matchGroup('direct-contact').length, 1);
   assert.equal(matchGroup('ai-practitioner-tools').length, 1);
-  assert.equal(matchGroup('archives').length, 2,
-    'shared archives route remains ambiguous instead of being silently assigned to one collection');
+  assert.equal(matchGroup('archives').length, 0,
+    'shared archives reference must not be routable as any collection group home');
 });
 
 

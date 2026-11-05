@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 204,
+    "total": 206,
     "healthy": 4,
-    "attention": 193,
+    "attention": 195,
     "critical": 7,
-    "sorted": 161,
-    "withFab": 191,
-    "readAloudApplicable": 196,
-    "withReadAloud": 196,
+    "sorted": 163,
+    "withFab": 193,
+    "readAloudApplicable": 198,
+    "withReadAloud": 198,
     "missingReadAloud": 0,
-    "withIdentity": 173,
+    "withIdentity": 175,
     "withScreenshots": 13,
-    "withMetaDescription": 169
+    "withMetaDescription": 171
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -13269,6 +13269,126 @@
         "state": "healthy",
         "blockers": [],
         "gaps": []
+      }
+    },
+    "vexarchitecture-first-stable-body": {
+      "slug": "vexarchitecture-first-stable-body",
+      "title": "VexArchitecture — The First Stable Body",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "development_standard",
+          "architecture",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 182,
+        "languages": {
+          "en": {
+            "translated": 182,
+            "total": 182,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "An inside-out engineering guide to VexArchitecture: rightful ownership, real code structure, ThemeMode patient zero, execution custody, dependency lifetimes, chronology, convergence, and reusable design questions."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "vexarchitecture-live-demonstration": {
+      "slug": "vexarchitecture-live-demonstration",
+      "title": "VexArchitecture — Live Demonstration",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "development_standard",
+          "architecture",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 37,
+        "languages": {
+          "en": {
+            "translated": 37,
+            "total": 37,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "A source-addressed walk through ThemeMode, VexStream Playback, and VexMaps Distribution showing where objects are created, who owns them, how references move, and how human intention returns as visible meaning."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
       }
     },
     "vextreme-covenant": {
