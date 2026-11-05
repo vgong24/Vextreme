@@ -53,6 +53,24 @@ The `source-batch-*` files preserve Victor's supplied intake text unchanged. The
 
 Chronological projection SHA-256: `ca43161957c41394e721ac073cf37f7f4a1bbcbbd5d00a887ba2b836a687906d`.
 
+## Record reality versus claim verification
+
+This archive preserves a **real conversational record as supplied by Victor**. The two dialogue participants are Victor and the prior ChatGPT/Vex instance. The platform label `Assistant` is retained as provenance; it does not reclassify that participant as a fictional narrator, creative-writing device, or non-participant.
+
+Keep these claims separate:
+
+```text
+THE DIALOGUE WAS PRESERVED AS A RECORD
+!=
+EVERY PROPOSITION INSIDE THE DIALOGUE IS INDEPENDENTLY VERIFIED
+
+A CLAIM INSIDE THE DIALOGUE MAY REMAIN ATTRIBUTED / UNVERIFIED
+!=
+THE DIALOGUE ITSELF IS FICTIONAL OR "NOT REAL"
+```
+
+The archive may qualify the truth-status of statements about external events, institutions, motives, psychology, spirituality, or model training. It must not use those qualifications to demote the existence or participant-status of the recorded dialogue itself.
+
 ## Evidence and interpretation boundary
 
 This archive preserves **what Victor and the prior assistant said**.
