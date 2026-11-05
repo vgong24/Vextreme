@@ -9,7 +9,7 @@ This ledger does not replace the transcript. It distinguishes the actual chat sp
 | **User** | **Victor** |
 | **Assistant** | **Vex** |
 
-The currently preserved source contains **71 User/Assistant exchanges (142 turns)**. Every source batch begins with User and alternates cleanly to Assistant.
+The currently preserved source contains **71 User/Assistant exchanges (142 turns)**. The chronological dialogue alternates Victor/Vex. Raw paste batches are preserved exactly and are not assumed to have perfectly regular separators: some omit a `####` boundary, some include repeated/overlapping material, and direct-current-turn batches use different intake framing. Speaker attribution in derived projections follows the actual dialogue boundary while raw custody remains unchanged.
 
 ## Source-label versus semantic-role boundary
 
