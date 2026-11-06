@@ -94,21 +94,32 @@ test('DISCOVERY-DANGER: source custody and direct-current-turn boundary stay exp
   assert.equal(p.representativeMediaStatus,'PRESENT');
 });
 
-test('DISCOVERY-DANGER: representative art is immutable derived presentation',()=>{
+test('DISCOVERY-DANGER: representative art is immutable full-resolution derived presentation',()=>{
   const page=read('pages/'+SLUG+'.html');
   const views=json('data/viewmodels.json');
   const strings=json('data/strings/source/pages/'+SLUG+'.json');
   const p=strings._meta.sourceProvenance;
-  assert.match(page,/4122c4881e7566dec79f677534e6d5fbb50cea9e/);
-  assert.match(page,/ed3ad1f4ca08712cd4fd617665e92cf40bc4c526ff46c567bee22ac0567a5401/);
+  assert.match(page,/f4137edd070f5871c1593b579768413efcb781b8/);
+  assert.match(page,/311e9822cf4f353e29e7aecd2e6397a3e9a4d8e4b67869e4a9687fde51fb9ef9/);
   assert.match(page,/data-media-class="representative"/);
+  assert.match(page,/data-media-width="1536"/);
+  assert.match(page,/data-media-height="1024"/);
+  assert.match(page,/width="1536" height="1024"/);
   assert.equal(views[SLUG].preview.src,p.representativeMediaTarget);
-  assert.equal(p.representativeMediaAssetCommit,'4122c4881e7566dec79f677534e6d5fbb50cea9e');
-  assert.equal(p.representativeMediaSha256,'ed3ad1f4ca08712cd4fd617665e92cf40bc4c526ff46c567bee22ac0567a5401');
+  assert.equal(p.representativeMediaAssetCommit,'f4137edd070f5871c1593b579768413efcb781b8');
+  assert.equal(p.representativeMediaSha256,'311e9822cf4f353e29e7aecd2e6397a3e9a4d8e4b67869e4a9687fde51fb9ef9');
+  assert.equal(p.representativeMediaWidth,1536);
+  assert.equal(p.representativeMediaHeight,1024);
+  assert.equal(p.representativeMediaMime,'image/webp');
+  assert.equal(p.representativeMediaBytes,930806);
   assert.equal(p.representativeMediaClass,'REPRESENTATIVE_NOT_EVIDENCE_OR_ADJUDICATION');
   assert.equal(p.representativeMediaStatus,'PRESENT');
+  assert.equal(p.replacementHighResolutionSourceSha256,'53dc16d9203cc94d31c48172cbf22e44b664c7f1285841e99e8d39804ed64480');
+  assert.equal(p.replacementHighResolutionSourceWidth,1536);
+  assert.equal(p.replacementHighResolutionSourceHeight,1024);
+  assert.equal(p.replacementHighResolutionSourceRelation,'VICTOR_SUPPLIED_HIGH_RESOLUTION_COPY_NOT_BYTE_IDENTICAL_TO_PRIOR_RECORDED_ORIGINAL');
   assert.equal(p.originalGeneratedImageSha256,'10fed45d983ecd5788bc82f59d0ff9d9e9846cd6c230d655eec4de80755b18df');
-  assert.equal(p.representativeMediaTransformation,'RESIZED_256x171_WEBP_Q20_FROM_GENERATED_PNG');
+  assert.equal(p.representativeMediaTransformation,'FULL_RESOLUTION_1536x1024_WEBP_Q100_FROM_VICTOR_SUPPLIED_PNG');
   assert.equal(p.sourceClaimsRemainAttributed,true);
 });
 
