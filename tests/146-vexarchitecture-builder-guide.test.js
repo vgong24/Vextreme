@@ -95,6 +95,9 @@ test('VEXARCHITECTURE GUIDE: Partner extends the causal model without becoming m
     'Partner ≠ mirrored Family',
     'Partner Source ≠ Connection.Id ≠ VexExecution.RelationshipId',
     'Receiver ≠ mandatory Store or Family',
+    'Semantic ownership is the reusable rule; literal VexFamily is one reusable realization',
+    'Media3VexStreamPlaybackConnection, for example, fulfills VexStreamPlaybackConnectionFlow rather than VexPartner.Connection.',
+    'Start with this smaller provider boundary when that answers the real question.',
     'Another abstraction is earned only when a concrete recurring question has no truthful existing owner.',
   ]) {
     assert.ok(page.includes(required), 'missing reasoning-preserving Partner witness: ' + required);
@@ -105,6 +108,36 @@ test('VEXARCHITECTURE GUIDE: Partner extends the causal model without becoming m
 });
 
 
+test('VEXARCHITECTURE GUIDE: real CGM pen and pump source cuts show what repeats and what stays local', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  for (const required of [
+    'See the grammar survive three different source pressures',
+    'class BleDecoder',
+    'class HttpDecoder',
+    'VexPartner.Connection.Conversion&lt;',
+    'Observation(',
+    'Connected Pen · same grammar, no CGM sequence law',
+    'data class DoseRecorded(',
+    'data class CartridgeObserved(',
+    'Pump · Family authors meaning, Partner realizes participation',
+    'family.activate(',
+    'InsulinFamily.Act.Method.RequestPumpDelivery(',
+    'act.launchWith(executionRoot)',
+    'ACCEPTED != DELIVERED',
+    'When to earn Partner instead of stopping at provider truth',
+    'ordinary provider boundary',
+    'external Source meaning matters',
+    'same class name alone',
+  ]) {
+    assert.ok(page.includes(required), 'missing source-pressure bridge: ' + required);
+  }
+
+  assert.ok(page.includes('The pen keeps Source / Signal / Connection / Conversion / Observation / Receiver'));
+  assert.ok(page.includes('it has no CGM acquisition epoch, sequence, or periodic-gap rule'));
+  assert.ok(page.includes('Store and Family State remain unchanged until later DeliveryObserved evidence returns'));
+});
+
 test('VEXARCHITECTURE GUIDE: ThemeMode teaches semantic carriage rather than class-shape cargo culting', () => {
   const page = read('pages/vexarchitecture-first-stable-body.html');
 
@@ -114,6 +147,8 @@ test('VEXARCHITECTURE GUIDE: ThemeMode teaches semantic carriage rather than cla
   assert.ok(page.includes('Effect.Save(parameter)'));
   assert.ok(page.includes('Act.Method.Save(store, same parameter)'));
   assert.ok(page.includes('Do not copy ThemeMode. Reuse the questions.'));
+  assert.ok(page.includes('Semantic ownership is the reusable rule; literal VexFamily is one reusable realization'));
+  assert.ok(page.includes('VexStream and Maps deliberately show other rightful semantic-owner shapes'));
 });
 
 test('VEXARCHITECTURE GUIDE: active work, lifetime, chronology, and convergence remain distinct', () => {
@@ -182,7 +217,7 @@ test('VEXARCHITECTURE GUIDE: every bound display key exists in the page string s
 
   assert.deepEqual(missing, []);
   assert.equal(strings._meta.sourceProvenance.originPullRequest, 209);
-  assert.equal(strings._meta.sourceProvenance.guideRevision, 'DEVELOPMENT_STANDARD_5_N_REASONING_PRESERVING_PARTNER_BUILDER_FIELD_GUIDE');
+  assert.equal(strings._meta.sourceProvenance.guideRevision, 'DEVELOPMENT_STANDARD_5_N_SOURCE_PRESSURED_PARTNER_BUILDER_FIELD_GUIDE');
   assert.equal(
     strings._meta.sourceProvenance.currentPartnerSourceSnapshot,
     '0d66416ba36ef876f0111e813a4a8f7c0308a752',
@@ -226,8 +261,9 @@ test('VEXARCHITECTURE GUIDE: realization seam preserves pure Act meaning and ful
   assert.ok(page.includes('already-authored owner / Approach / RelationshipId'));
   assert.ok(page.includes('VexMethod.Result'));
   assert.ok(page.includes('smallest truthful provider fact'));
-  assert.ok(page.includes('Success / Failure are lawful returns from invoke()'));
-  assert.ok(page.includes('Family / Execution continuation forms Error'));
+  assert.ok(page.includes('Success / Failure are lawful returns from Method.invoke()'));
+  assert.ok(page.includes('VexExecution executes that already-bound method and rethrows cancellation'));
+  assert.ok(page.includes('maps it to VexMethod.Result.Error(cause) before the semantic result handler runs'));
 });
 
 test('VEXARCHITECTURE GUIDE: ThemeMode referential currentness stays explicitly local to ThemeMode', () => {
@@ -247,6 +283,8 @@ test('VEXARCHITECTURE GUIDE: Relay is conditional composition and graph remains 
   assert.ok(page.includes('invoke a foreign Effect directly'));
   assert.ok(page.includes('VexLifeRelayGraph is only a session-level projection'));
   assert.ok(page.includes('does not construct, activate, or semantically own them'));
+  assert.ok(page.includes('The word Relay is not authority by itself'));
+  assert.ok(page.includes('A same-named mechanism elsewhere is not equivalent unless its source contract actually joins these semantics.'));
 });
 
 test('VEXARCHITECTURE GUIDE: projection never claims rendered presentation arrival by itself', () => {
