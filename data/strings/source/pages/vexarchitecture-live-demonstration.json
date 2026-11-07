@@ -2,13 +2,15 @@
   "_meta": {
     "scope": "pages.vexarchitecture-live-demonstration",
     "category": "production",
-    "description": "English source strings for the VexArchitecture Live Demonstration companion page.",
+    "description": "English source strings for the VexArchitecture Live Demonstration, including the current VexPartner external-participant circuit.",
     "sourceProvenance": {
       "originRepository": "vgong24/VexLife-Android",
       "originPullRequest": 209,
       "currentSourceSnapshot": "305a09eac1fabebcf2241bd207386950f41121f2",
       "recordClass": "DEVELOPMENT_STANDARD_LIVE_WITNESS",
-      "guideRevision": "DEVELOPMENT_STANDARD_4_N_LIVE_DEMONSTRATION"
+      "guideRevision": "DEVELOPMENT_STANDARD_5_N_LIVE_DEMONSTRATION",
+      "partnerPullRequest": 219,
+      "partnerSourceSnapshot": "0d66416ba36ef876f0111e813a4a8f7c0308a752"
     }
   },
   "pages.vexarchitecture-live-demonstration.document-title": {
@@ -28,14 +30,14 @@
   "pages.vexarchitecture-live-demonstration.topline.right": {
     "strings": {
       "en": {
-        "text": "VexLife-Android source snapshot · 305a09ea…"
+        "text": "VexLife source witnesses · 305a09ea… + Partner 0d66416b…"
       }
     }
   },
   "pages.vexarchitecture-live-demonstration.hero.eyebrow": {
     "strings": {
       "en": {
-        "text": "Development Standard · 4/N · Companion to the Builder Field Guide"
+        "text": "Development Standard · 5/N · Companion to the Builder Field Guide"
       }
     }
   },
@@ -224,7 +226,7 @@
   "pages.vexarchitecture-live-demonstration.compare.kicker": {
     "strings": {
       "en": {
-        "text": "After walking three systems"
+        "text": "After walking four systems"
       }
     }
   },
@@ -238,7 +240,7 @@
   "pages.vexarchitecture-live-demonstration.compare.lede": {
     "strings": {
       "en": {
-        "text": "ThemeMode, VexStream, and Maps should not be collapsed into one class template. What transfers is the ability to locate human intention, semantic ownership, outside truth, active custody, relationship truth, and the presentation that returns to the human."
+        "text": "ThemeMode, VexStream, Maps, and Partner should not be collapsed into one class template. What transfers is the ability to locate human intention, semantic ownership, external participation, outside truth, active custody, relationship truth, durability, and the presentation that returns to the human."
       }
     }
   },
@@ -266,7 +268,56 @@
   "pages.vexarchitecture-live-demonstration.closing.body": {
     "strings": {
       "en": {
-        "text": "When you enter unfamiliar code, keep asking the next concrete navigation question: what container am I in, what member am I touching, who supplied it, what kind of thing is it here, and where does this exact value or object go next? The Builder Field Guide explains the wisdom behind those relationships; this page exists so you can see them live."
+        "text": "When you enter unfamiliar code, keep asking the next concrete navigation question: what container am I in, what member am I touching, who supplied it, what kind of thing is it here, and where does this exact value or object go next? Follow the value all the way across human intention, Family meaning, execution, external participation, durable truth, and presentation. The Builder Field Guide explains the wisdom behind those relationships; this page exists so you can see them live."
+      }
+    }
+  },
+  "pages.vexarchitecture-live-demonstration.contract.partner.claim": {
+    "strings": {
+      "en": {
+        "text": "Current architecture exemplar"
+      }
+    }
+  },
+  "pages.vexarchitecture-live-demonstration.contract.partner.body": {
+    "strings": {
+      "en": {
+        "text": "VexPartner is shown because CGM, connected pen, and insulin pump expose the complete external-participant side: Source/Signal vocabulary, concrete Connection/Conversion, durable Observation admission, Family interpretation, and the outbound Family → Partner mirror without creating a second Family."
+      }
+    }
+  },
+  "pages.vexarchitecture-live-demonstration.contract.partner-snapshot": {
+    "strings": {
+      "en": {
+        "text": "Open the Partner architecture source witness ↗"
+      }
+    }
+  },
+  "pages.vexarchitecture-live-demonstration.partner.chunk": {
+    "strings": {
+      "en": {
+        "text": "Copy/paste chunk D · current architecture walk"
+      }
+    }
+  },
+  "pages.vexarchitecture-live-demonstration.partner.kicker": {
+    "strings": {
+      "en": {
+        "text": "VexPartner · external-participant circuit"
+      }
+    }
+  },
+  "pages.vexarchitecture-live-demonstration.partner.heading": {
+    "strings": {
+      "en": {
+        "text": "Walk outside truth into Family meaning — and Family intention back out — without inventing a mirrored semantic owner"
+      }
+    }
+  },
+  "pages.vexarchitecture-live-demonstration.partner.lede": {
+    "strings": {
+      "en": {
+        "text": "This walk uses the exact VexCgmLabs Partner stability source at Android #219 head 0d66416b…. CGM pressures two provider representations, connected pen falsifies CGM-specific continuity assumptions, and insulin pump proves the outbound Family → Partner direction. The relationship is already the architectural baseline; repository proof/merge is implementation lifecycle, not another architecture referendum."
       }
     }
   }
