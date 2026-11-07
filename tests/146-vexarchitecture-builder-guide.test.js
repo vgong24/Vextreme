@@ -193,7 +193,7 @@ test('VEXARCHITECTURE GUIDE: every bound display key exists in the page string s
 test('VEXARCHITECTURE GUIDE: opening topology separates core causality from orthogonal relationships', () => {
   const page = read('pages/vexarchitecture-first-stable-body.html');
 
-  assert.ok(page.includes('CORE SEMANTIC + RUNTIME PATH'));
+  assert.ok(page.includes('FULL CAUSAL BODY'));
   assert.ok(page.includes('ORTHOGONAL / CONDITIONAL RELATIONSHIPS'));
   assert.ok(page.includes('Construction + lifetime'));
   assert.ok(page.includes('Chronology / VexLogger'));
