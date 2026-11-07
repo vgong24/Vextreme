@@ -2,13 +2,13 @@
   "_meta": {
     "scope": "pages.vexarchitecture-live-demonstration",
     "category": "production",
-    "description": "English source strings for the VexArchitecture Live Demonstration, including the current VexPartner external-participant circuit.",
+    "description": "English source strings for the VexArchitecture Live Demonstration, showing the earned VexPartner grammar while distinguishing reusable contract from current consumer realization.",
     "sourceProvenance": {
       "originRepository": "vgong24/VexLife-Android",
       "originPullRequest": 209,
       "currentSourceSnapshot": "305a09eac1fabebcf2241bd207386950f41121f2",
       "recordClass": "DEVELOPMENT_STANDARD_LIVE_WITNESS",
-      "guideRevision": "DEVELOPMENT_STANDARD_5_N_LIVE_DEMONSTRATION",
+      "guideRevision": "DEVELOPMENT_STANDARD_5_N_REASONING_PRESERVING_LIVE_DEMONSTRATION",
       "partnerPullRequest": 219,
       "partnerSourceSnapshot": "0d66416ba36ef876f0111e813a4a8f7c0308a752"
     }
@@ -282,7 +282,7 @@
   "pages.vexarchitecture-live-demonstration.contract.partner.body": {
     "strings": {
       "en": {
-        "text": "VexPartner is shown because CGM, connected pen, and insulin pump expose the complete external-participant side: Source/Signal vocabulary, concrete Connection/Conversion, durable Observation admission, Family interpretation, and the outbound Family → Partner mirror without creating a second Family."
+        "text": "VexPartner is shown because current CGM, connected pen, and insulin pump witnesses pressure the same Source/Signal/Connection grammar across provider representation, direction, persistence, and restart. The walk separates the reusable Partner boundary from the concrete Store → Family admission chosen by these consumers."
       }
     }
   },
@@ -317,7 +317,7 @@
   "pages.vexarchitecture-live-demonstration.partner.lede": {
     "strings": {
       "en": {
-        "text": "This walk uses the exact VexCgmLabs Partner stability source at Android #219 head 0d66416b…. CGM pressures two provider representations, connected pen falsifies CGM-specific continuity assumptions, and insulin pump proves the outbound Family → Partner direction. The relationship is already the architectural baseline; repository proof/merge is implementation lifecycle, not another architecture referendum."
+        "text": "This walk uses the exact VexCgmLabs Partner source witness at Android #219 head 0d66416b…. CGM pressures two provider representations, connected pen removes CGM-specific sequence/periodic assumptions, and insulin pump proves the outbound Family → Partner direction. Read Store → Family as the current CGM/insulin realization after Receiver, not as a mandatory child of VexPartner. Android #219 repository proof/review/merge remains implementation lifecycle separate from the architecture evidence shown here."
       }
     }
   }
