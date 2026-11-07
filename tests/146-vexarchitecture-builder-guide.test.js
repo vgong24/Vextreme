@@ -129,6 +129,11 @@ test('VEXARCHITECTURE GUIDE: real CGM pen and pump source cuts show what repeats
     'ordinary provider boundary',
     'external Source meaning matters',
     'same class name alone',
+    'CgmPartner.kt · two representations → one Signal grammar ↗',
+    'ConnectedPenPartner.kt · same Partner grammar without CGM continuity ↗',
+    'InsulinFamily.kt · semantic Control → Effect → bound Method ↗',
+    'InsulinPumpPartner.kt · acknowledgement ≠ delivery ↗',
+    'InsulinPartnerLab.kt · outbound request + later inbound evidence ↗',
   ]) {
     assert.ok(page.includes(required), 'missing source-pressure bridge: ' + required);
   }
