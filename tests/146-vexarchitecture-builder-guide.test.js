@@ -76,28 +76,28 @@ test('VEXARCHITECTURE GUIDE: accepted code structure is visible and source-addre
   assert.ok(page.includes('66c866dea6a8dd78e2946da88715c4deb78c1847'));
 });
 
-test('VEXARCHITECTURE GUIDE: current body exposes the full Family and Partner circuit without reopening scale', () => {
+test('VEXARCHITECTURE GUIDE: Partner extends the causal model without becoming mandatory topology', () => {
   const page = read('pages/vexarchitecture-first-stable-body.html');
 
   for (const required of [
-    'FULL CAUSAL BODY',
-    'OUTSIDE / INBOUND',
+    'CORE CAUSAL SPINE',
+    'rightful Method-result interpretation',
+    'OUTSIDE / OBSERVATION',
     'VexPartner',
-    'Connection',
-    'Conversion',
-    'Source',
-    'Signal',
-    'Observation',
+    'Connection.Conversion',
+    'Partner Signal(s)',
+    'Observation(Connection.Id + Signal)',
     'Receiver',
-    'Store / durable admitted outside truth',
-    'INSIDE / SEMANTIC',
-    'OUTSIDE / OUTBOUND',
-    'Family and Partner complete one bidirectional circuit without becoming mirrors',
+    'consumer-earned admission / reconciliation boundary',
+    'EXTERNAL PARTICIPATION / OUTBOUND — WHEN EARNED',
+    'CURRENT CGM / INSULIN REALIZATION',
+    'Family and Partner can complete a bidirectional circuit without becoming mirrors',
     'Partner ≠ mirrored Family',
     'Partner Source ≠ Connection.Id ≠ VexExecution.RelationshipId',
-    'More elapsed time or more examples of the same dimensions are not, by themselves',
+    'Receiver ≠ mandatory Store or Family',
+    'Another abstraction is earned only when a concrete recurring question has no truthful existing owner.',
   ]) {
-    assert.ok(page.includes(required), 'missing current full-circuit witness: ' + required);
+    assert.ok(page.includes(required), 'missing reasoning-preserving Partner witness: ' + required);
   }
 
   assert.ok(page.includes('0d66416ba36ef876f0111e813a4a8f7c0308a752'));
@@ -182,7 +182,7 @@ test('VEXARCHITECTURE GUIDE: every bound display key exists in the page string s
 
   assert.deepEqual(missing, []);
   assert.equal(strings._meta.sourceProvenance.originPullRequest, 209);
-  assert.equal(strings._meta.sourceProvenance.guideRevision, 'DEVELOPMENT_STANDARD_5_N_FULL_CIRCUIT_BUILDER_FIELD_GUIDE');
+  assert.equal(strings._meta.sourceProvenance.guideRevision, 'DEVELOPMENT_STANDARD_5_N_REASONING_PRESERVING_PARTNER_BUILDER_FIELD_GUIDE');
   assert.equal(
     strings._meta.sourceProvenance.currentPartnerSourceSnapshot,
     '0d66416ba36ef876f0111e813a4a8f7c0308a752',
@@ -190,10 +190,14 @@ test('VEXARCHITECTURE GUIDE: every bound display key exists in the page string s
 });
 
 
-test('VEXARCHITECTURE GUIDE: opening topology separates core causality from orthogonal relationships', () => {
+test('VEXARCHITECTURE GUIDE: opening topology preserves the core spine and makes Partner conditional', () => {
   const page = read('pages/vexarchitecture-first-stable-body.html');
 
-  assert.ok(page.includes('FULL CAUSAL BODY'));
+  assert.ok(page.includes('CORE CAUSAL SPINE'));
+  assert.ok(page.includes('rightful Method-result interpretation'));
+  assert.ok(page.includes('when VexPartner is earned'));
+  assert.ok(page.includes('consumer-earned admission / reconciliation boundary'));
+  assert.ok(page.includes('EXTERNAL PARTICIPATION / OUTBOUND — WHEN EARNED'));
   assert.ok(page.includes('ORTHOGONAL / CONDITIONAL RELATIONSHIPS'));
   assert.ok(page.includes('Construction + lifetime'));
   assert.ok(page.includes('Chronology / VexLogger'));
