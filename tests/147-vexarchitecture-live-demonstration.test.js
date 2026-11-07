@@ -125,6 +125,8 @@ test('VEXARCHITECTURE LIVE: VexStream walk closes UI to Media3 and back', () => 
     'publishObserved',
     'connection.projections',
     'projection.present(PlayPause)',
+    'The noun Connection is not enough to imply Partner',
+    'fulfills VexStreamPlaybackConnectionFlow and does not implement VexPartner.Connection',
   ]) {
     assert.ok(live.includes(required), 'missing VexStream witness: ' + required);
   }
@@ -188,6 +190,7 @@ test('VEXARCHITECTURE LIVE: Partner walk separates reusable grammar from current
     'Live walk should show source relationships; scale-vs-longevity judgment belongs in the Builder Guide',
   );
   assert.ok(live.includes('Read Store → Family as the current CGM/insulin realization after Receiver'));
+  assert.ok(live.includes('A type becomes part of this grammar by implementing the Partner contract and answering this external-participant question'));
   assert.equal(live.includes('not another architecture referendum'), false);
 });
 
