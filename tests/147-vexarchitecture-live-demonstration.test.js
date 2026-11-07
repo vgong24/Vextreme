@@ -50,8 +50,10 @@ test('VEXARCHITECTURE LIVE: companion stays separate from the Builder Field Guid
     'VexMapsMapSurface',
     'VexPartner',
     'CgmPartner',
+    'CgmPartnerLab',
     'ConnectedPenPartner',
     'InsulinPumpPartner',
+    'InsulinPartnerLab',
     'RoomCgmStore',
   ]) {
     assert.ok(live.includes(bridge), 'missing explicit traversal bridge: ' + bridge);
@@ -151,35 +153,42 @@ test('VEXARCHITECTURE LIVE: Maps shows local ownership and relationship ownershi
   assert.ok(live.includes("Relay owns the relationship question, not Mode or DeliveryRoute."));
 });
 
-test('VEXARCHITECTURE LIVE: Partner walk closes external truth to Family and Family intention back outside', () => {
+test('VEXARCHITECTURE LIVE: Partner walk separates reusable grammar from current Store/Family realization', () => {
   const live = read('pages/vexarchitecture-live-demonstration.html');
 
   for (const required of [
     'Copy/paste chunk D · current architecture walk',
     'VexPartner · external-participant circuit',
+    'REUSABLE PARTNER INBOUND BOUNDARY',
+    'consumer-earned admission / reconciliation boundary',
+    'CURRENT CGM / INSULIN REALIZATION',
     'Source + Signal + Connection',
     'BleDecoder + HttpDecoder',
     'Signal → Observation → Receiver',
     'CgmStore.commit',
+    'CgmPartnerLab.kt wiring',
     'RoomCgmStore',
     'process restart ≠ new Source history',
     'ConnectedPenPartner',
     'no imported CGM contiguous-gap semantics',
     'InsulinFamily',
     'InsulinPumpPartner.Connection',
+    'InsulinPartnerLab.kt wiring',
     'EFFECT_REQUESTED',
     'PARTNER_ACKNOWLEDGED',
+    'ACKNOWLEDGEMENT ≠ PHYSICAL OUTCOME',
     'DeliveryObserved',
-    'one complete Family ↔ Partner circuit',
+    'one complete current Family ↔ Partner realization',
   ]) {
-    assert.ok(live.includes(required), 'missing Partner circuit witness: ' + required);
+    assert.ok(live.includes(required), 'missing reasoning-preserving Partner circuit witness: ' + required);
   }
 
   assert.ok(
     live.includes('More elapsed time') === false,
     'Live walk should show source relationships; scale-vs-longevity judgment belongs in the Builder Guide',
   );
-  assert.ok(live.includes('repository proof/merge is implementation lifecycle, not another architecture referendum'));
+  assert.ok(live.includes('Read Store → Family as the current CGM/insulin realization after Receiver'));
+  assert.equal(live.includes('not another architecture referendum'), false);
 });
 
 test('VEXARCHITECTURE LIVE: source snapshot and exact blob coordinates are visible', () => {
@@ -207,6 +216,8 @@ test('VEXARCHITECTURE LIVE: source snapshot and exact blob coordinates are visib
     'b7e2ba0daf5aa7d6bc2e0e7ce4ee45990d5889d6',
     'd2e8168197d907da0d559988b9e6921303da1df5',
     'bc98d492783fd05304aa547690741314786aee30',
+    '5fc555a4f7b1ba5acef51f90acdb7326ff83e39b',
+    '0c6be8d8cfd4410d5314d7c1c0618890394da14d',
   ]) {
     assert.ok(live.includes(blob), 'missing source blob coordinate ' + blob);
   }
@@ -262,7 +273,7 @@ test('VEXARCHITECTURE LIVE: page strings cover every bound localization key', ()
   assert.deepEqual(missing, []);
   assert.equal(
     strings._meta.sourceProvenance.guideRevision,
-    'DEVELOPMENT_STANDARD_5_N_LIVE_DEMONSTRATION',
+    'DEVELOPMENT_STANDARD_5_N_REASONING_PRESERVING_LIVE_DEMONSTRATION',
   );
   assert.equal(
     strings._meta.sourceProvenance.currentSourceSnapshot,
