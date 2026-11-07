@@ -1768,7 +1768,7 @@ private fun snapshotOf(
 
         <article class="step">
           <div class="step-head"><span class="step-no">P6</span><div><h3>Falsify CGM-specific assumptions with a sparse Partner</h3><div class="question">Does reusing Partner force every source into CGM sequence/gap semantics?</div></div></div>
-          <dl class="scope"><div><dt>Container</dt><dd>ConnectedPenPartner</dd></div><div><dt>Signals</dt><dd>DoseRecorded + CartridgeObserved</dd></div><div><dt>Reused</dt><dd>Source / Connection / Conversion / Observation / Receiver</dd></div><div><dt>Not imported</dt><dd>CGM contiguous-gap semantics</dd></div></dl>
+          <dl class="scope"><div><dt>Container</dt><dd>ConnectedPenPartner</dd></div><div><dt>Signals</dt><dd>DoseRecorded + CartridgeObserved</dd></div><div><dt>Reused</dt><dd>Source / Connection / Conversion / Observation / Receiver</dd></div><div><dt>Not imported</dt><dd>no imported CGM contiguous-gap semantics</dd></div></dl>
           <pre class="code"><code>data class Source(
     val penRef: String,
     val cartridgeRef: String,
