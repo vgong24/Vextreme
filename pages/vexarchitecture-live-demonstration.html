@@ -116,7 +116,7 @@
         </article>
         <article class="claim-card">
           <strong data-i18n="pages.vexarchitecture-live-demonstration.contract.partner.claim">Current architecture exemplar</strong>
-          <p data-i18n="pages.vexarchitecture-live-demonstration.contract.partner.body">VexPartner is shown because CGM, connected pen, and insulin pump expose the complete external-participant side: Source/Signal vocabulary, concrete Connection/Conversion, durable Observation admission, Family interpretation, and the outbound Family → Partner mirror without creating a second Family.</p>
+          <p data-i18n="pages.vexarchitecture-live-demonstration.contract.partner.body">VexPartner is shown because current CGM, connected pen, and insulin pump witnesses pressure the same Source/Signal/Connection grammar across provider representation, direction, persistence, and restart. The walk separates the reusable Partner boundary from the concrete Store → Family admission chosen by these consumers.</p>
         </article>
       </div>
       <div class="links">
@@ -1590,12 +1590,17 @@ Relay identifies incoherence and requests Mode's Control. Mode's own Connection 
     <div class="chunk-label" data-i18n="pages.vexarchitecture-live-demonstration.partner.chunk">Copy/paste chunk D · current architecture walk</div>
     <div class="kicker" data-i18n="pages.vexarchitecture-live-demonstration.partner.kicker">VexPartner · external-participant circuit</div>
     <h2 data-i18n="pages.vexarchitecture-live-demonstration.partner.heading">Walk outside truth into Family meaning — and Family intention back out — without inventing a mirrored semantic owner</h2>
-    <p class="lede" data-i18n="pages.vexarchitecture-live-demonstration.partner.lede">This walk uses the exact VexCgmLabs Partner stability source at Android #219 head 0d66416b…. CGM pressures two provider representations, connected pen falsifies CGM-specific continuity assumptions, and insulin pump proves the outbound Family → Partner direction. The relationship is already the architectural baseline; repository proof/merge is implementation lifecycle, not another architecture referendum.</p>
+    <p class="lede" data-i18n="pages.vexarchitecture-live-demonstration.partner.lede">This walk uses the exact VexCgmLabs Partner source witness at Android #219 head 0d66416b…. CGM pressures two provider representations, connected pen removes CGM-specific sequence/periodic assumptions, and insulin pump proves the outbound Family → Partner direction. Read Store → Family as the current CGM/insulin realization after Receiver, not as a mandatory child of VexPartner. Android #219 repository proof/review/merge remains implementation lifecycle separate from the architecture evidence shown here.</p>
 
     <div class="walk-grid">
       <aside class="map">
         <h4>Partner circuit map</h4>
-        <pre>EXTERNAL PARTICIPANT
+        <pre>REUSABLE PARTNER INBOUND BOUNDARY
+
+EXTERNAL PARTICIPANT
+        │
+        ▼
+provider representation
         │
         ▼
 VexPartner
@@ -1608,6 +1613,14 @@ VexPartner
    └─ Receiver
         │
         ▼
+consumer-earned admission / reconciliation boundary
+
+
+CURRENT CGM / INSULIN REALIZATION
+
+Receiver
+        │
+        ▼
 Store / durable admitted truth
         │
         ▼
@@ -1618,6 +1631,9 @@ DisplayState / Projection
         │
         ▼
 HUMAN
+
+
+OUTBOUND WHEN A FAMILY EFFECT USES AN EXTERNAL PARTICIPANT
 
 HUMAN / PRODUCT INTENTION
         │
@@ -1643,15 +1659,21 @@ Partner Connection
 EXTERNAL PARTICIPANT
         │
         ▼
+provider acknowledgement may become Method result
+        │
+        ▼
+ACKNOWLEDGEMENT ≠ PHYSICAL OUTCOME
+        │
 later outside evidence
         │
-        └──── Partner inbound path ────→ Store → Family</pre>
+        └────→ reusable Partner inbound boundary
+                 └─ current insulin realization: Store → Family</pre>
       </aside>
 
       <div class="steps">
         <article class="step">
           <div class="step-head"><span class="step-no">P1</span><div><h3>Enter the external-participant root</h3><div class="question">What is shared before any CGM, pen, pump, BLE, HTTP, Room, or UI detail appears?</div></div></div>
-          <dl class="scope"><div><dt>Container</dt><dd>VexPartner&lt;Partner&gt;</dd></div><div><dt>Children</dt><dd>Source + Signal + Connection</dd></div><div><dt>Connection children</dt><dd>Id + Conversion + Observation + Receiver</dd></div><div><dt>Boundary</dt><dd>no State / Control / Effect / Store / Execution ownership</dd></div></dl>
+          <dl class="scope"><div><dt>Container</dt><dd>VexPartner&lt;Partner&gt;</dd></div><div><dt>Children</dt><dd>Source + Signal + Connection</dd></div><div><dt>Connection children</dt><dd>Id + Conversion + Observation + Receiver</dd></div><div><dt>Boundary</dt><dd>no State / Control / Effect / Store / Family / Execution ownership; Receiver's downstream boundary is consumer-earned</dd></div></dl>
           <pre class="code"><code>interface VexPartner&lt;Partner&gt; {
     interface Source&lt;Partner&gt;
 
@@ -1675,7 +1697,7 @@ later outside evidence
         }
     }
 }</code></pre>
-          <div class="edge">The common root names only the relationship that repeated. It does not import CGM continuity, insulin semantics, persistence, or runtime custody into Partner.</div>
+          <div class="edge">The common root names only the relationship that repeated. It does not import CGM continuity, insulin semantics, persistence, or runtime custody into Partner, and it does not require Store or Family downstream of Receiver.</div>
           <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/0d66416ba36ef876f0111e813a4a8f7c0308a752/architecture/behavior/src/main/kotlin/com/vextreme/vexlife/android/behavior/VexPartner.kt" target="_blank" rel="noopener">VexPartner.kt</a> · blob d314e3733d8b318eb9c7e5adab02645d7efa149f</div>
         </article>
 
@@ -1724,7 +1746,7 @@ class HttpDecoder :
         </article>
 
         <article class="step">
-          <div class="step-head"><span class="step-no">P4</span><div><h3>Cross durable admission before Family interprets meaning</h3><div class="question">Who says the Observation is durably admitted, and who turns admitted truth into application State?</div></div></div>
+          <div class="step-head"><span class="step-no">P4</span><div><h3>See one current consumer cross durable admission before Family interprets meaning</h3><div class="question">In the CGM realization, who says the Observation is durably admitted, and who turns admitted truth into application State?</div></div></div>
           <dl class="scope"><div><dt>Receiver</dt><dd>suspends through CgmStore.commit</dd></div><div><dt>Store</dt><dd>owns admitted durable observation history</dd></div><div><dt>Family</dt><dd>observes Store truth and forms semantic State</dd></div><div><dt>Projection</dt><dd>classifies that same State outward</dd></div></dl>
           <pre class="code"><code>class Receiver(
     private val store: CgmStore,
@@ -1743,8 +1765,8 @@ VexExecution.observe(
 ) { snapshot -&gt;
     family.observeStore(snapshot)
 }</code></pre>
-          <div class="edge">Receiver, Store, Family, and Execution answer different questions. A received Signal does not silently become Family State before durable admission and rightful interpretation.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/0d66416ba36ef876f0111e813a4a8f7c0308a752/app/src/main/kotlin/com/vextreme/vexlife/android/cgm/CgmStore.kt" target="_blank" rel="noopener">CgmStore.kt</a> · blob 5bd6ca59651a6680d9f6fb14fb9814d88d629f63 · <a href="https://github.com/vgong24/VexLife-Android/blob/0d66416ba36ef876f0111e813a4a8f7c0308a752/app/src/main/kotlin/com/vextreme/vexlife/android/cgm/CgmFamily.kt" target="_blank" rel="noopener">CgmFamily.kt</a></div>
+          <div class="edge">Here, Receiver, Store, Family, and Execution answer different questions. A received Signal does not silently become Family State before durable admission and rightful interpretation. This Store → Family path is the CGM consumer's earned boundary, not a generic child chain required by VexPartner.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/0d66416ba36ef876f0111e813a4a8f7c0308a752/app/src/main/kotlin/com/vextreme/vexlife/android/cgm/CgmStore.kt" target="_blank" rel="noopener">CgmStore.kt</a> · blob 5bd6ca59651a6680d9f6fb14fb9814d88d629f63 · <a href="https://github.com/vgong24/VexLife-Android/blob/0d66416ba36ef876f0111e813a4a8f7c0308a752/app/src/main/kotlin/com/vextreme/vexlife/android/cgm/CgmFamily.kt" target="_blank" rel="noopener">CgmFamily.kt</a> · <a href="https://github.com/vgong24/VexLife-Android/blob/0d66416ba36ef876f0111e813a4a8f7c0308a752/app/src/main/kotlin/com/vextreme/vexlife/android/cgm/CgmPartnerLab.kt" target="_blank" rel="noopener">CgmPartnerLab.kt wiring</a> · blob 5fc555a4f7b1ba5acef51f90acdb7326ff83e39b</div>
         </article>
 
         <article class="step">
@@ -1783,7 +1805,7 @@ sealed interface Signal {
         </article>
 
         <article class="step">
-          <div class="step-head"><span class="step-no">P7</span><div><h3>Follow product intention outward without turning Partner into Family</h3><div class="question">When the product requests pump delivery, who authors meaning and who merely participates in realization?</div></div></div>
+          <div class="step-head"><span class="step-no">P7</span><div><h3>Follow product intention outward when a Family Effect earns Partner participation</h3><div class="question">When the product requests pump delivery, who authors meaning and who merely participates in realization?</div></div></div>
           <dl class="scope"><div><dt>Semantic owner</dt><dd>InsulinFamily</dd></div><div><dt>Path</dt><dd>Parameter → Control → Act → Begin(Queued · Effect)</dd></div><div><dt>Realization</dt><dd>Act.Method → VexExecution → InsulinPumpPartner.Connection</dd></div><div><dt>Boundary</dt><dd>provider acknowledgement ≠ physical delivery</dd></div></dl>
           <pre class="code"><code>Control.RequestPumpDelivery(amount)
         ↓
@@ -1800,12 +1822,12 @@ VexExecution
         ↓
 connection.requestDelivery(...)</code></pre>
           <div class="edge">Family still authors semantic/product consequence. Partner does not acquire State/Control/Effect merely because the relationship can point outward.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/0d66416ba36ef876f0111e813a4a8f7c0308a752/app/src/main/kotlin/com/vextreme/vexlife/android/insulin/InsulinFamily.kt" target="_blank" rel="noopener">InsulinFamily.kt</a> · blob d2e8168197d907da0d559988b9e6921303da1df5 · <a href="https://github.com/vgong24/VexLife-Android/blob/0d66416ba36ef876f0111e813a4a8f7c0308a752/app/src/main/kotlin/com/vextreme/vexlife/android/insulin/InsulinPumpPartner.kt" target="_blank" rel="noopener">InsulinPumpPartner.kt</a> · blob bc98d492783fd05304aa547690741314786aee30</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/0d66416ba36ef876f0111e813a4a8f7c0308a752/app/src/main/kotlin/com/vextreme/vexlife/android/insulin/InsulinFamily.kt" target="_blank" rel="noopener">InsulinFamily.kt</a> · blob d2e8168197d907da0d559988b9e6921303da1df5 · <a href="https://github.com/vgong24/VexLife-Android/blob/0d66416ba36ef876f0111e813a4a8f7c0308a752/app/src/main/kotlin/com/vextreme/vexlife/android/insulin/InsulinPumpPartner.kt" target="_blank" rel="noopener">InsulinPumpPartner.kt</a> · blob bc98d492783fd05304aa547690741314786aee30 · <a href="https://github.com/vgong24/VexLife-Android/blob/0d66416ba36ef876f0111e813a4a8f7c0308a752/app/src/main/kotlin/com/vextreme/vexlife/android/insulin/InsulinPartnerLab.kt" target="_blank" rel="noopener">InsulinPartnerLab.kt wiring</a> · blob 0c6be8d8cfd4410d5314d7c1c0618890394da14d</div>
         </article>
 
         <article class="step">
-          <div class="step-head"><span class="step-no">P8</span><div><h3>Let later outside evidence close the round trip through the same inbound law</h3><div class="question">What makes an acknowledged request become durable application truth?</div></div></div>
-          <dl class="scope"><div><dt>Not enough</dt><dd>Effect requested / provider acknowledged</dd></div><div><dt>External evidence</dt><dd>InsulinPumpPartner.Signal.DeliveryObserved</dd></div><div><dt>Return path</dt><dd>Connection → Observation → Receiver → InsulinStore → InsulinFamily</dd></div><div><dt>Result</dt><dd>one complete Family ↔ Partner circuit</dd></div></dl>
+          <div class="step-head"><span class="step-no">P8</span><div><h3>Let later outside evidence close this concrete round trip through the same inbound grammar</h3><div class="question">What makes an acknowledged request become durable application truth?</div></div></div>
+          <dl class="scope"><div><dt>Not enough</dt><dd>Effect requested / provider acknowledged</dd></div><div><dt>External evidence</dt><dd>InsulinPumpPartner.Signal.DeliveryObserved</dd></div><div><dt>Return path</dt><dd>Connection → Observation → Receiver → InsulinStore → InsulinFamily</dd></div><div><dt>Result</dt><dd>one complete current Family ↔ Partner realization</dd></div></dl>
           <pre class="code"><code>EFFECT_REQUESTED
 != PARTNER_ACKNOWLEDGED
 != PHYSICAL_OUTCOME
@@ -1822,9 +1844,9 @@ InsulinStore
 InsulinFamily.observeStore(...)
         ↓
 Projection</code></pre>
-          <div class="edge returning">THE FULL CIRCUIT CLOSES:
-human intention leaves through Family-authored meaning and Partner realization; independently-owned outside truth returns through Partner observation and durable admission before Family interprets it.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/0d66416ba36ef876f0111e813a4a8f7c0308a752/app/src/main/kotlin/com/vextreme/vexlife/android/insulin/InsulinPumpPartner.kt" target="_blank" rel="noopener">InsulinPumpPartner.kt</a> · <a href="https://github.com/vgong24/VexLife-Android/blob/0d66416ba36ef876f0111e813a4a8f7c0308a752/app/src/main/kotlin/com/vextreme/vexlife/android/insulin/InsulinFamily.kt" target="_blank" rel="noopener">InsulinFamily.kt</a></div>
+          <div class="edge returning">THE CURRENT INSULIN CIRCUIT CLOSES:
+human intention leaves through Family-authored meaning and Partner realization; independently-owned outside truth returns through the reusable Partner observation boundary, then this consumer's Store admission before Family interprets it.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/0d66416ba36ef876f0111e813a4a8f7c0308a752/app/src/main/kotlin/com/vextreme/vexlife/android/insulin/InsulinPumpPartner.kt" target="_blank" rel="noopener">InsulinPumpPartner.kt</a> · <a href="https://github.com/vgong24/VexLife-Android/blob/0d66416ba36ef876f0111e813a4a8f7c0308a752/app/src/main/kotlin/com/vextreme/vexlife/android/insulin/InsulinFamily.kt" target="_blank" rel="noopener">InsulinFamily.kt</a> · <a href="https://github.com/vgong24/VexLife-Android/blob/0d66416ba36ef876f0111e813a4a8f7c0308a752/app/src/main/kotlin/com/vextreme/vexlife/android/insulin/InsulinPartnerLab.kt" target="_blank" rel="noopener">InsulinPartnerLab.kt round-trip wiring</a> · blob 0c6be8d8cfd4410d5314d7c1c0618890394da14d</div>
         </article>
       </div>
     </div>
@@ -1840,8 +1862,8 @@ human intention leaves through Family-authored meaning and Partner realization; 
         <tbody>
           <tr><td>Where does human intention enter?</td><td>DebugMenu DarkMode action → Control.Select</td><td>Play/Pause UI → PlaybackExperience.activate</td><td>Distribution UI → Session.toggleMode</td><td>Outbound through a Family Control; inbound begins at independently-owned external truth</td></tr>
           <tr><td>Where is semantic meaning decided?</td><td>ThemeModeFamily</td><td>Playback Behavior</td><td>Mode / DeliveryRoute owners</td><td>Family owns product meaning; Partner owns external vocabulary</td></tr>
-          <tr><td>Who owns outside/physical truth?</td><td>ThemeModeStore</td><td>Media3 Player/Controller</td><td>repository / routing / navigation providers</td><td>external participant + Partner Source/Signal; Store owns admitted durable truth</td></tr>
-          <tr><td>How does truth return?</td><td>Method Result interpretation + independent Store observation → same Family</td><td>Player.Listener → reconciliation → projection</td><td>owner projections → Session/UI; Relay observes relationship</td><td>Conversion → Signal → Observation → Receiver → Store → Family</td></tr>
+          <tr><td>Who owns outside/physical truth?</td><td>ThemeModeStore</td><td>Media3 Player/Controller</td><td>repository / routing / navigation providers</td><td>external participant + Partner Source/Signal; current CGM/insulin consumers admit through Store</td></tr>
+          <tr><td>How does truth return?</td><td>Method Result interpretation + independent Store observation → same Family</td><td>Player.Listener → reconciliation → projection</td><td>owner projections → Session/UI; Relay observes relationship</td><td>Conversion → Signal → Observation → Receiver → consumer-earned boundary; Store → Family in current examples</td></tr>
           <tr><td>What special relationship appears?</td><td>Latest Save + ThemeMode-local currentness fence</td><td>pending intent vs asynchronous Player observation</td><td>Relay coherence across independent Mode + DeliveryRoute truth</td><td>Source ≠ Connection.Id ≠ runtime RelationshipId; provider representation ≠ Signal</td></tr>
           <tr><td>What reaches the human?</td><td>VexThemePresentation</td><td>Playback DisplayState / control presentation</td><td>Distribution UI projections</td><td>Family Projection / DisplayState after durable/rightful interpretation</td></tr>
         </tbody>
