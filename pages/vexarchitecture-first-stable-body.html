@@ -819,7 +819,7 @@ Forensics / PR provenance
         <article class="owner-card" data-owner="family">
           <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.family.title">Family · semantic meaning</div>
           <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.family.question">What does this Control mean against the exact current State?</div>
-          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.family.body">Family owns State, Control, the lawful Act, optional Effect, and outward Projection/DisplayState. Parameter is optional and earned when a Family-scoped semantic value needs to remain recognizable across relationships; it is not a wrapper for every Kotlin argument. An Act may admit immediate semantic State and may also carry an inert Begin of Effect + overlap Approach. When concrete realization is needed, the Family-scoped Act.Method specializes reusable VexMethod without giving up semantic ownership. act(...) remains pure.</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.family.body">Family owns State, Control, the lawful Act, optional Effect, and outward Projection/DisplayState. Parameter is optional and earned when a Family-scoped semantic value needs to remain recognizable across relationships; it is not a wrapper for every Kotlin argument. An Act may admit immediate semantic State and may also carry an inert Begin of Effect + overlap Approach. When concrete realization is needed, the Family-scoped Act.Method specializes reusable VexMethod without giving up semantic ownership. act(...) remains pure. Semantic ownership is the reusable rule; literal VexFamily is one reusable realization when this State + Control + Act/Effect shape is actually earned. VexStream and Maps deliberately show other rightful semantic-owner shapes rather than forcing every feature into VexFamily.</div>
         </article>
 
         <article class="owner-card" data-owner="execution">
@@ -831,13 +831,13 @@ Forensics / PR provenance
         <article class="owner-card" data-owner="partner">
           <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.partner.title">Partner · external participation</div>
           <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.partner.question">What can an independently-owned external participant say, and through which concrete relationship did it arrive?</div>
-          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.partner.body">VexPartner owns the rooted external vocabulary: Source, Signal, and Connection with Id, Conversion, Observation, and Receiver. Receiver ends the reusable contract at a consumer-earned admission/reconciliation boundary. Current CGM and insulin consumers bind that boundary to Store → Family, but VexPartner does not own or require Store, Family semantics, or VexExecution custody.</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.partner.body">VexPartner owns the rooted external vocabulary: Source, Signal, and Connection with Id, Conversion, Observation, and Receiver. Receiver ends the reusable contract at a consumer-earned admission/reconciliation boundary. Current CGM and insulin consumers bind that boundary to Store → Family, but VexPartner does not own or require Store, Family semantics, or VexExecution custody. A type named Connection is not thereby a VexPartner.Connection: the implemented contract and the question it owns decide that boundary. Media3VexStreamPlaybackConnection, for example, fulfills VexStreamPlaybackConnectionFlow rather than VexPartner.Connection.</div>
         </article>
 
         <article class="owner-card" data-owner="store">
           <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.store.title">Store / provider · outside truth</div>
           <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.store.question">What does independently-owned reality currently say?</div>
-          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.store.body">A Store is a boundary to outside truth. That truth may be SharedPreferences, a remote service, filesystem, OS state, device media, GPS, or another process. Store does not automatically mean database. Its contracts return the smallest truthful provider/domain fact; they do not adopt VexMethod.Result merely because an operation can succeed or fail.</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.store.body">A Store is a boundary to outside truth. That truth may be SharedPreferences, a remote service, filesystem, OS state, device media, GPS, or another process. Store does not automatically mean database. Its contracts return the smallest truthful provider/domain fact; they do not adopt VexMethod.Result merely because an operation can succeed or fail. Start with this smaller provider boundary when that answers the real question. Partner becomes evidence-backed when an external participant's Source, Signal, and Connection provenance recur independently of one transport/provider representation or must participate bidirectionally without acquiring Family semantics.</div>
         </article>
 
         <article class="owner-card" data-owner="presentation">
@@ -863,7 +863,7 @@ Forensics / PR provenance
         <article class="owner-card" data-owner="relay">
           <div class="owner-title" data-i18n="pages.vexarchitecture-first-stable-body.owner.relay.title">Relay / convergence · relationship truth</div>
           <div class="owner-question" data-i18n="pages.vexarchitecture-first-stable-body.owner.relay.question">What new relationship truth emerges from truths owned somewhere else?</div>
-          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.relay.body">Convergence composes independently-owned truths. It can request change through rightful Controls; it does not steal another Family's Effect or State.</div>
+          <div class="owner-body" data-i18n="pages.vexarchitecture-first-stable-body.owner.relay.body">Convergence composes independently-owned truths. It can request change through rightful Controls; it does not steal another Family's Effect or State. The word Relay is not authority by itself: this page means the VexLife convergence contract shown in source. A same-named mechanism elsewhere is not equivalent unless its source contract actually joins these semantics.</div>
         </article>
       </div>
 
@@ -936,6 +936,98 @@ later outside truth
 returns through the reusable Partner inbound boundary
       ↓
 the concrete consumer decides the rightful admission / reconciliation path</code></pre>
+
+      <div class="question-box"><strong data-i18n="pages.vexarchitecture-first-stable-body.partner.examples-label">See the grammar survive three different source pressures</strong><br><span data-i18n="pages.vexarchitecture-first-stable-body.partner.examples-lede">These are small source-faithful cuts from Android #219. Read what stays the same and what disappears. The repeated Partner grammar is the reusable part; each domain's payload and continuity rules stay local.</span></div>
+
+      <div class="workbench-grid">
+        <article class="workbench">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.partner.example.cgm-heading">CGM · transport changes before Signal</h3>
+          <pre><code>// CgmPartner.kt
+class BleDecoder :
+    VexPartner.Connection.Conversion&lt;
+        ByteArray, CgmPartner, Signal
+    &gt;
+
+class HttpDecoder :
+    VexPartner.Connection.Conversion&lt;
+        HttpResponse, CgmPartner, Signal
+    &gt;
+
+conversion.convert(input).map { signal -&gt;
+    Observation(
+        connectionId = id,
+        signal = signal,
+        observedAtEpochMillis = observedAtEpochMillis,
+    ).also { receiver.receive(it) }
+}</code></pre>
+          <p data-i18n="pages.vexarchitecture-first-stable-body.partner.example.cgm-body">BLE-like bytes and an HTTP-like body are different provider representations, but both disappear before the same CgmPartner.Signal vocabulary. Connection.Id remains occurrence provenance; Source remains the acquisition-history coordinate.</p>
+        </article>
+
+        <article class="workbench">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.partner.example.pen-heading">Connected Pen · same grammar, no CGM sequence law</h3>
+          <pre><code>// ConnectedPenPartner.kt
+data class Source(
+    val penRef: String,
+    val cartridgeRef: String,
+)
+
+data class DoseRecorded(
+    val source: Source,
+    val doseRef: String,
+    val occurredAtEpochMillis: Long,
+    val unitsHundredths: Int,
+) : Signal
+
+data class CartridgeObserved(
+    val source: Source,
+    val remainingUnitsHundredths: Int,
+) : Signal</code></pre>
+          <p data-i18n="pages.vexarchitecture-first-stable-body.partner.example.pen-body">The pen keeps Source / Signal / Connection / Conversion / Observation / Receiver, but it has no CGM acquisition epoch, sequence, or periodic-gap rule. That absence is the proof: domain continuity did not leak upward into Partner.</p>
+        </article>
+
+        <article class="workbench">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.partner.example.pump-heading">Pump · Family authors meaning, Partner realizes participation</h3>
+          <pre><code>// InsulinPartnerLab.kt
+val act = family.activate(
+    InsulinFamily.Control.RequestPumpDelivery(
+        amount = parameter,
+    ),
+)
+
+val method =
+    InsulinFamily.Act.Method.RequestPumpDelivery(
+        connection = pumpConnection,
+        parameter = effect.amount,
+    )
+
+act.launchWith(executionRoot)
+    ?.method(method = method)
+
+// InsulinPumpPartner.Connection
+// ACCEPTED != DELIVERED
+// requestDelivery() never writes Store and never
+// manufactures DeliveryObserved.</code></pre>
+          <p data-i18n="pages.vexarchitecture-first-stable-body.partner.example.pump-body">The Family owns the requested insulin meaning and binds the concrete pump Connection only at Method realization. A provider acknowledgement can become a Method result, but Store and Family State remain unchanged until later DeliveryObserved evidence returns through the inbound Partner grammar.</p>
+        </article>
+
+        <article class="workbench">
+          <h3 data-i18n="pages.vexarchitecture-first-stable-body.partner.example.admission-heading">When to earn Partner instead of stopping at provider truth</h3>
+          <pre><code>ordinary provider boundary
+→ smallest truthful outside fact is enough
+
+Partner evidence appears when:
+→ external Source meaning matters
+→ external Signal vocabulary recurs
+→ Connection provenance matters
+→ provider representation can change
+→ inbound/outbound participation must stay distinct
+   from Family semantics
+
+same class name alone
+→ not evidence</code></pre>
+          <p data-i18n="pages.vexarchitecture-first-stable-body.partner.example.admission-body">This is an admission test, not a checklist that automatically creates Partner. If the existing Store/provider boundary already answers the question, keep it smaller. Partner is earned when these external-participant questions recur as their own stable relationship.</p>
+        </article>
+      </div>
       <div class="comparison-grid">
         <article class="panel">
           <h3 data-i18n="pages.vexarchitecture-first-stable-body.partner.scale-heading">What proved scale</h3>
@@ -1079,7 +1171,7 @@ Compose / system bars receive manifestation meaning</code></pre>
         </article>
       </div>
 
-      <div class="question-box"><strong data-i18n="pages.vexarchitecture-first-stable-body.walk.realization-label">The realization seam</strong><br><span data-i18n="pages.vexarchitecture-first-stable-body.walk.realization-body">Family.act() authors semantic consequence. Begin remains inert. activate() mechanically binds the live Family and a maintained RelationshipId when the overlap law requires one. A concrete Family Act.Method contains the real Store/provider and semantic Parameter and specializes reusable VexMethod. The Store returns only its smallest truthful provider fact. Success / Failure are lawful returns from invoke(); if invoke() escapes with a Throwable, the Family / Execution continuation forms Error. launchWith() transports the already-authored owner / Approach / RelationshipId into VexExecution, which owns Job custody and cancellation without acquiring feature meaning.</span></div>
+      <div class="question-box"><strong data-i18n="pages.vexarchitecture-first-stable-body.walk.realization-label">The realization seam</strong><br><span data-i18n="pages.vexarchitecture-first-stable-body.walk.realization-body">Family.act() authors semantic consequence. Begin remains inert. activate() mechanically binds the live Family and a maintained RelationshipId when the overlap law requires one. A concrete Family Act.Method contains the real Store/provider and semantic Parameter and specializes reusable VexMethod. The Store returns only its smallest truthful provider fact. Success / Failure are lawful returns from Method.invoke(). VexExecution executes that already-bound method and rethrows cancellation; any other escaped Throwable reaches the Family Act.Method follow-up as execution failure, which maps it to VexMethod.Result.Error(cause) before the semantic result handler runs. launchWith() transports the already-authored owner / Approach / RelationshipId into VexExecution, which owns Job custody and cancellation without acquiring feature meaning.</span></div>
       <div class="source-link-row">
         <a class="source-link" href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/ui/ThemeMode.kt" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-first-stable-body.walk.source-label">Open ThemeMode.kt ↗</a>
       </div>
