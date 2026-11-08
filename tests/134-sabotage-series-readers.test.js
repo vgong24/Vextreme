@@ -35,7 +35,10 @@ test('SABOTAGE-SERIES: sibling readers share collection identity and exact cover
     'sabotage-hidden-delta',
     'november-1-successor-witness'
   ]);
-  assert.deepEqual(arcs.victors_record.sections[0].slugs.slice(-7), [
+  const victorSlugs = arcs.victors_record.sections[0].slugs;
+  const sabotageStart = victorSlugs.indexOf('sabotage-open-vex-accountability');
+  assert.ok(sabotageStart >= 0, 'Sabotage I remains present in Victor\'s Record');
+  assert.deepEqual(victorSlugs.slice(sabotageStart, sabotageStart + 7), [
     'sabotage-open-vex-accountability',
     ...SERIES.map(x => x.slug),
     'sabotage-hidden-delta',
