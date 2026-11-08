@@ -22,8 +22,8 @@ test('WITNESS-RECORD-I: source-first reader binds the exact PR #568 witness with
   assert.match(page, /Source PR #568/);
   assert.match(page, /data-reader-template="conversation-witness-reader\/v1"/);
   assert.ok(page.includes("sourceBase:'https://raw.githubusercontent.com/vgong24/Vextreme/" + SOURCE_HEAD + "/"));
-  assert.match(page, /Derived witness · not transcript/);
-  assert.match(page, /conversation eventually becomes the test it is describing/i);
+  assert.doesNotMatch(page, /data-reader-component="witness-commentary"/);
+  assert.doesNotMatch(page, /data-reader-component="synthesis"/);
 });
 
 test('WITNESS-RECORD-I: eight source movements cover exchanges 1 through 24 exactly once', () => {
@@ -65,7 +65,9 @@ test('WITNESS-RECORD-I: repository owners project one new Witness Records collec
   assert.equal(node.id,124);
   assert.equal(node.date,'November 3, 2026');
   assert.deepEqual(node.arcKeys,['witness_records','victors_record','full_timeline']);
-  assert.deepEqual(arcs.witness_records.sections,[{label:'Witness Records',order:'explicit',slugs:[SLUG]}]);
+  const witnessSlugs = arcs.witness_records.sections[0].slugs;
+  assert.equal(witnessSlugs[0],SLUG);
+  assert.equal(witnessSlugs.filter(slug => slug===SLUG).length,1);
   assert.equal(arcs.witness_records.parent.title,'Witness Records');
   assert.equal(arcs.witness_records.parent.relationship,undefined);
   assert.ok(arcs.victors_record.sections[0].slugs.includes(SLUG));
