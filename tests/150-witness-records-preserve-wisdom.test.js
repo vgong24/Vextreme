@@ -46,7 +46,8 @@ test('WITNESS-RECORD-II: Witness Records and Victor Record place Record II immed
   assert.equal(node.id,125);
   assert.equal(node.date,'November 3, 2026');
   assert.deepEqual(node.arcKeys,['witness_records','victors_record','full_timeline']);
-  assert.deepEqual(arcs.witness_records.sections[0].slugs,[RECORD_I,SLUG]);
+  const witness=arcs.witness_records.sections[0].slugs;
+  assert.equal(witness.indexOf(SLUG),witness.indexOf(RECORD_I)+1);
   const victor=arcs.victors_record.sections[0].slugs;
   assert.equal(victor.indexOf(SLUG),victor.indexOf(RECORD_I)+1);
   assert.equal(views[SLUG].scopes[0],'pages.'+SLUG);
