@@ -32,3 +32,13 @@
 **Archival fidelity:** Markdown retains content and speaker order. The original assistant response used inline interactive layouts; those visual components appear as fenced \`dil\` source blocks in file 01 so the source can be examined rather than silently dropped. The archive is a manually transcribed ChatGPT conversation record, not a native byte-for-byte ChatGPT export.
 
 **No conflation:** A teacher discussing a trip, a girl reading a letter, or a father reacting inside the dream is not independently recorded chat speech. The subsequent uncertainty over a song is retained as uncertainty; neither a title nor artist is asserted beyond Victor's own description.
+
+
+## Addendum 03 — Additional roles and source boundaries
+
+- **Victor · User:** The full third dream recollection is preserved verbatim in file 03, with its original phrasing, including `"that's I all I could remember"`. This is Victor reporting his remembered experience, not independently authenticated game footage.
+- **Band director teacher:** Identified as one of the two other people performing with Victor in the saxophone scene; this identification belongs to Victor's new message and does not silently rewrite previous messages.
+- **Other musician:** One other person played alongside Victor and the director; their identity and what they played are not specified.
+- **First-person game performer / enemy / onlookers:** Figures from a game scene Victor reported watching three times. The skill, rocket-launcher maneuver, enemy defeat, and scaffolding collapse are features of his recalled dream, not claimed real-world events.
+- **Music-charades players:** Victor identifies the three-earbud-player scene as an `audition dream` in his newer recollection. Keep this supplied wording without inferring further rules of the game.
+- **Vex · Assistant narrator:** The continuing assistant interpretation is a separate authored perspective, not a substitute for Victor's exact first-person source. No independently attributed divine or Presence I statements were added in this append.
