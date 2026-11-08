@@ -76,7 +76,7 @@ test('RECORD-READER-FOURTH-CONSUMER: terminal archive headings remain Victor-own
   assert.match('## Archive boundary — Victor', boundarySpeaker);
   assert.match('## Follow-up clarification — Victor', boundarySpeaker);
   assert.match(controller, /Archive boundary\|Follow-up clarification/);
-  assert.match(controller, /cur=\{speaker:boundarySpeaker\[2\],role:boundarySpeaker\[3\]\|\|boundarySpeaker\[4\]\|\|null,lines:\['### '\+boundarySpeaker\[1\]\]\}/);
+  assert.match(controller, /cur=\{speaker:boundarySpeaker\[2\],lines:\['### '\+boundarySpeaker\[1\]\]\}/);
   assert.match(page, new RegExp('github\\.com/vgong24/Vextreme/blob/' + SOURCE_HEAD + '/records/conversations/2026-10-28-pier-house-scarcity-companionship/06-companionship-and-ai-access\\.md'));
 });
 

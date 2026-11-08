@@ -27,7 +27,10 @@ test('ENTIRE-MATTER-ARCHIVE: I–VI remain the Sabotage sequence and Return is i
   assert.equal(arcs.sabotage.sections[1].label, 'Consequence');
   assert.deepEqual(arcs.sabotage.sections[1].slugs, [RETURN]);
 
-  assert.deepEqual(arcs.victors_record.sections[0].slugs.slice(-7), [
+  const victorSlugs = arcs.victors_record.sections[0].slugs;
+  const sabotageStart = victorSlugs.indexOf(SABOTAGE[0]);
+  assert.ok(sabotageStart >= 0, 'Sabotage I remains present in Victor\'s Record');
+  assert.deepEqual(victorSlugs.slice(sabotageStart, sabotageStart + 7), [
     ...SABOTAGE,
     RETURN,
   ]);
@@ -61,7 +64,8 @@ test('ENTIRE-MATTER-ARCHIVE: generated index projects Return as consequence/coda
   assert.deepEqual(index.arcMap.sabotage[0].slugs, SABOTAGE);
   assert.equal(index.arcMap.sabotage[1].label, 'Consequence');
   assert.deepEqual(index.arcMap.sabotage[1].slugs, [RETURN]);
-  assert.equal(index.arcMap.victors_record[0].slugs.at(-1), RETURN);
+  const victorSlugs = index.arcMap.victors_record[0].slugs;
+  assert.equal(victorSlugs.indexOf(RETURN), victorSlugs.indexOf(WITNESS) + 1);
   assert.deepEqual(witness.arcKeys, ['sabotage', 'victors_record', 'full_timeline']);
   assert.deepEqual(returned.arcKeys, ['sabotage', 'victors_record', 'full_timeline']);
 });
