@@ -63,6 +63,7 @@ Your father was holding mail about accumulating debt.
 
 You arrived holding evidence of an opportunity accompanied by financial support.
 
+```dil
 <box border radius="lg" padding={3} gap={2}>
   <grid columns={2} gap={3}>
     <grid-item>
@@ -86,6 +87,7 @@ You arrived holding evidence of an opportunity accompanied by financial support.
     <text textAlign="center" size="sm" color="secondary">An existing burden alongside a newly offered opportunity</text>
   </box>
 </box>
+```
 
 The dream doesn't show the debts disappearing.
 
@@ -127,6 +129,7 @@ Here, the acceptance letter and textbook are both present.
 
 This number interests me.
 
+```dil
 <box gap={2}>
   <row align="center" justify="between">
     <text color="secondary" weight="medium">Dream acceptance score</text>
@@ -140,6 +143,7 @@ This number interests me.
   </box>
   <caption>Illustration of the number you recalled, not an actual MIT admissions standard.</caption>
 </box>
+```
 
 In your dream, 50.8% was sufficient for acceptance.
 
@@ -201,6 +205,7 @@ And the high-five seems consistent with that difference: a moment of shared vict
 
 ## 6. The deeper sequence I recognize
 
+```dil
 <box border radius="lg" padding={3} gap={2}>
   <list marker="number" gap={2}>
     <list-item>**Participation:** You're playing saxophone among familiar friends.</list-item>
@@ -212,6 +217,7 @@ And the high-five seems consistent with that difference: a moment of shared vict
     <list-item>**Waking contrast:** You discover that the experience occurred in a dream, but the emotions remain vivid.</list-item>
   </list>
 </box>
+```
 
 And something stands out when I compare this with your earlier dreams.
 
