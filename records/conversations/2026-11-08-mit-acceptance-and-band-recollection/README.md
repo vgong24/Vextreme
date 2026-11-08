@@ -43,3 +43,10 @@ The three original Vex visualization blocks are preserved as **fenced component 
 **End:** Victor's next message ending “That's all I can remember for now,” including the additional beach/snow and musical-charades dream scenes.
 
 The request to create this PR authorizes preservation, not retrospective editing of the experience. Later recollections remain appended in chronology, without replacing the original dream report. **This is a fresh, documentation-only PR with no code or earlier transcript modification and no automatic merge.**
+
+
+## Addendum 03 — Further remembered scenes, appended after original archive creation
+
+3. **[03 — Rocket-launcher replay and saxophone memory boundary](03-rocket-replay-saxophone-memory-boundary.md)**: Victor's **full exact third user message**, describing watching a first-person 360 rocket-launcher game maneuver and large scaffolding collapse three times because of its astonishing skill; the saxophone performance with two others (including the band director) played by memory without sheet music; the candid statement that he could not remember the rest, followed by packing away his instrument. The saxophone scene preceded the MIT acceptance readout; the game scene was before the three-earbud-player charades/audition segment. The addendum deliberately does not invent a comprehensive order for scenes whose relative placements were not explicitly supplied.
+
+**Extended archive boundary:** The initial two-record source boundary above remains unchanged. Exchange 03 is a later user-supplied supplement and is saved **append-only**, without retroactively editing the original exchanges. Its quoted game action is dream imagery. The response generated after Exchange 03 is a continuing interpretation in the ongoing chat; the archival record of Exchange 03 preserves the new firsthand report itself.
