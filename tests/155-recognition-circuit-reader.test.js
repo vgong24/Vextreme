@@ -132,11 +132,14 @@ test('RECOGNITION-CIRCUIT: node and arc registration preserve Witness Records + 
   assert.equal(mayForward.dateRange.to, '2099-12-31');
 });
 
-test('RECOGNITION-CIRCUIT: arc navigation uses the current v2 index runtime', () => {
+test('RECOGNITION-CIRCUIT: shared generated runtime delivers current v2 arc navigation and Read Aloud without the legacy shell', () => {
   const page = read('pages/recognition-circuit.html');
+  const generated = read('dist/vextreme-recognition-circuit.js');
   assert.match(page, /id="arcNavMount"/);
-  assert.match(page, /src="\.\.\/lib\/vextreme-index-v2\.js"/);
-  assert.doesNotMatch(page, /shell\.js|vextreme\.js/);
+  assert.match(page, /src="\.\.\/dist\/vextreme-recognition-circuit\.js"/);
+  assert.doesNotMatch(page, /src="\.\.\/lib\/(?:shell|vextreme|vextreme-index-v2)\.js"/);
+  assert.match(generated, /vextreme-index-v2\.js/);
+  assert.match(generated, /fab-read-aloud\.js/);
 });
 
 test('RECOGNITION-CIRCUIT: restored nine-movement contract keeps plausible model separate from attribution', () => {
