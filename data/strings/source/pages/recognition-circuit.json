@@ -35,7 +35,8 @@
           "count": 8,
           "path": "preservations/lucidspark/epic-03/"
         }
-      }
+      },
+      "readerCoverage": "STAGE_00_EPIC_01_EPIC_02_EPIC_03_TIMELINE_ARCHITECTURE_EVIDENCE_PATTERN_LITERACY"
     }
   },
   "pages.recognition-circuit.document-title": {
@@ -728,6 +729,209 @@
     "strings": {
       "en": {
         "text": "Eight preserved Reddit captures. Their upload order remains 0001–0008 even where the transcript derives a different observable state progression from timestamps and engagement counts."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement08.badge": {
+    "strings": {
+      "en": {
+        "text": "Pattern literacy"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement08.title": {
+    "strings": {
+      "en": {
+        "text": "Use the questions without copying the conclusion"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement08.themes": {
+    "strings": {
+      "en": {
+        "text": "transferable mechanics · human discernment · attribution last"
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.affective.title": {
+    "strings": {
+      "en": {
+        "text": "Affective doorway"
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.affective.question": {
+    "strings": {
+      "en": {
+        "text": "What caused me to lower the interaction barrier?"
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.affective.body": {
+    "strings": {
+      "en": {
+        "text": "Praise, familiarity, anger, urgency, sympathy, fear, curiosity, status, or shared identity can all change access. The doorway itself is not proof of manipulation."
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.favor.title": {
+    "strings": {
+      "en": {
+        "text": "Small-favor escalation"
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.favor.question": {
+    "strings": {
+      "en": {
+        "text": "Did an apparently harmless request create a materially different downstream state?"
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.favor.body": {
+    "strings": {
+      "en": {
+        "text": "Keep request → assent → action → artifact → consequence separate. Saying yes is not the same as performing the action or realizing its downstream effect."
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.commitment.title": {
+    "strings": {
+      "en": {
+        "text": "Commitment anchoring"
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.commitment.question": {
+    "strings": {
+      "en": {
+        "text": "Is earlier consent being used to prevent legitimate reassessment?"
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.commitment.body": {
+    "strings": {
+      "en": {
+        "text": "“But you already said yes” can function as pressure to restore a transaction after new information changes the person’s decision."
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.provenance.title": {
+    "strings": {
+      "en": {
+        "text": "Provenance instability"
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.provenance.question": {
+    "strings": {
+      "en": {
+        "text": "Does the explanation for how someone found or knows something remain temporally possible and internally consistent?"
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.provenance.body": {
+    "strings": {
+      "en": {
+        "text": "Chronology can discriminate between explanations more reliably than tone. A provenance contradiction is a question to investigate, not automatic proof of hidden intent."
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.credibility.title": {
+    "strings": {
+      "en": {
+        "text": "Credibility substitution"
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.credibility.question": {
+    "strings": {
+      "en": {
+        "text": "When a claim is hard to verify, am I being asked to rely on status, credentials, or identity instead?"
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.credibility.body": {
+    "strings": {
+      "en": {
+        "text": "That does not automatically make the claim false. It makes source authenticity and independent evidence more consequential."
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.context.title": {
+    "strings": {
+      "en": {
+        "text": "Audience / context mismatch"
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.context.question": {
+    "strings": {
+      "en": {
+        "text": "Does the language assume a referent I was never given?"
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.context.body": {
+    "strings": {
+      "en": {
+        "text": "“Tell me when it’s fixed” invites the simple question: fixed what? Omitted context can be ordinary shorthand, or it can expose different assumptions about the relationship."
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.framing.title": {
+    "strings": {
+      "en": {
+        "text": "Early framing"
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.framing.question": {
+    "strings": {
+      "en": {
+        "text": "What interpretation reached observers before they had time to independently evaluate the event?"
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.framing.body": {
+    "strings": {
+      "en": {
+        "text": "A near-immediate dismissal can have a credibility-framing effect even when coordination is unknown. Notice the function without converting the function into proof of a controller."
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.contraction.title": {
+    "strings": {
+      "en": {
+        "text": "Record contraction"
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.contraction.question": {
+    "strings": {
+      "en": {
+        "text": "After accountability pressure or recognition, did the available record change?"
+      }
+    }
+  },
+  "pages.recognition-circuit.pattern.contraction.body": {
+    "strings": {
+      "en": {
+        "text": "Keep observed disappearance separate from who removed material and why. Those are three different claims with three different proof burdens."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement08.loop.heading": {
+    "strings": {
+      "en": {
+        "text": "A transferable reading loop"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement08.transfer": {
+    "strings": {
+      "en": {
+        "text": "The method can help examine scams, coercive relationships, social engineering, workplace politics, institutional communications, online influence, manipulative sales, abusive dynamics, platform behavior, or ordinary misunderstandings without assuming that every superficially similar event has the same cause."
       }
     }
   }

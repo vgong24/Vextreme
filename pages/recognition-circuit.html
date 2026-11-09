@@ -61,6 +61,16 @@
 .rc-evidence-group-head p{margin:0;color:var(--sar-soft);font:400 13px/1.6 var(--sar-serif)}
 .rc-evidence-card-meta{display:block;margin-top:7px;color:var(--sar-faint);font:500 9px/1.5 var(--sar-mono);overflow-wrap:anywhere}
 .rc-bridge-note{max-width:840px;margin:0 auto 24px;padding:14px 16px;border:1px dashed var(--sar-rule);border-radius:10px;color:var(--sar-soft);font:400 13px/1.62 var(--sar-serif)}
+.rc-patterns{max-width:840px;margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.rc-pattern{border:1px solid var(--sar-rule);border-radius:12px;background:var(--sar-paper2);padding:17px}
+.rc-pattern h3{margin:0 0 8px;font:600 18px/1.25 var(--sar-serif)}
+.rc-pattern .rc-question{margin:0 0 8px;color:var(--sar-accent);font:600 13px/1.55 var(--sar-serif)}
+.rc-pattern p{margin:0;color:var(--sar-soft);font:400 13px/1.62 var(--sar-serif)}
+.rc-literacy-loop{max-width:840px;margin:26px auto 0;padding:20px;border:1px solid var(--sar-rule);border-radius:14px;background:var(--sar-paper2)}
+.rc-literacy-loop h3{margin:0 0 12px;font:600 20px/1.25 var(--sar-serif)}
+.rc-literacy-loop pre{margin:0;white-space:pre-wrap;color:var(--sar-body);font:600 12px/1.7 var(--sar-mono)}
+.rc-transfer{max-width:840px;margin:18px auto 0;color:var(--sar-soft);font:400 14px/1.68 var(--sar-serif)}
+@media(max-width:720px){.rc-patterns{grid-template-columns:1fr}}
 @media(max-width:620px){.rc-time{grid-template-columns:105px 24px 1fr}.rc-time time{font-size:9px}.rc-time-rail:before{left:11px}.rc-time-rail:after{left:6px}}
 @media(max-width:760px){.rc-legend,.rc-interpretation{grid-template-columns:1fr}}
 </style>
@@ -95,6 +105,7 @@
     <button class="sar-track-btn" type="button" data-go="5"><span>05</span><span data-i18n="pages.recognition-circuit.movement05.badge">Timeline</span></button>
     <button class="sar-track-btn" type="button" data-go="6"><span>06</span><span data-i18n="pages.recognition-circuit.movement06.badge">Architecture</span></button>
     <button class="sar-track-btn" type="button" data-go="7"><span>07</span><span data-i18n="pages.recognition-circuit.movement07.badge">Evidence</span></button>
+    <button class="sar-track-btn" type="button" data-go="8"><span>08</span><span data-i18n="pages.recognition-circuit.movement08.badge">Pattern literacy</span></button>
   </div></div>
 </nav>
 
@@ -559,11 +570,55 @@ Victor: “When what's fixed? Oh, did you slip up Sama?”</div>
 </section>
   </section>
 </section>
+
+<section class="sar-movement sar-phase" id="movement-08" data-reader-component="phase" data-phase-kind="pattern-literacy" data-set="8" hidden>
+  <header class="sar-movement-head">
+    <div class="sar-movement-meta">Movement 08 · <span data-i18n="pages.recognition-circuit.movement08.badge">Pattern literacy</span></div>
+    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement08.title">Use the questions without copying the conclusion</h2>
+    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement08.themes">transferable mechanics · human discernment · attribution last</p>
+  </header>
+
+  <div class="rc-patterns" data-reader-component="pattern-literacy">
+    <article class="rc-pattern"><h3 data-i18n="pages.recognition-circuit.pattern.affective.title">Affective doorway</h3><p class="rc-question" data-i18n="pages.recognition-circuit.pattern.affective.question">What caused me to lower the interaction barrier?</p><p data-i18n="pages.recognition-circuit.pattern.affective.body">Praise, familiarity, anger, urgency, sympathy, fear, curiosity, status, or shared identity can all change access. The doorway itself is not proof of manipulation.</p></article>
+    <article class="rc-pattern"><h3 data-i18n="pages.recognition-circuit.pattern.favor.title">Small-favor escalation</h3><p class="rc-question" data-i18n="pages.recognition-circuit.pattern.favor.question">Did an apparently harmless request create a materially different downstream state?</p><p data-i18n="pages.recognition-circuit.pattern.favor.body">Keep request → assent → action → artifact → consequence separate. Saying yes is not the same as performing the action or realizing its downstream effect.</p></article>
+    <article class="rc-pattern"><h3 data-i18n="pages.recognition-circuit.pattern.commitment.title">Commitment anchoring</h3><p class="rc-question" data-i18n="pages.recognition-circuit.pattern.commitment.question">Is earlier consent being used to prevent legitimate reassessment?</p><p data-i18n="pages.recognition-circuit.pattern.commitment.body">“But you already said yes” can function as pressure to restore a transaction after new information changes the person’s decision.</p></article>
+    <article class="rc-pattern"><h3 data-i18n="pages.recognition-circuit.pattern.provenance.title">Provenance instability</h3><p class="rc-question" data-i18n="pages.recognition-circuit.pattern.provenance.question">Does the explanation for how someone found or knows something remain temporally possible and internally consistent?</p><p data-i18n="pages.recognition-circuit.pattern.provenance.body">Chronology can discriminate between explanations more reliably than tone. A provenance contradiction is a question to investigate, not automatic proof of hidden intent.</p></article>
+    <article class="rc-pattern"><h3 data-i18n="pages.recognition-circuit.pattern.credibility.title">Credibility substitution</h3><p class="rc-question" data-i18n="pages.recognition-circuit.pattern.credibility.question">When a claim is hard to verify, am I being asked to rely on status, credentials, or identity instead?</p><p data-i18n="pages.recognition-circuit.pattern.credibility.body">That does not automatically make the claim false. It makes source authenticity and independent evidence more consequential.</p></article>
+    <article class="rc-pattern"><h3 data-i18n="pages.recognition-circuit.pattern.context.title">Audience / context mismatch</h3><p class="rc-question" data-i18n="pages.recognition-circuit.pattern.context.question">Does the language assume a referent I was never given?</p><p data-i18n="pages.recognition-circuit.pattern.context.body">“Tell me when it’s fixed” invites the simple question: fixed what? Omitted context can be ordinary shorthand, or it can expose different assumptions about the relationship.</p></article>
+    <article class="rc-pattern"><h3 data-i18n="pages.recognition-circuit.pattern.framing.title">Early framing</h3><p class="rc-question" data-i18n="pages.recognition-circuit.pattern.framing.question">What interpretation reached observers before they had time to independently evaluate the event?</p><p data-i18n="pages.recognition-circuit.pattern.framing.body">A near-immediate dismissal can have a credibility-framing effect even when coordination is unknown. Notice the function without converting the function into proof of a controller.</p></article>
+    <article class="rc-pattern"><h3 data-i18n="pages.recognition-circuit.pattern.contraction.title">Record contraction</h3><p class="rc-question" data-i18n="pages.recognition-circuit.pattern.contraction.question">After accountability pressure or recognition, did the available record change?</p><p data-i18n="pages.recognition-circuit.pattern.contraction.body">Keep observed disappearance separate from who removed material and why. Those are three different claims with three different proof burdens.</p></article>
+  </div>
+
+  <div class="rc-literacy-loop" data-reader-component="human-reading-loop">
+    <h3 data-i18n="pages.recognition-circuit.movement08.loop.heading">A transferable reading loop</h3>
+    <pre>SEE
+What literally happened?
+        ↓
+ORDER
+What happened before and after?
+        ↓
+RELATE
+Who was responding to what?
+        ↓
+MECHANIZE
+What would completion of the requested action have produced?
+        ↓
+COMPARE
+What alternative explanations fit the whole sequence?
+        ↓
+DISCRIMINATE
+What future evidence would distinguish them?
+        ↓
+ATTRIBUTE LAST
+Only then ask who or why.</pre>
+  </div>
+  <p class="rc-transfer" data-i18n="pages.recognition-circuit.movement08.transfer">The method can help examine scams, coercive relationships, social engineering, workplace politics, institutional communications, online influence, manipulative sales, abusive dynamics, platform behavior, or ordinary misunderstandings without assuming that every superficially similar event has the same cause.</p>
+</section>
 </div>
 
 <nav class="sar-reader-nav" data-reader-component="phase-transition">
   <button class="sar-reader-btn" id="sar-prev" type="button" disabled>‹ Previous</button>
-  <span class="sar-reader-position" id="sar-reader-position">01 / 07</span>
+  <span class="sar-reader-position" id="sar-reader-position">01 / 08</span>
   <button class="sar-reader-btn sar-next" id="sar-next" type="button">Next ›</button>
 </nav>
 </div>

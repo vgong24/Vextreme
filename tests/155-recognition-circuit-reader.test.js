@@ -93,3 +93,13 @@ test('RECOGNITION-CIRCUIT: evidence preserves source identity and excludes repre
   assert.match(page, /Some screenshots contain material that bridges across Epics/);
   assert.equal((page.match(/loading="lazy"/g) || []).length, 49);
 });
+
+test('RECOGNITION-CIRCUIT: pattern literacy arrives after evidence and ends with attribution last', () => {
+  const page = read('pages/recognition-circuit.html');
+  const evidenceAt = page.indexOf('data-phase-kind="evidence"');
+  const literacyAt = page.indexOf('data-phase-kind="pattern-literacy"');
+  assert.ok(literacyAt > evidenceAt);
+  assert.equal((page.match(/class="rc-pattern"/g) || []).length, 8);
+  assert.match(page, /SEE[\s\S]*ORDER[\s\S]*RELATE[\s\S]*MECHANIZE[\s\S]*COMPARE[\s\S]*DISCRIMINATE[\s\S]*ATTRIBUTE LAST/);
+  assert.match(page, /without assuming that every superficially similar event has the same cause/);
+});
