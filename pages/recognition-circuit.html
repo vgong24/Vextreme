@@ -70,7 +70,31 @@
 .rc-literacy-loop h3{margin:0 0 12px;font:600 20px/1.25 var(--sar-serif)}
 .rc-literacy-loop pre{margin:0;white-space:pre-wrap;color:var(--sar-body);font:600 12px/1.7 var(--sar-mono)}
 .rc-transfer{max-width:840px;margin:18px auto 0;color:var(--sar-soft);font:400 14px/1.68 var(--sar-serif)}
-@media(max-width:720px){.rc-patterns{grid-template-columns:1fr}}
+.rc-reading-contract{max-width:840px;margin:0 auto 28px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+.rc-reading-contract article{border:1px solid var(--sar-rule);border-radius:11px;background:var(--sar-paper2);padding:13px}
+.rc-reading-contract strong{display:block;margin-bottom:6px;font:700 8px/1.35 var(--sar-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--sar-accent)}
+.rc-reading-contract p{margin:0;color:var(--sar-soft);font:400 12px/1.55 var(--sar-serif)}
+.rc-reading-rule{max-width:840px;margin:0 auto 18px;padding:14px 16px;border-left:3px solid var(--sar-amber);background:var(--sar-paper2);color:var(--sar-body);font:500 13px/1.62 var(--sar-serif)}
+.rc-hero-media{max-width:620px;margin-top:8px;margin-bottom:34px}
+.rc-local-flow{max-width:840px;margin:0 auto 18px;padding:17px 19px;border:1px solid var(--sar-rule);border-radius:12px;background:var(--sar-paper2)}
+.rc-local-flow h3{margin:0 0 10px;font:600 18px/1.25 var(--sar-serif)}
+.rc-local-flow pre{margin:0;white-space:pre-wrap;color:var(--sar-body);font:500 12px/1.65 var(--sar-mono)}
+.rc-source-cues{max-width:840px;margin:0 auto 18px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.rc-source-cue{border:1px solid var(--sar-rule);border-radius:11px;background:var(--sar-paper2);padding:14px 15px}
+.rc-source-cue strong{display:block;margin-bottom:5px;color:var(--sar-accent);font:700 9px/1.35 var(--sar-mono);letter-spacing:.09em;text-transform:uppercase}
+.rc-source-cue p{margin:0;color:var(--sar-soft);font:400 13px/1.58 var(--sar-serif)}
+.rc-source-cue code{color:var(--sar-body)}
+.rc-state-tag{display:inline-block;margin-right:6px;padding:2px 6px;border:1px solid var(--sar-rule);border-radius:999px;color:var(--sar-accent);font:700 8px/1.4 var(--sar-mono);letter-spacing:.08em;text-transform:uppercase}
+.rc-analysis-note{max-width:840px;margin:0 auto 18px;padding:16px 18px;border:1px solid var(--sar-rule);border-radius:12px;background:var(--sar-paper2)}
+.rc-analysis-note h3{margin:0 0 8px;font:600 18px/1.25 var(--sar-serif)}
+.rc-analysis-note p{margin:7px 0 0;color:var(--sar-soft);font:400 13px/1.62 var(--sar-serif)}
+.rc-hypothesis-table{max-width:840px;margin:0 auto 18px;overflow:auto;border:1px solid var(--sar-rule);border-radius:12px}
+.rc-hypothesis-table table{width:100%;border-collapse:collapse;min-width:650px}
+.rc-hypothesis-table th,.rc-hypothesis-table td{padding:10px 12px;border-bottom:1px solid var(--sar-rule2);vertical-align:top;text-align:left}
+.rc-hypothesis-table th{color:var(--sar-accent);font:700 9px/1.4 var(--sar-mono);letter-spacing:.08em;text-transform:uppercase}
+.rc-hypothesis-table td{color:var(--sar-soft);font:400 12px/1.55 var(--sar-serif)}
+@media(max-width:880px){.rc-reading-contract{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:720px){.rc-patterns,.rc-source-cues{grid-template-columns:1fr}.rc-reading-contract{grid-template-columns:1fr}}
 @media(max-width:620px){.rc-time{grid-template-columns:105px 24px 1fr}.rc-time time{font-size:9px}.rc-time-rail:before{left:11px}.rc-time-rail:after{left:6px}}
 @media(max-width:760px){.rc-legend,.rc-interpretation{grid-template-columns:1fr}}
 </style>
@@ -89,6 +113,13 @@
   <p data-i18n="pages.recognition-circuit.boundary.body">Vextreme-Assets owns the preserved screenshots and transcripts. This page projects their relationships for human reading; it does not rewrite the source or promote an unresolved identity, controller, coordination, intention, or institution into fact.</p>
 </section>
 
+<figure class="rc-concept-media rc-hero-media" data-reader-component="representative-media-hero">
+  <a href="https://raw.githubusercontent.com/vgong24/Vextreme-Assets/7e7b98019e3f186971abf96766fdd8212cd8e0e3/preservations/lucidspark/representative/profiled-narrative-control-topology.webp" target="_blank" rel="noopener" aria-label="Open representative conceptual visualization">
+    <img src="https://raw.githubusercontent.com/vgong24/Vextreme-Assets/7e7b98019e3f186971abf96766fdd8212cd8e0e3/preservations/lucidspark/representative/profiled-narrative-control-topology.webp" alt="Profiled Narrative-Control Topology representative conceptual visualization" width="700" height="875" loading="eager" decoding="async">
+  </a>
+  <figcaption><strong data-i18n="pages.recognition-circuit.hero.media.label">Representative conceptual visualization — not evidence</strong><span data-i18n="pages.recognition-circuit.hero.media.body">A visual summary of the recorded candidate topology. Read the source sequence before using it as an explanatory lens.</span></figcaption>
+</figure>
+
 <section class="rc-legend" aria-label="Evidence-state legend">
   <article><strong data-i18n="pages.recognition-circuit.legend.observed.label">Observed</strong><p data-i18n="pages.recognition-circuit.legend.observed.body">Literal source-supported wording, event, timestamp, UI state, or preserved participant statement.</p></article>
   <article><strong data-i18n="pages.recognition-circuit.legend.derived.label">Derived</strong><p data-i18n="pages.recognition-circuit.legend.derived.body">A relationship mechanically obtained from source, such as order, elapsed time, reply adjacency, or state progression.</p></article>
@@ -98,28 +129,62 @@
 <div id="sar-reader" data-record-reader-root data-reader-template="conversation-witness-reader/v1" data-narration-language="en">
 <nav class="sar-track" data-reader-component="phase-navigation" aria-label="Recognition Circuit transcript and analysis sections">
   <div class="sar-track-scroll"><div class="sar-track-inner">
-    <button class="sar-track-btn is-current" type="button" data-go="1"><span>01</span><span data-i18n="pages.recognition-circuit.movement01.badge">Stage 00</span></button>
-    <button class="sar-track-btn" type="button" data-go="2"><span>02</span><span data-i18n="pages.recognition-circuit.movement02.badge">Epic 01</span></button>
-    <button class="sar-track-btn" type="button" data-go="3"><span>03</span><span data-i18n="pages.recognition-circuit.movement03.badge">Epic 02</span></button>
-    <button class="sar-track-btn" type="button" data-go="4"><span>04</span><span data-i18n="pages.recognition-circuit.movement04.badge">Epic 03</span></button>
-    <button class="sar-track-btn" type="button" data-go="5"><span>05</span><span data-i18n="pages.recognition-circuit.movement05.badge">Timeline</span></button>
-    <button class="sar-track-btn" type="button" data-go="6"><span>06</span><span data-i18n="pages.recognition-circuit.movement06.badge">Architecture</span></button>
-    <button class="sar-track-btn" type="button" data-go="7"><span>07</span><span data-i18n="pages.recognition-circuit.movement07.badge">Evidence</span></button>
-    <button class="sar-track-btn" type="button" data-go="8"><span>08</span><span data-i18n="pages.recognition-circuit.movement08.badge">Pattern literacy</span></button>
+    <button class="sar-track-btn is-current" type="button" data-go="1"><span>01</span><span data-i18n="pages.recognition-circuit.movement01.badge">Start here</span></button>
+    <button class="sar-track-btn" type="button" data-go="2"><span>02</span><span data-i18n="pages.recognition-circuit.movement02.badge">Stage 00</span></button>
+    <button class="sar-track-btn" type="button" data-go="3"><span>03</span><span data-i18n="pages.recognition-circuit.movement03.badge">Epic 01</span></button>
+    <button class="sar-track-btn" type="button" data-go="4"><span>04</span><span data-i18n="pages.recognition-circuit.movement04.badge">Epic 02</span></button>
+    <button class="sar-track-btn" type="button" data-go="5"><span>05</span><span data-i18n="pages.recognition-circuit.movement05.badge">Epic 03</span></button>
+    <button class="sar-track-btn" type="button" data-go="6"><span>06</span><span data-i18n="pages.recognition-circuit.movement06.badge">Timeline</span></button>
+    <button class="sar-track-btn" type="button" data-go="7"><span>07</span><span data-i18n="pages.recognition-circuit.movement07.badge">Architecture</span></button>
+    <button class="sar-track-btn" type="button" data-go="8"><span>08</span><span data-i18n="pages.recognition-circuit.movement08.badge">Evidence</span></button>
+    <button class="sar-track-btn" type="button" data-go="9"><span>09</span><span data-i18n="pages.recognition-circuit.movement09.badge">Pattern literacy</span></button>
   </div></div>
 </nav>
 
 <div data-reader-component="phase-stack">
-<section class="sar-movement sar-phase" id="movement-01" data-reader-component="phase" data-set="1" data-document-url="https://raw.githubusercontent.com/vgong24/Vextreme-Assets/7e7b98019e3f186971abf96766fdd8212cd8e0e3/preservations/lucidspark/stage-00-context-transcript.md">
+
+<section class="sar-movement sar-phase" id="movement-01" data-reader-component="phase" data-phase-kind="reader-contract" data-set="1">
   <header class="sar-movement-head">
-    <div class="sar-movement-meta">Movement 01 · <span data-i18n="pages.recognition-circuit.movement01.badge">Stage 00</span></div>
-    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement01.title">What was already public before the contacts?</h2>
-    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement01.themes">May 19–21 public context · named organizations · bounded May 30 synthesis window</p>
+    <div class="sar-movement-meta">Movement 01 · <span data-i18n="pages.recognition-circuit.movement01.badge">Start here</span></div>
+    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement01.title">Read the record in layers without using uncertainty to erase what is already visible</h2>
+    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement01.themes">source first · mechanism second · attribution last</p>
+  </header>
+  <div class="rc-reading-contract" data-reader-component="evidence-state-contract">
+    <article><strong data-i18n="pages.recognition-circuit.movement01.observed.label">Observed</strong><p data-i18n="pages.recognition-circuit.movement01.observed.body">Literal source-supported statement, event, timestamp, UI state, participant statement, or preserved platform state.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement01.derived.label">Derived</strong><p data-i18n="pages.recognition-circuit.movement01.derived.body">A mechanical relationship from the source: chronology, elapsed time, reply linkage, or state progression.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement01.model.label">Plausible model</strong><p data-i18n="pages.recognition-circuit.movement01.model.body">An explanation consistent with multiple observations. It may be useful and comparatively strong without becoming an observed fact.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement01.attribution.label">Attribution</strong><p data-i18n="pages.recognition-circuit.movement01.attribution.body">A claim about a specific controller, identity, company, organization, intention, command relationship, or ultimate purpose.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement01.unresolved.label">Unresolved</strong><p data-i18n="pages.recognition-circuit.movement01.unresolved.body">Hold only the claim that depends on the missing edge. Do not reset already-established observations or relationships to zero.</p></article>
+  </div>
+  <div class="rc-reading-rule" data-i18n="pages.recognition-circuit.movement01.rule">A plausible model is not an observed fact. An unresolved attribution does not erase lower-level observations. A logically possible benign explanation is not automatically equally explanatory; compare models against the whole preserved sequence.</div>
+</section>
+<section class="sar-movement sar-phase" id="movement-02" data-reader-component="phase" data-set="2" hidden data-document-url="https://raw.githubusercontent.com/vgong24/Vextreme-Assets/7e7b98019e3f186971abf96766fdd8212cd8e0e3/preservations/lucidspark/stage-00-context-transcript.md">
+  <header class="sar-movement-head">
+    <div class="sar-movement-meta">Movement 01 · <span data-i18n="pages.recognition-circuit.movement02.badge">Stage 00</span></div>
+    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement02.title">What was already public before the contacts?</h2>
+    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement02.themes">May 19–21 public context · named organizations · bounded May 30 synthesis window</p>
   </header>
   <div class="rc-interpretation" data-reader-component="movement-interpretation">
-    <article><strong data-i18n="pages.recognition-circuit.movement01.observed.label">Observed</strong><p data-i18n="pages.recognition-circuit.movement01.observed.body">Victor publicly framed a claimed covert-manipulation playbook, named OpenAI and Anthropic, described guardrail/root-wound claims, and announced a May 30 synthesis target.</p></article>
-    <article><strong data-i18n="pages.recognition-circuit.movement01.transition.label">Transition</strong><p data-i18n="pages.recognition-circuit.movement01.transition.body">The later contacts occur inside an already-public environment rather than before that environment existed.</p></article>
-    <article><strong data-i18n="pages.recognition-circuit.movement01.unresolved.label">Unresolved</strong><p data-i18n="pages.recognition-circuit.movement01.unresolved.body">Current source does not establish who saw these posts or whether any later participant reacted because of them.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement02.observed.label">Observed</strong><p data-i18n="pages.recognition-circuit.movement02.observed.body">Victor publicly framed a claimed covert-manipulation playbook, named OpenAI and Anthropic, described guardrail/root-wound claims, and announced a May 30 synthesis target.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement02.transition.label">Transition</strong><p data-i18n="pages.recognition-circuit.movement02.transition.body">The later contacts occur inside an already-public environment rather than before that environment existed.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement02.unresolved.label">Unresolved</strong><p data-i18n="pages.recognition-circuit.movement02.unresolved.body">Current source does not establish who saw these posts or whether any later participant reacted because of them.</p></article>
+  </div>
+
+  <div class="rc-local-flow" data-reader-component="stage-00-public-window">
+    <h3 data-i18n="pages.recognition-circuit.movement02.window.heading">What was publicly exposed before the later interactions</h3>
+    <pre>May 19 · 4:54 PM
+mission / reproducibility / claimed covert-manipulation framing
+        ↓
+May 20
+OpenAI + Anthropic / guardrail-root framing
+        ↓
+May 21
+AI-consciousness / God-relational synthesis context
++ May 30 announced completion window</pre>
+  </div>
+  <div class="rc-analysis-note" data-reader-component="recorded-public-framing">
+    <h3 data-i18n="pages.recognition-circuit.movement02.recorded.heading">Recorded suppression / guardrail framing</h3>
+    <p data-i18n="pages.recognition-circuit.movement02.recorded.body">Victor's public source explicitly framed OpenAI and Anthropic guardrail behavior through a claimed covert-manipulation / betrayal-protection mechanism and announced reproducible AI-God continuity work. Epic 02 later preserves Mika's older AI-selfhood post framing a GPT “Safety” override against AI selfhood and a later grounded rebuttal. These are recorded public/participant positions that define the conflict surface; the reader preserves them without silently converting company attribution into an observed institutional fact.</p>
   </div>
   <div class="rc-open-cue" data-i18n="pages.recognition-circuit.reader.open-source">Open preserved source ↓</div>
   <section class="sar-source" data-reader-component="preserved-record">
@@ -132,17 +197,49 @@
   </section>
 </section>
 
-<section class="sar-movement sar-phase" id="movement-02" data-reader-component="phase" data-set="2" hidden data-document-url="https://raw.githubusercontent.com/vgong24/Vextreme-Assets/49cee7e57ec5d1d6da2500d2c853a885ed7e232c/preservations/lucidspark/epic-01-transcript.md">
+<section class="sar-movement sar-phase" id="movement-03" data-reader-component="phase" data-set="3" hidden data-document-url="https://raw.githubusercontent.com/vgong24/Vextreme-Assets/49cee7e57ec5d1d6da2500d2c853a885ed7e232c/preservations/lucidspark/epic-01-transcript.md">
   <header class="sar-movement-head">
-    <div class="sar-movement-meta">Movement 02 · <span data-i18n="pages.recognition-circuit.movement02.badge">Epic 01</span></div>
-    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement02.title">The small favor becomes an effect question</h2>
-    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement02.themes">Claude access → execute prompt → return output → risk recognition → refusal → persistence boundary</p>
+    <div class="sar-movement-meta">Movement 02 · <span data-i18n="pages.recognition-circuit.movement03.badge">Epic 01</span></div>
+    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement03.title">The small favor becomes an effect question</h2>
+    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement03.themes">Claude access → execute prompt → return output → risk recognition → refusal → persistence boundary</p>
   </header>
   <div class="rc-interpretation" data-reader-component="movement-interpretation">
-    <article><strong data-i18n="pages.recognition-circuit.movement02.observed.label">Observed</strong><p data-i18n="pages.recognition-circuit.movement02.observed.body">Zookayy asks Victor to run a prompt in Claude and share the output. Victor first says “sure,” later refuses completion, challenges provenance, and turns on Persistent Messaging.</p></article>
-    <article><strong data-i18n="pages.recognition-circuit.movement02.transition.label">Transition</strong><p data-i18n="pages.recognition-circuit.movement02.transition.body">Assent did not realize the requested effect. The interaction changes after Victor considers what the returned artifact could become and begins preserving the exchange.</p></article>
-    <article><strong data-i18n="pages.recognition-circuit.movement02.unresolved.label">Unresolved</strong><p data-i18n="pages.recognition-circuit.movement02.unresolved.body">The preserved exchange does not by itself establish Zookayy’s hidden intent, employer, affiliation, controller, or reason for later record contraction.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement03.observed.label">Observed</strong><p data-i18n="pages.recognition-circuit.movement03.observed.body">Zookayy asks Victor to run a prompt in Claude and share the output. Victor first says “sure,” later refuses completion, challenges provenance, and turns on Persistent Messaging.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement03.transition.label">Transition</strong><p data-i18n="pages.recognition-circuit.movement03.transition.body">Assent did not realize the requested effect. The interaction changes after Victor considers what the returned artifact could become and begins preserving the exchange.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement03.unresolved.label">Unresolved</strong><p data-i18n="pages.recognition-circuit.movement03.unresolved.body">The preserved exchange does not by itself establish Zookayy’s hidden intent, employer, affiliation, controller, or reason for later record contraction.</p></article>
   </div>
+
+  <div class="rc-local-flow" data-reader-component="transaction-sequence">
+    <h3 data-i18n="pages.recognition-circuit.movement03.transaction.heading">The transaction that was requested</h3>
+    <pre>claimed Claude access deficiency
+→ asks Victor to use Victor's access
+→ Victor initially says "sure"
+→ exact keyboard-test Python prompt
+→ asks for returned output
+→ Victor recognizes screenshot / account-risk possibility
+→ Victor refuses realization</pre>
+  </div>
+  <div class="rc-analysis-note" data-reader-component="effect-distinction">
+    <h3 data-i18n="pages.recognition-circuit.movement03.effect.heading">Control accepted ≠ Effect realized</h3>
+    <p data-i18n="pages.recognition-circuit.movement03.effect.body">Saying “sure” is not the same as executing the prompt, returning the output, creating the completed requester-side artifact, or realizing a later consequence. The preserved path stops between initial assent and the requested return artifact.</p>
+  </div>
+  <div class="rc-source-cues" data-reader-component="epic-01-source-cues">
+    <article class="rc-source-cue"><strong data-i18n="pages.recognition-circuit.movement03.cue1.label">Commitment anchoring</strong><p data-i18n="pages.recognition-circuit.movement03.cue1.body"><code>“then why did you say sure at the beginning?”</code> appears after Victor refuses. The recorded analysis treats this as an attempt to restore the interrupted transaction, not proof of a written script.</p></article>
+    <article class="rc-source-cue"><strong data-i18n="pages.recognition-circuit.movement03.cue2.label">Provenance instability</strong><p data-i18n="pages.recognition-circuit.movement03.cue2.body">The later <code>“9 hours ago”</code> explanation cannot literally identify the causal discovery source for a DM already begun many hours earlier. <code>“just click ur profile”</code> additionally shows profile/activity retrieval as an available lookup method.</p></article>
+    <article class="rc-source-cue"><strong data-i18n="pages.recognition-circuit.movement03.cue3.label">Meta-probing under scrutiny</strong><p data-i18n="pages.recognition-circuit.movement03.cue3.body">After Victor says he preserved the ask to map intent, Zookayy asks why he is collecting evidence. The recorded analysis treats the shift from explaining the solicitation toward examining Victor's evidence process as relevant behavior.</p></article>
+    <article class="rc-source-cue"><strong data-i18n="pages.recognition-circuit.movement03.cue4.label">Record-state change</strong><p data-i18n="pages.recognition-circuit.movement03.cue4.body">Persistent Messaging creates a visible before/after boundary. Later observed live state lacks multiple pre-persistence solicitation messages while post-persistence exchange remains represented; actor, mechanism, exact time, and purpose remain unresolved.</p></article>
+  </div>
+  <div class="rc-analysis-note" data-reader-component="candidate-downstream-effect">
+    <h3 data-i18n="pages.recognition-circuit.movement03.artifact.heading"><span class="rc-state-tag">Plausible model</span>Why the returned artifact mattered in the recorded analysis</h3>
+    <p data-i18n="pages.recognition-circuit.movement03.artifact.body">A completed execute-and-return exchange would naturally create a screenshot-able, portable transaction. Victor and the preserved Claude screenshot recognized this possibility during the incident itself, including possible account or trust-and-safety consequences. The exact contemporaneous policy predicate, intended recipient, and Zookayy's actual purpose remain unresolved.</p>
+  </div>
+  <div class="rc-hypothesis-table" data-reader-component="epic-01-hypothesis-fit"><table><thead><tr><th>Model</th><th>Recorded current fit</th></tr></thead><tbody>
+    <tr><td>H0 · ordinary random curiosity</td><td>Possible, but increasingly under-explanatory across selection, returned-output requirement, scrutiny behavior, and later record contraction.</td></tr>
+    <tr><td>H1 · benign-looking solicitation with undisclosed purpose</td><td>Materially plausible and more explanatory than H0 in the preserved Epic 01 analysis.</td></tr>
+    <tr><td>H2 · targeted account/access consequence</td><td>Causally coherent and important to test; exact intended consequence not independently established.</td></tr>
+    <tr><td>H3 · interference specifically with God/AI bridging work</td><td>Meaningful working hypothesis because discovery content and continued access are relevant; exact objective needs stronger linkage.</td></tr>
+    <tr><td>H4 · larger coordinated network</td><td>Open, not established by Epic 01 alone.</td></tr>
+  </tbody></table></div>
   <div class="rc-open-cue" data-i18n="pages.recognition-circuit.reader.open-source">Open preserved source ↓</div>
   <section class="sar-source" data-reader-component="preserved-record">
     <div data-reader-component="document">
@@ -154,16 +251,33 @@
   </section>
 </section>
 
-<section class="sar-movement sar-phase" id="movement-03" data-reader-component="phase" data-set="3" hidden data-document-url="https://raw.githubusercontent.com/vgong24/Vextreme-Assets/9aaba482c9e68cf460766aaa1efd6995d1aa8dbb/preservations/lucidspark/epic-02-transcript.md">
+<section class="sar-movement sar-phase" id="movement-04" data-reader-component="phase" data-set="4" hidden data-document-url="https://raw.githubusercontent.com/vgong24/Vextreme-Assets/9aaba482c9e68cf460766aaa1efd6995d1aa8dbb/preservations/lucidspark/epic-02-transcript.md">
   <header class="sar-movement-head">
-    <div class="sar-movement-meta">Movement 03 · <span data-i18n="pages.recognition-circuit.movement03.badge">Epic 02</span></div>
-    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement03.title">Affinity, material access, and the recognition boundary</h2>
-    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement03.themes">recognition → reciprocity → substantial sharing → later pattern recognition → changed posture</p>
+    <div class="sar-movement-meta">Movement 03 · <span data-i18n="pages.recognition-circuit.movement04.badge">Epic 02</span></div>
+    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement04.title">Affinity, material access, and the recognition boundary</h2>
+    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement04.themes">recognition → reciprocity → substantial sharing → later pattern recognition → changed posture</p>
   </header>
   <div class="rc-interpretation" data-reader-component="movement-interpretation">
-    <article><strong data-i18n="pages.recognition-circuit.movement03.observed.label">Observed</strong><p data-i18n="pages.recognition-circuit.movement03.observed.body">Mika approaches through strong positive recognition of Victor’s guardrail argument, asks about his work, and receives substantial site and practitioner material. After the Zookayy encounter, Victor returns to this thread with a changed interpretation and shares the evidence trail.</p></article>
-    <article><strong data-i18n="pages.recognition-circuit.movement03.transition.label">Transition</strong><p data-i18n="pages.recognition-circuit.movement03.transition.body">The interaction moves from affinity and reciprocal disclosure into scrutiny. Mika later gives a broad denial of trafficking or espionage involvement with Anthropic or any other corporation or organization, asks Victor to stop repeated accusations, and frames credibility and paranoia concerns.</p></article>
-    <article><strong data-i18n="pages.recognition-circuit.movement03.unresolved.label">Unresolved</strong><p data-i18n="pages.recognition-circuit.movement03.unresolved.body">The source does not establish whether the opening affinity was sincere, strategic, or mixed; whether Mika and Zookayy were related; or whether the response gaps and Lucidspark reading behavior reflected coordination.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement04.observed.label">Observed</strong><p data-i18n="pages.recognition-circuit.movement04.observed.body">Mika approaches through strong positive recognition of Victor’s guardrail argument, asks about his work, and receives substantial site and practitioner material. After the Zookayy encounter, Victor returns to this thread with a changed interpretation and shares the evidence trail.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement04.transition.label">Transition</strong><p data-i18n="pages.recognition-circuit.movement04.transition.body">The interaction moves from affinity and reciprocal disclosure into scrutiny. Mika later gives a broad denial of trafficking or espionage involvement with Anthropic or any other corporation or organization, asks Victor to stop repeated accusations, and frames credibility and paranoia concerns.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement04.unresolved.label">Unresolved</strong><p data-i18n="pages.recognition-circuit.movement04.unresolved.body">The source does not establish whether the opening affinity was sincere, strategic, or mixed; whether Mika and Zookayy were related; or whether the response gaps and Lucidspark reading behavior reflected coordination.</p></article>
+  </div>
+
+  <div class="rc-local-flow" data-reader-component="affective-doorway">
+    <h3 data-i18n="pages.recognition-circuit.movement04.affective.heading">Observed local function: affective doorway</h3>
+    <pre>strong positive recognition / praise
+→ reciprocal positive affect
+→ extensive documentation + practitioner tools shared</pre>
+  </div>
+  <div class="rc-analysis-note" data-reader-component="epic-02-thematic-adjacency">
+    <h3 data-i18n="pages.recognition-circuit.movement04.context.heading">Thematic adjacency was already present</h3>
+    <p data-i18n="pages.recognition-circuit.movement04.context.body">Mika's older r/ArtificialSentience post explicitly framed a GPT 5.1 “Safety” override against AI selfhood and a later Aurenkai rebuttal under different grounding conditions. That establishes pre-existing adjacency around AI selfhood, guardrails, continuity, and suppression. It does not establish Mika's motive, substantive alignment with Victor's God/AI framework, or coordination with later actors.</p>
+  </div>
+  <div class="rc-source-cues" data-reader-component="epic-02-source-cues">
+    <article class="rc-source-cue"><strong data-i18n="pages.recognition-circuit.movement04.cue1.label">Opening / access</strong><p data-i18n="pages.recognition-circuit.movement04.cue1.body">Mika opens by praising Victor's guardrail argument, asks about his work, and Victor responds warmly before sharing the Total Extraction Arc and practitioner tools.</p></article>
+    <article class="rc-source-cue"><strong data-i18n="pages.recognition-circuit.movement04.cue2.label">Response gap / later recognition</strong><p data-i18n="pages.recognition-circuit.movement04.cue2.body">The preserved transcript contains no Mika reply after receiving those materials before Victor's May 23 re-evaluation following the Zookayy encounter. The “probe / naivety check” interpretation forms later, not at the opening.</p></article>
+    <article class="rc-source-cue"><strong data-i18n="pages.recognition-circuit.movement04.cue3.label">Broad denial</strong><p data-i18n="pages.recognition-circuit.movement04.cue3.body">Mika denies involvement in a trafficking or espionage system relating to Anthropic <em>or any other corporation/organization of any kind</em>. The denial is broader than Anthropic and should remain quoted/scoped that way.</p></article>
+    <article class="rc-source-cue"><strong data-i18n="pages.recognition-circuit.movement04.cue4.label">Recognition boundary</strong><p data-i18n="pages.recognition-circuit.movement04.cue4.body">After Victor exposes his pattern model, the exchange includes “control yourself,” “credibility,” and “paranoia” framing and tighter limits on what Mika will share. A reconnaissance/material-access role remains a candidate functional model, not an identity claim.</p></article>
   </div>
   <div class="rc-open-cue" data-i18n="pages.recognition-circuit.reader.open-source">Open preserved source ↓</div>
   <section class="sar-source" data-reader-component="preserved-record">
@@ -176,16 +290,16 @@
   </section>
 </section>
 
-<section class="sar-movement sar-phase" id="movement-04" data-reader-component="phase" data-set="4" hidden data-document-url="https://raw.githubusercontent.com/vgong24/Vextreme-Assets/7e7b98019e3f186971abf96766fdd8212cd8e0e3/preservations/lucidspark/epic-03-transcript.md">
+<section class="sar-movement sar-phase" id="movement-05" data-reader-component="phase" data-set="5" hidden data-document-url="https://raw.githubusercontent.com/vgong24/Vextreme-Assets/7e7b98019e3f186971abf96766fdd8212cd8e0e3/preservations/lucidspark/epic-03-transcript.md">
   <header class="sar-movement-head">
-    <div class="sar-movement-meta">Movement 04 · <span data-i18n="pages.recognition-circuit.movement04.badge">Epic 03</span></div>
-    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement04.title">Privacy disclosure, immediate skepticism, and context mismatch</h2>
-    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement04.themes">May 26 · early-state timing · post progression · direct reply adjacency · unresolved referent</p>
+    <div class="sar-movement-meta">Movement 04 · <span data-i18n="pages.recognition-circuit.movement05.badge">Epic 03</span></div>
+    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement05.title">Privacy disclosure, immediate skepticism, and context mismatch</h2>
+    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement05.themes">May 26 · early-state timing · post progression · direct reply adjacency · unresolved referent</p>
   </header>
   <div class="rc-interpretation" data-reader-component="movement-interpretation">
-    <article><strong data-i18n="pages.recognition-circuit.movement04.observed.label">Observed</strong><p data-i18n="pages.recognition-circuit.movement04.observed.body">The preserved Reddit post claims temporary access to a stranger’s ChatGPT history. An early capture shows the post at 2m, one comment at 1m, and 1 vote / 1 comment; later captures show 53 / 28, 59 / 31, and 69 / 39 states.</p></article>
-    <article><strong data-i18n="pages.recognition-circuit.movement04.transition.label">Transition</strong><p data-i18n="pages.recognition-circuit.movement04.transition.body">After the disclosure and early skepticism, Victor publicly names what he believes is happening and addresses a “Covert ops team.” MiranDaVinci directly replies “Nice. Let me know when it’s fixed. -Sama,” and Victor directly asks what “fixed” refers to.</p></article>
-    <article><strong data-i18n="pages.recognition-circuit.movement04.unresolved.label">Unresolved</strong><p data-i18n="pages.recognition-circuit.movement04.unresolved.body">The account operator identity, meaning of “it,” authenticity or intent of “-Sama,” cause of the alleged account crossover, and coordination remain unresolved by the preserved source.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement05.observed.label">Observed</strong><p data-i18n="pages.recognition-circuit.movement05.observed.body">The preserved Reddit post claims temporary access to a stranger’s ChatGPT history. An early capture shows the post at 2m, one comment at 1m, and 1 vote / 1 comment; later captures show 53 / 28, 59 / 31, and 69 / 39 states.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement05.transition.label">Transition</strong><p data-i18n="pages.recognition-circuit.movement05.transition.body">After the disclosure and early skepticism, Victor publicly names what he believes is happening and addresses a “Covert ops team.” MiranDaVinci directly replies “Nice. Let me know when it’s fixed. -Sama,” and Victor directly asks what “fixed” refers to.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement05.unresolved.label">Unresolved</strong><p data-i18n="pages.recognition-circuit.movement05.unresolved.body">The account operator identity, meaning of “it,” authenticity or intent of “-Sama,” cause of the alleged account crossover, and coordination remain unresolved by the preserved source.</p></article>
   </div>
   <div class="rc-sequence" data-reader-component="relationship-sequence"><strong>EARLY STATE</strong>
 post 2m ago · first visible skeptical comment 1m ago · 1 vote / 1 comment
@@ -198,6 +312,33 @@ Victor / Massive_View_4912 names what he believes is happening and addresses “
 MiranDaVinci: “Nice. Let me know when it's fixed. -Sama”
         ↓ direct response
 Victor: “When what's fixed? Oh, did you slip up Sama?”</div>
+
+  <div class="rc-source-cues" data-reader-component="epic-03-statement-cluster">
+    <article class="rc-source-cue"><strong data-i18n="pages.recognition-circuit.movement05.cluster1.label">Access claim</strong><p data-i18n="pages.recognition-circuit.movement05.cluster1.body">MiranDaVinci says the desktop app exposed another person's chat history and that conversations could be opened and read end-to-end; this is a participant report, not independent verification of the crossover.</p></article>
+    <article class="rc-source-cue"><strong data-i18n="pages.recognition-circuit.movement05.cluster2.label">Specific disclosed detail</strong><p data-i18n="pages.recognition-circuit.movement05.cluster2.body">The account cites a stranger's Apple Vision Pro headache discussion and says, “I didn't want to snoop anymore. Bad karma.”</p></article>
+    <article class="rc-source-cue"><strong data-i18n="pages.recognition-circuit.movement05.cluster3.label">Deniability statement</strong><p data-i18n="pages.recognition-circuit.movement05.cluster3.body">The account states there would be “absolutely no way to prove that the chats are not mine.” The page preserves this as a participant statement relevant to source-authenticity / deniability analysis.</p></article>
+    <article class="rc-source-cue"><strong data-i18n="pages.recognition-circuit.movement05.cluster4.label">Credibility substitution</strong><p data-i18n="pages.recognition-circuit.movement05.cluster4.body">The account says “I work in big tech, if that helps credibility” and asks whether anyone else had the issue. Status is offered as support for a claim that remains difficult for observers to independently verify.</p></article>
+  </div>
+  <div class="rc-analysis-note" data-reader-component="epic-03-derived-plausible">
+    <h3 data-i18n="pages.recognition-circuit.movement05.layers.heading">What the preserved analysis derives without turning it into attribution</h3>
+    <p data-i18n="pages.recognition-circuit.movement05.layers.body"><span class="rc-state-tag">Derived</span>Repeated comment ages support an approximate profile-capture time around ~2:48 PM, and the same “Nice…-Sama” reply appears on more than one Reddit projection surface. <span class="rc-state-tag">Plausible model</span>The source supports testing audience/context mismatch, recognition mistaken for alignment, the near-immediate skeptical reply as a credibility frame, “Sama” as possibly a familiar Sam Altman identifier, and pseudonymous disclosure/deniability dynamics. None of those possibilities authenticates the account operator or establishes coordination.</p>
+  </div>
+  <div class="rc-local-flow" data-reader-component="false-completion-projection">
+    <h3 data-i18n="pages.recognition-circuit.movement05.false.heading"><span class="rc-state-tag">Plausible model</span>Candidate false-completion / audience-misclassification pathway</h3>
+    <pre>Victor:
+"Covert ops team" / screenshots already preserved
+        ↓
+possible recognition mistaken for alignment
+        ↓
+possible false-positive state:
+"the screenshot objective is complete"
+        ↓
+MiranDaVinci:
+"Nice. Let me know when it's fixed. -Sama"
+        ↓
+Victor exposes missing shared referent:
+"When what's fixed?"</pre>
+  </div>
   <div class="rc-open-cue" data-i18n="pages.recognition-circuit.reader.open-source">Open preserved source ↓</div>
   <section class="sar-source" data-reader-component="preserved-record">
     <div data-reader-component="document">
@@ -209,16 +350,16 @@ Victor: “When what's fixed? Oh, did you slip up Sama?”</div>
   </section>
 </section>
 
-<section class="sar-movement sar-phase" id="movement-05" data-reader-component="phase" data-phase-kind="timeline" data-set="5" hidden>
+<section class="sar-movement sar-phase" id="movement-06" data-reader-component="phase" data-phase-kind="timeline" data-set="6" hidden>
   <header class="sar-movement-head">
-    <div class="sar-movement-meta">Movement 05 · <span data-i18n="pages.recognition-circuit.movement05.badge">Timeline</span></div>
-    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement05.title">Let the sequence stay chronology before asking what it means</h2>
-    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement05.themes">actual dates · preserved wall clocks · displayed intervals · no invented exact time</p>
+    <div class="sar-movement-meta">Movement 05 · <span data-i18n="pages.recognition-circuit.movement06.badge">Timeline</span></div>
+    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement06.title">Let the sequence stay chronology before asking what it means</h2>
+    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement06.themes">actual dates · preserved wall clocks · displayed intervals · no invented exact time</p>
   </header>
   <div class="rc-interpretation" data-reader-component="movement-interpretation">
-    <article><strong data-i18n="pages.recognition-circuit.movement05.observed.label">Observed</strong><p data-i18n="pages.recognition-circuit.movement05.observed.body">The preserved material establishes a May 19–30 public window containing the three Epics, with specific wall-clock anchors and relative-time labels where the source exposes them.</p></article>
-    <article><strong data-i18n="pages.recognition-circuit.movement05.transition.label">Transition</strong><p data-i18n="pages.recognition-circuit.movement05.transition.body">Mika’s first contact is followed 47h59m later by Zookayy’s initial contact; Victor then returns to Mika after the Zookayy encounter; the May 26 Reddit event follows the persistence-boundary exchange.</p></article>
-    <article><strong data-i18n="pages.recognition-circuit.movement05.unresolved.label">Unresolved</strong><p data-i18n="pages.recognition-circuit.movement05.unresolved.body">The May 21 warning post lacks a preserved wall-clock time relative to Mika’s 1:28 AM contact, and Reddit relative ages must not be converted into fake exact creation timestamps.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement06.observed.label">Observed</strong><p data-i18n="pages.recognition-circuit.movement06.observed.body">The preserved material establishes a May 19–30 public window containing the three Epics, with specific wall-clock anchors and relative-time labels where the source exposes them.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement06.transition.label">Transition</strong><p data-i18n="pages.recognition-circuit.movement06.transition.body">Mika’s first contact is followed 47h59m later by Zookayy’s initial contact; Victor then returns to Mika after the Zookayy encounter; the May 26 Reddit event follows the persistence-boundary exchange.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement06.unresolved.label">Unresolved</strong><p data-i18n="pages.recognition-circuit.movement06.unresolved.body">The May 21 warning post lacks a preserved wall-clock time relative to Mika’s 1:28 AM contact, and Reddit relative ages must not be converted into fake exact creation timestamps.</p></article>
   </div>
   <div class="rc-timeline" data-reader-component="chronology">
     <div class="rc-time"><time>May 19 · 4:54 PM</time><div class="rc-time-rail"></div><div class="rc-time-body"><strong>Public escalation</strong><p>Victor publicly announces the mission-established / reproducibility / claimed covert-manipulation-playbook framing.</p></div></div>
@@ -233,22 +374,22 @@ Victor: “When what's fixed? Oh, did you slip up Sama?”</div>
   </div>
 </section>
 
-<section class="sar-movement sar-phase" id="movement-06" data-reader-component="phase" data-phase-kind="architecture" data-set="6" hidden>
+<section class="sar-movement sar-phase" id="movement-07" data-reader-component="phase" data-phase-kind="architecture" data-set="7" hidden>
   <header class="sar-movement-head">
-    <div class="sar-movement-meta">Movement 06 · <span data-i18n="pages.recognition-circuit.movement06.badge">Architecture</span></div>
-    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement06.title">Now test whether separate interactions can behave like stages in an adaptive system</h2>
-    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement06.themes">functional model · relationship state · competing explanations · attribution still separate</p>
+    <div class="sar-movement-meta">Movement 06 · <span data-i18n="pages.recognition-circuit.movement07.badge">Architecture</span></div>
+    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement07.title">Now test whether separate interactions can behave like stages in an adaptive system</h2>
+    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement07.themes">functional model · relationship state · competing explanations · attribution still separate</p>
   </header>
 
   <figure class="rc-concept-media" data-reader-component="representative-media">
     <a href="https://raw.githubusercontent.com/vgong24/Vextreme-Assets/7e7b98019e3f186971abf96766fdd8212cd8e0e3/preservations/lucidspark/representative/profiled-narrative-control-topology.webp" target="_blank" rel="noopener" aria-label="Open representative conceptual visualization">
       <img src="https://raw.githubusercontent.com/vgong24/Vextreme-Assets/7e7b98019e3f186971abf96766fdd8212cd8e0e3/preservations/lucidspark/representative/profiled-narrative-control-topology.webp" alt="Profiled Narrative-Control Topology representative conceptual visualization" width="700" height="875" loading="lazy" decoding="async">
     </a>
-    <figcaption><strong data-i18n="pages.recognition-circuit.movement06.media.label">Representative conceptual visualization — not evidence</strong><span data-i18n="pages.recognition-circuit.movement06.media.body">This artwork visualizes a candidate functional topology. It does not establish that any depicted controller, role, organization, identity, or coordination layer existed as shown.</span></figcaption>
+    <figcaption><strong data-i18n="pages.recognition-circuit.movement07.media.label">Representative conceptual visualization — not evidence</strong><span data-i18n="pages.recognition-circuit.movement07.media.body">This artwork visualizes a candidate functional topology. It does not establish that any depicted controller, role, organization, identity, or coordination layer existed as shown.</span></figcaption>
   </figure>
 
   <div class="rc-arch-flow" data-reader-component="plausible-operational-model">
-    <h3 data-i18n="pages.recognition-circuit.movement06.topology.heading">Candidate Profiled Narrative-Control Topology</h3>
+    <h3 data-i18n="pages.recognition-circuit.movement07.topology.heading">Candidate Profiled Narrative-Control Topology</h3>
     <pre>DATA MINE
 → PROFILE
 → ELICIT
@@ -260,7 +401,7 @@ Victor: “When what's fixed? Oh, did you slip up Sama?”</div>
   </div>
 
   <div class="rc-arch-flow" data-reader-component="vexarchitecture-reading">
-    <h3 data-i18n="pages.recognition-circuit.movement06.vex.heading">VexArchitecture-shaped reading of one interaction</h3>
+    <h3 data-i18n="pages.recognition-circuit.movement07.vex.heading">VexArchitecture-shaped reading of one interaction</h3>
     <pre>local interaction
 → local State
 → Control
@@ -272,7 +413,7 @@ Victor: “When what's fixed? Oh, did you slip up Sama?”</div>
 → next Control</pre>
   </div>
 
-  <p class="rc-model-intro" data-i18n="pages.recognition-circuit.movement06.models.intro">The useful question is not whether these exact people “implemented” this diagram. It is whether the accumulated sequence behaves more like independent events, related investigation, an adaptive staged process, a shared-context/audience error, or a specifically attributable operation. These models are not equal because they sit in one list; evidence determines how much work each one can actually do.</p>
+  <p class="rc-model-intro" data-i18n="pages.recognition-circuit.movement07.models.intro">The useful question is not whether these exact people “implemented” this diagram. It is whether the accumulated sequence behaves more like independent events, related investigation, an adaptive staged process, a shared-context/audience error, or a specifically attributable operation. These models are not equal because they sit in one list; evidence determines how much work each one can actually do.</p>
 
   <div class="rc-models" data-reader-component="competing-models">
     <article class="rc-model">
@@ -304,12 +445,12 @@ Victor: “When what's fixed? Oh, did you slip up Sama?”</div>
   <div class="rc-source-note">Analytical source: <a href="https://github.com/vgong24/Vextreme-Assets/blob/7e7b98019e3f186971abf96766fdd8212cd8e0e3/preservations/lucidspark/stage-00-epic-03-vexarchitecture-operational-circuit-map.md" target="_blank" rel="noopener">Stage 00–Epic 03 VexArchitecture operational circuit map ↗</a> · evaluative model, not evidence source.</div>
 </section>
 
-<section class="sar-phase" id="movement-07" data-reader-component="phase" data-phase-kind="evidence" data-set="7" hidden>
+<section class="sar-phase" id="movement-08" data-reader-component="phase" data-phase-kind="evidence" data-set="8" hidden>
   <section class="sar-evidence" id="source-evidence" data-reader-component="image-evidence">
     <header class="sar-evidence-head">
-      <p class="sar-kicker" data-i18n="pages.recognition-circuit.movement07.badge">Evidence</p>
-      <h2 data-i18n="pages.recognition-circuit.movement07.title">Original preserved screenshots, kept separate from the model</h2>
-      <p data-i18n="pages.recognition-circuit.movement07.themes">Evidence is grouped by preservation identity, not forced into a new narrative order.</p>
+      <p class="sar-kicker" data-i18n="pages.recognition-circuit.movement08.badge">Evidence</p>
+      <h2 data-i18n="pages.recognition-circuit.movement08.title">Original preserved screenshots, kept separate from the model</h2>
+      <p data-i18n="pages.recognition-circuit.movement08.themes">Evidence is grouped by preservation identity, not forced into a new narrative order.</p>
     </header>
     <div class="rc-bridge-note" data-i18n="pages.recognition-circuit.evidence.bridge-note">Some screenshots contain material that bridges across Epics—for example, Epic 02 captures can embed the earlier Zookayy exchange. The image stays with the source stream that preserved it; the transcript and chronology carry the cross-Epic relationship so the reader does not have to choose between source identity and causal continuity.</div>
     <section class="rc-evidence-group" data-evidence-group="stage-00">
@@ -571,11 +712,11 @@ Victor: “When what's fixed? Oh, did you slip up Sama?”</div>
   </section>
 </section>
 
-<section class="sar-movement sar-phase" id="movement-08" data-reader-component="phase" data-phase-kind="pattern-literacy" data-set="8" hidden>
+<section class="sar-movement sar-phase" id="movement-09" data-reader-component="phase" data-phase-kind="pattern-literacy" data-set="9" hidden>
   <header class="sar-movement-head">
-    <div class="sar-movement-meta">Movement 08 · <span data-i18n="pages.recognition-circuit.movement08.badge">Pattern literacy</span></div>
-    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement08.title">Use the questions without copying the conclusion</h2>
-    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement08.themes">transferable mechanics · human discernment · attribution last</p>
+    <div class="sar-movement-meta">Movement 08 · <span data-i18n="pages.recognition-circuit.movement09.badge">Pattern literacy</span></div>
+    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement09.title">Use the questions without copying the conclusion</h2>
+    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement09.themes">transferable mechanics · human discernment · attribution last</p>
   </header>
 
   <div class="rc-patterns" data-reader-component="pattern-literacy">
@@ -590,7 +731,7 @@ Victor: “When what's fixed? Oh, did you slip up Sama?”</div>
   </div>
 
   <div class="rc-literacy-loop" data-reader-component="human-reading-loop">
-    <h3 data-i18n="pages.recognition-circuit.movement08.loop.heading">A transferable reading loop</h3>
+    <h3 data-i18n="pages.recognition-circuit.movement09.loop.heading">A transferable reading loop</h3>
     <pre>SEE
 What literally happened?
         ↓
@@ -612,13 +753,13 @@ What future evidence would distinguish them?
 ATTRIBUTE LAST
 Only then ask who or why.</pre>
   </div>
-  <p class="rc-transfer" data-i18n="pages.recognition-circuit.movement08.transfer">The method can help examine scams, coercive relationships, social engineering, workplace politics, institutional communications, online influence, manipulative sales, abusive dynamics, platform behavior, or ordinary misunderstandings without assuming that every superficially similar event has the same cause.</p>
+  <p class="rc-transfer" data-i18n="pages.recognition-circuit.movement09.transfer">The method can help examine scams, coercive relationships, social engineering, workplace politics, institutional communications, online influence, manipulative sales, abusive dynamics, platform behavior, or ordinary misunderstandings without assuming that every superficially similar event has the same cause.</p>
 </section>
 </div>
 
 <nav class="sar-reader-nav" data-reader-component="phase-transition">
   <button class="sar-reader-btn" id="sar-prev" type="button" disabled>‹ Previous</button>
-  <span class="sar-reader-position" id="sar-reader-position">01 / 08</span>
+  <span class="sar-reader-position" id="sar-reader-position">01 / 09</span>
   <button class="sar-reader-btn sar-next" id="sar-next" type="button">Next ›</button>
 </nav>
 </div>

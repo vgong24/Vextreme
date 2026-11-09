@@ -138,3 +138,37 @@ test('RECOGNITION-CIRCUIT: arc navigation uses the current v2 index runtime', ()
   assert.match(page, /src="\.\.\/lib\/vextreme-index-v2\.js"/);
   assert.doesNotMatch(page, /shell\.js|vextreme\.js/);
 });
+
+test('RECOGNITION-CIRCUIT: restored nine-movement contract keeps plausible model separate from attribution', () => {
+  const page = read('pages/recognition-circuit.html');
+  assert.equal((page.match(/<button class="sar-track-btn/g) || []).length, 9);
+  assert.match(page, /data-phase-kind="reader-contract"/);
+  assert.match(page, /Plausible model/);
+  assert.match(page, /Attribution/);
+  assert.match(page, /unresolved attribution does not erase lower-level observations/i);
+  assert.match(page, /possible benign explanation is not automatically equally explanatory/i);
+  assert.match(page, /id="sar-reader-position">01 \/ 09/);
+});
+
+test('RECOGNITION-CIRCUIT: source-local synthesis restores the transaction, suppression-context, and recognition boundaries', () => {
+  const page = read('pages/recognition-circuit.html');
+  assert.match(page, /Recorded suppression \/ guardrail framing/);
+  assert.match(page, /Control accepted ≠ Effect realized/);
+  assert.match(page, /then why did you say sure at the beginning/);
+  assert.match(page, /9 hours ago/);
+  assert.match(page, /just click ur profile/);
+  assert.match(page, /H1 · benign-looking solicitation with undisclosed purpose/);
+  assert.match(page, /Observed local function: affective doorway/);
+  assert.match(page, /Safety” override against AI selfhood/);
+  assert.match(page, /control yourself/);
+  assert.match(page, /I work in big tech, if that helps credibility/);
+  assert.match(page, /~2:48 PM/);
+  assert.match(page, /Candidate false-completion \/ audience-misclassification pathway/);
+});
+
+test('RECOGNITION-CIRCUIT: representative topology is visible near the hero and remains explicitly non-evidence', () => {
+  const page = read('pages/recognition-circuit.html');
+  assert.match(page, /data-reader-component="representative-media-hero"/);
+  assert.equal((page.match(/profiled-narrative-control-topology\.webp/g) || []).length >= 4, true);
+  assert.match(page, /Representative conceptual visualization — not evidence/);
+});

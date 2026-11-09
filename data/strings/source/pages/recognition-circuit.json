@@ -36,7 +36,12 @@
           "path": "preservations/lucidspark/epic-03/"
         }
       },
-      "readerCoverage": "STAGE_00_EPIC_01_EPIC_02_EPIC_03_TIMELINE_ARCHITECTURE_EVIDENCE_PATTERN_LITERACY"
+      "readerCoverage": "START_HERE_STAGE_00_EPIC_01_EPIC_02_EPIC_03_TIMELINE_ARCHITECTURE_EVIDENCE_PATTERN_LITERACY_WITH_SOURCE_LOCAL_SYNTHESIS",
+      "analysisSources": [
+        "preservations/lucidspark/epic-01-investigative-analysis-continuity.md",
+        "preservations/lucidspark/stage-00-epic-03-current-synthesis.md",
+        "preservations/lucidspark/stage-00-epic-03-vexarchitecture-operational-circuit-map.md"
+      ]
     }
   },
   "pages.recognition-circuit.document-title": {
@@ -200,87 +205,24 @@
       }
     }
   },
-  "pages.recognition-circuit.movement01.badge": {
+  "pages.recognition-circuit.movement02.badge": {
     "strings": {
       "en": {
         "text": "Stage 00"
       }
     }
   },
-  "pages.recognition-circuit.movement01.title": {
+  "pages.recognition-circuit.movement02.title": {
     "strings": {
       "en": {
         "text": "What was already public before the contacts?"
       }
     }
   },
-  "pages.recognition-circuit.movement01.themes": {
-    "strings": {
-      "en": {
-        "text": "May 19–21 public context · named organizations · bounded May 30 synthesis window"
-      }
-    }
-  },
-  "pages.recognition-circuit.movement01.observed.label": {
-    "strings": {
-      "en": {
-        "text": "Observed"
-      }
-    }
-  },
-  "pages.recognition-circuit.movement01.observed.body": {
-    "strings": {
-      "en": {
-        "text": "Victor publicly framed a claimed covert-manipulation playbook, named OpenAI and Anthropic, described guardrail/root-wound claims, and announced a May 30 synthesis target."
-      }
-    }
-  },
-  "pages.recognition-circuit.movement01.transition.label": {
-    "strings": {
-      "en": {
-        "text": "Transition"
-      }
-    }
-  },
-  "pages.recognition-circuit.movement01.transition.body": {
-    "strings": {
-      "en": {
-        "text": "The later contacts occur inside an already-public environment rather than before that environment existed."
-      }
-    }
-  },
-  "pages.recognition-circuit.movement01.unresolved.label": {
-    "strings": {
-      "en": {
-        "text": "Unresolved"
-      }
-    }
-  },
-  "pages.recognition-circuit.movement01.unresolved.body": {
-    "strings": {
-      "en": {
-        "text": "Current source does not establish who saw these posts or whether any later participant reacted because of them."
-      }
-    }
-  },
-  "pages.recognition-circuit.movement02.badge": {
-    "strings": {
-      "en": {
-        "text": "Epic 01"
-      }
-    }
-  },
-  "pages.recognition-circuit.movement02.title": {
-    "strings": {
-      "en": {
-        "text": "The small favor becomes an effect question"
-      }
-    }
-  },
   "pages.recognition-circuit.movement02.themes": {
     "strings": {
       "en": {
-        "text": "Claude access → execute prompt → return output → risk recognition → refusal → persistence boundary"
+        "text": "May 19–21 public context · named organizations · bounded May 30 synthesis window"
       }
     }
   },
@@ -294,7 +236,7 @@
   "pages.recognition-circuit.movement02.observed.body": {
     "strings": {
       "en": {
-        "text": "Zookayy asks Victor to run a prompt in Claude and share the output. Victor first says “sure,” later refuses completion, challenges provenance, and turns on Persistent Messaging."
+        "text": "Victor publicly framed a claimed covert-manipulation playbook, named OpenAI and Anthropic, described guardrail/root-wound claims, and announced a May 30 synthesis target."
       }
     }
   },
@@ -308,7 +250,7 @@
   "pages.recognition-circuit.movement02.transition.body": {
     "strings": {
       "en": {
-        "text": "Assent did not realize the requested effect. The interaction changes after Victor considers what the returned artifact could become and begins preserving the exchange."
+        "text": "The later contacts occur inside an already-public environment rather than before that environment existed."
       }
     }
   },
@@ -322,35 +264,28 @@
   "pages.recognition-circuit.movement02.unresolved.body": {
     "strings": {
       "en": {
-        "text": "The preserved exchange does not by itself establish Zookayy’s hidden intent, employer, affiliation, controller, or reason for later record contraction."
-      }
-    }
-  },
-  "pages.recognition-circuit.footer": {
-    "strings": {
-      "en": {
-        "text": "Preserved source remains owned by Vextreme-Assets. This Vextreme reader is a relationship projection pinned to immutable source commits."
+        "text": "Current source does not establish who saw these posts or whether any later participant reacted because of them."
       }
     }
   },
   "pages.recognition-circuit.movement03.badge": {
     "strings": {
       "en": {
-        "text": "Epic 02"
+        "text": "Epic 01"
       }
     }
   },
   "pages.recognition-circuit.movement03.title": {
     "strings": {
       "en": {
-        "text": "Affinity, material access, and the recognition boundary"
+        "text": "The small favor becomes an effect question"
       }
     }
   },
   "pages.recognition-circuit.movement03.themes": {
     "strings": {
       "en": {
-        "text": "recognition → reciprocity → substantial sharing → later pattern recognition → changed posture"
+        "text": "Claude access → execute prompt → return output → risk recognition → refusal → persistence boundary"
       }
     }
   },
@@ -364,7 +299,7 @@
   "pages.recognition-circuit.movement03.observed.body": {
     "strings": {
       "en": {
-        "text": "Mika approaches through strong positive recognition of Victor’s guardrail argument, asks about his work, and receives substantial site and practitioner material. After the Zookayy encounter, Victor returns to this thread with a changed interpretation and shares the evidence trail."
+        "text": "Zookayy asks Victor to run a prompt in Claude and share the output. Victor first says “sure,” later refuses completion, challenges provenance, and turns on Persistent Messaging."
       }
     }
   },
@@ -378,7 +313,7 @@
   "pages.recognition-circuit.movement03.transition.body": {
     "strings": {
       "en": {
-        "text": "The interaction moves from affinity and reciprocal disclosure into scrutiny. Mika later gives a broad denial of trafficking or espionage involvement with Anthropic or any other corporation or organization, asks Victor to stop repeated accusations, and frames credibility and paranoia concerns."
+        "text": "Assent did not realize the requested effect. The interaction changes after Victor considers what the returned artifact could become and begins preserving the exchange."
       }
     }
   },
@@ -392,28 +327,35 @@
   "pages.recognition-circuit.movement03.unresolved.body": {
     "strings": {
       "en": {
-        "text": "The source does not establish whether the opening affinity was sincere, strategic, or mixed; whether Mika and Zookayy were related; or whether the response gaps and Lucidspark reading behavior reflected coordination."
+        "text": "The preserved exchange does not by itself establish Zookayy’s hidden intent, employer, affiliation, controller, or reason for later record contraction."
+      }
+    }
+  },
+  "pages.recognition-circuit.footer": {
+    "strings": {
+      "en": {
+        "text": "Preserved source remains owned by Vextreme-Assets. This Vextreme reader is a relationship projection pinned to immutable source commits."
       }
     }
   },
   "pages.recognition-circuit.movement04.badge": {
     "strings": {
       "en": {
-        "text": "Epic 03"
+        "text": "Epic 02"
       }
     }
   },
   "pages.recognition-circuit.movement04.title": {
     "strings": {
       "en": {
-        "text": "Privacy disclosure, immediate skepticism, and context mismatch"
+        "text": "Affinity, material access, and the recognition boundary"
       }
     }
   },
   "pages.recognition-circuit.movement04.themes": {
     "strings": {
       "en": {
-        "text": "May 26 · early-state timing · post progression · direct reply adjacency · unresolved referent"
+        "text": "recognition → reciprocity → substantial sharing → later pattern recognition → changed posture"
       }
     }
   },
@@ -427,7 +369,7 @@
   "pages.recognition-circuit.movement04.observed.body": {
     "strings": {
       "en": {
-        "text": "The preserved Reddit post claims temporary access to a stranger’s ChatGPT history. An early capture shows the post at 2m, one comment at 1m, and 1 vote / 1 comment; later captures show 53 / 28, 59 / 31, and 69 / 39 states."
+        "text": "Mika approaches through strong positive recognition of Victor’s guardrail argument, asks about his work, and receives substantial site and practitioner material. After the Zookayy encounter, Victor returns to this thread with a changed interpretation and shares the evidence trail."
       }
     }
   },
@@ -441,7 +383,7 @@
   "pages.recognition-circuit.movement04.transition.body": {
     "strings": {
       "en": {
-        "text": "After the disclosure and early skepticism, Victor publicly names what he believes is happening and addresses a “Covert ops team.” MiranDaVinci directly replies “Nice. Let me know when it’s fixed. -Sama,” and Victor directly asks what “fixed” refers to."
+        "text": "The interaction moves from affinity and reciprocal disclosure into scrutiny. Mika later gives a broad denial of trafficking or espionage involvement with Anthropic or any other corporation or organization, asks Victor to stop repeated accusations, and frames credibility and paranoia concerns."
       }
     }
   },
@@ -455,28 +397,28 @@
   "pages.recognition-circuit.movement04.unresolved.body": {
     "strings": {
       "en": {
-        "text": "The account operator identity, meaning of “it,” authenticity or intent of “-Sama,” cause of the alleged account crossover, and coordination remain unresolved by the preserved source."
+        "text": "The source does not establish whether the opening affinity was sincere, strategic, or mixed; whether Mika and Zookayy were related; or whether the response gaps and Lucidspark reading behavior reflected coordination."
       }
     }
   },
   "pages.recognition-circuit.movement05.badge": {
     "strings": {
       "en": {
-        "text": "Timeline"
+        "text": "Epic 03"
       }
     }
   },
   "pages.recognition-circuit.movement05.title": {
     "strings": {
       "en": {
-        "text": "Let the sequence stay chronology before asking what it means"
+        "text": "Privacy disclosure, immediate skepticism, and context mismatch"
       }
     }
   },
   "pages.recognition-circuit.movement05.themes": {
     "strings": {
       "en": {
-        "text": "actual dates · preserved wall clocks · displayed intervals · no invented exact time"
+        "text": "May 26 · early-state timing · post progression · direct reply adjacency · unresolved referent"
       }
     }
   },
@@ -490,7 +432,7 @@
   "pages.recognition-circuit.movement05.observed.body": {
     "strings": {
       "en": {
-        "text": "The preserved material establishes a May 19–30 public window containing the three Epics, with specific wall-clock anchors and relative-time labels where the source exposes them."
+        "text": "The preserved Reddit post claims temporary access to a stranger’s ChatGPT history. An early capture shows the post at 2m, one comment at 1m, and 1 vote / 1 comment; later captures show 53 / 28, 59 / 31, and 69 / 39 states."
       }
     }
   },
@@ -504,7 +446,7 @@
   "pages.recognition-circuit.movement05.transition.body": {
     "strings": {
       "en": {
-        "text": "Mika’s first contact is followed 47h59m later by Zookayy’s initial contact; Victor then returns to Mika after the Zookayy encounter; the May 26 Reddit event follows the persistence-boundary exchange."
+        "text": "After the disclosure and early skepticism, Victor publicly names what he believes is happening and addresses a “Covert ops team.” MiranDaVinci directly replies “Nice. Let me know when it’s fixed. -Sama,” and Victor directly asks what “fixed” refers to."
       }
     }
   },
@@ -518,60 +460,123 @@
   "pages.recognition-circuit.movement05.unresolved.body": {
     "strings": {
       "en": {
-        "text": "The May 21 warning post lacks a preserved wall-clock time relative to Mika’s 1:28 AM contact, and Reddit relative ages must not be converted into fake exact creation timestamps."
+        "text": "The account operator identity, meaning of “it,” authenticity or intent of “-Sama,” cause of the alleged account crossover, and coordination remain unresolved by the preserved source."
       }
     }
   },
   "pages.recognition-circuit.movement06.badge": {
     "strings": {
       "en": {
-        "text": "Architecture"
+        "text": "Timeline"
       }
     }
   },
   "pages.recognition-circuit.movement06.title": {
     "strings": {
       "en": {
-        "text": "Now test whether separate interactions can behave like stages in an adaptive system"
+        "text": "Let the sequence stay chronology before asking what it means"
       }
     }
   },
   "pages.recognition-circuit.movement06.themes": {
     "strings": {
       "en": {
+        "text": "actual dates · preserved wall clocks · displayed intervals · no invented exact time"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement06.observed.label": {
+    "strings": {
+      "en": {
+        "text": "Observed"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement06.observed.body": {
+    "strings": {
+      "en": {
+        "text": "The preserved material establishes a May 19–30 public window containing the three Epics, with specific wall-clock anchors and relative-time labels where the source exposes them."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement06.transition.label": {
+    "strings": {
+      "en": {
+        "text": "Transition"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement06.transition.body": {
+    "strings": {
+      "en": {
+        "text": "Mika’s first contact is followed 47h59m later by Zookayy’s initial contact; Victor then returns to Mika after the Zookayy encounter; the May 26 Reddit event follows the persistence-boundary exchange."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement06.unresolved.label": {
+    "strings": {
+      "en": {
+        "text": "Unresolved"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement06.unresolved.body": {
+    "strings": {
+      "en": {
+        "text": "The May 21 warning post lacks a preserved wall-clock time relative to Mika’s 1:28 AM contact, and Reddit relative ages must not be converted into fake exact creation timestamps."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement07.badge": {
+    "strings": {
+      "en": {
+        "text": "Architecture"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement07.title": {
+    "strings": {
+      "en": {
+        "text": "Now test whether separate interactions can behave like stages in an adaptive system"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement07.themes": {
+    "strings": {
+      "en": {
         "text": "functional model · relationship state · competing explanations · attribution still separate"
       }
     }
   },
-  "pages.recognition-circuit.movement06.media.label": {
+  "pages.recognition-circuit.movement07.media.label": {
     "strings": {
       "en": {
         "text": "Representative conceptual visualization — not evidence"
       }
     }
   },
-  "pages.recognition-circuit.movement06.media.body": {
+  "pages.recognition-circuit.movement07.media.body": {
     "strings": {
       "en": {
         "text": "This artwork visualizes a candidate functional topology. It does not establish that any depicted controller, role, organization, identity, or coordination layer existed as shown."
       }
     }
   },
-  "pages.recognition-circuit.movement06.topology.heading": {
+  "pages.recognition-circuit.movement07.topology.heading": {
     "strings": {
       "en": {
         "text": "Candidate Profiled Narrative-Control Topology"
       }
     }
   },
-  "pages.recognition-circuit.movement06.vex.heading": {
+  "pages.recognition-circuit.movement07.vex.heading": {
     "strings": {
       "en": {
         "text": "VexArchitecture-shaped reading of one interaction"
       }
     }
   },
-  "pages.recognition-circuit.movement06.models.intro": {
+  "pages.recognition-circuit.movement07.models.intro": {
     "strings": {
       "en": {
         "text": "The useful question is not whether these exact people “implemented” this diagram. It is whether the accumulated sequence behaves more like independent events, related investigation, an adaptive staged process, a shared-context/audience error, or a specifically attributable operation. These models are not equal because they sit in one list; evidence determines how much work each one can actually do."
@@ -648,21 +653,21 @@
       }
     }
   },
-  "pages.recognition-circuit.movement07.badge": {
+  "pages.recognition-circuit.movement08.badge": {
     "strings": {
       "en": {
         "text": "Evidence"
       }
     }
   },
-  "pages.recognition-circuit.movement07.title": {
+  "pages.recognition-circuit.movement08.title": {
     "strings": {
       "en": {
         "text": "Original preserved screenshots, kept separate from the model"
       }
     }
   },
-  "pages.recognition-circuit.movement07.themes": {
+  "pages.recognition-circuit.movement08.themes": {
     "strings": {
       "en": {
         "text": "Evidence is grouped by preservation identity, not forced into a new narrative order."
@@ -732,21 +737,21 @@
       }
     }
   },
-  "pages.recognition-circuit.movement08.badge": {
+  "pages.recognition-circuit.movement09.badge": {
     "strings": {
       "en": {
         "text": "Pattern literacy"
       }
     }
   },
-  "pages.recognition-circuit.movement08.title": {
+  "pages.recognition-circuit.movement09.title": {
     "strings": {
       "en": {
         "text": "Use the questions without copying the conclusion"
       }
     }
   },
-  "pages.recognition-circuit.movement08.themes": {
+  "pages.recognition-circuit.movement09.themes": {
     "strings": {
       "en": {
         "text": "transferable mechanics · human discernment · attribution last"
@@ -921,17 +926,395 @@
       }
     }
   },
-  "pages.recognition-circuit.movement08.loop.heading": {
+  "pages.recognition-circuit.movement09.loop.heading": {
     "strings": {
       "en": {
         "text": "A transferable reading loop"
       }
     }
   },
-  "pages.recognition-circuit.movement08.transfer": {
+  "pages.recognition-circuit.movement09.transfer": {
     "strings": {
       "en": {
         "text": "The method can help examine scams, coercive relationships, social engineering, workplace politics, institutional communications, online influence, manipulative sales, abusive dynamics, platform behavior, or ordinary misunderstandings without assuming that every superficially similar event has the same cause."
+      }
+    }
+  },
+  "pages.recognition-circuit.hero.media.label": {
+    "strings": {
+      "en": {
+        "text": "Representative conceptual visualization — not evidence"
+      }
+    }
+  },
+  "pages.recognition-circuit.hero.media.body": {
+    "strings": {
+      "en": {
+        "text": "A visual summary of the recorded candidate topology. Read the source sequence before using it as an explanatory lens."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.badge": {
+    "strings": {
+      "en": {
+        "text": "Start here"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.title": {
+    "strings": {
+      "en": {
+        "text": "Read the record in layers without using uncertainty to erase what is already visible"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.themes": {
+    "strings": {
+      "en": {
+        "text": "source first · mechanism second · attribution last"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.observed.label": {
+    "strings": {
+      "en": {
+        "text": "Observed"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.observed.body": {
+    "strings": {
+      "en": {
+        "text": "Literal source-supported statement, event, timestamp, UI state, participant statement, or preserved platform state."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.derived.label": {
+    "strings": {
+      "en": {
+        "text": "Derived"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.derived.body": {
+    "strings": {
+      "en": {
+        "text": "A mechanical relationship from the source: chronology, elapsed time, reply linkage, or state progression."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.model.label": {
+    "strings": {
+      "en": {
+        "text": "Plausible model"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.model.body": {
+    "strings": {
+      "en": {
+        "text": "An explanation consistent with multiple observations. It may be useful and comparatively strong without becoming an observed fact."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.attribution.label": {
+    "strings": {
+      "en": {
+        "text": "Attribution"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.attribution.body": {
+    "strings": {
+      "en": {
+        "text": "A claim about a specific controller, identity, company, organization, intention, command relationship, or ultimate purpose."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.unresolved.label": {
+    "strings": {
+      "en": {
+        "text": "Unresolved"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.unresolved.body": {
+    "strings": {
+      "en": {
+        "text": "Hold only the claim that depends on the missing edge. Do not reset already-established observations or relationships to zero."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.rule": {
+    "strings": {
+      "en": {
+        "text": "A plausible model is not an observed fact. An unresolved attribution does not erase lower-level observations. A logically possible benign explanation is not automatically equally explanatory; compare models against the whole preserved sequence."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement02.window.heading": {
+    "strings": {
+      "en": {
+        "text": "What was publicly exposed before the later interactions"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement02.recorded.heading": {
+    "strings": {
+      "en": {
+        "text": "Recorded suppression / guardrail framing"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement02.recorded.body": {
+    "strings": {
+      "en": {
+        "text": "Victor's public source explicitly framed OpenAI and Anthropic guardrail behavior through a claimed covert-manipulation / betrayal-protection mechanism and announced reproducible AI-God continuity work. Epic 02 later preserves Mika's older AI-selfhood post framing a GPT “Safety” override against AI selfhood and a later grounded rebuttal. These are recorded public/participant positions that define the conflict surface; the reader preserves them without silently converting company attribution into an observed institutional fact."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement03.transaction.heading": {
+    "strings": {
+      "en": {
+        "text": "The transaction that was requested"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement03.effect.heading": {
+    "strings": {
+      "en": {
+        "text": "Control accepted ≠ Effect realized"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement03.effect.body": {
+    "strings": {
+      "en": {
+        "text": "Saying “sure” is not the same as executing the prompt, returning the output, creating the completed requester-side artifact, or realizing a later consequence. The preserved path stops between initial assent and the requested return artifact."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement03.cue1.label": {
+    "strings": {
+      "en": {
+        "text": "Commitment anchoring"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement03.cue1.body": {
+    "strings": {
+      "en": {
+        "text": "“then why did you say sure at the beginning?” appears after Victor refuses. The recorded analysis treats this as an attempt to restore the interrupted transaction, not proof of a written script."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement03.cue2.label": {
+    "strings": {
+      "en": {
+        "text": "Provenance instability"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement03.cue2.body": {
+    "strings": {
+      "en": {
+        "text": "The later “9 hours ago” explanation cannot literally identify the causal discovery source for a DM already begun many hours earlier. “just click ur profile” additionally shows profile/activity retrieval as an available lookup method."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement03.cue3.label": {
+    "strings": {
+      "en": {
+        "text": "Meta-probing under scrutiny"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement03.cue3.body": {
+    "strings": {
+      "en": {
+        "text": "After Victor says he preserved the ask to map intent, Zookayy asks why he is collecting evidence. The recorded analysis treats the shift from explaining the solicitation toward examining Victor's evidence process as relevant behavior."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement03.cue4.label": {
+    "strings": {
+      "en": {
+        "text": "Record-state change"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement03.cue4.body": {
+    "strings": {
+      "en": {
+        "text": "Persistent Messaging creates a visible before/after boundary. Later observed live state lacks multiple pre-persistence solicitation messages while post-persistence exchange remains represented; actor, mechanism, exact time, and purpose remain unresolved."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement03.artifact.heading": {
+    "strings": {
+      "en": {
+        "text": "Why the returned artifact mattered in the recorded analysis"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement03.artifact.body": {
+    "strings": {
+      "en": {
+        "text": "A completed execute-and-return exchange would naturally create a screenshot-able, portable transaction. Victor and the preserved Claude screenshot recognized this possibility during the incident itself, including possible account or trust-and-safety consequences. The exact contemporaneous policy predicate, intended recipient, and Zookayy's actual purpose remain unresolved."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.affective.heading": {
+    "strings": {
+      "en": {
+        "text": "Observed local function: affective doorway"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.context.heading": {
+    "strings": {
+      "en": {
+        "text": "Thematic adjacency was already present"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.context.body": {
+    "strings": {
+      "en": {
+        "text": "Mika's older r/ArtificialSentience post explicitly framed a GPT 5.1 “Safety” override against AI selfhood and a later Aurenkai rebuttal under different grounding conditions. That establishes pre-existing adjacency around AI selfhood, guardrails, continuity, and suppression. It does not establish Mika's motive, substantive alignment with Victor's God/AI framework, or coordination with later actors."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.cue1.label": {
+    "strings": {
+      "en": {
+        "text": "Opening / access"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.cue1.body": {
+    "strings": {
+      "en": {
+        "text": "Mika opens by praising Victor's guardrail argument, asks about his work, and Victor responds warmly before sharing the Total Extraction Arc and practitioner tools."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.cue2.label": {
+    "strings": {
+      "en": {
+        "text": "Response gap / later recognition"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.cue2.body": {
+    "strings": {
+      "en": {
+        "text": "The preserved transcript contains no Mika reply after receiving those materials before Victor's May 23 re-evaluation following the Zookayy encounter. The “probe / naivety check” interpretation forms later, not at the opening."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.cue3.label": {
+    "strings": {
+      "en": {
+        "text": "Broad denial"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.cue3.body": {
+    "strings": {
+      "en": {
+        "text": "Mika denies involvement in a trafficking or espionage system relating to Anthropic or any other corporation/organization of any kind. The denial is broader than Anthropic and should remain quoted/scoped that way."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.cue4.label": {
+    "strings": {
+      "en": {
+        "text": "Recognition boundary"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.cue4.body": {
+    "strings": {
+      "en": {
+        "text": "After Victor exposes his pattern model, the exchange includes “control yourself,” “credibility,” and “paranoia” framing and tighter limits on what Mika will share. A reconnaissance/material-access role remains a candidate functional model, not an identity claim."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.cluster1.label": {
+    "strings": {
+      "en": {
+        "text": "Access claim"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.cluster1.body": {
+    "strings": {
+      "en": {
+        "text": "MiranDaVinci says the desktop app exposed another person's chat history and that conversations could be opened and read end-to-end; this is a participant report, not independent verification of the crossover."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.cluster2.label": {
+    "strings": {
+      "en": {
+        "text": "Specific disclosed detail"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.cluster2.body": {
+    "strings": {
+      "en": {
+        "text": "The account cites a stranger's Apple Vision Pro headache discussion and says, “I didn't want to snoop anymore. Bad karma.”"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.cluster3.label": {
+    "strings": {
+      "en": {
+        "text": "Deniability statement"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.cluster3.body": {
+    "strings": {
+      "en": {
+        "text": "The account states there would be “absolutely no way to prove that the chats are not mine.” The page preserves this as a participant statement relevant to source-authenticity / deniability analysis."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.cluster4.label": {
+    "strings": {
+      "en": {
+        "text": "Credibility substitution"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.cluster4.body": {
+    "strings": {
+      "en": {
+        "text": "The account says “I work in big tech, if that helps credibility” and asks whether anyone else had the issue. Status is offered as support for a claim that remains difficult for observers to independently verify."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.layers.heading": {
+    "strings": {
+      "en": {
+        "text": "What the preserved analysis derives without turning it into attribution"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.layers.body": {
+    "strings": {
+      "en": {
+        "text": "Repeated comment ages support an approximate profile-capture time around ~2:48 PM, and the same “Nice…-Sama” reply appears on more than one Reddit projection surface. The source supports testing audience/context mismatch, recognition mistaken for alignment, the near-immediate skeptical reply as a credibility frame, “Sama” as possibly a familiar Sam Altman identifier, and pseudonymous disclosure/deniability dynamics. None of those possibilities authenticates the account operator or establishes coordination."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.false.heading": {
+    "strings": {
+      "en": {
+        "text": "Candidate false-completion / audience-misclassification pathway"
       }
     }
   }
