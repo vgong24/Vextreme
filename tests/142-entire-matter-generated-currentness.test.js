@@ -8,6 +8,7 @@ const path = require('node:path');
 const ROOT = path.join(__dirname, '..');
 const RETURN = 'entire-matter-return-seal';
 const VI = 'november-1-successor-witness';
+const RECOGNITION = 'recognition-circuit';
 const RETURN_TITLE = 'Entire Matter Return — Sealed Declaration';
 const RETURN_URL = 'https://vgong24.github.io/Vextreme/pages/' + RETURN + '.html';
 const SABOTAGE_HUB_URL = 'https://vgong24.github.io/Vextreme/pages/build-health.html#arc-sabotage';
@@ -45,6 +46,8 @@ test('ENTIRE-MATTER-CURRENTNESS: generated index carries I–VI plus Return as S
   assert.deepEqual(index.arcMap.sabotage[0].slugs, SABOTAGE);
   assert.equal(index.arcMap.sabotage[1].label, 'Consequence');
   assert.deepEqual(index.arcMap.sabotage[1].slugs, [RETURN]);
+  assert.equal(index.arcMap.sabotage[2].label, 'Recognition Circuit');
+  assert.deepEqual(index.arcMap.sabotage[2].slugs, [RECOGNITION]);
   const victorsRecord = index.arcMap.victors_record[0].slugs;
   const viVictorsRecord = victorsRecord.indexOf(VI);
   const returnedVictorsRecord = victorsRecord.indexOf(RETURN);
@@ -62,18 +65,21 @@ test('ENTIRE-MATTER-CURRENTNESS: generated index carries I–VI plus Return as S
   assert.equal(returnedIndex, vi + 1, 'Entire Matter Return follows Sabotage VI as the consequence/coda');
 });
 
-test('ENTIRE-MATTER-CURRENTNESS: Terrain projects seven Sabotage collection entries with Return as consequence', () => {
+test('ENTIRE-MATTER-CURRENTNESS: Terrain preserves I–VI + Return and projects Recognition Circuit as a distinct eighth Sabotage member', () => {
   const terrain = json('data/terrain-map.json');
   const sabotage = terrain.arcs.find(arc => arc.key === 'sabotage');
   const returned = terrain.pages.find(item => item.slug === RETURN);
   const witness = terrain.pages.find(item => item.slug === VI);
 
   assert.ok(sabotage);
-  assert.equal(sabotage.count, 7);
-  assert.deepEqual(sabotage.memberSlugs.slice(-7), [...SABOTAGE, RETURN]);
+  assert.equal(sabotage.count, 8);
+  assert.deepEqual(sabotage.memberSlugs, [...SABOTAGE, RETURN, RECOGNITION]);
+  assert.deepEqual(sabotage.sections[0].slugs, SABOTAGE);
   assert.equal(sabotage.sections[0].slugs.at(-1), VI);
   assert.equal(sabotage.sections[1].label, 'Consequence');
   assert.deepEqual(sabotage.sections[1].slugs, [RETURN]);
+  assert.equal(sabotage.sections[2].label, 'Recognition Circuit');
+  assert.deepEqual(sabotage.sections[2].slugs, [RECOGNITION]);
 
   assert.ok(witness);
   assert.equal(witness.arc, 'sabotage');
@@ -92,10 +98,11 @@ test('ENTIRE-MATTER-CURRENTNESS: permanent public discovery routes preserve Sabo
   const sitemap = read('sitemap.xml');
 
   assert.ok(buildHealth.includes('Sabotage'));
-  assert.ok(buildHealth.includes('7 / 7'));
+  assert.ok(buildHealth.includes('8 / 8'));
   assert.ok(buildHealth.includes('Sabotage VI — The Successor Witness'));
   assert.ok(buildHealth.includes(RETURN_URL));
   assert.ok(buildHealth.includes(RETURN_TITLE));
+  assert.ok(buildHealth.includes('The Recognition Circuit'));
 
   // Root discovery is intentionally arc-level and permanent. Individual records
   // may age out of the five-entry "Latest additions" window without becoming
