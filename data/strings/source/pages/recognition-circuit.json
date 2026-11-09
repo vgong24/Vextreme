@@ -11,7 +11,7 @@
       "epic03Commit": "7e7b98019e3f186971abf96766fdd8212cd8e0e3",
       "pageClass": "HUMAN_WITNESS_RELATIONSHIP_PROJECTION",
       "representativeMediaClass": "REPRESENTATIVE_NOT_EVIDENCE",
-      "initialCoverage": "STAGE_00_THROUGH_EPIC_03_SOURCE_SPINE"
+      "initialCoverage": "STAGE_00_THROUGH_EPIC_03_PLUS_CROSS_EPIC_CHRONOLOGY"
     }
   },
   "pages.recognition-circuit.document-title": {
@@ -431,6 +431,69 @@
     "strings": {
       "en": {
         "text": "The account operator identity, meaning of “it,” authenticity or intent of “-Sama,” cause of the alleged account crossover, and coordination remain unresolved by the preserved source."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.badge": {
+    "strings": {
+      "en": {
+        "text": "Timeline"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.title": {
+    "strings": {
+      "en": {
+        "text": "Let the sequence stay chronology before asking what it means"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.themes": {
+    "strings": {
+      "en": {
+        "text": "actual dates · preserved wall clocks · displayed intervals · no invented exact time"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.observed.label": {
+    "strings": {
+      "en": {
+        "text": "Observed"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.observed.body": {
+    "strings": {
+      "en": {
+        "text": "The preserved material establishes a May 19–30 public window containing the three Epics, with specific wall-clock anchors and relative-time labels where the source exposes them."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.transition.label": {
+    "strings": {
+      "en": {
+        "text": "Transition"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.transition.body": {
+    "strings": {
+      "en": {
+        "text": "Mika’s first contact is followed 47h59m later by Zookayy’s initial contact; Victor then returns to Mika after the Zookayy encounter; the May 26 Reddit event follows the persistence-boundary exchange."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.unresolved.label": {
+    "strings": {
+      "en": {
+        "text": "Unresolved"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement05.unresolved.body": {
+    "strings": {
+      "en": {
+        "text": "The May 21 warning post lacks a preserved wall-clock time relative to Mika’s 1:28 AM contact, and Reddit relative ages must not be converted into fake exact creation timestamps."
       }
     }
   }

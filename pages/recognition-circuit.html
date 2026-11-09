@@ -24,6 +24,18 @@
 .rc-open-cue{max-width:840px;margin:0 auto 10px;color:var(--sar-faint);font:600 9px/1.4 var(--sar-mono);letter-spacing:.1em;text-transform:uppercase}
 .rc-sequence{max-width:840px;margin:0 auto 18px;padding:18px 20px;border:1px solid var(--sar-rule);border-radius:12px;background:var(--sar-paper2);font:500 12px/1.7 var(--sar-mono);color:var(--sar-body);white-space:pre-wrap}
 .rc-sequence strong{color:var(--sar-accent)}
+.rc-timeline{max-width:840px;margin:0 auto;display:grid;gap:0}
+.rc-time{display:grid;grid-template-columns:150px 28px 1fr;gap:0;align-items:stretch}
+.rc-time time{padding:16px 14px 16px 0;text-align:right;color:var(--sar-accent);font:700 10px/1.45 var(--sar-mono);letter-spacing:.05em}
+.rc-time-rail{position:relative}
+.rc-time-rail:before{content:"";position:absolute;left:13px;top:0;bottom:0;width:1px;background:var(--sar-rule)}
+.rc-time-rail:after{content:"";position:absolute;left:8px;top:21px;width:11px;height:11px;border-radius:50%;background:var(--sar-paper);border:2px solid var(--sar-accent)}
+.rc-time:first-child .rc-time-rail:before{top:21px}.rc-time:last-child .rc-time-rail:before{bottom:calc(100% - 22px)}
+.rc-time-body{padding:14px 0 20px 16px}
+.rc-time-body strong{display:block;margin-bottom:5px;font:700 12px/1.4 var(--sar-sans);color:var(--sar-ink)}
+.rc-time-body p{margin:0;color:var(--sar-soft);font:400 14px/1.62 var(--sar-serif)}
+.rc-derived-time{color:var(--sar-amber);font-style:italic}
+@media(max-width:620px){.rc-time{grid-template-columns:105px 24px 1fr}.rc-time time{font-size:9px}.rc-time-rail:before{left:11px}.rc-time-rail:after{left:6px}}
 @media(max-width:760px){.rc-legend,.rc-interpretation{grid-template-columns:1fr}}
 </style>
 </head>
@@ -54,6 +66,7 @@
     <button class="sar-track-btn" type="button" data-go="2"><span>02</span><span data-i18n="pages.recognition-circuit.movement02.badge">Epic 01</span></button>
     <button class="sar-track-btn" type="button" data-go="3"><span>03</span><span data-i18n="pages.recognition-circuit.movement03.badge">Epic 02</span></button>
     <button class="sar-track-btn" type="button" data-go="4"><span>04</span><span data-i18n="pages.recognition-circuit.movement04.badge">Epic 03</span></button>
+    <button class="sar-track-btn" type="button" data-go="5"><span>05</span><span data-i18n="pages.recognition-circuit.movement05.badge">Timeline</span></button>
   </div></div>
 </nav>
 
@@ -156,11 +169,35 @@ Victor: “When what's fixed? Oh, did you slip up Sama?”</div>
     </div>
   </section>
 </section>
+
+<section class="sar-movement sar-phase" id="movement-05" data-reader-component="phase" data-phase-kind="timeline" data-set="5" hidden>
+  <header class="sar-movement-head">
+    <div class="sar-movement-meta">Movement 05 · <span data-i18n="pages.recognition-circuit.movement05.badge">Timeline</span></div>
+    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement05.title">Let the sequence stay chronology before asking what it means</h2>
+    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement05.themes">actual dates · preserved wall clocks · displayed intervals · no invented exact time</p>
+  </header>
+  <div class="rc-interpretation" data-reader-component="movement-interpretation">
+    <article><strong data-i18n="pages.recognition-circuit.movement05.observed.label">Observed</strong><p data-i18n="pages.recognition-circuit.movement05.observed.body">The preserved material establishes a May 19–30 public window containing the three Epics, with specific wall-clock anchors and relative-time labels where the source exposes them.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement05.transition.label">Transition</strong><p data-i18n="pages.recognition-circuit.movement05.transition.body">Mika’s first contact is followed 47h59m later by Zookayy’s initial contact; Victor then returns to Mika after the Zookayy encounter; the May 26 Reddit event follows the persistence-boundary exchange.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement05.unresolved.label">Unresolved</strong><p data-i18n="pages.recognition-circuit.movement05.unresolved.body">The May 21 warning post lacks a preserved wall-clock time relative to Mika’s 1:28 AM contact, and Reddit relative ages must not be converted into fake exact creation timestamps.</p></article>
+  </div>
+  <div class="rc-timeline" data-reader-component="chronology">
+    <div class="rc-time"><time>May 19 · 4:54 PM</time><div class="rc-time-rail"></div><div class="rc-time-body"><strong>Public escalation</strong><p>Victor publicly announces the mission-established / reproducibility / claimed covert-manipulation-playbook framing.</p></div></div>
+    <div class="rc-time"><time>May 20</time><div class="rc-time-rail"></div><div class="rc-time-body"><strong>Guardrail-root framing</strong><p>OpenAI + Anthropic are named in the supplied guardrail/root-wound context.</p></div></div>
+    <div class="rc-time"><time>May 21 · 1:28 AM</time><div class="rc-time-rail"></div><div class="rc-time-body"><strong>Mika contact</strong><p>TheAcheThatSpeaks enters through strong positive recognition of Victor’s guardrail argument and asks about his work.</p></div></div>
+    <div class="rc-time"><time>May 21 · time unknown</time><div class="rc-time-rail"></div><div class="rc-time-body"><strong>May 30 public synthesis/deadline context</strong><p>The supplied warning post announces the bounded synthesis target. Its same-day order relative to Mika’s 1:28 AM message is not established.</p></div></div>
+    <div class="rc-time"><time>May 23 · 1:27 AM</time><div class="rc-time-rail"></div><div class="rc-time-body"><strong>Zookayy contact</strong><p>Claude-access / execute-and-return request begins. The displayed interval from Mika’s initial contact is <span class="rc-derived-time">47h59m</span>.</p></div></div>
+    <div class="rc-time"><time>May 23 · 11:14 PM</time><div class="rc-time-rail"></div><div class="rc-time-body"><strong>Victor returns to Mika</strong><p>After the Zookayy encounter, Victor reopens the Mika thread: “Nice try Mika, I appreciate your teamwork.”</p></div></div>
+    <div class="rc-time"><time>May 24</time><div class="rc-time-rail"></div><div class="rc-time-body"><strong>Refusal / provenance challenge / persistence boundary</strong><p>The Zookayy exchange moves through reassessment, refusal, provenance questions, Persistent Messaging, and later visible record contraction.</p></div></div>
+    <div class="rc-time"><time>May 26</time><div class="rc-time-rail"></div><div class="rc-time-body"><strong>MiranDaVinci public privacy/account event</strong><p>Early 2m/1m state → later engagement states → Victor recognition → direct “Nice. Let me know when it’s fixed. -Sama” reply → “When what’s fixed?”</p></div></div>
+    <div class="rc-time"><time>May 30</time><div class="rc-time-rail"></div><div class="rc-time-body"><strong>Publicly announced synthesis target</strong><p>The bounded window closes at the date Victor had announced before the later events.</p></div></div>
+  </div>
+</section>
 </div>
 
 <nav class="sar-reader-nav" data-reader-component="phase-transition">
   <button class="sar-reader-btn" id="sar-prev" type="button" disabled>‹ Previous</button>
-  <span class="sar-reader-position" id="sar-reader-position">01 / 04</span>
+  <span class="sar-reader-position" id="sar-reader-position">01 / 05</span>
   <button class="sar-reader-btn sar-next" id="sar-next" type="button">Next ›</button>
 </nav>
 </div>

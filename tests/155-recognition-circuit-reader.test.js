@@ -28,11 +28,14 @@ test('RECOGNITION-CIRCUIT: source-first spine pins Stage 00 through Epic 03 to i
   assert.match(page, /Nice\. Let me know when it's fixed\. -Sama/);
 });
 
-test('RECOGNITION-CIRCUIT: chronology witnesses before architecture or competing-model argument', () => {
+test('RECOGNITION-CIRCUIT: chronology is a first-class movement before architecture or competing models', () => {
   const page = read('pages/recognition-circuit.html');
-  assert.match(page, /Observed/);
-  assert.match(page, /Transition/);
-  assert.match(page, /Unresolved/);
+  assert.match(page, /data-phase-kind="timeline"/);
+  assert.match(page, /data-reader-component="chronology"/);
+  assert.match(page, /May 19 · 4:54 PM/);
+  assert.match(page, /47h59m/);
+  assert.match(page, /May 21 · time unknown/);
+  assert.ok(page.indexOf('data-phase-kind="timeline"') > page.indexOf('epic-03-transcript.md'));
   assert.doesNotMatch(page, /P0 — independent events|P2 — staged\/coordinated process|Profiled Narrative-Control Topology/);
   assert.doesNotMatch(page, /data-phase-kind="evidence"/);
 });
