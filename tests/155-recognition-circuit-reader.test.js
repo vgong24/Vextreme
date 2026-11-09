@@ -109,3 +109,25 @@ test('RECOGNITION-CIRCUIT: transcript loader does not truncate on the repeated c
   assert.doesNotMatch(page, /documentEndMarker/);
   assert.doesNotMatch(page, /data-document-end-marker/);
 });
+
+test('RECOGNITION-CIRCUIT: node and arc registration preserve Witness Records + Victor’s Record + date-driven Full Timeline', () => {
+  const nodes = JSON.parse(read('data/nodes.json'));
+  const arcs = JSON.parse(read('data/arcs-v2.json'));
+  const node = nodes.find(item => item.slug === 'recognition-circuit');
+  assert.deepEqual(node, {
+    id: 130,
+    slug: 'recognition-circuit',
+    title: 'The Recognition Circuit',
+    date: 'May 19–26, 2026',
+    arcKeys: ['witness_records', 'victors_record', 'full_timeline'],
+    department: 'media',
+    workType: 'record-transcripts',
+    vexData: {}
+  });
+  assert.ok(arcs.witness_records.sections[0].slugs.includes('recognition-circuit'));
+  assert.ok(arcs.victors_record.sections[0].slugs.includes('recognition-circuit'));
+  assert.equal(arcs.full_timeline.sections.some(section => Array.isArray(section.slugs) && section.slugs.includes('recognition-circuit')), false);
+  const mayForward = arcs.full_timeline.sections.find(section => section.dateRange && section.dateRange.from === '2026-05-01');
+  assert.ok(mayForward);
+  assert.equal(mayForward.dateRange.to, '2099-12-31');
+});
