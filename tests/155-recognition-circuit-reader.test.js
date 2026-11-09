@@ -21,7 +21,7 @@ test('RECOGNITION-CIRCUIT: source-first spine pins Stage 00 through Epic 03 to i
   assert.ok(page.indexOf('stage-00-context-transcript.md') < page.indexOf('epic-01-transcript.md'));
   assert.ok(page.indexOf('epic-01-transcript.md') < page.indexOf('epic-02-transcript.md'));
   assert.ok(page.indexOf('epic-02-transcript.md') < page.indexOf('epic-03-transcript.md'));
-  assert.equal((page.match(/data-reader-component="movement-interpretation"/g) || []).length, 4);
+  assert.equal((page.match(/data-reader-component="movement-interpretation"/g) || []).length, 5);
   assert.equal((page.match(/data-reader-component="preserved-record"/g) || []).length, 4);
   assert.match(page, /data-reader-component="relationship-sequence"/);
   assert.match(page, /post 2m ago · first visible skeptical comment 1m ago/);
@@ -206,4 +206,13 @@ test('RECOGNITION-CIRCUIT: evidence captions identify what the important capture
   assert.match(page, /Epic 03 · 0008\.png<\/strong> Earliest preserved Reddit state/);
   const evidence = page.slice(page.indexOf('data-phase-kind="evidence"'), page.indexOf('data-phase-kind="pattern-literacy"'));
   assert.doesNotMatch(evidence, /Plausible model|candidate operational|coordinated process/i);
+});
+
+test('RECOGNITION-CIRCUIT: nine visible movement numbers stay aligned with their movement identities', () => {
+  const page = read('pages/recognition-circuit.html');
+  for (let i = 1; i <= 9; i += 1) {
+    const n = String(i).padStart(2, '0');
+    assert.match(page, new RegExp('id="movement-' + n + '"'));
+    assert.match(page, new RegExp('Movement ' + n + ' · <span data-i18n="pages\\.recognition-circuit\\.movement' + n + '\\.badge"'));
+  }
 });
