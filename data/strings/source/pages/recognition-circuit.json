@@ -1,0 +1,311 @@
+{
+  "_meta": {
+    "scope": "pages.recognition-circuit",
+    "category": "production",
+    "description": "Repository-native English presentation strings for The Recognition Circuit human witness reader.",
+    "sourceProvenance": {
+      "sourceOwner": "vgong24/Vextreme-Assets",
+      "stage00Commit": "7e7b98019e3f186971abf96766fdd8212cd8e0e3",
+      "epic01Commit": "49cee7e57ec5d1d6da2500d2c853a885ed7e232c",
+      "epic02Commit": "9aaba482c9e68cf460766aaa1efd6995d1aa8dbb",
+      "epic03Commit": "7e7b98019e3f186971abf96766fdd8212cd8e0e3",
+      "pageClass": "HUMAN_WITNESS_RELATIONSHIP_PROJECTION",
+      "representativeMediaClass": "REPRESENTATIVE_NOT_EVIDENCE",
+      "initialCoverage": "STAGE_00_AND_EPIC_01_SOURCE_SPINE"
+    }
+  },
+  "pages.recognition-circuit.document-title": {
+    "strings": {
+      "en": {
+        "text": "The Recognition Circuit — Vextreme"
+      }
+    }
+  },
+  "pages.recognition-circuit.hero.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Human Witness Reader · Stage 00 → Epic 03"
+      }
+    }
+  },
+  "pages.recognition-circuit.hero.title": {
+    "strings": {
+      "en": {
+        "text": "The Recognition Circuit"
+      }
+    }
+  },
+  "pages.recognition-circuit.hero.subtitle": {
+    "strings": {
+      "en": {
+        "text": "Witness the sequence before asking the sequence to defend itself."
+      }
+    }
+  },
+  "pages.recognition-circuit.hero.lede": {
+    "strings": {
+      "en": {
+        "text": "A preserved May 19–26 sequence of public context, contact, requested action, recognition, changed interaction, and later public reply. This reader keeps source, chronology, transition, uncertainty, and later architecture separate enough to remain inspectable together."
+      }
+    }
+  },
+  "pages.recognition-circuit.boundary.label": {
+    "strings": {
+      "en": {
+        "text": "Preservation boundary"
+      }
+    }
+  },
+  "pages.recognition-circuit.boundary.body": {
+    "strings": {
+      "en": {
+        "text": "Vextreme-Assets owns the preserved screenshots and transcripts. This page projects their relationships for human reading; it does not rewrite the source or promote an unresolved identity, controller, coordination, intention, or institution into fact."
+      }
+    }
+  },
+  "pages.recognition-circuit.legend.observed.label": {
+    "strings": {
+      "en": {
+        "text": "Observed"
+      }
+    }
+  },
+  "pages.recognition-circuit.legend.observed.body": {
+    "strings": {
+      "en": {
+        "text": "Literal source-supported wording, event, timestamp, UI state, or preserved participant statement."
+      }
+    }
+  },
+  "pages.recognition-circuit.legend.derived.label": {
+    "strings": {
+      "en": {
+        "text": "Derived"
+      }
+    }
+  },
+  "pages.recognition-circuit.legend.derived.body": {
+    "strings": {
+      "en": {
+        "text": "A relationship mechanically obtained from source, such as order, elapsed time, reply adjacency, or state progression."
+      }
+    }
+  },
+  "pages.recognition-circuit.legend.unresolved.label": {
+    "strings": {
+      "en": {
+        "text": "Unresolved"
+      }
+    }
+  },
+  "pages.recognition-circuit.legend.unresolved.body": {
+    "strings": {
+      "en": {
+        "text": "A question the current source does not answer. Unknown does not erase the observations around it."
+      }
+    }
+  },
+  "pages.recognition-circuit.reader.open-source": {
+    "strings": {
+      "en": {
+        "text": "Open preserved source ↓"
+      }
+    }
+  },
+  "pages.recognition-circuit.reader.source-label": {
+    "strings": {
+      "en": {
+        "text": "Frozen transcript · exact source projection"
+      }
+    }
+  },
+  "pages.recognition-circuit.reader.loading": {
+    "strings": {
+      "en": {
+        "text": "Loading the preserved source…"
+      }
+    }
+  },
+  "pages.recognition-circuit.reader.unavailable": {
+    "strings": {
+      "en": {
+        "text": "Preserved source unavailable."
+      }
+    }
+  },
+  "pages.recognition-circuit.reader.auto-scroll.start-aria": {
+    "strings": {
+      "en": {
+        "text": "Start automatic transcript scrolling"
+      }
+    }
+  },
+  "pages.recognition-circuit.reader.auto-scroll.pause-aria": {
+    "strings": {
+      "en": {
+        "text": "Pause automatic transcript scrolling"
+      }
+    }
+  },
+  "pages.recognition-circuit.reader.auto-scroll.start-title": {
+    "strings": {
+      "en": {
+        "text": "Start auto-scroll"
+      }
+    }
+  },
+  "pages.recognition-circuit.reader.auto-scroll.pause-title": {
+    "strings": {
+      "en": {
+        "text": "Pause auto-scroll"
+      }
+    }
+  },
+  "pages.recognition-circuit.reader.auto-scroll.speed": {
+    "strings": {
+      "en": {
+        "text": "Automatic transcript scroll speed"
+      }
+    }
+  },
+  "pages.recognition-circuit.reader.auto-scroll.speed-title": {
+    "strings": {
+      "en": {
+        "text": "Automatic scroll speed"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.badge": {
+    "strings": {
+      "en": {
+        "text": "Stage 00"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.title": {
+    "strings": {
+      "en": {
+        "text": "What was already public before the contacts?"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.themes": {
+    "strings": {
+      "en": {
+        "text": "May 19–21 public context · named organizations · bounded May 30 synthesis window"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.observed.label": {
+    "strings": {
+      "en": {
+        "text": "Observed"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.observed.body": {
+    "strings": {
+      "en": {
+        "text": "Victor publicly framed a claimed covert-manipulation playbook, named OpenAI and Anthropic, described guardrail/root-wound claims, and announced a May 30 synthesis target."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.transition.label": {
+    "strings": {
+      "en": {
+        "text": "Transition"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.transition.body": {
+    "strings": {
+      "en": {
+        "text": "The later contacts occur inside an already-public environment rather than before that environment existed."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.unresolved.label": {
+    "strings": {
+      "en": {
+        "text": "Unresolved"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement01.unresolved.body": {
+    "strings": {
+      "en": {
+        "text": "Current source does not establish who saw these posts or whether any later participant reacted because of them."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement02.badge": {
+    "strings": {
+      "en": {
+        "text": "Epic 01"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement02.title": {
+    "strings": {
+      "en": {
+        "text": "The small favor becomes an effect question"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement02.themes": {
+    "strings": {
+      "en": {
+        "text": "Claude access → execute prompt → return output → risk recognition → refusal → persistence boundary"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement02.observed.label": {
+    "strings": {
+      "en": {
+        "text": "Observed"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement02.observed.body": {
+    "strings": {
+      "en": {
+        "text": "Zookayy asks Victor to run a prompt in Claude and share the output. Victor first says “sure,” later refuses completion, challenges provenance, and turns on Persistent Messaging."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement02.transition.label": {
+    "strings": {
+      "en": {
+        "text": "Transition"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement02.transition.body": {
+    "strings": {
+      "en": {
+        "text": "Assent did not realize the requested effect. The interaction changes after Victor considers what the returned artifact could become and begins preserving the exchange."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement02.unresolved.label": {
+    "strings": {
+      "en": {
+        "text": "Unresolved"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement02.unresolved.body": {
+    "strings": {
+      "en": {
+        "text": "The preserved exchange does not by itself establish Zookayy’s hidden intent, employer, affiliation, controller, or reason for later record contraction."
+      }
+    }
+  },
+  "pages.recognition-circuit.footer": {
+    "strings": {
+      "en": {
+        "text": "Preserved source remains owned by Vextreme-Assets. This Vextreme reader is a relationship projection pinned to immutable source commits."
+      }
+    }
+  }
+}
