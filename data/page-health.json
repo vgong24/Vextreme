@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 212,
+    "total": 213,
     "healthy": 4,
-    "attention": 201,
+    "attention": 202,
     "critical": 7,
-    "sorted": 169,
-    "withFab": 199,
-    "readAloudApplicable": 204,
-    "withReadAloud": 204,
+    "sorted": 170,
+    "withFab": 200,
+    "readAloudApplicable": 205,
+    "withReadAloud": 205,
     "missingReadAloud": 0,
-    "withIdentity": 181,
+    "withIdentity": 182,
     "withScreenshots": 13,
-    "withMetaDescription": 177
+    "withMetaDescription": 178
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -7497,6 +7497,67 @@
         "blockers": [],
         "gaps": [
           "uncurated",
+          "screenshot"
+        ]
+      }
+    },
+    "recognition-circuit": {
+      "slug": "recognition-circuit",
+      "title": "The Recognition Circuit",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "sabotage",
+          "witness_records",
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 224,
+        "languages": {
+          "en": {
+            "translated": 224,
+            "total": 224,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "A source-first human witness reader for the preserved Stage 00 through Epic 03 sequence: chronology, interaction, transition, uncertainty, and later architecture remain visible without being collapsed."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
           "screenshot"
         ]
       }
