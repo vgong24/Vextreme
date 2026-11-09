@@ -22,6 +22,7 @@ test('VEXARCHITECTURE GUIDE: builder journey precedes forensic provenance', () =
   const ids = [
     'problem',
     'discovery',
+    'partner-circuit',
     'codebase',
     'theme-walk',
     'execution',
@@ -54,6 +55,10 @@ test('VEXARCHITECTURE GUIDE: accepted code structure is visible and source-addre
   for (const required of [
     'VexMethod.kt',
     'VexFamily.kt',
+    'VexPartner.kt',
+    'CgmPartner.kt',
+    'ConnectedPenPartner.kt',
+    'InsulinPumpPartner.kt',
     'VexExecution.kt',
     'VexExecutionRoot.kt',
     'VexDependencyFactory.kt',
@@ -70,6 +75,35 @@ test('VEXARCHITECTURE GUIDE: accepted code structure is visible and source-addre
 
   assert.ok(page.includes('66c866dea6a8dd78e2946da88715c4deb78c1847'));
 });
+
+test('VEXARCHITECTURE GUIDE: current body exposes the full Family and Partner circuit without reopening scale', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  for (const required of [
+    'FULL CAUSAL BODY',
+    'OUTSIDE / INBOUND',
+    'VexPartner',
+    'Connection',
+    'Conversion',
+    'Source',
+    'Signal',
+    'Observation',
+    'Receiver',
+    'Store / durable admitted outside truth',
+    'INSIDE / SEMANTIC',
+    'OUTSIDE / OUTBOUND',
+    'Family and Partner complete one bidirectional circuit without becoming mirrors',
+    'Partner ≠ mirrored Family',
+    'Partner Source ≠ Connection.Id ≠ VexExecution.RelationshipId',
+    'More elapsed time or more examples of the same dimensions are not, by themselves',
+  ]) {
+    assert.ok(page.includes(required), 'missing current full-circuit witness: ' + required);
+  }
+
+  assert.ok(page.includes('0d66416ba36ef876f0111e813a4a8f7c0308a752'));
+  assert.ok(page.includes('Open the exact VexPartner source witness ↗'));
+});
+
 
 test('VEXARCHITECTURE GUIDE: ThemeMode teaches semantic carriage rather than class-shape cargo culting', () => {
   const page = read('pages/vexarchitecture-first-stable-body.html');
@@ -148,14 +182,18 @@ test('VEXARCHITECTURE GUIDE: every bound display key exists in the page string s
 
   assert.deepEqual(missing, []);
   assert.equal(strings._meta.sourceProvenance.originPullRequest, 209);
-  assert.equal(strings._meta.sourceProvenance.guideRevision, 'DEVELOPMENT_STANDARD_2_N_BUILDER_FIELD_GUIDE');
+  assert.equal(strings._meta.sourceProvenance.guideRevision, 'DEVELOPMENT_STANDARD_5_N_FULL_CIRCUIT_BUILDER_FIELD_GUIDE');
+  assert.equal(
+    strings._meta.sourceProvenance.currentPartnerSourceSnapshot,
+    '0d66416ba36ef876f0111e813a4a8f7c0308a752',
+  );
 });
 
 
 test('VEXARCHITECTURE GUIDE: opening topology separates core causality from orthogonal relationships', () => {
   const page = read('pages/vexarchitecture-first-stable-body.html');
 
-  assert.ok(page.includes('CORE SEMANTIC + RUNTIME PATH'));
+  assert.ok(page.includes('FULL CAUSAL BODY'));
   assert.ok(page.includes('ORTHOGONAL / CONDITIONAL RELATIONSHIPS'));
   assert.ok(page.includes('Construction + lifetime'));
   assert.ok(page.includes('Chronology / VexLogger'));
@@ -262,6 +300,8 @@ test('VEXARCHITECTURE GUIDE: current source and accepted #209 snapshot remain di
   assert.ok(page.includes('Open accepted #209 source snapshot ↗'));
   assert.ok(page.includes('blob/66c866dea6a8dd78e2946da88715c4deb78c1847/architecture/vexarchitecture/README.md'));
   assert.ok(page.includes('Open PR #209 reasoning record ↗'));
+  assert.ok(page.includes('Open the Partner architecture source witness ↗'));
+  assert.ok(page.includes('0d66416ba36ef876f0111e813a4a8f7c0308a752'));
   assert.ok(page.includes('architectural teaching projections'));
   assert.ok(page.includes('object/scope-by-scope wiring walk'));
 });

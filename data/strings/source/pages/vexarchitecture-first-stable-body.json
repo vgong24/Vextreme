@@ -2,7 +2,7 @@
   "_meta": {
     "scope": "pages.vexarchitecture-first-stable-body",
     "category": "production",
-    "description": "English source strings for the VexArchitecture Development Standard builder field guide, rooted in the accepted VexLife-Android #209 architecture.",
+    "description": "English source strings for the VexArchitecture Builder Field Guide, preserving the accepted #209 origin while teaching the current full Family ↔ Partner circuit.",
     "sourceProvenance": {
       "originRepository": "vgong24/VexLife-Android",
       "originPullRequest": 209,
@@ -11,7 +11,10 @@
       "mergeCommit": "66c866dea6a8dd78e2946da88715c4deb78c1847",
       "recordClass": "ACCEPTED_DEVELOPMENT_STANDARD_ORIGIN",
       "witnessFormedAt": "2026-11-01T21:40:00-08:00",
-      "guideRevision": "DEVELOPMENT_STANDARD_2_N_BUILDER_FIELD_GUIDE"
+      "guideRevision": "DEVELOPMENT_STANDARD_5_N_FULL_CIRCUIT_BUILDER_FIELD_GUIDE",
+      "currentPartnerPullRequest": 219,
+      "currentPartnerSourceSnapshot": "0d66416ba36ef876f0111e813a4a8f7c0308a752",
+      "currentPartnerWorkRecord": "VexGPT/VexWork#267"
     }
   },
   "pages.vexarchitecture-first-stable-body.document-title": {
@@ -52,7 +55,7 @@
   "pages.vexarchitecture-first-stable-body.hero.status": {
     "strings": {
       "en": {
-        "text": "Accepted stability point · public origin guide"
+        "text": "Origin proof · current architecture guide"
       }
     }
   },
@@ -73,21 +76,21 @@
   "pages.vexarchitecture-first-stable-body.map.heading": {
     "strings": {
       "en": {
-        "text": "The architecture has one core causal path — and several relationships that sit beside it"
+        "text": "The current architecture is one bidirectional human ↔ semantic ↔ external-participant circuit — with orthogonal owners beside it"
       }
     }
   },
   "pages.vexarchitecture-first-stable-body.map.lede": {
     "strings": {
       "en": {
-        "text": "Construction/lifetime creates and reuses the live objects in the path. VexLogger observes facts across owners. Relay/convergence appears only when independently-owned truths must become new relationship truth. Forensics explains why the shape was earned. None of those are automatic next runtime stages."
+        "text": "Family owns product/semantic meaning. Partner owns independently-owned external participation vocabulary. Store preserves admitted outside truth for the Family-facing side. Construction/lifetime, chronology, convergence, and provenance remain orthogonal relationships rather than mandatory runtime stages."
       }
     }
   },
   "pages.vexarchitecture-first-stable-body.map.flow": {
     "strings": {
       "en": {
-        "text": "WHY THIS ARCHITECTURE EXISTS\n\npressure / failure\n      ↓\nownership question\n\n\nCORE SEMANTIC + RUNTIME PATH\n\nREQUEST / REALIZATION\n\nControl + exact CURRENT State\n      ↓\nFamily.act(...)\n      ↓\naccepted Act\n├─ admitted State?\n└─ Begin?\n   ├─ Effect\n   └─ overlap Approach\n      ↓\nfully-bound Act.Method\n  specializes VexMethod\n      ↓\nVexExecution custody\n      ↓\nattempt Method.invoke()\n├─ returns lawfully\n│  ├─ may touch Store / provider / platform reality\n│  │  └─ returns the smallest truthful provider/domain fact\n│  └─ VexMethod.Result\n│     ├─ Success(output)\n│     └─ Failure(output)\n└─ escapes with Throwable\n   └─ Family / Execution continuation\n      forms VexMethod.Result.Error(cause)\n      ↓\nrightful Method-result interpretation\n\n\nOUTSIDE / OBSERVATION\n\nStore / provider / platform reality\nchanges independently over time\n      ↓\nrightful observation / reconciliation\n      ↓\nFamily.observe(State)\n\n\nEXPERIENCE / DISPLAY\n\nFamily State\n      ↓\nProjection / DisplayState\n      ↓\nconcrete presentation meaning\n      ↓\nplatform manifestation\n      ↓\npresentation arrival, when actually observed\n      ↓\nhuman experience\n\n\nORTHOGONAL / CONDITIONAL RELATIONSHIPS\n\nConstruction + lifetime\n  → creates and reuses the live objects above\n\nChronology / VexLogger\n  → observes facts as rightful owners know them\n\nRelay / convergence\n  → only when independently-owned truths\n    must become new relationship truth\n\nForensics / PR provenance\n  → explains why this shape was earned\n    without becoming runtime authority"
+        "text": "WHY THIS ARCHITECTURE EXISTS\n\npressure / failure\n      ↓\nownership question\n\n\nFULL CAUSAL BODY\n\nOUTSIDE / INBOUND\n\nexternal participant\n      ↓\nVexPartner\n├─ Source\n├─ Signal\n└─ Connection\n   ├─ Id\n   ├─ Conversion\n   ├─ Observation\n   └─ Receiver\n      ↓\nStore / durable admitted outside truth\n      ↓\nrightful reconciliation\n      ↓\nFamily.observe(State)\n\n\nINSIDE / SEMANTIC\n\nControl + exact CURRENT State\n      ↓\nFamily.act(...)\n      ↓\naccepted Act\n├─ admitted State?\n└─ Begin?\n   ├─ Effect\n   └─ overlap Approach\n      ↓\nfully-bound Act.Method\n  specializes VexMethod\n      ↓\nVexExecution custody\n      ↓\nattempt Method.invoke()\n├─ returns lawfully\n│  ├─ may use a Partner Connection / Store / provider\n│  └─ VexMethod.Result\n│     ├─ Success(output)\n│     └─ Failure(output)\n└─ escapes with Throwable\n   └─ Family / Execution continuation\n      forms VexMethod.Result.Error(cause)\n\n\nOUTSIDE / OUTBOUND\n\nbound Method\n      ↓\nVexExecution\n      ↓\nPartner Connection / provider\n      ↓\nexternal participant\n\nlater independently-owned truth\n      ↓\nreturns through the Partner inbound path\n\n\nEXPERIENCE / DISPLAY\n\nFamily State\n      ↓\nProjection / DisplayState\n      ↓\nconcrete presentation meaning\n      ↓\nplatform manifestation\n      ↓\npresentation arrival, when actually observed\n      ↓\nhuman experience\n\n\nORTHOGONAL / CONDITIONAL RELATIONSHIPS\n\nConstruction + lifetime\n  → creates and reuses the live objects above\n\nChronology / VexLogger\n  → observes facts as rightful owners know them\n\nRelay / convergence\n  → only when independently-owned truths\n    must become new relationship truth\n\nForensics / PR provenance\n  → explains why the shape was earned\n    without becoming runtime authority"
       }
     }
   },
@@ -332,14 +335,14 @@
   "pages.vexarchitecture-first-stable-body.codebase.lede": {
     "strings": {
       "en": {
-        "text": "This VexLife-Android shape originated at the accepted #209 stability point and is current through the accepted #211 VexMethod refinement. The file tree matters because the boundaries remain readable in source: semantic meaning, Method result, execution custody, outside truth, construction, chronology, convergence, and concrete composition remain distinct without becoming isolated."
+        "text": "The inside semantic/runtime body originated at the accepted #209 stability point and remains current through the accepted #211 VexMethod refinement. The current full circuit also includes the VexPartner relationship earned by VexCgmLabs. The file tree matters because semantic meaning, external participation, Method result, execution custody, durable outside truth, construction, chronology, convergence, and concrete composition remain distinct without becoming isolated."
       }
     }
   },
   "pages.vexarchitecture-first-stable-body.codebase.tree": {
     "strings": {
       "en": {
-        "text": "VexLife-Android/\n│\n├── architecture/\n│   ├── behavior/\n│   │   ├── .../VexMethod.kt\n│   │   └── .../VexFamily.kt\n│   ├── execution/\n│   │   ├── .../VexExecution.kt\n│   │   └── .../VexExecutionRoot.kt\n│   ├── dependency/\n│   │   └── .../VexDependencyFactory.kt\n│   ├── logging/\n│   │   └── .../VexLogger.kt\n│   ├── relay/\n│   │   ├── .../VexRelay.kt\n│   │   ├── .../VexCompoundRelay.kt\n│   │   └── .../VexCompoundState.kt\n│   └── vexarchitecture/\n│       ├── README.md\n│       ├── REFINED-BOUNDARIES.md\n│       └── VEXLOGGER.md\n│\n└── app/src/main/.../\n    ├── VexApplication.kt\n    ├── ui/\n    │   ├── VexLifeSession.kt\n    │   ├── ThemeMode.kt\n    │   ├── ThemeModeStore.kt\n    │   └── VexLifeRelayGraph.kt\n    ├── conversation/\n    │   └── VexConversationHybridRelay.kt\n    └── screens/\n        └── .../EventsConvergenceRelay.kt"
+        "text": "VexLife-Android/\n│\n├── architecture/\n│   ├── behavior/\n│   │   ├── .../VexMethod.kt\n│   │   ├── .../VexFamily.kt\n│   │   └── .../VexPartner.kt\n│   ├── execution/\n│   │   ├── .../VexExecution.kt\n│   │   └── .../VexExecutionRoot.kt\n│   ├── dependency/\n│   │   └── .../VexDependencyFactory.kt\n│   ├── logging/\n│   │   └── .../VexLogger.kt\n│   ├── relay/\n│   │   ├── .../VexRelay.kt\n│   │   ├── .../VexCompoundRelay.kt\n│   │   └── .../VexCompoundState.kt\n│   └── vexarchitecture/\n│       ├── README.md\n│       ├── REFINED-BOUNDARIES.md\n│       └── VEXLOGGER.md\n│\n└── app/src/main/.../\n    ├── VexApplication.kt\n    ├── ui/\n    │   ├── VexLifeSession.kt\n    │   ├── ThemeMode.kt\n    │   ├── ThemeModeStore.kt\n    │   └── VexLifeRelayGraph.kt\n    ├── cgm/\n    │   ├── CgmPartner.kt\n    │   ├── CgmStore.kt\n    │   └── CgmFamily.kt\n    ├── insulin/\n    │   ├── ConnectedPenPartner.kt\n    │   ├── InsulinPumpPartner.kt\n    │   └── InsulinFamily.kt\n    ├── conversation/\n    │   └── VexConversationHybridRelay.kt\n    └── screens/\n        └── .../EventsConvergenceRelay.kt"
       }
     }
   },
@@ -1256,7 +1259,7 @@
   "pages.vexarchitecture-first-stable-body.hero.reader-contract": {
     "strings": {
       "en": {
-        "text": "Use this page to understand why the first stable VexArchitecture body took this shape. Current VexLife-Android source and tests own present behavior. PR #209 preserves the pressure, subtraction, and proof that earned this stability point. Diagrams and code blocks here are architectural teaching projections unless explicitly labeled as a source snapshot; linked current source owns byte-exact implementation. The companion Live Demonstration is the object/scope-by-scope wiring walk when you need every construction and runtime edge made visible."
+        "text": "Use this page to understand both the first stable VexArchitecture body and the current complete human ↔ semantic ↔ external-participant circuit. PR #209 remains the origin proof for the inside semantic/runtime body; the earned VexPartner relationship now makes the external-participant half explicit without replacing that provenance. Diagrams and code blocks here are architectural teaching projections unless explicitly labeled as a source snapshot; linked source owns byte-exact implementation. The companion Live Demonstration is the object/scope-by-scope wiring walk when you need every construction and runtime edge made visible."
       }
     }
   },
@@ -1305,7 +1308,7 @@
   "pages.vexarchitecture-first-stable-body.live-demo.body": {
     "strings": {
       "en": {
-        "text": "The Live Demonstration starts before a person can click anything, names each owning container and nested member, follows the same live object through construction and runtime, then repeats the method across current VexStream Playback and VexMaps Distribution source."
+        "text": "The Live Demonstration starts before a person can click anything, names each owning container and nested member, follows the same live object through construction and runtime, then repeats the method across current VexStream Playback, VexMaps Distribution, and the VexPartner external-participant circuit."
       }
     }
   },
@@ -1313,6 +1316,111 @@
     "strings": {
       "en": {
         "text": "Open VexArchitecture — Live Demonstration ↗"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.owner.partner.title": {
+    "strings": {
+      "en": {
+        "text": "Partner · external participation"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.owner.partner.question": {
+    "strings": {
+      "en": {
+        "text": "What can an independently-owned external participant say, and through which concrete relationship did it arrive?"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.owner.partner.body": {
+    "strings": {
+      "en": {
+        "text": "VexPartner owns the rooted external vocabulary: Source, Signal, and Connection with Id, Conversion, Observation, and Receiver. It is not a mirrored Family. It does not own product State/Control/Effect, Store durability, or VexExecution custody."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.partner.kicker": {
+    "strings": {
+      "en": {
+        "text": "Current body · the external-participant half"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.partner.heading": {
+    "strings": {
+      "en": {
+        "text": "Family and Partner complete one bidirectional circuit without becoming mirrors"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.partner.lede": {
+    "strings": {
+      "en": {
+        "text": "VexFamily owns application/product meaning. VexPartner owns independently-owned external participation vocabulary. The same boundary stays readable whether the outside participant is a CGM, connected pen, insulin pump, service, or another concrete relationship that earns the grammar."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.partner.flow": {
+    "strings": {
+      "en": {
+        "text": "OUTSIDE → INSIDE\n\nexternal participant\n      ↓\nVexPartner\n├─ Source\n├─ Signal\n└─ Connection\n   ├─ Id\n   ├─ Conversion\n   ├─ Observation\n   └─ Receiver\n      ↓\nStore / durable admitted truth\n      ↓\nrightful reconciliation\n      ↓\nVexFamily State\n      ↓\nDisplayState / Projection\n      ↓\nhuman\n\nINSIDE → OUTSIDE\n\nhuman / product intention\n      ↓\nControl + CURRENT State\n      ↓\nVexFamily\n      ↓\nAct\n├─ admitted State?\n└─ Begin(Effect + Approach)\n      ↓\nbound Act.Method\n      ↓\nVexExecution\n      ↓\nPartner Connection\n      ↓\nexternal participant\n\nlater outside truth\n      ↓\nreturns through the Partner inbound path"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.partner.scale-heading": {
+    "strings": {
+      "en": {
+        "text": "What proved scale"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.partner.scale-body": {
+    "strings": {
+      "en": {
+        "text": "The grammar survived materially different axes: CGM, connected pen, insulin pump; BLE-like and HTTP-like provider representations; inbound and outbound direction; queued execution; Room persistence/restart; cross-Family feedback; and source-derived VexBoard projection. Those are different relationship dimensions. More elapsed time or more examples of the same dimensions are not, by themselves, evidence that another abstraction is needed."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.partner.boundary-heading": {
+    "strings": {
+      "en": {
+        "text": "What stays separate"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.partner.boundary-body": {
+    "strings": {
+      "en": {
+        "text": "Partner ≠ mirrored Family. Partner Source ≠ Connection.Id ≠ VexExecution.RelationshipId. Provider representation ≠ Partner Signal. Store ≠ Partner ≠ Family. Relay still appears only when independently-owned complete truths create a new relationship question."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.partner.currentness": {
+    "strings": {
+      "en": {
+        "text": "The Partner architecture is the current reusable external-participant baseline. Android PR #219 still has repository proof/review/merge lifecycle work; that is implementation currentness, not a reason to send future instances back to a generic Signal/Entity/Mapper hypothesis."
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.partner.source": {
+    "strings": {
+      "en": {
+        "text": "Open the exact VexPartner source witness ↗"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.partner.work-source": {
+    "strings": {
+      "en": {
+        "text": "Open the VexCgmLabs architecture record ↗"
+      }
+    }
+  },
+  "pages.vexarchitecture-first-stable-body.codebase.partner-source": {
+    "strings": {
+      "en": {
+        "text": "Open the Partner architecture source witness ↗"
       }
     }
   }
