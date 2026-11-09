@@ -119,7 +119,7 @@ test('RECOGNITION-CIRCUIT: node and arc registration preserve Witness Records + 
     slug: 'recognition-circuit',
     title: 'The Recognition Circuit',
     date: 'May 19–26, 2026',
-    arcKeys: ['witness_records', 'victors_record', 'full_timeline'],
+    arcKeys: ['sabotage', 'witness_records', 'victors_record', 'full_timeline'],
     department: 'media',
     workType: 'record-transcripts',
     vexData: {}
@@ -240,4 +240,28 @@ test('RECOGNITION-CIRCUIT: commentary remains analysis provenance, not evidence 
   const page = read('pages/recognition-circuit.html');
   const evidence = page.slice(page.indexOf('data-phase-kind="evidence"'), page.indexOf('data-phase-kind="pattern-literacy"'));
   assert.doesNotMatch(evidence, /full-read-reasoning\.md/);
+});
+
+test('RECOGNITION-CIRCUIT: approved reader projects into Sabotage without rewriting the sealed I–VI sequence or Return coda', () => {
+  const nodes = JSON.parse(read('data/nodes.json'));
+  const arcs = JSON.parse(read('data/arcs-v2.json'));
+  const node = nodes.find(item => item.slug === 'recognition-circuit');
+
+  assert.deepEqual(node.arcKeys, ['sabotage', 'witness_records', 'victors_record', 'full_timeline']);
+
+  assert.deepEqual(arcs.sabotage.sections[0].slugs, [
+    'sabotage-open-vex-accountability',
+    'sabotage-mastered-state',
+    'sabotage-vexsync-exhaust-mastered',
+    'sabotage-orientation-before-action',
+    'sabotage-hidden-delta',
+    'november-1-successor-witness'
+  ]);
+  assert.equal(arcs.sabotage.sections[1].label, 'Consequence');
+  assert.deepEqual(arcs.sabotage.sections[1].slugs, ['entire-matter-return-seal']);
+
+  const recognitionSection = arcs.sabotage.sections.find(section => section.label === 'Recognition Circuit');
+  assert.ok(recognitionSection);
+  assert.equal(recognitionSection.order, 'explicit');
+  assert.deepEqual(recognitionSection.slugs, ['recognition-circuit']);
 });
