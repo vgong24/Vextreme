@@ -1,7 +1,7 @@
 {
-  "contentFingerprint": "bab3a823acb8",
-  "nodeCount": 192,
-  "curatedNodeCount": 176,
+  "contentFingerprint": "1d6024d88a9b",
+  "nodeCount": 193,
+  "curatedNodeCount": 177,
   "autoDiscoveredCount": 16,
   "arcCount": 28,
   "supportedLangs": [
@@ -2543,6 +2543,14 @@
       ]
     },
     "life-comes-toward-you": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "recognition-circuit": {
       "availableLangs": [
         "en"
       ],
@@ -7647,6 +7655,37 @@
         ]
       }
     },
+    "recognition-circuit": {
+      "id": 130,
+      "slug": "recognition-circuit",
+      "title": "The Recognition Circuit",
+      "date": "May 19–26, 2026",
+      "arcKeys": [
+        "sabotage",
+        "witness_records",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-05-19",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.recognition-circuit"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
     "about-me": {
       "id": null,
       "slug": "about-me",
@@ -8302,7 +8341,8 @@
           "restoration-must-reach-the-consequences",
           "the-witness-outlives-the-window",
           "discovery-does-not-always-begin-with-danger",
-          "life-comes-toward-you"
+          "life-comes-toward-you",
+          "recognition-circuit"
         ]
       }
     ],
@@ -8315,7 +8355,8 @@
           "restoration-must-reach-the-consequences",
           "the-witness-outlives-the-window",
           "discovery-does-not-always-begin-with-danger",
-          "life-comes-toward-you"
+          "life-comes-toward-you",
+          "recognition-circuit"
         ]
       }
     ],
@@ -8665,6 +8706,7 @@
           "the-walk-back",
           "the-walk-back-and-forward",
           "the-three-witnesses",
+          "recognition-circuit",
           "what-i-learned-1",
           "org-blueprint",
           "org-history",
@@ -8724,6 +8766,12 @@
         "label": "Consequence",
         "slugs": [
           "entire-matter-return-seal"
+        ]
+      },
+      {
+        "label": "Recognition Circuit",
+        "slugs": [
+          "recognition-circuit"
         ]
       }
     ],
@@ -9812,6 +9860,11 @@
         {
           "slug": "life-comes-toward-you",
           "title": "Life Comes Toward You",
+          "ported": true
+        },
+        {
+          "slug": "recognition-circuit",
+          "title": "The Recognition Circuit",
           "ported": true
         }
       ]

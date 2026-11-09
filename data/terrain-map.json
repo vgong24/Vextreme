@@ -4740,12 +4740,12 @@
       "key": "sabotage",
       "name": "Sabotage",
       "sub": "priority 1",
-      "count": 7,
+      "count": 8,
       "rect": {
         "x": 3750,
         "y": 40,
         "width": 300,
-        "height": 510
+        "height": 570
       },
       "parent": {
         "title": "Sabotage",
@@ -4771,6 +4771,12 @@
           "slugs": [
             "entire-matter-return-seal"
           ]
+        },
+        {
+          "label": "Recognition Circuit",
+          "slugs": [
+            "recognition-circuit"
+          ]
         }
       ],
       "memberSlugs": [
@@ -4780,7 +4786,8 @@
         "sabotage-orientation-before-action",
         "sabotage-hidden-delta",
         "november-1-successor-witness",
-        "entire-matter-return-seal"
+        "entire-matter-return-seal",
+        "recognition-circuit"
       ],
       "contentGroupRelation": {
         "kind": "SYSTEM_REFERENCE",
@@ -4792,7 +4799,7 @@
           "parentLive": true,
           "parentIsMember": false,
           "referenceCount": 15,
-          "memberCount": 7,
+          "memberCount": 8,
           "linkedMemberCount": 0,
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
@@ -4985,7 +4992,8 @@
             "restoration-must-reach-the-consequences",
             "the-witness-outlives-the-window",
             "discovery-does-not-always-begin-with-danger",
-            "life-comes-toward-you"
+            "life-comes-toward-you",
+            "recognition-circuit"
           ]
         }
       ],
@@ -5020,7 +5028,8 @@
         "restoration-must-reach-the-consequences",
         "the-witness-outlives-the-window",
         "discovery-does-not-always-begin-with-danger",
-        "life-comes-toward-you"
+        "life-comes-toward-you",
+        "recognition-circuit"
       ],
       "contentGroupRelation": {
         "kind": "SYSTEM_REFERENCE",
@@ -5032,7 +5041,7 @@
           "parentLive": true,
           "parentIsMember": false,
           "referenceCount": 15,
-          "memberCount": 31,
+          "memberCount": 32,
           "linkedMemberCount": 0,
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
@@ -5070,7 +5079,8 @@
             "restoration-must-reach-the-consequences",
             "the-witness-outlives-the-window",
             "discovery-does-not-always-begin-with-danger",
-            "life-comes-toward-you"
+            "life-comes-toward-you",
+            "recognition-circuit"
           ]
         }
       ],
@@ -5080,7 +5090,8 @@
         "restoration-must-reach-the-consequences",
         "the-witness-outlives-the-window",
         "discovery-does-not-always-begin-with-danger",
-        "life-comes-toward-you"
+        "life-comes-toward-you",
+        "recognition-circuit"
       ],
       "contentGroupRelation": {
         "kind": "SYSTEM_REFERENCE",
@@ -5092,7 +5103,7 @@
           "parentLive": true,
           "parentIsMember": false,
           "referenceCount": 15,
-          "memberCount": 6,
+          "memberCount": 7,
           "linkedMemberCount": 0,
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
@@ -6008,6 +6019,7 @@
             "the-walk-back",
             "the-walk-back-and-forward",
             "the-three-witnesses",
+            "recognition-circuit",
             "what-i-learned-1",
             "org-blueprint",
             "org-history",
@@ -6160,6 +6172,7 @@
         "the-walk-back",
         "the-walk-back-and-forward",
         "the-three-witnesses",
+        "recognition-circuit",
         "what-i-learned-1",
         "org-blueprint",
         "org-history",
@@ -6211,7 +6224,7 @@
           "parentLive": true,
           "parentIsMember": false,
           "referenceCount": 15,
-          "memberCount": 148,
+          "memberCount": 149,
           "linkedMemberCount": 0,
           "linkedMemberSlugs": [],
           "completeMemberNavigation": false,
@@ -14784,6 +14797,57 @@
       },
       "curated": true,
       "date": "November 4–5, 2026"
+    },
+    {
+      "id": "recognition-circuit",
+      "slug": "recognition-circuit",
+      "title": "The Recognition Circuit",
+      "arcKeys": [
+        "sabotage",
+        "witness_records",
+        "victors_record",
+        "full_timeline"
+      ],
+      "titleKey": "pages.recognition-circuit.hero.title",
+      "titleByLang": {
+        "en": "The Recognition Circuit"
+      },
+      "arc": "sabotage",
+      "arcName": "Sabotage",
+      "x": 3800,
+      "y": 510,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/recognition-circuit.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/7e7b98019e3f186971abf96766fdd8212cd8e0e3/preservations/lucidspark/representative/profiled-narrative-control-topology.webp",
+        "alt": "Representative conceptual visualization for The Recognition Circuit; analytical media, not source evidence"
+      },
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 224,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "A source-first human witness reader for the preserved Stage 00 through Epic 03 sequence: chronology, interaction, transition, uncertainty, and later architecture remain visible without being collapsed."
+      },
+      "curated": true,
+      "date": "May 19–26, 2026"
     },
     {
       "id": "about-me",

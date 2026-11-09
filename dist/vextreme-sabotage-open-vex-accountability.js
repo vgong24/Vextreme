@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.sabotage-open-vex-accountability"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en"];
-  window.VEX_INDEX_FINGERPRINT = "bab3a823acb8";
+  window.VEX_INDEX_FINGERPRINT = "1d6024d88a9b";
 
 
 
