@@ -216,3 +216,28 @@ test('RECOGNITION-CIRCUIT: nine visible movement numbers stay aligned with their
     assert.match(page, new RegExp('Movement ' + n + ' · <span data-i18n="pages\\.recognition-circuit\\.movement' + n + '\\.badge"'));
   }
 });
+
+test('RECOGNITION-CIRCUIT: cold readers inherit the full-read reasoning, not only compressed conclusions', () => {
+  const page = read('pages/recognition-circuit.html');
+  assert.equal((page.match(/data-reader-component="full-read-reasoning"/g) || []).length, 4);
+  assert.match(page, /The anomaly is not “a strange request.” It is the chronology/);
+  assert.match(page, /either he meant a different later object, his timing was wrong, or his account/);
+  assert.match(page, /Mika becomes interesting after the full read/);
+  assert.match(page, /Ordinary social behavior has to remain an available explanation/);
+  assert.match(page, /The unusual part is not “-Sama” by itself/);
+  assert.match(page, /false upstream completion signal[\s\S]*requires several transmission edges/);
+  assert.match(page, /A useful architecture must be able to lose/);
+  assert.match(page, /cross-actor information continuity/);
+  assert.match(page, /meaningful related investigative arc[\s\S]*was strong/);
+  assert.match(page, /do later interactions contain information, timing, assumptions, or requested actions/);
+  assert.match(page, /records\/commentary\/2026-11-09-recognition-circuit-full-read-reasoning\.md/);
+});
+
+test('RECOGNITION-CIRCUIT: commentary remains analysis provenance, not evidence provenance', () => {
+  const commentary = read('records/commentary/2026-11-09-recognition-circuit-full-read-reasoning.md');
+  assert.match(commentary, /supplied predecessor analysis conversation \/ commentary; not screenshot evidence/);
+  assert.match(commentary, /Evidence owner: Vextreme-Assets remains the owner/);
+  const page = read('pages/recognition-circuit.html');
+  const evidence = page.slice(page.indexOf('data-phase-kind="evidence"'), page.indexOf('data-phase-kind="pattern-literacy"'));
+  assert.doesNotMatch(evidence, /full-read-reasoning\.md/);
+});
