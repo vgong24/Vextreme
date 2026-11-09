@@ -11,7 +11,7 @@
       "epic03Commit": "7e7b98019e3f186971abf96766fdd8212cd8e0e3",
       "pageClass": "HUMAN_WITNESS_RELATIONSHIP_PROJECTION",
       "representativeMediaClass": "REPRESENTATIVE_NOT_EVIDENCE",
-      "initialCoverage": "STAGE_00_EPIC_01_EPIC_02_SOURCE_SPINE"
+      "initialCoverage": "STAGE_00_THROUGH_EPIC_03_SOURCE_SPINE"
     }
   },
   "pages.recognition-circuit.document-title": {
@@ -368,6 +368,69 @@
     "strings": {
       "en": {
         "text": "The source does not establish whether the opening affinity was sincere, strategic, or mixed; whether Mika and Zookayy were related; or whether the response gaps and Lucidspark reading behavior reflected coordination."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.badge": {
+    "strings": {
+      "en": {
+        "text": "Epic 03"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.title": {
+    "strings": {
+      "en": {
+        "text": "Privacy disclosure, immediate skepticism, and context mismatch"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.themes": {
+    "strings": {
+      "en": {
+        "text": "May 26 · early-state timing · post progression · direct reply adjacency · unresolved referent"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.observed.label": {
+    "strings": {
+      "en": {
+        "text": "Observed"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.observed.body": {
+    "strings": {
+      "en": {
+        "text": "The preserved Reddit post claims temporary access to a stranger’s ChatGPT history. An early capture shows the post at 2m, one comment at 1m, and 1 vote / 1 comment; later captures show 53 / 28, 59 / 31, and 69 / 39 states."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.transition.label": {
+    "strings": {
+      "en": {
+        "text": "Transition"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.transition.body": {
+    "strings": {
+      "en": {
+        "text": "After the disclosure and early skepticism, Victor publicly names what he believes is happening and addresses a “Covert ops team.” MiranDaVinci directly replies “Nice. Let me know when it’s fixed. -Sama,” and Victor directly asks what “fixed” refers to."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.unresolved.label": {
+    "strings": {
+      "en": {
+        "text": "Unresolved"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement04.unresolved.body": {
+    "strings": {
+      "en": {
+        "text": "The account operator identity, meaning of “it,” authenticity or intent of “-Sama,” cause of the alleged account crossover, and coordination remain unresolved by the preserved source."
       }
     }
   }

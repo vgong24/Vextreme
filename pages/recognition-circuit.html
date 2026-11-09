@@ -22,6 +22,8 @@
 .rc-legend p,.rc-interpretation p{margin:0;color:var(--sar-soft);font:400 13px/1.62 var(--sar-serif)}
 .rc-interpretation{max-width:840px;margin:0 auto 18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .rc-open-cue{max-width:840px;margin:0 auto 10px;color:var(--sar-faint);font:600 9px/1.4 var(--sar-mono);letter-spacing:.1em;text-transform:uppercase}
+.rc-sequence{max-width:840px;margin:0 auto 18px;padding:18px 20px;border:1px solid var(--sar-rule);border-radius:12px;background:var(--sar-paper2);font:500 12px/1.7 var(--sar-mono);color:var(--sar-body);white-space:pre-wrap}
+.rc-sequence strong{color:var(--sar-accent)}
 @media(max-width:760px){.rc-legend,.rc-interpretation{grid-template-columns:1fr}}
 </style>
 </head>
@@ -51,6 +53,7 @@
     <button class="sar-track-btn is-current" type="button" data-go="1"><span>01</span><span data-i18n="pages.recognition-circuit.movement01.badge">Stage 00</span></button>
     <button class="sar-track-btn" type="button" data-go="2"><span>02</span><span data-i18n="pages.recognition-circuit.movement02.badge">Epic 01</span></button>
     <button class="sar-track-btn" type="button" data-go="3"><span>03</span><span data-i18n="pages.recognition-circuit.movement03.badge">Epic 02</span></button>
+    <button class="sar-track-btn" type="button" data-go="4"><span>04</span><span data-i18n="pages.recognition-circuit.movement04.badge">Epic 03</span></button>
   </div></div>
 </nav>
 
@@ -120,11 +123,44 @@
     </div>
   </section>
 </section>
+
+<section class="sar-movement sar-phase" id="movement-04" data-reader-component="phase" data-set="4" hidden data-document-url="https://raw.githubusercontent.com/vgong24/Vextreme-Assets/7e7b98019e3f186971abf96766fdd8212cd8e0e3/preservations/lucidspark/epic-03-transcript.md">
+  <header class="sar-movement-head">
+    <div class="sar-movement-meta">Movement 04 · <span data-i18n="pages.recognition-circuit.movement04.badge">Epic 03</span></div>
+    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement04.title">Privacy disclosure, immediate skepticism, and context mismatch</h2>
+    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement04.themes">May 26 · early-state timing · post progression · direct reply adjacency · unresolved referent</p>
+  </header>
+  <div class="rc-interpretation" data-reader-component="movement-interpretation">
+    <article><strong data-i18n="pages.recognition-circuit.movement04.observed.label">Observed</strong><p data-i18n="pages.recognition-circuit.movement04.observed.body">The preserved Reddit post claims temporary access to a stranger’s ChatGPT history. An early capture shows the post at 2m, one comment at 1m, and 1 vote / 1 comment; later captures show 53 / 28, 59 / 31, and 69 / 39 states.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement04.transition.label">Transition</strong><p data-i18n="pages.recognition-circuit.movement04.transition.body">After the disclosure and early skepticism, Victor publicly names what he believes is happening and addresses a “Covert ops team.” MiranDaVinci directly replies “Nice. Let me know when it’s fixed. -Sama,” and Victor directly asks what “fixed” refers to.</p></article>
+    <article><strong data-i18n="pages.recognition-circuit.movement04.unresolved.label">Unresolved</strong><p data-i18n="pages.recognition-circuit.movement04.unresolved.body">The account operator identity, meaning of “it,” authenticity or intent of “-Sama,” cause of the alleged account crossover, and coordination remain unresolved by the preserved source.</p></article>
+  </div>
+  <div class="rc-sequence" data-reader-component="relationship-sequence"><strong>EARLY STATE</strong>
+post 2m ago · first visible skeptical comment 1m ago · 1 vote / 1 comment
+        ↓
+later engagement states: 53 / 28 → 59 / 31 → 69 / 39
+        ↓
+<strong>DIRECT THREAD</strong>
+Victor / Massive_View_4912 names what he believes is happening and addresses “Covert ops team”
+        ↓ direct reply
+MiranDaVinci: “Nice. Let me know when it's fixed. -Sama”
+        ↓ direct response
+Victor: “When what's fixed? Oh, did you slip up Sama?”</div>
+  <div class="rc-open-cue" data-i18n="pages.recognition-circuit.reader.open-source">Open preserved source ↓</div>
+  <section class="sar-source" data-reader-component="preserved-record">
+    <div data-reader-component="document">
+      <div class="sar-source-bar"><div data-i18n="pages.recognition-circuit.reader.source-label">Frozen transcript · exact source projection</div><div class="sar-source-links"><a class="sar-source-link" href="https://github.com/vgong24/Vextreme-Assets/blob/7e7b98019e3f186971abf96766fdd8212cd8e0e3/preservations/lucidspark/epic-03-transcript.md" target="_blank" rel="noopener">Open frozen source ↗</a></div></div>
+      <div class="sar-source-window" data-reader-component="transcript-viewport" role="region" tabindex="0" aria-label="Epic 03 preserved Reddit evidence transcript">
+        <div id="sar-doc-04" class="sar-transcript" data-reader-component="document-body"><div class="sar-transcript-loading" data-i18n="pages.recognition-circuit.reader.loading">Loading the preserved source…</div></div>
+      </div>
+    </div>
+  </section>
+</section>
 </div>
 
 <nav class="sar-reader-nav" data-reader-component="phase-transition">
   <button class="sar-reader-btn" id="sar-prev" type="button" disabled>‹ Previous</button>
-  <span class="sar-reader-position" id="sar-reader-position">01 / 03</span>
+  <span class="sar-reader-position" id="sar-reader-position">01 / 04</span>
   <button class="sar-reader-btn sar-next" id="sar-next" type="button">Next ›</button>
 </nav>
 </div>
