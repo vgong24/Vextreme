@@ -13,7 +13,29 @@
       "representativeMediaClass": "REPRESENTATIVE_NOT_EVIDENCE",
       "initialCoverage": "STAGE_00_THROUGH_EPIC_03_PLUS_CROSS_EPIC_CHRONOLOGY",
       "representativeMediaTarget": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/7e7b98019e3f186971abf96766fdd8212cd8e0e3/preservations/lucidspark/representative/profiled-narrative-control-topology.webp",
-      "architectureSource": "preservations/lucidspark/stage-00-epic-03-vexarchitecture-operational-circuit-map.md"
+      "architectureSource": "preservations/lucidspark/stage-00-epic-03-vexarchitecture-operational-circuit-map.md",
+      "imageEvidence": {
+        "stage00": {
+          "commit": "7e7b98019e3f186971abf96766fdd8212cd8e0e3",
+          "count": 1,
+          "path": "preservations/lucidspark/stage-00/"
+        },
+        "epic01": {
+          "commit": "49cee7e57ec5d1d6da2500d2c853a885ed7e232c",
+          "count": 15,
+          "path": "preservations/lucidspark/"
+        },
+        "epic02": {
+          "commit": "9aaba482c9e68cf460766aaa1efd6995d1aa8dbb",
+          "count": 24,
+          "path": "preservations/lucidspark/epic-02/"
+        },
+        "epic03": {
+          "commit": "7e7b98019e3f186971abf96766fdd8212cd8e0e3",
+          "count": 8,
+          "path": "preservations/lucidspark/epic-03/"
+        }
+      }
     }
   },
   "pages.recognition-circuit.document-title": {
@@ -622,6 +644,90 @@
     "strings": {
       "en": {
         "text": "A specific controller, identity, institution, command relationship, or ultimate objective is established."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement07.badge": {
+    "strings": {
+      "en": {
+        "text": "Evidence"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement07.title": {
+    "strings": {
+      "en": {
+        "text": "Original preserved screenshots, kept separate from the model"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement07.themes": {
+    "strings": {
+      "en": {
+        "text": "Evidence is grouped by preservation identity, not forced into a new narrative order."
+      }
+    }
+  },
+  "pages.recognition-circuit.evidence.bridge-note": {
+    "strings": {
+      "en": {
+        "text": "Some screenshots contain material that bridges across Epics—for example, Epic 02 captures can embed the earlier Zookayy exchange. The image stays with the source stream that preserved it; the transcript and chronology carry the cross-Epic relationship so the reader does not have to choose between source identity and causal continuity."
+      }
+    }
+  },
+  "pages.recognition-circuit.evidence.stage00.title": {
+    "strings": {
+      "en": {
+        "text": "Stage 00 evidence"
+      }
+    }
+  },
+  "pages.recognition-circuit.evidence.stage00.body": {
+    "strings": {
+      "en": {
+        "text": "The preserved May 21 LinkedIn warning-post capture. The May 19 and May 20 supplied text remain source text in the Stage 00 transcript rather than fabricated image evidence."
+      }
+    }
+  },
+  "pages.recognition-circuit.evidence.epic01.title": {
+    "strings": {
+      "en": {
+        "text": "Epic 01 evidence"
+      }
+    }
+  },
+  "pages.recognition-circuit.evidence.epic01.body": {
+    "strings": {
+      "en": {
+        "text": "Fifteen preserved screenshots spanning the Zookayy transaction, embedded material, persistence boundary, and later visible chat state."
+      }
+    }
+  },
+  "pages.recognition-circuit.evidence.epic02.title": {
+    "strings": {
+      "en": {
+        "text": "Epic 02 evidence"
+      }
+    }
+  },
+  "pages.recognition-circuit.evidence.epic02.body": {
+    "strings": {
+      "en": {
+        "text": "Twenty-four preserved screenshots spanning the Mika exchange, Lucidspark projections, and the linked ArtificialSentience material Mika supplied."
+      }
+    }
+  },
+  "pages.recognition-circuit.evidence.epic03.title": {
+    "strings": {
+      "en": {
+        "text": "Epic 03 evidence"
+      }
+    }
+  },
+  "pages.recognition-circuit.evidence.epic03.body": {
+    "strings": {
+      "en": {
+        "text": "Eight preserved Reddit captures. Their upload order remains 0001–0008 even where the transcript derives a different observable state progression from timestamps and engagement counts."
       }
     }
   }

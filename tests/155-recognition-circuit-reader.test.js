@@ -44,7 +44,8 @@ test('RECOGNITION-CIRCUIT: chronology is a first-class movement before architect
   assert.match(page, /P3<\/span><h3[^>]*>Exact attribution/);
   assert.match(page, /Representative conceptual visualization — not evidence/);
   assert.match(page, /profiled-narrative-control-topology\.webp/);
-  assert.doesNotMatch(page, /data-phase-kind="evidence"/);
+  const evidenceAt = page.indexOf('data-phase-kind="evidence"');
+  assert.ok(evidenceAt > architectureAt);
 });
 
 test('RECOGNITION-CIRCUIT: source strings preserve the evidence-state and source-owner boundary', () => {
@@ -77,4 +78,18 @@ test('RECOGNITION-CIRCUIT: architecture is explicitly a later model and never an
   assert.match(page, /data-reader-component="representative-media"/);
   assert.match(page, /candidate functional topology/i);
   assert.match(page, /Pattern similarity alone is insufficient/);
+});
+
+test('RECOGNITION-CIRCUIT: evidence preserves source identity and excludes representative media', () => {
+  const page = read('pages/recognition-circuit.html');
+  assert.match(page, /data-phase-kind="evidence"/);
+  assert.equal((page.match(/class="sar-evidence-card"/g) || []).length, 48);
+  assert.equal((page.match(/data-evidence-source="stage-00"/g) || []).length, 1);
+  assert.equal((page.match(/data-evidence-source="epic-01"/g) || []).length, 15);
+  assert.equal((page.match(/data-evidence-source="epic-02"/g) || []).length, 24);
+  assert.equal((page.match(/data-evidence-source="epic-03"/g) || []).length, 8);
+  const evidence = page.slice(page.indexOf('data-phase-kind="evidence"'), page.indexOf('<nav class="sar-reader-nav"'));
+  assert.doesNotMatch(evidence, /profiled-narrative-control-topology\.webp/);
+  assert.match(page, /Some screenshots contain material that bridges across Epics/);
+  assert.equal((page.match(/loading="lazy"/g) || []).length, 49);
 });
