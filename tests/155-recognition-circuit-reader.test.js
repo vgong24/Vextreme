@@ -195,3 +195,15 @@ test('RECOGNITION-CIRCUIT: institutional-risk material stays explicitly hypothet
   assert.match(page, /does not establish a company-authorized operation/);
   assert.match(page, /policy\/enforcement intent[\s\S]*remain unresolved attribution edges/);
 });
+
+test('RECOGNITION-CIRCUIT: evidence captions identify what the important captures preserve without turning captions into analysis', () => {
+  const page = read('pages/recognition-circuit.html');
+  assert.match(page, /Epic 01 · 0002\.png<\/strong> Earlier Zookayy state preserving the 1:27 AM opener/);
+  assert.match(page, /Epic 01 · 0012\.png<\/strong> Profile-retrieval and persistence boundary/);
+  assert.match(page, /Epic 02 · 0008\.png<\/strong> Mika's broad denial/);
+  assert.match(page, /Epic 02 · 0014\.png<\/strong> Beginning of Mika's linked ArtificialSentience post/);
+  assert.match(page, /Epic 03 · 0001\.png<\/strong> May 26 2:34 PM state/);
+  assert.match(page, /Epic 03 · 0008\.png<\/strong> Earliest preserved Reddit state/);
+  const evidence = page.slice(page.indexOf('data-phase-kind="evidence"'), page.indexOf('data-phase-kind="pattern-literacy"'));
+  assert.doesNotMatch(evidence, /Plausible model|candidate operational|coordinated process/i);
+});
