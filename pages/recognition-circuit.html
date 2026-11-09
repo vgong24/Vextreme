@@ -35,6 +35,25 @@
 .rc-time-body strong{display:block;margin-bottom:5px;font:700 12px/1.4 var(--sar-sans);color:var(--sar-ink)}
 .rc-time-body p{margin:0;color:var(--sar-soft);font:400 14px/1.62 var(--sar-serif)}
 .rc-derived-time{color:var(--sar-amber);font-style:italic}
+.rc-concept-media{max-width:760px;margin:0 auto 28px;border:1px solid var(--sar-rule);border-radius:14px;overflow:hidden;background:var(--sar-paper2)}
+.rc-concept-media a,.rc-concept-media img{display:block;width:100%;height:auto}
+.rc-concept-media figcaption{padding:14px 16px;border-top:1px solid var(--sar-rule);color:var(--sar-soft);font:400 13px/1.6 var(--sar-serif)}
+.rc-concept-media figcaption strong{display:block;margin-bottom:4px;color:var(--sar-amber);font:700 9px/1.4 var(--sar-mono);letter-spacing:.11em;text-transform:uppercase}
+.rc-arch-flow{max-width:840px;margin:0 auto 18px;padding:20px;border:1px solid var(--sar-rule);border-radius:14px;background:var(--sar-paper2)}
+.rc-arch-flow h3{margin:0 0 12px;font:600 18px/1.25 var(--sar-serif)}
+.rc-arch-flow pre{margin:0;white-space:pre-wrap;color:var(--sar-body);font:500 12px/1.65 var(--sar-mono)}
+.rc-model-intro{max-width:840px;margin:24px auto 14px;color:var(--sar-soft);font:400 15px/1.68 var(--sar-serif)}
+.rc-models{max-width:840px;margin:0 auto;display:grid;gap:10px}
+.rc-model{border:1px solid var(--sar-rule);border-radius:12px;background:var(--sar-paper2);padding:16px}
+.rc-model-head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:7px}
+.rc-model-code{color:var(--sar-accent);font:700 10px/1.4 var(--sar-mono);letter-spacing:.08em}
+.rc-model h3{margin:0;font:600 17px/1.3 var(--sar-serif)}
+.rc-model p{margin:6px 0 0;color:var(--sar-soft);font:400 13px/1.62 var(--sar-serif)}
+.rc-model dl{display:grid;grid-template-columns:110px 1fr;gap:5px 10px;margin:12px 0 0;font-size:12px}
+.rc-model dt{color:var(--sar-faint);font:700 9px/1.5 var(--sar-mono);letter-spacing:.08em;text-transform:uppercase}
+.rc-model dd{margin:0;color:var(--sar-body);font:400 12px/1.55 var(--sar-sans)}
+.rc-source-note{max-width:840px;margin:18px auto 0;color:var(--sar-faint);font:500 10px/1.55 var(--sar-mono)}
+.rc-source-note a{text-underline-offset:3px}
 @media(max-width:620px){.rc-time{grid-template-columns:105px 24px 1fr}.rc-time time{font-size:9px}.rc-time-rail:before{left:11px}.rc-time-rail:after{left:6px}}
 @media(max-width:760px){.rc-legend,.rc-interpretation{grid-template-columns:1fr}}
 </style>
@@ -67,6 +86,7 @@
     <button class="sar-track-btn" type="button" data-go="3"><span>03</span><span data-i18n="pages.recognition-circuit.movement03.badge">Epic 02</span></button>
     <button class="sar-track-btn" type="button" data-go="4"><span>04</span><span data-i18n="pages.recognition-circuit.movement04.badge">Epic 03</span></button>
     <button class="sar-track-btn" type="button" data-go="5"><span>05</span><span data-i18n="pages.recognition-circuit.movement05.badge">Timeline</span></button>
+    <button class="sar-track-btn" type="button" data-go="6"><span>06</span><span data-i18n="pages.recognition-circuit.movement06.badge">Architecture</span></button>
   </div></div>
 </nav>
 
@@ -193,11 +213,82 @@ Victor: “When what's fixed? Oh, did you slip up Sama?”</div>
     <div class="rc-time"><time>May 30</time><div class="rc-time-rail"></div><div class="rc-time-body"><strong>Publicly announced synthesis target</strong><p>The bounded window closes at the date Victor had announced before the later events.</p></div></div>
   </div>
 </section>
+
+<section class="sar-movement sar-phase" id="movement-06" data-reader-component="phase" data-phase-kind="architecture" data-set="6" hidden>
+  <header class="sar-movement-head">
+    <div class="sar-movement-meta">Movement 06 · <span data-i18n="pages.recognition-circuit.movement06.badge">Architecture</span></div>
+    <h2 class="sar-movement-title" data-i18n="pages.recognition-circuit.movement06.title">Now test whether separate interactions can behave like stages in an adaptive system</h2>
+    <p class="sar-movement-themes" data-i18n="pages.recognition-circuit.movement06.themes">functional model · relationship state · competing explanations · attribution still separate</p>
+  </header>
+
+  <figure class="rc-concept-media" data-reader-component="representative-media">
+    <a href="https://raw.githubusercontent.com/vgong24/Vextreme-Assets/7e7b98019e3f186971abf96766fdd8212cd8e0e3/preservations/lucidspark/representative/profiled-narrative-control-topology.webp" target="_blank" rel="noopener" aria-label="Open representative conceptual visualization">
+      <img src="https://raw.githubusercontent.com/vgong24/Vextreme-Assets/7e7b98019e3f186971abf96766fdd8212cd8e0e3/preservations/lucidspark/representative/profiled-narrative-control-topology.webp" alt="Profiled Narrative-Control Topology representative conceptual visualization" width="700" height="875" loading="lazy" decoding="async">
+    </a>
+    <figcaption><strong data-i18n="pages.recognition-circuit.movement06.media.label">Representative conceptual visualization — not evidence</strong><span data-i18n="pages.recognition-circuit.movement06.media.body">This artwork visualizes a candidate functional topology. It does not establish that any depicted controller, role, organization, identity, or coordination layer existed as shown.</span></figcaption>
+  </figure>
+
+  <div class="rc-arch-flow" data-reader-component="plausible-operational-model">
+    <h3 data-i18n="pages.recognition-circuit.movement06.topology.heading">Candidate Profiled Narrative-Control Topology</h3>
+    <pre>DATA MINE
+→ PROFILE
+→ ELICIT
+→ STEER / COERCE
+→ OBSERVE
+→ UPDATE PROFILE
+→ ROUTE NEXT ROLE
+→ SHAPE NARRATIVE</pre>
+  </div>
+
+  <div class="rc-arch-flow" data-reader-component="vexarchitecture-reading">
+    <h3 data-i18n="pages.recognition-circuit.movement06.vex.heading">VexArchitecture-shaped reading of one interaction</h3>
+    <pre>local interaction
+→ local State
+→ Control
+→ Act
+→ intended Effect
+→ realized / interrupted Result
+→ bounded Projection
+→ relationship State
+→ next Control</pre>
+  </div>
+
+  <p class="rc-model-intro" data-i18n="pages.recognition-circuit.movement06.models.intro">The useful question is not whether these exact people “implemented” this diagram. It is whether the accumulated sequence behaves more like independent events, related investigation, an adaptive staged process, a shared-context/audience error, or a specifically attributable operation. These models are not equal because they sit in one list; evidence determines how much work each one can actually do.</p>
+
+  <div class="rc-models" data-reader-component="competing-models">
+    <article class="rc-model">
+      <div class="rc-model-head"><span class="rc-model-code">P0</span><h3 data-i18n="pages.recognition-circuit.model.p0.title">Independent events</h3></div>
+      <p data-i18n="pages.recognition-circuit.model.p0.body">Mika, Zookayy, and MiranDaVinci are unrelated interactions whose timing and functional similarities do not arise from shared control.</p>
+      <dl><dt>Must explain</dt><dd>Why the sequence clusters inside the public May 19–30 window and why several interactions touch access, evidence, credibility, or recognition without requiring a common cause.</dd><dt>Discriminator</dt><dd>Later evidence should fail to reveal shared context, role handoff, common reporting, target-state propagation, or coordinated timing.</dd></dl>
+    </article>
+    <article class="rc-model">
+      <div class="rc-model-head"><span class="rc-model-code">P1</span><h3 data-i18n="pages.recognition-circuit.model.p1.title">Related investigative arc without common control</h3></div>
+      <p data-i18n="pages.recognition-circuit.model.p1.body">The events can become related through public visibility, imitation, shared community context, or independent interest without one coordinator directing the participants.</p>
+      <dl><dt>Must explain</dt><dd>How information or framing can recur without a command relationship.</dd><dt>Discriminator</dt><dd>Shared public-source dependence without private target-state transfer would strengthen this model.</dd></dl>
+    </article>
+    <article class="rc-model">
+      <div class="rc-model-head"><span class="rc-model-code">P2</span><h3 data-i18n="pages.recognition-circuit.model.p2.title">Staged or coordinated process</h3></div>
+      <p data-i18n="pages.recognition-circuit.model.p2.body">Different interactions perform complementary functions—material access, compliance testing, observation, adaptation, credibility framing, or containment—inside one evolving target-state model.</p>
+      <dl><dt>Must explain</dt><dd>Which information or outcome crosses between stages and what coordination topology carries it.</dd><dt>Discriminator</dt><dd>A fact learned in one interaction appearing in a later actor’s behavior, role-specific handoff, common upstream language, status vocabulary, reporting recipient, or task acknowledgment would materially strengthen this model.</dd></dl>
+    </article>
+    <article class="rc-model">
+      <div class="rc-model-head"><span class="rc-model-code">P2-A</span><h3 data-i18n="pages.recognition-circuit.model.p2a.title">Shared context, mistaken insider, or audience error</h3></div>
+      <p data-i18n="pages.recognition-circuit.model.p2a.body">A participant may speak from assumptions or context not supplied in the visible thread without that context proving a coordinated operation.</p>
+      <dl><dt>Must explain</dt><dd>Why an omitted referent such as “it” is treated as shared and why “-Sama” appears in that direct reply.</dd><dt>Discriminator</dt><dd>Independent context that supplies the omitted referent or identifies the sign-off’s intended reference would strengthen or weaken this model.</dd></dl>
+    </article>
+    <article class="rc-model">
+      <div class="rc-model-head"><span class="rc-model-code">P3</span><h3 data-i18n="pages.recognition-circuit.model.p3.title">Exact attribution</h3></div>
+      <p data-i18n="pages.recognition-circuit.model.p3.body">A specific controller, identity, institution, command relationship, or ultimate objective is established.</p>
+      <dl><dt>Must explain</dt><dd>Who directed or operated what, through which traceable relationship, and with what attributable objective.</dd><dt>Discriminator</dt><dd>Pattern similarity alone is insufficient; attribution requires evidence connecting the behavior to the specific actor or organization.</dd></dl>
+    </article>
+  </div>
+  <div class="rc-source-note">Analytical source: <a href="https://github.com/vgong24/Vextreme-Assets/blob/7e7b98019e3f186971abf96766fdd8212cd8e0e3/preservations/lucidspark/stage-00-epic-03-vexarchitecture-operational-circuit-map.md" target="_blank" rel="noopener">Stage 00–Epic 03 VexArchitecture operational circuit map ↗</a> · evaluative model, not evidence source.</div>
+</section>
 </div>
 
 <nav class="sar-reader-nav" data-reader-component="phase-transition">
   <button class="sar-reader-btn" id="sar-prev" type="button" disabled>‹ Previous</button>
-  <span class="sar-reader-position" id="sar-reader-position">01 / 05</span>
+  <span class="sar-reader-position" id="sar-reader-position">01 / 06</span>
   <button class="sar-reader-btn sar-next" id="sar-next" type="button">Next ›</button>
 </nav>
 </div>

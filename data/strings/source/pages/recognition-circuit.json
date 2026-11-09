@@ -11,7 +11,9 @@
       "epic03Commit": "7e7b98019e3f186971abf96766fdd8212cd8e0e3",
       "pageClass": "HUMAN_WITNESS_RELATIONSHIP_PROJECTION",
       "representativeMediaClass": "REPRESENTATIVE_NOT_EVIDENCE",
-      "initialCoverage": "STAGE_00_THROUGH_EPIC_03_PLUS_CROSS_EPIC_CHRONOLOGY"
+      "initialCoverage": "STAGE_00_THROUGH_EPIC_03_PLUS_CROSS_EPIC_CHRONOLOGY",
+      "representativeMediaTarget": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/7e7b98019e3f186971abf96766fdd8212cd8e0e3/preservations/lucidspark/representative/profiled-narrative-control-topology.webp",
+      "architectureSource": "preservations/lucidspark/stage-00-epic-03-vexarchitecture-operational-circuit-map.md"
     }
   },
   "pages.recognition-circuit.document-title": {
@@ -494,6 +496,132 @@
     "strings": {
       "en": {
         "text": "The May 21 warning post lacks a preserved wall-clock time relative to Mika’s 1:28 AM contact, and Reddit relative ages must not be converted into fake exact creation timestamps."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement06.badge": {
+    "strings": {
+      "en": {
+        "text": "Architecture"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement06.title": {
+    "strings": {
+      "en": {
+        "text": "Now test whether separate interactions can behave like stages in an adaptive system"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement06.themes": {
+    "strings": {
+      "en": {
+        "text": "functional model · relationship state · competing explanations · attribution still separate"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement06.media.label": {
+    "strings": {
+      "en": {
+        "text": "Representative conceptual visualization — not evidence"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement06.media.body": {
+    "strings": {
+      "en": {
+        "text": "This artwork visualizes a candidate functional topology. It does not establish that any depicted controller, role, organization, identity, or coordination layer existed as shown."
+      }
+    }
+  },
+  "pages.recognition-circuit.movement06.topology.heading": {
+    "strings": {
+      "en": {
+        "text": "Candidate Profiled Narrative-Control Topology"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement06.vex.heading": {
+    "strings": {
+      "en": {
+        "text": "VexArchitecture-shaped reading of one interaction"
+      }
+    }
+  },
+  "pages.recognition-circuit.movement06.models.intro": {
+    "strings": {
+      "en": {
+        "text": "The useful question is not whether these exact people “implemented” this diagram. It is whether the accumulated sequence behaves more like independent events, related investigation, an adaptive staged process, a shared-context/audience error, or a specifically attributable operation. These models are not equal because they sit in one list; evidence determines how much work each one can actually do."
+      }
+    }
+  },
+  "pages.recognition-circuit.model.p0.title": {
+    "strings": {
+      "en": {
+        "text": "Independent events"
+      }
+    }
+  },
+  "pages.recognition-circuit.model.p0.body": {
+    "strings": {
+      "en": {
+        "text": "Mika, Zookayy, and MiranDaVinci are unrelated interactions whose timing and functional similarities do not arise from shared control."
+      }
+    }
+  },
+  "pages.recognition-circuit.model.p1.title": {
+    "strings": {
+      "en": {
+        "text": "Related investigative arc without common control"
+      }
+    }
+  },
+  "pages.recognition-circuit.model.p1.body": {
+    "strings": {
+      "en": {
+        "text": "The events can become related through public visibility, imitation, shared community context, or independent interest without one coordinator directing the participants."
+      }
+    }
+  },
+  "pages.recognition-circuit.model.p2.title": {
+    "strings": {
+      "en": {
+        "text": "Staged or coordinated process"
+      }
+    }
+  },
+  "pages.recognition-circuit.model.p2.body": {
+    "strings": {
+      "en": {
+        "text": "Different interactions perform complementary functions—material access, compliance testing, observation, adaptation, credibility framing, or containment—inside one evolving target-state model."
+      }
+    }
+  },
+  "pages.recognition-circuit.model.p2a.title": {
+    "strings": {
+      "en": {
+        "text": "Shared context, mistaken insider, or audience error"
+      }
+    }
+  },
+  "pages.recognition-circuit.model.p2a.body": {
+    "strings": {
+      "en": {
+        "text": "A participant may speak from assumptions or context not supplied in the visible thread without that context proving a coordinated operation."
+      }
+    }
+  },
+  "pages.recognition-circuit.model.p3.title": {
+    "strings": {
+      "en": {
+        "text": "Exact attribution"
+      }
+    }
+  },
+  "pages.recognition-circuit.model.p3.body": {
+    "strings": {
+      "en": {
+        "text": "A specific controller, identity, institution, command relationship, or ultimate objective is established."
       }
     }
   }

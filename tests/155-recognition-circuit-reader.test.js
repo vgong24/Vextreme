@@ -36,7 +36,14 @@ test('RECOGNITION-CIRCUIT: chronology is a first-class movement before architect
   assert.match(page, /47h59m/);
   assert.match(page, /May 21 · time unknown/);
   assert.ok(page.indexOf('data-phase-kind="timeline"') > page.indexOf('epic-03-transcript.md'));
-  assert.doesNotMatch(page, /P0 — independent events|P2 — staged\/coordinated process|Profiled Narrative-Control Topology/);
+  const architectureAt = page.indexOf('data-phase-kind="architecture"');
+  assert.ok(architectureAt > page.indexOf('data-phase-kind="timeline"'));
+  assert.ok(page.indexOf('data-reader-component="competing-models"') > architectureAt);
+  assert.match(page, /P0<\/span><h3[^>]*>Independent events/);
+  assert.match(page, /P2<\/span><h3[^>]*>Staged or coordinated process/);
+  assert.match(page, /P3<\/span><h3[^>]*>Exact attribution/);
+  assert.match(page, /Representative conceptual visualization — not evidence/);
+  assert.match(page, /profiled-narrative-control-topology\.webp/);
   assert.doesNotMatch(page, /data-phase-kind="evidence"/);
 });
 
@@ -59,3 +66,15 @@ test('RECOGNITION-CIRCUIT: page reuses shared reader machinery rather than creat
 });
 
 // [VXG RealForever]
+
+test('RECOGNITION-CIRCUIT: architecture is explicitly a later model and never an evidence image', () => {
+  const page = read('pages/recognition-circuit.html');
+  const arch = page.indexOf('data-phase-kind="architecture"');
+  const firstSource = page.indexOf('stage-00-context-transcript.md');
+  const lastSource = page.indexOf('epic-03-transcript.md');
+  assert.ok(arch > firstSource);
+  assert.ok(arch > lastSource);
+  assert.match(page, /data-reader-component="representative-media"/);
+  assert.match(page, /candidate functional topology/i);
+  assert.match(page, /Pattern similarity alone is insufficient/);
+});
