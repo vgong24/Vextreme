@@ -131,3 +131,10 @@ test('RECOGNITION-CIRCUIT: node and arc registration preserve Witness Records + 
   assert.ok(mayForward);
   assert.equal(mayForward.dateRange.to, '2099-12-31');
 });
+
+test('RECOGNITION-CIRCUIT: arc navigation uses the current v2 index runtime', () => {
+  const page = read('pages/recognition-circuit.html');
+  assert.match(page, /id="arcNavMount"/);
+  assert.match(page, /src="\.\.\/lib\/vextreme-index-v2\.js"/);
+  assert.doesNotMatch(page, /shell\.js|vextreme\.js/);
+});
