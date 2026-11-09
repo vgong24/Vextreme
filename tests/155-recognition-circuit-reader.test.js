@@ -66,6 +66,16 @@ test('RECOGNITION-CIRCUIT: page reuses shared reader machinery rather than creat
   assert.doesNotMatch(page, /speechSynthesis|SpeechSynthesisUtterance|new Audio\(/);
 });
 
+test('RECOGNITION-CIRCUIT: page-specific rc styles live with the shared Sabotage reader token owner', () => {
+  const page = read('pages/recognition-circuit.html');
+  const styles = read('styles/sabotage-series-record.css');
+  assert.match(page, /href="\.\.\/styles\/sabotage-series-record\.css"/);
+  assert.doesNotMatch(page, /<style>[\s\S]*?\.rc-/);
+  assert.match(styles, /Recognition Circuit page extension/);
+  assert.match(styles, /\.rc-boundary\{/);
+  assert.match(styles, /\.rc-patterns\{/);
+});
+
 // [VXG RealForever]
 
 test('RECOGNITION-CIRCUIT: architecture is explicitly a later model and never an evidence image', () => {
