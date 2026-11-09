@@ -103,3 +103,9 @@ test('RECOGNITION-CIRCUIT: pattern literacy arrives after evidence and ends with
   assert.match(page, /SEE[\s\S]*ORDER[\s\S]*RELATE[\s\S]*MECHANIZE[\s\S]*COMPARE[\s\S]*DISCRIMINATE[\s\S]*ATTRIBUTE LAST/);
   assert.match(page, /without assuming that every superficially similar event has the same cause/);
 });
+
+test('RECOGNITION-CIRCUIT: transcript loader does not truncate on the repeated continuity marker', () => {
+  const page = read('pages/recognition-circuit.html');
+  assert.doesNotMatch(page, /documentEndMarker/);
+  assert.doesNotMatch(page, /data-document-end-marker/);
+});
