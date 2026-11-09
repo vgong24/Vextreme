@@ -236,7 +236,7 @@ test('RECOGNITION-CIRCUIT: cold readers inherit the full-read reasoning, not onl
 test('RECOGNITION-CIRCUIT: commentary remains analysis provenance, not evidence provenance', () => {
   const commentary = read('records/commentary/2026-11-09-recognition-circuit-full-read-reasoning.md');
   assert.match(commentary, /supplied predecessor analysis conversation \/ commentary; not screenshot evidence/);
-  assert.match(commentary, /Evidence owner: Vextreme-Assets remains the owner/);
+  assert.match(commentary, /Evidence owner:\*\* Vextreme-Assets remains the owner/);
   const page = read('pages/recognition-circuit.html');
   const evidence = page.slice(page.indexOf('data-phase-kind="evidence"'), page.indexOf('data-phase-kind="pattern-literacy"'));
   assert.doesNotMatch(evidence, /full-read-reasoning\.md/);
