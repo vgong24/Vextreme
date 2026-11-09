@@ -172,3 +172,26 @@ test('RECOGNITION-CIRCUIT: representative topology is visible near the hero and 
   assert.equal((page.match(/profiled-narrative-control-topology\.webp/g) || []).length >= 4, true);
   assert.match(page, /Representative conceptual visualization — not evidence/);
 });
+
+test('RECOGNITION-CIRCUIT: architecture restores the recorded cross-Epic synthesis instead of presenting an unearned diagram', () => {
+  const page = read('pages/recognition-circuit.html');
+  assert.match(page, /Coordination topology correction/);
+  assert.match(page, /hub-and-spoke/);
+  assert.match(page, /Recorded candidate institutional-risk questions/);
+  assert.match(page, /Could company safety behavior be publicly reframed as deliberate suppression/);
+  assert.match(page, /Candidate response architecture preserved by the synthesis/);
+  assert.match(page, /Source-addressed functions that build the topology/);
+  assert.match(page, /Intended circuit vs observed actual circuit/);
+  assert.match(page, /Victor becomes evidence custodian/);
+  assert.match(page, /serious working proposition/);
+  assert.match(page, /current operational synthesis/);
+  assert.match(page, /What evidence would materially separate the models/);
+});
+
+test('RECOGNITION-CIRCUIT: institutional-risk material stays explicitly hypothetical rather than being silently deleted or promoted to attribution', () => {
+  const page = read('pages/recognition-circuit.html');
+  assert.match(page, /if a company or aligned risk actor regarded Victor's public work/);
+  assert.match(page, /do not establish that OpenAI, Anthropic, or another company actually asked or acted on them/);
+  assert.match(page, /does not establish a company-authorized operation/);
+  assert.match(page, /policy\/enforcement intent[\s\S]*remain unresolved attribution edges/);
+});
