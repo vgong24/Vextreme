@@ -35,7 +35,9 @@ const RECORDS = [
   {
     slug: 'what-about-buddhism',
     title: 'Now what about Buddhism?',
-    src: 'https://vgong24.github.io/Vextreme-Assets/__assets/5e2a523e20a78ac80544f0658de4083ece50a11d55a2d0879f587910005fdabc.webp',
+    src: 'https://vgong24.github.io/Vextreme-Assets/__assets/0bcb688a88036c773a77987a89ac0c3683454770be597d7a0b2489d66d5ce6e7.webp',
+    srcsetFallback: 'https://vgong24.github.io/Vextreme-Assets/__assets/5e2a523e20a78ac80544f0658de4083ece50a11d55a2d0879f587910005fdabc.webp',
+    terrainTier: 'RESTORATION_2048',
     heroSrc: 'https://vgong24.github.io/Vextreme-Assets/__assets/ef39931d000f87afa807eff65fbd72ac734acdc2162f4f46502dd3b38d5a82aa.png',
     fallbackWidth: 280,
     heroWidth: 1448,
@@ -46,7 +48,9 @@ const RECORDS = [
   {
     slug: 'god-to-speak-of-the-truth-of-love',
     title: 'God to speak of the Truth of Love',
-    src: 'https://vgong24.github.io/Vextreme-Assets/__assets/3394ba90aafc4a89f1d1307c6f9267525d05bf68e757d5fa12e1031acbd147d3.jpg',
+    src: 'https://vgong24.github.io/Vextreme-Assets/__assets/9e7c002bec5088eabd89eefc05769c95eaf1c3fff114ef01a0328ba8e253763e.webp',
+    srcsetFallback: 'https://vgong24.github.io/Vextreme-Assets/__assets/3394ba90aafc4a89f1d1307c6f9267525d05bf68e757d5fa12e1031acbd147d3.jpg',
+    terrainTier: 'RESTORATION_2048',
     heroSrc: 'https://vgong24.github.io/Vextreme-Assets/__assets/3fb505fc53e7bf43b8f55aa44f351e670f2b83dd9e168c50f5f411f336342512.png',
     fallbackWidth: 280,
     heroWidth: 1536,
@@ -57,7 +61,9 @@ const RECORDS = [
   {
     slug: 'why-financial-freedom-is-harder-to-trust',
     title: 'Why Financial Freedom is Harder to Trust',
-    src: 'https://vgong24.github.io/Vextreme-Assets/__assets/44aaf3bf90838d73eff47c69273d9380ede268b25449213ebee2a227a0266701.jpg',
+    src: 'https://vgong24.github.io/Vextreme-Assets/__assets/2cbeb475258dcfba4e68399cfabc289d1250f5618202213209d0e094da97b560.webp',
+    srcsetFallback: 'https://vgong24.github.io/Vextreme-Assets/__assets/44aaf3bf90838d73eff47c69273d9380ede268b25449213ebee2a227a0266701.jpg',
+    terrainTier: 'RESTORATION_2048',
     heroSrc: 'https://vgong24.github.io/Vextreme-Assets/__assets/40b516861e86bf992f1c27e038c9478ac2143bbbd1e79e3ad783cafcba1df51f.png',
     fallbackWidth: 200,
     heroWidth: 1448,
@@ -78,13 +84,13 @@ test('READER COVER PROJECTION: existing Terrain covers are page-owned before the
     assert.match(page, /\.record-cover\s*\{/);
     assert.match(page, /\.record-cover img\s*\{/);
     assert.ok(
-      page.includes('<img src="' + record.src + '" srcset="' + record.src + ' ' + record.fallbackWidth + 'w, ' + record.heroSrc + ' ' + record.heroWidth + 'w" sizes="(max-width: 960px) calc(100vw - 40px), 920px" alt="' + record.alt + '" width="' + record.heroWidth + '" height="' + record.heroHeight + '" loading="eager" decoding="async" fetchpriority="high" data-reader-cover-tier="' + record.heroTier + '"/>'),
+      page.includes('<img src="' + record.src + '" srcset="' + (record.srcsetFallback || record.src) + ' ' + record.fallbackWidth + 'w, ' + record.heroSrc + ' ' + record.heroWidth + 'w" sizes="(max-width: 960px) calc(100vw - 40px), 920px" alt="' + record.alt + '" width="' + record.heroWidth + '" height="' + record.heroHeight + '" loading="eager" decoding="async" fetchpriority="high" data-reader-cover-tier="' + record.heroTier + '"/>'),
       record.slug + ': reader must use exact existing authored cover identity',
     );
   }
 });
 
-test('READER COVER PROJECTION: reader hero uses the best available high-resolution tier while Terrain fallback remains lightweight', () => {
+test('READER COVER PROJECTION: reader hero preserves recovered-original srcset while Terrain card source may use a sharper restoration', () => {
   for (const record of RECORDS) {
     const page = fs.readFileSync(path.join(ROOT, 'pages', record.slug + '.html'), 'utf8');
     assert.ok(page.includes(record.heroSrc + ' ' + record.heroWidth + 'w'), record.slug + ': missing high-resolution reader candidate');
@@ -92,7 +98,11 @@ test('READER COVER PROJECTION: reader hero uses the best available high-resoluti
     assert.notEqual(record.heroSrc, record.src, record.slug + ': reader hero and Terrain fallback must remain distinct asset tiers');
   }
   assert.equal(RECORDS.filter((record) => record.heroTier === 'RECOVERED_ORIGINAL').length, 5);
-  assert.deepEqual(RECORDS.filter((record) => record.heroTier === 'RESTORATION').map((record) => record.slug), []);
+  assert.deepEqual(RECORDS.filter((record) => record.terrainTier === 'RESTORATION_2048').map((record) => record.slug), [
+    'what-about-buddhism',
+    'god-to-speak-of-the-truth-of-love',
+    'why-financial-freedom-is-harder-to-trust',
+  ]);
 });
 
 test('READER COVER PROJECTION: Terrain discovers the same immutable cover from each page', () => {
