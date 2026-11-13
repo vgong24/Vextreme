@@ -115,7 +115,7 @@ test('VEXARCHITECTURE GUIDE: real CGM pen and pump source cuts show what repeats
   const page = read('pages/vexarchitecture-first-stable-body.html');
 
   for (const required of [
-    'See the grammar survive three different source pressures',
+    'See the grammar survive three materially different pressures',
     'class BleDecoder',
     'class HttpDecoder',
     'VexPartner.Connection.Conversion&lt;',
@@ -156,8 +156,8 @@ test('VEXARCHITECTURE GUIDE: ThemeMode teaches semantic carriage rather than cla
   assert.ok(page.includes('Act.Method.Save(store, same parameter)'));
   assert.ok(page.includes('Do not copy ThemeMode. Reuse the questions.'));
   assert.ok(page.includes('Semantic ownership is the reusable rule; literal VexFamily is one reusable realization'));
-  assert.ok(page.includes('Current VexStream and Maps source snapshots are pressure evidence, not exemptions from this rule'));
-  assert.ok(page.includes('a historical or current class shape never proves that semantic ownership belongs there merely because it already exists'));
+  assert.ok(page.includes('Concrete VexStream and Maps implementations are pressure evidence, not exemptions from this rule'));
+  assert.ok(page.includes('an existing class shape never proves that semantic ownership belongs there merely because it already exists'));
 });
 
 test('VEXARCHITECTURE GUIDE: active work, lifetime, chronology, and convergence remain distinct', () => {
@@ -192,7 +192,7 @@ test('VEXARCHITECTURE GUIDE: placement never becomes authority and negative boun
     'If it does not, continue through the rightful Store/provider/platform boundary',
     'Existing source placement does not count as proof either way.',
     'Any owner must survive re-evaluation',
-    'which candidate owner can truthfully answer it without absorbing another responsibility',
+    'which owner can truthfully answer it without absorbing another responsibility',
     'Existing placement did not win by default.',
     'Existing ownership must be pressure-tested rather than presumed',
     'current placement ≠ automatic architectural legitimacy',
@@ -416,7 +416,7 @@ test('VEXARCHITECTURE GUIDE: current source and accepted #209 snapshot remain di
   assert.ok(page.includes('Open the Partner architecture source witness ↗'));
   assert.ok(page.includes('7800c17909fd03d1170ec0211a6632172c87d1af'));
   assert.ok(page.includes('architectural teaching projections'));
-  assert.ok(page.includes('object/scope-by-scope wiring walk'));
+  assert.ok(page.includes('walks the same relationships through concrete source'));
   assert.ok(page.includes('stable system of rightful ownership and relationships'));
   assert.ok(page.includes('Provenance · VexLife-Android #209'));
   assert.equal(page.includes('current relationships later pressure earned'), false);
