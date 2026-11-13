@@ -201,12 +201,12 @@ test('VEXARCHITECTURE GUIDE: current placement never becomes authority and negat
   }
 });
 
-test('VEXARCHITECTURE GUIDE: Service pressure preserves sustained realization while rejecting symmetry roots', () => {
+test('VEXARCHITECTURE GUIDE: Service pressure preserves sustained realization and valid root intent without forcing the first generic type', () => {
   const page = read('pages/vexarchitecture-first-stable-body.html');
 
   for (const required of [
     'Service pressure · sustained realization',
-    'does not earn a reusable VexService root',
+    'The original VexService pressure was valid',
     'Service result · sustained realization guidance without a generic root',
     'VexStreamPlayerStore',
     'Playback · sustained MediaSession realization',
@@ -217,9 +217,11 @@ test('VEXARCHITECTURE GUIDE: Service pressure preserves sustained realization wh
     'generic VexService root',
     'universal Service.current',
     'typed ServiceScope architecture law',
+    'original Service-root intention remains valid pressure',
+    'future repeated Admission / Retention / Release law could still earn a VexService root',
     'ANDROID_SERVICE != DOMAIN_RUNTIME',
   ]) {
-    assert.ok(page.includes(required), 'missing current Service subtraction witness: ' + required);
+    assert.ok(page.includes(required), 'missing current Service intention/subtraction witness: ' + required);
   }
 
   for (const stale of [
