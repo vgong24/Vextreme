@@ -202,10 +202,14 @@ function detectEnvFor(hostname) {
   return load({ location: { hostname } })();
 }
 
-test('FAB-AUTOLOAD: exact Githack previews retain standalone site chrome and Read Aloud eligibility', () => {
+test('FAB-AUTOLOAD: deployed and named-local Vextreme surfaces retain the rightful chrome environment', () => {
   assert.equal(detectEnvFor('rawcdn.githack.com'), 'github_pages');
   assert.equal(detectEnvFor('raw.githack.com'), 'github_pages');
   assert.equal(detectEnvFor('vgong24.github.io'), 'github_pages');
+  assert.equal(detectEnvFor('localhost'), 'local');
+  assert.equal(detectEnvFor('127.0.0.1'), 'local');
+  assert.equal(detectEnvFor('vgong24.github.io.vex.localhost'), 'local');
+  assert.equal(detectEnvFor('nested-browser.localhost'), 'local');
   assert.equal(detectEnvFor('example.com'), 'squarespace');
 });
 
