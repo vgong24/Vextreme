@@ -63,11 +63,16 @@ test('VEXARCHITECTURE LIVE: companion stays separate from the Builder Field Guid
   ]) {
     assert.ok(live.includes(bridge), 'missing explicit traversal bridge: ' + bridge);
   }
-  assert.ok(live.includes('ThemeMode · accepted patient zero'));
-  assert.ok(live.includes('VexStream Playback · current-source exemplar'));
-  assert.ok(live.includes('VexMaps Distribution · current-source exemplar'));
+  assert.ok(live.includes('ThemeMode · origin witness'));
+  assert.ok(live.includes('VexStream Playback · relationship witness'));
+  assert.ok(live.includes('VexMaps Distribution · relationship witness'));
   assert.ok(live.includes('VexPartner · external-participant circuit'));
   assert.ok(live.includes('After walking four systems'));
+  assert.ok(live.includes('Origin witness'));
+  assert.ok(live.includes('Playback relationship witness'));
+  assert.ok(live.includes('Relay relationship witness'));
+  assert.ok(live.includes('External-participant relationship witness'));
+  assert.equal(live.includes('Current-source exemplar'), false);
 });
 
 test('VEXARCHITECTURE LIVE: every introduced ThemeMode scope has a visible next edge', () => {
@@ -195,11 +200,11 @@ test('VEXARCHITECTURE LIVE: Partner walk separates reusable grammar from current
   const live = read('pages/vexarchitecture-live-demonstration.html');
 
   for (const required of [
-    'Copy/paste chunk D · current architecture walk',
+    'Copy/paste chunk D · external-participant walk',
     'VexPartner · external-participant circuit',
     'REUSABLE PARTNER INBOUND BOUNDARY',
     'consumer-earned admission / reconciliation boundary',
-    'CURRENT CGM / INSULIN REALIZATION',
+    'CGM / INSULIN CONCRETE REALIZATION',
     'Source + Signal + Connection',
     'BleDecoder + HttpDecoder',
     'Signal → Observation → Receiver',
@@ -225,10 +230,10 @@ test('VEXARCHITECTURE LIVE: Partner walk separates reusable grammar from current
     live.includes('More elapsed time') === false,
     'Live walk should show source relationships; scale-vs-longevity judgment belongs in the Builder Guide',
   );
-  assert.ok(live.includes('Read Store → Family as the current CGM/insulin realization after Receiver'));
+  assert.ok(live.includes('Read Store → Family as the CGM/insulin concrete realization after Receiver'));
   assert.ok(live.includes('Partner is earned by the independently-owned external-participant question first'));
   assert.ok(live.includes('implementing the VexPartner contract is the source expression of that earned relationship, not the evidence that creates it'));
-  assert.ok(live.includes('Names, current interfaces, and historical placement are never sufficient to admit or reject Partner by themselves.'));
+  assert.ok(live.includes('Names, interfaces, and historical placement are never sufficient to admit or reject Partner by themselves.'));
   assert.equal(live.includes('not another architecture referendum'), false);
 });
 
@@ -259,9 +264,9 @@ test('VEXARCHITECTURE LIVE: copy-paste structure survives without interactive st
   const live = read('pages/vexarchitecture-live-demonstration.html');
 
   assert.ok(live.includes('Copy/paste chunk A · full walk'));
-  assert.ok(live.includes('Copy/paste chunk B · current-source walk'));
-  assert.ok(live.includes('Copy/paste chunk C · current-source walk'));
-  assert.ok(live.includes('Copy/paste chunk D · current architecture walk'));
+  assert.ok(live.includes('Copy/paste chunk B · Playback relationship walk'));
+  assert.ok(live.includes('Copy/paste chunk C · Relay relationship walk'));
+  assert.ok(live.includes('Copy/paste chunk D · external-participant walk'));
   assert.ok(live.includes('Container'));
   assert.ok(live.includes('Member'));
   assert.ok(live.includes('Next edge'));
