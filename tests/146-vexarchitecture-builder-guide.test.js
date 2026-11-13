@@ -22,6 +22,7 @@ test('VEXARCHITECTURE GUIDE: builder journey precedes forensic provenance', () =
   const ids = [
     'problem',
     'discovery',
+    'partner-circuit',
     'codebase',
     'theme-walk',
     'execution',
@@ -54,6 +55,10 @@ test('VEXARCHITECTURE GUIDE: accepted code structure is visible and source-addre
   for (const required of [
     'VexMethod.kt',
     'VexFamily.kt',
+    'VexPartner.kt',
+    'CgmPartner.kt',
+    'ConnectedPenPartner.kt',
+    'InsulinPumpPartner.kt',
     'VexExecution.kt',
     'VexExecutionRoot.kt',
     'VexDependencyFactory.kt',
@@ -71,6 +76,76 @@ test('VEXARCHITECTURE GUIDE: accepted code structure is visible and source-addre
   assert.ok(page.includes('66c866dea6a8dd78e2946da88715c4deb78c1847'));
 });
 
+test('VEXARCHITECTURE GUIDE: Partner extends the causal model without becoming mandatory topology', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  for (const required of [
+    'CORE CAUSAL SPINE',
+    'rightful Method-result interpretation',
+    'OUTSIDE / OBSERVATION',
+    'VexPartner',
+    'Connection.Conversion',
+    'Partner Signal(s)',
+    'Observation(Connection.Id + Signal)',
+    'Receiver',
+    'consumer-earned admission / reconciliation boundary',
+    'EXTERNAL PARTICIPATION / OUTBOUND — WHEN EARNED',
+    'CGM / INSULIN CONCRETE REALIZATION',
+    'Family and Partner can complete a bidirectional circuit without becoming mirrors',
+    'Partner ≠ mirrored Family',
+    'Partner Source ≠ Connection.Id ≠ VexExecution.RelationshipId',
+    'Receiver ≠ mandatory Store or Family',
+    'Semantic ownership is the reusable rule; literal VexFamily is one reusable realization',
+    'Names and interface implementations are observations, not architecture verdicts.',
+    'a type that does not yet implement VexPartner.Connection is not thereby disqualified',
+    'continue through the rightful Store/provider/platform boundary rather than stopping at “not Partner.”',
+    'Do not choose Store/provider merely because existing code already uses one.',
+    'Placement is evidence to inspect, not authority by existence.',
+    'Existing ownership by itself is not proof of rightful ownership.',
+  ]) {
+    assert.ok(page.includes(required), 'missing reasoning-preserving Partner witness: ' + required);
+  }
+
+  assert.ok(page.includes('7800c17909fd03d1170ec0211a6632172c87d1af'));
+  assert.ok(page.includes('Open the exact VexPartner source witness ↗'));
+});
+
+
+test('VEXARCHITECTURE GUIDE: real CGM pen and pump source cuts show what repeats and what stays local', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  for (const required of [
+    'See the grammar survive three materially different pressures',
+    'class BleDecoder',
+    'class HttpDecoder',
+    'VexPartner.Connection.Conversion&lt;',
+    'Observation(',
+    'Connected Pen · same grammar, no CGM sequence law',
+    'data class DoseRecorded(',
+    'data class CartridgeObserved(',
+    'Pump · Family authors meaning, Partner realizes participation',
+    'family.activate(',
+    'InsulinFamily.Act.Method.RequestPumpDelivery(',
+    'act.launchWith(executionRoot)',
+    'ACCEPTED != DELIVERED',
+    'When to earn Partner instead of stopping at provider truth',
+    'ordinary provider boundary',
+    'external Source meaning matters',
+    'same class name alone',
+    'CgmPartner.kt · two representations → one Signal grammar ↗',
+    'ConnectedPenPartner.kt · same Partner grammar without CGM continuity ↗',
+    'InsulinFamily.kt · semantic Control → Effect → bound Method ↗',
+    'InsulinPumpPartner.kt · acknowledgement ≠ delivery ↗',
+    'InsulinPartnerLab.kt · outbound request + later inbound evidence ↗',
+  ]) {
+    assert.ok(page.includes(required), 'missing source-pressure bridge: ' + required);
+  }
+
+  assert.ok(page.includes('The pen keeps Source / Signal / Connection / Conversion / Observation / Receiver'));
+  assert.ok(page.includes('it has no CGM acquisition epoch, sequence, or periodic-gap rule'));
+  assert.ok(page.includes('Store and Family State remain unchanged until later DeliveryObserved evidence returns'));
+});
+
 test('VEXARCHITECTURE GUIDE: ThemeMode teaches semantic carriage rather than class-shape cargo culting', () => {
   const page = read('pages/vexarchitecture-first-stable-body.html');
 
@@ -80,6 +155,9 @@ test('VEXARCHITECTURE GUIDE: ThemeMode teaches semantic carriage rather than cla
   assert.ok(page.includes('Effect.Save(parameter)'));
   assert.ok(page.includes('Act.Method.Save(store, same parameter)'));
   assert.ok(page.includes('Do not copy ThemeMode. Reuse the questions.'));
+  assert.ok(page.includes('Semantic ownership is the reusable rule; literal VexFamily is one reusable realization'));
+  assert.ok(page.includes('Concrete VexStream and Maps implementations are pressure evidence, not exemptions from this rule'));
+  assert.ok(page.includes('an existing class shape never proves that semantic ownership belongs there merely because it already exists'));
 });
 
 test('VEXARCHITECTURE GUIDE: active work, lifetime, chronology, and convergence remain distinct', () => {
@@ -99,8 +177,60 @@ test('VEXARCHITECTURE GUIDE: active work, lifetime, chronology, and convergence 
     'data-owner="chronology"',
     'data-owner="convergence"',
     'data-owner="presentation"',
+    'data-owner="service-pressure"',
   ];
   for (const marker of ownerSections) assert.ok(page.includes(marker), 'missing visual owner boundary ' + marker);
+});
+
+test('VEXARCHITECTURE GUIDE: placement never becomes authority and negative boundaries always route onward', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  for (const required of [
+    'Placement is evidence to inspect, never authority by existence.',
+    '“Not this owner” must always continue to the rightful owner; it is never a stop condition.',
+    'Positively test whether an independently-owned external-participant question exists',
+    'If it does not, continue through the rightful Store/provider/platform boundary',
+    'Existing source placement does not count as proof either way.',
+    'Any owner must survive re-evaluation',
+    'which owner can truthfully answer it without absorbing another responsibility',
+    'Existing placement did not win by default.',
+    'Existing ownership must be pressure-tested rather than presumed',
+    'current placement ≠ automatic architectural legitimacy',
+  ]) {
+    assert.ok(page.includes(required), 'missing anti-false-authority routing guard: ' + required);
+  }
+});
+
+test('VEXARCHITECTURE GUIDE: sustained realization preserves the host boundary without forcing a generic root', () => {
+  const page = read('pages/vexarchitecture-first-stable-body.html');
+
+  for (const required of [
+    'Sustained realization · platform host boundary',
+    'A shorter caller or UI lifetime may end while concrete platform realization must remain available.',
+    'Sustained realization · guidance without a generic root',
+    'VexStreamPlayerStore',
+    'Playback · sustained MediaSession realization',
+    'Navigation · sustained foreground realization',
+    'owner-local CoroutineScope/Jobs show that execution mechanism follows the concrete custody invariant',
+    'What stays unearned · symmetry is not enough',
+    'does not require BackgroundServiceRelay',
+    'generic VexService root',
+    'universal Service.current',
+    'typed ServiceScope architecture law',
+    'The stable rule is separation of lifetimes and ownership',
+    'A future repeated Admission / Retention / Release law can earn a VexService root',
+    'ANDROID_SERVICE != DOMAIN_RUNTIME',
+  ]) {
+    assert.ok(page.includes(required), 'missing current Service intention/subtraction witness: ' + required);
+  }
+
+  for (const stale of [
+    'Current Android #224 pressure makes VexStreamPlaybackFamily',
+    'BackgroundServiceRelay observes that existing process truth',
+    'VexServiceScope&lt;VexStreamPlaybackService&gt;',
+  ]) {
+    assert.equal(page.includes(stale), false, 'stale Service theory survived: ' + stale);
+  }
 });
 
 test('VEXARCHITECTURE GUIDE: application guidance pressures harder products without claiming migration', () => {
@@ -112,7 +242,7 @@ test('VEXARCHITECTURE GUIDE: application guidance pressures harder products with
 
   assert.ok(page.includes('VexStream · questions to ask'));
   assert.ok(page.includes('Maps · questions to ask'));
-  assert.ok(page.includes('They are not declared migrated by this page.'));
+  assert.ok(page.includes('Use them to test the questions; do not treat either product as a mandatory class template.'));
 });
 
 test('VEXARCHITECTURE GUIDE: simple localized fallbacks match English source text', () => {
@@ -148,14 +278,32 @@ test('VEXARCHITECTURE GUIDE: every bound display key exists in the page string s
 
   assert.deepEqual(missing, []);
   assert.equal(strings._meta.sourceProvenance.originPullRequest, 209);
-  assert.equal(strings._meta.sourceProvenance.guideRevision, 'DEVELOPMENT_STANDARD_2_N_BUILDER_FIELD_GUIDE');
+  assert.equal(strings._meta.sourceProvenance.guideRevision, 'DEVELOPMENT_STANDARD_6_N_DIRECT_FAMILY_PARTNER_SERVICE_SUBTRACTION');
+  assert.equal(
+    strings._meta.sourceProvenance.currentPartnerSourceSnapshot,
+    '7800c17909fd03d1170ec0211a6632172c87d1af',
+  );
+  assert.equal(
+    strings._meta.sourceProvenance.currentPartnerAcceptedMerge,
+    '7800c17909fd03d1170ec0211a6632172c87d1af',
+  );
+  assert.equal(
+    strings._meta.sourceProvenance.currentAndroidSourceSnapshot,
+    'd857a92371555472e0303b18eadf353da2a868d6',
+  );
+  assert.equal('currentBackgroundServicePullRequest' in strings._meta.sourceProvenance, false);
+  assert.equal('currentTypedScopePullRequest' in strings._meta.sourceProvenance, false);
 });
 
 
-test('VEXARCHITECTURE GUIDE: opening topology separates core causality from orthogonal relationships', () => {
+test('VEXARCHITECTURE GUIDE: opening topology preserves the core spine and makes Partner conditional', () => {
   const page = read('pages/vexarchitecture-first-stable-body.html');
 
-  assert.ok(page.includes('CORE SEMANTIC + RUNTIME PATH'));
+  assert.ok(page.includes('CORE CAUSAL SPINE'));
+  assert.ok(page.includes('rightful Method-result interpretation'));
+  assert.ok(page.includes('when VexPartner is earned'));
+  assert.ok(page.includes('consumer-earned admission / reconciliation boundary'));
+  assert.ok(page.includes('EXTERNAL PARTICIPATION / OUTBOUND — WHEN EARNED'));
   assert.ok(page.includes('ORTHOGONAL / CONDITIONAL RELATIONSHIPS'));
   assert.ok(page.includes('Construction + lifetime'));
   assert.ok(page.includes('Chronology / VexLogger'));
@@ -184,8 +332,9 @@ test('VEXARCHITECTURE GUIDE: realization seam preserves pure Act meaning and ful
   assert.ok(page.includes('already-authored owner / Approach / RelationshipId'));
   assert.ok(page.includes('VexMethod.Result'));
   assert.ok(page.includes('smallest truthful provider fact'));
-  assert.ok(page.includes('Success / Failure are lawful returns from invoke()'));
-  assert.ok(page.includes('Family / Execution continuation forms Error'));
+  assert.ok(page.includes('Success / Failure are lawful returns from Method.invoke()'));
+  assert.ok(page.includes('VexExecution executes that already-bound method and rethrows cancellation'));
+  assert.ok(page.includes('maps it to VexMethod.Result.Error(cause) before the semantic result handler runs'));
 });
 
 test('VEXARCHITECTURE GUIDE: ThemeMode referential currentness stays explicitly local to ThemeMode', () => {
@@ -205,6 +354,8 @@ test('VEXARCHITECTURE GUIDE: Relay is conditional composition and graph remains 
   assert.ok(page.includes('invoke a foreign Effect directly'));
   assert.ok(page.includes('VexLifeRelayGraph is only a session-level projection'));
   assert.ok(page.includes('does not construct, activate, or semantically own them'));
+  assert.ok(page.includes('The word Relay is not authority by itself'));
+  assert.ok(page.includes('A same-named mechanism elsewhere is not equivalent unless its source contract actually joins these semantics.'));
 });
 
 test('VEXARCHITECTURE GUIDE: projection never claims rendered presentation arrival by itself', () => {
@@ -262,8 +413,13 @@ test('VEXARCHITECTURE GUIDE: current source and accepted #209 snapshot remain di
   assert.ok(page.includes('Open accepted #209 source snapshot ↗'));
   assert.ok(page.includes('blob/66c866dea6a8dd78e2946da88715c4deb78c1847/architecture/vexarchitecture/README.md'));
   assert.ok(page.includes('Open PR #209 reasoning record ↗'));
+  assert.ok(page.includes('Open the Partner architecture source witness ↗'));
+  assert.ok(page.includes('7800c17909fd03d1170ec0211a6632172c87d1af'));
   assert.ok(page.includes('architectural teaching projections'));
-  assert.ok(page.includes('object/scope-by-scope wiring walk'));
+  assert.ok(page.includes('walks the same relationships through concrete source'));
+  assert.ok(page.includes('stable system of rightful ownership and relationships'));
+  assert.ok(page.includes('Provenance · VexLife-Android #209'));
+  assert.equal(page.includes('current relationships later pressure earned'), false);
 });
 
 // [VXG RealForever]

@@ -2,13 +2,17 @@
   "_meta": {
     "scope": "pages.vexarchitecture-live-demonstration",
     "category": "production",
-    "description": "English source strings for the VexArchitecture Live Demonstration companion page.",
+    "description": "English source strings for the VexArchitecture Live Demonstration, preserving the historical ThemeMode patient zero while showing current Direct-Family/Player-Partner VexStream, unchanged-current Maps, accepted Partner, and the Service sustained-realization subtraction result.",
     "sourceProvenance": {
       "originRepository": "vgong24/VexLife-Android",
       "originPullRequest": 209,
-      "currentSourceSnapshot": "305a09eac1fabebcf2241bd207386950f41121f2",
+      "currentSourceSnapshot": "d857a92371555472e0303b18eadf353da2a868d6",
       "recordClass": "DEVELOPMENT_STANDARD_LIVE_WITNESS",
-      "guideRevision": "DEVELOPMENT_STANDARD_4_N_LIVE_DEMONSTRATION"
+      "guideRevision": "DEVELOPMENT_STANDARD_6_N_CURRENT_DIRECT_FAMILY_PARTNER_SERVICE_SUBTRACTION_LIVE",
+      "partnerPullRequest": 219,
+      "partnerSourceSnapshot": "7800c17909fd03d1170ec0211a6632172c87d1af",
+      "originSourceSnapshot": "305a09eac1fabebcf2241bd207386950f41121f2",
+      "partnerAcceptedMerge": "7800c17909fd03d1170ec0211a6632172c87d1af"
     }
   },
   "pages.vexarchitecture-live-demonstration.document-title": {
@@ -28,14 +32,14 @@
   "pages.vexarchitecture-live-demonstration.topline.right": {
     "strings": {
       "en": {
-        "text": "VexLife-Android source snapshot · 305a09ea…"
+        "text": "ThemeMode witness 305a09ea… · Android witness d857a923… · Partner witness 7800c179…"
       }
     }
   },
   "pages.vexarchitecture-live-demonstration.hero.eyebrow": {
     "strings": {
       "en": {
-        "text": "Development Standard · 4/N · Companion to the Builder Field Guide"
+        "text": "Development Standard · 6/N · Companion to the Builder Field Guide"
       }
     }
   },
@@ -84,42 +88,42 @@
   "pages.vexarchitecture-live-demonstration.contract.theme.claim": {
     "strings": {
       "en": {
-        "text": "Accepted patient zero"
+        "text": "Origin witness"
       }
     }
   },
   "pages.vexarchitecture-live-demonstration.contract.theme.body": {
     "strings": {
       "en": {
-        "text": "ThemeMode receives the full construction-to-human walk because PR #209 is the accepted implementation origin for the stable body. It remains the accepted patient zero, and this walk is current through PR #211's accepted VexMethod Result refinement: provider fact, bound Method result, and outside observation stay visibly distinct."
+        "text": "ThemeMode receives the full construction-to-human walk because it makes the ownership chain concrete from dependency construction through presentation. The linked #209 snapshot is preserved as the witness for this walk; the lesson is the ownership relationship, not the age of the snapshot."
       }
     }
   },
   "pages.vexarchitecture-live-demonstration.contract.stream.claim": {
     "strings": {
       "en": {
-        "text": "Current-source exemplar"
+        "text": "Playback relationship witness"
       }
     }
   },
   "pages.vexarchitecture-live-demonstration.contract.stream.body": {
     "strings": {
       "en": {
-        "text": "VexStream Playback is shown because current code visibly answers the same ownership questions around Media3 reality, pending intent, projection, and UI."
+        "text": "VexStream Playback demonstrates the relationship: Direct VexFamily authors semantic meaning, the bound Method enters VexExecution, Player requests cross VexStreamPlayerPartner, later Player Signals become VexStreamPlayerStore truth, and the same Family observes that Store. PlaybackService and Widget reuse those owners without becoming semantic State."
       }
     }
   },
   "pages.vexarchitecture-live-demonstration.contract.maps.claim": {
     "strings": {
       "en": {
-        "text": "Current-source exemplar"
+        "text": "Relay relationship witness"
       }
     }
   },
   "pages.vexarchitecture-live-demonstration.contract.maps.body": {
     "strings": {
       "en": {
-        "text": "VexMaps Distribution is shown because current code makes independent owners and Relay/convergence visible without pretending Relay owns either source truth."
+        "text": "VexMaps Distribution demonstrates independent semantic owners and Relay/convergence without pretending Relay owns either source truth."
       }
     }
   },
@@ -133,7 +137,7 @@
   "pages.vexarchitecture-live-demonstration.contract.snapshot": {
     "strings": {
       "en": {
-        "text": "Open the demonstrated VexLife source snapshot ↗"
+        "text": "Open VexLife-Android source witness ↗"
       }
     }
   },
@@ -147,7 +151,7 @@
   "pages.vexarchitecture-live-demonstration.theme.kicker": {
     "strings": {
       "en": {
-        "text": "ThemeMode · accepted patient zero"
+        "text": "ThemeMode · origin witness"
       }
     }
   },
@@ -168,42 +172,42 @@
   "pages.vexarchitecture-live-demonstration.stream.chunk": {
     "strings": {
       "en": {
-        "text": "Copy/paste chunk B · current-source walk"
+        "text": "Copy/paste chunk B · Playback relationship walk"
       }
     }
   },
   "pages.vexarchitecture-live-demonstration.stream.kicker": {
     "strings": {
       "en": {
-        "text": "VexStream Playback · current-source exemplar"
+        "text": "VexStream Playback · relationship witness"
       }
     }
   },
   "pages.vexarchitecture-live-demonstration.stream.heading": {
     "strings": {
       "en": {
-        "text": "The same ownership questions survive when physical truth belongs to a sustained Media3 runtime"
+        "text": "Follow Playback through Direct Family, Player Partner, Store, Service, and Widget without inventing another State owner"
       }
     }
   },
   "pages.vexarchitecture-live-demonstration.stream.lede": {
     "strings": {
       "en": {
-        "text": "This section does not claim VexStream is another ThemeMode-shaped implementation. It follows current source so the different shape can be seen: Compose asks for a Playback Experience, an Android ViewModel owns the concrete Media3 connection, UI sends Controls through the Experience, Media3 owns physical reality, and observed projection returns to presentation."
+        "text": "This walk follows Android source snapshot d857a923…. Playback meaning is authored by VexStreamPlaybackFamily; an accepted Act binds an exact Method and uses VexExecution only for earned custody. The request crosses VexStreamPlayerPartner, while later Media3 observations become Player Signals retained by VexStreamPlayerStore and observed back into the same Family. VexStreamPlaybackService keeps the MediaSession/ExoPlayer realization and Widget publication alive; it does not create a VexService root or universal Service current."
       }
     }
   },
   "pages.vexarchitecture-live-demonstration.maps.chunk": {
     "strings": {
       "en": {
-        "text": "Copy/paste chunk C · current-source walk"
+        "text": "Copy/paste chunk C · Relay relationship walk"
       }
     }
   },
   "pages.vexarchitecture-live-demonstration.maps.kicker": {
     "strings": {
       "en": {
-        "text": "VexMaps Distribution · current-source exemplar"
+        "text": "VexMaps Distribution · relationship witness"
       }
     }
   },
@@ -217,14 +221,14 @@
   "pages.vexarchitecture-live-demonstration.maps.lede": {
     "strings": {
       "en": {
-        "text": "Maps is useful here because current code exposes both lifetime and relationship pressure. VexMapsMapSurface asks a process-local allocator for the lived Distribution session, wraps it in a UI boundary, then Mode and Delivery Route remain independent owners while a Relay observes their projections and may request Mode’s public Control."
+        "text": "Maps makes both lifetime and relationship pressure visible. VexMapsMapSurface asks a process-local allocator for the lived Distribution session, wraps it in a UI boundary, then Mode and Delivery Route remain independent owners while a Relay observes their projections and may request Mode’s public Control."
       }
     }
   },
   "pages.vexarchitecture-live-demonstration.compare.kicker": {
     "strings": {
       "en": {
-        "text": "After walking three systems"
+        "text": "After walking four systems"
       }
     }
   },
@@ -238,7 +242,7 @@
   "pages.vexarchitecture-live-demonstration.compare.lede": {
     "strings": {
       "en": {
-        "text": "ThemeMode, VexStream, and Maps should not be collapsed into one class template. What transfers is the ability to locate human intention, semantic ownership, outside truth, active custody, relationship truth, and the presentation that returns to the human."
+        "text": "ThemeMode, VexStream, Maps, and Partner should not be collapsed into one class template. What transfers is the ability to locate human intention, semantic ownership, external participation, outside truth, active custody, relationship truth, durability, and the presentation that returns to the human."
       }
     }
   },
@@ -266,7 +270,56 @@
   "pages.vexarchitecture-live-demonstration.closing.body": {
     "strings": {
       "en": {
-        "text": "When you enter unfamiliar code, keep asking the next concrete navigation question: what container am I in, what member am I touching, who supplied it, what kind of thing is it here, and where does this exact value or object go next? The Builder Field Guide explains the wisdom behind those relationships; this page exists so you can see them live."
+        "text": "When you enter unfamiliar code, keep asking the next concrete navigation question: what container am I in, what member am I touching, who supplied it, what kind of thing is it here, and where does this exact value or object go next? Follow the value all the way across human intention, Family meaning, execution, external participation, durable truth, and presentation. The Builder Field Guide explains the wisdom behind those relationships; this page exists so you can see them live."
+      }
+    }
+  },
+  "pages.vexarchitecture-live-demonstration.contract.partner.claim": {
+    "strings": {
+      "en": {
+        "text": "External-participant relationship witness"
+      }
+    }
+  },
+  "pages.vexarchitecture-live-demonstration.contract.partner.body": {
+    "strings": {
+      "en": {
+        "text": "VexPartner is shown because CGM, connected-pen, insulin-pump, and VexStream Player sources preserve the same Source/Signal/Connection grammar across provider representation, direction, persistence, restart, and product domains. The walk separates the reusable Partner boundary from consumer-owned Store/Family admission."
+      }
+    }
+  },
+  "pages.vexarchitecture-live-demonstration.contract.partner-snapshot": {
+    "strings": {
+      "en": {
+        "text": "Open Partner source witness ↗"
+      }
+    }
+  },
+  "pages.vexarchitecture-live-demonstration.partner.chunk": {
+    "strings": {
+      "en": {
+        "text": "Copy/paste chunk D · external-participant walk"
+      }
+    }
+  },
+  "pages.vexarchitecture-live-demonstration.partner.kicker": {
+    "strings": {
+      "en": {
+        "text": "VexPartner · external-participant circuit"
+      }
+    }
+  },
+  "pages.vexarchitecture-live-demonstration.partner.heading": {
+    "strings": {
+      "en": {
+        "text": "Walk outside truth into Family meaning — and Family intention back out — without inventing a mirrored semantic owner"
+      }
+    }
+  },
+  "pages.vexarchitecture-live-demonstration.partner.lede": {
+    "strings": {
+      "en": {
+        "text": "This walk follows Partner source snapshot 7800c179…. CGM pressures two provider representations, connected pen removes CGM-specific sequence/periodic assumptions, and insulin pump proves the outbound Family → Partner direction. Read Store → Family as the CGM/insulin concrete realization after Receiver, not as a mandatory child of VexPartner. Real Local HTTP/BLE lifecycle is outside what this witness proves."
       }
     }
   }

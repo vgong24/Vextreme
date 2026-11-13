@@ -39,7 +39,7 @@
     h2{margin:12px 0 20px;font:400 clamp(34px,5vw,66px)/1.03 var(--serif);letter-spacing:-.035em;max-width:1040px}
     h3{margin:0 0 12px;font:500 clamp(20px,2.4vw,29px)/1.2 var(--mono);letter-spacing:-.025em}
     h4{margin:0 0 8px;font:600 12px/1.4 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
-    .claim-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:28px 0}
+    .claim-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:28px 0}
     .claim-card{padding:20px}
     .claim-card strong{display:block;color:var(--semantic);font:600 12px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
     .claim-card p{margin:0;color:var(--soft)}
@@ -86,11 +86,11 @@
 <main class="record">
   <div class="topline">
     <span data-i18n="pages.vexarchitecture-live-demonstration.topline.left">The Development Standard · Live Witness Surface</span>
-    <span data-i18n="pages.vexarchitecture-live-demonstration.topline.right">VexLife-Android source snapshot · 305a09ea…</span>
+    <span data-i18n="pages.vexarchitecture-live-demonstration.topline.right">ThemeMode witness 305a09ea… · Android witness d857a923… · Partner witness 7800c179…</span>
   </div>
 
   <header class="hero">
-    <div class="eyebrow" data-i18n="pages.vexarchitecture-live-demonstration.hero.eyebrow">Development Standard · 4/N · Companion to the Builder Field Guide</div>
+    <div class="eyebrow" data-i18n="pages.vexarchitecture-live-demonstration.hero.eyebrow">Development Standard · 6/N · Companion to the Builder Field Guide</div>
     <h1 data-i18n="pages.vexarchitecture-live-demonstration.hero.title">Live Demonstration</h1>
     <p class="subtitle" data-i18n="pages.vexarchitecture-live-demonstration.hero.subtitle">Stand inside the code. See which container owns each thing, how it was created, where the same live object goes next, and how human intention returns as visible meaning.</p>
     <p class="tagline" data-i18n="pages.vexarchitecture-live-demonstration.hero.tagline">The Builder Field Guide teaches the architecture. This page lets you witness it inhabiting real VexLife code without asking you to invent the missing edges.</p>
@@ -103,28 +103,33 @@
       <p data-i18n="pages.vexarchitecture-live-demonstration.contract.body">This page does not redefine VexArchitecture. The Builder Field Guide owns the architectural explanation. Here, every step starts by naming the container we are inside, the member we are touching, what kind of thing it is, why traversal arrived there, and the exact next edge. No introduced object is allowed to disappear behind “later.” Code blocks are scoped teaching excerpts: surrounding lines and incidental syntax may be omitted or normalized for readability. The linked source path and blob own the byte-exact code; this page claims the shown ownership, scope, and traversal relationships.</p>
       <div class="claim-grid">
         <article class="claim-card">
-          <strong data-i18n="pages.vexarchitecture-live-demonstration.contract.theme.claim">Accepted patient zero</strong>
-          <p data-i18n="pages.vexarchitecture-live-demonstration.contract.theme.body">ThemeMode receives the full construction-to-human walk because PR #209 is the accepted implementation origin for the stable body. It remains the accepted patient zero, and this walk is current through PR #211's accepted VexMethod Result refinement: provider fact, bound Method result, and outside observation stay visibly distinct.</p>
+          <strong data-i18n="pages.vexarchitecture-live-demonstration.contract.theme.claim">Origin witness</strong>
+          <p data-i18n="pages.vexarchitecture-live-demonstration.contract.theme.body">ThemeMode receives the full construction-to-human walk because it makes the ownership chain concrete from dependency construction through presentation. The linked #209 snapshot is preserved as the witness for this walk; the lesson is the ownership relationship, not the age of the snapshot.</p>
         </article>
         <article class="claim-card">
-          <strong data-i18n="pages.vexarchitecture-live-demonstration.contract.stream.claim">Current-source exemplar</strong>
-          <p data-i18n="pages.vexarchitecture-live-demonstration.contract.stream.body">VexStream Playback is shown because current code visibly answers the same ownership questions around Media3 reality, pending intent, projection, and UI.</p>
+          <strong data-i18n="pages.vexarchitecture-live-demonstration.contract.stream.claim">Playback relationship witness</strong>
+          <p data-i18n="pages.vexarchitecture-live-demonstration.contract.stream.body">VexStream Playback demonstrates the relationship: Direct VexFamily authors semantic meaning, the bound Method enters VexExecution, Player requests cross VexStreamPlayerPartner, later Player Signals become VexStreamPlayerStore truth, and the same Family observes that Store. PlaybackService and Widget reuse those owners without becoming semantic State.</p>
         </article>
         <article class="claim-card">
-          <strong data-i18n="pages.vexarchitecture-live-demonstration.contract.maps.claim">Current-source exemplar</strong>
-          <p data-i18n="pages.vexarchitecture-live-demonstration.contract.maps.body">VexMaps Distribution is shown because current code makes independent owners and Relay/convergence visible without pretending Relay owns either source truth.</p>
+          <strong data-i18n="pages.vexarchitecture-live-demonstration.contract.maps.claim">Relay relationship witness</strong>
+          <p data-i18n="pages.vexarchitecture-live-demonstration.contract.maps.body">VexMaps Distribution demonstrates independent semantic owners and Relay/convergence without pretending Relay owns either source truth.</p>
+        </article>
+        <article class="claim-card">
+          <strong data-i18n="pages.vexarchitecture-live-demonstration.contract.partner.claim">External-participant relationship witness</strong>
+          <p data-i18n="pages.vexarchitecture-live-demonstration.contract.partner.body">VexPartner is shown because CGM, connected-pen, insulin-pump, and VexStream Player sources preserve the same Source/Signal/Connection grammar across provider representation, direction, persistence, restart, and product domains. The walk separates the reusable Partner boundary from consumer-owned Store/Family admission.</p>
         </article>
       </div>
       <div class="links">
         <a class="link" href="./vexarchitecture-first-stable-body.html" data-i18n="pages.vexarchitecture-live-demonstration.contract.guide">Open the Builder Field Guide ↗</a>
-        <a class="link" href="https://github.com/vgong24/VexLife-Android/tree/305a09eac1fabebcf2241bd207386950f41121f2" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-live-demonstration.contract.snapshot">Open the demonstrated VexLife source snapshot ↗</a>
+        <a class="link" href="https://github.com/vgong24/VexLife-Android/tree/d857a92371555472e0303b18eadf353da2a868d6" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-live-demonstration.contract.snapshot">Open VexLife-Android source witness ↗</a>
+        <a class="link" href="https://github.com/vgong24/VexLife-Android/tree/7800c17909fd03d1170ec0211a6632172c87d1af" target="_blank" rel="noopener" data-i18n="pages.vexarchitecture-live-demonstration.contract.partner-snapshot">Open Partner source witness ↗</a>
       </div>
     </div>
   </section>
 
   <section class="walk" id="theme-mode">
     <div class="chunk-label" data-i18n="pages.vexarchitecture-live-demonstration.theme.chunk">Copy/paste chunk A · full walk</div>
-    <div class="kicker" data-i18n="pages.vexarchitecture-live-demonstration.theme.kicker">ThemeMode · accepted patient zero</div>
+    <div class="kicker" data-i18n="pages.vexarchitecture-live-demonstration.theme.kicker">ThemeMode · origin witness</div>
     <h2 data-i18n="pages.vexarchitecture-live-demonstration.theme.heading">From Android process construction to the same Dark Mode control reflecting returned truth</h2>
     <p class="lede" data-i18n="pages.vexarchitecture-live-demonstration.theme.lede">We begin before a person can click anything. The questions beside each step only explain why we move to the next real piece of code. They are not a second architecture framework.</p>
 
@@ -931,316 +936,210 @@ the same visible control that emitted the human doorway action now reads the pre
   </section>
 
   <section class="walk" id="vexstream">
-    <div class="chunk-label" data-i18n="pages.vexarchitecture-live-demonstration.stream.chunk">Copy/paste chunk B · current-source walk</div>
-    <div class="kicker" data-i18n="pages.vexarchitecture-live-demonstration.stream.kicker">VexStream Playback · current-source exemplar</div>
-    <h2 data-i18n="pages.vexarchitecture-live-demonstration.stream.heading">The same ownership questions survive when physical truth belongs to a sustained Media3 runtime</h2>
-    <p class="lede" data-i18n="pages.vexarchitecture-live-demonstration.stream.lede">This section does not claim VexStream is another ThemeMode-shaped implementation. It follows current source so the different shape can be seen: Compose asks for a Playback Experience, an Android ViewModel owns the concrete Media3 connection, UI sends Controls through the Experience, Media3 owns physical reality, and observed projection returns to presentation.</p>
+    <div class="chunk-label" data-i18n="pages.vexarchitecture-live-demonstration.stream.chunk">Copy/paste chunk B · Playback relationship walk</div>
+    <div class="kicker" data-i18n="pages.vexarchitecture-live-demonstration.stream.kicker">VexStream Playback · relationship witness</div>
+    <h2 data-i18n="pages.vexarchitecture-live-demonstration.stream.heading">Follow Playback through Direct Family, Player Partner, Store, Service, and Widget without inventing another State owner</h2>
+    <p class="lede" data-i18n="pages.vexarchitecture-live-demonstration.stream.lede">This walk follows Android source snapshot d857a923…. Playback meaning is authored by VexStreamPlaybackFamily; an accepted Act binds an exact Method and uses VexExecution only for earned custody. The request crosses VexStreamPlayerPartner, while later Media3 observations become Player Signals retained by VexStreamPlayerStore and observed back into the same Family. VexStreamPlaybackService keeps the MediaSession/ExoPlayer realization and Widget publication alive; it does not create a VexService root or universal Service current.</p>
 
     <div class="walk-grid">
       <aside class="map">
-        <h4>VexStream playback map</h4>
-        <pre>VexStreamLibrarySurface
+        <h4>VexStream current relationship circuit</h4>
+        <pre>foreground UI / Widget
+        │ Control
+        ▼
+VexStreamPlaybackFamily
+        │ accepted Act
+        ├─ realizationBegin / RelationshipId
+        ▼
+exact Act.Method
         │
         ▼
-rememberVexStreamPlaybackExperience()
-        │ viewModel()
-        ▼
-VexStreamPlaybackConnectionViewModel
-├─ MediaController → PlaybackService
-└─ Media3VexStreamPlaybackConnection
+VexExecution custody
         │
-        └──── owner.connection ─────┐
-                                    ▼
-                    CurrentVexStreamPlaybackExperience
-                                    │
-                                    ▼
-                     VexStreamMiniPlayer
-                     └─ TogglePlayback
-                                    │
-                         activate(PlayPause)
-                                    ▼
-                    same Media3 Connection
-                    ├─ behavior
-                    ├─ controls
-                    ├─ pending
-                    └─ controller
-                                    │
-                             Media3 reality
-                                    │
-                            Player.Listener
-                                    ▼
-                         reconciled State
-                                    ▼
-                            Projection
-                                    ▼
-                     PlaybackExperience
-                                    ▼
-                      same UI presentation</pre>
+        ▼
+VexStreamPlayerPartner.Connection.Request
+        │ request
+        ▼
+Media3 Player
+        │ later outside truth
+        ▼
+Player Partner Signals
+        │
+        ▼
+VexStreamPlayerStore
+        │ store::playbackSignals
+        ▼
+same Playback Family
+        │
+        ▼
+DisplayState / presentation
+
+VexStreamPlaybackService
+    hosts MediaSession / ExoPlayer
+    + Media3PlayerConnection
+    + Service-lifetime Widget publication
+
+SAME REPEATED SERVICE QUESTION
+!= generic VexService root</pre>
       </aside>
+
       <div class="steps">
         <article class="step">
-          <div class="step-head"><span class="step-no">S1</span><div><h3>Enter the parent surface that asks for a Playback Experience</h3><div class="question">Before VexStreamMiniPlayer can receive playbackExperience, which parent composition asks for that object?</div></div></div>
-          <dl class="scope"><div><dt>Container</dt><dd>VexStreamLibrarySurface</dd></div><div><dt>Member being requested</dt><dd>playbackExperience = rememberVexStreamPlaybackExperience()</dd></div><div><dt>Role</dt><dd>parent VexStream composition surface</dd></div><div><dt>Next edge</dt><dd>enter rememberVexStreamPlaybackExperience() before using its returned value</dd></div></dl>
-          <pre class="code"><code>@Composable
-internal fun VexStreamLibrarySurface(...) {
+          <div class="step-head"><span class="step-no">S1</span><div><h3>Enter through the current Playback Experience without creating another owner</h3><div class="question">Which live objects does the UI actually receive before Play/Pause is activated?</div></div></div>
+          <dl class="scope"><div><dt>Container</dt><dd>rememberVexStreamPlaybackExperience()</dd></div><div><dt>Semantic owner</dt><dd>owner.playbackFamily</dd></div><div><dt>Outside current</dt><dd>owner.playerStore</dd></div><div><dt>Request edge</dt><dd>owner.playerRequestConnection</dd></div></dl>
+          <pre class="code"><code>val family = owner.playbackFamily
+val connection = owner.playerRequestConnection
+val playerSnapshot by
+    owner.playerStore.states.collectAsStateWithLifecycle(...)
+
+CurrentVexStreamPlaybackExperience(
+    family = family,
+    connection = connection,
+    playerStore = owner.playerStore,
+    executionRoot = owner.executionRoot,
     ...
-
-    val playbackExperience =
-        if (inspectionMode) {
-            null
-        } else {
-            rememberVexStreamPlaybackExperience()
-        }
-
-    ...
-}</code></pre>
-          <div class="edge">We do not jump to VexStreamMiniPlayer yet. The parent has asked for a Playback Experience; the next step enters that constructor-like Compose boundary to see what it depends on and what it returns.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/vexstream/VexStreamLibrarySurface.kt" target="_blank" rel="noopener">VexStreamLibrarySurface.kt</a> · blob 7173db2beda80e8a497deda292e73d288094b6c3</div>
+)</code></pre>
+          <div class="edge">The Experience is a UI membrane over already-owned semantic, outside-truth, request, and execution references. It does not become another Playback State holder.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/VexStreamPlaybackExperience.kt" target="_blank" rel="noopener">current · VexStreamPlaybackExperience.kt</a></div>
         </article>
 
         <article class="step">
-          <div class="step-head"><span class="step-no">S2</span><div><h3>Enter the Experience constructor boundary</h3><div class="question">What owner does rememberVexStreamPlaybackExperience() ask Android/Compose for before it can form a UI-facing Experience?</div></div></div>
-          <dl class="scope"><div><dt>Container</dt><dd>rememberVexStreamPlaybackExperience()</dd></div><div><dt>Owner member</dt><dd>owner: VexStreamPlaybackConnectionViewModel = viewModel()</dd></div><div><dt>References read from owner</dt><dd>owner.connection + owner.controller</dd></div><div><dt>Next edge</dt><dd>enter VexStreamPlaybackConnectionViewModel to see how those references become live</dd></div></dl>
-          <pre class="code"><code>@Composable
-internal fun rememberVexStreamPlaybackExperience():
-    VexStreamPlaybackExperience {
-    val owner:
-        VexStreamPlaybackConnectionViewModel =
-        viewModel()
+          <div class="step-head"><span class="step-no">S2</span><div><h3>Let Direct Family author meaning before any Player request</h3><div class="question">Who decides what PlayPause means against exact current Playback State?</div></div></div>
+          <dl class="scope"><div><dt>Semantic owner</dt><dd>VexStreamPlaybackFamily</dd></div><div><dt>Input</dt><dd>CURRENT State + Playback Control</dd></div><div><dt>Accepted relationship</dt><dd>Act.Accepted + realizationBegin + RelationshipId</dd></div><div><dt>Bound realization</dt><dd>VexStreamPlaybackFamily.Act.Method</dd></div></dl>
+          <pre class="code"><code>val accepted =
+    family.activatePlayback(control)
+        ?: return null
 
-    val connection =
-        owner.connection
+val begin =
+    accepted.realizationBegin
+        ?: return null
 
-    val playback by
-        rememberVexStreamPlaybackReadState(
-            owner.controller,
-        )
-
-    ...
-}</code></pre>
-          <div class="edge">The names connection and controller are not treated as magically initialized. They are fields on a specific configuration-lifetime owner, so the traversal enters that owner next.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/VexStreamPlaybackExperience.kt" target="_blank" rel="noopener">VexStreamPlaybackExperience.kt</a> · blob c5c2f543f7de94e50be989b7f45133fc60effd00</div>
-        </article>
-
-        <article class="step">
-          <div class="step-head"><span class="step-no">S3</span><div><h3>Watch the Android lifetime owner create the concrete connection</h3><div class="question">How do VexStreamPlaybackConnectionViewModel.connection and controller become live values?</div></div></div>
-          <dl class="scope"><div><dt>Container</dt><dd>VexStreamPlaybackConnectionViewModel</dd></div><div><dt>Outside connection request</dt><dd>MediaController.Builder(... VexStreamPlaybackService ...).buildAsync()</dd></div><div><dt>Created member</dt><dd>Media3VexStreamPlaybackConnection(connected)</dd></div><div><dt>Stored references</dt><dd>connection = playbackConnection; controller = connected</dd></div></dl>
-          <pre class="code"><code>internal class
-VexStreamPlaybackConnectionViewModel(
-    application: Application,
-) : AndroidViewModel(application) {
-
-    private val controllerFuture =
-        MediaController.Builder(
-            application,
-            SessionToken(
-                application,
-                ComponentName(
-                    application,
-                    VexStreamPlaybackService::class.java,
-                ),
-            ),
-        ).buildAsync()
-
-    var connection:
-        VexStreamPlaybackConnectionFlow? = null
-        private set
-
-    init {
-        controllerFuture.addListener(
-            {
-                controllerFuture.get()
-                    .let { connected -&gt;
-                        val playbackConnection =
-                            Media3VexStreamPlaybackConnection(
-                                connected,
-                            )
-
-                        connection =
-                            playbackConnection
-                        controller =
-                            connected
-                    }
-            },
-            ContextCompat.getMainExecutor(
-                application,
-            ),
-        )
-    }
-}</code></pre>
-          <div class="edge">The concrete Connection is owned by an Android configuration-lifetime ViewModel because Media3 connection lifetime must survive Compose recomposition. When the controller arrives, the ViewModel constructs one Media3VexStreamPlaybackConnection and exposes that same reference through owner.connection.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/VexStreamPlaybackConnectionViewModel.kt" target="_blank" rel="noopener">VexStreamPlaybackConnectionViewModel.kt</a> · blob e6ad9066a6f26ae2afd713b7e2c6f8f76fc2e206</div>
-        </article>
-
-        <article class="step">
-          <div class="step-head"><span class="step-no">S4</span><div><h3>Return to the Experience and form the UI-facing object</h3><div class="question">Now that owner.connection has a concrete origin, how is it carried into the object Compose will pass around?</div></div></div>
-          <dl class="scope"><div><dt>Container</dt><dd>rememberVexStreamPlaybackExperience()</dd></div><div><dt>Observed input</dt><dd>connection.projections + owner.controller playback read state</dd></div><div><dt>Derived member</dt><dd>displayState</dd></div><div><dt>Returned object</dt><dd>CurrentVexStreamPlaybackExperience(displayState, connection)</dd></div></dl>
-          <pre class="code"><code>val projections =
-    connection?.projections
-
-val projection =
-    if (projections == null) {
-        null
-    } else {
-        val current by
-            projections
-                .collectAsStateWithLifecycle()
-        current
-    }
-
-val displayState =
-    projection
-        .toVexStreamPlaybackDisplayState(
-            playback = playback,
-        )
-
-return remember(
-    connection,
-    displayState,
-) {
-    CurrentVexStreamPlaybackExperience(
-        displayState = displayState,
-        connection = connection,
-    )
-}</code></pre>
-          <div class="edge returning">RETURNING FROM THE OWNER DESCENT:
-the Experience now visibly contains the same Connection created in S3 plus the current derived display classification. That returned Experience is the value S1 requested.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/VexStreamPlaybackExperience.kt" target="_blank" rel="noopener">VexStreamPlaybackExperience.kt</a></div>
-        </article>
-
-        <article class="step">
-          <div class="step-head"><span class="step-no">S5</span><div><h3>Pass that same Experience into the visible player control</h3><div class="question">Where does VexStreamLibrarySurface actually consume the Experience it requested in S1?</div></div></div>
-          <dl class="scope"><div><dt>Container</dt><dd>VexStreamLibrarySurface</dd></div><div><dt>Presentation condition</dt><dd>displayState is Transitioning or Active</dd></div><div><dt>Consumer</dt><dd>VexStreamMiniPlayer(playbackExperience = requireNotNull(playbackExperience))</dd></div><div><dt>Next edge</dt><dd>human TogglePlayback → playbackExperience.activate(PlayPause)</dd></div></dl>
-          <pre class="code"><code>is VexStreamPlaybackDisplayState.Active -&gt; {
-    VexStreamMiniPlayer(
-        controller = controller,
-        playbackExperience =
-            requireNotNull(
-                playbackExperience,
-            ),
-        runtime = runtime,
-    )
-}</code></pre>
-          <div class="edge returning">USING THE SAME Experience returned in S4:
-the parent passes it directly into the mini player rather than recreating connection/behavior/presentation state inside the UI control.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/vexstream/VexStreamLibrarySurface.kt" target="_blank" rel="noopener">VexStreamLibrarySurface.kt</a></div>
-        </article>
-
-        <article class="step">
-          <div class="step-head"><span class="step-no">S6</span><div><h3>Let the human control call the Experience</h3><div class="question">The person presses Play/Pause. Which exact object receives the Control?</div></div></div>
-          <dl class="scope"><div><dt>Container</dt><dd>VexStreamMiniPlayer</dd></div><div><dt>UI member</dt><dd>VexStreamMusicScreen.TogglePlayback</dd></div><div><dt>Object reference</dt><dd>the playbackExperience passed from S5</dd></div><div><dt>Next edge</dt><dd>playbackExperience.activate(VexStreamPlaybackControl.PlayPause)</dd></div></dl>
-          <pre class="code"><code>VexIconButton(
-    element =
-        VexStreamMusicScreen.TogglePlayback,
-    handler = handler,
-    enabled = playPause.enabled,
-    iconOverride = playPause.icon,
-)
-
-// handler branch
-VexStreamMusicScreen.TogglePlayback -&gt;
-    playbackExperience.activate(
-        VexStreamPlaybackControl.PlayPause,
-    )</code></pre>
-          <div class="edge">The Control enters the same CurrentVexStreamPlaybackExperience formed in S4. Its activate(control) method forwards to the same connection stored inside that Experience.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/vexstream/VexStreamPlayerPresentation.kt" target="_blank" rel="noopener">VexStreamPlayerPresentation.kt</a> · blob c2dca6366eb8437640d2aa96baa653e0184c17d4</div>
-        </article>
-
-        <article class="step">
-          <div class="step-head"><span class="step-no">S7</span><div><h3>Interpret the Control and realize it against Media3</h3><div class="question">How does PlayPause become semantic Act/Effect before physical Player state is commanded?</div></div></div>
-          <dl class="scope"><div><dt>Container</dt><dd>Media3VexStreamPlaybackConnection</dd></div><div><dt>Members</dt><dd>controller + behavior + controls + pending + projections + Player.Listener</dd></div><div><dt>Semantic edge</dt><dd>controls.resolve(current, control) → behavior.resolve(current, act) → effect</dd></div><div><dt>Physical edge</dt><dd>realize(effect) → MediaController</dd></div></dl>
-          <pre class="code"><code>override fun activate(
-    control: VexStreamPlaybackControl,
-) {
-    val current =
-        currentSemanticState(
-            controller,
-        )
-
-    val act =
-        controls.resolve(
-            current = current,
-            control = control,
-        )?.act ?: return
-
-    val relationship =
-        behavior.resolve(
-            current = current,
-            act = act,
-        ) ?: return
-
-    val effect = relationship.effect
-
-    pending =
-        pending.after(
-            effect,
-        )
-
-    publish(
-        current.afterIntent(
-            effect,
+accepted.launch(
+    executionRoot = executionRoot,
+    method =
+        VexStreamPlaybackFamily.Act.Method(
+            connection = connection,
+            effect = begin.effect,
         ),
-    )
-
-    realize(
-        effect,
-    )
-
-    publishObserved(
-        controller,
-    )
-}</code></pre>
-          <div class="edge">Behavior answers what PlayPause means in current semantic state. Connection owns realization against Media3 and the pending/observed reconciliation needed because requested intent and physical Player reality are not identical facts.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/Media3VexStreamPlaybackConnection.kt" target="_blank" rel="noopener">Media3VexStreamPlaybackConnection.kt</a> · blob bc7f9fc00d05316965fa87dbce18108f2b52f066 · <a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/VexStreamPlaybackBehavior.kt" target="_blank" rel="noopener">VexStreamPlaybackBehavior.kt</a> · blob 08b6d8cc73b30d77003dbca17886678e51e7eb3a</div>
+    ...
+)</code></pre>
+          <div class="edge">Family authors the semantic relationship and overlap meaning. The Method binds that exact accepted Effect to the Player Partner request connection; VexExecution supplies active Job custody rather than reconstructing meaning.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/VexStreamPlaybackFamily.kt" target="_blank" rel="noopener">current · VexStreamPlaybackFamily.kt</a></div>
         </article>
 
         <article class="step">
-          <div class="step-head"><span class="step-no">S8</span><div><h3>Let Media3 own physical reality, then return projection to the same UI</h3><div class="question">Where does physical play/pause happen, and how does asynchronous Player truth make its way back to the original control?</div></div></div>
-          <dl class="scope"><div><dt>Physical owner</dt><dd>MediaController / Player</dd></div><div><dt>Observation member</dt><dd>Player.Listener.onEvents → publishObserved</dd></div><div><dt>Return path</dt><dd>currentSemanticState → controls.projection → connection.projections</dd></div><div><dt>Presentation consumer</dt><dd>PlaybackExperience displayState → projection.present(PlayPause) → VexIconButton</dd></div></dl>
-          <pre class="code"><code>private fun realize(
-    effect: VexStreamPlaybackEffect,
-) {
-    when (effect) {
-        RequestPlay -&gt;
-            controller.play()
-
-        RequestPause -&gt;
-            controller.pause()
-
-        RestartCurrent -&gt; {
-            controller.seekToDefaultPosition()
-            controller.play()
-        }
-    }
+          <div class="step-head"><span class="step-no">S3</span><div><h3>Cross the outbound Player Partner boundary</h3><div class="question">What does the bound Method ask from the independently-owned Player relationship?</div></div></div>
+          <dl class="scope"><div><dt>Partner</dt><dd>VexStreamPlayerPartner</dd></div><div><dt>Connection role</dt><dd>Connection.Request</dd></div><div><dt>Request result</dt><dd>Boolean dispatch acknowledgement</dd></div><div><dt>Permanent distinction</dt><dd>request acknowledgement != later Player truth</dd></div></dl>
+          <pre class="code"><code>when (effect) {
+    RequestPlay    -&gt; connection.play()
+    RequestPause   -&gt; connection.pause()
+    RestartCurrent -&gt; connection.restartCurrent()
 }
 
-override fun onEvents(
-    player: Player,
-    events: Player.Events,
-) {
-    publishObserved(
-        player,
+dispatched
+-&gt; VexMethod.Result.Success(Unit)
+   or Failure(Unit)</code></pre>
+          <div class="edge">A successful request says the request was dispatched through this Connection. It does not manufacture Playback State or claim that the Player has already reached the requested physical condition.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/player/VexStreamPlayerPartner.kt" target="_blank" rel="noopener">current · VexStreamPlayerPartner.kt</a> · <a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/VexStreamPlaybackFamily.kt" target="_blank" rel="noopener">bound Playback Method</a></div>
+        </article>
+
+        <article class="step">
+          <div class="step-head"><span class="step-no">S4</span><div><h3>Let later Player truth return through Partner and Store</h3><div class="question">When Media3 reality changes later, how does that become current semantic Playback truth?</div></div></div>
+          <dl class="scope"><div><dt>Provider observation</dt><dd>Media3PlayerConnection</dd></div><div><dt>External vocabulary</dt><dd>VexStreamPlayerPartner.Signal.Playback</dd></div><div><dt>Retained truth</dt><dd>VexStreamPlayerStore</dd></div><div><dt>Semantic observation</dt><dd>observeVexStreamPlaybackPlayerStore(...)</dd></div></dl>
+          <pre class="code"><code>Player
+-&gt; VexStreamPlayerPartner.Signal.Playback
+-&gt; VexStreamPlayerObservationReceiver
+-&gt; VexStreamPlayerStore
+
+VexExecution.observe(
+    owner = family,
+    source = store::playbackSignals,
+) { playback -&gt;
+    family.observePlayer(playback)
+}</code></pre>
+          <div class="edge returning">REQUEST AND OBSERVATION STAY DIFFERENT:
+the outbound Method result does not become State. Later independently-owned Player truth enters as Partner Signal, is retained by Store, and is interpreted by the same Playback Family.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/player/Media3PlayerConnection.kt" target="_blank" rel="noopener">current · Media3PlayerConnection.kt</a> · <a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/player/VexStreamPlayerStore.kt" target="_blank" rel="noopener">VexStreamPlayerStore.kt</a> · <a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/VexStreamPlaybackFamily.kt" target="_blank" rel="noopener">Store → Family observation</a></div>
+        </article>
+
+        <article class="step">
+          <div class="step-head"><span class="step-no">S5</span><div><h3>Keep MediaSession realization alive without moving truth into Service</h3><div class="question">What does VexStreamPlaybackService own after the initiating UI disappears?</div></div></div>
+          <dl class="scope"><div><dt>Android host</dt><dd>VexStreamPlaybackService : MediaSessionService</dd></div><div><dt>Realization</dt><dd>MediaSession + ExoPlayer + Media3PlayerConnection</dd></div><div><dt>Outside truth</dt><dd>process VexStreamPlayerStore</dd></div><div><dt>Service-local custody</dt><dd>Widget publication execution</dd></div></dl>
+          <pre class="code"><code>val playerStore =
+    vexApplication.dependencies.resolve(
+        vexApplication.dependencyModule.playerStore,
     )
-}
 
-// projection is collected by
-// rememberVexStreamPlaybackExperience(),
-// then VexStreamMiniPlayer renders:
-// projection.present(PlayPause)
-// → enabled + icon</code></pre>
-          <div class="edge returning">THE ROUND TRIP CLOSES:
-the same Connection created in S3 receives observed Player reality, publishes projection, and the same Experience/UI path from S4–S6 renders the resulting Play/Pause presentation.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/Media3VexStreamPlaybackConnection.kt" target="_blank" rel="noopener">Media3VexStreamPlaybackConnection.kt</a> · <a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/vexstream/playback/VexStreamPlaybackExperience.kt" target="_blank" rel="noopener">VexStreamPlaybackExperience.kt</a> · <a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/vexstream/VexStreamPlayerPresentation.kt" target="_blank" rel="noopener">VexStreamPlayerPresentation.kt</a></div>
+playerConnection =
+    Media3PlayerConnection(
+        player = player,
+        receiver =
+            VexStreamPlayerObservationReceiver(
+                playerStore,
+            ),
+        executionRoot = processExecutionRoot,
+    )
+
+widgetUpdateExecution =
+    VexStreamPlaybackWidgetUpdateExecution(
+        root = widgetExecutionRoot,
+        observations = playerStore.states,
+        ...
+    )</code></pre>
+          <div class="edge">The Service hosts concrete Android/provider realization. It does not own Playback Family State, a ServiceCurrent bus, or a generic VexService current property.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/media/vexstream/VexStreamPlaybackService.kt" target="_blank" rel="noopener">current · VexStreamPlaybackService.kt</a></div>
+        </article>
+
+        <article class="step">
+          <div class="step-head"><span class="step-no">S6</span><div><h3>Return Widget interaction through the same product owners</h3><div class="question">Does a home-screen callback create a second Playback runtime?</div></div></div>
+          <dl class="scope"><div><dt>Surface truth</dt><dd>VexStreamPlayerStore.Snapshot → Widget SurfaceState</dd></div><div><dt>Action identity</dt><dd>VexWidgetActionRef</dd></div><div><dt>Playback action</dt><dd>activateVexStreamPlayback(...)</dd></div><div><dt>Ownership</dt><dd>Widget remains remote presentation/action custody</dd></div></dl>
+          <pre class="code"><code>val playerStore =
+    vexApplication.dependencies.resolve(...playerStore)
+
+val family =
+    vexApplication.dependencies.resolve(...playbackFamily)
+
+withVexStreamPlayerRequestConnection(context) {
+    connection -&gt;
+    activateVexStreamPlayback(
+        family = family,
+        control = command.control,
+        connection = connection,
+        playerStore = playerStore,
+        executionRoot = root,
+    )
+}</code></pre>
+          <div class="edge">Widget and foreground UI enter the same semantic/Partner realization boundary. The Widget persists only its bounded SurfaceState; it does not become product State or the long-running work owner.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/widget/vexstream/VexStreamPlaybackWidget.kt" target="_blank" rel="noopener">current · VexStreamPlaybackWidget.kt</a> · <a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/architecture/widget/README.md" target="_blank" rel="noopener">Widget foundation</a></div>
+        </article>
+
+        <article class="step">
+          <div class="step-head"><span class="step-no">S7</span><div><h3>Keep the repeated Service question without manufacturing a root</h3><div class="question">PlaybackService and NavigationService both outlive a shorter UI/caller. What common architecture is actually earned?</div></div></div>
+          <dl class="scope"><div><dt>Playback witness</dt><dd>MediaSession / Player Partner / Widget publication</dd></div><div><dt>Navigation witness</dt><dd>NavigationSession / foreground location / notification / speech</dd></div><div><dt>Repeated question</dt><dd>sustained platform realization</dd></div><div><dt>Negative result</dt><dd>no generic VexService root / universal current / typed ServiceScope</dd></div></dl>
+          <pre class="code"><code>PlaybackService
+    concrete MediaSession realization
+
+NavigationService
+    concrete foreground Navigation realization
+
+SAME REPEATED QUESTION
+!= SAME LIFECYCLE ALGORITHM
+!= generic VexService root
+!= universal Service.current
+!= mandatory VexExecution
+!= typed ServiceScope architecture law</code></pre>
+          <div class="edge">The reusable result is guidance about ownership: keep semantic/provider/session truth with its existing owner and let the concrete Android Service host only the sustained realization it actually needs. The original VexService intention remains valid pressure for a perceivable rooted relationship; only the earlier universal Service↔Current type is held until materially different Services prove one repeated executable lifecycle law.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/media/vexstream/VexStreamPlaybackService.kt" target="_blank" rel="noopener">PlaybackService</a> · <a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/VexMapsNavigationService.kt" target="_blank" rel="noopener">NavigationService</a></div>
         </article>
       </div>
     </div>
   </section>
 
   <section class="walk" id="vexmaps">
-    <div class="chunk-label" data-i18n="pages.vexarchitecture-live-demonstration.maps.chunk">Copy/paste chunk C · current-source walk</div>
-    <div class="kicker" data-i18n="pages.vexarchitecture-live-demonstration.maps.kicker">VexMaps Distribution · current-source exemplar</div>
+    <div class="chunk-label" data-i18n="pages.vexarchitecture-live-demonstration.maps.chunk">Copy/paste chunk C · Relay relationship walk</div>
+    <div class="kicker" data-i18n="pages.vexarchitecture-live-demonstration.maps.kicker">VexMaps Distribution · relationship witness</div>
     <h2 data-i18n="pages.vexarchitecture-live-demonstration.maps.heading">Watch process-local construction, one local semantic owner, then relationship truth without collapsing ownership</h2>
-    <p class="lede" data-i18n="pages.vexarchitecture-live-demonstration.maps.lede">Maps is useful here because current code exposes both lifetime and relationship pressure. VexMapsMapSurface asks a process-local allocator for the lived Distribution session, wraps it in a UI boundary, then Mode and Delivery Route remain independent owners while a Relay observes their projections and may request Mode’s public Control.</p>
+    <p class="lede" data-i18n="pages.vexarchitecture-live-demonstration.maps.lede">Maps makes both lifetime and relationship pressure visible. VexMapsMapSurface asks a process-local allocator for the lived Distribution session, wraps it in a UI boundary, then Mode and Delivery Route remain independent owners while a Relay observes their projections and may request Mode’s public Control.</p>
 
     <div class="walk-grid">
       <aside class="map">
@@ -1317,7 +1216,7 @@ internal fun VexMapsMapSurface(
     ...
 }</code></pre>
           <div class="edge">The Maps surface has asked a named process owner for a session. The next step enters that owner rather than treating .session(...) as a magic factory call.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/VexMapsMapSurface.kt" target="_blank" rel="noopener">VexMapsMapSurface.kt</a> · blob c327ca8a42adeae7f150709a85f046aa43911392</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/VexMapsMapSurface.kt" target="_blank" rel="noopener">VexMapsMapSurface.kt</a> · blob c327ca8a42adeae7f150709a85f046aa43911392</div>
         </article>
 
         <article class="step">
@@ -1373,7 +1272,7 @@ internal fun VexMapsMapSurface(
         )
 }</code></pre>
           <div class="edge">The returned Distribution session has a visible lifetime owner and visible prerequisites: repository, routing, navigation, ExecutionRoot, and Relay scope. Process allocation remains a lifetime concern; the session still owns its own active relationship semantics.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/session/VexMapsDistributionProcess.kt" target="_blank" rel="noopener">VexMapsDistributionProcess.kt</a></div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/session/VexMapsDistributionProcess.kt" target="_blank" rel="noopener">VexMapsDistributionProcess.kt</a></div>
         </article>
 
         <article class="step">
@@ -1403,7 +1302,7 @@ val distributionDockPage =
     )</code></pre>
           <div class="edge returning">RETURNING FROM PROCESS ALLOCATION:
 the exact session returned by M2 is wrapped once in VexMapsDistributionUi. The human-facing Context Dock callback invokes that UI boundary after separately recording the runtime interaction.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/VexMapsMapSurface.kt" target="_blank" rel="noopener">VexMapsMapSurface.kt</a></div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/VexMapsMapSurface.kt" target="_blank" rel="noopener">VexMapsMapSurface.kt</a></div>
         </article>
 
         <article class="step">
@@ -1422,7 +1321,7 @@ the exact session returned by M2 is wrapped once in VexMapsDistributionUi. The h
 }</code></pre>
           <div class="edge returning">SAME SESSION:
 VexMapsDistributionUi is a narrow presentation boundary over the process-owned lived session. toggleMode() forwards to that same session; it does not create or own a second Mode truth.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/VexMapsDistributionUi.kt" target="_blank" rel="noopener">VexMapsDistributionUi.kt</a> · blob e7b0d958fd3427dc44dc451ee18e05e5c198c767</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/VexMapsDistributionUi.kt" target="_blank" rel="noopener">VexMapsDistributionUi.kt</a> · blob e7b0d958fd3427dc44dc451ee18e05e5c198c767</div>
         </article>
 
         <article class="step">
@@ -1459,7 +1358,7 @@ VexMapsDistributionUi is a narrow presentation boundary over the process-owned l
     ...
 }</code></pre>
           <div class="edge">Mode and DeliveryRoute are separate owners whose projections are also supplied to a relationship owner. The process allocator in M2 chose lifetime; it did not collapse these semantic owners into one state machine.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/session/VexMapsDistributionSession.kt" target="_blank" rel="noopener">VexMapsDistributionSession.kt</a> · blob 0ccf546b276935aeb827e7963b06200cc729a39d</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/session/VexMapsDistributionSession.kt" target="_blank" rel="noopener">VexMapsDistributionSession.kt</a> · blob 0ccf546b276935aeb827e7963b06200cc729a39d</div>
         </article>
 
         <article class="step">
@@ -1507,7 +1406,7 @@ override fun activate(
         )
 }</code></pre>
           <div class="edge">Mode answers its own Control through its own Behavior/Connection. This is the same public doorway that the convergence relationship will request in M8 rather than bypassing.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/mode/VexMapsDistributionModeConnection.kt" target="_blank" rel="noopener">VexMapsDistributionModeConnection.kt</a> · blob 4ecc9c95fa73d2ae51a6bf7d1ff54ec4ed1e4d29</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/mode/VexMapsDistributionModeConnection.kt" target="_blank" rel="noopener">VexMapsDistributionModeConnection.kt</a> · blob 4ecc9c95fa73d2ae51a6bf7d1ff54ec4ed1e4d29</div>
         </article>
 
         <article class="step">
@@ -1539,7 +1438,7 @@ VexMapsDistributionModeDeliveryRouteConvergenceRelay(
 val requestedModeControl:
     VexMapsDistributionModeControl? = null</code></pre>
           <div class="edge">The Relay owns the relationship question, not Mode or DeliveryRoute. Its repair request is expressed as Mode's public Control rather than a foreign Effect or direct state mutation.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/convergence/VexMapsDistributionModeDeliveryRouteConvergenceRelay.kt" target="_blank" rel="noopener">VexMapsDistributionModeDeliveryRouteConvergenceRelay.kt</a> · blob 1333d2d88d6541c3e10a914f8962390d42f69255</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/convergence/VexMapsDistributionModeDeliveryRouteConvergenceRelay.kt" target="_blank" rel="noopener">VexMapsDistributionModeDeliveryRouteConvergenceRelay.kt</a> · blob 1333d2d88d6541c3e10a914f8962390d42f69255</div>
         </article>
 
         <article class="step">
@@ -1574,26 +1473,293 @@ private fun acceptModeDeliveryRouteOutput(
 }</code></pre>
           <div class="edge returning">THE RELATIONSHIP WALK CLOSES:
 Relay identifies incoherence and requests Mode's Control. Mode's own Connection still resolves the Control, Act, Effect, admitted State, and projection using the same doorway shown in M6.</div>
-          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/305a09eac1fabebcf2241bd207386950f41121f2/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/session/VexMapsDistributionSession.kt" target="_blank" rel="noopener">VexMapsDistributionSession.kt · Relay output consumer</a></div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/d857a92371555472e0303b18eadf353da2a868d6/app/src/main/kotlin/com/vextreme/vexlife/android/screens/shared/maps/distribution/session/VexMapsDistributionSession.kt" target="_blank" rel="noopener">VexMapsDistributionSession.kt · Relay output consumer</a></div>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="comparison" id="recognize-the-shape">
-    <div class="kicker" data-i18n="pages.vexarchitecture-live-demonstration.compare.kicker">After walking three systems</div>
+  
+  <section class="walk" id="partner-circuit">
+    <div class="chunk-label" data-i18n="pages.vexarchitecture-live-demonstration.partner.chunk">Copy/paste chunk D · external-participant walk</div>
+    <div class="kicker" data-i18n="pages.vexarchitecture-live-demonstration.partner.kicker">VexPartner · external-participant circuit</div>
+    <h2 data-i18n="pages.vexarchitecture-live-demonstration.partner.heading">Walk outside truth into Family meaning — and Family intention back out — without inventing a mirrored semantic owner</h2>
+    <p class="lede" data-i18n="pages.vexarchitecture-live-demonstration.partner.lede">This walk follows Partner source snapshot 7800c179…. CGM pressures two provider representations, connected pen removes CGM-specific sequence/periodic assumptions, and insulin pump proves the outbound Family → Partner direction. Read Store → Family as the CGM/insulin concrete realization after Receiver, not as a mandatory child of VexPartner. Real Local HTTP/BLE lifecycle is outside what this witness proves.</p>
+
+    <div class="walk-grid">
+      <aside class="map">
+        <h4>Partner circuit map</h4>
+        <pre>REUSABLE PARTNER INBOUND BOUNDARY
+
+EXTERNAL PARTICIPANT
+        │
+        ▼
+provider representation
+        │
+        ▼
+VexPartner
+├─ Source
+├─ Signal
+└─ Connection
+   ├─ Id
+   ├─ Conversion
+   ├─ Observation
+   └─ Receiver
+        │
+        ▼
+consumer-earned admission / reconciliation boundary
+
+
+CGM / INSULIN CONCRETE REALIZATION
+
+Receiver
+        │
+        ▼
+Store / durable admitted truth
+        │
+        ▼
+Family State
+        │
+        ▼
+DisplayState / Projection
+        │
+        ▼
+HUMAN
+
+
+OUTBOUND WHEN A FAMILY EFFECT USES AN EXTERNAL PARTICIPANT
+
+HUMAN / PRODUCT INTENTION
+        │
+        ▼
+Control + CURRENT State
+        │
+        ▼
+Family
+        │
+        ▼
+Act / Begin(Effect)
+        │
+        ▼
+bound Act.Method
+        │
+        ▼
+VexExecution
+        │
+        ▼
+Partner Connection
+        │
+        ▼
+EXTERNAL PARTICIPANT
+        │
+        ▼
+provider acknowledgement may become Method result
+        │
+        ▼
+ACKNOWLEDGEMENT ≠ PHYSICAL OUTCOME
+        │
+later outside evidence
+        │
+        └────→ reusable Partner inbound boundary
+                 └─ current insulin realization: Store → Family</pre>
+      </aside>
+
+      <div class="steps">
+        <article class="step">
+          <div class="step-head"><span class="step-no">P1</span><div><h3>Enter the external-participant root</h3><div class="question">What is shared before any CGM, pen, pump, BLE, HTTP, Room, or UI detail appears?</div></div></div>
+          <dl class="scope"><div><dt>Container</dt><dd>VexPartner&lt;Partner&gt;</dd></div><div><dt>Children</dt><dd>Source + Signal + Connection</dd></div><div><dt>Connection children</dt><dd>Id + Conversion + Observation + Receiver</dd></div><div><dt>Boundary</dt><dd>no State / Control / Effect / Store / Family / Execution ownership; Receiver's downstream boundary is consumer-earned</dd></div></dl>
+          <pre class="code"><code>interface VexPartner&lt;Partner&gt; {
+    interface Source&lt;Partner&gt;
+
+    interface Signal&lt;Partner&gt;
+
+    interface Connection&lt;Partner, PartnerSignal&gt; {
+        val id: Id&lt;Partner&gt;
+
+        fun interface Conversion&lt;Input, Partner, PartnerSignal&gt; {
+            fun convert(input: Input): List&lt;PartnerSignal&gt;
+        }
+
+        interface Observation&lt;Partner, PartnerSignal&gt; {
+            val connectionId: Id&lt;Partner&gt;
+            val signal: PartnerSignal
+            val observedAtEpochMillis: Long
+        }
+
+        fun interface Receiver&lt;Partner, PartnerSignal, PartnerObservation&gt; {
+            suspend fun receive(observation: PartnerObservation)
+        }
+    }
+}</code></pre>
+          <div class="edge">The common root names only the relationship that repeated. It does not import CGM continuity, insulin semantics, persistence, or runtime custody into Partner, and it does not require Store or Family downstream of Receiver. Partner is earned by the independently-owned external-participant question first; implementing the VexPartner contract is the source expression of that earned relationship, not the evidence that creates it. Names, interfaces, and historical placement are never sufficient to admit or reject Partner by themselves.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/7800c17909fd03d1170ec0211a6632172c87d1af/architecture/behavior/src/main/kotlin/com/vextreme/vexlife/android/behavior/VexPartner.kt" target="_blank" rel="noopener">VexPartner.kt</a> · blob d314e3733d8b318eb9c7e5adab02645d7efa149f</div>
+        </article>
+
+        <article class="step">
+          <div class="step-head"><span class="step-no">P2</span><div><h3>Let two provider representations become one Partner vocabulary</h3><div class="question">What changes between BLE-like bytes and an HTTP-like body, and what must stay the same?</div></div></div>
+          <dl class="scope"><div><dt>Container</dt><dd>CgmPartner</dd></div><div><dt>Stable meaning</dt><dd>Source + Glucose / Temperature Signals</dd></div><div><dt>Different realizations</dt><dd>BleDecoder + HttpDecoder</dd></div><div><dt>Law</dt><dd>provider representation ≠ Partner Signal</dd></div></dl>
+          <pre class="code"><code>data class Source(
+    val deviceRef: String,
+    val acquisitionEpoch: String,
+) : VexPartner.Source&lt;CgmPartner&gt;
+
+sealed interface Signal : VexPartner.Signal&lt;CgmPartner&gt; {
+    data class Glucose(...): Signal
+    data class Temperature(...): Signal
+}
+
+class BleDecoder :
+    Connection.Conversion&lt;ByteArray, CgmPartner, Signal&gt;
+
+class HttpDecoder :
+    Connection.Conversion&lt;HttpResponse, CgmPartner, Signal&gt;</code></pre>
+          <div class="edge">BLE-like and HTTP-like inputs differ before Signal. Equivalent source facts become the same CgmPartner Source/Signal meaning; Connection.Id can still preserve which concrete relationship delivered an occurrence.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/7800c17909fd03d1170ec0211a6632172c87d1af/app/src/main/kotlin/com/vextreme/vexlife/android/cgm/CgmPartner.kt" target="_blank" rel="noopener">CgmPartner.kt</a> · blob c2587ccfcdf487baa7cc3ca6fc781ac5c90d40d5</div>
+        </article>
+
+        <article class="step">
+          <div class="step-head"><span class="step-no">P3</span><div><h3>Follow either representation through the same live Connection</h3><div class="question">Once Conversion has produced Partner Signals, where does provider-specific representation stop mattering?</div></div></div>
+          <dl class="scope"><div><dt>Container</dt><dd>CgmPartner.Connection&lt;Input&gt;</dd></div><div><dt>Input</dt><dd>provider-specific</dd></div><div><dt>Shared path</dt><dd>Signal → Observation → Receiver</dd></div><div><dt>Provenance</dt><dd>Connection.Id remains on Observation</dd></div></dl>
+          <pre class="code"><code>suspend fun receive(
+    input: Input,
+    observedAtEpochMillis: Long,
+): List&lt;Observation&gt; =
+    conversion
+        .convert(input)
+        .map { signal -&gt;
+            Observation(
+                connectionId = id,
+                signal = signal,
+                observedAtEpochMillis = observedAtEpochMillis,
+            ).also { observation -&gt;
+                receiver.receive(observation)
+            }
+        }</code></pre>
+          <div class="edge">The concrete provider representation has disappeared, but source meaning and occurrence provenance have not been collapsed into one identity.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/7800c17909fd03d1170ec0211a6632172c87d1af/app/src/main/kotlin/com/vextreme/vexlife/android/cgm/CgmPartner.kt" target="_blank" rel="noopener">CgmPartner.Connection.receive</a> · blob c2587ccfcdf487baa7cc3ca6fc781ac5c90d40d5</div>
+        </article>
+
+        <article class="step">
+          <div class="step-head"><span class="step-no">P4</span><div><h3>See one current consumer cross durable admission before Family interprets meaning</h3><div class="question">In the CGM realization, who says the Observation is durably admitted, and who turns admitted truth into application State?</div></div></div>
+          <dl class="scope"><div><dt>Receiver</dt><dd>suspends through CgmStore.commit</dd></div><div><dt>Store</dt><dd>owns admitted durable observation history</dd></div><div><dt>Family</dt><dd>observes Store truth and forms semantic State</dd></div><div><dt>Projection</dt><dd>classifies that same State outward</dd></div></dl>
+          <pre class="code"><code>class Receiver(
+    private val store: CgmStore,
+) {
+    override suspend fun receive(
+        observation: Observation,
+    ) {
+        store.commit(observation)
+    }
+}
+
+// separately
+VexExecution.observe(
+    owner = family,
+    source = store::snapshots,
+) { snapshot -&gt;
+    family.observeStore(snapshot)
+}</code></pre>
+          <div class="edge">Here, Receiver, Store, Family, and Execution answer different questions. A received Signal does not silently become Family State before durable admission and rightful interpretation. This Store → Family path is the CGM consumer's earned boundary, not a generic child chain required by VexPartner.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/7800c17909fd03d1170ec0211a6632172c87d1af/app/src/main/kotlin/com/vextreme/vexlife/android/cgm/CgmStore.kt" target="_blank" rel="noopener">CgmStore.kt</a> · blob 5bd6ca59651a6680d9f6fb14fb9814d88d629f63 · <a href="https://github.com/vgong24/VexLife-Android/blob/7800c17909fd03d1170ec0211a6632172c87d1af/app/src/main/kotlin/com/vextreme/vexlife/android/cgm/CgmFamily.kt" target="_blank" rel="noopener">CgmFamily.kt</a> · <a href="https://github.com/vgong24/VexLife-Android/blob/7800c17909fd03d1170ec0211a6632172c87d1af/app/src/main/kotlin/com/vextreme/vexlife/android/cgm/CgmPartnerLab.kt" target="_blank" rel="noopener">CgmPartnerLab.kt wiring</a> · blob 5fc555a4f7b1ba5acef51f90acdb7326ff83e39b</div>
+        </article>
+
+        <article class="step">
+          <div class="step-head"><span class="step-no">P5</span><div><h3>Restart without manufacturing another external occurrence</h3><div class="question">When Room reconstructs historical truth, why is that not another Partner receipt?</div></div></div>
+          <dl class="scope"><div><dt>Physical owner</dt><dd>RoomCgmStore / cgm_partner_observation</dd></div><div><dt>Restore</dt><dd>row → historical Observation / Signal value</dd></div><div><dt>Not invoked</dt><dd>Conversion + Receiver</dd></div><div><dt>Law</dt><dd>process restart ≠ new Source history</dd></div></dl>
+          <pre class="code"><code>dao.observeAll()
+    .map(::snapshotOf)
+
+private fun snapshotOf(
+    entities: List&lt;CgmObservationEntity&gt;,
+): CgmStore.Snapshot =
+    CgmStore.Snapshot(
+        observations =
+            entities.map(
+                CgmObservationEntity::toObservation,
+            ),
+    )</code></pre>
+          <div class="edge">Persistence reconstructs already-admitted truth. The restart instrumentation pressures new process-local objects while preserving historical meaning and continuing the durable source sequence.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/7800c17909fd03d1170ec0211a6632172c87d1af/app/src/main/kotlin/com/vextreme/vexlife/android/data/cgm/RoomCgmStore.kt" target="_blank" rel="noopener">RoomCgmStore.kt</a> · blob f2740d6917a542a1dd0af4425091f361e9483640 · <a href="https://github.com/vgong24/VexLife-Android/blob/7800c17909fd03d1170ec0211a6632172c87d1af/app/src/androidTest/kotlin/com/vextreme/vexlife/android/data/cgm/CgmRoomStoreRestartInstrumentedTest.kt" target="_blank" rel="noopener">restart witness</a> · blob a20f3dfe48c61bcc55a45e76faff8a4f69a608f5</div>
+        </article>
+
+        <article class="step">
+          <div class="step-head"><span class="step-no">P6</span><div><h3>Falsify CGM-specific assumptions with a sparse Partner</h3><div class="question">Does reusing Partner force every source into CGM sequence/gap semantics?</div></div></div>
+          <dl class="scope"><div><dt>Container</dt><dd>ConnectedPenPartner</dd></div><div><dt>Signals</dt><dd>DoseRecorded + CartridgeObserved</dd></div><div><dt>Reused</dt><dd>Source / Connection / Conversion / Observation / Receiver</dd></div><div><dt>Not imported</dt><dd>no imported CGM contiguous-gap semantics</dd></div></dl>
+          <pre class="code"><code>data class Source(
+    val penRef: String,
+    val cartridgeRef: String,
+)
+
+sealed interface Signal {
+    data class DoseRecorded(...): Signal
+    data class CartridgeObserved(...): Signal
+}</code></pre>
+          <div class="edge">The repeated relationship survives while domain meaning changes. That is evidence of scale: the common grammar does not require the pen to pretend it is a periodic glucose stream.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/7800c17909fd03d1170ec0211a6632172c87d1af/app/src/main/kotlin/com/vextreme/vexlife/android/insulin/ConnectedPenPartner.kt" target="_blank" rel="noopener">ConnectedPenPartner.kt</a> · blob b7e2ba0daf5aa7d6bc2e0e7ce4ee45990d5889d6</div>
+        </article>
+
+        <article class="step">
+          <div class="step-head"><span class="step-no">P7</span><div><h3>Follow product intention outward when a Family Effect earns Partner participation</h3><div class="question">When the product requests pump delivery, who authors meaning and who merely participates in realization?</div></div></div>
+          <dl class="scope"><div><dt>Semantic owner</dt><dd>InsulinFamily</dd></div><div><dt>Path</dt><dd>Parameter → Control → Act → Begin(Queued · Effect)</dd></div><div><dt>Realization</dt><dd>Act.Method → VexExecution → InsulinPumpPartner.Connection</dd></div><div><dt>Boundary</dt><dd>provider acknowledgement ≠ physical delivery</dd></div></dl>
+          <pre class="code"><code>Control.RequestPumpDelivery(amount)
+        ↓
+Effect.RequestPumpDelivery(amount)
+        ↓
+beginQueued(...)
+        ↓
+Act.Method.RequestPumpDelivery(
+    connection = pumpConnection,
+    parameter = amount,
+)
+        ↓
+VexExecution
+        ↓
+connection.requestDelivery(...)</code></pre>
+          <div class="edge">Family still authors semantic/product consequence. Partner does not acquire State/Control/Effect merely because the relationship can point outward.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/7800c17909fd03d1170ec0211a6632172c87d1af/app/src/main/kotlin/com/vextreme/vexlife/android/insulin/InsulinFamily.kt" target="_blank" rel="noopener">InsulinFamily.kt</a> · blob d2e8168197d907da0d559988b9e6921303da1df5 · <a href="https://github.com/vgong24/VexLife-Android/blob/7800c17909fd03d1170ec0211a6632172c87d1af/app/src/main/kotlin/com/vextreme/vexlife/android/insulin/InsulinPumpPartner.kt" target="_blank" rel="noopener">InsulinPumpPartner.kt</a> · blob bc98d492783fd05304aa547690741314786aee30 · <a href="https://github.com/vgong24/VexLife-Android/blob/7800c17909fd03d1170ec0211a6632172c87d1af/app/src/main/kotlin/com/vextreme/vexlife/android/insulin/InsulinPartnerLab.kt" target="_blank" rel="noopener">InsulinPartnerLab.kt wiring</a> · blob 0c6be8d8cfd4410d5314d7c1c0618890394da14d</div>
+        </article>
+
+        <article class="step">
+          <div class="step-head"><span class="step-no">P8</span><div><h3>Let later outside evidence close this concrete round trip through the same inbound grammar</h3><div class="question">What makes an acknowledged request become durable application truth?</div></div></div>
+          <dl class="scope"><div><dt>Not enough</dt><dd>Effect requested / provider acknowledged</dd></div><div><dt>External evidence</dt><dd>InsulinPumpPartner.Signal.DeliveryObserved</dd></div><div><dt>Return path</dt><dd>Connection → Observation → Receiver → InsulinStore → InsulinFamily</dd></div><div><dt>Result</dt><dd>one complete current Family ↔ Partner realization</dd></div></dl>
+          <pre class="code"><code>EFFECT_REQUESTED
+!= PARTNER_ACKNOWLEDGED
+!= PHYSICAL_OUTCOME
+!= DURABLE_DOMAIN_TRUTH
+
+later DeliveryObserved
+        ↓
+Pump Connection
+        ↓
+Observation / Receiver
+        ↓
+InsulinStore
+        ↓
+InsulinFamily.observeStore(...)
+        ↓
+Projection</code></pre>
+          <div class="edge returning">THE CURRENT INSULIN CIRCUIT CLOSES:
+human intention leaves through Family-authored meaning and Partner realization; independently-owned outside truth returns through the reusable Partner observation boundary, then this consumer's Store admission before Family interprets it.</div>
+          <div class="source"><a href="https://github.com/vgong24/VexLife-Android/blob/7800c17909fd03d1170ec0211a6632172c87d1af/app/src/main/kotlin/com/vextreme/vexlife/android/insulin/InsulinPumpPartner.kt" target="_blank" rel="noopener">InsulinPumpPartner.kt</a> · <a href="https://github.com/vgong24/VexLife-Android/blob/7800c17909fd03d1170ec0211a6632172c87d1af/app/src/main/kotlin/com/vextreme/vexlife/android/insulin/InsulinFamily.kt" target="_blank" rel="noopener">InsulinFamily.kt</a> · <a href="https://github.com/vgong24/VexLife-Android/blob/7800c17909fd03d1170ec0211a6632172c87d1af/app/src/main/kotlin/com/vextreme/vexlife/android/insulin/InsulinPartnerLab.kt" target="_blank" rel="noopener">InsulinPartnerLab.kt round-trip wiring</a> · blob 0c6be8d8cfd4410d5314d7c1c0618890394da14d</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+<section class="comparison" id="recognize-the-shape">
+    <div class="kicker" data-i18n="pages.vexarchitecture-live-demonstration.compare.kicker">After walking four systems</div>
     <h2 data-i18n="pages.vexarchitecture-live-demonstration.compare.heading">The implementations differ. The questions become recognizable.</h2>
-    <p class="lede" data-i18n="pages.vexarchitecture-live-demonstration.compare.lede">ThemeMode, VexStream, and Maps should not be collapsed into one class template. What transfers is the ability to locate human intention, semantic ownership, outside truth, active custody, relationship truth, and the presentation that returns to the human.</p>
+    <p class="lede" data-i18n="pages.vexarchitecture-live-demonstration.compare.lede">ThemeMode, VexStream, Maps, and Partner should not be collapsed into one class template. What transfers is the ability to locate human intention, semantic ownership, external participation, outside truth, active custody, relationship truth, durability, and the presentation that returns to the human.</p>
     <div class="comparison-card">
       <table>
-        <thead><tr><th>Question made visible by the walk</th><th>ThemeMode</th><th>VexStream Playback</th><th>VexMaps Distribution</th></tr></thead>
+        <thead><tr><th>Question made visible by the walk</th><th>ThemeMode</th><th>VexStream Playback</th><th>VexMaps Distribution</th><th>VexPartner circuit</th></tr></thead>
         <tbody>
-          <tr><td>Where does human intention enter?</td><td>DebugMenu DarkMode action → Control.Select</td><td>Play/Pause UI → PlaybackExperience.activate</td><td>Distribution UI → Session.toggleMode</td></tr>
-          <tr><td>Where is semantic meaning decided?</td><td>ThemeModeFamily</td><td>Playback Behavior</td><td>Mode / DeliveryRoute owners</td></tr>
-          <tr><td>Who owns outside/physical truth?</td><td>ThemeModeStore</td><td>Media3 Player/Controller</td><td>repository / routing / navigation providers</td></tr>
-          <tr><td>How does truth return?</td><td>Method Result interpretation + independent Store observation → same Family</td><td>Player.Listener → reconciliation → projection</td><td>owner projections → Session/UI; Relay observes relationship</td></tr>
-          <tr><td>What special relationship appears?</td><td>Latest Save + ThemeMode-local currentness fence</td><td>pending intent vs asynchronous Player observation</td><td>Relay coherence across independent Mode + DeliveryRoute truth</td></tr>
-          <tr><td>What reaches the human?</td><td>VexThemePresentation</td><td>Playback DisplayState / control presentation</td><td>Distribution UI projections</td></tr>
+          <tr><td>Where does human intention enter?</td><td>DebugMenu DarkMode action → Control.Select</td><td>Play/Pause UI → PlaybackExperience.activate</td><td>Distribution UI → Session.toggleMode</td><td>Outbound through a Family Control; inbound begins at independently-owned external truth</td></tr>
+          <tr><td>Where is semantic meaning decided?</td><td>ThemeModeFamily</td><td>VexStreamPlaybackFamily</td><td>Mode / DeliveryRoute owners</td><td>Family owns product meaning; Partner owns external vocabulary</td></tr>
+          <tr><td>Who owns outside/physical truth?</td><td>ThemeModeStore</td><td>Media3 Player through Player Partner + VexStreamPlayerStore</td><td>repository / routing / navigation providers</td><td>external participant + Partner Source/Signal; current CGM/insulin consumers admit through Store</td></tr>
+          <tr><td>How does truth return?</td><td>Method Result interpretation + independent Store observation → same Family</td><td>Player Signal → VexStreamPlayerStore → store::playbackSignals → Family.observePlayer(...) → projection</td><td>owner projections → Session/UI; Relay observes relationship</td><td>Conversion → Signal → Observation → Receiver → consumer-earned boundary; Store → Family in current examples</td></tr>
+          <tr><td>What special relationship appears?</td><td>Latest Save + ThemeMode-local currentness fence</td><td>accepted intent vs later Player truth; request acknowledgement ≠ Store observation; Service lifetime stays separate</td><td>Relay coherence across independent Mode + DeliveryRoute truth</td><td>Source ≠ Connection.Id ≠ runtime RelationshipId; provider representation ≠ Signal</td></tr>
+          <tr><td>What reaches the human?</td><td>VexThemePresentation</td><td>Playback DisplayState / control presentation</td><td>Distribution UI projections</td><td>Family Projection / DisplayState after durable/rightful interpretation</td></tr>
         </tbody>
       </table>
     </div>
@@ -1605,7 +1771,7 @@ Relay identifies incoherence and requests Mode's Control. Mode's own Connection 
 
   <footer class="closing">
     <blockquote data-i18n="pages.vexarchitecture-live-demonstration.closing.quote">The architecture becomes easier to recognize when nothing important has to teleport between code snippets.</blockquote>
-    <p data-i18n="pages.vexarchitecture-live-demonstration.closing.body">When you enter unfamiliar code, keep asking the next concrete navigation question: what container am I in, what member am I touching, who supplied it, what kind of thing is it here, and where does this exact value or object go next? The Builder Field Guide explains the wisdom behind those relationships; this page exists so you can see them live.</p>
+    <p data-i18n="pages.vexarchitecture-live-demonstration.closing.body">When you enter unfamiliar code, keep asking the next concrete navigation question: what container am I in, what member am I touching, who supplied it, what kind of thing is it here, and where does this exact value or object go next? Follow the value all the way across human intention, Family meaning, execution, external participation, durable truth, and presentation. The Builder Field Guide explains the wisdom behind those relationships; this page exists so you can see them live.</p>
     <p>[VXG RealForever] · Companion witness to VexArchitecture — A Builder Field Guide</p>
   </footer>
 

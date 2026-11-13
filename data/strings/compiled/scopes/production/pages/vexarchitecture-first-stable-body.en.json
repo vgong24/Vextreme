@@ -15,7 +15,7 @@
     "text": "Come inside the codebase. Follow one request from human intention to pixels, and watch the architecture emerge from the questions each layer is actually allowed to answer."
   },
   "pages.vexarchitecture-first-stable-body.hero.status": {
-    "text": "Accepted stability point · public origin guide"
+    "text": "Stable architecture · builder field guide"
   },
   "pages.vexarchitecture-first-stable-body.hero.lede": {
     "text": "VexArchitecture did not begin with a framework diagram. It emerged while a real Android application kept forcing semantic state, asynchronous work, persistence, provider truth, dependency construction, logging, convergence, and presentation to stop impersonating one another."
@@ -24,13 +24,13 @@
     "text": "How to read this guide"
   },
   "pages.vexarchitecture-first-stable-body.map.heading": {
-    "text": "The architecture has one core causal path — and several relationships that sit beside it"
+    "text": "Start with the core causal spine. Partner joins it only when an independently-owned external participant earns that relationship."
   },
   "pages.vexarchitecture-first-stable-body.map.lede": {
-    "text": "Construction/lifetime creates and reuses the live objects in the path. VexLogger observes facts across owners. Relay/convergence appears only when independently-owned truths must become new relationship truth. Forensics explains why the shape was earned. None of those are automatic next runtime stages."
+    "text": "Family owns product/semantic meaning. Execution owns active custody. Outside truth remains independently owned and returns through the boundary that actually owns reconciliation. VexPartner is the reusable grammar for an external participant when that relationship exists; it is not a mandatory stage for every Store or provider. Construction/lifetime, chronology, convergence, and provenance remain orthogonal relationships rather than mandatory runtime stages."
   },
   "pages.vexarchitecture-first-stable-body.map.flow": {
-    "text": "WHY THIS ARCHITECTURE EXISTS\n\npressure / failure\n      ↓\nownership question\n\n\nCORE SEMANTIC + RUNTIME PATH\n\nREQUEST / REALIZATION\n\nControl + exact CURRENT State\n      ↓\nFamily.act(...)\n      ↓\naccepted Act\n├─ admitted State?\n└─ Begin?\n   ├─ Effect\n   └─ overlap Approach\n      ↓\nfully-bound Act.Method\n  specializes VexMethod\n      ↓\nVexExecution custody\n      ↓\nattempt Method.invoke()\n├─ returns lawfully\n│  ├─ may touch Store / provider / platform reality\n│  │  └─ returns the smallest truthful provider/domain fact\n│  └─ VexMethod.Result\n│     ├─ Success(output)\n│     └─ Failure(output)\n└─ escapes with Throwable\n   └─ Family / Execution continuation\n      forms VexMethod.Result.Error(cause)\n      ↓\nrightful Method-result interpretation\n\n\nOUTSIDE / OBSERVATION\n\nStore / provider / platform reality\nchanges independently over time\n      ↓\nrightful observation / reconciliation\n      ↓\nFamily.observe(State)\n\n\nEXPERIENCE / DISPLAY\n\nFamily State\n      ↓\nProjection / DisplayState\n      ↓\nconcrete presentation meaning\n      ↓\nplatform manifestation\n      ↓\npresentation arrival, when actually observed\n      ↓\nhuman experience\n\n\nORTHOGONAL / CONDITIONAL RELATIONSHIPS\n\nConstruction + lifetime\n  → creates and reuses the live objects above\n\nChronology / VexLogger\n  → observes facts as rightful owners know them\n\nRelay / convergence\n  → only when independently-owned truths\n    must become new relationship truth\n\nForensics / PR provenance\n  → explains why this shape was earned\n    without becoming runtime authority"
+    "text": "WHY THIS ARCHITECTURE EXISTS\n\npressure / failure\n      ↓\nownership question\n\n\nCORE CAUSAL SPINE\n\nREQUEST / REALIZATION\n\nControl + exact CURRENT State\n      ↓\nFamily.act(...)\n      ↓\naccepted Act\n├─ admitted State?\n└─ Begin?\n   ├─ Effect\n   └─ overlap Approach\n      ↓\nfully-bound Act.Method\n  specializes VexMethod\n      ↓\nVexExecution custody\n      ↓\nattempt Method.invoke()\n├─ returns lawfully\n│  ├─ may touch Store / provider / platform reality\n│  ├─ when an external participant is involved, may use Partner.Connection\n│  └─ VexMethod.Result\n│     ├─ Success(output)\n│     └─ Failure(output)\n└─ escapes with Throwable\n   └─ Family / Execution continuation\n      forms VexMethod.Result.Error(cause)\n      ↓\nrightful Method-result interpretation\n\n\nOUTSIDE / OBSERVATION\n\nindependently-owned outside truth changes over time\n├─ Store / provider / platform observation\n│  └─ rightful reconciliation\n│\n└─ when VexPartner is earned\n   provider representation\n         ↓\n   Connection.Conversion\n         ↓\n   Partner Signal(s)\n         ↓\n   Observation(Connection.Id + Signal)\n         ↓\n   Receiver\n         ↓\n   consumer-earned admission / reconciliation boundary\n         ↓\nalready-semantic Family State\n      ↓\nFamily.observe(State)\n\n\nEXTERNAL PARTICIPATION / OUTBOUND — WHEN EARNED\n\nFamily-authored bound Method\n      ↓\nVexExecution\n      ↓\nPartner.Connection\n      ↓\nexternal participant\n      ↓\nprovider acknowledgement may become a Method result\n      ↓\nACKNOWLEDGEMENT ≠ PHYSICAL OUTCOME\n\nlater independently-owned truth\n      ↓\nreturns through the earned Partner inbound boundary\n\n\nEXPERIENCE / DISPLAY\n\nFamily State\n      ↓\nProjection / DisplayState\n      ↓\nconcrete presentation meaning\n      ↓\nplatform manifestation\n      ↓\npresentation arrival, when actually observed\n      ↓\nhuman experience\n\n\nORTHOGONAL / CONDITIONAL RELATIONSHIPS\n\nConstruction + lifetime\n  → creates and reuses the live objects above\n\nChronology / VexLogger\n  → observes facts as rightful owners know them\n\nRelay / convergence\n  → only when independently-owned truths\n    must become new relationship truth\n\nForensics / PR provenance\n  → explains why the shape was earned\n    without becoming runtime authority"
   },
   "pages.vexarchitecture-first-stable-body.problem.kicker": {
     "text": "01 · Start with the failure"
@@ -51,7 +51,7 @@
     "text": "A new requirement arrives and nobody can say whether it belongs in the feature state holder, execution wrapper, repository, ViewModel, logger, dependency graph, or UI state. So the requirement gets represented in several places. Every representation is individually reasonable; together they become drift."
   },
   "pages.vexarchitecture-first-stable-body.problem.question": {
-    "text": "The question that changed the architecture: What exact question are we trying to answer, and which existing owner already has enough truth to answer it?"
+    "text": "The question that shapes the architecture: What exact question are we trying to answer, which owner can truthfully answer it without absorbing another responsibility, and what evidence supports or contradicts that ownership?"
   },
   "pages.vexarchitecture-first-stable-body.discovery.kicker": {
     "text": "02 · The discovery"
@@ -69,7 +69,7 @@
     "text": "What does this Control mean against the exact current State?"
   },
   "pages.vexarchitecture-first-stable-body.owner.family.body": {
-    "text": "Family owns State, Control, the lawful Act, optional Effect, and outward Projection/DisplayState. Parameter is optional and earned when a Family-scoped semantic value needs to remain recognizable across relationships; it is not a wrapper for every Kotlin argument. An Act may admit immediate semantic State and may also carry an inert Begin of Effect + overlap Approach. When concrete realization is needed, the Family-scoped Act.Method specializes reusable VexMethod without giving up semantic ownership. act(...) remains pure."
+    "text": "Family owns State, Control, the lawful Act, optional Effect, and outward Projection/DisplayState. Parameter is optional and earned when a Family-scoped semantic value needs to remain recognizable across relationships; it is not a wrapper for every Kotlin argument. An Act may admit immediate semantic State and may also carry an inert Begin of Effect + overlap Approach. When concrete realization is needed, the Family-scoped Act.Method specializes reusable VexMethod without giving up semantic ownership. act(...) remains pure. Semantic ownership is the reusable rule; literal VexFamily is one reusable realization when this State + Control + Act/Effect shape is actually earned. Concrete VexStream and Maps implementations are pressure evidence, not exemptions from this rule: an existing class shape never proves that semantic ownership belongs there merely because it already exists."
   },
   "pages.vexarchitecture-first-stable-body.owner.execution.title": {
     "text": "Execution · active custody"
@@ -87,7 +87,7 @@
     "text": "What does independently-owned reality currently say?"
   },
   "pages.vexarchitecture-first-stable-body.owner.store.body": {
-    "text": "A Store is a boundary to outside truth. That truth may be SharedPreferences, a remote service, filesystem, OS state, device media, GPS, or another process. Store does not automatically mean database. Its contracts return the smallest truthful provider/domain fact; they do not adopt VexMethod.Result merely because an operation can succeed or fail."
+    "text": "A Store/provider is a boundary to outside truth. That truth may be SharedPreferences, a remote service, filesystem, OS state, device media, GPS, or another process. Store does not automatically mean database. Its contracts return the smallest truthful provider/domain fact; they do not adopt VexMethod.Result merely because an operation can succeed or fail. Do not choose Store/provider merely because existing code already uses one. Pressure both routes: if the outside question is fully answered by a provider fact plus rightful reconciliation, continue provider → reconciliation → Family. If independently meaningful Source, Signal, Connection occurrence, Conversion, or Observation relationships recur, use Partner. Placement is evidence to inspect, not authority by existence."
   },
   "pages.vexarchitecture-first-stable-body.owner.dependency.title": {
     "text": "Dependency Factory · construction"
@@ -96,7 +96,7 @@
     "text": "Why does this live object exist, what must exist before it, and for how long is it reused?"
   },
   "pages.vexarchitecture-first-stable-body.owner.dependency.body": {
-    "text": "Providers declare prerequisites. Factories traverse, memoize, detect cycles, and preserve lifetimes. Construction identity never becomes semantic identity."
+    "text": "Providers declare prerequisites. Factories traverse, memoize, detect cycles, and reuse parent dependencies at the rightful lifetime. Android Application, ViewModel, and concrete Service hosts may realize different lifetimes without requiring a generic typed ServiceScope hierarchy or becoming semantic owners. Construction identity never becomes semantic identity."
   },
   "pages.vexarchitecture-first-stable-body.owner.logger.title": {
     "text": "Logger · chronology"
@@ -114,7 +114,7 @@
     "text": "What new relationship truth emerges from truths owned somewhere else?"
   },
   "pages.vexarchitecture-first-stable-body.owner.relay.body": {
-    "text": "Convergence composes independently-owned truths. It can request change through rightful Controls; it does not steal another Family's Effect or State."
+    "text": "Convergence composes independently-owned truths. It can request change through rightful Controls; it does not steal another Family's Effect or State. The word Relay is not authority by itself: this page means the VexLife convergence contract shown in source. A same-named mechanism elsewhere is not equivalent unless its source contract actually joins these semantics."
   },
   "pages.vexarchitecture-first-stable-body.owner.presentation.title": {
     "text": "Projection / presentation · human meaning"
@@ -126,7 +126,7 @@
     "text": "Family-owned projection becomes concrete presentation meaning, then Android/Compose manifests it. Compose is a manifestation technology, not the semantic owner."
   },
   "pages.vexarchitecture-first-stable-body.owner.rule": {
-    "text": "The reusable rule: before adding a new architectural noun, name the question it alone can answer. If an existing owner already has the truth, add the relationship there instead."
+    "text": "The reusable rule: before adding or preserving an architectural noun, name the question it alone can answer. Placement is evidence to inspect, never authority by existence. Keep an owner only when it can answer the question without absorbing another owner’s responsibility or duplicating a recurring relationship. “Not this owner” must always continue to the rightful owner; it is never a stop condition."
   },
   "pages.vexarchitecture-first-stable-body.codebase.kicker": {
     "text": "03 · See it in a real codebase"
@@ -135,10 +135,10 @@
     "text": "The architecture is visible in the repository, not hidden behind a framework"
   },
   "pages.vexarchitecture-first-stable-body.codebase.lede": {
-    "text": "This VexLife-Android shape originated at the accepted #209 stability point and is current through the accepted #211 VexMethod refinement. The file tree matters because the boundaries remain readable in source: semantic meaning, Method result, execution custody, outside truth, construction, chronology, convergence, and concrete composition remain distinct without becoming isolated."
+    "text": "The file tree makes the stable separation inspectable in source: semantic meaning, external participation, Method result, execution custody, durable outside truth, construction, chronology, convergence, and concrete composition remain distinct without becoming isolated. Linked source snapshots are witnesses to these relationships, not the authority that creates them."
   },
   "pages.vexarchitecture-first-stable-body.codebase.tree": {
-    "text": "VexLife-Android/\n│\n├── architecture/\n│   ├── behavior/\n│   │   ├── .../VexMethod.kt\n│   │   └── .../VexFamily.kt\n│   ├── execution/\n│   │   ├── .../VexExecution.kt\n│   │   └── .../VexExecutionRoot.kt\n│   ├── dependency/\n│   │   └── .../VexDependencyFactory.kt\n│   ├── logging/\n│   │   └── .../VexLogger.kt\n│   ├── relay/\n│   │   ├── .../VexRelay.kt\n│   │   ├── .../VexCompoundRelay.kt\n│   │   └── .../VexCompoundState.kt\n│   └── vexarchitecture/\n│       ├── README.md\n│       ├── REFINED-BOUNDARIES.md\n│       └── VEXLOGGER.md\n│\n└── app/src/main/.../\n    ├── VexApplication.kt\n    ├── ui/\n    │   ├── VexLifeSession.kt\n    │   ├── ThemeMode.kt\n    │   ├── ThemeModeStore.kt\n    │   └── VexLifeRelayGraph.kt\n    ├── conversation/\n    │   └── VexConversationHybridRelay.kt\n    └── screens/\n        └── .../EventsConvergenceRelay.kt"
+    "text": "VexLife-Android/\n│\n├── architecture/\n│   ├── behavior/\n│   │   ├── .../VexMethod.kt\n│   │   ├── .../VexFamily.kt\n│   │   └── .../VexPartner.kt\n│   ├── execution/\n│   │   ├── .../VexExecution.kt\n│   │   └── .../VexExecutionRoot.kt\n│   ├── dependency/\n│   │   └── .../VexDependencyFactory.kt\n│   ├── logging/\n│   │   └── .../VexLogger.kt\n│   ├── relay/\n│   │   ├── .../VexRelay.kt\n│   │   ├── .../VexCompoundRelay.kt\n│   │   └── .../VexCompoundState.kt\n│   └── vexarchitecture/\n│       ├── README.md\n│       ├── REFINED-BOUNDARIES.md\n│       └── VEXLOGGER.md\n│\n└── app/src/main/.../\n    ├── VexApplication.kt\n    ├── ui/\n    │   ├── VexLifeSession.kt\n    │   ├── ThemeMode.kt\n    │   ├── ThemeModeStore.kt\n    │   └── VexLifeRelayGraph.kt\n    ├── cgm/\n    │   ├── CgmPartner.kt\n    │   ├── CgmStore.kt\n    │   └── CgmFamily.kt\n    ├── insulin/\n    │   ├── ConnectedPenPartner.kt\n    │   ├── InsulinPumpPartner.kt\n    │   └── InsulinFamily.kt\n    ├── conversation/\n    │   └── VexConversationHybridRelay.kt\n    └── screens/\n        └── .../EventsConvergenceRelay.kt"
   },
   "pages.vexarchitecture-first-stable-body.codebase.caption": {
     "text": "Notice what is absent: there is no universal ArchitectureManager standing above everything. The architecture is the set of truthful relationships among owners that already have real responsibilities."
@@ -282,7 +282,7 @@
     "text": "Each deletion happened because another owner could answer the question more truthfully"
   },
   "pages.vexarchitecture-first-stable-body.subtraction.lede": {
-    "text": "The rejected abstractions were reasonable responses to real pressure. They disappeared when their question was returned to a smaller existing owner."
+    "text": "The rejected abstractions were reasonable responses to real pressure. They disappeared when pressure-testing showed a smaller rightful owner could answer the question without role collision. Existing placement did not win by default."
   },
   "pages.vexarchitecture-first-stable-body.subtraction.identity-title": {
     "text": "One giant identity problem"
@@ -363,7 +363,7 @@
     "text": "Portability is demonstrated by questions, not by pretending every product already conforms"
   },
   "pages.vexarchitecture-first-stable-body.pressure.lede": {
-    "text": "VexStream and Maps are useful pressure surfaces because they contain richer concurrency, outside truth, and convergence. They are not declared migrated by this page."
+    "text": "VexStream and Maps are useful pressure surfaces because they contain richer concurrency, outside truth, and convergence. Use them to test the questions; do not treat either product as a mandatory class template."
   },
   "pages.vexarchitecture-first-stable-body.pressure.stream-title": {
     "text": "VexStream · questions to ask"
@@ -378,7 +378,7 @@
     "text": "semantic → selected place, route intent, region download?\nruntime  → search, routing, navigation, download work?\noutside  → map provider, GPS, offline region store?\nconverge → provider + location + local availability?\npresent  → map, route, and availability meaning?"
   },
   "pages.vexarchitecture-first-stable-body.pressure.rule": {
-    "text": "If a real consumer reveals a question that no existing owner can truthfully answer, that is evidence for architecture evolution. Similarity alone is not."
+    "text": "If a real consumer reveals a recurring question that no rightful owner can answer without absorbing foreign responsibility, duplicating the relationship, or hiding coordination, that is evidence for architecture evolution. Existing ownership must be pressure-tested rather than presumed; similarity alone is not evidence."
   },
   "pages.vexarchitecture-first-stable-body.forensics.kicker": {
     "text": "Appendix · Source, provenance, and exact evidence"
@@ -390,7 +390,7 @@
     "text": "This page is not the architecture authority. Current VexLife-Android source owns current behavior. PR #209 preserves the before / pressure / subtraction / after reasoning that produced this accepted stability point."
   },
   "pages.vexarchitecture-first-stable-body.forensics.authority": {
-    "text": "Current source = behavioral authority · PR #209 = provenance · this Vextreme page = public historical guide"
+    "text": "Current source = authority for what the system currently does · current placement ≠ automatic architectural legitimacy · PR #209 = provenance · this Vextreme page = public historical guide"
   },
   "pages.vexarchitecture-first-stable-body.forensics.origin": {
     "text": "Source origin"
@@ -444,7 +444,7 @@
     "text": "[VXG RealForever] · Origin: VexLife-Android PR #209 · Public guide: The Development Standard"
   },
   "pages.vexarchitecture-first-stable-body.hero.origin": {
-    "text": "VexLife-Android · PR #209"
+    "text": "Provenance · VexLife-Android #209"
   },
   "pages.vexarchitecture-first-stable-body.legend.semantic": {
     "text": "SEMANTIC"
@@ -531,13 +531,13 @@
     "text": "Why the boundary matters"
   },
   "pages.vexarchitecture-first-stable-body.hero.reader-contract": {
-    "text": "Use this page to understand why the first stable VexArchitecture body took this shape. Current VexLife-Android source and tests own present behavior. PR #209 preserves the pressure, subtraction, and proof that earned this stability point. Diagrams and code blocks here are architectural teaching projections unless explicitly labeled as a source snapshot; linked current source owns byte-exact implementation. The companion Live Demonstration is the object/scope-by-scope wiring walk when you need every construction and runtime edge made visible."
+    "text": "Use this page to understand VexArchitecture as a stable system of rightful ownership and relationships. Follow human intention from semantic meaning through realization, outside participation and truth, reconciliation, convergence, and presentation. Each architectural relationship exists only where its own question and invariant are earned; implementation placement and naming are evidence to inspect, never authority by themselves. Diagrams and code blocks are architectural teaching projections unless explicitly labeled as source witnesses; linked source owns byte-exact implementation. The companion Live Demonstration walks the same relationships through concrete source."
   },
   "pages.vexarchitecture-first-stable-body.walk.realization-label": {
     "text": "The realization seam"
   },
   "pages.vexarchitecture-first-stable-body.walk.realization-body": {
-    "text": "Family.act() authors semantic consequence. Begin remains inert. activate() mechanically binds the live Family and a maintained RelationshipId when the overlap law requires one. A concrete Family Act.Method contains the real Store/provider and semantic Parameter and specializes reusable VexMethod. The Store returns only its smallest truthful provider fact. Success / Failure are lawful returns from invoke(); if invoke() escapes with a Throwable, the Family / Execution continuation forms Error. launchWith() transports the already-authored owner / Approach / RelationshipId into VexExecution, which owns Job custody and cancellation without acquiring feature meaning."
+    "text": "Family.act() authors semantic consequence. Begin remains inert. activate() mechanically binds the live Family and a maintained RelationshipId when the overlap law requires one. A concrete Family Act.Method contains the real Store/provider and semantic Parameter and specializes reusable VexMethod. The Store returns only its smallest truthful provider fact. Success / Failure are lawful returns from Method.invoke(). VexExecution executes that already-bound method and rethrows cancellation; any other escaped Throwable reaches the Family Act.Method follow-up as execution failure, which maps it to VexMethod.Result.Error(cause) before the semantic result handler runs. launchWith() transports the already-authored owner / Approach / RelationshipId into VexExecution, which owns Job custody and cancellation without acquiring feature meaning."
   },
   "pages.vexarchitecture-first-stable-body.discovery.core-label": {
     "text": "Core causal path · sequential"
@@ -552,9 +552,120 @@
     "text": "You have the map. Now walk the code without invisible edges."
   },
   "pages.vexarchitecture-first-stable-body.live-demo.body": {
-    "text": "The Live Demonstration starts before a person can click anything, names each owning container and nested member, follows the same live object through construction and runtime, then repeats the method across current VexStream Playback and VexMaps Distribution source."
+    "text": "The Live Demonstration starts before a person can click anything, names each owning container and nested member, follows the same live object through construction and runtime, then repeats the method across VexStream Playback, VexMaps Distribution, and the VexPartner external-participant circuit."
   },
   "pages.vexarchitecture-first-stable-body.live-demo.cta": {
     "text": "Open VexArchitecture — Live Demonstration ↗"
+  },
+  "pages.vexarchitecture-first-stable-body.owner.partner.title": {
+    "text": "Partner · external participation"
+  },
+  "pages.vexarchitecture-first-stable-body.owner.partner.question": {
+    "text": "What can an independently-owned external participant say, and through which concrete relationship did it arrive?"
+  },
+  "pages.vexarchitecture-first-stable-body.owner.partner.body": {
+    "text": "VexPartner owns the rooted external vocabulary: Source, Signal, and Connection with Id, Conversion, Observation, and Receiver. Receiver ends the reusable contract at a consumer-earned admission/reconciliation boundary. CGM and insulin examples bind that boundary to Store → Family, but VexPartner does not own or require Store, Family semantics, or VexExecution custody. Names and interface implementations are observations, not architecture verdicts. A type named Connection does not earn Partner by name, and a type that does not yet implement VexPartner.Connection is not thereby disqualified. Positively test whether an independently-owned external-participant question exists; if it does, Partner is the route. If it does not, continue through the rightful Store/provider/platform boundary rather than stopping at “not Partner.”"
+  },
+  "pages.vexarchitecture-first-stable-body.partner.kicker": {
+    "text": "Earned relationship · external-participant grammar"
+  },
+  "pages.vexarchitecture-first-stable-body.partner.heading": {
+    "text": "Family and Partner can complete a bidirectional circuit without becoming mirrors"
+  },
+  "pages.vexarchitecture-first-stable-body.partner.lede": {
+    "text": "VexFamily owns application/product meaning. VexPartner owns independently-owned external participation vocabulary only where an external-participant relationship is actually present. Its reusable contract reaches through Receiver to a consumer-earned admission/reconciliation boundary. CGM and insulin show one lawful Store → Family binding after that boundary; the binding is evidence, not a generic Partner requirement."
+  },
+  "pages.vexarchitecture-first-stable-body.partner.flow": {
+    "text": "REUSABLE PARTNER INBOUND BOUNDARY\n\nexternal participant\n      ↓\nprovider representation\n      ↓\nVexPartner\n├─ Source\n│  └─ which external origin/history the statement belongs to\n├─ Signal\n│  └─ what the Partner says in its own vocabulary\n└─ Connection\n   ├─ Id\n   ├─ Conversion: Input → Signal(s)\n   ├─ Observation: Connection.Id + Signal + observed time\n   └─ Receiver\n      ↓\nconsumer-earned admission / reconciliation boundary\n\n\nCGM / INSULIN CONCRETE REALIZATION\n\nReceiver\n      ↓\nStore / durable admitted truth\n      ↓\nFamily State\n      ↓\nDisplayState / Projection\n      ↓\nhuman\n\n\nOUTBOUND WHEN A FAMILY EFFECT USES AN EXTERNAL PARTICIPANT\n\nhuman / product intention\n      ↓\nControl + CURRENT State\n      ↓\nVexFamily\n      ↓\nAct\n├─ admitted State?\n└─ Begin(Effect + Approach)\n      ↓\nbound Act.Method\n      ↓\nVexExecution\n      ↓\nPartner.Connection\n      ↓\nexternal participant\n      ↓\nprovider acknowledgement may become Method result\n      ↓\nACKNOWLEDGEMENT ≠ PHYSICAL OUTCOME\n\nlater outside truth\n      ↓\nreturns through the reusable Partner inbound boundary\n      ↓\nthe concrete consumer decides the rightful admission / reconciliation path"
+  },
+  "pages.vexarchitecture-first-stable-body.partner.scale-heading": {
+    "text": "What proved scale"
+  },
+  "pages.vexarchitecture-first-stable-body.partner.scale-body": {
+    "text": "The grammar survives materially different axes: CGM, connected pen, insulin pump; BLE-like and HTTP-like provider representations; inbound and outbound direction; queued execution; Room persistence/restart; cross-Family feedback; and source-derived VexBoard projection. That is evidence for reuse across different relationship dimensions. More elapsed time or more examples of already-covered dimensions are not, by themselves, evidence that another abstraction is needed. Another abstraction is earned when a concrete recurring question cannot be answered by a rightful owner without absorbing foreign responsibility, duplicating the same relationship, or inventing hidden coordination. Existing ownership by itself is not proof of rightful ownership."
+  },
+  "pages.vexarchitecture-first-stable-body.partner.boundary-heading": {
+    "text": "What stays separate"
+  },
+  "pages.vexarchitecture-first-stable-body.partner.boundary-body": {
+    "text": "Partner ≠ mirrored Family. Partner Source ≠ Connection.Id ≠ VexExecution.RelationshipId. Provider representation ≠ Partner Signal. Receiver ≠ mandatory Store or Family. Store ≠ Partner ≠ Family. Provider acknowledgement ≠ physical outcome. Relay still appears only when independently-owned complete truths create a genuinely new relationship question."
+  },
+  "pages.vexarchitecture-first-stable-body.partner.currentness": {
+    "text": "VexPartner does not imply real Local HTTP lifecycle, real BLE/GATT lifecycle, physical medical-device behavior, or a universal Partnership manager. Architecture evolution should be driven by concrete pressure against rightful-owner questions—not by symmetry, elapsed time, class shape, or the fact that an older owner already contains the data. Any owner must survive re-evaluation; source placement is not legitimate authority by itself."
+  },
+  "pages.vexarchitecture-first-stable-body.partner.source": {
+    "text": "Open the exact VexPartner source witness ↗"
+  },
+  "pages.vexarchitecture-first-stable-body.partner.work-source": {
+    "text": "Open the VexCgmLabs architecture record ↗"
+  },
+  "pages.vexarchitecture-first-stable-body.codebase.partner-source": {
+    "text": "Open the Partner architecture source witness ↗"
+  },
+  "pages.vexarchitecture-first-stable-body.partner.examples-label": {
+    "text": "See the grammar survive three materially different pressures"
+  },
+  "pages.vexarchitecture-first-stable-body.partner.examples-lede": {
+    "text": "These source-faithful cuts show what stays the same and what disappears across CGM, connected pen, and insulin pump. The repeated Partner grammar is reusable; each domain’s payload and continuity rules stay local."
+  },
+  "pages.vexarchitecture-first-stable-body.partner.example.cgm-heading": {
+    "text": "CGM · transport changes before Signal"
+  },
+  "pages.vexarchitecture-first-stable-body.partner.example.cgm-body": {
+    "text": "BLE-like bytes and an HTTP-like body are different provider representations, but both disappear before the same CgmPartner.Signal vocabulary. Connection.Id remains occurrence provenance; Source remains the acquisition-history coordinate."
+  },
+  "pages.vexarchitecture-first-stable-body.partner.example.pen-heading": {
+    "text": "Connected Pen · same grammar, no CGM sequence law"
+  },
+  "pages.vexarchitecture-first-stable-body.partner.example.pen-body": {
+    "text": "The pen keeps Source / Signal / Connection / Conversion / Observation / Receiver, but it has no CGM acquisition epoch, sequence, or periodic-gap rule. That absence is the proof: domain continuity did not leak upward into Partner."
+  },
+  "pages.vexarchitecture-first-stable-body.partner.example.pump-heading": {
+    "text": "Pump · Family authors meaning, Partner realizes participation"
+  },
+  "pages.vexarchitecture-first-stable-body.partner.example.pump-body": {
+    "text": "The Family owns the requested insulin meaning and binds the concrete pump Connection only at Method realization. A provider acknowledgement can become a Method result, but Store and Family State remain unchanged until later DeliveryObserved evidence returns through the inbound Partner grammar."
+  },
+  "pages.vexarchitecture-first-stable-body.partner.example.admission-heading": {
+    "text": "When to earn Partner instead of stopping at provider truth"
+  },
+  "pages.vexarchitecture-first-stable-body.partner.example.admission-body": {
+    "text": "This is a positive pressure test, not a checklist that automatically creates or rejects Partner. First ask whether the outside relationship has independently meaningful Source, Signal, Connection occurrence, Conversion, Observation, or bidirectional participation. If yes, follow Partner. If no, continue through the concrete Store/provider/platform boundary and rightful reconciliation. Existing source placement does not count as proof either way."
+  },
+  "pages.vexarchitecture-first-stable-body.owner.service.title": {
+    "text": "Sustained realization · platform host boundary"
+  },
+  "pages.vexarchitecture-first-stable-body.owner.service.question": {
+    "text": "What concrete behavior must remain alive when the initiating UI/caller disappears, while semantic truth stays with its rightful owner?"
+  },
+  "pages.vexarchitecture-first-stable-body.owner.service.body": {
+    "text": "A shorter caller or UI lifetime may end while concrete platform realization must remain available. Android Service may host that sustained realization without owning the semantic truth it serves. Playback hosts MediaSession/ExoPlayer, Player Partner observation into VexStreamPlayerStore, and Service-lifetime Widget publication; Navigation hosts foreground location, notification, and speech while VexNavigationSession remains navigation truth. Different Services may need different custody mechanisms. A generic VexService root is earned only if materially different hosts share one executable lifecycle invariant that would otherwise be duplicated or easy to violate."
+  },
+  "pages.vexarchitecture-first-stable-body.owner.service-contract-label": {
+    "text": "Sustained realization · guidance without a generic root"
+  },
+  "pages.vexarchitecture-first-stable-body.owner.service-contract-body": {
+    "text": "The stable rule is separation of lifetimes and ownership: a shorter caller/UI lifetime may end while a concrete realization remains available, but semantic/provider/Store/session truth stays with its rightful owner. Use VexExecution, Relay, Partner, or dependency relationships only when their own invariants are earned. No universal Service↔Current type or lifecycle algorithm is required. A future repeated Admission / Retention / Release law can earn a VexService root if removing that root would lose correctness or make the shared law easy to violate."
+  },
+  "pages.vexarchitecture-first-stable-body.owner.service-contract-flow": {
+    "text": "shorter caller / UI lifetime may end\n-> concrete platform realization must remain available\n-> Android Service hosts / attaches realization resources\n-> provider / platform reality returns through rightful existing owners\n   Partner / Store / Family / Navigation session\n-> concrete Service releases according to its own platform / feature contract\n\nPlaybackService\n    MediaSession + ExoPlayer\n    -> Media3PlayerConnection\n    -> VexStreamPlayerStore\n    -> Direct Playback / Queue / Repeat Families observe Store truth\n    -> Service-lifetime Widget publication\n\nNavigationService\n    VexNavigationSession current truth\n    -> foreground location / notification / speech realization\n    -> owner-local CoroutineScope / Jobs remain lawful\n       when no additional VexExecution custody invariant is required\n\nSAME REPEATED QUESTION\n!= SAME LIFECYCLE ALGORITHM\n!= generic VexService root\n!= universal Service.current\n!= mandatory VexExecution\n!= typed ServiceScope architecture law\n\nANDROID_SERVICE != DOMAIN_RUNTIME"
+  },
+  "pages.vexarchitecture-first-stable-body.owner.service-playback-heading": {
+    "text": "Playback · sustained MediaSession realization"
+  },
+  "pages.vexarchitecture-first-stable-body.owner.service-playback-body": {
+    "text": "VexStreamPlaybackService owns Android MediaSession/ExoPlayer lifetime, attaches Media3PlayerConnection to VexStreamPlayerStore, and hosts Widget publication execution. Playback/Queue/Repeat semantic truth remains in Direct Families observing Player Store truth; the Service does not own a second Playback State or a universal current property."
+  },
+  "pages.vexarchitecture-first-stable-body.owner.service-navigation-heading": {
+    "text": "Navigation · sustained foreground realization"
+  },
+  "pages.vexarchitecture-first-stable-body.owner.service-navigation-body": {
+    "text": "VexMapsNavigationService keeps Android foreground location, notification, and speech realization alive while VexNavigationSession remains navigation truth. Its owner-local CoroutineScope/Jobs show that execution mechanism follows the concrete custody invariant: VexExecution is earned only when that invariant requires it."
+  },
+  "pages.vexarchitecture-first-stable-body.owner.service-call-heading": {
+    "text": "What stays unearned · symmetry is not enough"
+  },
+  "pages.vexarchitecture-first-stable-body.owner.service-call-body": {
+    "text": "The stable body does not require BackgroundServiceRelay, a generic VexService root, universal Service.current, or a typed ServiceScope hierarchy. Those shapes are neither forbidden nor presumed. Promote a VexService root only when materially different Services preserve the same executable lifecycle invariant and removing the root would lose correctness or make that law easy to violate."
   }
 }
