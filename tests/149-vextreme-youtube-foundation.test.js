@@ -61,6 +61,7 @@ test('VEXTREME YOUTUBE: authored collection is one real group-home with one walk
   assert.match(memberHtml, /dist\/vextreme-youtube-template-for-vextreme\.js/);
   assert.doesNotMatch(memberHtml, /lib\/vextreme-index-v2\.js/);
   assert.match(memberHtml, /data-theme="dashboard"/);
+  assert.match(memberHtml, /VEXTREME_OVERRIDE\s*=\s*\{\s*fabWidgets:\s*\{\s*theme:\s*false\s*\}\s*\}/);
   assert.match(memberHtml, /styles\/design-system\.css/);
   assert.match(memberHtml, /Walk the episode before you design the template\./);
   assert.match(memberHtml, /Do not fill this page out\. Walk through it\./);
