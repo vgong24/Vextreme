@@ -16,6 +16,8 @@ test('VEXTREME YOUTUBE: authored collection is one real group-home with one walk
   const legacyArcs = JSON.parse(read('data/arcs.json'));
   const groupHtml = read('pages/vextreme-youtube.html');
   const memberHtml = read('pages/youtube-template-for-vextreme.html');
+  const firstWalkHtml = read('pages/vextreme-youtube-first-video-walk.html');
+  const firstWalkStrings = JSON.parse(read('data/strings/source/pages/vextreme-youtube-first-video-walk.json'));
   const memberStrings = JSON.parse(read('data/strings/source/pages/youtube-template-for-vextreme.json'));
   const archivesSource = read('lib/build-archives.js');
   const auditSource = read('lib/audit-pages.js');
@@ -33,7 +35,7 @@ test('VEXTREME YOUTUBE: authored collection is one real group-home with one walk
   assert.deepEqual(arc.sections, [{
     label: 'Vextreme YouTube',
     order: 'explicit',
-    slugs: ['youtube-template-for-vextreme'],
+    slugs: ['youtube-template-for-vextreme', 'vextreme-youtube-first-video-walk'],
   }]);
 
   const members = nodes.filter(node => node.slug === 'youtube-template-for-vextreme');
@@ -56,6 +58,18 @@ test('VEXTREME YOUTUBE: authored collection is one real group-home with one walk
   assert.match(memberHtml, /Walk the episode before you design the template\./);
   assert.match(memberHtml, /Do not fill this page out\. Walk through it\./);
   assert.match(memberHtml, /The first finished video teaches us what the template actually is\./);
+  assert.match(groupHtml, /href="vextreme-youtube-first-video-walk\.html"/);
+  assert.match(firstWalkHtml, /Working storyboard · not a locked script/);
+  assert.match(firstWalkHtml, /Beat 14/);
+  assert.match(firstWalkHtml, /God’s fucking real/);
+  assert.match(firstWalkHtml, /that’s what I mean by scale/);
+  assert.match(firstWalkHtml, /Burden Release Guide/);
+  assert.match(firstWalkHtml, /data-theme="dashboard"/);
+  assert.match(firstWalkHtml, /dist\/vextreme-vextreme-youtube-first-video-walk\.js/);
+  assert.equal(
+    firstWalkStrings['pages.vextreme-youtube-first-video-walk.hero.title']?.strings?.en?.text,
+    'Hey Universe',
+  );
 
   assert.equal(
     strings['vextreme-youtube.heading.title']?.strings?.en?.text,
