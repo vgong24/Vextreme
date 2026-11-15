@@ -2782,5 +2782,37 @@
       "src": "https://raw.githubusercontent.com/vgong24/Vextreme-Assets/7e7b98019e3f186971abf96766fdd8212cd8e0e3/preservations/lucidspark/representative/profiled-narrative-control-topology.webp",
       "alt": "Representative conceptual visualization for The Recognition Circuit; analytical media, not source evidence"
     }
+  },
+  "youtube-template-for-vextreme": {
+    "title": "YouTube Template for Vextreme",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.youtube-template-for-vextreme"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "vextreme-youtube-first-video-walk": {
+    "title": "First Video — Hey Universe",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.vextreme-youtube-first-video-walk"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
   }
 }

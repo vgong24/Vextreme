@@ -21,6 +21,7 @@ test('VEXTREME YOUTUBE: authored collection is one real group-home with one walk
   const memberStrings = JSON.parse(read('data/strings/source/pages/youtube-template-for-vextreme.json'));
   const archivesSource = read('lib/build-archives.js');
   const auditSource = read('lib/audit-pages.js');
+  const viewmodels = JSON.parse(read('data/viewmodels.json'));
 
   const arc = arcs.vextreme_youtube;
   assert.ok(arc, 'vextreme_youtube arc must be source-registered');
@@ -90,6 +91,22 @@ test('VEXTREME YOUTUBE: authored collection is one real group-home with one walk
     firstWalkStrings['pages.vextreme-youtube-first-video-walk.hero.title']?.strings?.en?.text,
     'Hey Universe',
   );
+
+  const expectedFeatures = ['lang', 'spiral-fab', 'theme', 'map', 'analysis', 'arc-nav'];
+  assert.deepEqual(viewmodels['youtube-template-for-vextreme'], {
+    title: 'YouTube Template for Vextreme',
+    category: 'production',
+    template: 'page',
+    scopes: ['pages.youtube-template-for-vextreme'],
+    features: expectedFeatures,
+  });
+  assert.deepEqual(viewmodels['vextreme-youtube-first-video-walk'], {
+    title: 'First Video — Hey Universe',
+    category: 'production',
+    template: 'page',
+    scopes: ['pages.vextreme-youtube-first-video-walk'],
+    features: expectedFeatures,
+  });
 
   assert.equal(
     strings['vextreme-youtube.heading.title']?.strings?.en?.text,
