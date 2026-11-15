@@ -44,6 +44,12 @@ test('VEXTREME YOUTUBE: authored collection is one real group-home with one walk
   assert.equal(members[0].id, null);
   assert.equal(members[0].date, '');
 
+  const firstWalkMembers = nodes.filter(node => node.slug === 'vextreme-youtube-first-video-walk');
+  assert.equal(firstWalkMembers.length, 1, 'first episode member slug must remain globally singular');
+  assert.deepEqual(firstWalkMembers[0].arcKeys, ['vextreme_youtube']);
+  assert.equal(firstWalkMembers[0].id, null);
+  assert.equal(firstWalkMembers[0].date, '');
+
   assert.match(groupHtml, /data-vex-surface="group-home"/);
   assert.match(groupHtml, /data-vex-group-key="vextreme_youtube"/);
   assert.match(groupHtml, /href="youtube-template-for-vextreme\.html"/);
@@ -66,6 +72,11 @@ test('VEXTREME YOUTUBE: authored collection is one real group-home with one walk
   assert.match(firstWalkHtml, /data-reader-template="youtube-episode-reader\/v1"/);
   assert.equal((firstWalkHtml.match(/class="sar-track-btn/g) || []).length, 5);
   assert.equal((firstWalkHtml.match(/class="sar-movement sar-phase"/g) || []).length, 5);
+  assert.match(firstWalkHtml, /data-set="1" data-files="working-transcript\.md" data-from="1" data-to="3"/);
+  assert.match(firstWalkHtml, /data-set="2" data-files="working-transcript\.md" data-from="4" data-to="5"/);
+  assert.match(firstWalkHtml, /data-set="3" data-files="working-transcript\.md" data-from="6" data-to="9"/);
+  assert.match(firstWalkHtml, /data-set="4" data-files="working-transcript\.md" data-from="10" data-to="12"/);
+  assert.match(firstWalkHtml, /data-set="5" data-files="working-transcript\.md" data-from="13" data-to="14"/);
   assert.match(firstWalkHtml, /data-youtube-video-id=""/);
   assert.match(firstWalkHtml, /youtube-nocookie\.com\/embed/);
   assert.match(firstWalkHtml, /records\/youtube\/2026-11-15-hey-universe\/working-transcript\.md/);
