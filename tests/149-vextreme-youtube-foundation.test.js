@@ -51,6 +51,11 @@ test('VEXTREME YOUTUBE: authored collection is one real group-home with one walk
   assert.match(groupHtml, /widgets\/fab-read-aloud\\.js/);
   assert.match(memberHtml, /dist\/vextreme-youtube-template-for-vextreme\\.js/);
   assert.doesNotMatch(memberHtml, /lib\/vextreme-index-v2\\.js/);
+  assert.match(memberHtml, /data-theme="dashboard"/);
+  assert.match(memberHtml, /styles\/design-system\.css/);
+  assert.match(memberHtml, /Walk the episode before you design the template\./);
+  assert.match(memberHtml, /Do not fill this page out\. Walk through it\./);
+  assert.match(memberHtml, /The first finished video teaches us what the template actually is\./);
 
   assert.equal(
     strings['vextreme-youtube.heading.title']?.strings?.en?.text,
