@@ -60,16 +60,20 @@ test('VEXTREME YOUTUBE: authored collection is one real group-home with one walk
   assert.match(memberHtml, /The first finished video teaches us what the template actually is\./);
   assert.match(groupHtml, /href="vextreme-youtube-first-video-walk\.html"/);
   assert.match(firstWalkHtml, /styles\/sabotage-series-record\.css/);
+  assert.match(firstWalkHtml, /components\/record-reader\.js/);
+  assert.match(firstWalkHtml, /VexRecordReader\.mount/);
+  assert.match(firstWalkHtml, /sourceBase:'\.\.\/records\/youtube\/2026-11-15-hey-universe\//);
   assert.match(firstWalkHtml, /data-reader-template="youtube-episode-reader\/v1"/);
   assert.equal((firstWalkHtml.match(/class="sar-track-btn/g) || []).length, 5);
   assert.equal((firstWalkHtml.match(/class="sar-movement sar-phase"/g) || []).length, 5);
   assert.match(firstWalkHtml, /data-youtube-video-id=""/);
   assert.match(firstWalkHtml, /youtube-nocookie\.com\/embed/);
-  assert.match(firstWalkHtml, /Working episode transcript · walked in conversation/);
-  assert.match(firstWalkHtml, /Beat 14/);
-  assert.match(firstWalkHtml, /God’s fucking real/);
-  assert.match(firstWalkHtml, /That’s what I mean by scale/);
-  assert.match(firstWalkHtml, /Burden Release Guide/);
+  assert.match(firstWalkHtml, /records\/youtube\/2026-11-15-hey-universe\/working-transcript\.md/);
+  const workingTranscript = read('records/youtube/2026-11-15-hey-universe/working-transcript.md');
+  assert.equal((workingTranscript.match(/^## Exchange \d+ — Victor$/gm) || []).length, 14);
+  assert.match(workingTranscript, /God's fucking real/);
+  assert.match(workingTranscript, /That's what I mean by scale/);
+  assert.match(workingTranscript, /Burden Release Guide/);
   assert.match(firstWalkHtml, /dist\/vextreme-vextreme-youtube-first-video-walk\.js/);
   assert.equal(
     firstWalkStrings['pages.vextreme-youtube-first-video-walk.hero.title']?.strings?.en?.text,

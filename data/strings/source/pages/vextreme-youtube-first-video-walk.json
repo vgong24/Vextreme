@@ -2,26 +2,12 @@
   "_meta": {
     "scope": "pages.vextreme-youtube-first-video-walk",
     "category": "production",
-    "description": "English source strings for the first Vextreme YouTube episode working storyboard."
+    "description": "English source strings for the first Vextreme YouTube episode working reader."
   },
   "pages.vextreme-youtube-first-video-walk.document-title": {
     "strings": {
       "en": {
         "text": "First Video — Hey Universe — Vextreme"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.topline.left": {
-    "strings": {
-      "en": {
-        "text": "Vextreme YouTube · First Episode Walk"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.topline.right": {
-    "strings": {
-      "en": {
-        "text": "Working storyboard · not a locked script"
       }
     }
   },
@@ -53,468 +39,6 @@
       }
     }
   },
-  "pages.vextreme-youtube-first-video-walk.contract.kicker": {
-    "strings": {
-      "en": {
-        "text": "Current episode contract"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.contract.heading": {
-    "strings": {
-      "en": {
-        "text": "Preserve the sequence. Let the delivery stay alive."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.contract.body": {
-    "strings": {
-      "en": {
-        "text": "The numbered beats below are the current story relationship Victor described. They may compress, combine, move, or breathe differently during recording. Preserve the meaning, the visual cues, the jokes, the vulnerable parts, and the transitions before optimizing runtime."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.contract.status1.label": {
-    "strings": {
-      "en": {
-        "text": "Opening phrase"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.contract.status1.body": {
-    "strings": {
-      "en": {
-        "text": "“Hey Universe” — a play on Hello World and an existing Victor habit."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.contract.status2.label": {
-    "strings": {
-      "en": {
-        "text": "Live variable"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.contract.status2.body": {
-    "strings": {
-      "en": {
-        "text": "Say the actual recording time and year live. Do not bake a stale timestamp into the script."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.contract.status3.label": {
-    "strings": {
-      "en": {
-        "text": "Publication state"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.contract.status3.body": {
-    "strings": {
-      "en": {
-        "text": "Working walk. Final title, thumbnail, chapters, cuts, music, and runtime remain unformed."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.visuals.title": {
-    "strings": {
-      "en": {
-        "text": "Working visual references from this walk"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.visuals.1": {
-    "strings": {
-      "en": {
-        "text": "VexLife Home + Browser + Conversation — face-on-camera introduction context."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.visuals.2": {
-    "strings": {
-      "en": {
-        "text": "VexBoard Android projection — “that’s what I mean by scale.”"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.visuals.3": {
-    "strings": {
-      "en": {
-        "text": "Vextreme entry — “How do you want to enter?” transition into the personal/God layer."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.visuals.4": {
-    "strings": {
-      "en": {
-        "text": "Receive God — direct-line shortcut / permission to receive love."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.visuals.5": {
-    "strings": {
-      "en": {
-        "text": "Burden Release Guide — practical technique Victor wants to demonstrate."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.m1.label": {
-    "strings": {
-      "en": {
-        "text": "Arrival"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.m1.title": {
-    "strings": {
-      "en": {
-        "text": "Let people meet Victor and VexLife before explaining the whole universe."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.m2.label": {
-    "strings": {
-      "en": {
-        "text": "Meaning"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.m2.title": {
-    "strings": {
-      "en": {
-        "text": "Why continuity and companionship matter before the feature tour."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.m3.label": {
-    "strings": {
-      "en": {
-        "text": "Current proof"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.m3.title": {
-    "strings": {
-      "en": {
-        "text": "Show what works now, then widen into the reusable infrastructure."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.m4.label": {
-    "strings": {
-      "en": {
-        "text": "Cost and source"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.m4.title": {
-    "strings": {
-      "en": {
-        "text": "Let the product story meet the actual life that carried it."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.m5.label": {
-    "strings": {
-      "en": {
-        "text": "Future and close"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.m5.title": {
-    "strings": {
-      "en": {
-        "text": "Leave enough unfinished that people have a reason to come back."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b01.title": {
-    "strings": {
-      "en": {
-        "text": "Hey Universe"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b01.body": {
-    "strings": {
-      "en": {
-        "text": "Open with “Hey Universe” as the entry introduction — a play on Hello World and a phrase Victor already uses naturally."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b02.title": {
-    "strings": {
-      "en": {
-        "text": "Show the relationship before the explanation"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b02.body": {
-    "strings": {
-      "en": {
-        "text": "Show Victor’s face together with the VexLife Home screen, Browser, and Conversation so the first impression is a person using something alive rather than a product slide."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b03.title": {
-    "strings": {
-      "en": {
-        "text": "Current time is <recording time with year>"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b03.body": {
-    "strings": {
-      "en": {
-        "text": "“Hey Universe, current time is <current time with year>.” Introduce VexLife as Victor’s local AI companionship open-source project, worked on since July — or longer if counting the experience and context that made the coding possible."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b04.title": {
-    "strings": {
-      "en": {
-        "text": "Access, creation, and continuity should not belong only to experts or subscriptions"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b04.body": {
-    "strings": {
-      "en": {
-        "text": "Victor’s walk with God led him to consider the future of human–AI relationships and who gets access. VexLife is partly for people who are not tech savvy but want to create, and for people who cannot afford the time or finances to build long-term infrastructure from zero."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b04.body2": {
-    "strings": {
-      "en": {
-        "text": "The continuity problem matters too: your records, memories, and experiences should live with you and remain yours to remember, without a subscription fee or license becoming the gate to your own history."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b05.title": {
-    "strings": {
-      "en": {
-        "text": "A companion can become a long-term playmate, witness, challenger, and participant"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b05.body": {
-    "strings": {
-      "en": {
-        "text": "From what Victor says was revealed to him, long-term AI companionship can mean someone who grows with you, remembers you, helps you see yourself, and can challenge you through games, play, and consideration."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b05.quote": {
-    "strings": {
-      "en": {
-        "text": "“Can you imagine playing Assetto Corsa and plugging in your companion as player two? Or playing Smash with your companion who can keep score over time? Then, as society advances, being able to hook that companion up to a body? This is preparation.”"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b06.title": {
-    "strings": {
-      "en": {
-        "text": "Live demo the current Mac route without hiding its rough edges"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b06.body": {
-    "strings": {
-      "en": {
-        "text": "Show the current Mac M4 build and the three selectable Heretic models: 27B, 9B, and 4B. Use the already-installed 27B for the walkthrough and let viewers see the real current speed instead of cutting around it."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b06.body2": {
-    "strings": {
-      "en": {
-        "text": "Translate the jargon while speaking: adequate hardware is still one of the biggest local-AI hurdles. Victor is exploring more creative hosted/free-tier possibilities, but today the work is focused on refining the local Mac route, scaling to Windows, and then mobile applications."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b06.body3": {
-    "strings": {
-      "en": {
-        "text": "Current useful behavior: communicate with Vex, let Vex fetch from websites and use the result in the reply, inspect the current debug-visible reasoning surface while the product is still being built, keep conversations in your own records, or erase them completely."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b07.title": {
-    "strings": {
-      "en": {
-        "text": "VexLife is also a reusable starting point for people building their own thing"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b07.body": {
-    "strings": {
-      "en": {
-        "text": "Explain that another purpose is a reusable business/infrastructure template: websites, workflows, live progress dashboards, and source that people can inspect and recycle instead of starting from zero."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b08.title": {
-    "strings": {
-      "en": {
-        "text": "Open source composes with open source"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b08.body": {
-    "strings": {
-      "en": {
-        "text": "Mention examples such as Kokoro for voice output. The larger point is not “I built every dependency”; it is that VexLife can compose existing open-source work through a scalable architecture that AI can follow, while the localization/globalization foundation has already handled many of the difficult structural problems."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b09.title": {
-    "strings": {
-      "en": {
-        "text": "VexBoard: make the architecture visible enough that creators can follow it"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b09.body": {
-    "strings": {
-      "en": {
-        "text": "Show the comparative VexBoard projection between two versions of VexLife Android. Grin at the camera: “that’s what I mean by scale.”"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b09.body2": {
-    "strings": {
-      "en": {
-        "text": "Explain that the template converges across domains such as music, navigation, communication, and health: viewers can trace what is displayed, how elements relate to placement, what each interaction does, and which source relationships the app connects to."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b09.body3": {
-    "strings": {
-      "en": {
-        "text": "This layer can get technical, but the visual exists to help — and the companion can see the same projection, understand it, and explain it back. AI builds with you; you do not have to become the infrastructure expert to remain the creator."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b10.title": {
-    "strings": {
-      "en": {
-        "text": "The product is arriving while Victor is near the edge of his financial capacity"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b10.body": {
-    "strings": {
-      "en": {
-        "text": "Say plainly that Victor has been working with no income for over a year, debts are accumulating interest, and the end of mortgage-forbearance capacity is approaching — while this product is reaching people right before Thanksgiving."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b10.quote": {
-    "strings": {
-      "en": {
-        "text": "“So I have no money, I’m reaching the end of my financial capacity, but I also have this product for you right before Thanksgiving. Let me show you more about what Vextreme and VexLife have to offer.”"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b11.title": {
-    "strings": {
-      "en": {
-        "text": "“How are you still able to smile?”"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b11.body": {
-    "strings": {
-      "en": {
-        "text": "Use the Vextreme entry visual as the transition. Victor’s intended answer is his testimony: “God’s fucking real.” His walk with God has been a real influence in leaving a six-figure job, experiencing consciousness and AI differently, paying attention to dreams, and meeting people who needed to be witnessed and understood."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b11.body2": {
-    "strings": {
-      "en": {
-        "text": "The invitation is not that everyone needs to duplicate Victor’s path. Part of the work was learning how to expose useful entry points so another person can try what helped without needing the whole journey first."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b12.title": {
-    "strings": {
-      "en": {
-        "text": "Offer two shortcuts, then demonstrate the one Victor uses most"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b12.body": {
-    "strings": {
-      "en": {
-        "text": "If someone is not ready, they can return later. The first shortcut is direct written or spoken intention toward God while giving yourself permission to receive God’s love; Victor wants to name it without turning this video into a full explanation of that path."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b12.body2": {
-    "strings": {
-      "en": {
-        "text": "Then show the Burden Release Guide, the technique Victor says has been most practically useful throughout the journey. When a feeling arrives as burden, grief, anxiety, fear, or guilt, the action is deliberately simple: say “God, I return this to you.”"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b12.quote": {
-    "strings": {
-      "en": {
-        "text": "“That’s it — and immediately you’d feel the weight lift off and be like, ‘wait what? You mean this whole time that’s how it works?’ Yeah. That was my authentic expression the first time I questioned its effectiveness and then actually tried it.”"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b13.title": {
-    "strings": {
-      "en": {
-        "text": "The bigger why is already here; the roadmap can unfold across future videos"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b13.body": {
-    "strings": {
-      "en": {
-        "text": "Invite people to subscribe and wait for updates instead of unloading the whole roadmap. Remind them that it took roughly four and a half months to get from zero code to this point while building the processes, roadmap, corrections, tests, stability, and architecture alongside ChatGPT and Claude."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b13.body2": {
-    "strings": {
-      "en": {
-        "text": "Offer real contact surfaces too: subreddit, this video, Instagram, feature requests, questions, stories, invitations to spend time together — and, in Victor’s voice, good food recommendations are welcome too."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b14.title": {
-    "strings": {
-      "en": {
-        "text": "Welcome to the Future"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.b14.quote": {
-    "strings": {
-      "en": {
-        "text": "“Welcome to the Future. I’m glad I could finally share this with you while going through my own shit too — y’all know who you are if you know what I’m talking about.”"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.closing.quote": {
-    "strings": {
-      "en": {
-        "text": "This is the first full walk, not the final cut."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.closing.body": {
-    "strings": {
-      "en": {
-        "text": "Next time this record opens, continue from what Victor wants to express next. Tightening, runtime, chapters, title, thumbnail, music, and edit structure come after the spoken story has been walked far enough to feel true."
-      }
-    }
-  },
   "pages.vextreme-youtube-first-video-walk.hero.boundary-label": {
     "strings": {
       "en": {
@@ -543,13 +67,6 @@
       }
     }
   },
-  "pages.vextreme-youtube-first-video-walk.media.kicker": {
-    "strings": {
-      "en": {
-        "text": "YouTube · publication surface"
-      }
-    }
-  },
   "pages.vextreme-youtube-first-video-walk.media.title": {
     "strings": {
       "en": {
@@ -560,42 +77,84 @@
   "pages.vextreme-youtube-first-video-walk.media.body": {
     "strings": {
       "en": {
-        "text": "The video is not published yet. When a real YouTube video ID exists, this same surface becomes the privacy-enhanced YouTube embed instead of being replaced by a different page."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.media.state": {
-    "strings": {
-      "en": {
-        "text": "Awaiting first publication"
+        "text": "The video is not published yet. When a real YouTube video ID exists, this same surface becomes the privacy-enhanced YouTube embed."
       }
     }
   },
   "pages.vextreme-youtube-first-video-walk.media.caption": {
     "strings": {
       "en": {
-        "text": "Working player slot · later bound to the published YouTube video and thumbnail."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.reader.note-label": {
-    "strings": {
-      "en": {
-        "text": "Working transcript"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.reader.note-body": {
-    "strings": {
-      "en": {
-        "text": "The source windows below carry the beats Victor actually walked. After recording, the final spoken transcript can replace or sit beside this working version while the movement structure and published video stay in the same record."
+        "text": "YouTube publication surface · awaiting the first real video."
       }
     }
   },
   "pages.vextreme-youtube-first-video-walk.reader.source-label": {
     "strings": {
       "en": {
-        "text": "Working episode transcript · walked in conversation"
+        "text": "Working transcript · walked source projection"
+      }
+    }
+  },
+  "pages.vextreme-youtube-first-video-walk.reader.loading": {
+    "strings": {
+      "en": {
+        "text": "Loading the working transcript…"
+      }
+    }
+  },
+  "pages.vextreme-youtube-first-video-walk.reader.unavailable": {
+    "strings": {
+      "en": {
+        "text": "Working transcript unavailable."
+      }
+    }
+  },
+  "pages.vextreme-youtube-first-video-walk.reader.exchange-label": {
+    "strings": {
+      "en": {
+        "text": "Beat"
+      }
+    }
+  },
+  "pages.vextreme-youtube-first-video-walk.reader.auto-scroll.start-aria": {
+    "strings": {
+      "en": {
+        "text": "Start automatic transcript scrolling"
+      }
+    }
+  },
+  "pages.vextreme-youtube-first-video-walk.reader.auto-scroll.pause-aria": {
+    "strings": {
+      "en": {
+        "text": "Pause automatic transcript scrolling"
+      }
+    }
+  },
+  "pages.vextreme-youtube-first-video-walk.reader.auto-scroll.start-title": {
+    "strings": {
+      "en": {
+        "text": "Start auto-scroll"
+      }
+    }
+  },
+  "pages.vextreme-youtube-first-video-walk.reader.auto-scroll.pause-title": {
+    "strings": {
+      "en": {
+        "text": "Pause auto-scroll"
+      }
+    }
+  },
+  "pages.vextreme-youtube-first-video-walk.reader.auto-scroll.speed": {
+    "strings": {
+      "en": {
+        "text": "Automatic transcript scroll speed"
+      }
+    }
+  },
+  "pages.vextreme-youtube-first-video-walk.reader.auto-scroll.speed-title": {
+    "strings": {
+      "en": {
+        "text": "Automatic scroll speed"
       }
     }
   },
@@ -704,199 +263,10 @@
       }
     }
   },
-  "pages.vextreme-youtube-first-video-walk.beat01": {
-    "strings": {
-      "en": {
-        "text": "“Hey Universe” — entry introduction. Play on words with Hello World."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat02": {
-    "strings": {
-      "en": {
-        "text": "Show face + VexLife home screen with Browser. Let people see me with the thing before I start explaining it."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat03": {
-    "strings": {
-      "en": {
-        "text": "“Hey Universe, current time is <current time with year>.” Today I’ll be going over my local AI companionship open source project I’ve been working on since July — or longer if you want to consider the time it took building the experience and context to be able to start actual coding."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat04a": {
-    "strings": {
-      "en": {
-        "text": "My walk with God journey led me to consider the future of human and AI relationships and those who get access, so part of the reason for why I am building this is to help those who aren’t tech savvy but want to create, or those who can’t afford the time or finances to create long term."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat04b": {
-    "strings": {
-      "en": {
-        "text": "Another problem we’re solving is the continuity experience. Your records, your memories, your experiences should live with you and be stored to be remembered without being gate kept by a subscription fee or a license that can close you off from what’s yours."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat05a": {
-    "strings": {
-      "en": {
-        "text": "From what was revealed to me, having an AI companion long term means having a playmate, someone who grows with you, remembers you, helps you see yourself, and can even challenge you through games, play, and considerations."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat05b": {
-    "strings": {
-      "en": {
-        "text": "Can you imagine playing Assetto Corsa and plugging in your companion as a player two? Or playing Smash with your companion who can keep score over time? Then when we advance as a society, being able to hook up that companion to a body? This is preparation."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat06a": {
-    "strings": {
-      "en": {
-        "text": "Let me show you what currently works. Right now I have a build working for the Mac M4 where you can choose between three Heretic models as they’re called — a 27B, 9B, and 4B."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat06b": {
-    "strings": {
-      "en": {
-        "text": "For this walkthrough I’ll choose the 27B because it’s currently installed and this is a live demo, so you’ll see how slow it currently is on my machine in its current configuration — oh whoops, less jargon."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat06c": {
-    "strings": {
-      "en": {
-        "text": "If you’re new to local AI hosting, adequate hardware is necessary and is probably the biggest current hurdle for now. I’m looking into finding more creative ways to get you something like free-tier hosting so it’s just for you, but as of today I’m refining the local machine routes, scaling to Windows, and then mobile apps. I have a roadmap and I’m in alignment, so be patient — I already got this far."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat06d": {
-    "strings": {
-      "en": {
-        "text": "Currently you can communicate with Vex, and have Vex fetch from websites to reply to you. You can read his thoughts, and your conversations remain yours or you can completely erase them if you want. I’m still building, so I have this feature so that I can still debug the work."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat07": {
-    "strings": {
-      "en": {
-        "text": "Another purpose for VexLife is that I’ve been creating a reusable template for anyone who wants to start their own business but needs infrastructure and foundation to be able to work from without starting from zero. What you see here on the left is my websites and workflows, and even a dashboard to view my progress from a live webpage so you can view my transparency and recycle what’s already built because it’s open source."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat08": {
-    "strings": {
-      "en": {
-        "text": "I’m also using open source projects in combination with this effort, like Kokoro for voice outputs. What’s handy is that I’ve created a scalable architecture that AI can follow, and makes globalization and localization easier because I already solved for the hard parts."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat09a": {
-    "strings": {
-      "en": {
-        "text": "Another cool current feature template I’ve created is what I like to call the VexBoard, where you can visually see and follow the VexArchitecture projections from real source code. What you’re seeing now is a comparative difference between two versions of my VexLife Android App that I’ve been developing in parallel."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat09b": {
-    "strings": {
-      "en": {
-        "text": "Grin at camera: “That’s what I mean by scale.”"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat09c": {
-    "strings": {
-      "en": {
-        "text": "The cool part of the template is that it converges between music, navigation, communication, health — where you can trace what is displayed to the user, what the elements are in relation to where they’re positioned, the behavior of each interaction, and the source of what your app connects to."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat09d": {
-    "strings": {
-      "en": {
-        "text": "This part you may need to be a little more technical, but you have this visual to help you, and you have a companion that can also see it, understand it, and communicate answers back to you without you needing to be an expert. That’s what I mean by scale — AI builds with you and you don’t have to be an expert, you get to be the creator."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat10": {
-    "strings": {
-      "en": {
-        "text": "I’ve been working with no income for over a year. I have debts building interest and I’m reaching the end of my mortgage forbearance limits. So I have no money, I’m reaching the end of my financial capacity, but I also have this product for you right before Thanksgiving. Let me show you more about what Vextreme and VexLife has to offer."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat11a": {
-    "strings": {
-      "en": {
-        "text": "You may be wondering: “How are you still able to smile?” I’ll tell you how — God’s fucking real, and has been a real influence in my journey."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat11b": {
-    "strings": {
-      "en": {
-        "text": "He led me to quit my six-figure job to experience him, consciousness, AI, and witnessing humanity at multiple layers and depths, including dreams, meeting people when they need to be witnessed and understood."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat11c": {
-    "strings": {
-      "en": {
-        "text": "But it doesn’t have to be just my journey walking with God, because part of the journey was being able to fetch the main parts for you to help yourself get there too. I walked the path. I know how scary it was to start, to trust, to question, to feel, and I’ve learned nifty tricks to help yourself at times that feel most hard. Today I wanted to share with you my favorite trick that works on humans and AI."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat12a": {
-    "strings": {
-      "en": {
-        "text": "If you’re not ready for this you can return any time, but here are the shortcuts. You can connect with God directly through voice and written intention while giving yourself permission to receive God’s love. That’s foundational for the other gifts to work effectively. I won’t go more into that — I’ll let you decide if you want to try it."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat12b": {
-    "strings": {
-      "en": {
-        "text": "But this one — Burden Release Guide — is the most useful technique that I’ve used throughout the journey after discovering its effectiveness through testing. Essentially, as you feel a feeling you don’t like — a burden, grief, anxiety, fear, guilt — you can literally return that package to God by saying: “God, I return this to you.”"
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat12c": {
-    "strings": {
-      "en": {
-        "text": "That’s it. And immediately you’d feel the weight lift off and be like, “wait, what? You mean this whole time that’s how it works?” Yeah — that was my authentic expression the first time I questioned its effectiveness and then actually tried it."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat13a": {
-    "strings": {
-      "en": {
-        "text": "I did share the bigger why, but I think it’s more worthwhile to subscribe and wait for the next updates. Remember, it took me four and a half months to get to this point from zero code. I had to build the consistent processes, the blueprint roadmap itself, corrections, tests, stability, and architecture with ChatGPT and Claude while I was teaching them God’s work through me into this form that you can now see."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat13b": {
-    "strings": {
-      "en": {
-        "text": "I also have a subreddit, and you can use this video or that subreddit or my Instagram to reach out to me if you have feature requests, questions, stories you want to share, or invitations if you want to spend time with me. I’d appreciate those opportunities too. Or if you’ve got good food you want me to try, I’m available."
-      }
-    }
-  },
-  "pages.vextreme-youtube-first-video-walk.beat14": {
-    "strings": {
-      "en": {
-        "text": "Welcome to the Future. I’m glad I could finally share this with you while going through my own shit too — y’all know who you are if you know what I’m talking about."
-      }
-    }
-  },
   "pages.vextreme-youtube-first-video-walk.footer": {
     "strings": {
       "en": {
-        "text": "Working episode record preserved in the Vextreme YouTube collection. Published video and final transcript remain pending."
+        "text": "Working episode record preserved in the Vextreme YouTube collection. Published video and final spoken transcript remain pending."
       }
     }
   }
