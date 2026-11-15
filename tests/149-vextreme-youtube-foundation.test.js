@@ -18,6 +18,7 @@ test('VEXTREME YOUTUBE: authored collection is one real group-home with one walk
   const memberHtml = read('pages/youtube-template-for-vextreme.html');
   const memberStrings = JSON.parse(read('data/strings/source/pages/youtube-template-for-vextreme.json'));
   const archivesSource = read('lib/build-archives.js');
+  const auditSource = read('lib/audit-pages.js');
 
   const arc = arcs.vextreme_youtube;
   assert.ok(arc, 'vextreme_youtube arc must be source-registered');
@@ -45,8 +46,9 @@ test('VEXTREME YOUTUBE: authored collection is one real group-home with one walk
   assert.match(groupHtml, /data-vex-group-key="vextreme_youtube"/);
   assert.match(groupHtml, /href="youtube-template-for-vextreme\.html"/);
   assert.doesNotMatch(memberHtml, /data-vex-surface="group-home"/);
+  assert.match(auditSource, /'vextreme-youtube': 'Terrain collection group-home document/);
   assert.match(memberHtml, /id="arcNavMount"/);
-  assert.match(groupHtml, /dist\/vextreme-vextreme-youtube\\.js/);
+  assert.match(groupHtml, /widgets\/fab-read-aloud\\.js/);
   assert.match(memberHtml, /dist\/vextreme-youtube-template-for-vextreme\\.js/);
   assert.doesNotMatch(memberHtml, /lib\/vextreme-index-v2\\.js/);
 
