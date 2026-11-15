@@ -2891,6 +2891,46 @@
       ],
       "missingLangs": []
     },
+    "institution.support.manage.body": {
+      "key": "institution.support.manage.body",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "institution.support.manage.action": {
+      "key": "institution.support.manage.action",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "missingLangs": []
+    },
     "institution.support.meaning.light.alt": {
       "key": "institution.support.meaning.light.alt",
       "usedIn": [],
@@ -724178,6 +724218,8 @@
         "institution.support.hero.eyebrow",
         "institution.support.hero.heading",
         "institution.support.hero.lede",
+        "institution.support.manage.action",
+        "institution.support.manage.body",
         "institution.support.meaning.abundance.amount",
         "institution.support.meaning.abundance.body",
         "institution.support.meaning.abundance.name",
@@ -736974,8 +737016,8 @@
     }
   },
   "summary": {
-    "totalKeysInManifest": 44982,
-    "totalKeysUsed": 44824,
+    "totalKeysInManifest": 44984,
+    "totalKeysUsed": 44826,
     "orphanUsages": [],
     "unusedKeys": [
       "ai-orientation.heading.title",
