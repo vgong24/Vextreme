@@ -46,6 +46,9 @@ test('VEXTREME YOUTUBE: authored collection is one real group-home with one walk
   assert.match(groupHtml, /href="youtube-template-for-vextreme\.html"/);
   assert.doesNotMatch(memberHtml, /data-vex-surface="group-home"/);
   assert.match(memberHtml, /id="arcNavMount"/);
+  assert.match(groupHtml, /dist\/vextreme-vextreme-youtube\\.js/);
+  assert.match(memberHtml, /dist\/vextreme-youtube-template-for-vextreme\\.js/);
+  assert.doesNotMatch(memberHtml, /lib\/vextreme-index-v2\\.js/);
 
   assert.equal(
     strings['vextreme-youtube.heading.title']?.strings?.en?.text,
