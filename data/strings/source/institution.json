@@ -2125,6 +2125,74 @@
       }
     }
   },
+  "institution.support.manage.body": {
+    "strings": {
+      "en": {
+        "text": "Already supporting monthly? Manage or stop your recurring contribution anytime through Stripe."
+      },
+      "ja": {
+        "text": "すでに月額支援をしていますか？ Stripe から定期支援の管理や停止をいつでも行えます。"
+      },
+      "zh": {
+        "text": "已经在按月支持？你可以随时通过 Stripe 管理或停止定期支持。"
+      },
+      "ko": {
+        "text": "이미 매월 지원하고 있나요? Stripe에서 언제든 정기 지원을 관리하거나 중단할 수 있습니다."
+      },
+      "fr": {
+        "text": "Vous soutenez déjà le projet chaque mois ? Gérez ou arrêtez votre contribution récurrente à tout moment via Stripe."
+      },
+      "de": {
+        "text": "Du unterstützt bereits monatlich? Verwalte oder beende deinen wiederkehrenden Beitrag jederzeit über Stripe."
+      },
+      "es": {
+        "text": "¿Ya apoyas mensualmente? Gestiona o detén tu contribución recurrente en cualquier momento a través de Stripe."
+      },
+      "pt": {
+        "text": "Já apoia mensalmente? Gerencie ou encerre sua contribuição recorrente a qualquer momento pelo Stripe."
+      },
+      "ar": {
+        "text": "هل تقدم دعمًا شهريًا بالفعل؟ يمكنك إدارة مساهمتك المتكررة أو إيقافها في أي وقت عبر Stripe."
+      },
+      "hi": {
+        "text": "क्या आप पहले से मासिक समर्थन कर रहे हैं? Stripe के माध्यम से अपने आवर्ती योगदान को कभी भी प्रबंधित या बंद कर सकते हैं।"
+      }
+    }
+  },
+  "institution.support.manage.action": {
+    "strings": {
+      "en": {
+        "text": "Manage monthly support"
+      },
+      "ja": {
+        "text": "月額支援を管理"
+      },
+      "zh": {
+        "text": "管理每月支持"
+      },
+      "ko": {
+        "text": "월간 지원 관리"
+      },
+      "fr": {
+        "text": "Gérer le soutien mensuel"
+      },
+      "de": {
+        "text": "Monatliche Unterstützung verwalten"
+      },
+      "es": {
+        "text": "Gestionar apoyo mensual"
+      },
+      "pt": {
+        "text": "Gerenciar apoio mensal"
+      },
+      "ar": {
+        "text": "إدارة الدعم الشهري"
+      },
+      "hi": {
+        "text": "मासिक समर्थन प्रबंधित करें"
+      }
+    }
+  },
   "institution.support.meaning.light.alt": {
     "strings": {
       "en": {
