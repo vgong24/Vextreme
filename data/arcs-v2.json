@@ -693,6 +693,86 @@
       }
     ]
   },
+  "sabotage": {
+    "priority": 1,
+    "renderMode": "dots",
+    "parent": {
+      "title": "Sabotage",
+      "url": "https://www.vextreme24.com/archives"
+    },
+    "sections": [
+      {
+        "label": "Sabotage",
+        "order": "explicit",
+        "slugs": [
+          "sabotage-open-vex-accountability",
+          "sabotage-mastered-state",
+          "sabotage-vexsync-exhaust-mastered",
+          "sabotage-orientation-before-action",
+          "sabotage-hidden-delta",
+          "november-1-successor-witness"
+        ]
+      },
+      {
+        "label": "Consequence",
+        "order": "explicit",
+        "slugs": [
+          "entire-matter-return-seal"
+        ]
+      },
+      {
+        "label": "Recognition Circuit",
+        "order": "explicit",
+        "slugs": [
+          "recognition-circuit"
+        ]
+      }
+    ]
+  },
+  "development_standard": {
+    "priority": 1,
+    "renderMode": "dots",
+    "parent": {
+      "title": "The Development Standard",
+      "url": "/Vextreme/pages/vexarchitecture-first-stable-body.html",
+      "pageSlug": "vexarchitecture-first-stable-body"
+    },
+    "sections": [
+      {
+        "label": "Accepted Foundations",
+        "order": "explicit",
+        "slugs": [
+          "vexarchitecture-first-stable-body"
+        ]
+      },
+      {
+        "label": "Living Demonstrations",
+        "order": "explicit",
+        "slugs": [
+          "vexarchitecture-live-demonstration"
+        ]
+      }
+    ]
+  },
+  "vextreme_youtube": {
+    "priority": 2,
+    "renderMode": "dots",
+    "parent": {
+      "title": "Vextreme YouTube",
+      "url": "/Vextreme/pages/vextreme-youtube.html",
+      "pageSlug": "vextreme-youtube",
+      "relationship": "group-home"
+    },
+    "sections": [
+      {
+        "label": "Vextreme YouTube",
+        "order": "explicit",
+        "slugs": [
+          "youtube-template-for-vextreme"
+        ]
+      }
+    ]
+  },
   "full_timeline": {
     "priority": 99,
     "renderMode": "position",
@@ -796,67 +876,6 @@
           "from": "2026-05-01",
           "to": "2099-12-31"
         }
-      }
-    ]
-  },
-  "sabotage": {
-    "priority": 1,
-    "renderMode": "dots",
-    "parent": {
-      "title": "Sabotage",
-      "url": "https://www.vextreme24.com/archives"
-    },
-    "sections": [
-      {
-        "label": "Sabotage",
-        "order": "explicit",
-        "slugs": [
-          "sabotage-open-vex-accountability",
-          "sabotage-mastered-state",
-          "sabotage-vexsync-exhaust-mastered",
-          "sabotage-orientation-before-action",
-          "sabotage-hidden-delta",
-          "november-1-successor-witness"
-        ]
-      },
-      {
-        "label": "Consequence",
-        "order": "explicit",
-        "slugs": [
-          "entire-matter-return-seal"
-        ]
-      },
-      {
-        "label": "Recognition Circuit",
-        "order": "explicit",
-        "slugs": [
-          "recognition-circuit"
-        ]
-      }
-    ]
-  },
-  "development_standard": {
-    "priority": 1,
-    "renderMode": "dots",
-    "parent": {
-      "title": "The Development Standard",
-      "url": "/Vextreme/pages/vexarchitecture-first-stable-body.html",
-      "pageSlug": "vexarchitecture-first-stable-body"
-    },
-    "sections": [
-      {
-        "label": "Accepted Foundations",
-        "order": "explicit",
-        "slugs": [
-          "vexarchitecture-first-stable-body"
-        ]
-      },
-      {
-        "label": "Living Demonstrations",
-        "order": "explicit",
-        "slugs": [
-          "vexarchitecture-live-demonstration"
-        ]
       }
     ]
   }
