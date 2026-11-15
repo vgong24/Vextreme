@@ -12,6 +12,10 @@
   Other future support/engagement routes remain fail-closed in hidden markup
   until their own destinations are ready and independently verified.
 
+  Existing monthly supporters can leave or manage recurring support through the
+  public Stripe Customer Portal. Stripe owns that billing identity and action;
+  this page does not add a Vextreme customer account or supporter-state store.
+
   Institutional surface, not an archive record. Complete and honest with
   JavaScript disabled. See docs/architecture/18-institutional-pages.md.
 -->
@@ -37,7 +41,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles/design-system.css?v=a688d1811342f0b255c5b8fdb246b8cb1e0d58ea">
-<link rel="stylesheet" href="../styles/vex-institutional.css?v=0f8fb583cb30a82258df6fb388530abb2e0cdb28">
+<link rel="stylesheet" href="../styles/vex-institutional.css?v=b8458fc40a5d94f150156fed4a0f1fd92d85c60f">
 </head>
 <body class="vex-inst">
 
@@ -137,6 +141,17 @@
         </a>
       </li>
     </ul>
+
+    <div class="vex-note vex-support-manage">
+      <p data-i18n="institution.support.manage.body">Already supporting monthly? Manage or stop your recurring contribution anytime through Stripe.</p>
+      <div class="vex-actions">
+        <a class="vex-btn vex-btn-outline"
+           href="https://billing.stripe.com/p/login/8x25kC4XAb3g0Hafpw9MY00"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-i18n="institution.support.manage.action">Manage monthly support</a>
+      </div>
+    </div>
   </section>
 
 

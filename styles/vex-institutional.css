@@ -446,6 +446,15 @@ select.vex-control {
   margin-bottom: 0;
 }
 
+.vex-note.vex-support-manage {
+  margin: var(--space-6) auto 0;
+  text-align: center;
+}
+
+.vex-support-manage .vex-actions {
+  justify-content: center;
+}
+
 .vex-note-critical {
   border-left-color: var(--status-caution);
 }
@@ -776,6 +785,11 @@ select.vex-control {
 
   .vex-grid-2 {
     grid-template-columns: 1fr;
+  }
+
+  .vex-support-manage .vex-actions,
+  .vex-support-manage .vex-btn {
+    width: 100%;
   }
 
   .vex-stage {
