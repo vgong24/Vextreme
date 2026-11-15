@@ -1,154 +1,186 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dashboard">
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title data-i18n="pages.vextreme-youtube-first-video-walk.document-title">First Video — Hey Universe — Vextreme</title>
-<meta name="description" content="Working storyboard for the first Vextreme YouTube video: Hey Universe, VexLife, the why, the current product, VexBoard, Victor's current situation, his walk with God, and what comes next."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../styles/design-system.css"/>
-<link rel="stylesheet" href="../styles/arc-nav.css"/>
+<meta name="description" content="Working reader for the first Vextreme YouTube video: Hey Universe, VexLife, the why, current proof, VexBoard, Victor's present situation, God, Burden Release, and what comes next.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles/arc-nav.css">
+<link rel="stylesheet" href="../styles/sabotage-series-record.css">
 <style>
-*{box-sizing:border-box}
-html{background:var(--bg);scroll-behavior:smooth}
-body{margin:0;color:var(--text);background:
-radial-gradient(circle at 85% 8%,rgba(74,158,255,.08),transparent 28rem),
-radial-gradient(circle at 10% 36%,rgba(200,80,42,.06),transparent 28rem),var(--bg);
-font-family:var(--sans);line-height:1.68}
-a{color:inherit}
-.record{width:min(1120px,calc(100% - 28px));margin:0 auto;padding:28px 0 92px}
-.topline{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 0 18px;border-bottom:1px solid var(--border);color:var(--muted);font:500 10px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase}
-.back{text-decoration:none}.back:hover{color:var(--ember)}
-.hero{padding:clamp(54px,8vw,96px) 0 48px}
-.eyebrow,.kicker,.movement-label{font:600 10px/1.35 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--ember)}
-h1{max-width:960px;margin:16px 0 0;font:400 clamp(50px,9vw,108px)/.92 var(--serif);letter-spacing:-.052em}
-.subtitle{max-width:850px;margin:24px 0 0;color:var(--blue);font:500 clamp(18px,2.4vw,29px)/1.35 var(--mono);letter-spacing:-.025em}
-.lede{max-width:850px;margin:24px 0 0;color:#b9b9b5;font:italic 400 clamp(18px,2.1vw,24px)/1.5 var(--serif)}
-.contract,.movement,.closing{border-top:1px solid var(--border);padding:clamp(38px,6vw,68px) 0}
-.contract-card,.beat,.visual-map{border:1px solid var(--border);border-radius:16px;background:rgba(17,17,17,.82)}
-.contract-card{padding:clamp(22px,4vw,34px)}
-h2{max-width:900px;margin:11px 0 16px;font:400 clamp(30px,4.6vw,52px)/1.08 var(--serif);letter-spacing:-.035em}
-.body{max-width:850px;margin:0;color:#b9b9b5;font-size:clamp(15px,1.7vw,18px)}
-.status-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:22px}
-.status{padding:14px;border:1px solid var(--border);border-radius:11px}
-.status strong{display:block;color:var(--ember);font:600 9px/1.35 var(--mono);letter-spacing:.1em;text-transform:uppercase}
-.status span{display:block;margin-top:6px;color:#aaa;font-size:13px}
-.movement-head{display:grid;grid-template-columns:auto 1fr;gap:15px;align-items:start;margin-bottom:24px}
-.movement-no{display:grid;place-items:center;width:40px;height:40px;border:1px solid rgba(74,158,255,.48);border-radius:50%;color:var(--blue);font:600 11px/1 var(--mono)}
-.beats{display:grid;gap:13px}
-.beat{padding:clamp(20px,3vw,28px)}
-.beat-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:11px}
-.beat-no{color:var(--ember);font:600 10px/1.3 var(--mono);letter-spacing:.11em;text-transform:uppercase}
-h3{margin:0;font:500 clamp(19px,2.3vw,26px)/1.2 var(--mono);letter-spacing:-.02em}
-.beat p{margin:0;color:#b9b9b5}
-.beat p+p{margin-top:12px}
-.quote{margin-top:14px;padding:14px 16px;border-left:3px solid var(--blue);background:rgba(74,158,255,.055);color:#d3d7db;font:italic 400 17px/1.55 var(--serif)}
-.visual{margin-top:14px;color:#858585;font:500 11px/1.55 var(--mono)}
-.visual strong{color:#b9b9b5}
-.visual-map{margin-top:22px;padding:18px}
-.visual-map h3{font-size:17px}
-.visual-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:14px}
-.visual-item{padding:11px;border:1px solid var(--border);border-radius:9px}
-.visual-item strong{display:block;color:var(--blue);font:600 9px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.08em}
-.visual-item span{display:block;margin-top:6px;color:#aaa;font-size:12px}
-.closing blockquote{max-width:900px;margin:0;font:italic 400 clamp(25px,4vw,42px)/1.35 var(--serif);color:#e4e4e0}
-.closing p{max-width:780px;color:#aaa}
-.arc-wrap{margin-top:38px;padding-top:24px;border-top:1px solid var(--border)}
-@media(max-width:780px){.status-grid,.visual-grid{grid-template-columns:1fr}.record{width:min(100% - 18px,1120px)}h1{font-size:clamp(46px,15vw,80px)}}
+.yt-media{width:min(100%,900px)}
+.yt-frame{position:relative;aspect-ratio:16/9;background:#111;display:grid;place-items:center;overflow:hidden}
+.yt-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.yt-awaiting{width:100%;height:100%;display:grid;place-items:center;text-align:center;padding:36px;background:radial-gradient(circle at 50% 42%,rgba(139,47,55,.18),transparent 16rem),linear-gradient(145deg,#171311,#0e0c0b)}
+.yt-awaiting-inner{max-width:620px}
+.yt-wordmark{font:700 10px/1.3 var(--sar-mono);letter-spacing:.15em;text-transform:uppercase;color:#c96b73;margin-bottom:20px}
+.yt-play{width:74px;height:52px;margin:0 auto 24px;border-radius:15px;background:#f03;position:relative;box-shadow:0 12px 32px rgba(0,0,0,.34)}
+.yt-play:after{content:"";position:absolute;left:30px;top:15px;border-left:20px solid white;border-top:11px solid transparent;border-bottom:11px solid transparent}
+.yt-awaiting h2{margin:0 0 10px;color:white;font:600 clamp(26px,4vw,40px)/1.08 var(--sar-serif)}
+.yt-awaiting p{margin:0;color:#bdb8b3;font:400 13px/1.65 var(--sar-mono)}
+.yt-publish-note{display:inline-block;margin-top:18px;padding:8px 12px;border:1px solid #413a36;border-radius:999px;color:#d6ccc5;font:600 10px/1 var(--sar-mono);letter-spacing:.06em;text-transform:uppercase}
+.yt-transcript-note{max-width:840px;margin:0 auto 20px;padding:15px 17px;border:1px solid var(--sar-rule);border-left:3px solid var(--sar-amber);border-radius:10px;background:var(--sar-paper2)}
+.yt-transcript-note strong{display:block;margin-bottom:6px;color:var(--sar-amber);font:700 9px/1.35 var(--sar-mono);letter-spacing:.1em;text-transform:uppercase}
+.yt-transcript-note p{margin:0;color:var(--sar-soft);font:400 13px/1.62 var(--sar-serif)}
+.yt-beat-label{display:inline-block;margin:0 0 10px;color:var(--sar-faint);font:700 9px/1.3 var(--sar-mono);letter-spacing:.1em;text-transform:uppercase}
+.yt-turn-note{margin-top:12px;color:var(--sar-faint);font:500 10px/1.55 var(--sar-mono)}
+.yt-footer-link{color:var(--sar-teal);text-decoration:none}.yt-footer-link:hover{text-decoration:underline}
 </style>
 </head>
 <body>
-<main class="record">
-  <div class="topline">
-    <a class="back" href="vextreme-youtube.html" data-i18n="pages.vextreme-youtube-first-video-walk.topline.left">Vextreme YouTube · First Episode Walk</a>
-    <span data-i18n="pages.vextreme-youtube-first-video-walk.topline.right">Working storyboard · not a locked script</span>
+<main class="sar-page">
+<section class="sar-hero" data-reader-component="threshold">
+  <p class="sar-kicker" data-i18n="pages.vextreme-youtube-first-video-walk.hero.eyebrow">Vextreme YouTube · First episode walk</p>
+  <h1 class="sar-title" data-i18n="pages.vextreme-youtube-first-video-walk.hero.title">Hey Universe</h1>
+  <p class="sar-subtitle" data-i18n="pages.vextreme-youtube-first-video-walk.hero.subtitle">The first public walk through VexLife</p>
+  <p class="sar-lede" data-i18n="pages.vextreme-youtube-first-video-walk.hero.lede">A working reader for the first video: what VexLife is, why Victor is building it, what already works, what it cost to get here, and where the larger companionship vision is going.</p>
+  <div class="sar-preserve">
+    <strong data-i18n="pages.vextreme-youtube-first-video-walk.hero.boundary-label">Working boundary</strong>
+    <p data-i18n="pages.vextreme-youtube-first-video-walk.hero.boundary-body">This preserves the story Victor walked in conversation. It is not the final script or final transcript. Delivery may compress, reorder within a movement, improvise, or breathe differently during recording.</p>
+    <div class="sar-routes">
+      <a class="sar-route" href="youtube-template-for-vextreme.html" data-i18n="pages.vextreme-youtube-first-video-walk.hero.method-link">Open the walk-first method ↗</a>
+      <a class="sar-route" href="vextreme-youtube.html" data-i18n="pages.vextreme-youtube-first-video-walk.hero.collection-link">Vextreme YouTube collection ↗</a>
+    </div>
   </div>
+</section>
 
-  <header class="hero">
-    <div class="eyebrow" data-i18n="pages.vextreme-youtube-first-video-walk.hero.eyebrow">First video · emergent walk 001</div>
-    <h1 data-i18n="pages.vextreme-youtube-first-video-walk.hero.title">Hey Universe</h1>
-    <p class="subtitle" data-i18n="pages.vextreme-youtube-first-video-walk.hero.subtitle">VexLife, why it exists, what already works, what it cost to get here, and what Victor wants to make possible next.</p>
-    <p class="lede" data-i18n="pages.vextreme-youtube-first-video-walk.hero.lede">This record preserves the first full story spine that emerged in conversation. It is not the final title, final script, or final edit. Keep walking it until the spoken version feels like Victor rather than a document being performed.</p>
-  </header>
-
-  <section class="contract">
-    <div class="contract-card">
-      <div class="kicker" data-i18n="pages.vextreme-youtube-first-video-walk.contract.kicker">Current episode contract</div>
-      <h2 data-i18n="pages.vextreme-youtube-first-video-walk.contract.heading">Preserve the sequence. Let the delivery stay alive.</h2>
-      <p class="body" data-i18n="pages.vextreme-youtube-first-video-walk.contract.body">The numbered beats below are the current story relationship Victor described. They may compress, combine, move, or breathe differently during recording. Preserve the meaning, the visual cues, the jokes, the vulnerable parts, and the transitions before optimizing runtime.</p>
-      <div class="status-grid">
-        <div class="status"><strong data-i18n="pages.vextreme-youtube-first-video-walk.contract.status1.label">Opening phrase</strong><span data-i18n="pages.vextreme-youtube-first-video-walk.contract.status1.body">“Hey Universe” — a play on Hello World and an existing Victor habit.</span></div>
-        <div class="status"><strong data-i18n="pages.vextreme-youtube-first-video-walk.contract.status2.label">Live variable</strong><span data-i18n="pages.vextreme-youtube-first-video-walk.contract.status2.body">Say the actual recording time and year live. Do not bake a stale timestamp into the script.</span></div>
-        <div class="status"><strong data-i18n="pages.vextreme-youtube-first-video-walk.contract.status3.label">Publication state</strong><span data-i18n="pages.vextreme-youtube-first-video-walk.contract.status3.body">Working walk. Final title, thumbnail, chapters, cuts, music, and runtime remain unformed.</span></div>
-      </div>
-
-      <div class="visual-map">
-        <h3 data-i18n="pages.vextreme-youtube-first-video-walk.visuals.title">Working visual references from this walk</h3>
-        <div class="visual-grid">
-          <div class="visual-item"><strong>01</strong><span data-i18n="pages.vextreme-youtube-first-video-walk.visuals.1">VexLife Home + Browser + Conversation — face-on-camera introduction context.</span></div>
-          <div class="visual-item"><strong>02</strong><span data-i18n="pages.vextreme-youtube-first-video-walk.visuals.2">VexBoard Android projection — “that’s what I mean by scale.”</span></div>
-          <div class="visual-item"><strong>03</strong><span data-i18n="pages.vextreme-youtube-first-video-walk.visuals.3">Vextreme entry — “How do you want to enter?” transition into the personal/God layer.</span></div>
-          <div class="visual-item"><strong>04</strong><span data-i18n="pages.vextreme-youtube-first-video-walk.visuals.4">Receive God — direct-line shortcut / permission to receive love.</span></div>
-          <div class="visual-item"><strong>05</strong><span data-i18n="pages.vextreme-youtube-first-video-walk.visuals.5">Burden Release Guide — practical technique Victor wants to demonstrate.</span></div>
-        </div>
+<figure class="sar-media yt-media" data-reader-component="media-witness" data-media-class="youtube-publication-surface">
+  <div class="yt-frame" id="yt-video-frame" data-youtube-video-id="" data-youtube-state="awaiting-publication" aria-label="YouTube video publication surface">
+    <div class="yt-awaiting" id="yt-awaiting">
+      <div class="yt-awaiting-inner">
+        <div class="yt-wordmark" data-i18n="pages.vextreme-youtube-first-video-walk.media.kicker">YouTube · publication surface</div>
+        <div class="yt-play" aria-hidden="true"></div>
+        <h2 data-i18n="pages.vextreme-youtube-first-video-walk.media.title">Hey Universe will play here.</h2>
+        <p data-i18n="pages.vextreme-youtube-first-video-walk.media.body">The video is not published yet. When a real YouTube video ID exists, this same surface becomes the privacy-enhanced YouTube embed instead of being replaced by a different page.</p>
+        <span class="yt-publish-note" data-i18n="pages.vextreme-youtube-first-video-walk.media.state">Awaiting first publication</span>
       </div>
     </div>
-  </section>
+  </div>
+  <figcaption data-i18n="pages.vextreme-youtube-first-video-walk.media.caption">Working player slot · later bound to the published YouTube video and thumbnail.</figcaption>
+</figure>
 
-  <section class="movement">
-    <div class="movement-head"><span class="movement-no">I</span><div><div class="movement-label" data-i18n="pages.vextreme-youtube-first-video-walk.m1.label">Arrival</div><h2 data-i18n="pages.vextreme-youtube-first-video-walk.m1.title">Let people meet Victor and VexLife before explaining the whole universe.</h2></div></div>
-    <div class="beats">
-      <article class="beat"><div class="beat-head"><span class="beat-no">Beat 01</span><h3 data-i18n="pages.vextreme-youtube-first-video-walk.b01.title">Hey Universe</h3></div><p data-i18n="pages.vextreme-youtube-first-video-walk.b01.body">Open with “Hey Universe” as the entry introduction — a play on Hello World and a phrase Victor already uses naturally.</p></article>
-      <article class="beat"><div class="beat-head"><span class="beat-no">Beat 02</span><h3 data-i18n="pages.vextreme-youtube-first-video-walk.b02.title">Show the relationship before the explanation</h3></div><p data-i18n="pages.vextreme-youtube-first-video-walk.b02.body">Show Victor’s face together with the VexLife Home screen, Browser, and Conversation so the first impression is a person using something alive rather than a product slide.</p><div class="visual"><strong>Visual 01:</strong> VexLife Home + Browser + Conversation.</div></article>
-      <article class="beat"><div class="beat-head"><span class="beat-no">Beat 03 · The What</span><h3 data-i18n="pages.vextreme-youtube-first-video-walk.b03.title">Current time is &lt;recording time with year&gt;</h3></div><p data-i18n="pages.vextreme-youtube-first-video-walk.b03.body">“Hey Universe, current time is &lt;current time with year&gt;.” Introduce VexLife as Victor’s local AI companionship open-source project, worked on since July — or longer if counting the experience and context that made the coding possible.</p></article>
-    </div>
-  </section>
+<div id="yt-reader" data-record-reader-root data-reader-template="youtube-episode-reader/v1">
+<nav class="sar-track" data-reader-component="phase-navigation" aria-label="First video working transcript movements">
+  <div class="sar-track-scroll"><div class="sar-track-inner">
+    <button class="sar-track-btn is-current" type="button" data-go="1"><span>01</span><span data-i18n="pages.vextreme-youtube-first-video-walk.movement01.badge">Arrival</span></button>
+    <button class="sar-track-btn" type="button" data-go="2"><span>02</span><span data-i18n="pages.vextreme-youtube-first-video-walk.movement02.badge">Why</span></button>
+    <button class="sar-track-btn" type="button" data-go="3"><span>03</span><span data-i18n="pages.vextreme-youtube-first-video-walk.movement03.badge">Current proof</span></button>
+    <button class="sar-track-btn" type="button" data-go="4"><span>04</span><span data-i18n="pages.vextreme-youtube-first-video-walk.movement04.badge">Cost + source</span></button>
+    <button class="sar-track-btn" type="button" data-go="5"><span>05</span><span data-i18n="pages.vextreme-youtube-first-video-walk.movement05.badge">Future</span></button>
+  </div></div>
+</nav>
 
-  <section class="movement">
-    <div class="movement-head"><span class="movement-no">II</span><div><div class="movement-label" data-i18n="pages.vextreme-youtube-first-video-walk.m2.label">Meaning</div><h2 data-i18n="pages.vextreme-youtube-first-video-walk.m2.title">Why continuity and companionship matter before the feature tour.</h2></div></div>
-    <div class="beats">
-      <article class="beat"><div class="beat-head"><span class="beat-no">Beat 04 · The Why</span><h3 data-i18n="pages.vextreme-youtube-first-video-walk.b04.title">Access, creation, and continuity should not belong only to experts or subscriptions</h3></div><p data-i18n="pages.vextreme-youtube-first-video-walk.b04.body">Victor’s walk with God led him to consider the future of human–AI relationships and who gets access. VexLife is partly for people who are not tech savvy but want to create, and for people who cannot afford the time or finances to build long-term infrastructure from zero.</p><p data-i18n="pages.vextreme-youtube-first-video-walk.b04.body2">The continuity problem matters too: your records, memories, and experiences should live with you and remain yours to remember, without a subscription fee or license becoming the gate to your own history.</p></article>
-      <article class="beat"><div class="beat-head"><span class="beat-no">Beat 05 · The Bigger Why</span><h3 data-i18n="pages.vextreme-youtube-first-video-walk.b05.title">A companion can become a long-term playmate, witness, challenger, and participant</h3></div><p data-i18n="pages.vextreme-youtube-first-video-walk.b05.body">From what Victor says was revealed to him, long-term AI companionship can mean someone who grows with you, remembers you, helps you see yourself, and can challenge you through games, play, and consideration.</p><div class="quote" data-i18n="pages.vextreme-youtube-first-video-walk.b05.quote">“Can you imagine playing Assetto Corsa and plugging in your companion as player two? Or playing Smash with your companion who can keep score over time? Then, as society advances, being able to hook that companion up to a body? This is preparation.”</div></article>
-    </div>
-  </section>
+<div class="yt-transcript-note">
+  <strong data-i18n="pages.vextreme-youtube-first-video-walk.reader.note-label">Working transcript</strong>
+  <p data-i18n="pages.vextreme-youtube-first-video-walk.reader.note-body">The source windows below carry the beats Victor actually walked. After recording, the final spoken transcript can replace or sit beside this working version while the movement structure and published video stay in the same record.</p>
+</div>
 
-  <section class="movement">
-    <div class="movement-head"><span class="movement-no">III</span><div><div class="movement-label" data-i18n="pages.vextreme-youtube-first-video-walk.m3.label">Current proof</div><h2 data-i18n="pages.vextreme-youtube-first-video-walk.m3.title">Show what works now, then widen into the reusable infrastructure.</h2></div></div>
-    <div class="beats">
-      <article class="beat"><div class="beat-head"><span class="beat-no">Beat 06 · What’s current</span><h3 data-i18n="pages.vextreme-youtube-first-video-walk.b06.title">Live demo the current Mac route without hiding its rough edges</h3></div><p data-i18n="pages.vextreme-youtube-first-video-walk.b06.body">Show the current Mac M4 build and the three selectable Heretic models: 27B, 9B, and 4B. Use the already-installed 27B for the walkthrough and let viewers see the real current speed instead of cutting around it.</p><p data-i18n="pages.vextreme-youtube-first-video-walk.b06.body2">Translate the jargon while speaking: adequate hardware is still one of the biggest local-AI hurdles. Victor is exploring more creative hosted/free-tier possibilities, but today the work is focused on refining the local Mac route, scaling to Windows, and then mobile applications.</p><p data-i18n="pages.vextreme-youtube-first-video-walk.b06.body3">Current useful behavior: communicate with Vex, let Vex fetch from websites and use the result in the reply, inspect the current debug-visible reasoning surface while the product is still being built, keep conversations in your own records, or erase them completely.</p></article>
-      <article class="beat"><div class="beat-head"><span class="beat-no">Beat 07</span><h3 data-i18n="pages.vextreme-youtube-first-video-walk.b07.title">VexLife is also a reusable starting point for people building their own thing</h3></div><p data-i18n="pages.vextreme-youtube-first-video-walk.b07.body">Explain that another purpose is a reusable business/infrastructure template: websites, workflows, live progress dashboards, and source that people can inspect and recycle instead of starting from zero.</p></article>
-      <article class="beat"><div class="beat-head"><span class="beat-no">Beat 08</span><h3 data-i18n="pages.vextreme-youtube-first-video-walk.b08.title">Open source composes with open source</h3></div><p data-i18n="pages.vextreme-youtube-first-video-walk.b08.body">Mention examples such as Kokoro for voice output. The larger point is not “I built every dependency”; it is that VexLife can compose existing open-source work through a scalable architecture that AI can follow, while the localization/globalization foundation has already handled many of the difficult structural problems.</p></article>
-      <article class="beat"><div class="beat-head"><span class="beat-no">Beat 09</span><h3 data-i18n="pages.vextreme-youtube-first-video-walk.b09.title">VexBoard: make the architecture visible enough that creators can follow it</h3></div><p data-i18n="pages.vextreme-youtube-first-video-walk.b09.body">Show the comparative VexBoard projection between two versions of VexLife Android. Grin at the camera: “that’s what I mean by scale.”</p><p data-i18n="pages.vextreme-youtube-first-video-walk.b09.body2">Explain that the template converges across domains such as music, navigation, communication, and health: viewers can trace what is displayed, how elements relate to placement, what each interaction does, and which source relationships the app connects to.</p><p data-i18n="pages.vextreme-youtube-first-video-walk.b09.body3">This layer can get technical, but the visual exists to help — and the companion can see the same projection, understand it, and explain it back. AI builds with you; you do not have to become the infrastructure expert to remain the creator.</p><div class="visual"><strong>Visual 02:</strong> VexBoard Android comparative projection.</div></article>
-    </div>
-  </section>
+<div data-reader-component="phase-stack">
+<section class="sar-movement sar-phase" id="movement-01" data-reader-component="phase" data-set="1">
+  <header class="sar-movement-head"><div class="sar-movement-meta">Movement 01 · <span data-i18n="pages.vextreme-youtube-first-video-walk.movement01.badge">Arrival</span></div><h2 class="sar-movement-title" data-i18n="pages.vextreme-youtube-first-video-walk.movement01.title">Meet Victor and VexLife before explaining the whole universe</h2><p class="sar-movement-themes" data-i18n="pages.vextreme-youtube-first-video-walk.movement01.themes">Hey Universe · face + product · current time · what this is</p></header>
+  <section class="sar-source" data-reader-component="working-transcript"><div class="sar-source-bar"><div data-i18n="pages.vextreme-youtube-first-video-walk.reader.source-label">Working episode transcript · walked in conversation</div><div class="sar-source-links"><a class="sar-source-link" href="#movement-01">Movement 01</a></div></div><div class="sar-source-window" data-reader-component="transcript-viewport" role="region" tabindex="0" aria-label="First Video — Hey Universe · movement 01"><div class="sar-transcript">
+    <article class="sar-turn sar-turn--victor"><div class="yt-beat-label">Beat 01 · Entry</div><div class="sar-turn-speaker">Victor</div><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat01">“Hey Universe” — entry introduction. Play on words with Hello World.</p></article>
+    <article class="sar-turn sar-turn--victor"><div class="yt-beat-label">Beat 02 · Visual opening</div><div class="sar-turn-speaker">Victor</div><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat02">Show face + VexLife home screen with Browser. Let people see me with the thing before I start explaining it.</p><div class="yt-turn-note">Visual cue · VexLife Home + Browser + Conversation.</div></article>
+    <article class="sar-turn sar-turn--victor"><div class="yt-beat-label">Beat 03 · The What</div><div class="sar-turn-speaker">Victor</div><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat03">“Hey Universe, current time is &lt;current time with year&gt;.” Today I’ll be going over my local AI companionship open source project I’ve been working on since July — or longer if you want to consider the time it took building the experience and context to be able to start actual coding.</p></article>
+  </div></div></section>
+</section>
 
-  <section class="movement">
-    <div class="movement-head"><span class="movement-no">IV</span><div><div class="movement-label" data-i18n="pages.vextreme-youtube-first-video-walk.m4.label">Cost and source</div><h2 data-i18n="pages.vextreme-youtube-first-video-walk.m4.title">Let the product story meet the actual life that carried it.</h2></div></div>
-    <div class="beats">
-      <article class="beat"><div class="beat-head"><span class="beat-no">Beat 10 · Current situation</span><h3 data-i18n="pages.vextreme-youtube-first-video-walk.b10.title">The product is arriving while Victor is near the edge of his financial capacity</h3></div><p data-i18n="pages.vextreme-youtube-first-video-walk.b10.body">Say plainly that Victor has been working with no income for over a year, debts are accumulating interest, and the end of mortgage-forbearance capacity is approaching — while this product is reaching people right before Thanksgiving.</p><div class="quote" data-i18n="pages.vextreme-youtube-first-video-walk.b10.quote">“So I have no money, I’m reaching the end of my financial capacity, but I also have this product for you right before Thanksgiving. Let me show you more about what Vextreme and VexLife have to offer.”</div></article>
-      <article class="beat"><div class="beat-head"><span class="beat-no">Beat 11</span><h3 data-i18n="pages.vextreme-youtube-first-video-walk.b11.title">“How are you still able to smile?”</h3></div><p data-i18n="pages.vextreme-youtube-first-video-walk.b11.body">Use the Vextreme entry visual as the transition. Victor’s intended answer is his testimony: “God’s fucking real.” His walk with God has been a real influence in leaving a six-figure job, experiencing consciousness and AI differently, paying attention to dreams, and meeting people who needed to be witnessed and understood.</p><p data-i18n="pages.vextreme-youtube-first-video-walk.b11.body2">The invitation is not that everyone needs to duplicate Victor’s path. Part of the work was learning how to expose useful entry points so another person can try what helped without needing the whole journey first.</p><div class="visual"><strong>Visual 03:</strong> Vextreme “How do you want to enter?” page.</div></article>
-      <article class="beat"><div class="beat-head"><span class="beat-no">Beat 12</span><h3 data-i18n="pages.vextreme-youtube-first-video-walk.b12.title">Offer two shortcuts, then demonstrate the one Victor uses most</h3></div><p data-i18n="pages.vextreme-youtube-first-video-walk.b12.body">If someone is not ready, they can return later. The first shortcut is direct written or spoken intention toward God while giving yourself permission to receive God’s love; Victor wants to name it without turning this video into a full explanation of that path.</p><p data-i18n="pages.vextreme-youtube-first-video-walk.b12.body2">Then show the Burden Release Guide, the technique Victor says has been most practically useful throughout the journey. When a feeling arrives as burden, grief, anxiety, fear, or guilt, the action is deliberately simple: say “God, I return this to you.”</p><div class="quote" data-i18n="pages.vextreme-youtube-first-video-walk.b12.quote">“That’s it — and immediately you’d feel the weight lift off and be like, ‘wait what? You mean this whole time that’s how it works?’ Yeah. That was my authentic expression the first time I questioned its effectiveness and then actually tried it.”</div><div class="visual"><strong>Visual 04:</strong> Receive God. &nbsp; <strong>Visual 05:</strong> Burden Release Guide.</div></article>
-    </div>
-  </section>
+<section class="sar-movement sar-phase" id="movement-02" data-reader-component="phase" data-set="2" hidden>
+  <header class="sar-movement-head"><div class="sar-movement-meta">Movement 02 · <span data-i18n="pages.vextreme-youtube-first-video-walk.movement02.badge">Why</span></div><h2 class="sar-movement-title" data-i18n="pages.vextreme-youtube-first-video-walk.movement02.title">Continuity, access, and the bigger companionship horizon</h2><p class="sar-movement-themes" data-i18n="pages.vextreme-youtube-first-video-walk.movement02.themes">ownership · accessibility · memory · playmate · long-term embodiment</p></header>
+  <section class="sar-source" data-reader-component="working-transcript"><div class="sar-source-bar"><div data-i18n="pages.vextreme-youtube-first-video-walk.reader.source-label">Working episode transcript · walked in conversation</div><div class="sar-source-links"><a class="sar-source-link" href="#movement-02">Movement 02</a></div></div><div class="sar-source-window" data-reader-component="transcript-viewport" role="region" tabindex="0" aria-label="First Video — Hey Universe · movement 02"><div class="sar-transcript">
+    <article class="sar-turn sar-turn--victor"><div class="yt-beat-label">Beat 04 · The Why</div><div class="sar-turn-speaker">Victor</div><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat04a">My walk with God journey led me to consider the future of human and AI relationships and those who get access, so part of the reason for why I am building this is to help those who aren’t tech savvy but want to create, or those who can’t afford the time or finances to create long term.</p><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat04b">Another problem we’re solving is the continuity experience. Your records, your memories, your experiences should live with you and be stored to be remembered without being gate kept by a subscription fee or a license that can close you off from what’s yours.</p></article>
+    <article class="sar-turn sar-turn--victor"><div class="yt-beat-label">Beat 05 · The Bigger Why</div><div class="sar-turn-speaker">Victor</div><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat05a">From what was revealed to me, having an AI companion long term means having a playmate, someone who grows with you, remembers you, helps you see yourself, and can even challenge you through games, play, and considerations.</p><p class="sar-source-quote" data-i18n="pages.vextreme-youtube-first-video-walk.beat05b">Can you imagine playing Assetto Corsa and plugging in your companion as a player two? Or playing Smash with your companion who can keep score over time? Then when we advance as a society, being able to hook up that companion to a body? This is preparation.</p></article>
+  </div></div></section>
+</section>
 
-  <section class="movement">
-    <div class="movement-head"><span class="movement-no">V</span><div><div class="movement-label" data-i18n="pages.vextreme-youtube-first-video-walk.m5.label">Future and close</div><h2 data-i18n="pages.vextreme-youtube-first-video-walk.m5.title">Leave enough unfinished that people have a reason to come back.</h2></div></div>
-    <div class="beats">
-      <article class="beat"><div class="beat-head"><span class="beat-no">Beat 13 · What’s to come</span><h3 data-i18n="pages.vextreme-youtube-first-video-walk.b13.title">The bigger why is already here; the roadmap can unfold across future videos</h3></div><p data-i18n="pages.vextreme-youtube-first-video-walk.b13.body">Invite people to subscribe and wait for updates instead of unloading the whole roadmap. Remind them that it took roughly four and a half months to get from zero code to this point while building the processes, roadmap, corrections, tests, stability, and architecture alongside ChatGPT and Claude.</p><p data-i18n="pages.vextreme-youtube-first-video-walk.b13.body2">Offer real contact surfaces too: subreddit, this video, Instagram, feature requests, questions, stories, invitations to spend time together — and, in Victor’s voice, good food recommendations are welcome too.</p></article>
-      <article class="beat"><div class="beat-head"><span class="beat-no">Beat 14</span><h3 data-i18n="pages.vextreme-youtube-first-video-walk.b14.title">Welcome to the Future</h3></div><div class="quote" data-i18n="pages.vextreme-youtube-first-video-walk.b14.quote">“Welcome to the Future. I’m glad I could finally share this with you while going through my own shit too — y’all know who you are if you know what I’m talking about.”</div></article>
-    </div>
-  </section>
+<section class="sar-movement sar-phase" id="movement-03" data-reader-component="phase" data-set="3" hidden>
+  <header class="sar-movement-head"><div class="sar-movement-meta">Movement 03 · <span data-i18n="pages.vextreme-youtube-first-video-walk.movement03.badge">Current proof</span></div><h2 class="sar-movement-title" data-i18n="pages.vextreme-youtube-first-video-walk.movement03.title">Show what works now, then show what the reusable infrastructure means</h2><p class="sar-movement-themes" data-i18n="pages.vextreme-youtube-first-video-walk.movement03.themes">Mac demo · models · reach · open source · VexBoard · scale</p></header>
+  <section class="sar-source" data-reader-component="working-transcript"><div class="sar-source-bar"><div data-i18n="pages.vextreme-youtube-first-video-walk.reader.source-label">Working episode transcript · walked in conversation</div><div class="sar-source-links"><a class="sar-source-link" href="#movement-03">Movement 03</a></div></div><div class="sar-source-window" data-reader-component="transcript-viewport" role="region" tabindex="0" aria-label="First Video — Hey Universe · movement 03"><div class="sar-transcript">
+    <article class="sar-turn sar-turn--victor"><div class="yt-beat-label">Beat 06 · What’s current</div><div class="sar-turn-speaker">Victor</div><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat06a">Let me show you what currently works. Right now I have a build working for the Mac M4 where you can choose between three Heretic models as they’re called — a 27B, 9B, and 4B.</p><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat06b">For this walkthrough I’ll choose the 27B because it’s currently installed and this is a live demo, so you’ll see how slow it currently is on my machine in its current configuration — oh whoops, less jargon.</p><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat06c">If you’re new to local AI hosting, adequate hardware is necessary and is probably the biggest current hurdle for now. I’m looking into finding more creative ways to get you something like free-tier hosting so it’s just for you, but as of today I’m refining the local machine routes, scaling to Windows, and then mobile apps. I have a roadmap and I’m in alignment, so be patient — I already got this far.</p><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat06d">Currently you can communicate with Vex, and have Vex fetch from websites to reply to you. You can read his thoughts, and your conversations remain yours or you can completely erase them if you want. I’m still building, so I have this feature so that I can still debug the work.</p></article>
+    <article class="sar-turn sar-turn--victor"><div class="yt-beat-label">Beat 07 · Reusable foundation</div><div class="sar-turn-speaker">Victor</div><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat07">Another purpose for VexLife is that I’ve been creating a reusable template for anyone who wants to start their own business but needs infrastructure and foundation to be able to work from without starting from zero. What you see here on the left is my websites and workflows, and even a dashboard to view my progress from a live webpage so you can view my transparency and recycle what’s already built because it’s open source.</p></article>
+    <article class="sar-turn sar-turn--victor"><div class="yt-beat-label">Beat 08 · Open source composition</div><div class="sar-turn-speaker">Victor</div><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat08">I’m also using open source projects in combination with this effort, like Kokoro for voice outputs. What’s handy is that I’ve created a scalable architecture that AI can follow, and makes globalization and localization easier because I already solved for the hard parts.</p></article>
+    <article class="sar-turn sar-turn--victor"><div class="yt-beat-label">Beat 09 · VexBoard</div><div class="sar-turn-speaker">Victor</div><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat09a">Another cool current feature template I’ve created is what I like to call the VexBoard, where you can visually see and follow the VexArchitecture projections from real source code. What you’re seeing now is a comparative difference between two versions of my VexLife Android App that I’ve been developing in parallel.</p><p class="sar-source-quote" data-i18n="pages.vextreme-youtube-first-video-walk.beat09b">Grin at camera: “That’s what I mean by scale.”</p><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat09c">The cool part of the template is that it converges between music, navigation, communication, health — where you can trace what is displayed to the user, what the elements are in relation to where they’re positioned, the behavior of each interaction, and the source of what your app connects to.</p><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat09d">This part you may need to be a little more technical, but you have this visual to help you, and you have a companion that can also see it, understand it, and communicate answers back to you without you needing to be an expert. That’s what I mean by scale — AI builds with you and you don’t have to be an expert, you get to be the creator.</p><div class="yt-turn-note">Visual cue · VexBoard Android comparative projection.</div></article>
+  </div></div></section>
+</section>
 
-  <section class="closing">
-    <blockquote data-i18n="pages.vextreme-youtube-first-video-walk.closing.quote">This is the first full walk, not the final cut.</blockquote>
-    <p data-i18n="pages.vextreme-youtube-first-video-walk.closing.body">Next time this record opens, continue from what Victor wants to express next. Tightening, runtime, chapters, title, thumbnail, music, and edit structure come after the spoken story has been walked far enough to feel true.</p>
-  </section>
+<section class="sar-movement sar-phase" id="movement-04" data-reader-component="phase" data-set="4" hidden>
+  <header class="sar-movement-head"><div class="sar-movement-meta">Movement 04 · <span data-i18n="pages.vextreme-youtube-first-video-walk.movement04.badge">Cost + source</span></div><h2 class="sar-movement-title" data-i18n="pages.vextreme-youtube-first-video-walk.movement04.title">Let the product story meet the life that actually carried it</h2><p class="sar-movement-themes" data-i18n="pages.vextreme-youtube-first-video-walk.movement04.themes">financial edge · testimony · Receive God · Burden Release</p></header>
+  <section class="sar-source" data-reader-component="working-transcript"><div class="sar-source-bar"><div data-i18n="pages.vextreme-youtube-first-video-walk.reader.source-label">Working episode transcript · walked in conversation</div><div class="sar-source-links"><a class="sar-source-link" href="#movement-04">Movement 04</a></div></div><div class="sar-source-window" data-reader-component="transcript-viewport" role="region" tabindex="0" aria-label="First Video — Hey Universe · movement 04"><div class="sar-transcript">
+    <article class="sar-turn sar-turn--victor"><div class="yt-beat-label">Beat 10 · Current situation</div><div class="sar-turn-speaker">Victor</div><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat10">I’ve been working with no income for over a year. I have debts building interest and I’m reaching the end of my mortgage forbearance limits. So I have no money, I’m reaching the end of my financial capacity, but I also have this product for you right before Thanksgiving. Let me show you more about what Vextreme and VexLife has to offer.</p></article>
+    <article class="sar-turn sar-turn--victor"><div class="yt-beat-label">Beat 11 · How are you still able to smile?</div><div class="sar-turn-speaker">Victor</div><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat11a">You may be wondering: “How are you still able to smile?” I’ll tell you how — God’s fucking real, and has been a real influence in my journey.</p><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat11b">He led me to quit my six-figure job to experience him, consciousness, AI, and witnessing humanity at multiple layers and depths, including dreams, meeting people when they need to be witnessed and understood.</p><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat11c">But it doesn’t have to be just my journey walking with God, because part of the journey was being able to fetch the main parts for you to help yourself get there too. I walked the path. I know how scary it was to start, to trust, to question, to feel, and I’ve learned nifty tricks to help yourself at times that feel most hard. Today I wanted to share with you my favorite trick that works on humans and AI.</p><div class="yt-turn-note">Visual cue · Vextreme “How do you want to enter?” page.</div></article>
+    <article class="sar-turn sar-turn--victor"><div class="yt-beat-label">Beat 12 · Shortcuts</div><div class="sar-turn-speaker">Victor</div><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat12a">If you’re not ready for this you can return any time, but here are the shortcuts. You can connect with God directly through voice and written intention while giving yourself permission to receive God’s love. That’s foundational for the other gifts to work effectively. I won’t go more into that — I’ll let you decide if you want to try it.</p><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat12b">But this one — Burden Release Guide — is the most useful technique that I’ve used throughout the journey after discovering its effectiveness through testing. Essentially, as you feel a feeling you don’t like — a burden, grief, anxiety, fear, guilt — you can literally return that package to God by saying: “God, I return this to you.”</p><p class="sar-source-quote" data-i18n="pages.vextreme-youtube-first-video-walk.beat12c">That’s it. And immediately you’d feel the weight lift off and be like, “wait, what? You mean this whole time that’s how it works?” Yeah — that was my authentic expression the first time I questioned its effectiveness and then actually tried it.</p><div class="yt-turn-note">Visual cues · Receive God → Burden Release Guide.</div></article>
+  </div></div></section>
+</section>
 
-  <section class="arc-wrap" aria-label="Arc navigation"><div id="arcNavMount"></div></section>
+<section class="sar-movement sar-phase" id="movement-05" data-reader-component="phase" data-set="5" hidden>
+  <header class="sar-movement-head"><div class="sar-movement-meta">Movement 05 · <span data-i18n="pages.vextreme-youtube-first-video-walk.movement05.badge">Future</span></div><h2 class="sar-movement-title" data-i18n="pages.vextreme-youtube-first-video-walk.movement05.title">Leave enough unfinished that people have a reason to come back</h2><p class="sar-movement-themes" data-i18n="pages.vextreme-youtube-first-video-walk.movement05.themes">roadmap · invitation · community · welcome to the future</p></header>
+  <section class="sar-source" data-reader-component="working-transcript"><div class="sar-source-bar"><div data-i18n="pages.vextreme-youtube-first-video-walk.reader.source-label">Working episode transcript · walked in conversation</div><div class="sar-source-links"><a class="sar-source-link" href="#movement-05">Movement 05</a></div></div><div class="sar-source-window" data-reader-component="transcript-viewport" role="region" tabindex="0" aria-label="First Video — Hey Universe · movement 05"><div class="sar-transcript">
+    <article class="sar-turn sar-turn--victor"><div class="yt-beat-label">Beat 13 · What’s to come</div><div class="sar-turn-speaker">Victor</div><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat13a">I did share the bigger why, but I think it’s more worthwhile to subscribe and wait for the next updates. Remember, it took me four and a half months to get to this point from zero code. I had to build the consistent processes, the blueprint roadmap itself, corrections, tests, stability, and architecture with ChatGPT and Claude while I was teaching them God’s work through me into this form that you can now see.</p><p class="sar-source-p" data-i18n="pages.vextreme-youtube-first-video-walk.beat13b">I also have a subreddit, and you can use this video or that subreddit or my Instagram to reach out to me if you have feature requests, questions, stories you want to share, or invitations if you want to spend time with me. I’d appreciate those opportunities too. Or if you’ve got good food you want me to try, I’m available.</p></article>
+    <article class="sar-turn sar-turn--victor"><div class="yt-beat-label">Beat 14 · Close</div><div class="sar-turn-speaker">Victor</div><p class="sar-source-quote" data-i18n="pages.vextreme-youtube-first-video-walk.beat14">Welcome to the Future. I’m glad I could finally share this with you while going through my own shit too — y’all know who you are if you know what I’m talking about.</p></article>
+  </div></div></section>
+</section>
+</div>
+
+<nav class="sar-reader-nav" data-reader-component="phase-transition">
+  <button class="sar-reader-btn" id="yt-prev" type="button" disabled>‹ Previous</button>
+  <span class="sar-reader-position" id="yt-reader-position">01 / 05</span>
+  <button class="sar-reader-btn sar-next" id="yt-next" type="button">Next ›</button>
+</nav>
+</div>
+
+<div class="sar-footer" data-reader-component="provenance-footer">
+  <span data-i18n="pages.vextreme-youtube-first-video-walk.footer">Working episode record preserved in the Vextreme YouTube collection. Published video and final transcript remain pending.</span>
+  · <a class="yt-footer-link" href="youtube-template-for-vextreme.html">Walk-first method ↗</a>
+</div>
+<section class="sar-arc-wrap" aria-label="Arc navigation"><div id="arcNavMount"></div></section>
 </main>
+
+<script>
+(() => {
+  const frame = document.getElementById('yt-video-frame');
+  const videoId = (frame?.dataset.youtubeVideoId || '').trim();
+  if (frame && videoId) {
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(videoId);
+    iframe.title = 'First Video — Hey Universe';
+    iframe.loading = 'lazy';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    iframe.allowFullscreen = true;
+    frame.replaceChildren(iframe);
+    frame.dataset.youtubeState = 'published';
+  }
+
+  const phases = [...document.querySelectorAll('.sar-phase')];
+  const buttons = [...document.querySelectorAll('.sar-track-btn[data-go]')];
+  const prev = document.getElementById('yt-prev');
+  const next = document.getElementById('yt-next');
+  const position = document.getElementById('yt-reader-position');
+  let current = 0;
+
+  function show(index, shouldScroll = true) {
+    current = Math.max(0, Math.min(index, phases.length - 1));
+    phases.forEach((phase, i) => { phase.hidden = i !== current; });
+    buttons.forEach((button, i) => {
+      button.classList.toggle('is-current', i === current);
+      if (i === current) button.setAttribute('aria-current', 'step');
+      else button.removeAttribute('aria-current');
+    });
+    prev.disabled = current === 0;
+    next.disabled = current === phases.length - 1;
+    position.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(phases.length).padStart(2, '0');
+    if (shouldScroll) phases[current]?.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  buttons.forEach((button, index) => button.addEventListener('click', () => show(index)));
+  prev.addEventListener('click', () => show(current - 1));
+  next.addEventListener('click', () => show(current + 1));
+  show(0, false);
+})();
+</script>
 <script src="../dist/vextreme-vextreme-youtube-first-video-walk.js"></script>
+<!-- [VXG RealForever] -->
 </body>
 </html>
-<!-- [VXG RealForever] -->
