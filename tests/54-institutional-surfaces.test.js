@@ -1024,7 +1024,7 @@ test('INSTITUTIONAL-SURFACES: support page pins the current institutional style 
   const componentCss = fs.readFileSync(path.join(ROOT, 'styles', 'vex-institutional.css'), 'utf8');
 
   assert.match(support, /href="\.\.\/styles\/design-system\.css\?v=a688d1811342f0b255c5b8fdb246b8cb1e0d58ea"/);
-  assert.match(support, /href="\.\.\/styles\/vex-institutional\.css\?v=0f8fb583cb30a82258df6fb388530abb2e0cdb28"/);
+  assert.match(support, /href="\.\.\/styles\/vex-institutional\.css\?v=b8458fc40a5d94f150156fed4a0f1fd92d85c60f"/);
   assert.match(componentCss, /\.vex-meaning-link\s*\{[\s\S]*?color:\s*inherit;[\s\S]*?text-decoration:\s*none;/);
   assert.doesNotMatch(support, /href="\.\.\/styles\/vex-institutional\.css"/);
 });
@@ -1038,6 +1038,20 @@ test('INSTITUTIONAL-SURFACES: support page reuses the five existing Connect Stri
 
   assert.equal(legacy.length, 5);
   assert.deepEqual(restored, legacy);
+});
+
+test('INSTITUTIONAL-SURFACES: recurring supporters have one Stripe-hosted self-service management exit', () => {
+  const support = fs.readFileSync(path.join(ROOT, 'pages', 'vex-support.html'), 'utf8');
+  const componentCss = fs.readFileSync(path.join(ROOT, 'styles', 'vex-institutional.css'), 'utf8');
+  const portalLinks = [...support.matchAll(/href="(https:\/\/billing\.stripe\.com\/p\/login\/[^"]+)"/g)]
+    .map(match => match[1]);
+
+  assert.deepEqual(portalLinks, ['https://billing.stripe.com/p/login/8x25kC4XAb3g0Hafpw9MY00']);
+  assert.match(support, /data-i18n="institution\.support\.manage\.body"/);
+  assert.match(support, /data-i18n="institution\.support\.manage\.action">Manage monthly support<\/a>/);
+  assert.match(support, /href="https:\/\/billing\.stripe\.com\/p\/login\/8x25kC4XAb3g0Hafpw9MY00"[\s\S]*?target="_blank"[\s\S]*?rel="noopener noreferrer"/);
+  assert.match(componentCss, /\.vex-note\.vex-support-manage\s*\{[\s\S]*?margin:\s*var\(--space-6\) auto 0;[\s\S]*?text-align:\s*center;/);
+  assert.match(componentCss, /@media \(max-width: 640px\)[\s\S]*?\.vex-support-manage \.vex-btn\s*\{[\s\S]*?width:\s*100%;/);
 });
 
 test('INSTITUTIONAL-SURFACES integration: committed registry and current main projections agree', () => {
