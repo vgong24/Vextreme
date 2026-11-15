@@ -693,6 +693,26 @@
       }
     ]
   },
+  "vextreme_youtube": {
+    "priority": 2,
+    "renderMode": "dots",
+    "parent": {
+      "title": "Vextreme YouTube",
+      "url": "/Vextreme/pages/vextreme-youtube.html",
+      "pageSlug": "vextreme-youtube",
+      "relationship": "group-home"
+    },
+    "sections": [
+      {
+        "label": "Vextreme YouTube",
+        "order": "explicit",
+        "slugs": [
+          "youtube-template-for-vextreme",
+          "vextreme-youtube-first-video-walk"
+        ]
+      }
+    ]
+  },
   "full_timeline": {
     "priority": 99,
     "renderMode": "position",

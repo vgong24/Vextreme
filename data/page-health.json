@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 213,
+    "total": 216,
     "healthy": 4,
-    "attention": 202,
+    "attention": 205,
     "critical": 7,
-    "sorted": 170,
-    "withFab": 200,
-    "readAloudApplicable": 205,
-    "withReadAloud": 205,
+    "sorted": 172,
+    "withFab": 202,
+    "readAloudApplicable": 208,
+    "withReadAloud": 208,
     "missingReadAloud": 0,
-    "withIdentity": 182,
+    "withIdentity": 185,
     "withScreenshots": 13,
-    "withMetaDescription": 178
+    "withMetaDescription": 181
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -14055,6 +14055,124 @@
         ]
       }
     },
+    "vextreme-youtube": {
+      "slug": "vextreme-youtube",
+      "title": "vextreme-youtube",
+      "surface": {
+        "kind": "group-home",
+        "state": "active"
+      },
+      "placement": {
+        "state": "group-home",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": false,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "not-applicable"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "page-owned"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 19,
+        "languages": {
+          "en": {
+            "translated": 19,
+            "total": 19,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Vextreme YouTube — a living production archive where episodes emerge through a walk and return with their published video, transcript, artifacts, and continuity."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "vextreme-youtube-first-video-walk": {
+      "slug": "vextreme-youtube-first-video-walk",
+      "title": "First Video — Hey Universe",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "vextreme_youtube"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 38,
+        "languages": {
+          "en": {
+            "translated": 38,
+            "total": 38,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Working reader for the first Vextreme YouTube video: Hey Universe, VexLife, the why, current proof, VexBoard, Victor"
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "victor-methodology-presentation": {
       "slug": "victor-methodology-presentation",
       "title": "Victor Gong — The Mapping Methodology",
@@ -16171,6 +16289,65 @@
         "blockers": [],
         "gaps": [
           "screenshot"
+        ]
+      }
+    },
+    "youtube-template-for-vextreme": {
+      "slug": "youtube-template-for-vextreme",
+      "title": "YouTube Template for Vextreme",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "vextreme_youtube"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 43,
+        "languages": {
+          "en": {
+            "translated": 43,
+            "total": 43,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "YouTube Template for Vextreme — a walk-first foundation for letting each episode emerge before distilling reusable production structure."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot",
+          "theme-effect"
         ]
       }
     }

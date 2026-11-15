@@ -2,7 +2,7 @@
   "arcs": {
     "category": "production",
     "path": "production/arcs",
-    "en": 17,
+    "en": 18,
     "ja": 16,
     "zh": 16,
     "ko": 16,
@@ -1348,6 +1348,16 @@
     "path": "production/pages/vexarchitecture-live-demonstration",
     "en": 44
   },
+  "pages.vextreme-youtube-first-video-walk": {
+    "category": "production",
+    "path": "production/pages/vextreme-youtube-first-video-walk",
+    "en": 38
+  },
+  "pages.vextreme-youtube": {
+    "category": "production",
+    "path": "production/pages/vextreme-youtube",
+    "en": 19
+  },
   "pages.victor-methodology-presentation": {
     "category": "production",
     "path": "production/pages/victor-methodology-presentation",
@@ -1521,6 +1531,11 @@
     "category": "production",
     "path": "production/pages/xai-hypocrisy",
     "en": 8
+  },
+  "pages.youtube-template-for-vextreme": {
+    "category": "production",
+    "path": "production/pages/youtube-template-for-vextreme",
+    "en": 46
   },
   "specimens": {
     "category": "demo",

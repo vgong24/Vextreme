@@ -1,9 +1,9 @@
 {
-  "contentFingerprint": "1d6024d88a9b",
-  "nodeCount": 193,
-  "curatedNodeCount": 177,
+  "contentFingerprint": "97937769d192",
+  "nodeCount": 195,
+  "curatedNodeCount": 179,
   "autoDiscoveredCount": 16,
-  "arcCount": 28,
+  "arcCount": 29,
   "supportedLangs": [
     "ar",
     "de",
@@ -2551,6 +2551,22 @@
       ]
     },
     "recognition-circuit": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "youtube-template-for-vextreme": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "vextreme-youtube-first-video-walk": {
       "availableLangs": [
         "en"
       ],
@@ -7686,6 +7702,58 @@
         ]
       }
     },
+    "youtube-template-for-vextreme": {
+      "id": null,
+      "slug": "youtube-template-for-vextreme",
+      "title": "YouTube Template for Vextreme",
+      "date": "",
+      "arcKeys": [
+        "vextreme_youtube"
+      ],
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.youtube-template-for-vextreme"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
+    "vextreme-youtube-first-video-walk": {
+      "id": null,
+      "slug": "vextreme-youtube-first-video-walk",
+      "title": "First Video — Hey Universe",
+      "date": "",
+      "arcKeys": [
+        "vextreme_youtube"
+      ],
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.vextreme-youtube-first-video-walk"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
     "about-me": {
       "id": null,
       "slug": "about-me",
@@ -8539,6 +8607,15 @@
         ]
       }
     ],
+    "vextreme_youtube": [
+      {
+        "label": "Vextreme YouTube",
+        "slugs": [
+          "youtube-template-for-vextreme",
+          "vextreme-youtube-first-video-walk"
+        ]
+      }
+    ],
     "full_timeline": [
       {
         "label": "May 2019 — The Origin",
@@ -8915,6 +8992,11 @@
     "witness_chatroom_animation_project": {
       "title": "Witness Chatroom Animation Project",
       "url": "/Vextreme/pages/animation-hand-off.html",
+      "renderMode": "dots"
+    },
+    "vextreme_youtube": {
+      "title": "Vextreme YouTube",
+      "url": "/Vextreme/pages/vextreme-youtube.html",
       "renderMode": "dots"
     },
     "full_timeline": {
@@ -9664,6 +9746,16 @@
         {
           "slug": "vexarchitecture-live-demonstration",
           "title": "VexArchitecture — Live Demonstration",
+          "ported": true
+        },
+        {
+          "slug": "youtube-template-for-vextreme",
+          "title": "YouTube Template for Vextreme",
+          "ported": true
+        },
+        {
+          "slug": "vextreme-youtube-first-video-walk",
+          "title": "First Video — Hey Universe",
           "ported": true
         },
         {
