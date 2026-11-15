@@ -548,7 +548,7 @@ test('BUILD-TERRAIN-MAP: canonical collection and page-title identities project 
 test('BUILD-TERRAIN-MAP: real group-home authority is explicit in topology and never inferred from page completeness', () => {
   const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'terrain-map.json'), 'utf8'));
   const byKey = Object.fromEntries(data.arcs.map(arc => [arc.key, arc]));
-  const declaredHomes = ['ai_practitioner_tools', 'direct_contact', 'epstein', 'liberation', 'living_blueprint'];
+  const declaredHomes = ['ai_practitioner_tools', 'direct_contact', 'epstein', 'liberation', 'living_blueprint', 'vextreme_youtube'];
 
   for (const arc of data.arcs) {
     assert.ok(arc.contentGroupRelation, arc.key + ': missing contentGroupRelation');
@@ -673,7 +673,7 @@ test('BUILD-TERRAIN-MAP: collection parent coverage is derived separately from r
   const { getPageSlugs, getRecordPageSlugs } = require('../lib/audit-pages');
   const result = buildContentPages(nodes, arcs, {}, getRecordPageSlugs(), { pages:{} }, {}, getPageSlugs());
   const byKey = Object.fromEntries(result.arcs.map(arc => [arc.key, arc]));
-  for (const [key, slug] of [['direct_contact','direct-contact'],['ai_practitioner_tools','ai-practitioner-tools'],['living_blueprint','the-living-blueprint']]) {
+  for (const [key, slug] of [['direct_contact','direct-contact'],['ai_practitioner_tools','ai-practitioner-tools'],['living_blueprint','the-living-blueprint'],['vextreme_youtube','vextreme-youtube']]) {
     assert.equal(byKey[key].parent.pageSlug, slug);
     assert.equal(byKey[key].parent.live, true);
     assert.equal(byKey[key].parent.url, 'https://vgong24.github.io/Vextreme/pages/' + slug + '.html');
