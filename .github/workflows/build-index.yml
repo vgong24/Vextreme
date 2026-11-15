@@ -67,7 +67,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
 
     steps:
       - name: Checkout
@@ -157,45 +157,6 @@ jobs:
 
       - name: Build terrain-map.json
         run: node lib/build-terrain-map.js
-
-      - name: Package generated drift for PR recovery
-        if: ${{ github.event_name == 'pull_request' }}
-        shell: bash
-        run: |
-          git add data/strings/compiled data/strings/reports data/index.json data/analysis-index.json data/lessons.json data/roles.json data/status.json data/page-health.json data/terrain-map.json dist sw.js pages/build-health.html pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html widgets/fab-lang.js lib/shell.js lib/vextreme.js pages/terrain-map.html pages/about-vextreme.html pages/vex-support.html
-          mapfile -t generated < <(git diff --cached --name-only)
-          if [ "${#generated[@]}" -eq 0 ]; then
-            echo "No generated drift to package."
-            exit 0
-          fi
-          printf '%s\0' "${generated[@]}" | tar --null -T - -czf /tmp/generated-drift.tgz
-          printf '%s\n' "${generated[@]}" > /tmp/generated-drift-files.txt
-
-      - name: Upload generated drift for PR recovery
-        if: ${{ github.event_name == 'pull_request' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: generated-drift
-          path: |
-            /tmp/generated-drift.tgz
-            /tmp/generated-drift-files.txt
-          if-no-files-found: ignore
-          retention-days: 1
-
-      - name: Commit generated drift onto the PR head for recovery
-        if: ${{ github.event_name == 'pull_request' }}
-        shell: bash
-        env:
-          PR_HEAD_REF: ${{ github.head_ref }}
-        run: |
-          if git diff --cached --quiet; then
-            echo "No generated drift to commit."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "VXG-111526: regenerate deterministic support projections [VXG RealForever]"
-          git push origin "HEAD:refs/heads/${PR_HEAD_REF}"
 
       - name: Verify generated artifacts are committed
         # Generated files are part of the reviewed tree. CI regenerates them
