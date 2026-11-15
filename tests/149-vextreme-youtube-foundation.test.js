@@ -57,9 +57,9 @@ test('VEXTREME YOUTUBE: authored collection is one real group-home with one walk
   assert.doesNotMatch(memberHtml, /data-vex-surface="group-home"/);
   assert.match(auditSource, /'vextreme-youtube': 'Terrain collection group-home document/);
   assert.match(memberHtml, /id="arcNavMount"/);
-  assert.match(groupHtml, /widgets\/fab-read-aloud\\.js/);
-  assert.match(memberHtml, /dist\/vextreme-youtube-template-for-vextreme\\.js/);
-  assert.doesNotMatch(memberHtml, /lib\/vextreme-index-v2\\.js/);
+  assert.match(groupHtml, /widgets\/fab-read-aloud\.js/);
+  assert.match(memberHtml, /dist\/vextreme-youtube-template-for-vextreme\.js/);
+  assert.doesNotMatch(memberHtml, /lib\/vextreme-index-v2\.js/);
   assert.match(memberHtml, /data-theme="dashboard"/);
   assert.match(memberHtml, /styles\/design-system\.css/);
   assert.match(memberHtml, /Walk the episode before you design the template\./);
