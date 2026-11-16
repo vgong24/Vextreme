@@ -109,35 +109,21 @@
       '}',
       '#vex-spiral-trigger:hover { background: rgba(255,255,255,0.32); }',
       '#vex-spiral-trigger.open { transform: rotate(90deg); }',
-      // Keep the lanes mounted through CLOSED -> OPEN -> CLOSED so both directions
-      // have one real animation circuit instead of display:none cutting off close.
-      '#vex-spiral-group { display: contents; }',
+      '#vex-spiral-group { display: none; }',
+      '#vex-spiral-group.open { display: contents; }',
       '#vex-spiral-primary {',
       '  grid-column: 1;',
       '  grid-row: 1;',
       '  display: flex;',
       '  align-items: center;',
       '  justify-content: flex-end;',
-      '  gap: 0;',
-      '  min-width: 0;',
-      '  max-width: 0;',
-      '  opacity: 0;',
-      '  visibility: hidden;',
-      '  pointer-events: none;',
-      '  overflow: hidden;',
-      '  transform: translateX(22px) scale(0.82);',
-      '  transform-origin: right center;',
-      '  transition: max-width 0.34s ease, gap 0.34s ease, opacity 0.18s ease, transform 0.34s ease, visibility 0s linear 0.34s;',
-      '}',
-      '#vex-spiral-group.open #vex-spiral-primary {',
       '  gap: 8px;',
+      '  min-width: 0;',
+      // Primary children may own popups that escape below the 44px row
+      // (the language wheel is the first real case). Do not make this lane a
+      // scroll container: overflow-x:auto also clips vertical overflow.
       '  max-width: min(62vw, 420px);',
-      '  opacity: 1;',
-      '  visibility: visible;',
-      '  pointer-events: auto;',
       '  overflow: visible;',
-      '  transform: translateX(0) scale(1);',
-      '  transition: max-width 0.34s ease, gap 0.34s ease, opacity 0.24s ease 0.06s, transform 0.34s ease, visibility 0s;',
       '}',
       '#vex-spiral-secondary {',
       '  grid-column: 2;',
@@ -145,25 +131,7 @@
       '  display: flex;',
       '  flex-direction: column;',
       '  align-items: center;',
-      '  gap: 0;',
-      '  max-height: 0;',
-      '  opacity: 0;',
-      '  visibility: hidden;',
-      '  pointer-events: none;',
-      '  overflow: hidden;',
-      '  transform: translateY(-12px) scale(0.86);',
-      '  transform-origin: top center;',
-      '  transition: max-height 0.3s ease, gap 0.3s ease, opacity 0.16s ease, transform 0.3s ease, visibility 0s linear 0.3s;',
-      '}',
-      '#vex-spiral-group.open #vex-spiral-secondary {',
       '  gap: 8px;',
-      '  max-height: 360px;',
-      '  opacity: 1;',
-      '  visibility: visible;',
-      '  pointer-events: auto;',
-      '  overflow: visible;',
-      '  transform: translateY(0) scale(1);',
-      '  transition: max-height 0.3s ease, gap 0.3s ease, opacity 0.22s ease 0.06s, transform 0.3s ease, visibility 0s;',
       '}',
     ].join('\n');
 
@@ -211,44 +179,19 @@
     });
     laneObserver.observe(group, { childList: true });
 
-    function setOpen(open, reason) {
-      var nextOpen = Boolean(open);
-      group.classList.toggle('open', nextOpen);
-      trigger.classList.toggle('open', nextOpen);
-      trigger.setAttribute('aria-expanded', String(nextOpen));
-      trigger.setAttribute('aria-label', nextOpen ? 'Close menu' : 'Open menu');
-      container.setAttribute('data-vex-spiral-state', nextOpen ? 'open' : 'closed');
-
-      container.dispatchEvent(new CustomEvent('vex:spiral-change', {
-        bubbles: true,
-        detail: {
-          open: nextOpen,
-          reason: reason || 'programmatic',
-        },
-      }));
-    }
-
-    container.setAttribute('data-vex-spiral-state', 'closed');
-
     trigger.addEventListener('click', function (e) {
       e.stopPropagation();
-      setOpen(!group.classList.contains('open'), 'trigger');
+      var open = group.classList.toggle('open');
+      trigger.classList.toggle('open', open);
+      trigger.setAttribute('aria-expanded', String(open));
     });
 
     document.addEventListener('click', function (e) {
       if (!group.classList.contains('open')) return;
-      // Feature adapters may delegate a trusted orb click to an existing local control by
-      // calling control.click(). That second click is synthetic and must not be mistaken for
-      // an outside human click that closes the Spiral.
-      if (!e.isTrusted) return;
       if (group.contains(e.target) || trigger.contains(e.target)) return;
-      setOpen(false, 'outside');
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key !== 'Escape' || !group.classList.contains('open')) return;
-      setOpen(false, 'escape');
-      trigger.focus();
+      group.classList.remove('open');
+      trigger.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
     });
 
     container.appendChild(trigger);
