@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const source = fs.readFileSync(
-  path.join(__dirname, '..', 'widgets', 'vex-spiral-features.js'),
+  path.join(__dirname, '..', 'components', 'vex-spiral-features.js'),
   'utf8'
 );
 
