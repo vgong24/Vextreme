@@ -18,7 +18,7 @@ test('VEXWORK-LEGACY: retired Vextreme-local route forwards to first-party VexWo
 
 test('VEXWORK-LEGACY: shared product family links first-party VexWork beside VexLife', () => {
   assert.match(nav, /aria-label="Vextreme, VexLife, and VexWork homes"/);
-  assert.match(nav, /href="https:\/\/vgong24\.github\.io\/VexLife\/">VexLife<\/a>/);
+  assert.match(nav, /href="https:\/\/vexgpt\.github\.io\/VexLife-Prod\/">VexLife<\/a>/);
   assert.match(nav, /href="https:\/\/vexgpt\.github\.io\/VexWork\/">VexWork<\/a>/);
   assert.doesNotMatch(nav, /href="\/Vextreme\/vexwork\/">VexWork<\/a>/);
 });
