@@ -179,19 +179,44 @@
     });
     laneObserver.observe(group, { childList: true });
 
+    function setOpen(open, reason) {
+      var nextOpen = Boolean(open);
+      group.classList.toggle('open', nextOpen);
+      trigger.classList.toggle('open', nextOpen);
+      trigger.setAttribute('aria-expanded', String(nextOpen));
+      trigger.setAttribute('aria-label', nextOpen ? 'Close menu' : 'Open menu');
+      container.setAttribute('data-vex-spiral-state', nextOpen ? 'open' : 'closed');
+
+      container.dispatchEvent(new CustomEvent('vex:spiral-change', {
+        bubbles: true,
+        detail: {
+          open: nextOpen,
+          reason: reason || 'programmatic',
+        },
+      }));
+    }
+
+    container.setAttribute('data-vex-spiral-state', 'closed');
+
     trigger.addEventListener('click', function (e) {
       e.stopPropagation();
-      var open = group.classList.toggle('open');
-      trigger.classList.toggle('open', open);
-      trigger.setAttribute('aria-expanded', String(open));
+      setOpen(!group.classList.contains('open'), 'trigger');
     });
 
     document.addEventListener('click', function (e) {
       if (!group.classList.contains('open')) return;
+      // Feature adapters may delegate a trusted orb click to an existing local control by
+      // calling control.click(). That second click is synthetic and must not be mistaken for
+      // an outside human click that closes the Spiral.
+      if (!e.isTrusted) return;
       if (group.contains(e.target) || trigger.contains(e.target)) return;
-      group.classList.remove('open');
-      trigger.classList.remove('open');
-      trigger.setAttribute('aria-expanded', 'false');
+      setOpen(false, 'outside');
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape' || !group.classList.contains('open')) return;
+      setOpen(false, 'escape');
+      trigger.focus();
     });
 
     container.appendChild(trigger);
