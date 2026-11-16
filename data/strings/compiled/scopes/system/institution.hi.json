@@ -220,5 +220,41 @@
   },
   "institution.about.deeper.source.body": {
     "text": "रिपॉज़िटरी देखें और सार्वजनिक स्रोत को सीधे ट्रेस करें।"
+  },
+  "institution.support.trust.heading": {
+    "text": "संपर्क, गोपनीयता और ओपन सोर्स"
+  },
+  "institution.support.trust.intro": {
+    "text": "समर्थन और पहुँच अलग हैं। यहाँ बताया गया है कि Victor से कैसे संपर्क करें, यह पेज डेटा के साथ क्या करता है, और सार्वजनिक कोड पर कौन-से लाइसेंस लागू होते हैं।"
+  },
+  "institution.support.contact.title": {
+    "text": "Victor से संपर्क करें"
+  },
+  "institution.support.contact.body": {
+    "text": "Vextreme या VexLife, भरोसे, बग या समर्थन से जुड़े सवाल सीधे Victor को भेजे जा सकते हैं।"
+  },
+  "institution.support.contact.email.action": {
+    "text": "Victor को ईमेल करें"
+  },
+  "institution.support.contact.instagram.action": {
+    "text": "Instagram · @victoweng"
+  },
+  "institution.support.privacy.title": {
+    "text": "गोपनीयता"
+  },
+  "institution.support.privacy.body": {
+    "text": "इस पेज के लिए किसी खाते की आवश्यकता नहीं है और यह फ़ॉर्म के माध्यम से डेटा एकत्र नहीं करता। भुगतान नई टैब में Stripe खोलते हैं; भुगतान जानकारी Stripe संभालता है। यह पेज GitHub Pages पर होस्ट है और Google Fonts लोड करता है, इसलिए ये प्रदाता IP पते जैसी सामान्य वेब-अनुरोध मेटाडेटा प्राप्त कर सकते हैं। यदि आप Victor को ईमेल करते हैं, तो आपके संदेश का उपयोग जवाब देने के लिए किया जाता है।"
+  },
+  "institution.support.license.title": {
+    "text": "ओपन-सोर्स लाइसेंस"
+  },
+  "institution.support.license.body": {
+    "text": "Vextreme Apache-2.0 के अंतर्गत लाइसेंस प्राप्त है। VexLife-Prod MIT लाइसेंस के अंतर्गत है। यह समर्थन पेज इन ओपन-सोर्स लाइसेंसों पर अलग सेवा-शर्तें नहीं जोड़ता, और स्वैच्छिक समर्थन से सेवाएँ, पहुँच, स्वामित्व, प्राथमिकता या अधिकार नहीं खरीदे जाते।"
+  },
+  "institution.support.license.vextreme.action": {
+    "text": "Vextreme लाइसेंस"
+  },
+  "institution.support.license.vexlife.action": {
+    "text": "VexLife लाइसेंस"
   }
 }
