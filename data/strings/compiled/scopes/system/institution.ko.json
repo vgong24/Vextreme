@@ -220,5 +220,41 @@
   },
   "institution.about.deeper.source.body": {
     "text": "저장소를 살펴보고 공개 소스를 직접 따라가세요."
+  },
+  "institution.support.trust.heading": {
+    "text": "연락처, 개인정보 보호 및 오픈 소스"
+  },
+  "institution.support.trust.intro": {
+    "text": "지원과 접근 권한은 별개입니다. Victor에게 연락하는 방법, 이 페이지가 데이터를 어떻게 다루는지, 공개 코드에 어떤 라이선스가 적용되는지 여기에서 확인할 수 있습니다."
+  },
+  "institution.support.contact.title": {
+    "text": "Victor에게 연락"
+  },
+  "institution.support.contact.body": {
+    "text": "Vextreme 또는 VexLife, 신뢰, 버그, 지원에 관한 질문은 Victor에게 직접 보낼 수 있습니다."
+  },
+  "institution.support.contact.email.action": {
+    "text": "Victor에게 이메일"
+  },
+  "institution.support.contact.instagram.action": {
+    "text": "Instagram · @victoweng"
+  },
+  "institution.support.privacy.title": {
+    "text": "개인정보 보호"
+  },
+  "institution.support.privacy.body": {
+    "text": "이 페이지는 계정이 필요하지 않으며 양식으로 데이터를 수집하지 않습니다. 결제는 새 탭에서 Stripe를 열며 결제 정보는 Stripe가 처리합니다. 이 페이지는 GitHub Pages에서 제공되고 Google Fonts를 불러오므로 해당 제공업체가 IP 주소와 같은 일반적인 웹 요청 메타데이터를 받을 수 있습니다. Victor에게 이메일을 보내면 그 내용은 답변을 위해 사용됩니다."
+  },
+  "institution.support.license.title": {
+    "text": "오픈 소스 라이선스"
+  },
+  "institution.support.license.body": {
+    "text": "Vextreme은 Apache-2.0, VexLife-Prod는 MIT 라이선스를 사용합니다. 이 지원 페이지는 이러한 오픈 소스 라이선스에 별도의 이용약관을 추가하지 않으며, 자발적 지원으로 서비스, 접근 권한, 소유권, 우선권 또는 권한을 구매할 수 없습니다."
+  },
+  "institution.support.license.vextreme.action": {
+    "text": "Vextreme 라이선스"
+  },
+  "institution.support.license.vexlife.action": {
+    "text": "VexLife 라이선스"
   }
 }
