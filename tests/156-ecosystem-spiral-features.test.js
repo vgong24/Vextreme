@@ -7,19 +7,16 @@ const source = fs.readFileSync(
   path.join(__dirname, '..', 'components', 'vex-spiral-features.js'),
   'utf8'
 );
-const hostSource = fs.readFileSync(
-  path.join(__dirname, '..', 'widgets', 'vex-fab.js'),
-  'utf8'
-);
 
 test('ECOSYSTEM-SPIRAL: registration adapter stays consumer-owned and feature-agnostic', () => {
   assert.match(source, /window\.VEX_SPIRAL_FEATURES|global\[MANIFEST\]/);
   assert.match(source, /data-vex-spiral-feature-id/);
   assert.match(source, /data-vex-spiral-axis/);
   assert.match(source, /document\.querySelector\(target\)/);
+  assert.match(source, /group\.appendChild\(control\)/);
+  assert.match(source, /control\.hidden = false/);
   assert.match(source, /new URL\(value\.trim\(\), document\.baseURI\)/);
   assert.match(source, /item\.enabled === false/);
-  assert.match(source, /data-vex-spiral-icon/);
 
   // Shared composition must not become a central registry of consumer semantics.
   assert.doesNotMatch(source, /\bVision\b/);
@@ -35,35 +32,14 @@ test('ECOSYSTEM-SPIRAL: one feature resolves to exactly one behavior boundary', 
   assert.match(source, /data-vex-spiral-feature-kind', 'control'/);
 });
 
-test('ECOSYSTEM-SPIRAL: open close and reopen project from the host accessibility state', () => {
-  assert.match(source, /function setPresentationOpen\(open, reason\)/);
-  assert.match(source, /trigger\.getAttribute\('aria-expanded'\) === 'true'/);
-  assert.match(source, /MutationObserver/);
-  assert.match(source, /attributeFilter: \['aria-expanded'\]/);
-  assert.match(source, /data-vex-spiral-state/);
-  assert.match(source, /vex:spiral-change/);
-  assert.match(source, /#vex-spiral-group\{display:contents!important;\}/);
-  assert.match(source, /#vex-spiral-group\.open #vex-spiral-primary/);
-  assert.match(source, /max-width:0!important/);
-  assert.match(source, /translateX\(22px\) scale\(\.82\)/);
-  assert.match(source, /event\.key !== 'Escape'/);
-
-  // Cross-repo enhancement must not rewrite Vextreme's established host lifecycle.
-  assert.doesNotMatch(hostSource, /vex:spiral-change/);
-  assert.match(hostSource, /#vex-spiral-group \{ display: none; \}/);
-});
-
-test('ECOSYSTEM-SPIRAL: delegated local controls preserve the open host state', () => {
-  assert.match(source, /control\.dispatchEvent\(new MouseEvent\('click'/);
-  assert.match(source, /bubbles: false/);
+test('ECOSYSTEM-SPIRAL: local controls are recycled rather than proxied', () => {
+  assert.match(source, /Recycle the consumer's real Control/);
+  assert.match(source, /group\.appendChild\(control\)/);
   assert.doesNotMatch(source, /control\.click\(\)/);
-});
-
-test('ECOSYSTEM-SPIRAL: target controls may own a live icon projection', () => {
-  assert.match(source, /function syncProjectedIcon\(\)/);
-  assert.match(source, /control\.getAttribute\('data-vex-spiral-icon'\)/);
-  assert.match(source, /attributeFilter: \['data-vex-spiral-icon'\]/);
-  assert.match(source, /syncProjectedIcon\(\)/);
+  assert.doesNotMatch(source, /dispatchEvent\(new MouseEvent/);
+  assert.doesNotMatch(source, /MutationObserver/);
+  assert.doesNotMatch(source, /vex:spiral-change/);
+  assert.doesNotMatch(source, /#vex-spiral-primary/);
 });
 
 // [VXG RealForever]
