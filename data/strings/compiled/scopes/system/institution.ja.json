@@ -518,5 +518,41 @@
   },
   "institution.about.deeper.source.body": {
     "text": "リポジトリを確認し、公開ソースを直接たどります。"
+  },
+  "institution.support.trust.heading": {
+    "text": "連絡先・プライバシー・オープンソース"
+  },
+  "institution.support.trust.intro": {
+    "text": "支援とアクセスは別です。Victor への連絡方法、このページでのデータの扱い、公開コードに適用されるライセンスをここにまとめています。"
+  },
+  "institution.support.contact.title": {
+    "text": "Victor への連絡"
+  },
+  "institution.support.contact.body": {
+    "text": "Vextreme または VexLife、信頼性、バグ、支援に関する質問は Victor に直接送れます。"
+  },
+  "institution.support.contact.email.action": {
+    "text": "Victor にメール"
+  },
+  "institution.support.contact.instagram.action": {
+    "text": "Instagram · @victoweng"
+  },
+  "institution.support.privacy.title": {
+    "text": "プライバシー"
+  },
+  "institution.support.privacy.body": {
+    "text": "このページはアカウントを必要とせず、フォームからデータを収集しません。支払いは新しいタブで Stripe を開き、支払い情報は Stripe が処理します。このページは GitHub Pages で配信され、Google Fonts を読み込むため、これらの提供者が IP アドレスなど通常のウェブリクエスト情報を受け取る場合があります。Victor にメールした場合、その内容は返信のために使用されます。"
+  },
+  "institution.support.license.title": {
+    "text": "オープンソースライセンス"
+  },
+  "institution.support.license.body": {
+    "text": "Vextreme は Apache-2.0、VexLife-Prod は MIT ライセンスです。この支援ページはこれらのオープンソースライセンスに追加の利用規約を課しません。任意の支援によってサービス、アクセス、所有権、優先権、権限が購入されることもありません。"
+  },
+  "institution.support.license.vextreme.action": {
+    "text": "Vextreme ライセンス"
+  },
+  "institution.support.license.vexlife.action": {
+    "text": "VexLife ライセンス"
   }
 }
