@@ -27,12 +27,13 @@
  *   {
  *     id: 'stable-consumer-local-id',        // required
  *     label: 'Accessible feature name',      // required
- *     icon: '🫴',                            // optional text/emoji glyph
+ *     icon: '🫴',                            // optional fallback text/emoji glyph
  *     title: 'Hover text',                   // optional; defaults to label
  *     axis: 'primary' | 'secondary',         // optional; defaults primary
  *     enabled: false,                        // optional explicit hold
  *     href: 'https://... or ./relative',     // link feature
  *     target: '#existing-local-control'      // OR local-control projection
+ *                                              // target may publish data-vex-spiral-icon
  *   }
  *
  * Exactly one of href/target must resolve. The adapter never invents a fallback
@@ -135,6 +136,9 @@
     var target = safeTarget(item.target);
     if ((href && target) || (!href && !target)) return;
 
+    var control = target ? document.querySelector(target) : null;
+    if (target && !control) return;
+
     var node = href ? document.createElement('a') : document.createElement('button');
     node.className = 'vex-ecosystem-spiral-feature';
     node.setAttribute('data-vex-spiral-feature-id', id);
@@ -143,10 +147,36 @@
       (typeof item.title === 'string' && item.title.trim())
         ? item.title.trim()
         : label;
-    node.textContent =
+    var fallbackIcon =
       (typeof item.icon === 'string' && item.icon.trim())
         ? item.icon.trim()
         : '•';
+
+    function syncProjectedIcon() {
+      var projected =
+        control &&
+        typeof control.getAttribute === 'function'
+          ? control.getAttribute('data-vex-spiral-icon')
+          : null;
+      node.textContent = (typeof projected === 'string' && projected.trim())
+        ? projected.trim()
+        : fallbackIcon;
+    }
+
+    syncProjectedIcon();
+
+    if (control) {
+      var iconObserver = new MutationObserver(function (records) {
+        if (!records.some(function (record) {
+          return record.attributeName === 'data-vex-spiral-icon';
+        })) return;
+        syncProjectedIcon();
+      });
+      iconObserver.observe(control, {
+        attributes: true,
+        attributeFilter: ['data-vex-spiral-icon'],
+      });
+    }
 
     if (item.axis === 'secondary') {
       node.setAttribute('data-vex-spiral-axis', 'secondary');
@@ -159,7 +189,6 @@
       node.type = 'button';
       node.setAttribute('data-vex-spiral-feature-kind', 'control');
       node.addEventListener('click', function () {
-        var control = document.querySelector(target);
         if (!control) return;
         if (control.disabled || control.getAttribute('aria-disabled') === 'true') return;
 
