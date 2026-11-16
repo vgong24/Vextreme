@@ -1022,10 +1022,10 @@ test('INSTITUTIONAL-SURFACES: support page stays contribution-first and compact'
 test('INSTITUTIONAL-SURFACES: support page exposes durable contact privacy and exact repository licenses', () => {
   const support = fs.readFileSync(path.join(ROOT, 'pages', 'vex-support.html'), 'utf8');
 
-  assert.match(support, /data-i18n="institution\.support\.trust\.heading">Contact, privacy, and open source<\/h2>/);
+  assert.match(support, /<section class="vex-section vex-inst-shell" aria-labelledby="trust-heading" lang="en">[\s\S]*?<h2 class="vex-h1" id="trust-heading">Contact, privacy, and open source<\/h2>/);
   assert.match(support, /href="mailto:vgong24@gmail\.com"/);
   assert.match(support, /href="https:\/\/www\.instagram\.com\/victoweng\/"[\s\S]*?rel="me noopener noreferrer"/);
-  assert.match(support, /data-i18n="institution\.support\.privacy\.body"/);
+  assert.match(support, /This page requires no account and collects no form data\./);
   assert.match(support, /href="https:\/\/github\.com\/vgong24\/Vextreme\/blob\/main\/LICENSE"/);
   assert.match(support, /href="https:\/\/github\.com\/VexGPT\/VexLife-Prod\/blob\/main\/LICENSE"/);
   assert.doesNotMatch(support, /victor\.gong@vextreme24\.com/i);
