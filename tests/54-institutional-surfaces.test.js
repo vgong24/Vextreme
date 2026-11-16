@@ -990,7 +990,7 @@ test('INSTITUTIONAL-SURFACES: About Vextreme orients a newcomer without making b
   assert.match(about, /data-i18n="institution\.about\.hero\.freedom">You can simply look around\./);
   assert.match(about, /data-i18n="institution\.about\.hero\.faith-boundary">[\s\S]*invitation for the willing, not a prerequisite/);
   assert.match(about, /href="#pieces" data-i18n="institution\.about\.hero\.pieces-cta">See how the pieces fit<\/a>/);
-  assert.match(about, /href="https:\/\/vgong24\.github\.io\/VexLife\/"/);
+  assert.match(about, /href="https:\/\/vexgpt\.github\.io\/VexLife-Prod\/"/);
   assert.match(about, /https:\/\/vexgpt\.github\.io\/VexWork\//);
   assert.match(about, /id="why"[\s\S]*data-i18n="institution\.about\.why\.heading">Why this exists<\/h2>/);
   assert.match(about, /href="vextreme-covenant\.html"/);
