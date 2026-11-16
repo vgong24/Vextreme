@@ -220,5 +220,41 @@
   },
   "institution.about.deeper.source.body": {
     "text": "Inspectez le dépôt et suivez directement la source publique."
+  },
+  "institution.support.trust.heading": {
+    "text": "Contact, confidentialité et open source"
+  },
+  "institution.support.trust.intro": {
+    "text": "Le soutien est distinct de l’accès. Vous trouverez ici comment contacter Victor, ce que cette page fait des données et quelles licences régissent le code public."
+  },
+  "institution.support.contact.title": {
+    "text": "Contacter Victor"
+  },
+  "institution.support.contact.body": {
+    "text": "Les questions sur Vextreme ou VexLife, la confiance, les bugs ou le soutien peuvent être adressées directement à Victor."
+  },
+  "institution.support.contact.email.action": {
+    "text": "Envoyer un e-mail à Victor"
+  },
+  "institution.support.contact.instagram.action": {
+    "text": "Instagram · @victoweng"
+  },
+  "institution.support.privacy.title": {
+    "text": "Confidentialité"
+  },
+  "institution.support.privacy.body": {
+    "text": "Cette page ne nécessite aucun compte et ne collecte aucune donnée via un formulaire. Les paiements ouvrent Stripe dans un nouvel onglet ; Stripe traite les informations de paiement. La page est hébergée sur GitHub Pages et charge Google Fonts ; ces fournisseurs peuvent donc recevoir des métadonnées ordinaires de requête web, telles que l’adresse IP. Si vous envoyez un e-mail à Victor, votre message est utilisé pour vous répondre."
+  },
+  "institution.support.license.title": {
+    "text": "Licences open source"
+  },
+  "institution.support.license.body": {
+    "text": "Vextreme est sous licence Apache-2.0. VexLife-Prod est sous licence MIT. Cette page de soutien n’ajoute aucune condition d’utilisation distincte à ces licences open source, et le soutien volontaire n’achète ni services, ni accès, ni propriété, ni priorité, ni autorité."
+  },
+  "institution.support.license.vextreme.action": {
+    "text": "Licence Vextreme"
+  },
+  "institution.support.license.vexlife.action": {
+    "text": "Licence VexLife"
   }
 }
