@@ -7,9 +7,8 @@
  * - read one consumer-owned window.VEX_SPIRAL_FEATURES manifest;
  * - mount each admitted feature into #vex-spiral-group;
  * - route primary/secondary placement through the Spiral host's existing axis contract;
- * - delegate behavior either to an ordinary link or to one existing local control;
- * - observe the host trigger's aria-expanded state and expose one reversible presentation circuit
- *   (closed -> open -> closed -> open) without taking ownership of feature meaning.
+ * - mount ordinary links as small feature orbs;
+ * - adopt one existing local control node into the Spiral instead of creating a proxy control.
  *
  * It does NOT own the meaning/state/effect of any registered feature. In particular,
  * consumer repositories remain responsible for deciding which capabilities exist and
@@ -27,17 +26,17 @@
  *   {
  *     id: 'stable-consumer-local-id',        // required
  *     label: 'Accessible feature name',      // required
- *     icon: '🫴',                            // optional fallback text/emoji glyph
+ *     icon: '🫴',                            // optional link glyph; local controls render themselves
  *     title: 'Hover text',                   // optional; defaults to label
  *     axis: 'primary' | 'secondary',         // optional; defaults primary
  *     enabled: false,                        // optional explicit hold
  *     href: 'https://... or ./relative',     // link feature
- *     target: '#existing-local-control'      // OR local-control projection
- *                                              // target may publish data-vex-spiral-icon
+ *     target: '#existing-local-control'      // OR adopt this existing control node into the Spiral
  *   }
  *
- * Exactly one of href/target must resolve. The adapter never invents a fallback
- * behavior when the consumer did not provide one.
+ * Exactly one of href/target must resolve. A target control remains the same DOM Control with
+ * the same event listeners, state projection and accessibility identity; only its presentation
+ * coordinate changes. The adapter never forwards clicks or mirrors target state into a proxy.
  *
  * [VXG RealForever]
  */
@@ -97,29 +96,6 @@
       'transform:translateY(-1px);',
       '}',
       '.vex-ecosystem-spiral-feature:focus-visible{outline:2px solid currentColor;outline-offset:2px;}',
-      // Ecosystem consumers keep lanes mounted so closing can animate back into the trigger
-      // instead of display:none cutting the circuit. The Vextreme host remains unchanged.
-      '#vex-spiral-group{display:contents!important;}',
-      '#vex-spiral-primary{',
-      'gap:0!important;max-width:0!important;opacity:0;visibility:hidden;pointer-events:none;',
-      'overflow:hidden!important;transform:translateX(22px) scale(.82);transform-origin:right center;',
-      'transition:max-width .34s ease,gap .34s ease,opacity .18s ease,transform .34s ease,visibility 0s linear .34s;',
-      '}',
-      '#vex-spiral-group.open #vex-spiral-primary{',
-      'gap:8px!important;max-width:min(62vw,420px)!important;opacity:1;visibility:visible;pointer-events:auto;',
-      'overflow:visible!important;transform:translateX(0) scale(1);',
-      'transition:max-width .34s ease,gap .34s ease,opacity .24s ease .06s,transform .34s ease,visibility 0s;',
-      '}',
-      '#vex-spiral-secondary{',
-      'gap:0!important;max-height:0;opacity:0;visibility:hidden;pointer-events:none;overflow:hidden!important;',
-      'transform:translateY(-12px) scale(.86);transform-origin:top center;',
-      'transition:max-height .3s ease,gap .3s ease,opacity .16s ease,transform .3s ease,visibility 0s linear .3s;',
-      '}',
-      '#vex-spiral-group.open #vex-spiral-secondary{',
-      'gap:8px!important;max-height:360px;opacity:1;visibility:visible;pointer-events:auto;overflow:visible!important;',
-      'transform:translateY(0) scale(1);',
-      'transition:max-height .3s ease,gap .3s ease,opacity .22s ease .06s,transform .3s ease,visibility 0s;',
-      '}',
     ].join('');
     document.head.appendChild(style);
   }
@@ -136,70 +112,41 @@
     var target = safeTarget(item.target);
     if ((href && target) || (!href && !target)) return;
 
-    var control = target ? document.querySelector(target) : null;
-    if (target && !control) return;
+    if (target) {
+      var control = document.querySelector(target);
+      if (!control) return;
 
-    var node = href ? document.createElement('a') : document.createElement('button');
+      // Recycle the consumer's real Control. Do not create a second button, forward a click,
+      // or mirror its state. VexArchitecture meaning stays with the existing Control owner;
+      // this adapter changes only where that same Control is manifested.
+      control.hidden = false;
+      control.classList.add('vex-ecosystem-spiral-feature');
+      control.setAttribute('data-vex-spiral-feature-id', id);
+      control.setAttribute('data-vex-spiral-feature-kind', 'control');
+      if (!control.getAttribute('aria-label')) control.setAttribute('aria-label', label);
+      if (typeof item.title === 'string' && item.title.trim()) control.title = item.title.trim();
+      if (item.axis === 'secondary') control.setAttribute('data-vex-spiral-axis', 'secondary');
+      group.appendChild(control);
+      return;
+    }
+
+    var node = document.createElement('a');
     node.className = 'vex-ecosystem-spiral-feature';
+    node.href = href;
     node.setAttribute('data-vex-spiral-feature-id', id);
+    node.setAttribute('data-vex-spiral-feature-kind', 'link');
     node.setAttribute('aria-label', label);
     node.title =
       (typeof item.title === 'string' && item.title.trim())
         ? item.title.trim()
         : label;
-    var fallbackIcon =
+    node.textContent =
       (typeof item.icon === 'string' && item.icon.trim())
         ? item.icon.trim()
-        : '•';
-
-    function syncProjectedIcon() {
-      var projected =
-        control &&
-        typeof control.getAttribute === 'function'
-          ? control.getAttribute('data-vex-spiral-icon')
-          : null;
-      node.textContent = (typeof projected === 'string' && projected.trim())
-        ? projected.trim()
-        : fallbackIcon;
-    }
-
-    syncProjectedIcon();
-
-    if (control) {
-      var iconObserver = new MutationObserver(function (records) {
-        if (!records.some(function (record) {
-          return record.attributeName === 'data-vex-spiral-icon';
-        })) return;
-        syncProjectedIcon();
-      });
-      iconObserver.observe(control, {
-        attributes: true,
-        attributeFilter: ['data-vex-spiral-icon'],
-      });
-    }
+        : '↗';
 
     if (item.axis === 'secondary') {
       node.setAttribute('data-vex-spiral-axis', 'secondary');
-    }
-
-    if (href) {
-      node.href = href;
-      node.setAttribute('data-vex-spiral-feature-kind', 'link');
-    } else {
-      node.type = 'button';
-      node.setAttribute('data-vex-spiral-feature-kind', 'control');
-      node.addEventListener('click', function () {
-        if (!control) return;
-        if (control.disabled || control.getAttribute('aria-disabled') === 'true') return;
-
-        // Preserve the consumer's existing control as behavior owner without creating a second
-        // bubbling click that the shared host could misread as an outside-click close gesture.
-        control.dispatchEvent(new MouseEvent('click', {
-          bubbles: false,
-          cancelable: true,
-          view: global,
-        }));
-      });
     }
 
     group.appendChild(node);
@@ -207,42 +154,13 @@
 
   function mount() {
     var group = document.getElementById('vex-spiral-group');
-    var trigger = document.getElementById('vex-spiral-trigger');
-    var container = document.getElementById('vex-spiral-fab');
     var features = global[MANIFEST];
 
-    if (!group || !trigger || !container || !Array.isArray(features) || !features.length) return;
+    if (!group || !Array.isArray(features) || !features.length) return;
 
     injectStyles();
     features.forEach(function (item) {
       mountFeature(group, item);
-    });
-
-    function setPresentationOpen(open, reason) {
-      var nextOpen = Boolean(open);
-      container.setAttribute('data-vex-spiral-state', nextOpen ? 'open' : 'closed');
-      container.dispatchEvent(new CustomEvent('vex:spiral-change', {
-        bubbles: true,
-        detail: {
-          open: nextOpen,
-          reason: reason || 'host-state',
-        },
-      }));
-    }
-
-    // The host remains the open/close owner. This adapter observes its accessibility state and
-    // projects that state to consumers so their chrome can animate around the same circuit.
-    var observeTrigger = new MutationObserver(function (records) {
-      if (!records.some(function (record) { return record.attributeName === 'aria-expanded'; })) return;
-      setPresentationOpen(trigger.getAttribute('aria-expanded') === 'true', 'host-state');
-    });
-    observeTrigger.observe(trigger, { attributes: true, attributeFilter: ['aria-expanded'] });
-    setPresentationOpen(trigger.getAttribute('aria-expanded') === 'true', 'mount');
-
-    document.addEventListener('keydown', function (event) {
-      if (event.key !== 'Escape' || trigger.getAttribute('aria-expanded') !== 'true') return;
-      trigger.click();
-      trigger.focus();
     });
   }
 
