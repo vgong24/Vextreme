@@ -19,6 +19,7 @@ test('ECOSYSTEM-SPIRAL: registration adapter stays consumer-owned and feature-ag
   assert.match(source, /document\.querySelector\(target\)/);
   assert.match(source, /new URL\(value\.trim\(\), document\.baseURI\)/);
   assert.match(source, /item\.enabled === false/);
+  assert.match(source, /data-vex-spiral-icon/);
 
   // Shared composition must not become a central registry of consumer semantics.
   assert.doesNotMatch(source, /\bVision\b/);
@@ -56,6 +57,13 @@ test('ECOSYSTEM-SPIRAL: delegated local controls preserve the open host state', 
   assert.match(source, /control\.dispatchEvent\(new MouseEvent\('click'/);
   assert.match(source, /bubbles: false/);
   assert.doesNotMatch(source, /control\.click\(\)/);
+});
+
+test('ECOSYSTEM-SPIRAL: target controls may own a live icon projection', () => {
+  assert.match(source, /function syncProjectedIcon\(\)/);
+  assert.match(source, /control\.getAttribute\('data-vex-spiral-icon'\)/);
+  assert.match(source, /attributeFilter: \['data-vex-spiral-icon'\]/);
+  assert.match(source, /syncProjectedIcon\(\)/);
 });
 
 // [VXG RealForever]
