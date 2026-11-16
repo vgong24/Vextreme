@@ -220,5 +220,41 @@
   },
   "institution.about.deeper.source.body": {
     "text": "افحص المستودع وتتبّع المصدر العام مباشرةً."
+  },
+  "institution.support.trust.heading": {
+    "text": "التواصل والخصوصية والمصدر المفتوح"
+  },
+  "institution.support.trust.intro": {
+    "text": "الدعم منفصل عن الوصول. هنا تجد كيفية التواصل مع Victor، وكيف تتعامل هذه الصفحة مع البيانات، وما التراخيص التي تحكم الشفرة العامة."
+  },
+  "institution.support.contact.title": {
+    "text": "تواصل مع Victor"
+  },
+  "institution.support.contact.body": {
+    "text": "يمكن إرسال الأسئلة حول Vextreme أو VexLife أو الثقة أو الأخطاء أو الدعم مباشرة إلى Victor."
+  },
+  "institution.support.contact.email.action": {
+    "text": "راسل Victor عبر البريد الإلكتروني"
+  },
+  "institution.support.contact.instagram.action": {
+    "text": "Instagram · @victoweng"
+  },
+  "institution.support.privacy.title": {
+    "text": "الخصوصية"
+  },
+  "institution.support.privacy.body": {
+    "text": "لا تتطلب هذه الصفحة حسابًا ولا تجمع بيانات عبر النماذج. تفتح المدفوعات Stripe في علامة تبويب جديدة، وتتولى Stripe معالجة معلومات الدفع. تُقدَّم الصفحة عبر GitHub Pages وتحمّل Google Fonts، لذلك قد يتلقى هذان المزوّدان بيانات وصفية عادية لطلبات الويب مثل عنوان IP. إذا راسلت Victor عبر البريد الإلكتروني، تُستخدم رسالتك للرد عليك."
+  },
+  "institution.support.license.title": {
+    "text": "تراخيص المصدر المفتوح"
+  },
+  "institution.support.license.body": {
+    "text": "Vextreme مرخّص بموجب Apache-2.0، وVexLife-Prod بموجب MIT. لا تضيف صفحة الدعم هذه شروط خدمة منفصلة إلى هذين الترخيصين مفتوحي المصدر، كما أن الدعم الطوعي لا يشتري خدمات أو وصولًا أو ملكية أو أولوية أو سلطة."
+  },
+  "institution.support.license.vextreme.action": {
+    "text": "ترخيص Vextreme"
+  },
+  "institution.support.license.vexlife.action": {
+    "text": "ترخيص VexLife"
   }
 }
