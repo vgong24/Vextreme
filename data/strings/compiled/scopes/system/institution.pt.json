@@ -220,5 +220,41 @@
   },
   "institution.about.deeper.source.body": {
     "text": "Inspecione o repositório e acompanhe diretamente a fonte pública."
+  },
+  "institution.support.trust.heading": {
+    "text": "Contato, privacidade e código aberto"
+  },
+  "institution.support.trust.intro": {
+    "text": "O apoio é separado do acesso. Aqui você encontra como falar com Victor, o que esta página faz com dados e quais licenças regem o código público."
+  },
+  "institution.support.contact.title": {
+    "text": "Fale com Victor"
+  },
+  "institution.support.contact.body": {
+    "text": "Perguntas sobre Vextreme ou VexLife, confiança, bugs ou apoio podem ser enviadas diretamente a Victor."
+  },
+  "institution.support.contact.email.action": {
+    "text": "Enviar e-mail para Victor"
+  },
+  "institution.support.contact.instagram.action": {
+    "text": "Instagram · @victoweng"
+  },
+  "institution.support.privacy.title": {
+    "text": "Privacidade"
+  },
+  "institution.support.privacy.body": {
+    "text": "Esta página não exige conta e não coleta dados por formulários. Os pagamentos abrem o Stripe em uma nova aba; o Stripe processa as informações de pagamento. A página é hospedada pelo GitHub Pages e carrega Google Fonts, portanto esses provedores podem receber metadados comuns de requisições web, como o endereço IP. Se você enviar um e-mail a Victor, sua mensagem será usada para responder."
+  },
+  "institution.support.license.title": {
+    "text": "Licenças de código aberto"
+  },
+  "institution.support.license.body": {
+    "text": "Vextreme usa a licença Apache-2.0. VexLife-Prod usa a licença MIT. Esta página de apoio não adiciona termos de serviço separados a essas licenças de código aberto, e o apoio voluntário não compra serviços, acesso, propriedade, prioridade ou autoridade."
+  },
+  "institution.support.license.vextreme.action": {
+    "text": "Licença do Vextreme"
+  },
+  "institution.support.license.vexlife.action": {
+    "text": "Licença do VexLife"
   }
 }
