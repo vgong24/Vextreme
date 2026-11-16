@@ -42,6 +42,10 @@ test('ECOSYSTEM-SPIRAL: open close and reopen share one state transition circuit
   assert.match(hostSource, /data-vex-spiral-state/);
   assert.match(hostSource, /vex:spiral-change/);
   assert.match(hostSource, /aria-expanded/);
+  assert.match(hostSource, /#vex-spiral-group \{ display: contents; \}/);
+  assert.match(hostSource, /#vex-spiral-group\.open #vex-spiral-primary/);
+  assert.match(hostSource, /max-width: 0/);
+  assert.match(hostSource, /transform: translateX\(22px\) scale\(0\.82\)/);
 });
 
 test('ECOSYSTEM-SPIRAL: delegated local controls do not collapse the open Spiral', () => {
