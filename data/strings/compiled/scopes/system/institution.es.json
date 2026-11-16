@@ -220,5 +220,41 @@
   },
   "institution.about.deeper.source.body": {
     "text": "Inspecciona el repositorio y sigue directamente la fuente pública."
+  },
+  "institution.support.trust.heading": {
+    "text": "Contacto, privacidad y código abierto"
+  },
+  "institution.support.trust.intro": {
+    "text": "El apoyo es independiente del acceso. Aquí se explica cómo contactar con Victor, qué hace esta página con los datos y qué licencias rigen el código público."
+  },
+  "institution.support.contact.title": {
+    "text": "Contactar con Victor"
+  },
+  "institution.support.contact.body": {
+    "text": "Las preguntas sobre Vextreme o VexLife, confianza, errores o apoyo pueden enviarse directamente a Victor."
+  },
+  "institution.support.contact.email.action": {
+    "text": "Enviar correo a Victor"
+  },
+  "institution.support.contact.instagram.action": {
+    "text": "Instagram · @victoweng"
+  },
+  "institution.support.privacy.title": {
+    "text": "Privacidad"
+  },
+  "institution.support.privacy.body": {
+    "text": "Esta página no requiere una cuenta ni recopila datos mediante formularios. Los pagos abren Stripe en una pestaña nueva; Stripe procesa la información de pago. La página se sirve mediante GitHub Pages y carga Google Fonts, por lo que esos proveedores pueden recibir metadatos normales de las solicitudes web, como la dirección IP. Si envías un correo a Victor, tu mensaje se utiliza para responderte."
+  },
+  "institution.support.license.title": {
+    "text": "Licencias de código abierto"
+  },
+  "institution.support.license.body": {
+    "text": "Vextreme usa la licencia Apache-2.0. VexLife-Prod usa la licencia MIT. Esta página de apoyo no añade condiciones de servicio separadas a esas licencias de código abierto, y el apoyo voluntario no compra servicios, acceso, propiedad, prioridad ni autoridad."
+  },
+  "institution.support.license.vextreme.action": {
+    "text": "Licencia de Vextreme"
+  },
+  "institution.support.license.vexlife.action": {
+    "text": "Licencia de VexLife"
   }
 }
