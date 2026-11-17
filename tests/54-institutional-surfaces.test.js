@@ -931,6 +931,15 @@ test('INSTITUTIONAL-SURFACES: no-JavaScript shell-context fallback does not requ
   );
 });
 
+test('INSTITUTIONAL-SURFACES: shell evidence drives the mounted language item Control independent of wheel clipping', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(
+    source,
+    /\.vex-lang-item\[data-lang="\$\{locale\}"\][\s\S]*item\.evaluate\(element => element\.click\(\)\)/,
+    'evidence must invoke the exact mounted language item after proving uniqueness instead of depending on clipped wheel pointer geometry'
+  );
+});
+
 test('INSTITUTIONAL-SURFACES: local evidence server resolves the GitHub Pages repository mount', () => {
   const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
   assert.match(
