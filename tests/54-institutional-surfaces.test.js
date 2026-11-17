@@ -940,6 +940,17 @@ test('INSTITUTIONAL-SURFACES: local evidence server resolves the GitHub Pages re
   );
 });
 
+test('INSTITUTIONAL-SURFACES: shared language FAB applies text, alt, and aria bindings', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'widgets', 'fab-lang.js'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(source, /querySelectorAll\('\[data-i18n-alt\]'\)/);
+  assert.match(source, /setAttribute\('alt', altEntry\.text\)/);
+  assert.match(source, /querySelectorAll\('\[data-i18n-aria\]'\)/);
+  assert.match(source, /ariaEntry\['aria-label'\]/);
+  assert.match(source, /setAttribute\('aria-label', ariaValue\)/);
+  assert.match(source, /_sourceAlt/);
+  assert.match(source, /_sourceAria/);
+});
+
 test('INSTITUTIONAL-SURFACES: rendered shell-context evidence composes common and surface scopes', () => {
   const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
   assert.match(
