@@ -261,6 +261,46 @@
   "institution.support.manage.action": {
     "text": "Monatliche Unterstützung verwalten"
   },
+  "institution.support.trust.heading": {
+    "text": "Kontakt, Datenschutz und Open Source"
+  },
+  "institution.support.trust.intro": {
+    "text": "Unterstützung und Zugang sind getrennt. Hier steht, wie du Victor erreichst, was diese Seite mit Daten macht und welche Lizenzen für den öffentlichen Code gelten."
+  },
+  "institution.support.trust.contact.title": {
+    "text": "Victor kontaktieren"
+  },
+  "institution.support.trust.contact.body": {
+    "text": "Fragen zu Vextreme oder VexLife, Vertrauen, Fehlern oder Unterstützung können direkt an Victor gerichtet werden."
+  },
+  "institution.support.trust.contact.email-copy": {
+    "text": "Victors E-Mail-Adresse kopieren",
+    "aria-label": "Victors E-Mail-Adresse kopieren"
+  },
+  "institution.support.trust.contact.copied": {
+    "text": "✓ Kopiert"
+  },
+  "institution.support.trust.contact.copy-failed": {
+    "text": "Zwischenablage nicht verfügbar — kopiere die angezeigte Adresse direkt."
+  },
+  "institution.support.trust.privacy.title": {
+    "text": "Datenschutz"
+  },
+  "institution.support.trust.privacy.body": {
+    "text": "Für diese Seite ist kein Konto erforderlich, und sie erhebt keine Formulardaten. Zahlungen öffnen Stripe in einem neuen Tab; Stripe verarbeitet die Zahlungsinformationen. Die Seite wird über GitHub Pages bereitgestellt und lädt Google Fonts, daher können diese Anbieter gewöhnliche Metadaten von Webanfragen wie deine IP-Adresse erhalten. Wenn du Victor eine E-Mail sendest, wird deine Nachricht zur Beantwortung verwendet."
+  },
+  "institution.support.trust.licenses.title": {
+    "text": "Open-Source-Lizenzen"
+  },
+  "institution.support.trust.licenses.body": {
+    "text": "Vextreme steht unter der Apache-2.0-Lizenz. VexLife-Prod steht unter der MIT-Lizenz. Diese Support-Seite fügt diesen Open-Source-Lizenzen keine eigenen Bedingungen hinzu, und freiwillige Unterstützung kauft weder Dienstleistungen noch Zugang, Eigentum, Priorität oder Befugnis."
+  },
+  "institution.support.trust.licenses.vextreme-action": {
+    "text": "Vextreme-Lizenz"
+  },
+  "institution.support.trust.licenses.vexlife-action": {
+    "text": "VexLife-Lizenz"
+  },
   "institution.support.meaning.light.alt": {
     "text": "Eine einzelne brennende Kerze in der Dunkelheit."
   },

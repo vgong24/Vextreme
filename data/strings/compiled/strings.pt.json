@@ -261,6 +261,46 @@
   "institution.support.manage.action": {
     "text": "Gerenciar apoio mensal"
   },
+  "institution.support.trust.heading": {
+    "text": "Contato, privacidade e código aberto"
+  },
+  "institution.support.trust.intro": {
+    "text": "O apoio é separado do acesso. Veja como entrar em contato com Victor, o que esta página faz com os dados e quais licenças regem o código público."
+  },
+  "institution.support.trust.contact.title": {
+    "text": "Entrar em contato com Victor"
+  },
+  "institution.support.trust.contact.body": {
+    "text": "Dúvidas sobre Vextreme ou VexLife, confiança, bugs ou apoio podem ser enviadas diretamente a Victor."
+  },
+  "institution.support.trust.contact.email-copy": {
+    "text": "Copiar o e-mail de Victor",
+    "aria-label": "Copiar o e-mail de Victor"
+  },
+  "institution.support.trust.contact.copied": {
+    "text": "✓ Copiado"
+  },
+  "institution.support.trust.contact.copy-failed": {
+    "text": "Área de transferência indisponível — copie diretamente o endereço exibido."
+  },
+  "institution.support.trust.privacy.title": {
+    "text": "Privacidade"
+  },
+  "institution.support.trust.privacy.body": {
+    "text": "Esta página não exige uma conta e não coleta dados de formulários. Os pagamentos abrem o Stripe em uma nova aba; o Stripe processa as informações de pagamento. A página é servida pelo GitHub Pages e carrega o Google Fonts, portanto esses provedores podem receber metadados comuns de requisições da web, como seu endereço IP. Se você enviar um e-mail para Victor, sua mensagem será usada para responder."
+  },
+  "institution.support.trust.licenses.title": {
+    "text": "Licenças de código aberto"
+  },
+  "institution.support.trust.licenses.body": {
+    "text": "Vextreme é licenciado sob Apache-2.0. VexLife-Prod é licenciado sob MIT. Esta página de apoio não adiciona termos separados a essas licenças de código aberto, e o apoio voluntário não compra serviços, acesso, propriedade, prioridade ou autoridade."
+  },
+  "institution.support.trust.licenses.vextreme-action": {
+    "text": "Licença do Vextreme"
+  },
+  "institution.support.trust.licenses.vexlife-action": {
+    "text": "Licença do VexLife"
+  },
   "institution.support.meaning.light.alt": {
     "text": "Uma única vela acesa no escuro."
   },

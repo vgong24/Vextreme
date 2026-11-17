@@ -2947,8 +2947,15 @@
       ],
       "inManifest": true,
       "langs": [
+        "ar",
+        "de",
         "en",
+        "es",
+        "fr",
+        "hi",
         "ja",
+        "ko",
+        "pt",
         "zh"
       ],
       "missingLangs": []
@@ -2960,8 +2967,15 @@
       ],
       "inManifest": true,
       "langs": [
+        "ar",
+        "de",
         "en",
+        "es",
+        "fr",
+        "hi",
         "ja",
+        "ko",
+        "pt",
         "zh"
       ],
       "missingLangs": []
@@ -2973,8 +2987,15 @@
       ],
       "inManifest": true,
       "langs": [
+        "ar",
+        "de",
         "en",
+        "es",
+        "fr",
+        "hi",
         "ja",
+        "ko",
+        "pt",
         "zh"
       ],
       "missingLangs": []
@@ -2986,8 +3007,15 @@
       ],
       "inManifest": true,
       "langs": [
+        "ar",
+        "de",
         "en",
+        "es",
+        "fr",
+        "hi",
         "ja",
+        "ko",
+        "pt",
         "zh"
       ],
       "missingLangs": []
@@ -2997,8 +3025,15 @@
       "usedIn": [],
       "inManifest": true,
       "langs": [
+        "ar",
+        "de",
         "en",
+        "es",
+        "fr",
+        "hi",
         "ja",
+        "ko",
+        "pt",
         "zh"
       ],
       "missingLangs": []
@@ -3010,8 +3045,15 @@
       ],
       "inManifest": true,
       "langs": [
+        "ar",
+        "de",
         "en",
+        "es",
+        "fr",
+        "hi",
         "ja",
+        "ko",
+        "pt",
         "zh"
       ],
       "missingLangs": []
@@ -3023,8 +3065,15 @@
       ],
       "inManifest": true,
       "langs": [
+        "ar",
+        "de",
         "en",
+        "es",
+        "fr",
+        "hi",
         "ja",
+        "ko",
+        "pt",
         "zh"
       ],
       "missingLangs": []
@@ -3036,8 +3085,15 @@
       ],
       "inManifest": true,
       "langs": [
+        "ar",
+        "de",
         "en",
+        "es",
+        "fr",
+        "hi",
         "ja",
+        "ko",
+        "pt",
         "zh"
       ],
       "missingLangs": []
@@ -3049,8 +3105,15 @@
       ],
       "inManifest": true,
       "langs": [
+        "ar",
+        "de",
         "en",
+        "es",
+        "fr",
+        "hi",
         "ja",
+        "ko",
+        "pt",
         "zh"
       ],
       "missingLangs": []
@@ -3062,8 +3125,15 @@
       ],
       "inManifest": true,
       "langs": [
+        "ar",
+        "de",
         "en",
+        "es",
+        "fr",
+        "hi",
         "ja",
+        "ko",
+        "pt",
         "zh"
       ],
       "missingLangs": []
@@ -3075,8 +3145,15 @@
       ],
       "inManifest": true,
       "langs": [
+        "ar",
+        "de",
         "en",
+        "es",
+        "fr",
+        "hi",
         "ja",
+        "ko",
+        "pt",
         "zh"
       ],
       "missingLangs": []
@@ -3088,8 +3165,15 @@
       ],
       "inManifest": true,
       "langs": [
+        "ar",
+        "de",
         "en",
+        "es",
+        "fr",
+        "hi",
         "ja",
+        "ko",
+        "pt",
         "zh"
       ],
       "missingLangs": []
@@ -3101,8 +3185,15 @@
       ],
       "inManifest": true,
       "langs": [
+        "ar",
+        "de",
         "en",
+        "es",
+        "fr",
+        "hi",
         "ja",
+        "ko",
+        "pt",
         "zh"
       ],
       "missingLangs": []
@@ -725572,11 +725663,66 @@
       ],
       "orphanKeys": [],
       "screenshots": {
+        "ar": "docs/screenshots/vex-support-ar-foundation-light-1440.png",
+        "de": "docs/screenshots/vex-support-de-foundation-light-1440.png",
         "en": "docs/screenshots/vex-support-en-foundation-1440.png",
+        "es": "docs/screenshots/vex-support-es-foundation-light-1440.png",
+        "fr": "docs/screenshots/vex-support-fr-foundation-light-1440.png",
+        "hi": "docs/screenshots/vex-support-hi-foundation-light-1440.png",
         "ja": "docs/screenshots/vex-support-ja-foundation-1440.png",
+        "ko": "docs/screenshots/vex-support-ko-foundation-light-1440.png",
+        "pt": "docs/screenshots/vex-support-pt-foundation-light-1440.png",
         "zh": "docs/screenshots/vex-support-zh-foundation-1440.png"
       },
       "screenshotEvidence": [
+        {
+          "slug": "vex-support",
+          "locale": "ar",
+          "theme": "foundation-light",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-ar-foundation-light-1440.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "ar",
+          "theme": "foundation-light",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-ar-foundation-light-320.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "ar",
+          "theme": "foundation-light",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-ar-foundation-light-768.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "de",
+          "theme": "foundation-light",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-de-foundation-light-1440.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "de",
+          "theme": "foundation-light",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-de-foundation-light-320.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "de",
+          "theme": "foundation-light",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-de-foundation-light-768.png"
+        },
         {
           "slug": "vex-support",
           "locale": "en",
@@ -725627,6 +725773,78 @@
         },
         {
           "slug": "vex-support",
+          "locale": "es",
+          "theme": "foundation-light",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-es-foundation-light-1440.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "es",
+          "theme": "foundation-light",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-es-foundation-light-320.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "es",
+          "theme": "foundation-light",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-es-foundation-light-768.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "fr",
+          "theme": "foundation-light",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-fr-foundation-light-1440.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "fr",
+          "theme": "foundation-light",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-fr-foundation-light-320.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "fr",
+          "theme": "foundation-light",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-fr-foundation-light-768.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "hi",
+          "theme": "foundation-light",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-hi-foundation-light-1440.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "hi",
+          "theme": "foundation-light",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-hi-foundation-light-320.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "hi",
+          "theme": "foundation-light",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-hi-foundation-light-768.png"
+        },
+        {
+          "slug": "vex-support",
           "locale": "ja",
           "theme": "foundation",
           "viewport": 1440,
@@ -725672,6 +725890,54 @@
           "viewport": 768,
           "kind": "matrix",
           "path": "docs/screenshots/vex-support-ja-foundation-light-768.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "ko",
+          "theme": "foundation-light",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-ko-foundation-light-1440.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "ko",
+          "theme": "foundation-light",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-ko-foundation-light-320.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "ko",
+          "theme": "foundation-light",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-ko-foundation-light-768.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "pt",
+          "theme": "foundation-light",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-pt-foundation-light-1440.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "pt",
+          "theme": "foundation-light",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-pt-foundation-light-320.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "pt",
+          "theme": "foundation-light",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-pt-foundation-light-768.png"
         },
         {
           "slug": "vex-support",

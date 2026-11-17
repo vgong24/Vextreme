@@ -101,6 +101,46 @@
   "institution.support.manage.action": {
     "text": "मासिक समर्थन प्रबंधित करें"
   },
+  "institution.support.trust.heading": {
+    "text": "संपर्क, गोपनीयता और ओपन सोर्स"
+  },
+  "institution.support.trust.intro": {
+    "text": "समर्थन और पहुँच अलग-अलग हैं। यहाँ Victor से संपर्क करने का तरीका, यह पेज डेटा के साथ क्या करता है, और सार्वजनिक कोड पर कौन-से लाइसेंस लागू होते हैं, बताया गया है।"
+  },
+  "institution.support.trust.contact.title": {
+    "text": "Victor से संपर्क करें"
+  },
+  "institution.support.trust.contact.body": {
+    "text": "Vextreme या VexLife, भरोसे, बग या समर्थन से जुड़े सवाल सीधे Victor को भेजे जा सकते हैं।"
+  },
+  "institution.support.trust.contact.email-copy": {
+    "text": "Victor का ईमेल पता कॉपी करें",
+    "aria-label": "Victor का ईमेल पता कॉपी करें"
+  },
+  "institution.support.trust.contact.copied": {
+    "text": "✓ कॉपी किया गया"
+  },
+  "institution.support.trust.contact.copy-failed": {
+    "text": "क्लिपबोर्ड उपलब्ध नहीं है — दिखाया गया पता सीधे कॉपी करें।"
+  },
+  "institution.support.trust.privacy.title": {
+    "text": "गोपनीयता"
+  },
+  "institution.support.trust.privacy.body": {
+    "text": "इस पेज के लिए किसी खाते की आवश्यकता नहीं है और यह कोई फ़ॉर्म डेटा एकत्र नहीं करता। भुगतान Stripe को नई टैब में खोलते हैं; भुगतान जानकारी Stripe संभालता है। यह पेज GitHub Pages से परोसा जाता है और Google Fonts लोड करता है, इसलिए ये प्रदाता आपके IP पते जैसे सामान्य वेब-अनुरोध मेटाडेटा प्राप्त कर सकते हैं। यदि आप Victor को ईमेल करते हैं, तो आपके संदेश का उपयोग जवाब देने के लिए किया जाता है।"
+  },
+  "institution.support.trust.licenses.title": {
+    "text": "ओपन-सोर्स लाइसेंस"
+  },
+  "institution.support.trust.licenses.body": {
+    "text": "Vextreme Apache-2.0 के अंतर्गत लाइसेंस प्राप्त है। VexLife-Prod MIT के अंतर्गत लाइसेंस प्राप्त है। यह समर्थन पेज इन ओपन-सोर्स लाइसेंसों में कोई अलग शर्त नहीं जोड़ता, और स्वैच्छिक समर्थन सेवाएँ, पहुँच, स्वामित्व, प्राथमिकता या अधिकार नहीं खरीदता।"
+  },
+  "institution.support.trust.licenses.vextreme-action": {
+    "text": "Vextreme लाइसेंस"
+  },
+  "institution.support.trust.licenses.vexlife-action": {
+    "text": "VexLife लाइसेंस"
+  },
   "institution.support.meaning.light.alt": {
     "text": "अँधेरे में जलती हुई एक अकेली मोमबत्ती।"
   },

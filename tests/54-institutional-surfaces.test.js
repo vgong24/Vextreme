@@ -394,6 +394,12 @@ test('INSTITUTIONAL-SURFACES: Global Core locales are admitted and shell evidenc
     EN: 'en', ZH: 'zh', JA: 'ja', KO: 'ko', FR: 'fr',
     DE: 'de', ES: 'es', PT: 'pt', AR: 'ar', HI: 'hi',
   };
+  const supportGlobalCore = ['en', 'ja', 'zh', 'ko', 'fr', 'de', 'es', 'pt', 'ar', 'hi'];
+  assert.deepEqual(
+    registry.surfaces['vex-support'].strings.requiredLocales,
+    supportGlobalCore,
+    'Support publishes the complete Global Core locale set'
+  );
   const configSource = fs.readFileSync(path.join(ROOT, 'lib', 'vex-config.js'), 'utf8').replace(/\r\n/g, '\n');
   for (const [symbol, locale] of Object.entries(globalCore)) {
     assert.match(configSource, new RegExp(`\\b${symbol}:\\s*['"]${locale}['"]`),
@@ -890,6 +896,93 @@ test('INSTITUTIONAL-SURFACES: remote fallback requires institutional capture pro
   ), 'generic localization evidence must not satisfy institutional activation matrix proof');
 });
 
+test('INSTITUTIONAL-SURFACES: no-JavaScript shell-context fallback does not require the standalone native selector', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
+
+  assert.match(
+    source,
+    /surface\.runtime\?\.mode === 'shell-context'\s*\? result\.selectorCount === 0\s*:\s*\(runtimeNeeded[\s\S]*result\.selectorCount === 1 && result\.selectorHidden === true/,
+    'shell-context surfaces must accept static English with no standalone selector while standalone multi-locale surfaces still require one hidden selector'
+  );
+  assert.match(
+    source,
+    /if \(surface\.runtime\?\.mode === 'standalone'\) \{\s*const firstFrames[\s\S]*wrong-locale first paint/,
+    'wrong-locale first-paint commissioning belongs only to the standalone pre-paint-hold runtime'
+  );
+  assert.match(
+    source,
+    /if \(surface\.runtime\?\.mode === 'standalone'\) \{\s*const timeoutContext[\s\S]*pre-paint timeout fallback/,
+    'pre-paint timeout fallback belongs only to the standalone pre-paint-hold runtime'
+  );
+  assert.match(
+    source,
+    /if \(surface\.runtime\?\.mode === 'standalone'\) \{\s*const stableJa[\s\S]*failure changed the fully applied JA state/,
+    'hostile bundle rollback commissioning belongs to the standalone transactional runtime'
+  );
+  assert.match(
+    source,
+    /invalid-URL-keeps-supported-storage[\s\S]*expected: 'zh'/,
+    'shell-context commissioning must preserve the shared FAB invalid-URL fallback contract instead of imposing standalone semantics'
+  );
+  assert.match(
+    source,
+    /if \(\(surface\.evidence\?\.themes \|\| \[\]\)\.length > 1\) \{\s*await verifyThemeToggle/,
+    'theme-toggle commissioning must only run when the surface actually declares more than one evidence theme'
+  );
+});
+
+test('INSTITUTIONAL-SURFACES: shell evidence drives the mounted language item Control independent of wheel clipping', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(
+    source,
+    /\.vex-lang-item\[data-lang="\$\{locale\}"\][\s\S]*item\.evaluate\(element => element\.click\(\)\)/,
+    'evidence must invoke the exact mounted language item after proving uniqueness instead of depending on clipped wheel pointer geometry'
+  );
+});
+
+test('INSTITUTIONAL-SURFACES: local evidence server resolves the GitHub Pages repository mount', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(
+    source,
+    /pathname === '\/Vextreme'[\s\S]*pathname\.startsWith\('\/Vextreme\/'\)[\s\S]*pathname\.slice\('\/Vextreme'\.length\)/,
+    'local evidence must resolve the public /Vextreme mount to checkout-local paths without changing product navigation'
+  );
+});
+
+test('INSTITUTIONAL-SURFACES: shared language FAB applies text, alt, and aria bindings', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'widgets', 'fab-lang.js'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(source, /querySelectorAll\('\[data-i18n-alt\]'\)/);
+  assert.match(source, /setAttribute\('alt', altEntry\.text\)/);
+  assert.match(source, /querySelectorAll\('\[data-i18n-aria\]'\)/);
+  assert.match(source, /ariaEntry\['aria-label'\]/);
+  assert.match(source, /setAttribute\('aria-label', ariaValue\)/);
+  assert.match(source, /_sourceAlt/);
+  assert.match(source, /_sourceAria/);
+});
+
+test('INSTITUTIONAL-SURFACES: rendered shell-context evidence composes common and surface scopes', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(
+    source,
+    /function readRenderedSurfaceBundle[\s\S]*surface\?\.runtime\?\.mode !== 'shell-context'[\s\S]*common\.\$\{locale\}\.json[\s\S]*return \{ \.\.\.commonBundle, \.\.\.surfaceBundle \}/,
+    'shell-context evidence must validate the same common + surface bundle composition used by the shared language runtime'
+  );
+  assert.match(
+    source,
+    /verifyContract\(page, surface, locale, theme, viewport, readRenderedSurfaceBundle\(surface, locale\)\)/,
+    'rendered matrix verification must consume the composed shell bundle'
+  );
+});
+
+test('INSTITUTIONAL-SURFACES: Support keeps its skip link before the shared shell nav mount', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'pages', 'vex-support.html'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(
+    html,
+    /<a class="vex-skip"[^>]*>[^<]*<\/a>\s*<div id="vex-site-nav"><\/div>\s*<main id="main">/,
+    'the shell must populate an existing nav mount after the authored skip link instead of inserting navigation before keyboard skip access'
+  );
+});
+
 test('INSTITUTIONAL-SURFACES: matrix writer can add structured Assets custody without changing local activation evidence', () => {
   const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
 
@@ -1022,7 +1115,7 @@ test('INSTITUTIONAL-SURFACES: support page stays contribution-first and compact'
 test('INSTITUTIONAL-SURFACES: support trust block localizes and exposes copyable durable contact', () => {
   const support = fs.readFileSync(path.join(ROOT, 'pages', 'vex-support.html'), 'utf8');
   const source = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'strings', 'source', 'institution.json'), 'utf8'));
-  const requiredLocales = ['en', 'ja', 'zh'];
+  const requiredLocales = registry.surfaces['vex-support'].strings.requiredLocales;
   const trustKeys = [
     'institution.support.trust.heading',
     'institution.support.trust.intro',

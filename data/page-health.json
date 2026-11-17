@@ -13542,14 +13542,14 @@
         "keyCount": 59,
         "languages": {
           "ar": {
-            "translated": 46,
+            "translated": 59,
             "total": 59,
-            "state": "partial"
+            "state": "full"
           },
           "de": {
-            "translated": 46,
+            "translated": 59,
             "total": 59,
-            "state": "partial"
+            "state": "full"
           },
           "en": {
             "translated": 59,
@@ -13557,19 +13557,19 @@
             "state": "full"
           },
           "es": {
-            "translated": 46,
+            "translated": 59,
             "total": 59,
-            "state": "partial"
+            "state": "full"
           },
           "fr": {
-            "translated": 46,
+            "translated": 59,
             "total": 59,
-            "state": "partial"
+            "state": "full"
           },
           "hi": {
-            "translated": 46,
+            "translated": 59,
             "total": 59,
-            "state": "partial"
+            "state": "full"
           },
           "ja": {
             "translated": 59,
@@ -13577,14 +13577,14 @@
             "state": "full"
           },
           "ko": {
-            "translated": 46,
+            "translated": 59,
             "total": 59,
-            "state": "partial"
+            "state": "full"
           },
           "pt": {
-            "translated": 46,
+            "translated": 59,
             "total": 59,
-            "state": "partial"
+            "state": "full"
           },
           "zh": {
             "translated": 59,
@@ -13599,23 +13599,51 @@
       },
       "evidence": {
         "screenshotLanguages": [
+          "ar",
+          "de",
           "en",
+          "es",
+          "fr",
+          "hi",
           "ja",
+          "ko",
+          "pt",
           "zh"
         ],
         "screenshotFiles": [
+          "docs/screenshots/vex-support-ar-foundation-light-1440.png",
+          "docs/screenshots/vex-support-ar-foundation-light-320.png",
+          "docs/screenshots/vex-support-ar-foundation-light-768.png",
+          "docs/screenshots/vex-support-de-foundation-light-1440.png",
+          "docs/screenshots/vex-support-de-foundation-light-320.png",
+          "docs/screenshots/vex-support-de-foundation-light-768.png",
           "docs/screenshots/vex-support-en-foundation-1440.png",
           "docs/screenshots/vex-support-en-foundation-320.png",
           "docs/screenshots/vex-support-en-foundation-768.png",
           "docs/screenshots/vex-support-en-foundation-light-1440.png",
           "docs/screenshots/vex-support-en-foundation-light-320.png",
           "docs/screenshots/vex-support-en-foundation-light-768.png",
+          "docs/screenshots/vex-support-es-foundation-light-1440.png",
+          "docs/screenshots/vex-support-es-foundation-light-320.png",
+          "docs/screenshots/vex-support-es-foundation-light-768.png",
+          "docs/screenshots/vex-support-fr-foundation-light-1440.png",
+          "docs/screenshots/vex-support-fr-foundation-light-320.png",
+          "docs/screenshots/vex-support-fr-foundation-light-768.png",
+          "docs/screenshots/vex-support-hi-foundation-light-1440.png",
+          "docs/screenshots/vex-support-hi-foundation-light-320.png",
+          "docs/screenshots/vex-support-hi-foundation-light-768.png",
           "docs/screenshots/vex-support-ja-foundation-1440.png",
           "docs/screenshots/vex-support-ja-foundation-320.png",
           "docs/screenshots/vex-support-ja-foundation-768.png",
           "docs/screenshots/vex-support-ja-foundation-light-1440.png",
           "docs/screenshots/vex-support-ja-foundation-light-320.png",
           "docs/screenshots/vex-support-ja-foundation-light-768.png",
+          "docs/screenshots/vex-support-ko-foundation-light-1440.png",
+          "docs/screenshots/vex-support-ko-foundation-light-320.png",
+          "docs/screenshots/vex-support-ko-foundation-light-768.png",
+          "docs/screenshots/vex-support-pt-foundation-light-1440.png",
+          "docs/screenshots/vex-support-pt-foundation-light-320.png",
+          "docs/screenshots/vex-support-pt-foundation-light-768.png",
           "docs/screenshots/vex-support-zh-foundation-1440.png",
           "docs/screenshots/vex-support-zh-foundation-320.png",
           "docs/screenshots/vex-support-zh-foundation-768.png",
