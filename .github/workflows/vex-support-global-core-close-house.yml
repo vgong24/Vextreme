@@ -1,0 +1,99 @@
+name: TEMP Support Global Core close-house
+
+on:
+  push:
+    branches:
+      - VXG-111726-chatgpt-support-global-core-completion
+
+permissions:
+  contents: write
+
+jobs:
+  close-house:
+    if: ${{ !contains(github.event.head_commit.message, 'realize Support Global Core evidence') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout exact branch head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install repository dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Install bounded Playwright carrier
+        run: |
+          set -euo pipefail
+          PLAYWRIGHT_VERSION="$(npm view playwright version)"
+          npm install --no-save --package-lock=false "playwright@$PLAYWRIGHT_VERSION"
+          npx playwright --version
+          npx playwright install --with-deps chromium
+
+      - name: Run canonical generators
+        run: |
+          set -euo pipefail
+          node lib/strings-compile.js
+          node lib/build-string-identity-index.js
+          node lib/build-arc-bundles.js
+          node lib/build-index.js
+          node lib/bump-fab-version.js
+          node lib/build-shared-cache-generation.js
+          node lib/build-vextreme.js
+          node lib/build-sw.js
+          node lib/build-analysis-index.js
+          node lib/build-page-health.js
+          node lib/build-archives.js
+          node lib/build-demo.js
+          node lib/build-specimens.js
+          node lib/build-sitemap.js
+          node lib/build-index-page.js
+          node lib/build-lessons.js
+          node lib/build-status.js
+          node lib/build-roles.js
+          node lib/build-ecosystem-hub.js
+          node lib/build-roles-page.js
+          node lib/build-terrain-map.js
+
+      - name: Render complete Support institutional evidence matrix
+        run: |
+          set -euo pipefail
+          node scripts/screenshot-institutional.js vex-support
+          test "$(find docs/screenshots -maxdepth 1 -type f -name 'vex-support-*-foundation-light-*.png' | wc -l)" -eq 30
+
+      - name: Verify institutional activation
+        run: |
+          set -euo pipefail
+          npm run institutional-surfaces:check
+
+      - name: Stage exact generated and evidence consequences
+        run: |
+          set -euo pipefail
+          git add             data/strings/compiled             data/strings/reports             data/index.json             data/analysis-index.json             data/lessons.json             data/roles.json             data/status.json             data/page-health.json             data/terrain-map.json             dist             sw.js             pages/build-health.html             pages/archives.html             pages/vextreme-demo.html             pages/specimens.html             pages/specimen-*.html             pages/ecosystem-hub.html             pages/roles-index.html             sitemap.xml             index.html             widgets/fab-lang.js             lib/shell.js             lib/vextreme.js             pages/terrain-map.html             pages/about-vextreme.html             pages/vex-support.html             docs/screenshots/vex-support-*.png
+          git diff --cached --check
+          echo "Staged generated/evidence paths:"
+          git diff --cached --name-only
+
+      - name: Commit and push generated currentness
+        env:
+          BRANCH_NAME: VXG-111726-chatgpt-support-global-core-completion
+          EXPECTED_HEAD: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          if git diff --cached --quiet; then
+            echo "No generated/evidence drift to commit."
+            exit 0
+          fi
+          remote_head="$(git ls-remote origin "refs/heads/${BRANCH_NAME}" | cut -f1)"
+          test "${remote_head}" = "${EXPECTED_HEAD}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "VXG-111726: realize Support Global Core evidence [VXG RealForever]"
+          git push origin "HEAD:refs/heads/${BRANCH_NAME}"
