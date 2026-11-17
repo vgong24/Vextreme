@@ -261,6 +261,46 @@
   "institution.support.manage.action": {
     "text": "월간 지원 관리"
   },
+  "institution.support.trust.heading": {
+    "text": "연락처, 개인정보 보호, 오픈 소스"
+  },
+  "institution.support.trust.intro": {
+    "text": "지원과 접근 권한은 별개입니다. 여기에서 Victor에게 연락하는 방법, 이 페이지가 데이터를 어떻게 처리하는지, 공개 코드에 어떤 라이선스가 적용되는지 확인할 수 있습니다."
+  },
+  "institution.support.trust.contact.title": {
+    "text": "Victor에게 연락하기"
+  },
+  "institution.support.trust.contact.body": {
+    "text": "Vextreme 또는 VexLife, 신뢰, 버그, 지원에 관한 질문은 Victor에게 직접 보낼 수 있습니다."
+  },
+  "institution.support.trust.contact.email-copy": {
+    "text": "Victor의 이메일 주소 복사",
+    "aria-label": "Victor의 이메일 주소 복사"
+  },
+  "institution.support.trust.contact.copied": {
+    "text": "✓ 복사했습니다"
+  },
+  "institution.support.trust.contact.copy-failed": {
+    "text": "클립보드를 사용할 수 없습니다 — 표시된 이메일 주소를 직접 복사해 주세요."
+  },
+  "institution.support.trust.privacy.title": {
+    "text": "개인정보 보호"
+  },
+  "institution.support.trust.privacy.body": {
+    "text": "이 페이지는 계정이 필요하지 않으며 양식 데이터를 수집하지 않습니다. 결제는 새 탭에서 Stripe를 열며, 결제 정보는 Stripe가 처리합니다. 이 페이지는 GitHub Pages에서 제공되고 Google Fonts를 불러오므로, 해당 제공업체가 IP 주소와 같은 일반적인 웹 요청 메타데이터를 받을 수 있습니다. Victor에게 이메일을 보내면 해당 메시지는 답변을 위해 사용됩니다."
+  },
+  "institution.support.trust.licenses.title": {
+    "text": "오픈 소스 라이선스"
+  },
+  "institution.support.trust.licenses.body": {
+    "text": "Vextreme은 Apache-2.0 라이선스, VexLife-Prod는 MIT 라이선스로 제공됩니다. 이 지원 페이지는 해당 오픈 소스 라이선스에 별도 조건을 추가하지 않으며, 자발적인 지원으로 서비스, 접근 권한, 소유권, 우선권 또는 권한을 구매할 수 없습니다."
+  },
+  "institution.support.trust.licenses.vextreme-action": {
+    "text": "Vextreme 라이선스"
+  },
+  "institution.support.trust.licenses.vexlife-action": {
+    "text": "VexLife 라이선스"
+  },
   "institution.support.meaning.light.alt": {
     "text": "어둠 속에 하나의 촛불이 켜져 있습니다."
   },

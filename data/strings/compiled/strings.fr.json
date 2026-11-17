@@ -261,6 +261,46 @@
   "institution.support.manage.action": {
     "text": "Gérer le soutien mensuel"
   },
+  "institution.support.trust.heading": {
+    "text": "Contact, confidentialité et open source"
+  },
+  "institution.support.trust.intro": {
+    "text": "Le soutien est distinct de l’accès. Voici comment contacter Victor, ce que cette page fait avec les données et quelles licences régissent le code public."
+  },
+  "institution.support.trust.contact.title": {
+    "text": "Contacter Victor"
+  },
+  "institution.support.trust.contact.body": {
+    "text": "Les questions concernant Vextreme ou VexLife, la confiance, les bugs ou le soutien peuvent être adressées directement à Victor."
+  },
+  "institution.support.trust.contact.email-copy": {
+    "text": "Copier l’adresse e-mail de Victor",
+    "aria-label": "Copier l’adresse e-mail de Victor"
+  },
+  "institution.support.trust.contact.copied": {
+    "text": "✓ Copié"
+  },
+  "institution.support.trust.contact.copy-failed": {
+    "text": "Presse-papiers indisponible — copiez directement l’adresse affichée."
+  },
+  "institution.support.trust.privacy.title": {
+    "text": "Confidentialité"
+  },
+  "institution.support.trust.privacy.body": {
+    "text": "Cette page ne nécessite aucun compte et ne collecte aucune donnée de formulaire. Les paiements ouvrent Stripe dans un nouvel onglet ; Stripe traite les informations de paiement. La page est servie par GitHub Pages et charge Google Fonts ; ces fournisseurs peuvent donc recevoir des métadonnées ordinaires de requête web, telles que votre adresse IP. Si vous envoyez un e-mail à Victor, votre message est utilisé pour vous répondre."
+  },
+  "institution.support.trust.licenses.title": {
+    "text": "Licences open source"
+  },
+  "institution.support.trust.licenses.body": {
+    "text": "Vextreme est sous licence Apache-2.0. VexLife-Prod est sous licence MIT. Cette page de soutien n’ajoute aucune condition distincte à ces licences open source, et le soutien volontaire n’achète ni services, ni accès, ni propriété, ni priorité, ni autorité."
+  },
+  "institution.support.trust.licenses.vextreme-action": {
+    "text": "Licence Vextreme"
+  },
+  "institution.support.trust.licenses.vexlife-action": {
+    "text": "Licence VexLife"
+  },
   "institution.support.meaning.light.alt": {
     "text": "Une seule bougie allumée dans l’obscurité."
   },

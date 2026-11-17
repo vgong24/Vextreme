@@ -2270,6 +2270,8 @@
 
   var _langStrings = {};
   var _sourceText = {};
+  var _sourceAlt = {};
+  var _sourceAria = {};
   var _applyGeneration = 0;
 
   function captureSourceText() {
@@ -2278,6 +2280,22 @@
       var key = els[i].getAttribute('data-i18n');
       if (key && !Object.prototype.hasOwnProperty.call(_sourceText, key)) {
         _sourceText[key] = els[i].textContent;
+      }
+    }
+
+    var altEls = document.querySelectorAll('[data-i18n-alt]');
+    for (var j = 0; j < altEls.length; j++) {
+      var altKey = altEls[j].getAttribute('data-i18n-alt');
+      if (altKey && !Object.prototype.hasOwnProperty.call(_sourceAlt, altKey)) {
+        _sourceAlt[altKey] = altEls[j].getAttribute('alt');
+      }
+    }
+
+    var ariaEls = document.querySelectorAll('[data-i18n-aria]');
+    for (var k = 0; k < ariaEls.length; k++) {
+      var ariaKey = ariaEls[k].getAttribute('data-i18n-aria');
+      if (ariaKey && !Object.prototype.hasOwnProperty.call(_sourceAria, ariaKey)) {
+        _sourceAria[ariaKey] = ariaEls[k].getAttribute('aria-label');
       }
     }
   }
@@ -2452,6 +2470,41 @@
           // A partial locale must fall back to EN/source, never retain text
           // from the previously selected non-EN language.
           els[i].textContent = fallback;
+        }
+      }
+
+      var altEls = document.querySelectorAll('[data-i18n-alt]');
+      for (var j = 0; j < altEls.length; j++) {
+        var altKey = altEls[j].getAttribute('data-i18n-alt');
+        var altEntry = _langStrings[altKey];
+        var altEnglish = window.VEX_STRINGS_EN && window.VEX_STRINGS_EN[altKey];
+        var altFallback = altEnglish && altEnglish.text != null
+          ? altEnglish.text
+          : _sourceAlt[altKey];
+        if (altEntry && altEntry.text != null) {
+          altEls[j].setAttribute('alt', altEntry.text);
+        } else if (altFallback != null) {
+          altEls[j].setAttribute('alt', altFallback);
+        }
+      }
+
+      var ariaEls = document.querySelectorAll('[data-i18n-aria]');
+      for (var k = 0; k < ariaEls.length; k++) {
+        var ariaKey = ariaEls[k].getAttribute('data-i18n-aria');
+        var ariaEntry = _langStrings[ariaKey];
+        var ariaEnglish = window.VEX_STRINGS_EN && window.VEX_STRINGS_EN[ariaKey];
+        var ariaValue = ariaEntry && ariaEntry['aria-label'] != null
+          ? ariaEntry['aria-label']
+          : (ariaEntry && ariaEntry.text != null ? ariaEntry.text : null);
+        var ariaFallback = ariaEnglish && ariaEnglish['aria-label'] != null
+          ? ariaEnglish['aria-label']
+          : (ariaEnglish && ariaEnglish.text != null
+            ? ariaEnglish.text
+            : _sourceAria[ariaKey]);
+        if (ariaValue != null) {
+          ariaEls[k].setAttribute('aria-label', ariaValue);
+        } else if (ariaFallback != null) {
+          ariaEls[k].setAttribute('aria-label', ariaFallback);
         }
       }
       if (options.persist !== false) persistLanguage(lang);

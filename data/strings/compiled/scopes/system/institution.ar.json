@@ -101,6 +101,46 @@
   "institution.support.manage.action": {
     "text": "إدارة الدعم الشهري"
   },
+  "institution.support.trust.heading": {
+    "text": "التواصل والخصوصية والمصدر المفتوح"
+  },
+  "institution.support.trust.intro": {
+    "text": "الدعم منفصل عن الوصول. إليك كيفية التواصل مع Victor، وما تفعله هذه الصفحة بالبيانات، وأي التراخيص تحكم الشفرة العامة."
+  },
+  "institution.support.trust.contact.title": {
+    "text": "التواصل مع Victor"
+  },
+  "institution.support.trust.contact.body": {
+    "text": "يمكن إرسال الأسئلة حول Vextreme أو VexLife أو الثقة أو الأخطاء أو الدعم مباشرةً إلى Victor."
+  },
+  "institution.support.trust.contact.email-copy": {
+    "text": "نسخ عنوان بريد Victor الإلكتروني",
+    "aria-label": "نسخ عنوان بريد Victor الإلكتروني"
+  },
+  "institution.support.trust.contact.copied": {
+    "text": "✓ تم النسخ"
+  },
+  "institution.support.trust.contact.copy-failed": {
+    "text": "الحافظة غير متاحة — انسخ العنوان الظاهر مباشرةً."
+  },
+  "institution.support.trust.privacy.title": {
+    "text": "الخصوصية"
+  },
+  "institution.support.trust.privacy.body": {
+    "text": "لا تتطلب هذه الصفحة حسابًا ولا تجمع بيانات النماذج. تفتح المدفوعات Stripe في علامة تبويب جديدة، ويتولى Stripe معالجة معلومات الدفع. تُقدَّم الصفحة عبر GitHub Pages وتحمّل Google Fonts، لذلك قد يتلقى هؤلاء المزوّدون بيانات وصفية عادية لطلبات الويب مثل عنوان IP الخاص بك. إذا أرسلت بريدًا إلكترونيًا إلى Victor، فستُستخدم رسالتك للرد عليك."
+  },
+  "institution.support.trust.licenses.title": {
+    "text": "تراخيص المصدر المفتوح"
+  },
+  "institution.support.trust.licenses.body": {
+    "text": "يُرخَّص Vextreme بموجب Apache-2.0، ويُرخَّص VexLife-Prod بموجب MIT. لا تضيف صفحة الدعم هذه شروطًا منفصلة إلى تراخيص المصدر المفتوح تلك، ولا يشتري الدعم الطوعي خدمات أو وصولًا أو ملكية أو أولوية أو سلطة."
+  },
+  "institution.support.trust.licenses.vextreme-action": {
+    "text": "ترخيص Vextreme"
+  },
+  "institution.support.trust.licenses.vexlife-action": {
+    "text": "ترخيص VexLife"
+  },
   "institution.support.meaning.light.alt": {
     "text": "شمعة واحدة مضاءة في الظلام."
   },
