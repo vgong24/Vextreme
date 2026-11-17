@@ -41,7 +41,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles/design-system.css?v=a688d1811342f0b255c5b8fdb246b8cb1e0d58ea">
-<link rel="stylesheet" href="../styles/vex-institutional.css?v=b8458fc40a5d94f150156fed4a0f1fd92d85c60f">
+<link rel="stylesheet" href="../styles/vex-institutional.css?v=f6780f46d06b762fafc0a8e6408ebef7f20ab19e">
 </head>
 <body class="vex-inst">
 
@@ -170,22 +170,25 @@
         <p class="vex-route-body"
            data-i18n="institution.support.trust.contact.body">Questions about Vextreme or VexLife, trust, bugs, or support can go directly to Victor.</p>
         <div class="vex-actions">
-          <button class="vex-btn vex-btn-outline"
-                  type="button"
-                  id="copySupportEmail"
-                  data-vex-copy-email="vgong24@gmail.com"
-                  data-i18n-aria="institution.support.trust.contact.email-copy"
-                  aria-label="Copy Victor's email address">vgong24@gmail.com</button>
+          <div class="vex-action-unit">
+            <button class="vex-btn vex-btn-outline"
+                    type="button"
+                    id="copySupportEmail"
+                    data-vex-copy-email="vgong24@gmail.com"
+                    data-i18n-aria="institution.support.trust.contact.email-copy"
+                    aria-label="Copy Victor's email address">vgong24@gmail.com</button>
+            <span id="copySupportEmailStatus" class="vex-provenance vex-action-status"
+                  role="status" aria-live="polite"></span>
+            <span id="copySupportEmailCopied" hidden
+                  data-i18n="institution.support.trust.contact.copied">✓ Copied</span>
+            <span id="copySupportEmailFailed" hidden
+                  data-i18n="institution.support.trust.contact.copy-failed">Clipboard unavailable — copy the address directly.</span>
+          </div>
           <a class="vex-btn vex-btn-outline"
              href="https://www.instagram.com/victoweng/"
              target="_blank"
              rel="me noopener noreferrer"
             >Instagram · @victoweng</a>
-          <span id="copySupportEmailStatus" class="vex-provenance" role="status" aria-live="polite"></span>
-          <span id="copySupportEmailCopied" hidden
-                data-i18n="institution.support.trust.contact.copied">✓ Copied</span>
-          <span id="copySupportEmailFailed" hidden
-                data-i18n="institution.support.trust.contact.copy-failed">Clipboard unavailable — copy the address directly.</span>
         </div>
       </article>
 
