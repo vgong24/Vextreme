@@ -896,6 +896,41 @@ test('INSTITUTIONAL-SURFACES: remote fallback requires institutional capture pro
   ), 'generic localization evidence must not satisfy institutional activation matrix proof');
 });
 
+test('INSTITUTIONAL-SURFACES: no-JavaScript shell-context fallback does not require the standalone native selector', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
+
+  assert.match(
+    source,
+    /surface\.runtime\?\.mode === 'shell-context'\s*\? result\.selectorCount === 0\s*:\s*\(runtimeNeeded[\s\S]*result\.selectorCount === 1 && result\.selectorHidden === true/,
+    'shell-context surfaces must accept static English with no standalone selector while standalone multi-locale surfaces still require one hidden selector'
+  );
+  assert.match(
+    source,
+    /if \(surface\.runtime\?\.mode === 'standalone'\) \{\s*const firstFrames[\s\S]*wrong-locale first paint/,
+    'wrong-locale first-paint commissioning belongs only to the standalone pre-paint-hold runtime'
+  );
+  assert.match(
+    source,
+    /if \(surface\.runtime\?\.mode === 'standalone'\) \{\s*const timeoutContext[\s\S]*pre-paint timeout fallback/,
+    'pre-paint timeout fallback belongs only to the standalone pre-paint-hold runtime'
+  );
+  assert.match(
+    source,
+    /if \(surface\.runtime\?\.mode === 'standalone'\) \{\s*const stableJa[\s\S]*failure changed the fully applied JA state/,
+    'hostile bundle rollback commissioning belongs to the standalone transactional runtime'
+  );
+  assert.match(
+    source,
+    /invalid-URL-keeps-supported-storage[\s\S]*expected: 'zh'/,
+    'shell-context commissioning must preserve the shared FAB invalid-URL fallback contract instead of imposing standalone semantics'
+  );
+  assert.match(
+    source,
+    /if \(\(surface\.evidence\?\.themes \|\| \[\]\)\.length > 1\) \{\s*await verifyThemeToggle/,
+    'theme-toggle commissioning must only run when the surface actually declares more than one evidence theme'
+  );
+});
+
 test('INSTITUTIONAL-SURFACES: matrix writer can add structured Assets custody without changing local activation evidence', () => {
   const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
 
