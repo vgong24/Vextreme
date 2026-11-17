@@ -394,6 +394,12 @@ test('INSTITUTIONAL-SURFACES: Global Core locales are admitted and shell evidenc
     EN: 'en', ZH: 'zh', JA: 'ja', KO: 'ko', FR: 'fr',
     DE: 'de', ES: 'es', PT: 'pt', AR: 'ar', HI: 'hi',
   };
+  const supportGlobalCore = ['en', 'ja', 'zh', 'ko', 'fr', 'de', 'es', 'pt', 'ar', 'hi'];
+  assert.deepEqual(
+    registry.surfaces['vex-support'].strings.requiredLocales,
+    supportGlobalCore,
+    'Support publishes the complete Global Core locale set'
+  );
   const configSource = fs.readFileSync(path.join(ROOT, 'lib', 'vex-config.js'), 'utf8').replace(/\r\n/g, '\n');
   for (const [symbol, locale] of Object.entries(globalCore)) {
     assert.match(configSource, new RegExp(`\\b${symbol}:\\s*['"]${locale}['"]`),
@@ -1022,7 +1028,7 @@ test('INSTITUTIONAL-SURFACES: support page stays contribution-first and compact'
 test('INSTITUTIONAL-SURFACES: support trust block localizes and exposes copyable durable contact', () => {
   const support = fs.readFileSync(path.join(ROOT, 'pages', 'vex-support.html'), 'utf8');
   const source = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'strings', 'source', 'institution.json'), 'utf8'));
-  const requiredLocales = ['en', 'ja', 'zh'];
+  const requiredLocales = registry.surfaces['vex-support'].strings.requiredLocales;
   const trustKeys = [
     'institution.support.trust.heading',
     'institution.support.trust.intro',
