@@ -92,8 +92,11 @@
   // this constant had never been bumped since introduction, which is most
   // of why a real fix here silently didn't reach CDN-script-tag pages —
   // see docs/lattice-map.json's context note on this file for the story.
-  var VERSION    = '5.0.0';
-  var CDN_BASE   = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main';
+  var VERSION    = '5.1.0';
+  // shell.js/vextreme.js already preserve the exact source base for same-origin
+  // previews and forks. Consume that owner here so candidate HTML never mixes
+  // with @main translation bundles; standalone/God-Script usage keeps @main.
+  var CDN_BASE   = (window.VEXTREME_BASE || 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main').replace(/\/$/, '');
   var INDEX_URL  = CDN_BASE + '/data/index.json?v=' + VERSION;
   var LS_LANG    = 'vex-lang';
   var LS_DATA    = 'vex-index-v2-data';

@@ -292,6 +292,20 @@ select.vex-control {
   gap: var(--space-2);
 }
 
+.vex-action-unit {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.vex-action-status {
+  margin: 0;
+  min-width: 6.5ch;
+  max-width: 18ch;
+}
+
 .vex-btn {
   display: inline-flex;
   align-items: center;

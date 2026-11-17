@@ -1019,17 +1019,61 @@ test('INSTITUTIONAL-SURFACES: support page stays contribution-first and compact'
   }
 });
 
-test('INSTITUTIONAL-SURFACES: support page exposes durable contact privacy and exact repository licenses', () => {
+test('INSTITUTIONAL-SURFACES: support trust block localizes and exposes copyable durable contact', () => {
   const support = fs.readFileSync(path.join(ROOT, 'pages', 'vex-support.html'), 'utf8');
+  const source = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'strings', 'source', 'institution.json'), 'utf8'));
+  const requiredLocales = ['en', 'ja', 'zh'];
+  const trustKeys = [
+    'institution.support.trust.heading',
+    'institution.support.trust.intro',
+    'institution.support.trust.contact.title',
+    'institution.support.trust.contact.body',
+    'institution.support.trust.contact.email-copy',
+    'institution.support.trust.contact.copied',
+    'institution.support.trust.contact.copy-failed',
+    'institution.support.trust.privacy.title',
+    'institution.support.trust.privacy.body',
+    'institution.support.trust.licenses.title',
+    'institution.support.trust.licenses.body',
+    'institution.support.trust.licenses.vextreme-action',
+    'institution.support.trust.licenses.vexlife-action'
+  ];
 
-  assert.match(support, /<section class="vex-section vex-inst-shell" aria-labelledby="trust-heading" lang="en">[\s\S]*?<h2 class="vex-h1" id="trust-heading">Contact, privacy, and open source<\/h2>/);
-  assert.match(support, /href="mailto:vgong24@gmail\.com"/);
+  assert.match(support, /<section class="vex-section vex-inst-shell" aria-labelledby="trust-heading">[\s\S]*?data-i18n="institution\.support\.trust\.heading">Contact, privacy, and open source<\/h2>/);
+  assert.doesNotMatch(support, /aria-labelledby="trust-heading" lang="en"/);
+
+  assert.match(support, /<div class="vex-action-unit">[\s\S]*?<button[\s\S]*?id="copySupportEmail"[\s\S]*?data-vex-copy-email="vgong24@gmail\.com"[\s\S]*?>vgong24@gmail\.com<\/button>[\s\S]*?id="copySupportEmailStatus"[\s\S]*?<\/div>[\s\S]*?Instagram · @victoweng/);
+  assert.match(support, /data-i18n-aria="institution\.support\.trust\.contact\.email-copy"/);
+  assert.match(support, /navigator\.clipboard[\s\S]*?writeText\(email\)/);
+  assert.match(support, /id="copySupportEmailStatus" class="vex-provenance vex-action-status"[\s\S]*?aria-live="polite"/);
+  assert.doesNotMatch(support, /href="mailto:vgong24@gmail\.com"/);
+
   assert.match(support, /href="https:\/\/www\.instagram\.com\/victoweng\/"[\s\S]*?rel="me noopener noreferrer"/);
-  assert.match(support, /This page requires no account and collects no form data\./);
-  assert.match(support, /href="https:\/\/github\.com\/vgong24\/Vextreme\/blob\/main\/LICENSE"/);
-  assert.match(support, /href="https:\/\/github\.com\/VexGPT\/VexLife-Prod\/blob\/main\/LICENSE"/);
+  assert.match(support, /data-i18n="institution\.support\.trust\.privacy\.body">This page requires no account and collects no form data\./);
+  assert.match(support, /href="https:\/\/github\.com\/vgong24\/Vextreme\/blob\/main\/LICENSE"[\s\S]*?data-i18n="institution\.support\.trust\.licenses\.vextreme-action"/);
+  assert.match(support, /href="https:\/\/github\.com\/VexGPT\/VexLife-Prod\/blob\/main\/LICENSE"[\s\S]*?data-i18n="institution\.support\.trust\.licenses\.vexlife-action"/);
+
+  for (const key of trustKeys) {
+    assert.ok(source[key], `missing canonical trust string ${key}`);
+    for (const locale of requiredLocales) {
+      assert.ok(source[key].strings[locale]?.text, `${key} missing ${locale} text`);
+    }
+  }
+  for (const locale of requiredLocales) {
+    assert.ok(
+      source['institution.support.trust.contact.email-copy'].strings[locale]['aria-label'],
+      `email copy action missing ${locale} aria-label`
+    );
+  }
+
   assert.doesNotMatch(support, /victor\.gong@vextreme24\.com/i);
   assert.doesNotMatch(support, /808-398-6939/);
+
+  const componentCss = fs.readFileSync(path.join(ROOT, 'styles', 'vex-institutional.css'), 'utf8');
+  const langFab = fs.readFileSync(path.join(ROOT, 'widgets', 'fab-lang.js'), 'utf8');
+  assert.match(componentCss, /\.vex-action-unit\s*\{[\s\S]*?display:\s*inline-flex;[\s\S]*?flex-wrap:\s*wrap;/);
+  assert.match(componentCss, /\.vex-action-status\s*\{[\s\S]*?margin:\s*0;/);
+  assert.match(langFab, /window\.VEXTREME_BASE \|\| 'https:\/\/cdn\.jsdelivr\.net\/gh\/vgong24\/vextreme@main'/);
 });
 
 test('INSTITUTIONAL-SURFACES: support page pins the current institutional style generation so full-card links cannot fall back to browser-blue text', () => {
@@ -1037,7 +1081,7 @@ test('INSTITUTIONAL-SURFACES: support page pins the current institutional style 
   const componentCss = fs.readFileSync(path.join(ROOT, 'styles', 'vex-institutional.css'), 'utf8');
 
   assert.match(support, /href="\.\.\/styles\/design-system\.css\?v=a688d1811342f0b255c5b8fdb246b8cb1e0d58ea"/);
-  assert.match(support, /href="\.\.\/styles\/vex-institutional\.css\?v=b8458fc40a5d94f150156fed4a0f1fd92d85c60f"/);
+  assert.match(support, /href="\.\.\/styles\/vex-institutional\.css\?v=f6780f46d06b762fafc0a8e6408ebef7f20ab19e"/);
   assert.match(componentCss, /\.vex-meaning-link\s*\{[\s\S]*?color:\s*inherit;[\s\S]*?text-decoration:\s*none;/);
   assert.doesNotMatch(support, /href="\.\.\/styles\/vex-institutional\.css"/);
 });

@@ -2940,6 +2940,173 @@
       ],
       "missingLangs": []
     },
+    "institution.support.trust.heading": {
+      "key": "institution.support.trust.heading",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "institution.support.trust.intro": {
+      "key": "institution.support.trust.intro",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "institution.support.trust.contact.title": {
+      "key": "institution.support.trust.contact.title",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "institution.support.trust.contact.body": {
+      "key": "institution.support.trust.contact.body",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "institution.support.trust.contact.email-copy": {
+      "key": "institution.support.trust.contact.email-copy",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "institution.support.trust.contact.copied": {
+      "key": "institution.support.trust.contact.copied",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "institution.support.trust.contact.copy-failed": {
+      "key": "institution.support.trust.contact.copy-failed",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "institution.support.trust.privacy.title": {
+      "key": "institution.support.trust.privacy.title",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "institution.support.trust.privacy.body": {
+      "key": "institution.support.trust.privacy.body",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "institution.support.trust.licenses.title": {
+      "key": "institution.support.trust.licenses.title",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "institution.support.trust.licenses.body": {
+      "key": "institution.support.trust.licenses.body",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "institution.support.trust.licenses.vextreme-action": {
+      "key": "institution.support.trust.licenses.vextreme-action",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "institution.support.trust.licenses.vexlife-action": {
+      "key": "institution.support.trust.licenses.vexlife-action",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja",
+        "zh"
+      ],
+      "missingLangs": []
+    },
     "institution.support.meaning.light.alt": {
       "key": "institution.support.meaning.light.alt",
       "usedIn": [],
@@ -725389,7 +725556,19 @@
         "institution.support.route.zelle.title",
         "institution.support.routes.heading",
         "institution.support.routes.intro",
-        "institution.support.title"
+        "institution.support.title",
+        "institution.support.trust.contact.body",
+        "institution.support.trust.contact.copied",
+        "institution.support.trust.contact.copy-failed",
+        "institution.support.trust.contact.title",
+        "institution.support.trust.heading",
+        "institution.support.trust.intro",
+        "institution.support.trust.licenses.body",
+        "institution.support.trust.licenses.title",
+        "institution.support.trust.licenses.vexlife-action",
+        "institution.support.trust.licenses.vextreme-action",
+        "institution.support.trust.privacy.body",
+        "institution.support.trust.privacy.title"
       ],
       "orphanKeys": [],
       "screenshots": {
@@ -738273,8 +738452,8 @@
     }
   },
   "summary": {
-    "totalKeysInManifest": 45088,
-    "totalKeysUsed": 44926,
+    "totalKeysInManifest": 45101,
+    "totalKeysUsed": 44938,
     "orphanUsages": [],
     "unusedKeys": [
       "ai-orientation.heading.title",
@@ -738416,6 +738595,7 @@
       "institution.support.story.p7",
       "institution.support.story.p8",
       "institution.support.story.p9",
+      "institution.support.trust.contact.email-copy",
       "liberation.heading.title",
       "living-blueprint.heading.title",
       "march-23-2026.heading.title",
