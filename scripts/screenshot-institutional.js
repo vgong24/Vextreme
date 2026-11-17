@@ -293,7 +293,18 @@ async function triggerLocaleSelection(page, surface, locale) {
 async function selectLocale(page, surface, locale) {
   if (await page.evaluate(expected => document.documentElement.lang === expected, locale)) return;
   await triggerLocaleSelection(page, surface, locale);
-  await page.waitForFunction(expected => document.documentElement.lang === expected, locale);
+  try {
+    await page.waitForFunction(expected => document.documentElement.lang === expected, locale, { timeout: 5000 });
+  } catch (error) {
+    const diagnostics = await page.evaluate(() => ({
+      lang: document.documentElement.lang,
+      search: location.search,
+      stored: localStorage.getItem('vex-lang'),
+      fabLangs: Array.from(document.querySelectorAll('.vex-lang-item[data-lang]'), item => item.getAttribute('data-lang')),
+      currentFabLang: document.querySelector('.vex-lang-item.vex-lang-current')?.getAttribute('data-lang') || null,
+    }));
+    throw new Error(`locale ${locale} selection did not apply: ${JSON.stringify(diagnostics)}`);
+  }
   if (surface?.runtime?.mode === 'standalone') {
     const selector = '[data-vex-lang-select]';
     if (!await page.locator(selector).evaluate(element => document.activeElement === element)) {
