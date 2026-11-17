@@ -931,6 +931,15 @@ test('INSTITUTIONAL-SURFACES: no-JavaScript shell-context fallback does not requ
   );
 });
 
+test('INSTITUTIONAL-SURFACES: local evidence server resolves the GitHub Pages repository mount', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(
+    source,
+    /pathname === '\/Vextreme'[\s\S]*pathname\.startsWith\('\/Vextreme\/'\)[\s\S]*pathname\.slice\('\/Vextreme'\.length\)/,
+    'local evidence must resolve the public /Vextreme mount to checkout-local paths without changing product navigation'
+  );
+});
+
 test('INSTITUTIONAL-SURFACES: Support keeps its skip link before the shared shell nav mount', () => {
   const html = fs.readFileSync(path.join(ROOT, 'pages', 'vex-support.html'), 'utf8').replace(/\r\n/g, '\n');
   assert.match(
