@@ -2193,6 +2193,178 @@
       }
     }
   },
+  "institution.support.trust.heading": {
+    "strings": {
+      "en": {
+        "text": "Contact, privacy, and open source"
+      },
+      "ja": {
+        "text": "連絡先、プライバシー、オープンソース"
+      },
+      "zh": {
+        "text": "联系、隐私与开源"
+      }
+    }
+  },
+  "institution.support.trust.intro": {
+    "strings": {
+      "en": {
+        "text": "Support is separate from access. Here is how to reach Victor, what this page does with data, and which licenses govern the public code."
+      },
+      "ja": {
+        "text": "支援とアクセスは別です。ここでは、Victor への連絡方法、このページでのデータの扱い、公開コードに適用されるライセンスを説明します。"
+      },
+      "zh": {
+        "text": "支持与访问权限彼此独立。这里说明如何联系 Victor、本页面如何处理数据，以及哪些许可证适用于公开代码。"
+      }
+    }
+  },
+  "institution.support.trust.contact.title": {
+    "strings": {
+      "en": {
+        "text": "Contact Victor"
+      },
+      "ja": {
+        "text": "Victor に連絡"
+      },
+      "zh": {
+        "text": "联系 Victor"
+      }
+    }
+  },
+  "institution.support.trust.contact.body": {
+    "strings": {
+      "en": {
+        "text": "Questions about Vextreme or VexLife, trust, bugs, or support can go directly to Victor."
+      },
+      "ja": {
+        "text": "Vextreme や VexLife、信頼、バグ、支援に関する質問は、Victor に直接送れます。"
+      },
+      "zh": {
+        "text": "关于 Vextreme 或 VexLife、信任、错误或支持的问题，都可以直接联系 Victor。"
+      }
+    }
+  },
+  "institution.support.trust.contact.email-copy": {
+    "strings": {
+      "en": {
+        "text": "Copy Victor's email address",
+        "aria-label": "Copy Victor's email address"
+      },
+      "ja": {
+        "text": "Victor のメールアドレスをコピー",
+        "aria-label": "Victor のメールアドレスをコピー"
+      },
+      "zh": {
+        "text": "复制 Victor 的电子邮箱地址",
+        "aria-label": "复制 Victor 的电子邮箱地址"
+      }
+    }
+  },
+  "institution.support.trust.contact.copied": {
+    "strings": {
+      "en": {
+        "text": "✓ Copied"
+      },
+      "ja": {
+        "text": "✓ コピーしました"
+      },
+      "zh": {
+        "text": "✓ 已复制"
+      }
+    }
+  },
+  "institution.support.trust.contact.copy-failed": {
+    "strings": {
+      "en": {
+        "text": "Clipboard unavailable — copy the address directly."
+      },
+      "ja": {
+        "text": "クリップボードを利用できません — 表示されているアドレスを直接コピーしてください。"
+      },
+      "zh": {
+        "text": "无法使用剪贴板——请直接复制显示的邮箱地址。"
+      }
+    }
+  },
+  "institution.support.trust.privacy.title": {
+    "strings": {
+      "en": {
+        "text": "Privacy"
+      },
+      "ja": {
+        "text": "プライバシー"
+      },
+      "zh": {
+        "text": "隐私"
+      }
+    }
+  },
+  "institution.support.trust.privacy.body": {
+    "strings": {
+      "en": {
+        "text": "This page requires no account and collects no form data. Payments open Stripe in a new tab; Stripe handles payment information. The page is served by GitHub Pages and loads Google Fonts, so those providers may receive ordinary web-request metadata such as your IP address. If you email Victor, your message is used to respond."
+      },
+      "ja": {
+        "text": "このページはアカウントを必要とせず、フォームデータも収集しません。支払いは新しいタブで Stripe を開き、支払い情報は Stripe が処理します。このページは GitHub Pages から配信され、Google Fonts を読み込むため、これらのプロバイダーには IP アドレスなど通常のウェブリクエスト情報が送信される場合があります。Victor にメールを送った場合、そのメッセージは返信のために使用されます。"
+      },
+      "zh": {
+        "text": "本页面无需账户，也不收集表单数据。付款会在新标签页中打开 Stripe，支付信息由 Stripe 处理。本页面由 GitHub Pages 托管并加载 Google Fonts，因此这些服务提供商可能会收到你的 IP 地址等常规网页请求元数据。如果你给 Victor 发邮件，你的消息将用于回复。"
+      }
+    }
+  },
+  "institution.support.trust.licenses.title": {
+    "strings": {
+      "en": {
+        "text": "Open-source licenses"
+      },
+      "ja": {
+        "text": "オープンソース・ライセンス"
+      },
+      "zh": {
+        "text": "开源许可证"
+      }
+    }
+  },
+  "institution.support.trust.licenses.body": {
+    "strings": {
+      "en": {
+        "text": "Vextreme is licensed under Apache-2.0. VexLife-Prod is licensed under MIT. This support page adds no separate terms to those open-source licenses, and voluntary support does not buy services, access, ownership, priority, or authority."
+      },
+      "ja": {
+        "text": "Vextreme は Apache-2.0、VexLife-Prod は MIT の各ライセンスで提供されています。この支援ページはこれらのオープンソース・ライセンスに別の条件を追加しません。また、任意の支援によってサービス、アクセス権、所有権、優先権、権限が購入されることはありません。"
+      },
+      "zh": {
+        "text": "Vextreme 采用 Apache-2.0 许可证，VexLife-Prod 采用 MIT 许可证。本支持页面不会为这些开源许可证附加任何其他条款，自愿支持也不会购买服务、访问权限、所有权、优先权或任何权力。"
+      }
+    }
+  },
+  "institution.support.trust.licenses.vextreme-action": {
+    "strings": {
+      "en": {
+        "text": "Vextreme license"
+      },
+      "ja": {
+        "text": "Vextreme ライセンス"
+      },
+      "zh": {
+        "text": "Vextreme 许可证"
+      }
+    }
+  },
+  "institution.support.trust.licenses.vexlife-action": {
+    "strings": {
+      "en": {
+        "text": "VexLife license"
+      },
+      "ja": {
+        "text": "VexLife ライセンス"
+      },
+      "zh": {
+        "text": "VexLife 许可证"
+      }
+    }
+  },
   "institution.support.meaning.light.alt": {
     "strings": {
       "en": {
