@@ -183,7 +183,13 @@ function startServer() {
         return;
       }
 
-      const filePath = path.resolve(ROOT, `.${pathname}`);
+      // Shared GitHub Pages chrome uses the repository mount prefix
+      // (/Vextreme/...). The bounded local evidence server serves the checkout
+      // root directly, so normalize only that exact public mount point here.
+      const repositoryPathname = pathname === '/Vextreme'
+        ? '/'
+        : (pathname.startsWith('/Vextreme/') ? pathname.slice('/Vextreme'.length) : pathname);
+      const filePath = path.resolve(ROOT, `.${repositoryPathname}`);
       if (filePath !== ROOT && !filePath.startsWith(`${ROOT}${path.sep}`)) {
         response.writeHead(403).end('Forbidden');
         return;
