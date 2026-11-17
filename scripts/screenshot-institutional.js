@@ -168,6 +168,21 @@ function readSurfaceBundle(surface, locale) {
   return JSON.parse(fs.readFileSync(bundlePath, 'utf8'));
 }
 
+function readRenderedSurfaceBundle(surface, locale) {
+  const surfaceBundle = readSurfaceBundle(surface, locale);
+  if (surface?.runtime?.mode !== 'shell-context') return surfaceBundle;
+
+  // The shared shell language runtime always composes the common scope with
+  // the surface scope. Rendered evidence must validate that same composition
+  // because shared controls (for example Read Aloud) carry common.* bindings.
+  const commonPath = path.join(
+    ROOT, 'data', 'strings', 'compiled', 'scopes', 'system',
+    `common.${locale}.json`
+  );
+  const commonBundle = JSON.parse(fs.readFileSync(commonPath, 'utf8'));
+  return { ...commonBundle, ...surfaceBundle };
+}
+
 function mimeFor(filePath) {
   return MIME[path.extname(filePath).toLowerCase()] || 'application/octet-stream';
 }
@@ -801,7 +816,7 @@ async function renderCell(browser, baseUrl, surface, locale, theme, viewport, ve
       }
     }
     await settlePage(page);
-    await verifyContract(page, surface, locale, theme, viewport, readSurfaceBundle(surface, locale));
+    await verifyContract(page, surface, locale, theme, viewport, readRenderedSurfaceBundle(surface, locale));
     if (runtimeErrors.length) throw new Error(`runtime error(s): ${runtimeErrors.join(' | ')}`);
 
     const documentHeight = await page.evaluate(() => document.documentElement.scrollHeight);
