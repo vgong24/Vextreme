@@ -940,6 +940,20 @@ test('INSTITUTIONAL-SURFACES: local evidence server resolves the GitHub Pages re
   );
 });
 
+test('INSTITUTIONAL-SURFACES: rendered shell-context evidence composes common and surface scopes', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(
+    source,
+    /function readRenderedSurfaceBundle[\s\S]*surface\?\.runtime\?\.mode !== 'shell-context'[\s\S]*common\.\$\{locale\}\.json[\s\S]*return \{ \.\.\.commonBundle, \.\.\.surfaceBundle \}/,
+    'shell-context evidence must validate the same common + surface bundle composition used by the shared language runtime'
+  );
+  assert.match(
+    source,
+    /verifyContract\(page, surface, locale, theme, viewport, readRenderedSurfaceBundle\(surface, locale\)\)/,
+    'rendered matrix verification must consume the composed shell bundle'
+  );
+});
+
 test('INSTITUTIONAL-SURFACES: Support keeps its skip link before the shared shell nav mount', () => {
   const html = fs.readFileSync(path.join(ROOT, 'pages', 'vex-support.html'), 'utf8').replace(/\r\n/g, '\n');
   assert.match(
