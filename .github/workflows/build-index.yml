@@ -67,7 +67,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
 
     steps:
       - name: Checkout
@@ -157,22 +157,6 @@ jobs:
 
       - name: Build terrain-map.json
         run: node lib/build-terrain-map.js
-
-      - name: Commit generated drift onto this PR head for one-shot recovery
-        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
-        shell: bash
-        env:
-          PR_HEAD_REF: ${{ github.head_ref }}
-        run: |
-          git add data/strings/compiled data/strings/reports data/index.json data/analysis-index.json data/lessons.json data/roles.json data/status.json data/page-health.json data/terrain-map.json dist sw.js pages/build-health.html pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html widgets/fab-lang.js lib/shell.js lib/vextreme.js pages/terrain-map.html pages/about-vextreme.html pages/vex-support.html
-          if git diff --cached --quiet; then
-            echo "No generated drift to commit."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "VXG-111726: regenerate exact-base language projections [VXG RealForever]"
-          git push origin "HEAD:refs/heads/${PR_HEAD_REF}"
 
       - name: Verify generated artifacts are committed
         # Generated files are part of the reviewed tree. CI regenerates them
