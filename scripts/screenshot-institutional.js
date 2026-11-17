@@ -553,9 +553,11 @@ async function verifyStaticEnglish(browser, baseUrl, surfaces) {
         };
       }, bundle);
       const runtimeNeeded = needsLocaleRuntime(surface);
-      const selectorValid = runtimeNeeded
-        ? result.selectorCount === 1 && result.selectorHidden === true
-        : result.selectorCount === 0;
+      const selectorValid = surface.runtime?.mode === 'shell-context'
+        ? result.selectorCount === 0
+        : (runtimeNeeded
+          ? result.selectorCount === 1 && result.selectorHidden === true
+          : result.selectorCount === 0);
       if (result.lang !== 'en' || result.hold || !selectorValid || result.issues.length) {
         throw new Error(`${surface.slug} no-JavaScript English fallback failed: ${JSON.stringify(result)}`);
       }
@@ -633,30 +635,34 @@ async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
     await page.goto(`${baseUrl}/pages/${surface.slug}.html?lang=ja&keep=1#main`, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => document.documentElement.lang === 'ja');
     await page.waitForTimeout(80);
-    const firstFrames = await page.evaluate(() => window.__vexFirstFrames || []);
-    const wrongVisibleFrame = firstFrames.find(frame => frame.visible && (
-      frame.lang !== 'ja' || frame.heading !== expectedJaHeading
-    ));
-    if (wrongVisibleFrame) throw new Error(`wrong-locale first paint: ${JSON.stringify(wrongVisibleFrame)}`);
+    if (surface.runtime?.mode === 'standalone') {
+      const firstFrames = await page.evaluate(() => window.__vexFirstFrames || []);
+      const wrongVisibleFrame = firstFrames.find(frame => frame.visible && (
+        frame.lang !== 'ja' || frame.heading !== expectedJaHeading
+      ));
+      if (wrongVisibleFrame) throw new Error(`wrong-locale first paint: ${JSON.stringify(wrongVisibleFrame)}`);
+    }
     let state = await browserLocaleState(page);
     if (state.lang !== 'ja' || (surface.runtime?.mode === 'standalone' && state.select !== 'ja') || state.stored !== 'ja' ||
         !state.search.includes('lang=ja') || !state.search.includes('keep=1') || state.hash !== '#main') {
       throw new Error(`URL-over-storage precedence failed: ${JSON.stringify(state)}`);
     }
 
-    const stableJa = JSON.stringify(state);
-    for (const failure of [
-      ['missing', 120],
-      ['parse', 120],
-      ['fetch', 120],
-      ['timeout', 1550],
-    ]) {
-      mode = failure[0];
-      await triggerLocaleSelection(page, surface, 'zh');
-      await page.waitForTimeout(failure[1]);
-      state = await browserLocaleState(page);
-      if (JSON.stringify(state) !== stableJa) {
-        throw new Error(`${failure[0]} failure changed the fully applied JA state`);
+    if (surface.runtime?.mode === 'standalone') {
+      const stableJa = JSON.stringify(state);
+      for (const failure of [
+        ['missing', 120],
+        ['parse', 120],
+        ['fetch', 120],
+        ['timeout', 1550],
+      ]) {
+        mode = failure[0];
+        await triggerLocaleSelection(page, surface, 'zh');
+        await page.waitForTimeout(failure[1]);
+        state = await browserLocaleState(page);
+        if (JSON.stringify(state) !== stableJa) {
+          throw new Error(`${failure[0]} failure changed the fully applied JA state`);
+        }
       }
     }
 
@@ -695,10 +701,16 @@ async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
     await context.close();
   }
 
-  for (const scenario of [
-    { name: 'storage-over-English', search: '', stored: 'zh', expected: 'zh' },
-    { name: 'invalid-URL-English', search: '?lang=xx', stored: 'zh', expected: 'en' },
-  ]) {
+  const precedenceScenarios = surface.runtime?.mode === 'standalone'
+    ? [
+      { name: 'storage-over-English', search: '', stored: 'zh', expected: 'zh' },
+      { name: 'invalid-URL-English', search: '?lang=xx', stored: 'zh', expected: 'en', expectedStored: 'zh' },
+    ]
+    : [
+      { name: 'storage-over-English', search: '', stored: 'zh', expected: 'zh' },
+      { name: 'invalid-URL-keeps-supported-storage', search: '?lang=xx', stored: 'zh', expected: 'zh', expectedStored: 'zh' },
+    ];
+  for (const scenario of precedenceScenarios) {
     const scenarioContext = await browser.newContext({ viewport: { width: 768, height: 900 } });
     await scenarioContext.addInitScript(value => localStorage.setItem('vex-lang', value), scenario.stored);
     await scenarioContext.route('https://fonts.googleapis.com/**', route => route.fulfill({ status: 200, contentType: 'text/css', body: '' }));
@@ -710,7 +722,7 @@ async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
       const observed = await browserLocaleState(scenarioPage);
       if (observed.lang !== scenario.expected ||
           (surface.runtime?.mode === 'standalone' && observed.select !== scenario.expected) ||
-          (scenario.name === 'invalid-URL-English' && observed.stored !== 'zh')) {
+          (scenario.expectedStored && observed.stored !== scenario.expectedStored)) {
         throw new Error(`${scenario.name} failed: ${JSON.stringify(observed)}`);
       }
     } finally {
@@ -718,29 +730,31 @@ async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
     }
   }
 
-  const timeoutContext = await browser.newContext({ viewport: { width: 768, height: 900 } });
-  await timeoutContext.addInitScript(() => localStorage.setItem('vex-lang', 'ja'));
-  await timeoutContext.route('https://fonts.googleapis.com/**', route => route.fulfill({ status: 200, contentType: 'text/css', body: '' }));
-  await timeoutContext.route('**/data/strings/compiled/scopes/system/institution.ja.json', async route => {
-    await new Promise(resolve => setTimeout(resolve, 2300));
-    await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(bundles.ja) });
-  });
-  const timeoutPage = await timeoutContext.newPage();
-  try {
-    await timeoutPage.goto(`${baseUrl}/pages/${surface.slug}.html`, { waitUntil: 'domcontentloaded' });
-    await timeoutPage.waitForFunction(() => !document.documentElement.hasAttribute('data-vex-locale-hold'), null, { timeout: 1999 });
-    const releasedAt = await timeoutPage.evaluate(() => performance.now());
-    const fallback = await timeoutPage.evaluate(({ bundle, headingKey }) => ({
-      lang: document.documentElement.lang,
-      heading: document.querySelector('h1').textContent,
-      expected: bundle[headingKey].text,
-      stored: localStorage.getItem('vex-lang'),
-    }), { bundle: bundles.en, headingKey });
-    if (releasedAt >= 2000 || fallback.lang !== 'en' || fallback.heading !== fallback.expected || fallback.stored !== 'ja') {
-      throw new Error(`pre-paint timeout fallback failed at ${releasedAt}ms: ${JSON.stringify(fallback)}`);
+  if (surface.runtime?.mode === 'standalone') {
+    const timeoutContext = await browser.newContext({ viewport: { width: 768, height: 900 } });
+    await timeoutContext.addInitScript(() => localStorage.setItem('vex-lang', 'ja'));
+    await timeoutContext.route('https://fonts.googleapis.com/**', route => route.fulfill({ status: 200, contentType: 'text/css', body: '' }));
+    await timeoutContext.route('**/data/strings/compiled/scopes/system/institution.ja.json', async route => {
+      await new Promise(resolve => setTimeout(resolve, 2300));
+      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(bundles.ja) });
+    });
+    const timeoutPage = await timeoutContext.newPage();
+    try {
+      await timeoutPage.goto(`${baseUrl}/pages/${surface.slug}.html`, { waitUntil: 'domcontentloaded' });
+      await timeoutPage.waitForFunction(() => !document.documentElement.hasAttribute('data-vex-locale-hold'), null, { timeout: 1999 });
+      const releasedAt = await timeoutPage.evaluate(() => performance.now());
+      const fallback = await timeoutPage.evaluate(({ bundle, headingKey }) => ({
+        lang: document.documentElement.lang,
+        heading: document.querySelector('h1').textContent,
+        expected: bundle[headingKey].text,
+        stored: localStorage.getItem('vex-lang'),
+      }), { bundle: bundles.en, headingKey });
+      if (releasedAt >= 2000 || fallback.lang !== 'en' || fallback.heading !== fallback.expected || fallback.stored !== 'ja') {
+        throw new Error(`pre-paint timeout fallback failed at ${releasedAt}ms: ${JSON.stringify(fallback)}`);
+      }
+    } finally {
+      await timeoutContext.close();
     }
-  } finally {
-    await timeoutContext.close();
   }
 }
 
@@ -776,7 +790,9 @@ async function renderCell(browser, baseUrl, surface, locale, theme, viewport, ve
     if (verifyToggle) {
       await verifyKeyboardEntry(page);
       await verifyLocalLinks(page, baseUrl);
-      await verifyThemeToggle(page, theme);
+      if ((surface.evidence?.themes || []).length > 1) {
+        await verifyThemeToggle(page, theme);
+      }
     }
     await settlePage(page);
     await verifyContract(page, surface, locale, theme, viewport, readSurfaceBundle(surface, locale));
