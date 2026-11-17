@@ -499,6 +499,46 @@
   "institution.support.manage.action": {
     "text": "管理每月支持"
   },
+  "institution.support.trust.heading": {
+    "text": "联系、隐私与开源"
+  },
+  "institution.support.trust.intro": {
+    "text": "支持与访问权限彼此独立。这里说明如何联系 Victor、本页面如何处理数据，以及哪些许可证适用于公开代码。"
+  },
+  "institution.support.trust.contact.title": {
+    "text": "联系 Victor"
+  },
+  "institution.support.trust.contact.body": {
+    "text": "关于 Vextreme 或 VexLife、信任、错误或支持的问题，都可以直接联系 Victor。"
+  },
+  "institution.support.trust.contact.email-copy": {
+    "text": "复制 Victor 的电子邮箱地址",
+    "aria-label": "复制 Victor 的电子邮箱地址"
+  },
+  "institution.support.trust.contact.copied": {
+    "text": "✓ 已复制"
+  },
+  "institution.support.trust.contact.copy-failed": {
+    "text": "无法使用剪贴板——请直接复制显示的邮箱地址。"
+  },
+  "institution.support.trust.privacy.title": {
+    "text": "隐私"
+  },
+  "institution.support.trust.privacy.body": {
+    "text": "本页面无需账户，也不收集表单数据。付款会在新标签页中打开 Stripe，支付信息由 Stripe 处理。本页面由 GitHub Pages 托管并加载 Google Fonts，因此这些服务提供商可能会收到你的 IP 地址等常规网页请求元数据。如果你给 Victor 发邮件，你的消息将用于回复。"
+  },
+  "institution.support.trust.licenses.title": {
+    "text": "开源许可证"
+  },
+  "institution.support.trust.licenses.body": {
+    "text": "Vextreme 采用 Apache-2.0 许可证，VexLife-Prod 采用 MIT 许可证。本支持页面不会为这些开源许可证附加任何其他条款，自愿支持也不会购买服务、访问权限、所有权、优先权或任何权力。"
+  },
+  "institution.support.trust.licenses.vextreme-action": {
+    "text": "Vextreme 许可证"
+  },
+  "institution.support.trust.licenses.vexlife-action": {
+    "text": "VexLife 许可证"
+  },
   "institution.support.meaning.light.alt": {
     "text": "黑暗中点亮的一支蜡烛。"
   },
