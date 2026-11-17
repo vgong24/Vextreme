@@ -1,0 +1,57 @@
+name: TEMP Support Global Core evidence-index finalizer
+
+on:
+  push:
+    branches:
+      - VXG-111726-chatgpt-support-global-core-completion
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact PR head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Rebuild screenshot-derived indexes
+        run: |
+          set -euo pipefail
+          node lib/build-analysis-index.js
+          node lib/build-page-health.js
+          node lib/build-terrain-map.js
+          git add data/analysis-index.json data/page-health.json data/terrain-map.json
+          git diff --cached --check
+
+      - name: Commit exact derived currentness
+        env:
+          BRANCH_NAME: VXG-111726-chatgpt-support-global-core-completion
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          if git diff --cached --quiet; then
+            echo "No evidence-index drift to commit."
+            exit 0
+          fi
+          remote_head="$(git ls-remote origin "refs/heads/${BRANCH_NAME}" | cut -f1)"
+          test "${remote_head}" = "${EXPECTED_HEAD}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "VXG-111726: currentize Support evidence indexes [VXG RealForever]"
+          git push origin "HEAD:refs/heads/${BRANCH_NAME}"
