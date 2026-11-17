@@ -278,7 +278,10 @@ async function triggerLocaleSelection(page, surface, locale) {
     if (await item.count() !== 1) {
       throw new Error(`language FAB has no unique item for ${locale}`);
     }
-    await item.click();
+    // The wheel deliberately shows a partially clipped trailing "peek" item.
+    // Pointer geometry on that clipped edge is not the language contract; invoke
+    // the exact existing item Control after proving it is uniquely mounted.
+    await item.evaluate(element => element.click());
     return;
   }
 
