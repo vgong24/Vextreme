@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - VXG-111726-chatgpt-support-global-core-completion
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: write
