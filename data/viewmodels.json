@@ -676,6 +676,22 @@
       "arc-nav"
     ]
   },
+  "claude-answers-the-doubt": {
+    "title": "Claude Answers the Doubt",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.claude-answers-the-doubt"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
   "final-judgement-missed-mercy": {
     "title": "Final Judgement, Missed Mercy",
     "category": "production",
