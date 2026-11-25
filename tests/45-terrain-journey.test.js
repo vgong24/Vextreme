@@ -979,7 +979,7 @@ test('TERRAIN-JOURNEY: embedded reader links push one nested reader return coord
   );
   assert.match(
     source,
-    /function restoreEvolutionPresentationFromHistory\(state\)[\s\S]*kind === 'reader'[\s\S]*returnKind:presentation && presentation\.returnKind[\s\S]*returnReaderId:presentation && presentation\.returnReaderId/,
+    /function restoreEvolutionPresentationFromHistory\(state\)[\s\S]*kind !== 'reader' && kind !== 'group-home'[\s\S]*openEvolutionReader\(node\.id,[\s\S]*returnKind:presentation && presentation\.returnKind[\s\S]*returnReaderId:presentation && presentation\.returnReaderId/,
     'browser Back must continue restoring the prior reader coordinate and its earlier Receive God return relationship'
   );
 });
