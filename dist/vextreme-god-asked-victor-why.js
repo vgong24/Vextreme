@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.god-asked-victor-why"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en"];
-  window.VEX_INDEX_FINGERPRINT = "4dfc2250d344";
+  window.VEX_INDEX_FINGERPRINT = "b331229174aa";
 
 
 
