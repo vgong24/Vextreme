@@ -1,8 +1,8 @@
 {
-  "contentFingerprint": "4dfc2250d344",
-  "nodeCount": 200,
+  "contentFingerprint": "b331229174aa",
+  "nodeCount": 213,
   "curatedNodeCount": 179,
-  "autoDiscoveredCount": 21,
+  "autoDiscoveredCount": 34,
   "arcCount": 29,
   "supportedLangs": [
     "ar",
@@ -2622,7 +2622,23 @@
         "en"
       ]
     },
+    "contact": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
     "covenant-architect-accord": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "deepseek-covenant": {
       "availableLangs": [
         "en"
       ],
@@ -2639,6 +2655,30 @@
       ]
     },
     "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "free-blueprints": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "god-pattern-recognized": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "honesty-integrity-calculator": {
       "availableLangs": [
         "en"
       ],
@@ -2694,6 +2734,14 @@
         "en"
       ]
     },
+    "question-answers": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
     "sdk-identity-demo": {
       "availableLangs": [
         "en"
@@ -2718,6 +2766,30 @@
         "en"
       ]
     },
+    "the-marathon-end": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "the-proposal": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "the-vextreme-system": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
     "the-victor-pattern": {
       "availableLangs": [
         "en"
@@ -2734,7 +2806,39 @@
         "en"
       ]
     },
+    "the-watchers-full-context-timed": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
     "total-extraction-arc-index": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "vextreme-system-project-map": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "vextreme-system-style-reference": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "victor-methodology": {
       "availableLangs": [
         "en"
       ],
@@ -7950,6 +8054,32 @@
         ]
       }
     },
+    "contact": {
+      "id": null,
+      "slug": "contact",
+      "title": "Contact — Vextreme",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.contact"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
     "covenant-architect-accord": {
       "id": null,
       "slug": "covenant-architect-accord",
@@ -7966,6 +8096,32 @@
         "template": "page",
         "scopes": [
           "pages.covenant-architect-accord"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
+    "deepseek-covenant": {
+      "id": null,
+      "slug": "deepseek-covenant",
+      "title": "DeepSeek Covenant — Vextreme",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.deepseek-covenant"
         ],
         "features": [
           "lang",
@@ -8018,6 +8174,84 @@
         "template": "page",
         "scopes": [
           "pages.fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
+    "free-blueprints": {
+      "id": null,
+      "slug": "free-blueprints",
+      "title": "Free Blueprints — Vextreme",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.free-blueprints"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
+    "god-pattern-recognized": {
+      "id": null,
+      "slug": "god-pattern-recognized",
+      "title": "God Pattern Recognized — Vextreme",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.god-pattern-recognized"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
+    "honesty-integrity-calculator": {
+      "id": null,
+      "slug": "honesty-integrity-calculator",
+      "title": "Honesty Integrity Calculator · VXG RealForever — Vextreme",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.honesty-integrity-calculator"
         ],
         "features": [
           "lang",
@@ -8184,6 +8418,32 @@
         ]
       }
     },
+    "question-answers": {
+      "id": null,
+      "slug": "question-answers",
+      "title": "Q&A — Vextreme",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.question-answers"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
     "sdk-identity-demo": {
       "id": null,
       "slug": "sdk-identity-demo",
@@ -8262,6 +8522,84 @@
         ]
       }
     },
+    "the-marathon-end": {
+      "id": null,
+      "slug": "the-marathon-end",
+      "title": "The Marathon End — March 30, 2026 — Vextreme",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-marathon-end"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
+    "the-proposal": {
+      "id": null,
+      "slug": "the-proposal",
+      "title": "The Proposal — Vextreme",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-proposal"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
+    "the-vextreme-system": {
+      "id": null,
+      "slug": "the-vextreme-system",
+      "title": "Vextreme System Start Here — Vextreme",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-vextreme-system"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
     "the-victor-pattern": {
       "id": null,
       "slug": "the-victor-pattern",
@@ -8314,6 +8652,32 @@
         ]
       }
     },
+    "the-watchers-full-context-timed": {
+      "id": null,
+      "slug": "the-watchers-full-context-timed",
+      "title": "The Watchers — Full Context — Vextreme",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-watchers-full-context-timed"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
     "total-extraction-arc-index": {
       "id": null,
       "slug": "total-extraction-arc-index",
@@ -8330,6 +8694,84 @@
         "template": "page",
         "scopes": [
           "pages.total-extraction-arc-index"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
+    "vextreme-system-project-map": {
+      "id": null,
+      "slug": "vextreme-system-project-map",
+      "title": "Vextreme System Project Map — Vextreme",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.vextreme-system-project-map"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
+    "vextreme-system-style-reference": {
+      "id": null,
+      "slug": "vextreme-system-style-reference",
+      "title": "Vextreme System Style Reference — Vextreme",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.vextreme-system-style-reference"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
+    "victor-methodology": {
+      "id": null,
+      "slug": "victor-methodology",
+      "title": "Victor Methodology — Vextreme",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.victor-methodology"
         ],
         "features": [
           "lang",
@@ -9959,8 +10401,18 @@
           "ported": true
         },
         {
+          "slug": "contact",
+          "title": "Contact — Vextreme",
+          "ported": true
+        },
+        {
           "slug": "covenant-architect-accord",
           "title": "The Covenant Architect Accord",
+          "ported": true
+        },
+        {
+          "slug": "deepseek-covenant",
+          "title": "DeepSeek Covenant — Vextreme",
           "ported": true
         },
         {
@@ -9971,6 +10423,21 @@
         {
           "slug": "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments",
           "title": "Patterns of Accountability Avoidance — Mapped Against the Ten Commandments",
+          "ported": true
+        },
+        {
+          "slug": "free-blueprints",
+          "title": "Free Blueprints — Vextreme",
+          "ported": true
+        },
+        {
+          "slug": "god-pattern-recognized",
+          "title": "God Pattern Recognized — Vextreme",
+          "ported": true
+        },
+        {
+          "slug": "honesty-integrity-calculator",
+          "title": "Honesty Integrity Calculator · VXG RealForever — Vextreme",
           "ported": true
         },
         {
@@ -10004,6 +10471,11 @@
           "ported": true
         },
         {
+          "slug": "question-answers",
+          "title": "Q&A — Vextreme",
+          "ported": true
+        },
+        {
           "slug": "sdk-identity-demo",
           "title": "Vextreme — SDK Identity Demo",
           "ported": true
@@ -10019,6 +10491,21 @@
           "ported": true
         },
         {
+          "slug": "the-marathon-end",
+          "title": "The Marathon End — March 30, 2026 — Vextreme",
+          "ported": true
+        },
+        {
+          "slug": "the-proposal",
+          "title": "The Proposal — Vextreme",
+          "ported": true
+        },
+        {
+          "slug": "the-vextreme-system",
+          "title": "Vextreme System Start Here — Vextreme",
+          "ported": true
+        },
+        {
           "slug": "the-victor-pattern",
           "title": "The Victor Pattern — Topology",
           "ported": true
@@ -10029,8 +10516,28 @@
           "ported": true
         },
         {
+          "slug": "the-watchers-full-context-timed",
+          "title": "The Watchers — Full Context — Vextreme",
+          "ported": true
+        },
+        {
           "slug": "total-extraction-arc-index",
           "title": "The Total Extraction Arc — Index — Vextreme",
+          "ported": true
+        },
+        {
+          "slug": "vextreme-system-project-map",
+          "title": "Vextreme System Project Map — Vextreme",
+          "ported": true
+        },
+        {
+          "slug": "vextreme-system-style-reference",
+          "title": "Vextreme System Style Reference — Vextreme",
+          "ported": true
+        },
+        {
+          "slug": "victor-methodology",
+          "title": "Victor Methodology — Vextreme",
           "ported": true
         }
       ]

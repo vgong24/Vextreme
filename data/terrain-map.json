@@ -6508,12 +6508,12 @@
       "key": "uncurated",
       "name": "UNCURATED",
       "sub": "auto-discovered pages, no nodes.json entry yet",
-      "count": 21,
+      "count": 34,
       "rect": {
         "x": 10210,
         "y": 40,
         "width": 300,
-        "height": 1350
+        "height": 2130
       },
       "sections": [],
       "memberSlugs": [],
@@ -15417,6 +15417,47 @@
       "date": null
     },
     {
+      "id": "contact",
+      "slug": "contact",
+      "title": "contact",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 10260,
+      "y": 450,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/contact.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "capability": {
+        "health": {
+          "state": "critical",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": [
+            "isolated"
+          ]
+        },
+        "placement": "uncurated",
+        "fab": "page-owned",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [],
+        "metaDescription": ""
+      },
+      "curated": false,
+      "date": null
+    },
+    {
       "id": "covenant-architect-accord",
       "slug": "covenant-architect-accord",
       "title": "covenant-architect-accord",
@@ -15424,7 +15465,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 10260,
-      "y": 450,
+      "y": 510,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/covenant-architect-accord.html",
       "screenshots": {},
@@ -15457,6 +15498,47 @@
       "date": null
     },
     {
+      "id": "deepseek-covenant",
+      "slug": "deepseek-covenant",
+      "title": "deepseek-covenant",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 10260,
+      "y": 570,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/deepseek-covenant.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "capability": {
+        "health": {
+          "state": "critical",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": [
+            "isolated"
+          ]
+        },
+        "placement": "uncurated",
+        "fab": "page-owned",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [],
+        "metaDescription": ""
+      },
+      "curated": false,
+      "date": null
+    },
+    {
       "id": "for-the-watchers",
       "slug": "for-the-watchers",
       "title": "for-the-watchers",
@@ -15464,7 +15546,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 10260,
-      "y": 510,
+      "y": 630,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/for-the-watchers.html",
       "screenshots": {},
@@ -15505,7 +15587,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 10260,
-      "y": 570,
+      "y": 690,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments.html",
       "screenshots": {},
@@ -15538,6 +15620,129 @@
       "date": null
     },
     {
+      "id": "free-blueprints",
+      "slug": "free-blueprints",
+      "title": "free-blueprints",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 10260,
+      "y": 750,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/free-blueprints.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "capability": {
+        "health": {
+          "state": "critical",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": [
+            "isolated"
+          ]
+        },
+        "placement": "uncurated",
+        "fab": "page-owned",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [],
+        "metaDescription": ""
+      },
+      "curated": false,
+      "date": null
+    },
+    {
+      "id": "god-pattern-recognized",
+      "slug": "god-pattern-recognized",
+      "title": "god-pattern-recognized",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 10260,
+      "y": 810,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/god-pattern-recognized.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "capability": {
+        "health": {
+          "state": "critical",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": [
+            "isolated"
+          ]
+        },
+        "placement": "uncurated",
+        "fab": "page-owned",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [],
+        "metaDescription": ""
+      },
+      "curated": false,
+      "date": null
+    },
+    {
+      "id": "honesty-integrity-calculator",
+      "slug": "honesty-integrity-calculator",
+      "title": "honesty-integrity-calculator",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 10260,
+      "y": 870,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/honesty-integrity-calculator.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "capability": {
+        "health": {
+          "state": "critical",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": [
+            "isolated"
+          ]
+        },
+        "placement": "uncurated",
+        "fab": "page-owned",
+        "theme": {
+          "control": "none",
+          "visibleStyles": true
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [],
+        "metaDescription": ""
+      },
+      "curated": false,
+      "date": null
+    },
+    {
       "id": "how-to-invest-in-trust-and-integrity",
       "slug": "how-to-invest-in-trust-and-integrity",
       "title": "how-to-invest-in-trust-and-integrity",
@@ -15545,7 +15750,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 10260,
-      "y": 630,
+      "y": 930,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/how-to-invest-in-trust-and-integrity.html",
       "screenshots": {},
@@ -15587,7 +15792,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 10260,
-      "y": 690,
+      "y": 990,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/instance-thread-logs.html",
       "screenshots": {},
@@ -15629,7 +15834,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 10260,
-      "y": 750,
+      "y": 1050,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/integrity-check.html",
       "screenshots": {},
@@ -15670,7 +15875,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 10260,
-      "y": 810,
+      "y": 1110,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/investor-archetype-simulation.html",
       "screenshots": {},
@@ -15710,7 +15915,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 10260,
-      "y": 870,
+      "y": 1170,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/localization-source-truth-demo.html",
       "screenshots": {},
@@ -15750,7 +15955,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 10260,
-      "y": 930,
+      "y": 1230,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/origins-of-proof.html",
       "screenshots": {},
@@ -15782,6 +15987,45 @@
       "date": null
     },
     {
+      "id": "question-answers",
+      "slug": "question-answers",
+      "title": "question-answers",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 10260,
+      "y": 1290,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/question-answers.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "page-owned",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [],
+        "metaDescription": ""
+      },
+      "curated": false,
+      "date": null
+    },
+    {
       "id": "sdk-identity-demo",
       "slug": "sdk-identity-demo",
       "title": "sdk-identity-demo",
@@ -15789,7 +16033,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 10260,
-      "y": 990,
+      "y": 1350,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/sdk-identity-demo.html",
       "screenshots": {},
@@ -15829,7 +16073,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 10260,
-      "y": 1050,
+      "y": 1410,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/summary-of-value.html",
       "screenshots": {},
@@ -15871,7 +16115,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 10260,
-      "y": 1110,
+      "y": 1470,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-handoff.html",
       "screenshots": {},
@@ -15903,6 +16147,127 @@
       "date": null
     },
     {
+      "id": "the-marathon-end",
+      "slug": "the-marathon-end",
+      "title": "the-marathon-end",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 10260,
+      "y": 1530,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-marathon-end.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "capability": {
+        "health": {
+          "state": "critical",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": [
+            "isolated"
+          ]
+        },
+        "placement": "uncurated",
+        "fab": "page-owned",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [],
+        "metaDescription": ""
+      },
+      "curated": false,
+      "date": null
+    },
+    {
+      "id": "the-proposal",
+      "slug": "the-proposal",
+      "title": "the-proposal",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 10260,
+      "y": 1590,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-proposal.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "capability": {
+        "health": {
+          "state": "critical",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": [
+            "isolated"
+          ]
+        },
+        "placement": "uncurated",
+        "fab": "page-owned",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [],
+        "metaDescription": ""
+      },
+      "curated": false,
+      "date": null
+    },
+    {
+      "id": "the-vextreme-system",
+      "slug": "the-vextreme-system",
+      "title": "the-vextreme-system",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 10260,
+      "y": 1650,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-vextreme-system.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "page-owned",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [],
+        "metaDescription": ""
+      },
+      "curated": false,
+      "date": null
+    },
+    {
       "id": "the-victor-pattern",
       "slug": "the-victor-pattern",
       "title": "the-victor-pattern",
@@ -15910,7 +16275,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 10260,
-      "y": 1170,
+      "y": 1710,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-victor-pattern.html",
       "screenshots": {},
@@ -15950,7 +16315,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 10260,
-      "y": 1230,
+      "y": 1770,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-victor-pattern-transcript.html",
       "screenshots": {},
@@ -15983,6 +16348,47 @@
       "date": null
     },
     {
+      "id": "the-watchers-full-context-timed",
+      "slug": "the-watchers-full-context-timed",
+      "title": "the-watchers-full-context-timed",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 10260,
+      "y": 1830,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-watchers-full-context-timed.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "capability": {
+        "health": {
+          "state": "critical",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": [
+            "isolated"
+          ]
+        },
+        "placement": "uncurated",
+        "fab": "page-owned",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [],
+        "metaDescription": ""
+      },
+      "curated": false,
+      "date": null
+    },
+    {
       "id": "total-extraction-arc-index",
       "slug": "total-extraction-arc-index",
       "title": "total-extraction-arc-index",
@@ -15990,7 +16396,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 10260,
-      "y": 1290,
+      "y": 1890,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/total-extraction-arc-index.html",
       "screenshots": {},
@@ -16017,6 +16423,132 @@
         "analysisControl": false,
         "evidenceLanguages": [],
         "metaDescription": "An index to the Total Extraction Arc: framework, demonstration, confession, and proof across a six-page record."
+      },
+      "curated": false,
+      "date": null
+    },
+    {
+      "id": "vextreme-system-project-map",
+      "slug": "vextreme-system-project-map",
+      "title": "vextreme-system-project-map",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 10260,
+      "y": 1950,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/vextreme-system-project-map.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "capability": {
+        "health": {
+          "state": "critical",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": [
+            "isolated"
+          ]
+        },
+        "placement": "uncurated",
+        "fab": "page-owned",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [],
+        "metaDescription": ""
+      },
+      "curated": false,
+      "date": null
+    },
+    {
+      "id": "vextreme-system-style-reference",
+      "slug": "vextreme-system-style-reference",
+      "title": "vextreme-system-style-reference",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 10260,
+      "y": 2010,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/vextreme-system-style-reference.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/3a9591ed7085d10117fdf23f88a1fef246ce70fae0ec5aa5f55931076b2c8df9.png",
+        "alt": "Reality Rendering Mechanics — example feature image"
+      },
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "page-owned",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [],
+        "metaDescription": ""
+      },
+      "curated": false,
+      "date": null
+    },
+    {
+      "id": "victor-methodology",
+      "slug": "victor-methodology",
+      "title": "victor-methodology",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 10260,
+      "y": 2070,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/victor-methodology.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "capability": {
+        "health": {
+          "state": "critical",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": [
+            "isolated"
+          ]
+        },
+        "placement": "uncurated",
+        "fab": "page-owned",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [],
+        "metaDescription": ""
       },
       "curated": false,
       "date": null

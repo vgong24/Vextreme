@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.bending-condominium-ocean-return"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en","ar","de","es","fr","hi","ja","ko","pt","zh"];
-  window.VEX_INDEX_FINGERPRINT = "4dfc2250d344";
+  window.VEX_INDEX_FINGERPRINT = "b331229174aa";
 
 
 
