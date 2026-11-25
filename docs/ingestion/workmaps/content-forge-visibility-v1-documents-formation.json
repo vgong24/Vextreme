@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "vex-content-forge.uncurated-surface-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "ownerRef": "github.issue.vextreme.159",
+  "workRef": "work.vextreme.content-forge.visibility-v1-documents.001",
+  "intent": "Project preserved public Documents identities into pages/ without inventing canonical node or arc placement; let existing Terrain/archive auto-discovery expose them as UNCURATED until later curation.",
+  "effectBoundary": {
+    "createPages": 5,
+    "canonicalNodeMutation": false,
+    "arcMutation": false,
+    "contentIntentMutation": false,
+    "localizationMutation": false,
+    "generatedReadSideMutation": false
+  },
+  "expectedProjection": {
+    "pagePipeline": "pages/<slug>.html",
+    "terrainPlacement": "UNCURATED",
+    "archivePlacement": "auto-discovered/uncurated",
+    "localization": "DEFERRED_UNTIL_VISIBILITY_TERMINAL"
+  },
+  "members": [
+    {
+      "slug": "integrity-check",
+      "title": "The Detector Map — Senses You Evaluate With (corrected)",
+      "sourcePath": "docs/ingestion/source-pages/part-013/integrity-check.html",
+      "sourceGitBlob": "2e78fd93e9ed2995f22b1f12246844999a616a22",
+      "preserveSafeInlineScriptOrdinal": 0
+    },
+    {
+      "slug": "consciousness-with-an-interface",
+      "title": "Official Classification — Consciousness with an Interface",
+      "sourcePath": "docs/ingestion/source-pages/part-013/consciousness-with-an-interface.html",
+      "sourceGitBlob": "fe5ec4c659d5bd0d83a63f18dd798414cff3eb90"
+    },
+    {
+      "slug": "the-handoff",
+      "title": "The Handoff",
+      "sourcePath": "docs/ingestion/source-pages/part-013/the-handoff.html",
+      "sourceGitBlob": "521e90181d6c0aebd2ecfcacec1143e5fb99ccc7"
+    },
+    {
+      "slug": "total-extraction-arc-index",
+      "title": "The Total Extraction Arc — Index",
+      "sourcePath": "docs/ingestion/source-pages/part-013/total-extraction-arc-index.html",
+      "sourceGitBlob": "12bbdc99599886d9833dbc4f365a65c219b01a8f"
+    },
+    {
+      "slug": "for-the-watchers",
+      "title": "For the Watchers",
+      "sourcePath": "docs/ingestion/source-pages/part-013/for-the-watchers.html",
+      "sourceGitBlob": "225af69010f553830ec8f51c0677f80c5ef62387"
+    }
+  ]
+}
