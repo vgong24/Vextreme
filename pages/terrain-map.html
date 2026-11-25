@@ -2070,12 +2070,17 @@
   // A lived group-home origin outranks primary Arc placement for a shared record.
   // Arc membership stays topology truth; this preference preserves only the visitor's Journey context.
   function stageIndexForRouteNode(node, preferredStageKey) {
-    if (!node || !Array.isArray(node.arcKeys)) return -1;
+    if (!node) return -1;
+    var arcKeys = Array.isArray(node.arcKeys) ? node.arcKeys : [];
     if (preferredStageKey) {
       var preferredStageIdx = STAGES.findIndex(function (stage) { return String(stage.key) === String(preferredStageKey); });
-      if (preferredStageIdx >= 0 && node.arcKeys.indexOf(STAGES[preferredStageIdx].key) !== -1) return preferredStageIdx;
+      if (preferredStageIdx >= 0
+        && (String(node.stage) === String(STAGES[preferredStageIdx].key)
+          || arcKeys.indexOf(STAGES[preferredStageIdx].key) !== -1)) return preferredStageIdx;
     }
-    return STAGES.findIndex(function (stage) { return node.arcKeys.indexOf(stage.key) !== -1; });
+    var primaryStageIdx = STAGES.findIndex(function (stage) { return String(stage.key) === String(node.stage); });
+    if (primaryStageIdx >= 0) return primaryStageIdx;
+    return STAGES.findIndex(function (stage) { return arcKeys.indexOf(stage.key) !== -1; });
   }
 
   function currentReaderReturnStage() {
@@ -2221,7 +2226,13 @@
       closeEvolutionReader();
       return;
     }
-    if (openRepositoryRouteInTerrain(slug)) return;
+    var originReaderId = activeReaderId;
+    var routeOptions = originReaderId ? {
+      returnKind:'reader',
+      returnReaderId:originReaderId,
+      historyMode:'push'
+    } : {};
+    if (openRepositoryRouteInTerrain(slug, routeOptions)) return;
     showGestureHint('Route “' + slug + '” is preserved but not live in Vextreme yet');
   }
 
