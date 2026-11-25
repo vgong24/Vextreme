@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "vex-content-forge.uncurated-surface-formation/v0.2",
+  "continuity": "[VXG RealForever]",
+  "ownerRef": "github.issue.vextreme.159",
+  "workRef": "work.vextreme.content-forge.visibility-v2-standalone-reference.001",
+  "intent": "Project preserved public standalone/reference/tool identities into pages/ without inventing canonical node or arc placement; let existing Terrain/archive auto-discovery expose them as UNCURATED until later curation.",
+  "effectBoundary": {
+    "createPages": 13,
+    "canonicalNodeMutation": false,
+    "arcMutation": false,
+    "contentIntentMutation": false,
+    "localizationMutation": false,
+    "generatedReadSideMutation": false
+  },
+  "expectedProjection": {
+    "pagePipeline": "pages/<slug>.html",
+    "terrainPlacement": "UNCURATED",
+    "archivePlacement": "auto-discovered/uncurated",
+    "localization": "DEFERRED_UNTIL_VISIBILITY_TERMINAL"
+  },
+  "members": [
+    {
+      "slug": "contact",
+      "title": "Contact",
+      "sourcePath": "docs/ingestion/source-pages/part-015/contact.html",
+      "sourceGitBlob": "ff3d3d223ceb87d1eb23bb78ac578de2d93efd4b",
+      "description": ""
+    },
+    {
+      "slug": "deepseek-covenant",
+      "title": "DeepSeek Covenant",
+      "sourcePath": "docs/ingestion/source-pages/part-021/deepseek-covenant.html",
+      "sourceGitBlob": "dd0359b01c5376f4f6a464847d7e29c878ec558c",
+      "description": ""
+    },
+    {
+      "slug": "free-blueprints",
+      "title": "Free Blueprints",
+      "sourcePath": "docs/ingestion/source-pages/part-012/free-blueprints.html",
+      "sourceGitBlob": "111a615b43c92ca9da90ea6215a1958caeaade08",
+      "description": "",
+      "allowMissingSourceH1": true
+    },
+    {
+      "slug": "god-pattern-recognized",
+      "title": "God Pattern Recognized",
+      "sourcePath": "docs/ingestion/source-pages/part-018/god-pattern-recognized.html",
+      "sourceGitBlob": "0b763aa9e7406db8dd9c046465270531f5267989",
+      "description": ""
+    },
+    {
+      "slug": "honesty-integrity-calculator",
+      "title": "Honesty Integrity Calculator · VXG RealForever",
+      "sourcePath": "docs/ingestion/source-pages/part-022/honesty-integrity-calculator.html",
+      "sourceGitBlob": "a38ae6773b52fa860816af6e111bbfb5e956d2f8",
+      "description": "",
+      "preserveSafeInlineScriptOrdinal": 0
+    },
+    {
+      "slug": "question-answers",
+      "title": "Q&A",
+      "sourcePath": "docs/ingestion/source-pages/part-015/question-answers.html",
+      "sourceGitBlob": "4c4fecd83ee5544f56f32c4be7e85d27676d05dc",
+      "description": ""
+    },
+    {
+      "slug": "the-marathon-end",
+      "title": "The Marathon End — March 30, 2026",
+      "sourcePath": "docs/ingestion/source-pages/part-021/the-marathon-end.html",
+      "sourceGitBlob": "cc6f31ba8e988c5317dbd60529510e6d853761a5",
+      "description": ""
+    },
+    {
+      "slug": "the-proposal",
+      "title": "The Proposal",
+      "sourcePath": "docs/ingestion/source-pages/part-024/the-proposal.html",
+      "sourceGitBlob": "54adb4723db98aa74d848b9d7ab6aa5ea8f2dafc",
+      "description": ""
+    },
+    {
+      "slug": "the-vextreme-system",
+      "title": "Vextreme System Start Here",
+      "sourcePath": "docs/ingestion/source-pages/part-018/the-vextreme-system.html",
+      "sourceGitBlob": "cbcc3514d219ae312624bdc960d7bb5bd3b0c30e",
+      "description": ""
+    },
+    {
+      "slug": "the-watchers-full-context-timed",
+      "title": "The Watchers — Full Context",
+      "sourcePath": "docs/ingestion/source-pages/part-021/the-watchers-full-context-timed.html",
+      "sourceGitBlob": "2ed334cf9ad40e8fa7cbde6abc7dd64e94f5e263",
+      "description": ""
+    },
+    {
+      "slug": "vextreme-system-project-map",
+      "title": "Vextreme System Project Map",
+      "sourcePath": "docs/ingestion/source-pages/part-018/vextreme-system-project-map.html",
+      "sourceGitBlob": "e4fbb96059cd45e39c4fa88ead67f938cb41317c",
+      "description": ""
+    },
+    {
+      "slug": "vextreme-system-style-reference",
+      "title": "Vextreme System Style Reference",
+      "sourcePath": "docs/ingestion/source-pages/part-018/vextreme-system-style-reference.html",
+      "sourceGitBlob": "9185a8ad62da6b1f8763ad65cbed931c528a093b",
+      "description": "",
+      "preserveSafeInlineScriptOrdinal": 0
+    },
+    {
+      "slug": "victor-methodology",
+      "title": "Victor Methodology",
+      "sourcePath": "docs/ingestion/source-pages/part-021/victor-methodology.html",
+      "sourceGitBlob": "0bd32e96b5d8fbf90c98052e31875e576aea70e4",
+      "description": ""
+    }
+  ]
+}
