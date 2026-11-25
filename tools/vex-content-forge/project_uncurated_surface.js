@@ -44,6 +44,26 @@ function externalizeLogicalAssets(value, catalog) {
     (_all, assetId, extension) => resolveAssetReference(catalog, assetId.toLowerCase(), extension.toLowerCase()));
 }
 
+function authoredStyles(source) {
+  const styles = [];
+  const seen = new Set();
+  for (const match of source.matchAll(/<style(?:\s[^>]*)?>([\s\S]*?)<\/style>/gi)) {
+    const value = (match[1] || '').trim();
+    if (!value || seen.has(value) || /__rescue|__vex|vex-native-site-nav/i.test(value)) continue;
+    seen.add(value);
+    styles.push(value);
+  }
+  return styles.join('\n');
+}
+
+function injectCanonicalHeading(main, title) {
+  const heading = '<h1 class="vex-content-forge-canonical-heading" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;">'
+    + escapeHtml(title) + '</h1>';
+  const next = main.replace(/(<main\b[^>]*>)/i, '$1\n' + heading);
+  invariant(next !== main, 'MAIN_OPEN_MISSING', title);
+  return next;
+}
+
 function normalizeRootHome(main) {
   return main
     .replace(/href=(["'])\/(?:#([^"']*))?\1/gi, (_all, quote, hash) =>
@@ -87,22 +107,32 @@ function escapeAttribute(value) {
   return escapeHtml(value).replace(/"/g, '&quot;');
 }
 
-function projectMember(root, member, allOutputSlugs = []) {
+function projectMember(root, member, allOutputSlugs = [], options = {}) {
+  const schemaVersion = options.schemaVersion || 'vex-content-forge.uncurated-surface-formation/v0.1';
+  const v2 = schemaVersion === 'vex-content-forge.uncurated-surface-formation/v0.2';
   invariant(/^[a-z0-9][a-z0-9-]*$/.test(member.slug || ''), 'MEMBER_SLUG', String(member.slug));
   invariant(typeof member.sourcePath === 'string' && member.sourcePath.length > 0, 'MEMBER_SOURCE', member.slug);
   invariant(typeof member.sourceGitBlob === 'string' && /^[0-9a-f]{40}$/.test(member.sourceGitBlob), 'MEMBER_BLOB', member.slug);
   invariant(typeof member.title === 'string' && member.title.trim().length > 0, 'MEMBER_TITLE', member.slug);
-  invariant(typeof member.description === 'string' && member.description.trim().length > 0, 'MEMBER_DESCRIPTION', member.slug);
+  invariant(typeof member.description === 'string' && (v2 || member.description.trim().length > 0), 'MEMBER_DESCRIPTION', member.slug);
 
   const sourcePath = path.join(root, member.sourcePath);
   invariant(fs.existsSync(sourcePath), 'SOURCE_MISSING', member.sourcePath);
   const bytes = fs.readFileSync(sourcePath);
   invariant(gitBlobSha(bytes) === member.sourceGitBlob, 'SOURCE_BLOB_DRIFT', member.slug);
   const source = bytes.toString('utf8');
+  const assetCatalog = readJson(path.join(root, ASSET_CATALOG_REL));
 
-  const styleSource = oneMatch(source, /<style(?:\s[^>]*)?>([\s\S]*?)<\/style>/gi, member.slug + ': authored style');
+  const styleSource = v2
+    ? authoredStyles(source)
+    : oneMatch(source, /<style(?:\s[^>]*)?>([\s\S]*?)<\/style>/gi, member.slug + ': authored style');
   const sourceMain = oneMatch(source, /(<main\b[\s\S]*?<\/main>)/gi, member.slug + ': authored main');
-  invariant((sourceMain.match(/<h1\b/gi) || []).length === 1, 'SOURCE_H1_COUNT', member.slug);
+  const sourceH1Count = (sourceMain.match(/<h1\b/gi) || []).length;
+  invariant(
+    sourceH1Count === 1 || (v2 && member.allowMissingSourceH1 === true && sourceH1Count === 0),
+    'SOURCE_H1_COUNT',
+    member.slug + ':' + sourceH1Count
+  );
 
   let safeScript = '';
   if (member.preserveSafeInlineScriptOrdinal !== undefined) {
@@ -114,14 +144,15 @@ function projectMember(root, member, allOutputSlugs = []) {
   }
 
   let main = cleanAuthoredMain(sourceMain, { preserveI18n:false });
+  if (v2) main = externalizeLogicalAssets(main, assetCatalog);
   main = normalizeRootHome(main);
   main = normalizeRoutes(main, livePageSlugs(root, allOutputSlugs));
+  if (v2 && sourceH1Count === 0) main = injectCanonicalHeading(main, member.title);
   if (safeScript) {
     invariant(main.includes('</main>'), 'MAIN_CLOSE_MISSING', member.slug);
     main = main.replace('</main>', '<script>\n' + safeScript.replace(/<\/script/gi, '<\\/script') + '\n</script>\n</main>');
   }
 
-  const assetCatalog = readJson(path.join(root, ASSET_CATALOG_REL));
   const style = externalizeLogicalAssets(styleSource, assetCatalog);
 
   const forbidden = [
@@ -160,7 +191,11 @@ function projectMember(root, member, allOutputSlugs = []) {
 }
 
 function validateFormation(value) {
-  invariant(value?.schemaVersion === 'vex-content-forge.uncurated-surface-formation/v0.1', 'FORMATION_SCHEMA', value?.schemaVersion);
+  invariant(
+    ['vex-content-forge.uncurated-surface-formation/v0.1', 'vex-content-forge.uncurated-surface-formation/v0.2'].includes(value?.schemaVersion),
+    'FORMATION_SCHEMA',
+    value?.schemaVersion
+  );
   invariant(value.ownerRef === 'github.issue.vextreme.159', 'FORMATION_OWNER', value.ownerRef);
   invariant(value.effectBoundary?.canonicalNodeMutation === false, 'FORMATION_NODE_BOUNDARY', 'canonical node mutation must remain false');
   invariant(value.effectBoundary?.arcMutation === false, 'FORMATION_ARC_BOUNDARY', 'arc mutation must remain false');
@@ -174,7 +209,7 @@ function projectFormation(root = DEFAULT_ROOT, options = {}) {
   const formation = readJson(path.join(root, formationRel));
   validateFormation(formation);
   const outputSlugs = formation.members.map(member => member.slug);
-  const outputs = formation.members.map(member => projectMember(root, member, outputSlugs));
+  const outputs = formation.members.map(member => projectMember(root, member, outputSlugs, { schemaVersion:formation.schemaVersion }));
 
   if (options.write !== false) {
     for (const output of outputs) {
@@ -200,9 +235,11 @@ module.exports = {
   DEFAULT_ROOT,
   FORMATION_REL,
   UncuratedSurfaceProjectionError,
+  authoredStyles,
   escapeAttribute,
   escapeHtml,
   externalizeLogicalAssets,
+  injectCanonicalHeading,
   inlineScripts,
   normalizeRootHome,
   projectFormation,
