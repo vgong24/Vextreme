@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "vex-content-forge.generated-close-house-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "ownerRef": "github.issue.vextreme.159",
+  "workRef": "work.vextreme.content-forge.visibility-v2-generated-close-house.001",
+  "dependsOn": [
+    "work.vextreme.content-forge.visibility-v2-standalone-reference.001"
+  ],
+  "sourceCandidate": {
+    "pr": "github.pull.vextreme.611",
+    "head": "df3c33d69c590ba90db9e8cb09b71c600f229b75",
+    "tree": "650bd1b3b1240730a9870c3277887e41bd6ba76b",
+    "sourceOwnerReturnSha256": "22023765519dd2490db1d9ba49ef8e6e27d867b35f3c9ad640d1bcd2079d36d8",
+    "retainedInnerReturnSha256": "e7674d4625e076044c4a68a84f5cfafb8da6c0cf04ca5b6d8981e64d063127a9",
+    "sourceOwnerDisposition": "PASS"
+  },
+  "generatedPathMembrane": {
+    "exactFiles": [
+      "data/analysis-index.json",
+      "data/index.json",
+      "data/page-health.json",
+      "data/status.json",
+      "data/terrain-map.json",
+      "pages/build-health.html",
+      "sw.js"
+    ],
+    "exactDirectoryPrefixes": [
+      "dist/"
+    ],
+    "expectedDistFiles": 176,
+    "totalExpectedGeneratedPaths": 183
+  },
+  "executionRoute": {
+    "generator": "VEX_RELAY",
+    "localWorkspaceRoute": false,
+    "githubActionsRoute": false,
+    "publicationAfterReturn": "DIRECT_PROVIDER_EXACT_RETURNED_BYTES"
+  },
+  "boundary": {
+    "sourcePageMutation": false,
+    "canonicalNodeMutation": false,
+    "arcMutation": false,
+    "contentIntentMutation": false,
+    "localizationSourceMutation": false,
+    "generatedOnly": true
+  }
+}
