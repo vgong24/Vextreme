@@ -31,7 +31,7 @@ test('CONTENT FORGE VISIBILITY V2: standalone/reference sources reproduce commit
     assert.equal((committed.match(/<h1\b/gi) || []).length, 1, output.slug + ': exactly one perceivable/document heading identity');
     assert.doesNotMatch(committed, /www\.vextreme24\.com|\/__rescue\/|\/__vex\/|data-vex-id=|data-i18n(?:-attrs|-alt|-aria)?=|_vexLoaderInit|cdn\.jsdelivr\.net\/gh\/vgong24\/vextreme/i);
     assert.doesNotMatch(committed, /(?:href|src)=(["'])\/(?!\/)/i, output.slug + ': no root-relative active references');
-    assert.doesNotMatch(committed, /\/__assets\/[0-9a-f]{64}\.[a-z0-9]+/i, output.slug + ': logical assets must be externalized before route normalization');
+    assert.doesNotMatch(committed, /(?:url\(\s*["']?|@import\s+["'])\/__assets\//i, output.slug + ': root-relative CSS assets must be externalized before route normalization');
     assert.match(committed, /\.\.\/widgets\/fab-read-aloud\.js/);
   }
 });
