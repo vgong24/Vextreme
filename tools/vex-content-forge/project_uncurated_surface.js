@@ -79,11 +79,20 @@ function validateSafeInlineScript(script, member) {
   return script.code.trim();
 }
 
+function escapeHtml(value) {
+  return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function escapeAttribute(value) {
+  return escapeHtml(value).replace(/"/g, '&quot;');
+}
+
 function projectMember(root, member, allOutputSlugs = []) {
   invariant(/^[a-z0-9][a-z0-9-]*$/.test(member.slug || ''), 'MEMBER_SLUG', String(member.slug));
   invariant(typeof member.sourcePath === 'string' && member.sourcePath.length > 0, 'MEMBER_SOURCE', member.slug);
   invariant(typeof member.sourceGitBlob === 'string' && /^[0-9a-f]{40}$/.test(member.sourceGitBlob), 'MEMBER_BLOB', member.slug);
   invariant(typeof member.title === 'string' && member.title.trim().length > 0, 'MEMBER_TITLE', member.slug);
+  invariant(typeof member.description === 'string' && member.description.trim().length > 0, 'MEMBER_DESCRIPTION', member.slug);
 
   const sourcePath = path.join(root, member.sourcePath);
   invariant(fs.existsSync(sourcePath), 'SOURCE_MISSING', member.sourcePath);
@@ -132,7 +141,7 @@ function projectMember(root, member, allOutputSlugs = []) {
 
   const html = '<!DOCTYPE html>\n'
     + '<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>\n'
-    + '<title>' + member.title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + ' — Vextreme</title>\n'
+    + '<title>' + escapeHtml(member.title) + ' — Vextreme</title><meta name="description" content="' + escapeAttribute(member.description) + '"/>\n'
     + '<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>\n'
     + '<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet"/>\n'
     + '<style>' + style.replace(/<\/style/gi, '<\\/style') + '</style></head><body>\n'
@@ -191,6 +200,8 @@ module.exports = {
   DEFAULT_ROOT,
   FORMATION_REL,
   UncuratedSurfaceProjectionError,
+  escapeAttribute,
+  escapeHtml,
   externalizeLogicalAssets,
   inlineScripts,
   normalizeRootHome,
