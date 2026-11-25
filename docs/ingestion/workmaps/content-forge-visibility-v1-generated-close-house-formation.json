@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "vex-content-forge.generated-close-house-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "ownerRef": "github.issue.vextreme.159",
+  "workRef": "work.vextreme.content-forge.visibility-v1-generated-close-house.001",
+  "dependsOn": [
+    "work.vextreme.content-forge.visibility-v1-documents.001"
+  ],
+  "sourceCandidate": {
+    "pr": "github.pull.vextreme.609",
+    "head": "3d84c8f0d3073545f69533b5e6c9121784eafc76",
+    "buildWorkflowRun": 45545164347,
+    "buildJob": 138972905784
+  },
+  "proofObserved": {
+    "generatorSteps": "4..24 PASS",
+    "firstSubstantiveFailure": "VERIFY_GENERATED_ARTIFACTS_ARE_COMMITTED",
+    "generatedPatchPathCount": 183,
+    "terrainEffect": "five V1 pages projected as UNCURATED",
+    "buildHealthEffect": "five V1 pages linked as ported"
+  },
+  "generatedPathMembrane": {
+    "exactFiles": [
+      "data/analysis-index.json",
+      "data/index.json",
+      "data/page-health.json",
+      "data/status.json",
+      "data/terrain-map.json",
+      "pages/build-health.html",
+      "sw.js"
+    ],
+    "exactDirectoryPrefixes": [
+      "dist/"
+    ],
+    "expectedDistFiles": 176,
+    "totalExpectedPaths": 183
+  },
+  "boundary": {
+    "sourcePageMutation": false,
+    "canonicalNodeMutation": false,
+    "arcMutation": false,
+    "localizationSourceMutation": false,
+    "generatedOnly": true
+  }
+}
