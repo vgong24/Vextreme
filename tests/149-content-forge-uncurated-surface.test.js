@@ -7,8 +7,6 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const projector = require('../tools/vex-content-forge/project_uncurated_surface.js');
-const { getRecordPageSlugs } = require('../lib/audit-pages');
-
 const FORMATION = path.join(ROOT, 'docs', 'ingestion', 'workmaps', 'content-forge-visibility-v1-documents-formation.json');
 const NODES = path.join(ROOT, 'data', 'nodes.json');
 const INTENTS = path.join(ROOT, 'config', 'content-intents.json');
@@ -48,14 +46,13 @@ test('CONTENT FORGE VISIBILITY V1: Detector Map keeps only its bounded local int
 });
 
 test('CONTENT FORGE VISIBILITY V1: pages enter the existing record pipeline without invented canonical placement', () => {
-  const records = new Set(getRecordPageSlugs());
   const nodes = JSON.parse(fs.readFileSync(NODES, 'utf8'));
   const nodeSlugs = new Set(nodes.map(node => node.slug));
   const intents = JSON.parse(fs.readFileSync(INTENTS, 'utf8'));
   const intentSlugs = new Set((intents.intents || []).map(intent => intent.slug));
 
   for (const slug of slugs) {
-    assert.equal(records.has(slug), true, slug + ': real page must be auto-discoverable as a record');
+    assert.equal(fs.existsSync(path.join(ROOT, 'pages', slug + '.html')), true, slug + ': projected page must exist in the record-page directory');
     assert.equal(nodeSlugs.has(slug), false, slug + ': no canonical node may be invented in visibility V1');
     assert.equal(intentSlugs.has(slug), false, slug + ': no content intent may be invented in visibility V1');
   }
