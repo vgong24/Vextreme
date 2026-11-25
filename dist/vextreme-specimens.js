@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["specimens"];
   window.VEX_STRING_CATEGORY  = "demo";
   window.VEX_SUPPORTED_LANGS  = ["en","ja"];
-  window.VEX_INDEX_FINGERPRINT = "97937769d192";
+  window.VEX_INDEX_FINGERPRINT = "4dfc2250d344";
 
 
 

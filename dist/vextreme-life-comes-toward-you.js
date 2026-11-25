@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.life-comes-toward-you"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en"];
-  window.VEX_INDEX_FINGERPRINT = "97937769d192";
+  window.VEX_INDEX_FINGERPRINT = "4dfc2250d344";
 
 
 

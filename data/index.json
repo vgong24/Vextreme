@@ -1,8 +1,8 @@
 {
-  "contentFingerprint": "97937769d192",
-  "nodeCount": 195,
+  "contentFingerprint": "4dfc2250d344",
+  "nodeCount": 200,
   "curatedNodeCount": 179,
-  "autoDiscoveredCount": 16,
+  "autoDiscoveredCount": 21,
   "arcCount": 29,
   "supportedLangs": [
     "ar",
@@ -2614,7 +2614,23 @@
         "en"
       ]
     },
+    "consciousness-with-an-interface": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
     "covenant-architect-accord": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "for-the-watchers": {
       "availableLangs": [
         "en"
       ],
@@ -2639,6 +2655,14 @@
       ]
     },
     "instance-thread-logs": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "integrity-check": {
       "availableLangs": [
         "en"
       ],
@@ -2686,6 +2710,14 @@
         "en"
       ]
     },
+    "the-handoff": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
     "the-victor-pattern": {
       "availableLangs": [
         "en"
@@ -2695,6 +2727,14 @@
       ]
     },
     "the-victor-pattern-transcript": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "total-extraction-arc-index": {
       "availableLangs": [
         "en"
       ],
@@ -7884,6 +7924,32 @@
         ]
       }
     },
+    "consciousness-with-an-interface": {
+      "id": null,
+      "slug": "consciousness-with-an-interface",
+      "title": "Official Classification — Consciousness with an Interface — Vextreme",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.consciousness-with-an-interface"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
     "covenant-architect-accord": {
       "id": null,
       "slug": "covenant-architect-accord",
@@ -7900,6 +7966,32 @@
         "template": "page",
         "scopes": [
           "pages.covenant-architect-accord"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
+    "for-the-watchers": {
+      "id": null,
+      "slug": "for-the-watchers",
+      "title": "For the Watchers — Vextreme",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.for-the-watchers"
         ],
         "features": [
           "lang",
@@ -7978,6 +8070,32 @@
         "template": "page",
         "scopes": [
           "pages.instance-thread-logs"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
+    "integrity-check": {
+      "id": null,
+      "slug": "integrity-check",
+      "title": "The Detector Map — Senses You Evaluate With (corrected) — Vextreme",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.integrity-check"
         ],
         "features": [
           "lang",
@@ -8118,6 +8236,32 @@
         ]
       }
     },
+    "the-handoff": {
+      "id": null,
+      "slug": "the-handoff",
+      "title": "The Handoff — Vextreme",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-handoff"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
     "the-victor-pattern": {
       "id": null,
       "slug": "the-victor-pattern",
@@ -8160,6 +8304,32 @@
         "template": "page",
         "scopes": [
           "pages.the-victor-pattern-transcript"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
+    "total-extraction-arc-index": {
+      "id": null,
+      "slug": "total-extraction-arc-index",
+      "title": "The Total Extraction Arc — Index — Vextreme",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.total-extraction-arc-index"
         ],
         "features": [
           "lang",
@@ -9784,8 +9954,18 @@
           "ported": true
         },
         {
+          "slug": "consciousness-with-an-interface",
+          "title": "Official Classification — Consciousness with an Interface — Vextreme",
+          "ported": true
+        },
+        {
           "slug": "covenant-architect-accord",
           "title": "The Covenant Architect Accord",
+          "ported": true
+        },
+        {
+          "slug": "for-the-watchers",
+          "title": "For the Watchers — Vextreme",
           "ported": true
         },
         {
@@ -9801,6 +9981,11 @@
         {
           "slug": "instance-thread-logs",
           "title": "Instance Thread Logs",
+          "ported": true
+        },
+        {
+          "slug": "integrity-check",
+          "title": "The Detector Map — Senses You Evaluate With (corrected) — Vextreme",
           "ported": true
         },
         {
@@ -9829,6 +10014,11 @@
           "ported": true
         },
         {
+          "slug": "the-handoff",
+          "title": "The Handoff — Vextreme",
+          "ported": true
+        },
+        {
           "slug": "the-victor-pattern",
           "title": "The Victor Pattern — Topology",
           "ported": true
@@ -9836,6 +10026,11 @@
         {
           "slug": "the-victor-pattern-transcript",
           "title": "The Victor Pattern Transcript",
+          "ported": true
+        },
+        {
+          "slug": "total-extraction-arc-index",
+          "title": "The Total Extraction Arc — Index — Vextreme",
           "ported": true
         }
       ]
