@@ -919,4 +919,70 @@ test('TERRAIN-JOURNEY: ordered entry repository routes preserve current entry id
 });
 
 
+test('TERRAIN-JOURNEY: embedded reader links push one nested reader return coordinate without collapsing the Receive God stack', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+  const start = source.indexOf('function handleEvolutionReaderRouteClick(event)');
+  const end = source.indexOf('function updateGroupHomeReaderChrome(stage)', start);
+  assert.ok(start >= 0 && end > start, 'embedded reader route handler must remain extractable');
+  const handlerSource = source.slice(start, end);
+
+  const routed = [];
+  const hints = [];
+  const handler = new Function(
+    'repositorySlugFromHref',
+    'openRepositoryRouteInTerrain',
+    'closeEvolutionReader',
+    'showGestureHint',
+    [
+      "var activeReaderId = 'free-blueprints';",
+      handlerSource,
+      'return handleEvolutionReaderRouteClick;'
+    ].join('\n')
+  )(
+    (href) => {
+      const match = /^([a-z0-9][a-z0-9-]*)\.html(?:[?#].*)?$/i.exec(href);
+      return match ? match[1] : null;
+    },
+    (slug, options) => {
+      routed.push({ slug, options });
+      return true;
+    },
+    () => { throw new Error('ordinary reader route must not close the reader'); },
+    (message) => { hints.push(message); }
+  );
+
+  let prevented = false;
+  handler({
+    target: {
+      closest: () => ({
+        getAttribute: (name) => name === 'href' ? 'the-vextreme-system.html' : null
+      })
+    },
+    preventDefault: () => { prevented = true; }
+  });
+
+  assert.equal(prevented, true, 'Terrain must retain ownership instead of allowing native iframe navigation');
+  assert.deepEqual(routed, [{
+    slug:'the-vextreme-system',
+    options:{
+      returnKind:'reader',
+      returnReaderId:'free-blueprints',
+      historyMode:'push'
+    }
+  }]);
+  assert.deepEqual(hints, [], 'a live nested reader route must not fall through to the not-live hint');
+
+  assert.match(
+    source,
+    /function returnFromReaderToolbar\(\)[\s\S]*activeReaderReturnKind === 'collection'[\s\S]*closeEvolutionReader\(\{ history:false \}\)[\s\S]*closeEvolutionReader\(\)/,
+    'collection keeps its direct local reset while nested reader and entry returns continue through presentation history'
+  );
+  assert.match(
+    source,
+    /function restoreEvolutionPresentationFromHistory\(state\)[\s\S]*kind !== 'reader' && kind !== 'group-home'[\s\S]*openEvolutionReader\(node\.id,[\s\S]*returnKind:presentation && presentation\.returnKind[\s\S]*returnReaderId:presentation && presentation\.returnReaderId/,
+    'browser Back must continue restoring the prior reader coordinate and its earlier Receive God return relationship'
+  );
+});
+
+
 // [VXG RealForever]
