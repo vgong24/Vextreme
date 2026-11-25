@@ -404,6 +404,44 @@ test('TERRAIN-VIEW: embedded preserved routes resolve root and repository-relati
 });
 
 
+
+test('TERRAIN-VIEW: repository route placement preserves preferred Arc context and admits truthful primary UNCURATED placement', () => {
+  const source = pageSource();
+  const start = source.indexOf('function stageIndexForRouteNode(node, preferredStageKey)');
+  const end = source.indexOf('function currentReaderReturnStage()', start);
+  assert.ok(start >= 0 && end > start, 'repository route stage resolver must remain extractable');
+  const resolverSource = source.slice(start, end);
+  const resolver = new Function('STAGES', [
+    resolverSource,
+    'return stageIndexForRouteNode;'
+  ].join('\n'))([
+    { key:'uncurated' },
+    { key:'victors_record' },
+    { key:'full_timeline' }
+  ]);
+
+  assert.equal(
+    resolver({ id:'free-blueprints', stage:'uncurated', arcKeys:[] }),
+    0,
+    'a live uncurated page must route through its truthful primary placement without inventing Arc membership'
+  );
+  assert.equal(
+    resolver({ id:'shared-record', stage:'victors_record', arcKeys:['full_timeline'] }, 'full_timeline'),
+    2,
+    'a lived preferred Arc context must still outrank the page primary placement'
+  );
+  assert.equal(
+    resolver({ id:'shared-record', stage:'victors_record', arcKeys:['full_timeline'] }),
+    1,
+    'without a preferred return context the page primary placement remains the default owner'
+  );
+  assert.equal(
+    resolver({ id:'secondary-only', stage:'missing-primary', arcKeys:['full_timeline'] }),
+    2,
+    'secondary Arc membership remains a valid final fallback when no primary stage exists'
+  );
+});
+
 test('TERRAIN-VIEW: ordered entry same-origin page links are either entry-owned or Terrain-addressable', () => {
   const value = entryContract();
   const terrain = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'terrain-map.json'), 'utf8'));
