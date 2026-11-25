@@ -1,0 +1,103 @@
+name: Visibility V1 Generated Close-House
+
+on:
+  push:
+    branches:
+      - VXG-112426-chatgpt-content-forge-visibility-v1-generated-a001
+
+permissions:
+  contents: write
+
+jobs:
+  generate-and-publish:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout exact branch head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run canonical generated sequence
+        run: |
+          node lib/strings-compile.js
+          node lib/build-string-identity-index.js
+          node lib/build-arc-bundles.js
+          node lib/build-index.js
+          node lib/bump-fab-version.js
+          node lib/build-shared-cache-generation.js
+          node lib/build-vextreme.js
+          node lib/build-sw.js
+          node lib/build-analysis-index.js
+          node lib/build-page-health.js
+          node lib/build-archives.js
+          node lib/build-demo.js
+          node lib/build-specimens.js
+          node lib/build-sitemap.js
+          node lib/build-index-page.js
+          node lib/build-lessons.js
+          node lib/build-status.js
+          node lib/build-roles.js
+          node lib/build-ecosystem-hub.js
+          node lib/build-roles-page.js
+          node lib/build-terrain-map.js
+
+      - name: Enforce exact generated membrane
+        shell: bash
+        run: |
+          mapfile -t changed < <(git diff --name-only | sort)
+          printf '%s\n' "${changed[@]}"
+          if [ "${#changed[@]}" -ne 183 ]; then
+            echo "Expected exactly 183 generated paths; got ${#changed[@]}."
+            exit 1
+          fi
+
+          dist_count=0
+          for p in "${changed[@]}"; do
+            case "$p" in
+              dist/*)
+                dist_count=$((dist_count + 1))
+                ;;
+              data/analysis-index.json|data/index.json|data/page-health.json|data/status.json|data/terrain-map.json|pages/build-health.html|sw.js)
+                ;;
+              *)
+                echo "Unexpected generated path: $p"
+                exit 1
+                ;;
+            esac
+          done
+
+          if [ "$dist_count" -ne 176 ]; then
+            echo "Expected 176 dist files; got $dist_count."
+            exit 1
+          fi
+
+          for slug in integrity-check consciousness-with-an-interface the-handoff total-extraction-arc-index for-the-watchers; do
+            node -e '
+              const fs=require("fs");
+              const slug=process.argv[1];
+              const t=JSON.parse(fs.readFileSync("data/terrain-map.json","utf8"));
+              const row=t.pages.find(x=>x.slug===slug);
+              if(!row || row.arc!=="uncurated" || row.capability?.placement!=="uncurated" || row.live!==true) {
+                console.error("Terrain effect mismatch:", slug, row);
+                process.exit(1);
+              }
+            ' "$slug"
+          done
+
+      - name: Commit exact generated outputs
+        shell: bash
+        run: |
+          git add data/analysis-index.json data/index.json data/page-health.json data/status.json data/terrain-map.json dist pages/build-health.html sw.js
+          git diff --cached --quiet && { echo "No generated changes to commit."; exit 1; }
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "VXG-112426: close Documents V1 generated currentness [VXG RealForever]"
+          git push origin "HEAD:${{ github.ref_name }}"
